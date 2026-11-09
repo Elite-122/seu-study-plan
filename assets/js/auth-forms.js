@@ -12,7 +12,7 @@
   function showFlash(m){if(!flash)return;flash.textContent=m||'';flash.hidden=!m;}
   function busy(b,txt){submit.disabled=b;submit.textContent=b?(txt||'لحظة…'):label;}
   /* نرجع الطالب للصفحة اللي جا منها (روابط داخلية فقط) */
-  function next(){var m=/[?&]next=([^&]+)/.exec(location.search);var n=m?decodeURIComponent(m[1]):'';return /^[a-z0-9_-]+\.html(#[\w-]*)?$/i.test(n)?n:'home.html';}
+  function next(){var m=/[?&]next=([^&]+)/.exec(location.search);var n=m?decodeURIComponent(m[1]):'';return /^[a-z0-9_-]+\.html(#[\w-]*)?$/i.test(n)?n:'index.html';}
   function done(msg){try{sessionStorage.setItem('najd_flash',msg);}catch(e){}location.href=next();}
 
   /* إظهار/إخفاء كلمة المرور */
