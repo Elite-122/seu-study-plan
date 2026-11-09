@@ -33,7 +33,7 @@
   var PREFS='<button type="button" class="nj-ic" data-theme-toggle aria-label="تبديل الوضع الداكن" title="الوضع الداكن / الفاتح">'+MOON+SUN+'</button>';
   var PREFS_LBL='<button type="button" class="nj-ic" data-theme-toggle>'+MOON+SUN+'<span>الوضع الداكن / الفاتح</span></button>';
   function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('najd_theme',t);}catch(e){}var mc=document.querySelector('meta[name=theme-color]');if(mc)mc.setAttribute('content',t==='dark'?'#0F1817':'#2F4F4E');}
-  if(!document.documentElement.getAttribute('data-theme')){var t0='light';try{t0=localStorage.getItem('najd_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){}document.documentElement.setAttribute('data-theme',t0);}
+  if(!document.documentElement.getAttribute('data-theme')){var t0='light';try{if(localStorage.getItem('najd_theme')==='dark')t0='dark';}catch(e){}document.documentElement.setAttribute('data-theme',t0);}
   root.addEventListener('click',function(e){if(e.target.closest('[data-theme-toggle]'))setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
 
   var head=document.getElementById('nj-header');
