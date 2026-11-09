@@ -6,7 +6,7 @@
   /* روابط الصفحات — عدّلها هنا لو غيّرت أسماء الملفات */
   var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',privacy:'privacy.html',terms:'terms.html',college:'college-plans.html'};
   /* بريد التواصل (يظهر في سياسة الخصوصية والشروط) — اكتبه هنا */
-  var CONTACT_EMAIL='';
+  var CONTACT_EMAIL='najdacdemy@gmail.com';
   var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['assistant','مساعدك الدراسي'],['coop','التدريب التعاوني'],['store','المتجر']];
   var PAGE=root.getAttribute('data-page')||'';
 
