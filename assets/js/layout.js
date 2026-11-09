@@ -4,7 +4,7 @@
   var root=document.getElementById('najd');if(!root)return;
 
   /* روابط الصفحات — عدّلها هنا لو غيّرت أسماء الملفات */
-  var LINKS={home:'home.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',college:'index.html'};
+  var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',college:'college-plans.html'};
   var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['assistant','مساعدك الدراسي'],['coop','التدريب التعاوني']];
   var PAGE=root.getAttribute('data-page')||'';
 
@@ -78,13 +78,13 @@
   if(REQUIRED){
     var main=root.querySelector('main');
     if(main){
-      var nx=encodeURIComponent(location.pathname.split('/').pop()||'home.html');
+      var nx=encodeURIComponent(location.pathname.split('/').pop()||'index.html');
       var g=document.createElement('section');g.className='nj-gate';
       g.innerHTML='<div class="nj-in"><div class="nj-gate-card">'
         +'<span class="nj-gate-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><rect x="4" y="10" width="16" height="11" rx="3" fill="currentColor"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></span>'
         +'<h2>سجّل دخولك عشان تستخدم '+(PAGE_NAMES[PAGE]||'هذي الخدمة')+'</h2>'
-        +'<p>كل خدمات أكاديمية نجد تحتاج حساب. سجّل برقم جوالك خلال دقيقة، ويتحفظ تقدمك في حسابك وترجع له من أي جهاز.</p>'
-        +'<div class="nj-gate-ctas"><a class="nj-btn nj-btn-fill" href="'+LINKS.login+'?next='+nx+'">تسجيل الدخول برقم الجوال</a><a class="nj-btn nj-btn-line" href="'+LINKS.coop+'">تصفح فرص التدريب التعاوني</a></div>'
+        +'<p>كل خدمات أكاديمية نجد تحتاج حساب. سجّل بحساب Gmail أو بريدك خلال دقيقة، ويتحفظ تقدمك في حسابك وترجع له من أي جهاز.</p>'
+        +'<div class="nj-gate-ctas"><a class="nj-btn nj-btn-fill" href="'+LINKS.login+'?next='+nx+'">تسجيل الدخول</a><a class="nj-btn nj-btn-line" href="'+LINKS.coop+'">تصفح فرص التدريب التعاوني</a></div>'
         +'<p class="nj-gate-note">التسجيل مجاني.</p>'
         +'</div></div>';
       main.parentNode.insertBefore(g,main);

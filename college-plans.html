@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خطط برامج كلية العلوم الإدارية والمالية | مشروع طلابي مستقل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF3F9; --paper-deep:#DEE9F5; --paper-line:#C7D8EC;
+    --ink:#101B2D; --ink-soft:#4A5A72;
+    --navy:#0E2A4A; --navy-light:#1B4C82; --navy-pale:#DCE7F5; --navy-deep:#081C33;
+    --teal:#147A88; --teal-light:#1E9DAD; --teal-pale:#D7EBEC;
+    --indigo:#3B4E9C; --indigo-pale:#E0E2F4;
+    --sky:#2E7CB8; --sky-pale:#DCEAF6;
+    --gold:#A97418; --gold-light:#CC9A34; --gold-pale:#F3E3BC;
+    --white:#FFFFFF; --radius:10px; --shadow:0 1px 0 rgba(14,42,74,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:linear-gradient(160deg, var(--paper) 0%, var(--paper-deep) 100%);background-attachment:fixed;color:var(--ink);font-family:'Cairo',sans-serif;line-height:1.7;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px;}
+
+  .disclaimer{background:#7A2A28;color:#FCEAE7;font-size:12px;text-align:center;padding:8px 14px;}
+  .disclaimer b{font-weight:700;}
+
+  header.hero{background:radial-gradient(ellipse at 15% -10%, rgba(70,147,209,0.30), transparent 55%), linear-gradient(160deg, var(--navy-deep), var(--navy) 65%);color:var(--white);padding:28px 0 34px;position:relative;border-bottom:4px solid var(--gold);}
+  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-top-left{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .logo-badge{background:var(--white);border-radius:12px;padding:8px 12px;display:inline-flex;align-items:center;}
+  .logo-badge img{height:38px;display:block;}
+  .eyebrow{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--gold-pale);border:1px solid rgba(243,227,188,0.45);padding:5px 12px;border-radius:999px;}
+  .clock-box{background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:8px 14px;text-align:center;min-width:150px;}
+  .clock-box .d{font-size:11.5px;color:#BBD6EE;}
+  .clock-box .t{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--gold-pale);letter-spacing:.03em;}
+  .clock-box .u{font-size:9.5px;color:#8FB4D6;margin-top:2px;}
+  h1.title{font-size:clamp(22px,4.5vw,34px);font-weight:900;margin:0 0 6px;line-height:1.3;}
+  .title-en{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#BBD6EE;letter-spacing:.04em;margin:0 0 16px;}
+  .hero-desc{max-width:660px;color:#E4EEF7;font-size:14.5px;margin:0;}
+  .stat-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,0.15);margin-top:24px;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,0.12);}
+  .stat{background:rgba(0,0,0,0.22);padding:11px 6px;text-align:center;}
+  .stat b{display:block;font-size:18px;font-family:'IBM Plex Mono',monospace;color:var(--gold-pale);}
+  .stat span{font-size:10px;color:#BBD6EE;}
+
+  nav.pages{position:sticky;top:0;z-index:25;background:var(--paper);border-bottom:2px solid var(--ink);padding:12px 0;}
+  .pages-inner{display:flex;gap:8px;}
+  .page-link{flex:1;text-align:center;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;background:var(--white);border:1px solid var(--ink);color:var(--ink);padding:10px 10px;border-radius:10px;}
+  .page-link.active{background:var(--navy);border-color:var(--navy);color:var(--white);}
+  .page-view{display:none;}
+  .page-view.active{display:block;}
+
+  nav.majors{position:sticky;top:57px;z-index:20;background:var(--paper);border-bottom:1px solid var(--paper-line);padding:10px 0;}
+  .majors-inner{display:flex;gap:6px;overflow-x:auto;padding:0 4px;}
+  .major-btn{flex:0 0 auto;font-family:'Cairo',sans-serif;font-weight:700;font-size:12.5px;background:var(--white);border:1px solid var(--ink);color:var(--ink);padding:9px 13px;border-radius:999px;cursor:pointer;white-space:nowrap;}
+  .major-btn.active{background:var(--navy);border-color:var(--navy);color:var(--white);}
+  .major-panel{display:none;}
+  .major-panel.active{display:block;}
+
+  main{display:block;width:100%;}
+  section{padding:32px 0;}
+  .section-head{margin-bottom:18px;}
+  .section-num{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+  h2{font-size:20px;font-weight:700;margin:4px 0 3px;}
+  h2 .en{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:400;color:var(--ink-soft);display:block;margin-top:3px;letter-spacing:.03em;}
+  .lead{color:var(--ink-soft);font-size:14px;max-width:660px;}
+
+  .intro-card{background:var(--white);border:1px solid var(--navy);border-radius:14px;padding:20px;margin-bottom:24px;box-shadow:0 2px 0 var(--gold), var(--shadow);}
+  .intro-card h3{margin:0 0 8px;font-size:16px;color:var(--navy-deep);}
+  .intro-card p{margin:0 0 14px;font-size:13.5px;color:var(--ink-soft);}
+  .intro-note{font-size:11px;color:var(--ink-soft);background:var(--gold-pale);border:1px dashed var(--gold);border-radius:8px;padding:8px 10px;margin-bottom:12px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{font-family:'IBM Plex Mono',monospace;font-size:11px;background:var(--navy-pale);color:var(--navy-deep);padding:5px 10px;border-radius:999px;border:1px solid var(--sky-pale);}
+
+  .sem-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  @media(min-width:720px){.sem-grid{grid-template-columns:1fr 1fr;}}
+  details.sem{background:var(--white);border:1px solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+  details.sem summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;background:var(--navy-pale);border-bottom:1px solid var(--paper-line);}
+  details.sem summary::-webkit-details-marker{display:none;}
+  .sem-title{font-weight:700;font-size:14.5px;color:var(--navy-deep);}
+  .sem-hours{font-family:'IBM Plex Mono',monospace;font-size:11.5px;background:var(--navy);color:var(--white);padding:3px 9px;border-radius:999px;}
+  .sem-chevron{transition:transform .2s;font-size:12px;color:var(--ink-soft);margin-inline-start:8px;}
+  details.sem[open] .sem-chevron{transform:rotate(180deg);}
+  table.courses{width:100%;border-collapse:collapse;font-size:12.5px;}
+  table.courses th{text-align:right;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;padding:7px 10px;border-bottom:1px solid var(--paper-line);}
+  table.courses td{padding:8px 10px;border-bottom:1px solid var(--paper-line);vertical-align:top;}
+  table.courses tr:last-child td{border-bottom:none;}
+  .code{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--navy);font-weight:600;}
+  .cname{font-size:12.5px;}
+  .cname small{display:block;color:var(--ink-soft);font-size:10.5px;}
+  .creq{font-size:10.5px;color:var(--ink-soft);}
+  td.hrs{font-family:'IBM Plex Mono',monospace;text-align:center;font-weight:600;}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-soft);margin-top:12px;}
+  .legend span{display:flex;align-items:center;gap:6px;}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--navy);}
+  .lang-note{font-size:11.5px;color:var(--ink-soft);background:var(--navy-pale);border:1px solid var(--sky-light);border-radius:8px;padding:10px 14px;margin-bottom:20px;}
+
+  .gpa-card{background:var(--white);border:1px solid var(--ink);border-radius:14px;padding:20px;box-shadow:0 2px 0 var(--gold), var(--shadow);}
+  .gpa-rows{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+  .gpa-row-head{display:grid;grid-template-columns:1fr 70px 100px 34px;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;padding:0 2px 4px;}
+  .gpa-row{display:grid;grid-template-columns:1fr 70px 100px 34px;gap:8px;align-items:center;}
+  @media(max-width:520px){
+    .gpa-row-head{display:none;}
+    .gpa-row{grid-template-columns:1fr;background:var(--paper);border-radius:10px;padding:10px;}
+    .gpa-row .rm-btn{justify-self:start;}
+  }
+  .gpa-row input, .gpa-row select{width:100%;font-family:'Cairo',sans-serif;font-size:13px;padding:9px 10px;border:1px solid var(--paper-line);border-radius:8px;background:var(--paper);color:var(--ink);}
+  .gpa-row select{font-family:'IBM Plex Mono',monospace;}
+  .rm-btn{width:34px;height:34px;border-radius:8px;border:1px solid #A5403A;background:#F1DAD3;color:#7A2A28;cursor:pointer;font-size:16px;line-height:1;}
+  .gpa-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+  .btn-add{font-family:'Cairo',sans-serif;font-weight:600;font-size:13px;background:var(--navy-pale);border:1px solid var(--navy);color:var(--navy-deep);padding:9px 16px;border-radius:8px;cursor:pointer;}
+  .btn-reset{font-family:'Cairo',sans-serif;font-weight:600;font-size:13px;background:var(--white);border:1px solid var(--ink-soft);color:var(--ink-soft);padding:9px 16px;border-radius:8px;cursor:pointer;}
+  .gpa-results{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border-radius:10px;overflow:hidden;margin-bottom:14px;}
+  .gpa-res{background:var(--navy-deep);color:var(--white);padding:14px 10px;text-align:center;}
+  .gpa-res b{display:block;font-size:22px;font-family:'IBM Plex Mono',monospace;color:var(--gold-pale);}
+  .gpa-res span{font-size:11px;color:#BBD6EE;}
+  .gpa-bar-track{height:11px;border-radius:999px;background:var(--paper-deep);overflow:hidden;border:1px solid var(--paper-line);margin-bottom:22px;}
+  .gpa-bar-fill{height:100%;background:linear-gradient(90deg, var(--gold-light), var(--navy-light));border-radius:999px;transition:width .3s ease;}
+  .cumulative{border-top:1px solid var(--paper-line);padding-top:16px;}
+  .cumulative summary{cursor:pointer;font-weight:700;font-size:13.5px;color:var(--navy-deep);list-style:none;}
+  .cumulative summary::-webkit-details-marker{display:none;}
+  .cum-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+  .cum-grid label{font-size:12px;color:var(--ink-soft);display:block;margin-bottom:4px;}
+  .cum-grid input{width:100%;padding:9px 10px;border:1px solid var(--paper-line);border-radius:8px;background:var(--paper);font-family:'IBM Plex Mono',monospace;}
+  .cum-result{margin-top:14px;font-size:13px;background:var(--gold-pale);border:1px solid var(--gold);border-radius:8px;padding:12px 14px;color:var(--ink);}
+  .cum-result b{font-family:'IBM Plex Mono',monospace;}
+  .scale-note{font-size:11px;color:var(--ink-soft);margin-top:14px;text-align:center;}
+
+  .wall-card{background:var(--white);border:1px solid var(--ink);border-radius:14px;padding:20px;box-shadow:0 2px 0 var(--gold), var(--shadow);margin-bottom:20px;}
+  .wall-form{display:grid;grid-template-columns:1fr;gap:10px;}
+  .wall-form input, .wall-form textarea{width:100%;font-family:'Cairo',sans-serif;font-size:13.5px;padding:10px 12px;border:1px solid var(--paper-line);border-radius:8px;background:var(--paper);color:var(--ink);resize:vertical;}
+  .wall-form textarea{min-height:70px;}
+  .wall-submit{align-self:flex-start;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;background:var(--navy);color:var(--white);border:none;padding:10px 20px;border-radius:8px;cursor:pointer;}
+  .wall-list{display:flex;flex-direction:column;gap:12px;}
+  .wall-item{background:var(--navy-pale);border-radius:10px;padding:12px 14px;border-inline-start:3px solid var(--gold);}
+  .wall-item b{display:block;font-size:13px;color:var(--navy-deep);margin-bottom:3px;}
+  .wall-item p{margin:0;font-size:13px;color:var(--ink);}
+  .wall-item span{display:block;font-size:10px;color:var(--ink-soft);margin-top:5px;font-family:'IBM Plex Mono',monospace;}
+  .wall-note{font-size:11px;color:var(--ink-soft);margin-top:10px;}
+
+  footer{padding:26px 0 40px;text-align:center;color:var(--ink-soft);font-size:12px;border-top:1px solid var(--paper-line);margin-top:10px;}
+  footer .rights{font-weight:700;color:var(--navy-deep);margin-bottom:4px;}
+  footer .disc2{font-size:11px;color:#7A2A28;margin-top:6px;}
+  footer .mono{opacity:.8;}
+</style>
+</head>
+<body>
+
+<div class="disclaimer">⚠ <b>هذا موقع غير رسمي</b> — جهد فردي مستقل ولا يتبع الجامعة السعودية الإلكترونية / <b>Unofficial site</b> — an independent personal effort, not affiliated with SEU</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-top-left">
+        <span class="logo-badge"><img src="data:image/jpeg;base64,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" alt="Saudi Electronic University logo — used for reference only"></span>
+        <span class="eyebrow">COLLEGE OF ADMINISTRATIVE &amp; FINANCIAL SCIENCES — UNOFFICIAL GUIDE</span>
+      </div>
+      <div class="clock-box">
+        <div class="d" id="liveDate">—</div>
+        <div class="t" id="liveTime">—</div>
+        <div class="u">يتحدث تلقائياً كل ثانية</div>
+      </div>
+    </div>
+    <h1 class="title">خطط برامج البكالوريوس</h1>
+    <p class="title-en">BSBA STUDY PLANS — MANAGEMENT, FINANCE, E-COMMERCE &amp; ACCOUNTING MAJORS</p>
+    <p class="hero-desc">دليل تفاعلي لخطط إدارة الأعمال والمالية والتجارة الإلكترونية والمحاسبة في الجامعة السعودية الإلكترونية، وحاسبة تفاعلية لمعدلك، ومساحة رسائل تحفيزية بين الطلاب.</p>
+    <div class="stat-row">
+      <div class="stat"><b>130</b><span>ساعة للتخرج</span></div>
+      <div class="stat"><b>4</b><span>برامج</span></div>
+      <div class="stat"><b>8</b><span>فصول دراسية</span></div>
+      <div class="stat"><b>4.00</b><span>سلم المعدل</span></div>
+      <div class="stat"><b id="visitorCount">…</b><span>عدد الزوار</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="pages">
+  <div class="wrap pages-inner">
+    <div class="page-link active" data-page="plan">الخطة الدراسية</div>
+    <div class="page-link" data-page="gpa">حاسبة المعدل</div>
+    <div class="page-link" data-page="wall">رسائل تحفيزية</div>
+  </div>
+</nav>
+
+<div id="page-plan" class="page-view active">
+  <nav class="majors">
+    <div class="wrap majors-inner">
+      <button class="major-btn active" data-major="mgt">إدارة الأعمال</button>
+      <button class="major-btn" data-major="fin">المالية</button>
+      <button class="major-btn" data-major="ecom">التجارة الإلكترونية</button>
+      <button class="major-btn" data-major="acct">المحاسبة</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <div id="majorPanels"></div>
+
+    <section id="about">
+      <div class="section-head">
+        <span class="section-num">NOTES</span>
+        <h2>حول هذه الخطة<span class="en">how to read this plan</span></h2>
+      </div>
+      <div class="lang-note">
+        البيانات مبنية على ملفات الخطة الدراسية وأدلة الطلاب الرسمية الصادرة عن الجامعة السعودية الإلكترونية لبرامج إدارة الأعمال (ديسمبر 2025)، والمالية (سبتمبر 2023)، والتجارة الإلكترونية (سبتمبر 2023)، والمحاسبة (يونيو 2026). في المستويات 6-8، تم عرض المسار الرئيسي لكل برنامج مباشرة ضمن جدول المستوى بدلاً من قائمة تخصص منفصلة.
+      </div>
+      <div class="legend">
+        <span><i class="dot"></i> هذا موقع طلابي غير رسمي، تحقق دائماً من الخطة الرسمية عبر بوابة الجامعة</span>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="page-gpa" class="page-view">
+  <main class="wrap">
+    <section id="gpa">
+      <div class="section-head">
+        <span class="section-num">GPA CALCULATOR</span>
+        <h2>حاسبة المعدل التفاعلية<span class="en">GPA simulator — term &amp; cumulative</span></h2>
+        <p class="lead">أضف مقرراتك، اختر تقديرك، وستُحسب النقاط والمعدل تلقائياً حسب سلم الجامعة من 4.00.</p>
+      </div>
+
+      <div class="gpa-card">
+        <div class="gpa-row-head"><span>اسم المقرر</span><span>الساعات</span><span>التقدير</span><span></span></div>
+        <div class="gpa-rows" id="gpaRows"></div>
+        <div class="gpa-actions">
+          <button class="btn-add" id="addRow" type="button">+ إضافة مقرر</button>
+          <button class="btn-reset" id="resetRows" type="button">إعادة تعيين</button>
+        </div>
+
+        <div class="gpa-results">
+          <div class="gpa-res"><b id="resHours">0</b><span>مجموع الساعات</span></div>
+          <div class="gpa-res"><b id="resPoints">0.00</b><span>مجموع النقاط</span></div>
+          <div class="gpa-res"><b id="resGPA">0.00</b><span>معدل الفصل</span></div>
+        </div>
+        <div class="gpa-bar-track"><div class="gpa-bar-fill" id="gpaBar" style="width:0%"></div></div>
+
+        <details class="cumulative">
+          <summary>+ احتساب المعدل التراكمي مع فصول سابقة</summary>
+          <div class="cum-grid">
+            <div><label>الساعات المكتسبة سابقاً</label><input type="number" id="prevHours" min="0" step="1" value="0"></div>
+            <div><label>مجموع النقاط سابقاً</label><input type="number" id="prevPoints" min="0" step="0.01" value="0"></div>
+          </div>
+          <div class="cum-result" id="cumResult">أدخل بياناتك السابقة لاحتساب معدلك التراكمي الجديد.</div>
+        </details>
+
+        <p class="scale-note mono">SCALE — A+ 4.00 · A 3.75 · B+ 3.50 · B 3.00 · C+ 2.50 · C 2.00 · D+ 1.50 · D 1.00 · F 0.00</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="page-wall" class="page-view">
+  <main class="wrap">
+    <section id="wall">
+      <div class="section-head">
+        <span class="section-num">MOTIVATION WALL</span>
+        <h2>رسائل تحفيزية بين الطلاب<span class="en">leave a message to encourage other students</span></h2>
+        <p class="lead">اكتب رسالة قصيرة تحفّز زملاءك على الاستمرار والتفوق. الرسائل تُحفظ وتظهر لجميع الزوار.</p>
+      </div>
+      <div class="wall-card">
+        <form class="wall-form" id="wallForm">
+          <input type="text" id="wallName" placeholder="اسمك (اختياري)" maxlength="40">
+          <textarea id="wallText" placeholder="اكتب رسالتك التحفيزية هنا..." maxlength="300" required></textarea>
+          <button type="submit" class="wall-submit">إرسال الرسالة</button>
+        </form>
+        <p class="wall-note" id="wallNote"></p>
+      </div>
+      <div class="wall-list" id="wallList"></div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <p class="rights">© 2025 NERO — جميع الحقوق محفوظة / All Rights Reserved</p>
+  <p>دليل خطط برامج كلية العلوم الإدارية والمالية — مشروع طلابي غير رسمي</p>
+  <p class="disc2">هذا الموقع لا يتبع الجامعة السعودية الإلكترونية رسمياً، وهو جهد فردي مستقل لأغراض مرجعية فقط. This site is an independent, unofficial personal project and is not affiliated with Saudi Electronic University.</p>
+  <p class="mono">Sources: BSBA Management (Dec 2025), Finance (Sep 2023), E-Commerce (Sep 2023), Accounting Student Handbook (Jun 2026)</p>
+</footer>
+
+<script>
+/* ============ Majors data ============ */
+const majors = {
+  mgt: {
+    name: 'بكالوريوس إدارة الأعمال — تخصص الإدارة',
+    en: 'BSBA — Major in Management',
+    mission: 'إعداد مديرين وقادة أكفاء بمعرفة أعمال متقدمة عبر تعليم مدمج عالي الجودة، وكفاءات تدريسية مميزة، ومهارات إدارية متقدمة تسهل اندماجهم في بيئة الأعمال السعودية الديناميكية.',
+    careers: ['مدير عام / رئيس قسم', 'محلل أعمال', 'منسق تطوير أعمال', 'مستشار أنظمة أعمال', 'أخصائي تخطيط', 'مدير عمليات'],
+    levels: [
+      {label:'السنة الأولى', en:'First Year', hours:26, courses:[
+        ['ENG001','English Language Skills','مهارات اللغة الإنجليزية',8,'—'],
+        ['CS001','Computer Essentials','أساسيات الحاسب',3,'—'],
+        ['COMM001','Communication Skills','مهارات الاتصال',2,'—'],
+        ['ENG001','English Language Skills (Continued)','مهارات اللغة الإنجليزية (متابعة)',8,'—'],
+        ['MATH001','Fundamentals of Math','أساسيات الرياضيات',3,'—'],
+        ['CI001','Academic Skills','المهارات الأكاديمية',2,'—'],
+      ]},
+      {label:'المستوى الثالث', en:'Level three', hours:17, courses:[
+        ['ISLM101','Introduction to Islamic Culture','مدخل إلى الثقافة الإسلامية',2,'اجتياز السنة الأولى'],
+        ['STAT101','Statistics','الإحصاء',3,'اجتياز السنة الأولى'],
+        ['LAW101','Legal Environment of Business','البيئة القانونية للأعمال',3,'اجتياز السنة الأولى'],
+        ['ECON101','Microeconomics','الاقتصاد الجزئي',3,'اجتياز السنة الأولى'],
+        ['MGT101','Principles of Management','مبادئ الإدارة',3,'اجتياز السنة الأولى'],
+        ['ACCT101','Principles of Accounting','مبادئ المحاسبة',3,'اجتياز السنة الأولى'],
+      ]},
+      {label:'المستوى الرابع', en:'Level four', hours:17, courses:[
+        ['ISLM102','Professional Conduct & Ethics in Islam','السلوك المهني والأخلاق في الإسلام',2,'—'],
+        ['STAT201','Quantitative Methods','الأساليب الكمية',3,'ACCT101'],
+        ['FIN101','Principles of Finance','مبادئ المالية',3,'MGT101'],
+        ['MGT201','Marketing Management','إدارة التسويق',3,'MGT101'],
+        ['MGT211','H.R Management','إدارة الموارد البشرية',3,'MGT101'],
+        ['ECOM101','E-Commerce','التجارة الإلكترونية',3,'—'],
+      ]},
+      {label:'المستوى الخامس', en:'Level five', hours:18, courses:[
+        ['ECON201','Macroeconomics','الاقتصاد الكلي',3,'—'],
+        ['MIS201','Management of Information Systems','إدارة نظم المعلومات',3,'MGT101'],
+        ['ECOM201','Introduction to E-Management','مقدمة في الإدارة الإلكترونية',3,'MGT101'],
+        ['MGT301','Organizational Behavior','السلوك التنظيمي',3,'MGT211'],
+        ['MGT311','Intro to Operations Management','مقدمة في إدارة العمليات',3,'MGT101 + STAT101'],
+        ['MGT312','Decision Making and Problem Solving','اتخاذ القرارات وحل المشكلات',3,'MGT101'],
+      ]},
+      {label:'المستوى السادس', en:'Level six', hours:17, courses:[
+        ['ISLM103','Islamic Economic System','النظام الاقتصادي الإسلامي',2,'ISLM101'],
+        ['ACCT301','Cost Accounting','محاسبة التكاليف',3,'ACCT101'],
+        ['MGT321','Intro to International Business','مقدمة في الأعمال الدولية',3,'—'],
+        ['MGT322','Logistics Management','إدارة الإمداد والتموين',3,'MGT101'],
+        ['MGT323','Project Management','إدارة المشاريع',3,'MGT311'],
+        ['MGT325','Management of Technology','إدارة التقنية',3,'MGT101'],
+      ]},
+      {label:'المستوى السابع', en:'Level seven', hours:17, courses:[
+        ['ISLM104','Social System and Human Rights','النظام الاجتماعي وحقوق الإنسان',2,'ISLM102'],
+        ['MGT401','Strategic Management','الإدارة الاستراتيجية',3,'MGT201 + FIN101'],
+        ['MGT324','Public Management','الإدارة العامة',3,'MGT101'],
+        ['MGT402','Entrepreneurship','ريادة الأعمال',3,'MGT101'],
+        ['MGT403','Knowledge Management','إدارة المعرفة',3,'MGT101'],
+        ['MGT424','Quality Management','إدارة الجودة',3,'MGT101'],
+      ]},
+      {label:'المستوى الثامن', en:'Level eight', hours:18, courses:[
+        ['MGT404','Organization Design and Development','تصميم وتطوير المنظمات',3,'MGT101'],
+        ['MGT421','Communications Management','إدارة الاتصالات',3,'MGT101'],
+        ['MGT422','Business Ethics & Social Responsibility','أخلاقيات الأعمال والمسؤولية الاجتماعية',3,'—'],
+        ['MGT430','Internship','التدريب التعاوني',6,'إكمال 90 ساعة معتمدة'],
+        ['MGT425','Spreadsheet Decision Modeling','نمذجة القرارات بجداول البيانات',3,'MGT101'],
+      ]},
+    ]
+  },
+
+  fin: {
+    name: 'بكالوريوس إدارة الأعمال — تخصص المالية',
+    en: 'BSBA — Major in Finance',
+    mission: 'إعداد قادة المستقبل في التخطيط المالي القائم على القيم، ارتكازاً على ركائز الجامعة في التميز والنزاهة والقيادة والولاء والاحترام والعطاء بلا حدود.',
+    careers: ['مدير مالي', 'باحث مالي', 'مستشار مالي', 'محلل مالي', 'وسيط مالي (وكالات مالية)'],
+    levels: [
+      {label:'السنة الأولى', en:'First Year', hours:26, courses:[
+        ['ENG001','English Skills','مهارات اللغة الإنجليزية',16,'—'],
+        ['CS001','Computer Essentials','أساسيات الحاسب',3,'—'],
+        ['COMM001','Communication Skills','مهارات الاتصال',2,'—'],
+        ['MATH001','Fundamentals of Math','أساسيات الرياضيات',3,'—'],
+        ['CI001','Academic Skills','المهارات الأكاديمية',2,'—'],
+      ]},
+      {label:'المستوى الثالث', en:'Level three', hours:17, courses:[
+        ['ISLM101','Introduction to Islamic Culture','مدخل إلى الثقافة الإسلامية',2,'اجتياز السنة الأولى'],
+        ['STAT101','Statistics','الإحصاء',3,'اجتياز السنة الأولى'],
+        ['LAW101','Legal Environment of Business','البيئة القانونية للأعمال',3,'اجتياز السنة الأولى'],
+        ['ECON101','Microeconomics','الاقتصاد الجزئي',3,'اجتياز السنة الأولى'],
+        ['MGT101','Principles of Management','مبادئ الإدارة',3,'اجتياز السنة الأولى'],
+        ['ACCT101','Principles of Accounting','مبادئ المحاسبة',3,'اجتياز السنة الأولى'],
+      ]},
+      {label:'المستوى الرابع', en:'Level four', hours:17, courses:[
+        ['ISLM102','Professional Conduct & Ethics in Islam','السلوك المهني والأخلاق في الإسلام',2,'—'],
+        ['STAT201','Quantitative Methods','الأساليب الكمية',3,'STAT101'],
+        ['FIN101','Principles of Finance','مبادئ المالية',3,'ACCT101'],
+        ['MGT201','Marketing Management','إدارة التسويق',3,'MGT101'],
+        ['MGT211','H.R Management','إدارة الموارد البشرية',3,'MGT101'],
+        ['ECOM101','E-Commerce','التجارة الإلكترونية',3,'—'],
+      ]},
+      {label:'المستوى الخامس', en:'Level five', hours:18, courses:[
+        ['ECON201','Macroeconomics','الاقتصاد الكلي',3,'—'],
+        ['MIS201','Management of Information Systems','إدارة نظم المعلومات',3,'MGT101'],
+        ['ECOM201','Introduction to E-Management','مقدمة في الإدارة الإلكترونية',3,'MGT101'],
+        ['MGT301','Organizational Behavior','السلوك التنظيمي',3,'MGT211'],
+        ['MGT311','Intro to Operations Management','مقدمة في إدارة العمليات',3,'MGT101 + STAT101'],
+        ['FIN201','Corporate Finance','تمويل الشركات',3,'FIN101'],
+      ]},
+      {label:'المستوى السادس', en:'Level six', hours:17, courses:[
+        ['ISLM103','Islamic Economic System','النظام الاقتصادي الإسلامي',2,'ISLM101'],
+        ['ACCT301','Cost Accounting','محاسبة التكاليف',3,'ACCT101'],
+        ['MGT321','Intro to International Business','مقدمة في الأعمال الدولية',3,'—'],
+        ['MGT322','Logistics Management','إدارة الإمداد والتموين',3,'MGT101'],
+        ['FIN301','Risk Management','إدارة المخاطر',3,'FIN101'],
+        ['FIN416','Islamic Finance','التمويل الإسلامي',3,'FIN201'],
+      ]},
+      {label:'المستوى السابع', en:'Level seven', hours:17, courses:[
+        ['ISLM104','Social System and Human Rights','النظام الاجتماعي وحقوق الإنسان',2,'ISLM102'],
+        ['MGT401','Strategic Management','الإدارة الاستراتيجية',3,'MGT201 + FIN101'],
+        ['FIN401','Banks Management','إدارة المصارف',3,'FIN101'],
+        ['FIN402','Financial Institutions and Markets','المؤسسات والأسواق المالية',3,'FIN101'],
+        ['FIN403','Investments','الاستثمار',3,'FIN101'],
+        ['FIN414','Real Estate Finance','التمويل العقاري',3,'FIN201'],
+      ]},
+      {label:'المستوى الثامن', en:'Level eight', hours:18, courses:[
+        ['FIN405','Financial Derivatives','المشتقات المالية',3,'FIN402'],
+        ['FIN406','International Finance','التمويل الدولي',3,'FIN401'],
+        ['FIN424','Portfolio Management','إدارة المحافظ الاستثمارية',3,'FIN403'],
+        ['FIN408','Internship','التدريب التعاوني',6,'إكمال 90 ساعة معتمدة'],
+        ['FIN421','Small Business Financing','تمويل المنشآت الصغيرة',3,'FIN301'],
+      ]},
+    ]
+  },
+
+  ecom: {
+    name: 'بكالوريوس إدارة الأعمال — تخصص التجارة الإلكترونية',
+    en: 'BSBA — Major in E-Commerce',
+    mission: 'تزويد طلاب التجارة الإلكترونية بالمهارات اللازمة من خلال تعلم ذاتي مدعوم بتعليم تفاعلي عالي الجودة عبر الإنترنت، وتشجيع روح ريادة الأعمال، والمساهمة في الأبحاث والدراسات ضمن قطاع التجارة الإلكترونية، وتزويد سوق العمل بخريجين مؤهلين لمسيرة مهنية ناجحة في القطاعين الخاص والعام.',
+    careers: ['مدير تجارة إلكترونية', 'محلل تجارة إلكترونية', 'محلل استخبارات تجارية', 'محلل مستودعات بيانات', 'مستشار تجارة إلكترونية', 'محلل نظم معلومات تجارية', 'مستشار أمن معلومات', 'مطوّر مواقع للأغراض التجارية'],
+    levels: [
+      {label:'السنة الأولى', en:'First Year', hours:26, courses:[
+        ['ENG001','English Skills','مهارات اللغة الإنجليزية',8,'—'],
+        ['CS001','Computer Essentials','أساسيات الحاسب',3,'—'],
+        ['COMM001','Communication Skills','مهارات الاتصال',2,'—'],
+        ['ENG001','English Skills (Continued)','مهارات اللغة الإنجليزية (متابعة)',8,'—'],
+        ['MATH001','Fundamentals of Math','أساسيات الرياضيات',3,'—'],
+        ['CI001','Academic Skills','المهارات الأكاديمية',2,'—'],
+      ]},
+      {label:'المستوى الثالث', en:'Level three', hours:17, courses:[
+        ['ISLM101','Introduction to Islamic Culture','مدخل إلى الثقافة الإسلامية',2,'اجتياز السنة الأولى'],
+        ['STAT101','Statistics','الإحصاء',3,'اجتياز السنة الأولى'],
+        ['LAW101','Legal Environment of Business','البيئة القانونية للأعمال',3,'اجتياز السنة الأولى'],
+        ['ECON101','Microeconomics','الاقتصاد الجزئي',3,'اجتياز السنة الأولى'],
+        ['MGT101','Principles of Management','مبادئ الإدارة',3,'اجتياز السنة الأولى'],
+        ['ACCT101','Principles of Accounting','مبادئ المحاسبة',3,'اجتياز السنة الأولى'],
+      ]},
+      {label:'المستوى الرابع', en:'Level four', hours:17, courses:[
+        ['ISLM102','Professional Conduct & Ethics in Islam','السلوك المهني والأخلاق في الإسلام',2,'—'],
+        ['STAT201','Quantitative Methods','الأساليب الكمية',3,'STAT101'],
+        ['FIN101','Principles of Finance','مبادئ المالية',3,'ACCT101'],
+        ['MGT201','Marketing Management','إدارة التسويق',3,'MGT101'],
+        ['MGT211','H.R Management','إدارة الموارد البشرية',3,'MGT101'],
+        ['ECOM101','E-Commerce','التجارة الإلكترونية',3,'—'],
+      ]},
+      {label:'المستوى الخامس', en:'Level five', hours:18, courses:[
+        ['ECON201','Macroeconomics','الاقتصاد الكلي',3,'—'],
+        ['MIS201','Management of Information Systems','إدارة نظم المعلومات',3,'MGT101'],
+        ['ECOM201','Introduction to E-Management','مقدمة في الإدارة الإلكترونية',3,'MGT101'],
+        ['MGT301','Organizational Behavior','السلوك التنظيمي',3,'MGT211'],
+        ['MGT311','Intro to Operations Management','مقدمة في إدارة العمليات',3,'MGT101 + STAT101'],
+        ['ECOM301','E-Marketing (Digital Marketing)','التسويق الإلكتروني',3,'MGT201'],
+      ]},
+      {label:'المستوى السادس', en:'Level six', hours:17, courses:[
+        ['ISLM103','Islamic Economic System','النظام الاقتصادي الإسلامي',2,'ISLM101'],
+        ['ACCT301','Cost Accounting','محاسبة التكاليف',3,'ACCT101'],
+        ['MGT321','Intro to International Business','مقدمة في الأعمال الدولية',3,'—'],
+        ['MGT322','Logistics Management','إدارة الإمداد والتموين',3,'MGT101'],
+        ['IT401','Business Computer Languages','لغات الحاسب للأعمال',3,'MGT311'],
+        ['ECOM322','Social Media Marketing','التسويق عبر وسائل التواصل الاجتماعي',3,'ECOM301'],
+      ]},
+      {label:'المستوى السابع', en:'Level seven', hours:17, courses:[
+        ['ISLM104','Social System and Human Rights','النظام الاجتماعي وحقوق الإنسان',2,'ISLM102'],
+        ['MGT401','Strategic Management','الإدارة الاستراتيجية',3,'MGT201 + FIN101'],
+        ['IT403','Fundamentals of Databases','أساسيات قواعد البيانات',3,'IT401'],
+        ['IT404','Website Design','تصميم مواقع الويب',3,'—'],
+        ['LAW402','Law of E-Commerce','قانون التجارة الإلكترونية',3,'LAW101'],
+        ['ECOM425','Virtual Organization Management','إدارة المنظمات الافتراضية',3,'MGT101'],
+      ]},
+      {label:'المستوى الثامن', en:'Level eight', hours:18, courses:[
+        ['IT402','Integrated Enterprise Systems','نظم المؤسسات المتكاملة',3,'MIS201'],
+        ['ECOM421','E-Business Strategy and Business Models','استراتيجيات ونماذج الأعمال الإلكترونية',3,'MGT401'],
+        ['ECOM402','E-Supply Chain Management','إدارة سلسلة الإمداد الإلكترونية',3,'MGT211'],
+        ['ECOM430','Internship','التدريب التعاوني',6,'إكمال 90 ساعة معتمدة'],
+        ['IT405','E-Portals Development','تطوير البوابات الإلكترونية',3,'IT404'],
+      ]},
+    ]
+  },
+
+  acct: {
+    name: 'بكالوريوس إدارة الأعمال — تخصص المحاسبة',
+    en: 'BSBA — Major in Accounting',
+    mission: 'يهدف برنامج بكالوريوس المحاسبة إلى إعداد محاسبين مؤهلين وفق المعايير المهنية والأكاديمية الحديثة، مع تغطية شاملة للمحاسبة المالية والإدارية والحكومية والضريبية ومحاسبة المؤسسات المالية والتأمين.',
+    careers: ['محاسب قانوني', 'مراجع حسابات', 'محاسب ضرائب وزكاة', 'محاسب حكومي وغير ربحي', 'محاسب مؤسسات مالية', 'محاسب تأمين'],
+    note: 'ملاحظة: هذا البرنامج لا يحتوي على مسارات تخصص اختيارية — جميع مقرراته إلزامية حسب دليل الطالب الرسمي.',
+    levels: [
+      {label:'السنة الأولى', en:'First Year', hours:26, courses:[
+        ['ENG001','English Language Skills','مهارات اللغة الإنجليزية',8,'—'],
+        ['CS001','Intro to AI and Computing','مقدمة في الذكاء الاصطناعي والحوسبة',3,'—'],
+        ['COMM001','Communication Skills','مهارات الاتصال',2,'—'],
+        ['ENG001','English Language Skills (Continued)','مهارات اللغة الإنجليزية (متابعة)',8,'—'],
+        ['MATH001','Fundamentals of Math','أساسيات الرياضيات',3,'—'],
+        ['CI001','Academic Skills','المهارات الأكاديمية',2,'—'],
+      ]},
+      {label:'المستوى الثالث', en:'Level three', hours:17, courses:[
+        ['ISLM101','Introduction to Islamic Culture','مدخل إلى الثقافة الإسلامية',2,'اجتياز السنة الأولى'],
+        ['STAT101','Statistics','الإحصاء',3,'اجتياز السنة الأولى'],
+        ['LAW101','Legal Environment of Business','البيئة القانونية للأعمال',3,'اجتياز السنة الأولى'],
+        ['ECON101','Microeconomics','الاقتصاد الجزئي',3,'اجتياز السنة الأولى'],
+        ['MGT101','Principles of Management','مبادئ الإدارة',3,'اجتياز السنة الأولى'],
+        ['ACCT101','Principles of Accounting','مبادئ المحاسبة',3,'اجتياز السنة الأولى'],
+      ]},
+      {label:'المستوى الرابع', en:'Level four', hours:17, courses:[
+        ['ISLM102','Professional Conduct & Ethics in Islam','السلوك المهني والأخلاق في الإسلام',2,'—'],
+        ['STAT201','Quantitative Methods','الأساليب الكمية',3,'STAT101'],
+        ['FIN101','Principles of Finance','مبادئ المالية',3,'ACCT101'],
+        ['MGT201','Marketing Management','إدارة التسويق',3,'MGT101'],
+        ['MGT211','H.R Management','إدارة الموارد البشرية',3,'MGT101'],
+        ['ECOM101','E-Commerce','التجارة الإلكترونية',3,'—'],
+      ]},
+      {label:'المستوى الخامس', en:'Level five', hours:18, courses:[
+        ['ECON201','Macroeconomics','الاقتصاد الكلي',3,'—'],
+        ['MIS201','Management of Information Systems','إدارة نظم المعلومات',3,'MGT101'],
+        ['ECOM201','Introduction to E-Management','مقدمة في الإدارة الإلكترونية',3,'MGT101'],
+        ['MGT301','Organizational Behavior','السلوك التنظيمي',3,'MGT211'],
+        ['MGT311','Intro to Operations Management','مقدمة في إدارة العمليات',3,'MGT101 + STAT101'],
+        ['ACCT201','Financial Accounting','المحاسبة المالية',3,'ACCT101'],
+      ]},
+      {label:'المستوى السادس', en:'Level six', hours:17, courses:[
+        ['ISLM103','Islamic Economic System','النظام الاقتصادي الإسلامي',2,'ISLM101'],
+        ['ACCT301','Cost Accounting','محاسبة التكاليف',3,'ACCT101'],
+        ['MGT321','Intro to International Business','مقدمة في الأعمال الدولية',3,'—'],
+        ['MGT322','Logistics Management','إدارة الإمداد والتموين',3,'MGT101'],
+        ['ACCT302','Advanced Financial Accounting','المحاسبة المالية المتقدمة',3,'ACCT201'],
+        ['ACCT405','Accounting of Financial Institutions','محاسبة المؤسسات المالية',3,'ACCT201'],
+      ]},
+      {label:'المستوى السابع', en:'Level seven', hours:17, courses:[
+        ['ISLM104','Social System and Human Rights','النظام الاجتماعي وحقوق الإنسان',2,'ISLM102'],
+        ['MGT401','Strategic Management','الإدارة الاستراتيجية',3,'MGT201 + FIN101'],
+        ['ACCT401','Auditing Principles & Procedures','أصول ومعايير المراجعة',3,'ACCT302'],
+        ['ACCT403','Accounting Research and Practice','بحوث وممارسات محاسبية',3,'—'],
+        ['ACCT402','Introduction to Accounting Information System','مقدمة في نظم المعلومات المحاسبية',3,'ACCT201 + MIS201'],
+        ['ACCT321','Government and Non-Profit Accounting','محاسبة الحكومات والمنظمات غير الربحية',3,'ACCT201'],
+      ]},
+      {label:'المستوى الثامن', en:'Level eight', hours:18, courses:[
+        ['ACCT422','Tax and Zakat Accounting','محاسبة الزكاة والضريبة',3,'ACCT201'],
+        ['LAW401','Companies Law','قانون الشركات',3,'LAW101'],
+        ['ACCT322','Managerial Accounting','المحاسبة الإدارية',3,'ACCT301'],
+        ['ACCT424','Insurance Accounting','محاسبة التأمين',3,'ACCT201'],
+        ['ACCT430','Internship','التدريب التعاوني',6,'إكمال 90 ساعة معتمدة'],
+      ]},
+    ]
+  }
+};
+
+const majorPanels = document.getElementById('majorPanels');
+
+Object.keys(majors).forEach((mKey, mi) => {
+  const m = majors[mKey];
+  const panel = document.createElement('div');
+  panel.className = 'major-panel' + (mi===0 ? ' active' : '');
+  panel.id = 'major-' + mKey;
+
+  const careersChips = m.careers.map(c => '<span class="chip">' + c + '</span>').join('');
+  const noteHtml = m.note ? '<div class="intro-note">' + m.note + '</div>' : '';
+  const introHtml = '' +
+    '<div class="intro-card">' +
+      '<h3>' + m.name + '</h3>' +
+      '<p class="mono" style="font-size:11.5px;color:var(--ink-soft);margin-bottom:10px;">' + m.en.toUpperCase() + '</p>' +
+      noteHtml +
+      '<p>' + m.mission + '</p>' +
+      '<div class="chips">' + careersChips + '</div>' +
+    '</div>';
+
+  let levelsHtml = '<section><div class="section-head"><span class="section-num">CORE CURRICULUM</span><h2>المقررات حسب المستوى الدراسي<span class="en">core courses by level</span></h2><p class="lead">اضغط على أي مستوى لعرض مقرراته، رموزها، متطلباتها السابقة، وعدد ساعاتها المعتمدة.</p></div><div class="sem-grid">';
+  m.levels.forEach((lv, i) => {
+    const rows = lv.courses.map(c => '<tr><td class="code">' + c[0] + '</td><td class="cname">' + c[2] + '<small>' + c[1] + '</small></td><td class="creq">' + c[4] + '</td><td class="hrs">' + c[3] + '</td></tr>').join('');
+    levelsHtml += '<details class="sem"' + (i===0?' open':'') + '>' +
+      '<summary><div><div class="sem-title">' + lv.label + '</div><div class="creq mono">' + lv.en + '</div></div>' +
+      '<div style="display:flex;align-items:center;"><span class="sem-hours">' + lv.hours + ' ساعة</span><span class="sem-chevron">▾</span></div></summary>' +
+      '<table class="courses"><thead><tr><th>الرمز</th><th>المقرر</th><th>متطلب سابق</th><th>الساعات</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    '</details>';
+  });
+  levelsHtml += '</div></section>';
+
+  panel.innerHTML = introHtml + levelsHtml;
+  majorPanels.appendChild(panel);
+});
+
+document.querySelectorAll('.major-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.major-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.major-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('major-' + btn.dataset.major).classList.add('active');
+  });
+});
+
+document.querySelectorAll('.page-link').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelectorAll('.page-link').forEach(l => l.classList.remove('active'));
+    document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+    link.classList.add('active');
+    document.getElementById('page-' + link.dataset.page).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+/* ============ Live clock ============ */
+function updateClock(){
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('ar-SA', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  const timeStr = now.toLocaleTimeString('ar-SA', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+  document.getElementById('liveDate').textContent = dateStr;
+  document.getElementById('liveTime').textContent = timeStr;
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+/* ============ GPA simulator ============ */
+const GRADES = [['A+',4],['A',3.75],['B+',3.5],['B',3],['C+',2.5],['C',2],['D+',1.5],['D',1],['F',0]];
+let gpaRowsData = [
+  {name:'', hours:3, grade:'A'},
+  {name:'', hours:3, grade:'B+'},
+  {name:'', hours:3, grade:'A+'},
+];
+const gpaRowsEl = document.getElementById('gpaRows');
+
+function renderGpaRows(){
+  gpaRowsEl.innerHTML = '';
+  gpaRowsData.forEach((row, idx) => {
+    const el = document.createElement('div');
+    el.className = 'gpa-row';
+    const opts = GRADES.map(g => '<option value="' + g[0] + '" ' + (g[0]===row.grade?'selected':'') + '>' + g[0] + ' — ' + g[1].toFixed(2) + '</option>').join('');
+    el.innerHTML =
+      '<input type="text" placeholder="اسم المقرر (اختياري)" value="' + row.name + '" data-idx="' + idx + '" data-field="name">' +
+      '<input type="number" min="0" max="8" step="1" value="' + row.hours + '" data-idx="' + idx + '" data-field="hours">' +
+      '<select data-idx="' + idx + '" data-field="grade">' + opts + '</select>' +
+      '<button type="button" class="rm-btn" data-idx="' + idx + '" aria-label="حذف المقرر">×</button>';
+    gpaRowsEl.appendChild(el);
+  });
+  gpaRowsEl.querySelectorAll('input, select').forEach(inp => {
+    inp.addEventListener('input', e => {
+      const idx = +e.target.dataset.idx;
+      const field = e.target.dataset.field;
+      let val = e.target.value;
+      if(field === 'hours'){ val = Math.max(0, Math.min(8, Number(val) || 0)); }
+      gpaRowsData[idx][field] = val;
+      computeGpa();
+    });
+  });
+  gpaRowsEl.querySelectorAll('.rm-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const idx = +e.target.dataset.idx;
+      gpaRowsData.splice(idx, 1);
+      renderGpaRows();
+      computeGpa();
+    });
+  });
+}
+
+function gradePoint(g){ const f = GRADES.find(x => x[0] === g); return f ? f[1] : 0; }
+
+function computeGpa(){
+  let totalHours = 0, totalPoints = 0;
+  gpaRowsData.forEach(r => {
+    const h = Number(r.hours) || 0;
+    totalHours += h;
+    totalPoints += gradePoint(r.grade) * h;
+  });
+  const gpa = totalHours > 0 ? totalPoints / totalHours : 0;
+  document.getElementById('resHours').textContent = totalHours.toFixed(0);
+  document.getElementById('resPoints').textContent = totalPoints.toFixed(2);
+  document.getElementById('resGPA').textContent = gpa.toFixed(2);
+  document.getElementById('gpaBar').style.width = Math.min(100, (gpa/4)*100).toFixed(1) + '%';
+
+  const prevHours = Number(document.getElementById('prevHours').value) || 0;
+  const prevPoints = Number(document.getElementById('prevPoints').value) || 0;
+  const cumHours = prevHours + totalHours;
+  const cumPoints = prevPoints + totalPoints;
+  const cumGpa = cumHours > 0 ? cumPoints / cumHours : 0;
+  const cumEl = document.getElementById('cumResult');
+  if(prevHours > 0 || prevPoints > 0){
+    cumEl.innerHTML = 'معدلك التراكمي الجديد: <b>' + cumGpa.toFixed(2) + '</b> من 4.00 — بإجمالي <b>' + cumHours.toFixed(0) + '</b> ساعة مكتسبة و<b>' + cumPoints.toFixed(2) + '</b> نقطة.';
+  } else {
+    cumEl.textContent = 'أدخل بياناتك السابقة لاحتساب معدلك التراكمي الجديد.';
+  }
+}
+
+document.getElementById('addRow').addEventListener('click', () => {
+  gpaRowsData.push({name:'', hours:3, grade:'A'});
+  renderGpaRows();
+  computeGpa();
+});
+document.getElementById('resetRows').addEventListener('click', () => {
+  gpaRowsData = [{name:'', hours:3, grade:'A'}];
+  renderGpaRows();
+  computeGpa();
+});
+document.getElementById('prevHours').addEventListener('input', computeGpa);
+document.getElementById('prevPoints').addEventListener('input', computeGpa);
+
+renderGpaRows();
+computeGpa();
+
+/* ============ Persistent visitor counter (Claude artifact storage) ============ */
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
+async function bumpVisitorCount(){
+  const el = document.getElementById('visitorCount');
+  if(typeof window.storage === 'undefined'){
+    el.textContent = '—';
+    return;
+  }
+  try {
+    let current = 0;
+    try {
+      const res = await window.storage.get('seu_plan_visitor_count', true);
+      current = parseInt(res && res.value, 10) || 0;
+    } catch(_) { current = 0; }
+    current += 1;
+    await window.storage.set('seu_plan_visitor_count', String(current), true);
+    el.textContent = current.toLocaleString('ar-SA');
+  } catch(err) {
+    el.textContent = '—';
+  }
+}
+bumpVisitorCount();
+
+/* ============ Motivation wall (persistent shared storage) ============ */
+async function loadWallMessages(){
+  if(typeof window.storage === 'undefined') return [];
+  try {
+    const res = await window.storage.get('seu_plan_wall_messages', true);
+    return JSON.parse(res.value);
+  } catch(_) { return []; }
+}
+async function saveWallMessages(list){
+  if(typeof window.storage === 'undefined') return;
+  try { await window.storage.set('seu_plan_wall_messages', JSON.stringify(list.slice(0,200)), true); } catch(_) {}
+}
+async function renderWall(){
+  const listEl = document.getElementById('wallList');
+  const noteEl = document.getElementById('wallNote');
+  if(typeof window.storage === 'undefined'){
+    noteEl.textContent = 'ملاحظة: حفظ الرسائل يعمل فقط عند فتح هذه الصفحة داخل واجهة Claude.';
+    listEl.innerHTML = '<p class="lead">لا يمكن عرض الرسائل المحفوظة خارج واجهة Claude.</p>';
+    return;
+  }
+  const list = await loadWallMessages();
+  listEl.innerHTML = list.length
+    ? list.map(c => {
+        const d = new Date(c.date);
+        const dateLabel = isNaN(d) ? '' : d.toLocaleDateString('ar-SA') + ' ' + d.toLocaleTimeString('ar-SA', {hour:'2-digit', minute:'2-digit'});
+        return '<div class="wall-item"><b>' + escapeHtml(c.name || 'زائر') + '</b><p>' + escapeHtml(c.text) + '</p><span>' + dateLabel + '</span></div>';
+      }).join('')
+    : '<p class="lead">كن أول من يترك رسالة تحفيزية لزملائك!</p>';
+}
+document.getElementById('wallForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('wallName').value.trim();
+  const text = document.getElementById('wallText').value.trim();
+  if(!text) return;
+  if(typeof window.storage === 'undefined'){
+    document.getElementById('wallNote').textContent = 'تعذر الحفظ: هذه الميزة تعمل فقط داخل واجهة Claude.';
+    return;
+  }
+  const list = await loadWallMessages();
+  list.unshift({name, text, date: new Date().toISOString()});
+  await saveWallMessages(list);
+  document.getElementById('wallText').value = '';
+  renderWall();
+});
+renderWall();
+</script>
+
+</body>
+</html>
