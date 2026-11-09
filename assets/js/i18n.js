@@ -1,6 +1,7 @@
 /* أكاديمية نجد — الترجمة للإنجليزي. يترجم نصوص الصفحة بعد ما تنرسم، ويراقب أي محتوى جديد.
    لإضافة ترجمة: أضف السطر في DICT (النص العربي بالضبط: الترجمة). الأرقام في TPL تنكتب {n}. */
 window.NAJD_I18N={DICT:{
+"أكاديمية نجد. جميع الحقوق محفوظة.": "Najd Academy. All rights reserved.",
 "سياسة الخصوصية": "Privacy Policy",
 "الشروط والأحكام": "Terms & Conditions",
 "وش البيانات اللي نجمعها، وليش، وكيف نحميها، ووش حقوقك. بكلام واضح ومختصر.": "What data we collect, why, how we protect it, and your rights — clearly and briefly.",

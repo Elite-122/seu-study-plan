@@ -65,7 +65,7 @@
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a href="'+LINKS.lessons+'">الشروحات</a><a href="'+LINKS.assistant+'">مساعدك الدراسي</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav></div>'
       +'</div>'
       +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب 🤍 من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد فردي ولا يتبع للجامعة بأي صلة.</p></div>'
-      +'<p class="nj-copy"><a href="'+LINKS.privacy+'">سياسة الخصوصية</a> · <a href="'+LINKS.terms+'">الشروط والأحكام</a><br>© <span>'+new Date().getFullYear()+'</span> أكاديمية نجد</p></div>'
+      +'<p class="nj-copy"><a href="'+LINKS.privacy+'">سياسة الخصوصية</a> · <a href="'+LINKS.terms+'">الشروط والأحكام</a><br>© <span>'+new Date().getFullYear()+'</span> أكاديمية نجد. جميع الحقوق محفوظة.</p></div>'
       +'</div></footer>';
   }
   var t=document.createElement('div');t.className='nj-toast';t.setAttribute('role','status');t.setAttribute('aria-live','polite');root.appendChild(t);
