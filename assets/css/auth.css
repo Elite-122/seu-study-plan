@@ -39,3 +39,4 @@
 #najd .au-side-mark{position:absolute;left:-16px;bottom:-24px;width:150px;opacity:.1}
 #najd .au-in .nj-av{width:64px;height:64px;font-size:26px;margin:0 auto 6px}
 #najd .au-linkbtn{border:0;background:none;padding:0;font-size:15px;cursor:pointer}
+#najd .au-legal{font-size:13.5px;color:var(--slate);text-align:center;margin:14px 0 0;line-height:1.7}
