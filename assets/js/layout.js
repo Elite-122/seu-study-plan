@@ -4,7 +4,9 @@
   var root=document.getElementById('najd');if(!root)return;
 
   /* روابط الصفحات — عدّلها هنا لو غيّرت أسماء الملفات */
-  var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',college:'college-plans.html'};
+  var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',privacy:'privacy.html',terms:'terms.html',college:'college-plans.html'};
+  /* بريد التواصل (يظهر في سياسة الخصوصية والشروط) — اكتبه هنا */
+  var CONTACT_EMAIL='';
   var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['assistant','مساعدك الدراسي'],['coop','التدريب التعاوني'],['store','المتجر']];
   var PAGE=root.getAttribute('data-page')||'';
 
@@ -63,7 +65,7 @@
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a href="'+LINKS.lessons+'">الشروحات</a><a href="'+LINKS.assistant+'">مساعدك الدراسي</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav></div>'
       +'</div>'
       +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب 🤍 من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد فردي ولا يتبع للجامعة بأي صلة.</p></div>'
-      +'<p class="nj-copy">© <span>'+new Date().getFullYear()+'</span> أكاديمية نجد</p></div>'
+      +'<p class="nj-copy"><a href="'+LINKS.privacy+'">سياسة الخصوصية</a> · <a href="'+LINKS.terms+'">الشروط والأحكام</a><br>© <span>'+new Date().getFullYear()+'</span> أكاديمية نجد</p></div>'
       +'</div></footer>';
   }
   var t=document.createElement('div');t.className='nj-toast';t.setAttribute('role','status');t.setAttribute('aria-live','polite');root.appendChild(t);
@@ -100,6 +102,10 @@
   root.addEventListener('reset',function(e){setTimeout(function(){var fs=e.target.querySelectorAll('[data-fp]');for(var q=0;q<fs.length;q++)window.NajdFP.sync(fs[q]);},0);},true);
   fpScan();
   try{new MutationObserver(function(ms){for(var q=0;q<ms.length;q++)for(var z=0;z<ms[q].addedNodes.length;z++){var nd=ms[q].addedNodes[z];if(nd.nodeType===1){enInputs(nd.parentNode||nd);fpScan(nd.parentNode||nd);}}}).observe(root,{childList:true,subtree:true});}catch(e){}
+
+  /* روابط بريد التواصل */
+  var cs=root.querySelectorAll('[data-contact]');
+  for(var ci=0;ci<cs.length;ci++){if(CONTACT_EMAIL){cs[ci].href='mailto:'+CONTACT_EMAIL;cs[ci].textContent=CONTACT_EMAIL;cs[ci].setAttribute('dir','ltr');}else{cs[ci].removeAttribute('href');cs[ci].textContent=(document.documentElement.lang==='en'?'(contact email coming soon)':'(بريد التواصل بيُضاف قريبًا)');}}
 
   /* القائمة في الجوال */
   var hd=document.getElementById('nj-head'),btn=document.getElementById('nj-menu');

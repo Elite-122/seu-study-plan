@@ -1,6 +1,17 @@
 /* أكاديمية نجد — الترجمة للإنجليزي. يترجم نصوص الصفحة بعد ما تنرسم، ويراقب أي محتوى جديد.
    لإضافة ترجمة: أضف السطر في DICT (النص العربي بالضبط: الترجمة). الأرقام في TPL تنكتب {n}. */
 window.NAJD_I18N={DICT:{
+"سياسة الخصوصية": "Privacy Policy",
+"الشروط والأحكام": "Terms & Conditions",
+"وش البيانات اللي نجمعها، وليش، وكيف نحميها، ووش حقوقك. بكلام واضح ومختصر.": "What data we collect, why, how we protect it, and your rights — clearly and briefly.",
+"القواعد اللي تنظم استخدامك لأكاديمية نجد وخدماتها.": "The rules for using Najd Academy and its services.",
+"سياسة الخصوصية | أكاديمية نجد": "Privacy Policy | Najd Academy",
+"الشروط والأحكام | أكاديمية نجد": "Terms & Conditions | Najd Academy",
+"كيف تجمع أكاديمية نجد بياناتك وتستخدمها وتحميها، وحقوقك حسب نظام حماية البيانات الشخصية في المملكة.": "How Najd Academy collects, uses and protects your data, and your rights under the Saudi Personal Data Protection Law.",
+"شروط استخدام موقع أكاديمية نجد: الحساب، والأدوات، والاشتراكات، والشروحات، وحدود المسؤولية.": "Terms of use for Najd Academy: accounts, tools, subscriptions, lessons and limitation of liability.",
+"بإنشائك حساب أو دخولك، توافق على": "By creating an account or signing in, you agree to the",
+"و": "and the ",
+"(بريد التواصل بيُضاف قريبًا)": "(contact email coming soon)",
 "اختر التاريخ": "Select date",
 "اختر الوقت": "Select time",
 "أكاديمية نجد | دراستك أوضح، وخطتك أسهل": "Najd Academy | Clearer studies, easier plans",

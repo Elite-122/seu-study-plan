@@ -317,3 +317,6 @@ html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time .flatpickr-am-
 .flatpickr-calendar.nj-fp .flatpickr-time input::selection{background:#C9DCDA;color:#2F4F4E}
 html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selection{background:#3C7572;color:#fff}
 .flatpickr-calendar.nj-fp.noCalendar{min-width:220px}
+#najd .nj-copy a{color:var(--mist);text-decoration:underline;text-underline-offset:3px}
+#najd .nj-copy a:hover{color:#fff}
+#najd .nj-copy{line-height:1.9}
