@@ -5,7 +5,7 @@ import {
   getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword,
   updateProfile, sendPasswordResetEmail, sendEmailVerification, signOut,
   setPersistence, browserLocalPersistence, browserSessionPersistence,
-  GoogleAuthProvider, signInWithPopup
+  GoogleAuthProvider, signInWithPopup, RecaptchaVerifier, signInWithPhoneNumber
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
@@ -48,7 +48,16 @@ const MSG = {
   "auth/popup-closed-by-user": "قفلت نافذة قوقل قبل ما يكتمل الدخول.",
   "auth/popup-blocked": "المتصفح منع نافذة قوقل. اسمح بالنوافذ المنبثقة وجرب مرة ثانية.",
   "auth/operation-not-allowed": "طريقة الدخول هذي غير مفعّلة حاليًا.",
-  "auth/unauthorized-domain": "هذا النطاق غير مضاف في إعدادات Firebase (Authorized domains)."
+  "auth/unauthorized-domain": "هذا النطاق غير مضاف في إعدادات Firebase (Authorized domains).",
+  "auth/invalid-phone-number": "رقم الجوال غير صحيح. اكتبه بهذا الشكل: 05XXXXXXXX",
+  "auth/missing-phone-number": "اكتب رقم جوالك.",
+  "auth/invalid-verification-code": "الكود غير صحيح. تأكد منه وجرب مرة ثانية.",
+  "auth/missing-verification-code": "اكتب الكود اللي وصلك.",
+  "auth/code-expired": "انتهت صلاحية الكود. اطلب كود جديد.",
+  "auth/captcha-check-failed": "ما قدرنا نتحقق إنك مو روبوت. حدّث الصفحة وجرب مرة ثانية.",
+  "auth/quota-exceeded": "وصلنا الحد الأعلى لرسائل التحقق اليوم. جرب بعدين أو ادخل بالبريد.",
+  "auth/billing-not-enabled": "الدخول بالجوال غير مفعّل حاليًا. ادخل بالبريد الإلكتروني.",
+  "auth/requires-recent-login": "سجّل دخولك من جديد وبعدها جرب."
 };
 const errText = (e) => MSG[e && e.code] || "صار خطأ غير متوقع. جرب مرة ثانية.";
 
@@ -80,7 +89,7 @@ async function push() {
   try {
     N.setSync("جاري الحفظ…");
     await setDoc(doc(db, "users", current.uid), {
-      name: current.displayName || "", email: current.email || "", data, t, updatedAt: serverTimestamp()
+      name: current.displayName || "", email: current.email || "", phone: current.phoneNumber || "", data, t, updatedAt: serverTimestamp()
     }, { merge: true });
     N.setSync("تقدمك محفوظ في حسابك ☁️");
   } catch (e) {
@@ -101,7 +110,7 @@ document.addEventListener("visibilitychange", () => { if (document.visibilitySta
 onAuthStateChanged(auth, async (user) => {
   current = user;
   if (!user) { N.setUser(null); return; }
-  N.setUser({ name: user.displayName || "", email: user.email || "" });
+  N.setUser(userInfo(user));
   try {
     const changed = await pull(user.uid);
     const flag = "najd_pulled_" + user.uid;
@@ -118,6 +127,9 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
+function userInfo(u) { return { name: u.displayName || "", email: u.email || "", phone: u.phoneNumber || "" }; }
+let verifier = null, confirmation = null;
+
 /* ===== واجهة للصفحات ===== */
 window.NajdAuth = {
   errText,
@@ -128,13 +140,36 @@ window.NajdAuth = {
   async register(name, email, pass) {
     const cred = await createUserWithEmailAndPassword(auth, email.trim(), pass);
     if (name) await updateProfile(cred.user, { displayName: name.trim() });
-    N.setUser({ name: name || "", email: cred.user.email || "" });
+    N.setUser(userInfo(cred.user));
     try { await sendEmailVerification(cred.user); } catch (e) {}
     await push();
     return cred;
   },
   google() { return signInWithPopup(auth, new GoogleAuthProvider()); },
   reset(email) { return sendPasswordResetEmail(auth, email.trim()); },
+  /* الدخول برقم الجوال: نرسل كود SMS، وبعدين نأكده */
+  async phoneStart(phone, containerId) {
+    if (!verifier) verifier = new RecaptchaVerifier(auth, containerId, { size: "invisible" });
+    try {
+      confirmation = await signInWithPhoneNumber(auth, phone, verifier);
+    } catch (e) {
+      try { verifier.clear(); } catch (x) {}
+      verifier = null;
+      throw e;
+    }
+  },
+  async phoneConfirm(code) {
+    if (!confirmation) throw { code: "auth/code-expired" };
+    const cred = await confirmation.confirm(code.trim());
+    confirmation = null;
+    return cred;
+  },
+  async setName(name) {
+    if (!current || !name) return;
+    await updateProfile(current, { displayName: name.trim() });
+    N.setUser(userInfo(current));
+    await push();
+  },
   async logout() {
     if (pushTimer) await push();
     await signOut(auth);
@@ -143,3 +178,5 @@ window.NajdAuth = {
   user: () => current
 };
 window.dispatchEvent(new CustomEvent("najd:auth-ready"));
+
+export { app, auth, db };

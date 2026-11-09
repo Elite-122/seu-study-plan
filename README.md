@@ -10,6 +10,8 @@
 | حاسبة المعدل | `gpa.html` |
 | الشروحات | `lessons.html` |
 | مساعدك الدراسي | `assistant.html` |
+| التدريب التعاوني (مفتوحة للكل) | `coop.html` |
+| لوحة إدارة التدريب التعاوني (للمشرف) | `admin-coop.html` |
 | تسجيل الدخول / إنشاء حساب | `login.html` / `register.html` |
 | خطط كلية العلوم الإدارية والمالية (الصفحة الأصلية) | `index.html` |
 
@@ -19,10 +21,21 @@
 - `assets/js/auth.js`: إعدادات Firebase، وتسجيل الدخول، ومزامنة التقدم مع Firestore.
 - `assets/js/auth-forms.js`: نماذج الدخول والتسجيل.
 
+## الدخول
+- الخطط والجدول والمعدل والشروحات والمساعد تحتاج تسجيل دخول.
+- الرئيسية والتدريب التعاوني مفتوحة للكل.
+- طرق الدخول: **رقم الجوال** (كود SMS) أو **البريد الإلكتروني**.
+- ملاحظة: القفل يصير في المتصفح (واجهة فقط). بيانات كل طالب نفسها محمية بقواعد Firestore.
+
 ## إعداد Firebase (مرة وحدة)
-1. **Authentication ← Sign-in method**: فعّل **Email/Password**، و **Google** لو تبي زر قوقل.
+1. **Authentication ← Sign-in method**: فعّل **Phone** و **Email/Password**. ترى إرسال SMS في Firebase غالبًا يحتاج خطة **Blaze**، ولكل رسالة تكلفة بسيطة.
 2. **Authentication ← Settings ← Authorized domains**: أضف النطاق اللي ينشر عليه الموقع (مثل `elite-122.github.io` أو نطاقك الخاص).
 3. **Firestore Database**: أنشئ قاعدة البيانات، وبعدها من تبويب **Rules** الصق محتوى الملف `firestore.rules` واضغط **Publish**.
+
+## إضافة مشرف للتدريب التعاوني
+1. سجّل دخولك في الموقع وافتح `admin-coop.html`. بيطلع لك رمز حسابك (UID).
+2. في **Firestore Database** أنشئ مجموعة اسمها `admins`، و Document ID هو رمز حسابك، وأضف حقل `role` قيمته `owner`.
+3. حدّث الصفحة، وتقدر بعدها تضيف الفرص وتعدلها وتحذفها.
 
 ## وش ينحفظ في الحساب؟
 مستند `users/{uid}` فيه: الخطة (`najd_plans_v1`)، والمعدل (`najd_gpa_v1`)، والجدول (`stq_schedule_v1`).

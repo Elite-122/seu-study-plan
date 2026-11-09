@@ -21,7 +21,7 @@
 <div class="nj-in">
 <p class="nj-crumb"><a href="home.html">الرئيسية</a><span>/</span>تسجيل الدخول</p>
 <h1>تسجيل الدخول</h1>
-<p class="nj-band-sub">ادخل حسابك عشان يرجع لك تقدمك، وتوصل للشروحات ومساعدك الدراسي.</p>
+<p class="nj-band-sub">ادخل برقم جوالك أو بريدك، وتفتح لك كل خدمات أكاديمية نجد ويرجع لك تقدمك.</p>
 </div>
 </section>
 <main class="nj-main">
@@ -38,14 +38,41 @@
 </div>
 <p class="au-flash" id="au-flash" hidden></p>
 <p class="au-err" id="au-err" role="alert" hidden></p>
-<div id="au-gwrap"><button type="button" class="au-google" id="au-google"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>المتابعة بحساب قوقل</button><p class="au-or">أو بالبريد الإلكتروني</p></div>
+<div class="au-tabs" role="tablist">
+<button type="button" role="tab" class="au-tab" data-tab="phone" aria-selected="true">📱 رقم الجوال</button>
+<button type="button" role="tab" class="au-tab" data-tab="email" aria-selected="false">✉️ البريد الإلكتروني</button>
+</div>
+<div class="au-tabpanel" id="au-p-phone" role="tabpanel">
+<form id="au-phone" novalidate>
+<div class="au-step" data-step="1">
+<div class="au-field"><label for="au-tel">رقم الجوال</label>
+<div class="au-tel"><span class="au-cc" dir="ltr">🇸🇦 +966</span><input id="au-tel" name="tel" type="tel" inputmode="numeric" autocomplete="tel-national" dir="ltr" placeholder="05X XXX XXXX" maxlength="14"></div>
+<small>بيوصلك كود تحقق برسالة نصية.</small></div>
+<button type="submit" class="nj-btn nj-btn-fill au-submit" data-act="send">أرسل كود التحقق</button>
+</div>
+<div class="au-step" data-step="2" hidden>
+<p class="au-sent">أرسلنا الكود إلى <b dir="ltr" id="au-tel-show"></b> <button type="button" class="au-link au-linkbtn" id="au-tel-edit">تعديل الرقم</button></p>
+<div class="au-field"><label for="au-code">كود التحقق</label><input id="au-code" class="au-code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" dir="ltr" maxlength="6" placeholder="••••••"></div>
+<button type="submit" class="nj-btn nj-btn-fill au-submit" data-act="verify">تأكيد الدخول</button>
+<p class="au-alt"><button type="button" class="au-link au-linkbtn" id="au-resend" disabled>إعادة الإرسال</button> <span id="au-timer"></span></p>
+</div>
+<div class="au-step" data-step="3" hidden>
+<p class="au-sent">تم التحقق من رقمك ✅ آخر خطوة:</p>
+<div class="au-field"><label for="au-pname">وش نناديك؟</label><input id="au-pname" name="pname" type="text" autocomplete="name" maxlength="40" dir="auto" placeholder="مثلًا: أحمد"><small>يظهر في حسابك وفي ملف خطتك.</small></div>
+<button type="submit" class="nj-btn nj-btn-fill au-submit" data-act="name">ابدأ</button>
+</div>
+</form>
+<div id="au-recaptcha"></div>
+</div>
+<div class="au-tabpanel" id="au-p-email" role="tabpanel" hidden>
 <form id="au-form" data-mode="login" novalidate>
 <div class="au-field"><label for="au-user">البريد الإلكتروني</label><input id="au-user" name="email" type="email" autocomplete="email" required dir="ltr" placeholder="name@example.com"></div>
 <div class="au-field"><label for="au-pwd">كلمة المرور</label><div class="au-pass"><input id="au-pwd" name="password" type="password" autocomplete="current-password" required dir="ltr"><button type="button" class="au-eye" data-eye="au-pwd">إظهار</button></div></div>
 <div class="au-row"><label class="au-check"><input type="checkbox" name="remember" checked>تذكرني</label><a class="au-link" href="#" id="au-lost">نسيت كلمة المرور؟</a></div>
 <button type="submit" class="nj-btn nj-btn-fill au-submit">تسجيل الدخول</button>
 </form>
-<p class="au-alt" id="au-alt">ما عندك حساب؟ <a class="au-link" href="register.html">أنشئ حسابك مجانًا</a></p>
+</div>
+<p class="au-alt" id="au-alt">أول مرة؟ الدخول برقم الجوال ينشئ حسابك تلقائيًا. وللتسجيل بالبريد: <a class="au-link" href="register.html">أنشئ حساب بالبريد</a></p>
 </div>
 <aside class="au-side"><svg class="au-side-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#fff"/><path d="M50 48 L60 30 L70 48 Z" fill="#fff"/><path d="M74 48 L84 24 L94 48 Z" fill="#fff"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#fff"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#fff"/></svg>
 <h2>وش يفتح لك حسابك؟</h2>

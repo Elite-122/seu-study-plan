@@ -4,8 +4,8 @@
   var root=document.getElementById('najd');if(!root)return;
 
   /* روابط الصفحات — عدّلها هنا لو غيّرت أسماء الملفات */
-  var LINKS={home:'home.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',college:'index.html'};
-  var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['assistant','مساعدك الدراسي']];
+  var LINKS={home:'home.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',college:'index.html'};
+  var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['assistant','مساعدك الدراسي'],['coop','التدريب التعاوني']];
   var PAGE=root.getAttribute('data-page')||'';
 
   /* المفاتيح اللي تنحفظ في حسابك وتتزامن بين أجهزتك */
@@ -50,7 +50,7 @@
       +'<div class="nj-foot-g">'
       +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
-      +'<div><h4>أدوات مجانية</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.college+'">خطط كلية العلوم الإدارية والمالية</a></nav></div>'
+      +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.college+'">خطط كلية العلوم الإدارية والمالية</a></nav></div>'
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a href="'+LINKS.lessons+'">الشروحات</a><a href="'+LINKS.assistant+'">مساعدك الدراسي</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav></div>'
       +'</div>'
       +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب 🤍 من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد فردي ولا يتبع للجامعة بأي صلة.</p></div>'
@@ -70,14 +70,38 @@
   var as=root.querySelectorAll('[data-link]');
   for(var i=0;i<as.length;i++){var k=as[i].getAttribute('data-link');if(LINKS[k])as[i].setAttribute('href',LINKS[k]);}
 
+  function phoneLocal(p){return p?String(p).replace(/^\+966/,'0'):'';}
+
+  /* صفحات تحتاج تسجيل دخول: نعرض بطاقة دخول بدل المحتوى */
+  var REQUIRED=root.getAttribute('data-auth')==='required';
+  var PAGE_NAMES={plans:'الخطط الدراسية',schedule:'الجدول الدراسي',gpa:'حاسبة المعدل',lessons:'الشروحات',assistant:'مساعدك الدراسي',admin:'لوحة الإدارة'};
+  if(REQUIRED){
+    var main=root.querySelector('main');
+    if(main){
+      var nx=encodeURIComponent(location.pathname.split('/').pop()||'home.html');
+      var g=document.createElement('section');g.className='nj-gate';
+      g.innerHTML='<div class="nj-in"><div class="nj-gate-card">'
+        +'<span class="nj-gate-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><rect x="4" y="10" width="16" height="11" rx="3" fill="currentColor"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></span>'
+        +'<h2>سجّل دخولك عشان تستخدم '+(PAGE_NAMES[PAGE]||'هذي الخدمة')+'</h2>'
+        +'<p>كل خدمات أكاديمية نجد تحتاج حساب. سجّل برقم جوالك خلال دقيقة، ويتحفظ تقدمك في حسابك وترجع له من أي جهاز.</p>'
+        +'<div class="nj-gate-ctas"><a class="nj-btn nj-btn-fill" href="'+LINKS.login+'?next='+nx+'">تسجيل الدخول برقم الجوال</a><a class="nj-btn nj-btn-line" href="'+LINKS.coop+'">تصفح فرص التدريب التعاوني</a></div>'
+        +'<p class="nj-gate-note">التسجيل مجاني.</p>'
+        +'</div></div>';
+      main.parentNode.insertBefore(g,main);
+    }
+  }
+  function lock(){if(REQUIRED)root.classList.toggle('nj-locked',!root.classList.contains('is-in'));}
+  lock();
+
   /* حالة الدخول: نعرضها فورًا من آخر حالة محفوظة، وبعدين Firebase يأكدها */
   function setUser(u){
     root.classList.toggle('is-in',!!u);
     document.body.classList.toggle('logged-in',!!u);
-    var name=u?(u.name||(u.email||'').split('@')[0]||'طالب نجد'):'';
+    var name=u?(u.name||(u.email||'').split('@')[0]||phoneLocal(u.phone)||'طالب نجد'):'';
     var els=root.querySelectorAll('[data-u]');
     for(var j=0;j<els.length;j++){var f=els[j].getAttribute('data-u');if(f==='name')els[j].textContent=name;if(f==='init')els[j].textContent=(name.trim().charAt(0)||'ن').toUpperCase();}
-    try{u?localStorage.setItem('najd_user',JSON.stringify({name:u.name||'',email:u.email||''})):localStorage.removeItem('najd_user');}catch(e){}
+    try{u?localStorage.setItem('najd_user',JSON.stringify({name:u.name||'',email:u.email||'',phone:u.phone||''})):localStorage.removeItem('najd_user');}catch(e){}
+    lock();
     try{window.dispatchEvent(new CustomEvent('najd:auth',{detail:u||null}));}catch(e){}
   }
   try{var cached=JSON.parse(localStorage.getItem('najd_user')||'null');if(cached)setUser(cached);}catch(e){}
