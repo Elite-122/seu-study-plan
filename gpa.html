@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>حاسبة المعدل | أكاديمية نجد</title>
 <meta name="description" content="احسب معدلك الفصلي والتراكمي على سلم 4.00 واعرف وش تحتاج توصل هدفك.">
@@ -10,10 +11,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261110d">
 <style>#najd .gp-rows{display:flex;flex-direction:column;gap:8px}
 #najd .gp-row{display:flex;gap:8px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px}
-#najd .gp-row input,#najd .gp-row select,#najd .gp-cum input{height:46px;border:1px solid var(--line);border-radius:12px;padding:0 10px;font-size:15px;background:#fff;color:var(--ink);margin:0;box-shadow:none;min-width:0}
+#najd .gp-row input,#najd .gp-row select,#najd .gp-cum input{height:46px;border:1px solid var(--line);border-radius:12px;padding:0 10px;font-size:15px;background:var(--surface);color:var(--ink);margin:0;box-shadow:none;min-width:0}
 #najd .gp-rn{flex:1 1 auto}
 #najd .gp-rh{flex:0 0 70px;text-align:center}
 #najd .gp-rg{flex:0 0 110px}
@@ -23,7 +24,7 @@
 #najd .gp-head span:nth-child(2){flex:0 0 70px;text-align:center}
 #najd .gp-head span:nth-child(3){flex:0 0 110px}
 #najd .gp-head span:nth-child(4){flex:0 0 40px}
-#najd .gp-add{width:100%;height:48px;border:1.5px dashed var(--grey);background:none;border-radius:12px;color:var(--deep);font-size:16px;font-weight:700;margin:10px 0 0;cursor:pointer}
+#najd .gp-add{width:100%;height:48px;border:1.5px dashed var(--grey);background:none;border-radius:12px;color:var(--dtext);font-size:16px;font-weight:700;margin:10px 0 0;cursor:pointer}
 #najd .gp-add:hover{border-color:var(--teal);background:var(--bg)}
 #najd .gp-layout{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:start}
 #najd .gp-res{background:var(--deep);color:#fff;border-radius:20px;padding:24px 20px 0;text-align:center;position:sticky;top:16px;overflow:hidden}
@@ -39,21 +40,21 @@
 #najd .gp-cum label{display:block;font-size:14px;font-weight:700;color:var(--muted);margin:0 0 6px}
 #najd .gp-cum input{width:100%}
 #najd .gp-out{font-size:16px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:12px 0 0}
-#najd .gp-out b{font-size:22px;font-weight:800;color:var(--deep)}
+#najd .gp-out b{font-size:22px;font-weight:800;color:var(--dtext)}
 #najd .gp-scale{display:flex;flex-wrap:wrap;gap:6px;direction:ltr;justify-content:flex-end}
 #najd .gp-scale span{font-size:13px;font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:3px 9px;color:var(--muted)}
 #najd .gp-link{display:inline-flex;margin-top:14px}
 @media (max-width:860px){#najd .gp-layout{grid-template-columns:1fr}#najd .gp-res{position:relative;top:0;order:-1}}
 @media (max-width:480px){#najd .gp-row{flex-wrap:wrap}#najd .gp-rn{flex:1 1 100%}#najd .gp-rh{flex:1 1 70px}#najd .gp-rg{flex:2 1 110px}#najd .gp-head{display:none}}
 #najd .gp-need-in label{display:block;font-size:14px;font-weight:700;color:var(--muted);margin:0 0 6px}
-#najd .gp-need-in input{width:100%;max-width:260px;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font-size:18px;font-weight:700;background:#fff;color:var(--ink);margin:0}
+#najd .gp-need-in input{width:100%;max-width:260px;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font-size:18px;font-weight:700;background:var(--surface);color:var(--ink);margin:0}
 #najd .gp-plan{margin:14px 0 0}
 #najd .gp-sum{font-size:16px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
-#najd .gp-sum b{font-size:20px;font-weight:800;color:var(--deep)}
+#najd .gp-sum b{font-size:20px;font-weight:800;color:var(--dtext)}
 #najd .gp-sum.is-warn{background:#F0DEDB;border-color:#E3C4BF;color:#6E2F29}
 #najd .gp-sum.is-ok{background:#E2ECDD;border-color:#C9DBC0;color:#3E5A33}
 #najd .gp-list{display:flex;flex-direction:column;gap:6px;margin:10px 0 0}
-#najd .gp-li{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:15px}
+#najd .gp-li{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:15px}
 #najd .gp-li span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #najd .gp-li small{color:var(--slate);margin-right:6px}
 #najd .gp-g{flex-shrink:0;font-size:15px;font-weight:800;border-radius:999px;padding:2px 12px;background:var(--deep);color:#fff}
@@ -117,8 +118,9 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js"></script>
-<script type="module" src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js?v=20261110d"></script>
+<script src="assets/js/i18n.js?v=20261110d"></script>
+<script type="module" src="assets/js/auth.js?v=20261110d"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('gp-rows'))return;

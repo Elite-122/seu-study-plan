@@ -1,7 +1,7 @@
 /* أكاديمية نجد — التصميم المشترك لكل الصفحات */
 html{scroll-behavior:smooth}
 body{margin:0;background:#F4F7F7}
-#najd{--deep:#2F4F4E;--deeper:#243D3C;--teal:#568A88;--slate:#758A8C;--soft:#7A9FA3;--grey:#B0B8BC;--mist:#C8CFD2;--light:#E4E9EB;--ink:#2F4F4E;--muted:#55696B;--bg:#F4F7F7;--card:#FFFFFF;--line:#DCE3E5;--tint:#EAF2F1;--shadow:0 1px 2px rgba(36,61,60,.05),0 8px 24px rgba(36,61,60,.07);--shadow-lg:0 2px 4px rgba(36,61,60,.06),0 18px 44px rgba(36,61,60,.12);--r:20px;font-family:'Tajawal','Geeza Pro',Tahoma,sans-serif;color:var(--ink);background:var(--bg);direction:rtl;text-align:right;line-height:1.7;font-size:17px;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+#najd{--surface:#FFFFFF;--dtext:#2F4F4E;--hdr:rgba(255,255,255,.92);--deep:#2F4F4E;--deeper:#243D3C;--teal:#568A88;--slate:#758A8C;--soft:#7A9FA3;--grey:#B0B8BC;--mist:#C8CFD2;--light:#E4E9EB;--ink:#2F4F4E;--muted:#55696B;--bg:#F4F7F7;--card:#FFFFFF;--line:#DCE3E5;--tint:#EAF2F1;--shadow:0 1px 2px rgba(36,61,60,.05),0 8px 24px rgba(36,61,60,.07);--shadow-lg:0 2px 4px rgba(36,61,60,.06),0 18px 44px rgba(36,61,60,.12);--r:20px;font-family:'Tajawal','Geeza Pro',Tahoma,sans-serif;color:var(--ink);background:var(--bg);direction:rtl;text-align:right;line-height:1.7;font-size:17px;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
 #najd>main,#najd>.nj-page{flex:1 0 auto}
 #najd *{box-sizing:border-box;font-family:inherit}
 #najd h1,#najd h2,#najd h3,#najd p,#najd ul,#najd li{margin:0;padding:0;border:0;list-style:none;color:inherit;letter-spacing:0;text-transform:none}
@@ -15,21 +15,21 @@ body{margin:0;background:#F4F7F7}
 #najd .nj-narrow{max-width:960px}
 
 /* ===== الهيدر ===== */
-#najd .nj-head{background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+#najd .nj-head{background:var(--hdr);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
 #najd .nj-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:74px}
 #najd .nj-logo{flex-shrink:0}
 #najd .nj-logo img{height:44px;width:auto}
 #najd .nj-nav{display:flex;align-items:center;gap:4px}
 #najd .nj-nav a{white-space:nowrap;font-size:15.5px;font-weight:500;color:var(--muted);padding:8px 12px;border-radius:10px;transition:background .15s,color .15s}
-#najd .nj-nav a:hover{color:var(--deep);background:var(--bg)}
-#najd .nj-nav a[aria-current="page"]{color:var(--deep);font-weight:700;background:var(--tint)}
+#najd .nj-nav a:hover{color:var(--dtext);background:var(--bg)}
+#najd .nj-nav a[aria-current="page"]{color:var(--dtext);font-weight:700;background:var(--tint)}
 #najd .nj-acts{display:flex;align-items:center;gap:10px}
 #najd .nj-user{display:flex;align-items:center;gap:8px}
 #najd .nj-av{width:40px;height:40px;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:17px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
 #najd .nj-uname{font-size:15px;font-weight:700;max-width:12em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #najd .nj-sync{font-size:12px;color:var(--slate);display:block;line-height:1.2}
 #najd .nj-out{border:0;background:none;color:var(--muted);font-size:14px;font-weight:700;cursor:pointer;padding:6px 8px;border-radius:8px}
-#najd .nj-out:hover{background:var(--bg);color:var(--deep)}
+#najd .nj-out:hover{background:var(--bg);color:var(--dtext)}
 #najd.is-in .nj-guest{display:none!important}
 #najd:not(.is-in) .nj-member{display:none!important}
 
@@ -37,7 +37,7 @@ body{margin:0;background:#F4F7F7}
 #najd .nj-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border-radius:12px;font-size:16px;font-weight:700;border:2px solid transparent;cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .15s,box-shadow .15s;white-space:nowrap;text-decoration:none}
 #najd .nj-btn-fill{background:var(--deep);color:#fff;box-shadow:0 6px 16px rgba(47,79,78,.22)}
 #najd .nj-btn-fill:hover{background:var(--teal);transform:translateY(-1px)}
-#najd .nj-btn-line{border-color:var(--teal);color:var(--deep);background:transparent}
+#najd .nj-btn-line{border-color:var(--teal);color:var(--dtext);background:transparent}
 #najd .nj-btn-line:hover{background:var(--teal);color:#fff}
 #najd .nj-btn-white{background:#fff;color:var(--deep)}
 #najd .nj-btn-white:hover{background:var(--light)}
@@ -99,7 +99,7 @@ body{margin:0;background:#F4F7F7}
 #najd .nj-meta span{display:inline-flex;align-items:center;gap:5px}
 #najd .nj-meta svg{width:15px;height:15px}
 #najd .nj-badge{position:absolute;top:30px;right:30px;font-size:13px;font-weight:800;border-radius:999px;padding:3px 12px;z-index:1}
-#najd .nj-free{background:#fff;color:var(--teal);border:1px solid #CFE0DE}
+#najd .nj-free{background:var(--surface);color:var(--teal);border:1px solid #CFE0DE}
 #najd .nj-paid{background:var(--deep);color:#fff}
 #najd .nj-tile .nj-btn{margin-top:4px}
 #najd .nj-lock{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--slate)}
@@ -178,7 +178,7 @@ body{margin:0;background:#F4F7F7}
 #najd .nj-modal{position:fixed;inset:0;z-index:70;background:rgba(20,34,33,.72);display:flex;align-items:center;justify-content:center;padding:16px}
 #najd .nj-modal-box{background:#000;border-radius:18px;overflow:hidden;width:min(960px,100%);position:relative;box-shadow:var(--shadow-lg)}
 #najd .nj-modal-box iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
-#najd .nj-modal-x{position:absolute;top:10px;left:10px;width:38px;height:38px;border:0;border-radius:10px;background:rgba(255,255,255,.9);color:var(--deep);font-size:22px;cursor:pointer;z-index:2}
+#najd .nj-modal-x{position:absolute;top:10px;left:10px;width:38px;height:38px;border:0;border-radius:10px;background:rgba(255,255,255,.9);color:var(--dtext);font-size:22px;cursor:pointer;z-index:2}
 #najd .nj-modal-t{background:var(--deeper);color:#fff;font-weight:700;padding:12px 16px 12px 56px;font-size:15.5px}
 
 /* الهيدر مع 7 روابط: زر «أنشئ حسابك» يظهر في قائمة الجوال وصفحة الدخول بدل الهيدر */
@@ -188,3 +188,89 @@ body{margin:0;background:#F4F7F7}
 #najd .nj-acts .nj-sync{display:none}
 #najd .nj-acts .nj-uname{display:none}
 #najd .nj-acts .nj-user{gap:6px}
+
+/* ===== التواريخ والساعات والأرقام بالإنجليزي ومن اليسار لليمين ===== */
+#najd input[type=date],#najd input[type=time],#najd input[type=datetime-local],#najd input[type=month],#najd input[type=number],#najd input[type=tel]{direction:ltr;text-align:left;font-variant-numeric:lining-nums}
+
+
+/* ===== الوضع الداكن ===== */
+html[data-theme="dark"],html[data-theme="dark"] body{background:#0F1817;color-scheme:dark}
+html[data-theme="dark"] #najd{--surface:#172322;--card:#172322;--dtext:#9CCBC7;--hdr:rgba(15,24,23,.9);--deep:#2E5D5B;--deeper:#142826;--teal:#6FA8A4;--soft:#7FB0AE;--slate:#8FA3A4;--grey:#62757A;--mist:#C2CDCF;--light:#22302F;--ink:#E3ECEC;--muted:#A9BABB;--bg:#0F1817;--line:#2B3B3A;--tint:#1B3230;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);--shadow-lg:0 2px 4px rgba(0,0,0,.35),0 18px 44px rgba(0,0,0,.5)}
+html[data-theme="dark"] #najd .nj-btn-white{background:#E3ECEC;color:#142826}
+html[data-theme="dark"] #najd .nj-btn-fill{background:#3C7572}
+html[data-theme="dark"] #najd .nj-btn-fill:hover{background:#4C8A86}
+html[data-theme="dark"] #najd .nj-free{border-color:#2B4A48}
+html[data-theme="dark"] #najd .nj-ann-gold{background:#3A321C;color:#F3E9CF}
+html[data-theme="dark"] #najd .nj-foot{background:linear-gradient(170deg,#142826,#0B1413)}
+html[data-theme="dark"] #najd .nj-band{background:radial-gradient(1200px 400px at 85% -10%,#2E5654 0%,rgba(46,86,84,0) 60%),linear-gradient(160deg,#1E3C3A,#122422)}
+html[data-theme="dark"] #najd .lg-day{display:none}
+html:not([data-theme="dark"]) #najd .lg-night{display:none}
+html[data-theme="dark"] #najd input::placeholder,html[data-theme="dark"] #najd textarea::placeholder{color:#7D8F90}
+
+/* ===== أزرار الوضع واللغة في الهيدر ===== */
+#najd .nj-ic{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);cursor:pointer;font-size:14px;font-weight:800;padding:0;flex-shrink:0}
+#najd .nj-ic:hover{border-color:var(--teal);color:var(--dtext)}
+#najd .nj-ic svg{width:19px;height:19px}
+html[data-theme="dark"] #najd .nj-ic .ic-moon{display:none}
+html:not([data-theme="dark"]) #najd .nj-ic .ic-sun{display:none}
+#najd .nj-drawer .nj-prefs{display:flex;gap:10px;padding:14px 4px 0}
+#najd .nj-drawer .nj-prefs .nj-ic{flex:1;width:auto;gap:8px;height:46px;font-size:15px}
+
+/* تعديلات الوضع الداكن لعناصر الصفحات */
+html[data-theme="dark"] #najd .hm-hero{background:radial-gradient(700px 380px at 12% 20%,#16302E 0%,rgba(22,48,46,0) 70%),var(--bg)}
+html[data-theme="dark"] #najd .hm-week i.a{background:#2A4A48}
+html[data-theme="dark"] #najd .hm-week i.b{background:#283635}
+html[data-theme="dark"] #najd .hm-week i.c{background:#335A57}
+html[data-theme="dark"] #najd .hm-week i.d{background:#2B3C40}
+html[data-theme="dark"] #najd .hm-hero h1 em::after{background:#1F3F3D}
+html[data-theme="dark"] #najd .cp-info .is-money b{color:#9FD39A}
+html[data-theme="dark"] #najd .cp-sk,html[data-theme="dark"] #najd .st-sk{background:linear-gradient(90deg,var(--card) 0%,var(--light) 50%,var(--card) 100%);background-size:200% 100%}
+html[data-theme="dark"] #najd .ls-status.is-on{border-color:#2F4A2A;background:#16251A}
+html[data-theme="dark"] #najd .ls-status.is-on .ic{background:#20331F}
+html[data-theme="dark"] #najd .sc-mode[aria-pressed="true"],html[data-theme="dark"] #najd .sc-th[aria-pressed="true"]{background:var(--tint)}
+html[data-theme="dark"] #najd .cp-dl.is-soon,html[data-theme="dark"] #najd .so-tag{background:#3A321C;color:#F3E9CF}
+html[data-theme="dark"] #najd .cp-dl.is-closed,html[data-theme="dark"] #najd .gp-sum.is-warn,html[data-theme="dark"] #najd .au-err{background:#3A1F1C;border-color:#5A2E29;color:#F2C7C1}
+html[data-theme="dark"] #najd .gp-sum.is-ok,html[data-theme="dark"] #najd .au-flash{background:#16251A;border-color:#2F4A2A;color:#C7E3BD}
+html[data-theme="dark"] #najd .gp-del{background:#3A1F1C;color:#F2C7C1}
+html[data-theme="dark"] #najd .ls-type.pdf{background:#3A1F1C}
+html[data-theme="dark"] #najd .so-me{background:#22302F;color:var(--ink)}
+
+/* ===== الإنجليزي: من اليسار لليمين ===== */
+html[dir="ltr"] #najd{direction:ltr;text-align:left}
+html[dir="ltr"] #najd .nj-band-mark{left:auto;right:24px}
+html[dir="ltr"] #najd .nj-badge{right:auto;left:30px}
+html[dir="ltr"] #najd .hm-tools .nj-badge{right:auto;left:26px}
+html[dir="ltr"] #najd .st-badge{right:auto;left:12px}
+html[dir="ltr"] #najd .nj-modal-x{left:auto;right:10px}
+html[dir="ltr"] #najd .nj-modal-t{padding:12px 56px 12px 16px}
+html[dir="ltr"] #najd .au-pass input{padding-left:14px!important;padding-right:64px!important}
+html[dir="ltr"] #najd .au-eye{left:auto;right:8px}
+html[dir="ltr"] #najd .au-side-mark{left:auto;right:-16px}
+html[dir="ltr"] #najd .cp-search svg{right:auto;left:14px}
+html[dir="ltr"] #najd .cp-search input{padding:0 14px 0 44px}
+html[dir="ltr"] #najd .ad-steps{padding-right:0!important;padding-left:18px!important}
+html[dir="ltr"] #najd .gp-li small{margin-right:0;margin-left:6px}
+html[dir="ltr"] #najd .hm-gpa,html[dir="ltr"] #najd .hm-chip{left:auto;right:0}
+html[dir="ltr"] #najd .hm-win{inset:20px 40px 40px 0}
+html[dir="ltr"] #najd .hm-cta-mark{left:auto;right:-20px}
+html[dir="ltr"] #najd .so-me{margin-right:0;margin-left:auto;border-bottom-left-radius:18px;border-bottom-right-radius:6px}
+html[dir="ltr"] #najd .so-bot{margin-left:0;margin-right:auto;border-bottom-right-radius:18px;border-bottom-left-radius:6px}
+html[dir="ltr"] #najd .pl-en,html[dir="ltr"] #najd .pl-lvh{text-align:left}
+html[dir="ltr"] #najd .pl-bar i{right:auto;left:0}
+html[dir="ltr"] #najd .pl-tl{padding-right:0;padding-left:32px}
+html[dir="ltr"] #najd .pl-tl::before{right:auto;left:11px}
+html[dir="ltr"] #najd .pl-dot{right:auto;left:-31px}
+html[dir="ltr"] #najd .nj-arrow{transform:scaleX(-1)}
+html[dir="ltr"] #najd .nj-btn:hover .nj-arrow{transform:scaleX(-1) translateX(-3px)}
+html[dir="ltr"] #najd .nj-crumb span{display:inline-block}
+html[dir="ltr"] #najd .nj-ann a{white-space:nowrap}
+#najd .nj-lang{font-family:'Tajawal',sans-serif}
+#najd .nj-drawer .nj-prefs .nj-lang span,#najd .nj-drawer .nj-prefs .nj-ic span{font-weight:700}
+@media (max-width:860px){html[dir="ltr"] #najd .hm-win{inset:30px 16px 50px 0}}
+#najd .nj-nav a{padding:8px 7px;font-size:14.5px}
+#najd .nj-acts{gap:6px}
+html[data-theme="dark"] #najd .pl-stat b{color:#E3ECEC}
+html[data-theme="dark"] #najd .pl-stat span,html[data-theme="dark"] #najd .nj-disc{color:#9AABAD}
+html[data-theme="dark"] #najd .nj-foot,html[data-theme="dark"] #najd .au-side li{color:#D5DFDF}
+html[data-theme="dark"] #najd .pl-mj[aria-pressed="true"]{background:var(--tint)!important;color:var(--ink)!important}
+html[data-theme="dark"] #najd .pl-note{background:#3A321C;color:#F3E9CF}
