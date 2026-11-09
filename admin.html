@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261110d">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261110g">
 <style>
 #najd .ad-tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
 #najd .ad-tab{flex:1 1 auto;height:44px;padding:0 14px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap}
@@ -87,11 +87,11 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261110d"></script>
-<script src="assets/js/i18n.js?v=20261110d"></script>
-<script src="assets/js/coop-data.js?v=20261110d"></script>
+<script src="assets/js/layout.js?v=20261110g"></script>
+<script src="assets/js/i18n.js?v=20261110g"></script>
+<script src="assets/js/coop-data.js?v=20261110g"></script>
 <script type="module">
-import { auth, db } from "./assets/js/auth.js?v=20261110d";
+import { auth, db } from "./assets/js/auth.js?v=20261110g";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, setDoc, deleteDoc, writeBatch, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
@@ -182,6 +182,7 @@ function fillForm(S, x) {
     if (f.type === "check") el.checked = v === undefined ? !!f.def : !!v;
     else if (f.type === "checks") el.querySelectorAll("input").forEach((c) => { c.checked = (v || []).includes(c.value); });
     else el.value = v == null ? (f.type === "select" ? f.options[0][0] : "") : v;
+    if (f.type === "date" && window.NajdFP) window.NajdFP.sync(el);
   }
 }
 const msg = (t, ok) => { const m = $("ad-msg"); if (!m) return; m.textContent = t || ""; m.className = "ad-msg" + (t ? (ok ? " is-ok" : " is-err") : ""); };
@@ -289,7 +290,7 @@ async function access() {
   }
   $("ad-list").onclick = async (e) => {
     const ed = e.target.closest("[data-edit]"), del = e.target.closest("[data-del]");
-    if (ed) { const x = items.find((i) => i.id === ed.dataset.edit); $("s-mail").value = x.id; $("s-until").value = x.until ? fmt(x.until) : ""; $("s-note").value = x.note || ""; $("s-mail").focus(); }
+    if (ed) { const x = items.find((i) => i.id === ed.dataset.edit); $("s-mail").value = x.id; $("s-until").value = x.until ? fmt(x.until) : ""; if (window.NajdFP) window.NajdFP.sync($("s-until")); $("s-note").value = x.note || ""; $("s-mail").focus(); }
     if (del) { if (!confirm("تلغي اشتراك " + del.dataset.del + "؟")) return; try { await deleteDoc(doc(db, "access", del.dataset.del)); await load(); toast("انلغى الاشتراك"); } catch (er) { toast("ما قدرنا نلغيه"); } }
   };
   $("ad-form").onsubmit = async (e) => {

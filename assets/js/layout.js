@@ -71,7 +71,35 @@
   /* حقول التاريخ والوقت والأرقام: نخليها بالإنجليزي */
   function enInputs(scope){var ins=(scope||root).querySelectorAll('input[type=date],input[type=time],input[type=datetime-local],input[type=month],input[type=number]');for(var q=0;q<ins.length;q++){ins[q].setAttribute('lang','en');ins[q].setAttribute('dir','ltr');}}
   enInputs();
-  try{new MutationObserver(function(ms){for(var q=0;q<ms.length;q++)for(var z=0;z<ms[q].addedNodes.length;z++){var nd=ms[q].addedNodes[z];if(nd.nodeType===1)enInputs(nd.parentNode||nd);}}).observe(root,{childList:true,subtree:true});}catch(e){}
+
+  /* منتقي تاريخ ووقت حديث (flatpickr) بدل أداة المتصفح، بالإنجليزي وبنفس ألوان الموقع */
+  var FP_BASE='assets/vendor/flatpickr/',fpLoad=null;
+  function loadFP(){
+    if(window.flatpickr)return Promise.resolve();
+    if(fpLoad)return fpLoad;
+    fpLoad=new Promise(function(res,rej){
+      var l=document.createElement('link');l.rel='stylesheet';l.href=FP_BASE+'flatpickr.min.css?v=4.6.13';document.head.appendChild(l);
+      var sc=document.createElement('script');sc.src=FP_BASE+'flatpickr.min.js?v=4.6.13';sc.onload=function(){res();};sc.onerror=function(){fpLoad=null;rej();};document.head.appendChild(sc);
+    });
+    return fpLoad;
+  }
+  function fpOne(inp){
+    if(inp.getAttribute('data-fp'))return;inp.setAttribute('data-fp','1');
+    var isT=inp.type==='time';
+    if(!inp.placeholder)inp.placeholder=isT?'اختر الوقت':'اختر التاريخ';
+    window.flatpickr(inp,{altInput:true,disableMobile:true,dateFormat:isT?'H:i':'Y-m-d',altFormat:isT?'h:i K':'D, j M Y',enableTime:isT,noCalendar:isT,time_24hr:false,minuteIncrement:5,monthSelectorType:'static',locale:{firstDayOfWeek:0},
+      onReady:function(_d,_s,fp){fp.calendarContainer.classList.add('nj-fp');var al=fp.altInput;al.setAttribute('dir','ltr');al.setAttribute('lang','en');al.classList.add('nj-fp-in');al.classList.add(isT?'is-time':'is-date');var lb=inp.getAttribute('aria-label');if(lb)al.setAttribute('aria-label',lb);var id=inp.id;if(id){var lab=document.querySelector('label[for="'+id+'"]');if(lab){al.id=id+'-alt';lab.setAttribute('for',al.id);}}}});
+  }
+  function fpScan(scope){
+    var ins=(scope||root).querySelectorAll('input[type=date]:not([data-fp]),input[type=time]:not([data-fp])');
+    if(!ins.length)return;
+    loadFP().then(function(){for(var q=0;q<ins.length;q++)if(ins[q].isConnected)fpOne(ins[q]);}).catch(function(){});
+  }
+  /* لو تغيّرت القيمة من الكود (تعديل/مسح)، نحدّث المنتقي */
+  window.NajdFP={sync:function(el){if(el&&el._flatpickr)el._flatpickr.setDate(el.value||null,false);}};
+  root.addEventListener('reset',function(e){setTimeout(function(){var fs=e.target.querySelectorAll('[data-fp]');for(var q=0;q<fs.length;q++)window.NajdFP.sync(fs[q]);},0);},true);
+  fpScan();
+  try{new MutationObserver(function(ms){for(var q=0;q<ms.length;q++)for(var z=0;z<ms[q].addedNodes.length;z++){var nd=ms[q].addedNodes[z];if(nd.nodeType===1){enInputs(nd.parentNode||nd);fpScan(nd.parentNode||nd);}}}).observe(root,{childList:true,subtree:true});}catch(e){}
 
   /* القائمة في الجوال */
   var hd=document.getElementById('nj-head'),btn=document.getElementById('nj-menu');

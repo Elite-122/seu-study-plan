@@ -274,3 +274,46 @@ html[data-theme="dark"] #najd .pl-stat span,html[data-theme="dark"] #najd .nj-di
 html[data-theme="dark"] #najd .nj-foot,html[data-theme="dark"] #najd .au-side li{color:#D5DFDF}
 html[data-theme="dark"] #najd .pl-mj[aria-pressed="true"]{background:var(--tint)!important;color:var(--ink)!important}
 html[data-theme="dark"] #najd .pl-note{background:#3A321C;color:#F3E9CF}
+
+/* ===== منتقي التاريخ والوقت (flatpickr) ===== */
+#najd input.nj-fp-in{cursor:pointer;direction:ltr;text-align:left;padding-left:40px!important;background-repeat:no-repeat!important;background-position:12px center!important;background-size:18px!important}
+#najd input.nj-fp-in.is-date{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23568A88' stroke-width='2' stroke-linecap='round'%3E%3Crect x='3' y='4.5' width='18' height='16' rx='3'/%3E%3Cpath d='M3 9.5h18M8 2.5v4M16 2.5v4'/%3E%3C/svg%3E")!important}
+#najd input.nj-fp-in.is-time{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23568A88' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E")!important}
+.flatpickr-calendar.nj-fp{font-family:'Tajawal','Geeza Pro',Tahoma,sans-serif;border-radius:16px;border:1px solid #DCE3E5;box-shadow:0 2px 4px rgba(36,61,60,.06),0 18px 44px rgba(36,61,60,.16);padding:6px;width:auto;direction:ltr}
+.flatpickr-calendar.nj-fp:before,.flatpickr-calendar.nj-fp:after{display:none}
+.flatpickr-calendar.nj-fp .flatpickr-months{padding:4px 2px 6px}
+.flatpickr-calendar.nj-fp .flatpickr-months .flatpickr-month{height:40px;color:#2F4F4E;fill:#2F4F4E}
+.flatpickr-calendar.nj-fp .flatpickr-current-month{font-size:16px;font-weight:800;padding-top:8px}
+.flatpickr-calendar.nj-fp .flatpickr-current-month input.cur-year{font-weight:800}
+.flatpickr-calendar.nj-fp .flatpickr-prev-month,.flatpickr-calendar.nj-fp .flatpickr-next-month{top:10px;padding:8px;border-radius:10px;fill:#568A88}
+.flatpickr-calendar.nj-fp .flatpickr-prev-month:hover,.flatpickr-calendar.nj-fp .flatpickr-next-month:hover{background:#EAF2F1}
+.flatpickr-calendar.nj-fp .flatpickr-prev-month:hover svg,.flatpickr-calendar.nj-fp .flatpickr-next-month:hover svg{fill:#2F4F4E}
+.flatpickr-calendar.nj-fp span.flatpickr-weekday{color:#758A8C;font-weight:700;font-size:12.5px}
+.flatpickr-calendar.nj-fp .flatpickr-day{border-radius:10px;color:#2F4F4E;font-weight:500;max-width:40px;height:38px;line-height:38px}
+.flatpickr-calendar.nj-fp .flatpickr-day:hover{background:#EAF2F1;border-color:#EAF2F1}
+.flatpickr-calendar.nj-fp .flatpickr-day.today{border-color:#7A9FA3}
+.flatpickr-calendar.nj-fp .flatpickr-day.selected,.flatpickr-calendar.nj-fp .flatpickr-day.selected:hover{background:#2F4F4E;border-color:#2F4F4E;color:#fff;font-weight:800}
+.flatpickr-calendar.nj-fp .flatpickr-day.prevMonthDay,.flatpickr-calendar.nj-fp .flatpickr-day.nextMonthDay{color:#B0B8BC}
+.flatpickr-calendar.nj-fp.hasTime .flatpickr-time{border-top:1px solid #DCE3E5;height:52px;line-height:52px;max-height:52px}
+.flatpickr-calendar.nj-fp.noCalendar.hasTime .flatpickr-time{border-top:0}
+.flatpickr-calendar.nj-fp .flatpickr-time input{font-family:inherit;font-size:20px;font-weight:800;color:#2F4F4E;border-radius:10px}
+.flatpickr-calendar.nj-fp .flatpickr-time .flatpickr-am-pm{font-weight:800;color:#568A88;border-radius:10px}
+.flatpickr-calendar.nj-fp .flatpickr-time input:hover,.flatpickr-calendar.nj-fp .flatpickr-time .flatpickr-am-pm:hover,.flatpickr-calendar.nj-fp .flatpickr-time input:focus,.flatpickr-calendar.nj-fp .flatpickr-time .flatpickr-am-pm:focus{background:#EAF2F1}
+.flatpickr-calendar.nj-fp .flatpickr-time .flatpickr-time-separator{color:#2F4F4E;font-weight:800}
+.flatpickr-calendar.nj-fp .numInputWrapper span.arrowUp:after{border-bottom-color:#568A88}
+.flatpickr-calendar.nj-fp .numInputWrapper span.arrowDown:after{border-top-color:#568A88}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp{background:#172322;border-color:#2B3B3A;box-shadow:0 18px 44px rgba(0,0,0,.55)}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-months .flatpickr-month,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-current-month input.cur-year{color:#E3ECEC;fill:#E3ECEC}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-prev-month,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-next-month{fill:#9CCBC7}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-prev-month:hover,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-next-month:hover,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-day:hover,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input:hover,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time .flatpickr-am-pm:hover,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input:focus{background:#1B3230;border-color:#1B3230}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp span.flatpickr-weekday{color:#8FA3A4;background:transparent}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-weekdays,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-months .flatpickr-month{background:transparent}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-day{color:#E3ECEC}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-day.prevMonthDay,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-day.nextMonthDay{color:#62757A}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-day.selected{background:#3C7572;border-color:#3C7572}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp.hasTime .flatpickr-time{border-color:#2B3B3A}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input,html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time .flatpickr-time-separator{color:#E3ECEC}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time .flatpickr-am-pm{color:#9CCBC7}
+.flatpickr-calendar.nj-fp .flatpickr-time input::selection{background:#C9DCDA;color:#2F4F4E}
+html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selection{background:#3C7572;color:#fff}
+.flatpickr-calendar.nj-fp.noCalendar{min-width:220px}
