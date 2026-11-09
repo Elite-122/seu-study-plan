@@ -1,0 +1,35 @@
+Copyright (c) 2026 Najd Academy (najdacdemy.com). All rights reserved.
+
+This repository and the website it contains — including source code, design,
+layout, graphics, logos, text and educational content — are the property of
+Najd Academy and are protected by copyright.
+
+No permission is granted to copy, modify, distribute, publish, sublicense,
+sell, or create derivative works from any part of this repository or website,
+in whole or in part, without prior written permission from Najd Academy.
+
+Viewing this repository on GitHub does not grant any license to use it.
+
+Third-party components keep their own licenses:
+  - assets/vendor/flatpickr/ — flatpickr, MIT License (see assets/vendor/flatpickr/LICENSE.md)
+
+Contact: najdacdemy@gmail.com
+
+-------------------------------------------------------------------------------
+
+حقوق النشر © 2026 أكاديمية نجد (najdacdemy.com). جميع الحقوق محفوظة.
+
+هذا المستودع والموقع الموجود فيه — بما في ذلك الكود البرمجي والتصميم والتخطيط
+والرسومات والشعارات والنصوص والمحتوى التعليمي — ملك لأكاديمية نجد ومحمي بحقوق
+المؤلف.
+
+لا يُسمح بنسخ أو تعديل أو توزيع أو نشر أو بيع أو إعادة استخدام أي جزء من هذا
+المستودع أو الموقع، كليًا أو جزئيًا، أو إنشاء أعمال مشتقة منه، دون إذن كتابي
+مسبق من أكاديمية نجد.
+
+مشاهدة هذا المستودع على GitHub لا تعني منح أي ترخيص لاستخدامه.
+
+المكونات الخارجية تخضع لرخصها الخاصة:
+  - assets/vendor/flatpickr/ — مكتبة flatpickr، رخصة MIT
+
+للتواصل: najdacdemy@gmail.com
