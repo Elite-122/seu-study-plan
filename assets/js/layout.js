@@ -4,8 +4,8 @@
   var root=document.getElementById('najd');if(!root)return;
 
   /* روابط الصفحات — عدّلها هنا لو غيّرت أسماء الملفات */
-  var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',college:'college-plans.html'};
-  var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['assistant','مساعدك الدراسي'],['coop','التدريب التعاوني']];
+  var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',college:'college-plans.html'};
+  var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['assistant','مساعدك الدراسي'],['coop','التدريب التعاوني'],['store','المتجر']];
   var PAGE=root.getAttribute('data-page')||'';
 
   /* المفاتيح اللي تنحفظ في حسابك وتتزامن بين أجهزتك */
@@ -50,7 +50,7 @@
       +'<div class="nj-foot-g">'
       +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
-      +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.college+'">خطط كلية العلوم الإدارية والمالية</a></nav></div>'
+      +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.store+'">المتجر</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.college+'">خطط كلية العلوم الإدارية والمالية</a></nav></div>'
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a href="'+LINKS.lessons+'">الشروحات</a><a href="'+LINKS.assistant+'">مساعدك الدراسي</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav></div>'
       +'</div>'
       +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب 🤍 من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد فردي ولا يتبع للجامعة بأي صلة.</p></div>'
@@ -99,7 +99,7 @@
     document.body.classList.toggle('logged-in',!!u);
     var name=u?(u.name||(u.email||'').split('@')[0]||phoneLocal(u.phone)||'طالب نجد'):'';
     var els=root.querySelectorAll('[data-u]');
-    for(var j=0;j<els.length;j++){var f=els[j].getAttribute('data-u');if(f==='name')els[j].textContent=name;if(f==='init')els[j].textContent=(name.trim().charAt(0)||'ن').toUpperCase();}
+    for(var j=0;j<els.length;j++){var f=els[j].getAttribute('data-u');if(f==='name')els[j].textContent=name;if(f==='init'){els[j].textContent=(name.trim().charAt(0)||'ن').toUpperCase();els[j].title=name;}}
     try{u?localStorage.setItem('najd_user',JSON.stringify({name:u.name||'',email:u.email||'',phone:u.phone||''})):localStorage.removeItem('najd_user');}catch(e){}
     lock();
     try{window.dispatchEvent(new CustomEvent('najd:auth',{detail:u||null}));}catch(e){}
@@ -111,7 +111,20 @@
   try{var fl=sessionStorage.getItem('najd_flash');if(fl){sessionStorage.removeItem('najd_flash');setTimeout(function(){toast(fl);},300);}}catch(e){}
   function setSync(txt){var els=root.querySelectorAll('[data-u="sync"]');for(var j=0;j<els.length;j++)els[j].textContent=txt;}
 
-  window.Najd={LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,setSync:setSync,esc:esc};
+  /* شريط الإعلان أعلى الموقع (يجي من Firestore عن طريق auth.js) */
+  function announce(a){
+    if(!a||!a.active||!a.text)return;
+    var key='najd_ann_'+(a.v||'0');
+    try{if(localStorage.getItem('najd_ann_closed')===key)return;}catch(e){}
+    var old=root.querySelector('.nj-ann');if(old)old.remove();
+    var url=String(a.link||'').trim(),safe=/^https?:\/\//i.test(url)||/^[a-z0-9_-]+\.html(#[\w-]*)?$/i.test(url);
+    var bar=document.createElement('div');bar.className='nj-ann nj-ann-'+(a.tone==='gold'?'gold':'teal');bar.setAttribute('role','region');bar.setAttribute('aria-label','إعلان');
+    bar.innerHTML='<div class="nj-in"><p>'+esc(a.text)+(url&&safe?' <a href="'+esc(url)+'"'+(/^https?:/i.test(url)?' target="_blank" rel="noopener"':'')+'>'+esc(a.linkText||'التفاصيل')+' ←</a>':'')+'</p><button type="button" aria-label="إغلاق الإعلان">×</button></div>';
+    bar.querySelector('button').addEventListener('click',function(){bar.remove();try{localStorage.setItem('najd_ann_closed',key);}catch(e){}});
+    root.insertBefore(bar,root.firstChild);
+  }
+
+  window.Najd={LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,setSync:setSync,esc:esc,announce:announce};
 
   /* ظهور العناصر والعدادات */
   var rv=root.querySelectorAll('.nj-rv');

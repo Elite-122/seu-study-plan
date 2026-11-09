@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>لوحة الإدارة | أكاديمية نجد</title>
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css">
+<style>
+#najd .ad-tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
+#najd .ad-tab{flex:1 1 auto;height:44px;padding:0 14px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap}
+#najd .ad-tab[aria-selected="true"]{background:var(--deep);color:#fff}
+#najd .ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#najd .ad-f.full{grid-column:1/-1}
+#najd .ad-f label,#najd .ad-lbl{display:block;font-size:14.5px;font-weight:700;margin:0 0 6px}
+#najd .ad-f input[type=text],#najd .ad-f input[type=url],#najd .ad-f input[type=email],#najd .ad-f input[type=number],#najd .ad-f input[type=date],#najd .ad-f select,#najd .ad-f textarea{width:100%;height:48px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:0 12px;font-size:15.5px;color:var(--ink)}
+#najd .ad-f textarea{height:90px;padding:10px 12px;resize:vertical;font-family:inherit}
+#najd .ad-f input:focus,#najd .ad-f select:focus,#najd .ad-f textarea:focus{background:#fff;border-color:var(--teal)}
+#najd .ad-f small{display:block;font-size:13px;color:var(--slate);margin:4px 0 0}
+#najd .ad-checks{display:flex;flex-wrap:wrap;gap:8px}
+#najd .ad-checks label{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;margin:0}
+#najd .ad-checks input{accent-color:var(--teal);width:18px;height:18px;margin:0}
+#najd .ad-acts{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0}
+#najd .ad-msg{font-size:15px;margin:10px 0 0;min-height:1.5em}
+#najd .ad-msg.is-err{color:#8E3F37}
+#najd .ad-msg.is-ok{color:#3E6A3A}
+#najd .ad-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+#najd .ad-row:last-child{border-bottom:0}
+#najd .ad-row>div{flex:1;min-width:0}
+#najd .ad-row b{display:block;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#najd .ad-row small{color:var(--slate);font-size:13.5px}
+#najd .ad-row .is-off{color:#8E3F37;font-weight:700}
+#najd .ad-row button{height:38px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:0 12px;font-size:14px;font-weight:700;cursor:pointer;color:var(--deep);flex-shrink:0}
+#najd .ad-row button.del{color:#8E3F37;border-color:#E8C7C1}
+#najd .ad-uid{direction:ltr;font-family:ui-monospace,Menlo,monospace;background:var(--bg);border:1px dashed var(--grey);border-radius:10px;padding:10px 12px;font-size:14px;word-break:break-all;margin:10px 0}
+#najd .ad-steps{margin:10px 0 0;padding-right:18px!important}
+#najd .ad-steps li{list-style:decimal!important;margin:0 0 6px;font-size:15.5px}
+#najd .ad-prev{margin:12px 0 0;border-radius:12px;overflow:hidden}
+@media (max-width:640px){#najd .ad-grid{grid-template-columns:1fr}#najd .ad-row{flex-wrap:wrap}#najd .ad-tab{flex:1 1 40%}}
+</style>
+</head>
+<body>
+<div id="najd" dir="rtl" data-auth="required" data-page="admin">
+<div id="nj-header"></div>
+<section class="nj-band">
+<div class="nj-in">
+<p class="nj-crumb"><a href="index.html">الرئيسية</a><span>/</span>لوحة الإدارة</p>
+<h1>لوحة الإدارة</h1>
+<p class="nj-band-sub">الإعلان، والمنتجات، والشروحات، والمشتركين، والتدريب التعاوني. كل تعديل يظهر للطلاب على طول.</p>
+</div>
+</section>
+<main class="nj-main">
+<div class="nj-in nj-narrow">
+
+<div class="nj-card" id="ad-wait"><p class="nj-hint" style="margin:0">جاري التحقق من صلاحيتك…</p></div>
+
+<div class="nj-card" id="ad-deny" hidden>
+<h2>حسابك ما عنده صلاحية إدارة</h2>
+<p class="nj-hint">لو هذا حسابك كمالك الموقع، فعّل الصلاحية مرة وحدة من Firebase Console:</p>
+<div class="ad-uid" id="ad-uid"></div>
+<ol class="ad-steps">
+<li>افتح <b>Firestore Database</b> ← تبويب <b>Data</b>.</li>
+<li>اضغط <b>Start collection</b> (أو افتح <b dir="ltr">admins</b> لو موجودة واضغط <b>Add document</b>).</li>
+<li>Collection ID: <b dir="ltr">admins</b> — و Document ID: الصق الرمز اللي فوق.</li>
+<li>أضف حقل <b dir="ltr">role</b> قيمته <b dir="ltr">owner</b> واضغط Save، وبعدها حدّث هذي الصفحة.</li>
+</ol>
+</div>
+
+<div id="ad-panel" hidden>
+<div class="ad-tabs" role="tablist" id="ad-tabs">
+<button type="button" class="ad-tab" role="tab" data-tab="ann">📢 الإعلان</button>
+<button type="button" class="ad-tab" role="tab" data-tab="products">🛍️ المنتجات</button>
+<button type="button" class="ad-tab" role="tab" data-tab="lessons">🎬 الشروحات</button>
+<button type="button" class="ad-tab" role="tab" data-tab="access">🎟️ المشتركين</button>
+<button type="button" class="ad-tab" role="tab" data-tab="coop">💼 التدريب التعاوني</button>
+</div>
+<div id="ad-body"></div>
+</div>
+
+</div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/coop-data.js"></script>
+<script type="module">
+import { auth, db } from "./assets/js/auth.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+import { collection, doc, getDoc, getDocs, setDoc, deleteDoc, writeBatch, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+const C = window.NAJD_COOP, esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
+const today = () => new Date().toISOString().slice(0, 10);
+const isHttps = (u) => /^https:\/\/\S+$/i.test(u);
+
+/* ===== تعريف الأقسام (حقول كل نوع) ===== */
+const SECTIONS = {
+  products: {
+    col: "products", title: "منتج", plural: "المنتجات",
+    hint: "انسخ رابط المنتج من متجرك في سلة أو زد، ورابط صورته (كليك يمين على الصورة ← نسخ عنوان الصورة).",
+    fields: [
+      { k: "name", label: "اسم المنتج *", type: "text", req: true, full: true, max: 100 },
+      { k: "desc", label: "الوصف", type: "textarea", full: true, max: 400 },
+      { k: "price", label: "السعر (ريال)", type: "number" },
+      { k: "oldPrice", label: "السعر قبل الخصم", type: "number", hint: "اختياري. يظهر مشطوب." },
+      { k: "link", label: "رابط المنتج في المتجر *", type: "url", req: true, https: true, full: true },
+      { k: "image", label: "رابط صورة المنتج", type: "url", https: true, full: true },
+      { k: "platform", label: "المنصة", type: "select", options: [["salla", "سلة"], ["zid", "زد"], ["other", "أخرى"]] },
+      { k: "badge", label: "شارة", type: "text", max: 20, hint: "اختياري، مثل: الأكثر طلبًا" },
+      { k: "order", label: "الترتيب", type: "number", hint: "الأصغر يطلع أول." },
+      { k: "active", label: "منشور (يظهر في المتجر)", type: "check", def: true }
+    ],
+    line: (x) => `${x.price != null && x.price !== "" ? esc(x.price) + " ريال · " : ""}${esc({ salla: "سلة", zid: "زد" }[x.platform] || "متجر")}`
+  },
+  lessons: {
+    col: "lessons", title: "شرح", plural: "الشروحات", secret: "url",
+    hint: "للفيديو: ارفعه على يوتيوب كـ «غير مدرج» (Unlisted) والصق الرابط. للـ PDF: ارفعه على قوقل درايف واجعل المشاركة «أي شخص لديه الرابط» والصق الرابط.",
+    fields: [
+      { k: "title", label: "عنوان الشرح *", type: "text", req: true, full: true, max: 120 },
+      { k: "course", label: "المقرر", type: "text", max: 80, hint: "مثل: مبادئ المحاسبة ACCT101", list: true },
+      { k: "type", label: "النوع", type: "select", options: [["video", "فيديو يوتيوب"], ["pdf", "ملف PDF"]] },
+      { k: "url", label: "الرابط *", type: "url", req: true, https: true, full: true, hint: "ما يظهر إلا للمشتركين (أو للكل لو الشرح مجاني)." },
+      { k: "desc", label: "وصف قصير", type: "textarea", full: true, max: 300 },
+      { k: "order", label: "الترتيب", type: "number" },
+      { k: "free", label: "مجاني لكل المسجلين", type: "check", def: false },
+      { k: "active", label: "منشور", type: "check", def: true }
+    ],
+    line: (x) => `${esc(x.course || "عام")} · ${x.type === "pdf" ? "PDF" : "فيديو"} · ${x.free ? "مجاني" : "للمشتركين"}`
+  },
+  coop: {
+    col: "coop", title: "فرصة", plural: "فرص التدريب",
+    fields: [
+      { k: "org", label: "اسم الجهة *", type: "text", req: true, full: true, max: 100 },
+      { k: "city", label: "المدينة *", type: "select", req: true, options: [["", "اختر المدينة"]].concat(C.CITIES.map((c) => [c, c])) },
+      { k: "deadline", label: "آخر موعد للتقديم", type: "date", hint: "فاضي = التقديم مفتوح." },
+      { k: "majors", label: "التخصصات المطلوبة", type: "checks", full: true, options: Object.keys(C.MAJORS).filter((k) => k !== "all").map((k) => [k, C.MAJORS[k]]), hint: "لو ما اخترت شي، تظهر لجميع التخصصات." },
+      { k: "stipend", label: "المكافأة الشهرية (ريال)", type: "number", hint: "0 = بدون مكافأة، فاضي = غير معروفة." },
+      { k: "duration", label: "المدة", type: "text", max: 40 },
+      { k: "start", label: "موعد البداية", type: "text", max: 60 },
+      { k: "link", label: "رابط التقديم *", type: "url", req: true, http: true, full: true },
+      { k: "notes", label: "ملاحظات", type: "textarea", full: true, max: 300 },
+      { k: "active", label: "منشورة", type: "check", def: true }
+    ],
+    line: (x) => `📍 ${esc(x.city)} · آخر موعد: ${esc(x.deadline || "مفتوح")}${x.deadline && x.deadline < today() ? ' · <span class="is-off">منتهية</span>' : ""}`
+  }
+};
+
+/* ===== أدوات النماذج ===== */
+function fieldHTML(f) {
+  const id = "f-" + f.k, h = f.hint ? `<small>${f.hint}</small>` : "";
+  if (f.type === "check") return `<div class="ad-f full"><div class="ad-checks"><label><input type="checkbox" id="${id}">${f.label}</label></div></div>`;
+  if (f.type === "checks") return `<div class="ad-f full"><span class="ad-lbl">${f.label}</span><div class="ad-checks" id="${id}">${f.options.map((o) => `<label><input type="checkbox" value="${o[0]}">${o[1]}</label>`).join("")}</div>${h}</div>`;
+  let input;
+  if (f.type === "select") input = `<select id="${id}">${f.options.map((o) => `<option value="${esc(o[0])}">${esc(o[1])}</option>`).join("")}</select>`;
+  else if (f.type === "textarea") input = `<textarea id="${id}" maxlength="${f.max || 500}"></textarea>`;
+  else input = `<input id="${id}" type="${f.type}"${f.max ? ` maxlength="${f.max}"` : ""}${f.type === "url" ? ' dir="ltr" placeholder="https://"' : ""}${f.type === "number" ? ' min="0" step="any" inputmode="decimal"' : ""}${f.list ? ` list="${id}-l"` : ""}>${f.list ? `<datalist id="${id}-l"></datalist>` : ""}`;
+  return `<div class="ad-f${f.full ? " full" : ""}"><label for="${id}">${f.label}</label>${input}${h}</div>`;
+}
+function readForm(S) {
+  const out = {};
+  for (const f of S.fields) {
+    const el = $("f-" + f.k);
+    if (f.type === "check") out[f.k] = el.checked;
+    else if (f.type === "checks") out[f.k] = [...el.querySelectorAll("input:checked")].map((c) => c.value);
+    else if (f.type === "number") { const v = el.value.trim(); out[f.k] = v === "" ? null : Math.max(0, Number(v) || 0); }
+    else out[f.k] = el.value.trim();
+    if (f.req && (out[f.k] === "" || out[f.k] == null)) throw "املأ: " + f.label.replace(" *", "");
+    if (out[f.k] && f.https && !isHttps(out[f.k])) throw f.label.replace(" *", "") + " لازم يبدأ بـ https://";
+    if (out[f.k] && f.http && !/^https?:\/\/\S+$/i.test(out[f.k])) throw f.label.replace(" *", "") + " لازم يبدأ بـ https://";
+  }
+  return out;
+}
+function fillForm(S, x) {
+  for (const f of S.fields) {
+    const el = $("f-" + f.k), v = x ? x[f.k] : undefined;
+    if (f.type === "check") el.checked = v === undefined ? !!f.def : !!v;
+    else if (f.type === "checks") el.querySelectorAll("input").forEach((c) => { c.checked = (v || []).includes(c.value); });
+    else el.value = v == null ? (f.type === "select" ? f.options[0][0] : "") : v;
+  }
+}
+const msg = (t, ok) => { const m = $("ad-msg"); if (!m) return; m.textContent = t || ""; m.className = "ad-msg" + (t ? (ok ? " is-ok" : " is-err") : ""); };
+
+/* ===== قسم عام: إضافة/تعديل/حذف ===== */
+async function crud(key) {
+  const S = SECTIONS[key]; let items = [], editing = null;
+  $("ad-body").innerHTML = `<div class="nj-card"><h2 id="ad-ft">إضافة ${S.title}</h2>${S.hint ? `<p class="nj-hint">${S.hint}</p>` : '<p class="nj-hint">الحقول اللي عليها * مطلوبة.</p>'}
+    <form id="ad-form" novalidate><div class="ad-grid">${S.fields.map(fieldHTML).join("")}</div>
+    <div class="ad-acts"><button type="submit" class="nj-btn nj-btn-fill" id="ad-save">نشر</button><button type="button" class="nj-btn nj-btn-line" id="ad-cancel" hidden>إلغاء التعديل</button></div><p class="ad-msg" id="ad-msg" aria-live="polite"></p></form></div>
+    <div class="nj-card"><h2>${S.plural} (<span id="ad-n">0</span>)</h2><div id="ad-list"><p class="nj-hint">جاري التحميل…</p></div></div>`;
+  fillForm(S, null);
+  const setMode = (x) => { $("ad-ft").textContent = x ? "تعديل: " + (x.name || x.title || x.org) : "إضافة " + S.title; $("ad-save").textContent = x ? "حفظ التعديل" : "نشر"; $("ad-cancel").hidden = !x; };
+  async function load() {
+    const snap = await getDocs(collection(db, S.col));
+    items = []; snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
+    items.sort((a, b) => (+a.order || 0) - (+b.order || 0) || (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+    $("ad-n").textContent = items.length;
+    $("ad-list").innerHTML = items.length ? items.map((x) => `<div class="ad-row"><div><b>${esc(x.name || x.title || x.org)}</b><small>${S.line(x)}${x.active === false ? ' · <span class="is-off">مخفي</span>' : ""}</small></div><button type="button" data-edit="${x.id}">تعديل</button><button type="button" class="del" data-del="${x.id}">حذف</button></div>`).join("") : '<p class="nj-hint">ما فيه شي مضاف بعد.</p>';
+    const dl = $("f-course-l"); if (dl) dl.innerHTML = [...new Set(items.map((x) => x.course).filter(Boolean))].map((c) => `<option value="${esc(c)}">`).join("");
+  }
+  $("ad-list").onclick = async (e) => {
+    const ed = e.target.closest("[data-edit]"), del = e.target.closest("[data-del]");
+    if (ed) {
+      const x = { ...items.find((i) => i.id === ed.dataset.edit) };
+      if (S.secret) { try { const s = await getDoc(doc(db, "lessonLinks", x.id)); x[S.secret] = s.exists() ? s.data().url : ""; } catch (er) {} }
+      editing = x.id; fillForm(S, x); setMode(x); msg(""); $("ad-form").scrollIntoView({ behavior: "smooth" });
+    }
+    if (del) {
+      const x = items.find((i) => i.id === del.dataset.del);
+      if (!confirm("تحذف «" + (x.name || x.title || x.org) + "»؟ ما تقدر ترجعه.")) return;
+      try {
+        const b = writeBatch(db); b.delete(doc(db, S.col, x.id)); if (S.secret) b.delete(doc(db, "lessonLinks", x.id)); await b.commit();
+        if (editing === x.id) { editing = null; fillForm(S, null); setMode(null); }
+        await load(); toast("انحذف");
+      } catch (er) { toast("ما قدرنا نحذفه، جرب مرة ثانية"); }
+    }
+  };
+  $("ad-cancel").onclick = () => { editing = null; fillForm(S, null); setMode(null); msg(""); };
+  $("ad-form").onsubmit = async (e) => {
+    e.preventDefault(); msg("");
+    let data; try { data = readForm(S); } catch (er) { return msg(er); }
+    const secret = S.secret ? data[S.secret] : null; if (S.secret) delete data[S.secret];
+    data.updatedAt = serverTimestamp();
+    const btn = $("ad-save"); btn.disabled = true;
+    try {
+      const ref = editing ? doc(db, S.col, editing) : doc(collection(db, S.col));
+      const b = writeBatch(db);
+      b.set(ref, editing ? data : { ...data, createdAt: serverTimestamp() }, { merge: true });
+      if (S.secret) b.set(doc(db, "lessonLinks", ref.id), { url: secret });
+      await b.commit();
+      msg(editing ? "تم حفظ التعديل ✅" : "تم النشر ✅", true);
+      editing = null; fillForm(S, null); setMode(null); await load();
+    } catch (er) { console.warn(er); msg("ما قدرنا نحفظ. تأكد من الصلاحية وقواعد Firestore."); }
+    btn.disabled = false;
+  };
+  await load();
+}
+
+/* ===== الإعلان ===== */
+async function ann() {
+  $("ad-body").innerHTML = `<div class="nj-card"><h2>شريط الإعلان</h2><p class="nj-hint">يظهر أعلى كل صفحات الموقع، والزائر يقدر يقفله. لما تحفظ إعلان جديد، يرجع يظهر للكل.</p>
+  <form id="ad-form" novalidate><div class="ad-grid">
+  <div class="ad-f full"><label for="a-text">نص الإعلان *</label><input id="a-text" type="text" maxlength="160" placeholder="مثلًا: خصم 20% على اشتراك الشروحات لين نهاية الأسبوع 🎉"></div>
+  <div class="ad-f"><label for="a-link">رابط (اختياري)</label><input id="a-link" type="text" dir="ltr" maxlength="300" placeholder="store.html أو https://…"><small>صفحة من الموقع مثل store.html، أو رابط يبدأ بـ https://</small></div>
+  <div class="ad-f"><label for="a-lt">نص الرابط</label><input id="a-lt" type="text" maxlength="30" placeholder="اطلب الحين"></div>
+  <div class="ad-f"><label for="a-tone">اللون</label><select id="a-tone"><option value="teal">تركوازي</option><option value="gold">ذهبي فاتح</option></select></div>
+  <div class="ad-f full"><div class="ad-checks"><label><input type="checkbox" id="a-on">الإعلان ظاهر</label></div></div>
+  </div><div class="ad-acts"><button type="submit" class="nj-btn nj-btn-fill">حفظ الإعلان</button></div><p class="ad-msg" id="ad-msg" aria-live="polite"></p></form></div>`;
+  try {
+    const s = await getDoc(doc(db, "settings", "announcement"));
+    const a = s.exists() ? s.data() : {};
+    $("a-text").value = a.text || ""; $("a-link").value = a.link || ""; $("a-lt").value = a.linkText || ""; $("a-tone").value = a.tone || "teal"; $("a-on").checked = !!a.active;
+  } catch (e) {}
+  $("ad-form").onsubmit = async (e) => {
+    e.preventDefault(); msg("");
+    const text = $("a-text").value.trim(), link = $("a-link").value.trim(), on = $("a-on").checked;
+    if (on && !text) return msg("اكتب نص الإعلان.");
+    if (link && !/^https:\/\/\S+$/i.test(link) && !/^[a-z0-9_-]+\.html(#[\w-]*)?$/i.test(link)) return msg("الرابط لازم يكون صفحة مثل store.html أو يبدأ بـ https://");
+    try {
+      await setDoc(doc(db, "settings", "announcement"), { text, link, linkText: $("a-lt").value.trim(), tone: $("a-tone").value, active: on, v: Date.now(), updatedAt: serverTimestamp() });
+      msg(on ? "تم نشر الإعلان ✅ حدّث أي صفحة عشان تشوفه." : "تم إخفاء الإعلان ✅", true);
+    } catch (er) { msg("ما قدرنا نحفظ. تأكد من الصلاحية وقواعد Firestore."); }
+  };
+}
+
+/* ===== المشتركين في الشروحات ===== */
+async function access() {
+  $("ad-body").innerHTML = `<div class="nj-card"><h2>تفعيل اشتراك طالب</h2><p class="nj-hint">بعد ما يشتري الطالب من المتجر، اكتب <b>بريد حسابه في أكاديمية نجد</b> (نفس البريد اللي يدخل فيه، Gmail أو غيره). الطالب لازم يكون بريده مؤكد. حسابات Gmail مؤكدة تلقائيًا.</p>
+  <form id="ad-form" novalidate><div class="ad-grid">
+  <div class="ad-f full"><label for="s-mail">بريد الطالب *</label><input id="s-mail" type="email" dir="ltr" placeholder="student@gmail.com"></div>
+  <div class="ad-f"><label for="s-until">ينتهي في</label><input id="s-until" type="date"><small>فاضي = بدون انتهاء.</small></div>
+  <div class="ad-f"><label for="s-note">ملاحظة</label><input id="s-note" type="text" maxlength="100" placeholder="مثلًا: رقم الطلب في سلة"></div>
+  </div><div class="ad-acts"><button type="submit" class="nj-btn nj-btn-fill">تفعيل</button></div><p class="ad-msg" id="ad-msg" aria-live="polite"></p></form></div>
+  <div class="nj-card"><h2>المشتركين (<span id="ad-n">0</span>)</h2><div id="ad-list"><p class="nj-hint">جاري التحميل…</p></div></div>`;
+  let items = [];
+  const fmt = (t) => { try { return t.toDate().toISOString().slice(0, 10); } catch (e) { return ""; } };
+  async function load() {
+    const snap = await getDocs(collection(db, "access"));
+    items = []; snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
+    items.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+    $("ad-n").textContent = items.length;
+    const now = Date.now();
+    $("ad-list").innerHTML = items.length ? items.map((x) => `<div class="ad-row"><div><b dir="ltr" style="text-align:right">${esc(x.id)}</b><small>${x.until ? "ينتهي " + esc(fmt(x.until)) + (x.until.toMillis() < now ? ' · <span class="is-off">منتهي</span>' : "") : "بدون انتهاء"}${x.note ? " · " + esc(x.note) : ""}</small></div><button type="button" data-edit="${esc(x.id)}">تعديل</button><button type="button" class="del" data-del="${esc(x.id)}">إلغاء</button></div>`).join("") : '<p class="nj-hint">ما فيه مشتركين بعد.</p>';
+  }
+  $("ad-list").onclick = async (e) => {
+    const ed = e.target.closest("[data-edit]"), del = e.target.closest("[data-del]");
+    if (ed) { const x = items.find((i) => i.id === ed.dataset.edit); $("s-mail").value = x.id; $("s-until").value = x.until ? fmt(x.until) : ""; $("s-note").value = x.note || ""; $("s-mail").focus(); }
+    if (del) { if (!confirm("تلغي اشتراك " + del.dataset.del + "؟")) return; try { await deleteDoc(doc(db, "access", del.dataset.del)); await load(); toast("انلغى الاشتراك"); } catch (er) { toast("ما قدرنا نلغيه"); } }
+  };
+  $("ad-form").onsubmit = async (e) => {
+    e.preventDefault(); msg("");
+    const mail = $("s-mail").value.trim().toLowerCase(), u = $("s-until").value;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return msg("اكتب بريد صحيح.");
+    const data = { note: $("s-note").value.trim(), createdAt: serverTimestamp() };
+    if (u) data.until = Timestamp.fromDate(new Date(u + "T23:59:59"));
+    try { await setDoc(doc(db, "access", mail), data); msg("تم تفعيل الاشتراك لـ " + mail + " ✅", true); $("ad-form").reset(); await load(); }
+    catch (er) { msg("ما قدرنا نفعّل. تأكد من الصلاحية وقواعد Firestore."); }
+  };
+  await load();
+}
+
+/* ===== التبويبات ===== */
+const VIEWS = { ann, products: () => crud("products"), lessons: () => crud("lessons"), access, coop: () => crud("coop") };
+function openTab(t) {
+  if (!VIEWS[t]) t = "ann";
+  document.querySelectorAll(".ad-tab").forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === t ? "true" : "false"));
+  history.replaceState(null, "", "#" + t);
+  VIEWS[t]().catch((e) => { console.warn(e); $("ad-body").innerHTML = '<div class="nj-card"><p class="nj-hint" style="margin:0">ما قدرنا نحمّل القسم. تأكد إنك نشرت قواعد Firestore الجديدة.</p></div>'; });
+}
+$("ad-tabs").addEventListener("click", (e) => { const b = e.target.closest(".ad-tab"); if (b) openTab(b.dataset.tab); });
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) return;
+  try {
+    const adm = await getDoc(doc(db, "admins", user.uid));
+    $("ad-wait").hidden = true;
+    if (!adm.exists()) { $("ad-uid").textContent = user.uid; $("ad-deny").hidden = false; return; }
+    $("ad-panel").hidden = false;
+    openTab(location.hash.slice(1));
+  } catch (e) {
+    $("ad-wait").innerHTML = '<p class="nj-hint" style="margin:0">ما قدرنا نتحقق من الصلاحية. تأكد إنك نشرت قواعد Firestore (firestore.rules) وحدّث الصفحة.</p>';
+    console.warn(e);
+  }
+});
+</script>
+</body>
+</html>

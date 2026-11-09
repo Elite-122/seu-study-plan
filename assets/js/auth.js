@@ -158,4 +158,7 @@ window.NajdAuth = {
 };
 window.dispatchEvent(new CustomEvent("najd:auth-ready"));
 
+/* شريط الإعلان: نجيبه من settings/announcement ونعرضه في كل الصفحات */
+getDoc(doc(db, "settings", "announcement")).then((s) => { if (s.exists() && N.announce) N.announce(s.data()); }).catch(() => {});
+
 export { app, auth, db };
