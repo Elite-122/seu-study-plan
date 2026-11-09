@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // تقدم كل طالب (الخطة، الجدول، المعدل): هو بس يقرأ ويكتب ملفه
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // إعلانات التدريب التعاوني: القراءة للكل بدون تسجيل، والكتابة للمشرفين فقط
+    match /coop/{id} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.org is string && request.resource.data.org.size() > 0 && request.resource.data.org.size() <= 100
+        && request.resource.data.city is string && request.resource.data.city.size() > 0
+        && request.resource.data.link is string && request.resource.data.link.matches('https?://.+');
+      allow delete: if isAdmin();
+    }
+
+    // المشرفين: تضيفهم يدويًا من Firebase Console، وكل واحد يقدر يشيك على نفسه بس
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

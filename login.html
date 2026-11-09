@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تسجيل الدخول | أكاديمية نجد</title>
+<meta name="description" content="سجّل دخولك في أكاديمية نجد واسترجع خطتك وجدولك ومعدلك من أي جهاز.">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css">
+<link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+<div id="najd" dir="rtl" data-page="login">
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="home.html">الرئيسية</a><span>/</span>تسجيل الدخول</p>
+<h1>تسجيل الدخول</h1>
+<p class="nj-band-sub">ادخل برقم جوالك أو بريدك، وتفتح لك كل خدمات أكاديمية نجد ويرجع لك تقدمك.</p>
+</div>
+</section>
+<main class="nj-main">
+<div class="nj-in">
+<div class="au-grid">
+<div class="nj-card au-card">
+<div class="au-in" id="au-in" hidden>
+<span class="nj-av" data-u="init">ن</span>
+<h2>أنت مسجل دخول ✅</h2>
+<p>أهلًا <b data-u="name"></b>، كمّل من حيث وقفت.</p>
+<a class="nj-btn nj-btn-fill" href="plans.html">خطتك الدراسية</a>
+<a class="nj-btn nj-btn-line" href="schedule.html">جدولك</a>
+<p style="margin:14px 0 0"><button type="button" class="au-link au-linkbtn" data-logout>تسجيل الخروج</button></p>
+</div>
+<p class="au-flash" id="au-flash" hidden></p>
+<p class="au-err" id="au-err" role="alert" hidden></p>
+<div class="au-tabs" role="tablist">
+<button type="button" role="tab" class="au-tab" data-tab="phone" aria-selected="true">📱 رقم الجوال</button>
+<button type="button" role="tab" class="au-tab" data-tab="email" aria-selected="false">✉️ البريد الإلكتروني</button>
+</div>
+<div class="au-tabpanel" id="au-p-phone" role="tabpanel">
+<form id="au-phone" novalidate>
+<div class="au-step" data-step="1">
+<div class="au-field"><label for="au-tel">رقم الجوال</label>
+<div class="au-tel"><span class="au-cc" dir="ltr">🇸🇦 +966</span><input id="au-tel" name="tel" type="tel" inputmode="numeric" autocomplete="tel-national" dir="ltr" placeholder="05X XXX XXXX" maxlength="14"></div>
+<small>بيوصلك كود تحقق برسالة نصية.</small></div>
+<button type="submit" class="nj-btn nj-btn-fill au-submit" data-act="send">أرسل كود التحقق</button>
+</div>
+<div class="au-step" data-step="2" hidden>
+<p class="au-sent">أرسلنا الكود إلى <b dir="ltr" id="au-tel-show"></b> <button type="button" class="au-link au-linkbtn" id="au-tel-edit">تعديل الرقم</button></p>
+<div class="au-field"><label for="au-code">كود التحقق</label><input id="au-code" class="au-code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" dir="ltr" maxlength="6" placeholder="••••••"></div>
+<button type="submit" class="nj-btn nj-btn-fill au-submit" data-act="verify">تأكيد الدخول</button>
+<p class="au-alt"><button type="button" class="au-link au-linkbtn" id="au-resend" disabled>إعادة الإرسال</button> <span id="au-timer"></span></p>
+</div>
+<div class="au-step" data-step="3" hidden>
+<p class="au-sent">تم التحقق من رقمك ✅ آخر خطوة:</p>
+<div class="au-field"><label for="au-pname">وش نناديك؟</label><input id="au-pname" name="pname" type="text" autocomplete="name" maxlength="40" dir="auto" placeholder="مثلًا: أحمد"><small>يظهر في حسابك وفي ملف خطتك.</small></div>
+<button type="submit" class="nj-btn nj-btn-fill au-submit" data-act="name">ابدأ</button>
+</div>
+</form>
+<div id="au-recaptcha"></div>
+</div>
+<div class="au-tabpanel" id="au-p-email" role="tabpanel" hidden>
+<form id="au-form" data-mode="login" novalidate>
+<div class="au-field"><label for="au-user">البريد الإلكتروني</label><input id="au-user" name="email" type="email" autocomplete="email" required dir="ltr" placeholder="name@example.com"></div>
+<div class="au-field"><label for="au-pwd">كلمة المرور</label><div class="au-pass"><input id="au-pwd" name="password" type="password" autocomplete="current-password" required dir="ltr"><button type="button" class="au-eye" data-eye="au-pwd">إظهار</button></div></div>
+<div class="au-row"><label class="au-check"><input type="checkbox" name="remember" checked>تذكرني</label><a class="au-link" href="#" id="au-lost">نسيت كلمة المرور؟</a></div>
+<button type="submit" class="nj-btn nj-btn-fill au-submit">تسجيل الدخول</button>
+</form>
+</div>
+<p class="au-alt" id="au-alt">أول مرة؟ الدخول برقم الجوال ينشئ حسابك تلقائيًا. وللتسجيل بالبريد: <a class="au-link" href="register.html">أنشئ حساب بالبريد</a></p>
+</div>
+<aside class="au-side"><svg class="au-side-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#fff"/><path d="M50 48 L60 30 L70 48 Z" fill="#fff"/><path d="M74 48 L84 24 L94 48 Z" fill="#fff"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#fff"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#fff"/></svg>
+<h2>وش يفتح لك حسابك؟</h2>
+<ul>
+<li><svg width="22" height="22" viewBox="0 0 52 52" aria-hidden="true"><path d="M14 38a10 10 0 0 1 1-20 13 13 0 0 1 25 3 8.5 8.5 0 0 1-1 17Z" fill="#E4E9EB"/></svg><div><b>تقدمك محفوظ في السحابة</b><span>خطتك وجدولك ومعدلك ترجع لك من أي جهاز.</span></div></li>
+<li><svg width="22" height="22" viewBox="0 0 52 52" aria-hidden="true"><path d="M25 46L5 40V16L25 22Z" fill="#C8CFD2"/><path d="M27 46L47 40V16L27 22Z" fill="#E4E9EB"/></svg><div><b>الشروحات</b><span>شروحات لمن يبي يطور نفسه في بعض المقررات.</span></div></li>
+<li><svg width="22" height="22" viewBox="0 0 52 52" aria-hidden="true"><path d="M6 8H46V36H20L10 46V36H6Z" fill="#E4E9EB"/></svg><div><b>مساعدك الدراسي</b><span>يساعدك تفهم الدروس وتستعد لاختباراتك.</span></div></li>
+<li><svg width="22" height="22" viewBox="0 0 52 52" aria-hidden="true"><path d="M4 44L11 34L18 44Z" fill="#B0B8BC"/><path d="M17 44L26 26L35 44Z" fill="#C8CFD2"/><path d="M33 44L41 14L49 44Z" fill="#E4E9EB"/></svg><div><b>أول من يعرف</b><span>يوصلك جديد أكاديمية نجد قبل الكل.</span></div></li>
+</ul>
+</aside>
+</div>
+</div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js"></script>
+<script type="module" src="assets/js/auth.js"></script>
+<script src="assets/js/auth-forms.js"></script>
+</body>
+</html>

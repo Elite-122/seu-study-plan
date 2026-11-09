@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الخطط الدراسية | أكاديمية نجد</title>
+<meta name="description" content="خطط كلية العلوم الإدارية والمالية: علّم على مقرراتك وتابع تقدمك نحو التخرج.">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css">
+<style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:10px;margin:20px 0 0}
+#najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px 8px;text-align:center}
+#najd .pl-stat b{display:block;font-size:26px;font-weight:800;color:var(--light);line-height:1.2}
+#najd .pl-stat span{font-size:13px;color:var(--grey)}
+#najd .pl-majors{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:2px 2px 12px;margin:0 -2px}
+#najd .pl-mj{flex:0 0 auto;border:2px solid var(--line);background:var(--card);border-radius:999px;padding:9px 16px;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
+#najd .pl-mj[aria-pressed="true"]{border-color:var(--teal)}
+#najd .pl-en{font-size:13px;color:var(--slate);direction:ltr;text-align:right;margin:2px 0 12px}
+#najd .pl-mission{font-size:16px;color:var(--muted);margin:0 0 14px}
+#najd .pl-note{font-size:14px;background:#F3E9CF;color:#6B5320;border-radius:12px;padding:10px 12px;margin:0 0 12px}
+#najd .pl-lbl{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 8px}
+#najd .pl-careers{display:flex;flex-wrap:wrap;gap:6px}
+#najd .pl-careers span{font-size:14px;font-weight:500;border-radius:999px;padding:4px 12px}
+#najd .pl-prog{display:flex;align-items:center;gap:14px}
+#najd .pl-prog-t{flex:1;min-width:0}
+#najd .pl-prog-t b{font-size:17px;font-weight:800}
+#najd .pl-prog-t p{font-size:14px;color:var(--muted)}
+#najd .pl-prog svg{flex-shrink:0}
+#najd .pl-bar{height:12px;background:var(--light);border-radius:999px;overflow:hidden;margin:12px 0 0;position:relative}
+#najd .pl-bar i{position:absolute;right:0;top:0;bottom:0;background:linear-gradient(270deg,#7A9FA3,#568A88);border-radius:999px;transition:width .4s ease}
+#najd .pl-h{font-size:22px;font-weight:800;margin:26px 0 12px}
+#najd .pl-tl{position:relative;padding-right:32px}
+#najd .pl-tl::before{content:"";position:absolute;right:11px;top:16px;bottom:16px;width:3px;border-radius:3px;background:repeating-linear-gradient(to bottom,var(--mist) 0 8px,transparent 8px 14px)}
+#najd .pl-lv{position:relative;margin:0 0 10px}
+#najd .pl-dot{position:absolute;right:-31px;top:15px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:800}
+#najd .pl-dot svg{position:absolute;inset:0}
+#najd .pl-dot b{position:relative;margin-top:5px}
+#najd .pl-lvh{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 16px;text-align:right;color:var(--ink);cursor:pointer}
+#najd .pl-lv.is-open .pl-lvh{border-color:var(--teal)}
+#najd .pl-lvh b{display:block;font-size:16px;font-weight:800}
+#najd .pl-lvh small{display:block;font-size:13px;color:var(--slate)}
+#najd .pl-lvm{display:flex;align-items:center;gap:6px;flex-shrink:0}
+#najd .pl-cnt{font-size:13px;color:var(--muted);background:var(--bg);border-radius:999px;padding:2px 9px}
+#najd .pl-hrs{font-size:13px;font-weight:700;background:var(--deep);color:#fff;border-radius:999px;padding:2px 10px}
+#najd .pl-chev{width:9px;height:9px;border-left:2px solid var(--slate);border-bottom:2px solid var(--slate);transform:rotate(-45deg);margin:0 4px 4px;transition:transform .2s}
+#najd .pl-lv.is-open .pl-chev{transform:rotate(135deg);margin:4px 4px 0}
+#najd .pl-courses{display:none;background:var(--card);border:1px solid var(--line);border-radius:16px;margin:6px 0 0;overflow:hidden}
+#najd .pl-lv.is-open .pl-courses{display:block}
+#najd .pl-c{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--light);cursor:pointer;margin:0;font-weight:400;position:relative}
+#najd .pl-c:last-child{border-bottom:0}
+#najd .pl-c input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+#najd .pl-box{flex-shrink:0;width:26px;height:26px;border-radius:8px;border:2px solid var(--mist);background:#fff;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;transition:background .15s,border-color .15s}
+#najd .pl-c.is-done .pl-box{background:var(--teal);border-color:var(--teal)}
+#najd .pl-c input:focus-visible+.pl-box{outline:2px solid var(--soft);outline-offset:2px}
+#najd .pl-code{flex-shrink:0;font-size:12px;font-weight:800;border-radius:8px;padding:3px 6px;direction:ltr;min-width:66px;text-align:center;color:var(--deep)}
+#najd .pl-cn{flex:1;min-width:0}
+#najd .pl-cn b{display:block;font-size:15px;font-weight:700;line-height:1.45}
+#najd .pl-cn small{display:block;font-size:13px;color:var(--slate);line-height:1.45}
+#najd .pl-c.is-done .pl-cn b{text-decoration:line-through;text-decoration-color:rgba(47,79,78,.35);color:var(--slate)}
+#najd .pl-ch{flex-shrink:0;font-size:15px;font-weight:800;color:var(--deep);text-align:center;line-height:1.1}
+#najd .pl-ch small{display:block;font-size:11px;font-weight:500;color:var(--slate)}
+#najd .pl-gpa{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--deep);color:#fff;border-radius:20px;padding:22px;margin:24px 0 0}
+#najd .pl-gpa h2{color:#fff;font-size:20px}
+#najd .pl-gpa p{color:var(--mist);font-size:15px}
+#najd .pl-gpa .nj-btn{background:var(--light);color:var(--deep)}
+#najd .pl-src{font-size:13px;color:var(--slate);margin:18px 0 0;text-align:center}
+@media (max-width:560px){#najd .pl-stats{grid-template-columns:repeat(3,1fr)}#najd .pl-code{min-width:58px;font-size:11px}#najd .pl-c{padding:11px 10px;gap:8px}}
+#najd .pl-pdf-top{display:flex;gap:14px;align-items:center;margin:0 0 14px}
+#najd .pl-pdf-top svg{flex-shrink:0}
+#najd .pl-pdf-row{display:flex;gap:10px;flex-wrap:wrap}
+#najd .pl-pdf-row input{flex:1 1 220px;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-size:16px;background:var(--bg);color:var(--ink);margin:0;min-width:0}
+#najd .pl-pdf-row .nj-btn{flex:0 0 auto;height:50px;padding:0 26px}
+#najd .pl-pdf-row .nj-btn:disabled{opacity:.6;cursor:wait}
+#najd .pl-pdf-msg{font-size:14px;color:var(--muted);margin:8px 0 0;min-height:1.2em}
+@media (max-width:560px){#najd .pl-pdf-row .nj-btn{flex:1 1 100%}}</style>
+</head>
+<body>
+<div id="najd" dir="rtl" data-auth="required" data-page="plans" data-sync>
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="#" data-link="home">الرئيسية</a><span>/</span>الخطط الدراسية</p>
+<h1>الخطط الدراسية</h1>
+<p class="nj-band-sub">خطط كلية العلوم الإدارية والمالية بجامعة الأمير مساعد بن عبدالرحمن (الجامعة السعودية الإلكترونية سابقًا). علّم على مقرراتك وتابع تقدمك.</p>
+<div class="pl-stats"><div class="pl-stat"><b>130</b><span>ساعة للتخرج</span></div><div class="pl-stat"><b>4</b><span>تخصصات</span></div><div class="pl-stat"><b id="pl-done-h">0</b><span>ساعة أنجزتها</span></div></div>
+</div>
+
+</section>
+<main class="nj-main">
+<div class="nj-in nj-narrow">
+<div class="pl-majors" id="pl-majors" role="group" aria-label="اختر التخصص"></div>
+<div id="pl-major"></div>
+<div class="nj-card"><div class="pl-prog"><div class="pl-prog-t"><b id="pl-prog-title"></b><p id="pl-prog-msg"></p></div><svg width="54" height="44" viewBox="0 0 54 44" aria-hidden="true"><path id="pl-t1" d="M2 44L10 32L18 44Z" fill="#E4E9EB"/><path id="pl-t2" d="M16 44L27 20L38 44Z" fill="#E4E9EB"/><path id="pl-t3" d="M34 44L44 2L54 44Z" fill="#E4E9EB"/></svg></div><div class="pl-bar"><i id="pl-bar" style="width:0"></i></div></div>
+<div class="nj-card pl-pdf"><div class="pl-pdf-top"><svg width="44" height="52" viewBox="0 0 30 36" aria-hidden="true"><path d="M3 3a2 2 0 0 1 2-2h14l8 8v24a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" fill="#568A88"/><path d="M19 1v8h8" fill="#7A9FA3"/><path d="M8 26L11 21L14 26Z" fill="#E4E9EB"/><path d="M13 26L17 18L21 26Z" fill="#C8CFD2"/></svg><div><h2>احتفظ بتقدمك في ملف PDF</h2><p class="nj-hint" style="margin-bottom:0">ملف مرتب حسب المستويات، فيه المواد اللي اجتزتها واللي باقية لك.</p></div></div>
+<div class="pl-pdf-row"><input id="pl-name" type="text" maxlength="40" placeholder="اسمك (اختياري، يظهر في الملف)" aria-label="اسمك"><button type="button" class="nj-btn nj-btn-fill" id="pl-pdf-btn">تحميل PDF</button></div>
+<p class="pl-pdf-msg" id="pl-pdf-msg" aria-live="polite"></p></div>
+<h2 class="pl-h">المقررات حسب المستوى</h2>
+<div class="pl-tl" id="pl-tl"></div>
+<div class="pl-gpa"><div><h2>تبي تعرف معدلك؟</h2><p>احسب معدلك الفصلي والتراكمي بالتقديرات في ثواني.</p></div><a class="nj-btn" href="#" data-link="gpa">افتح حاسبة المعدل</a></div>
+<p class="pl-src">المصادر: خطة الإدارة (ديسمبر 2025)، المالية والتجارة الإلكترونية (سبتمبر 2023)، دليل المحاسبة (يونيو 2026). ارجع دائمًا للخطة الرسمية ودليل الطالب.</p>
+</div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js"></script>
+<script type="module" src="assets/js/auth.js"></script>
+<script>
+(function(){
+  var root=document.getElementById('najd');if(!root||!document.getElementById('pl-tl'))return;
+  var majors={
+  mgt: {
+    label: "إدارة الأعمال",
+    name: "بكالوريوس إدارة الأعمال — تخصص الإدارة",
+    en: "BSBA — Major in Management",
+    mission:
+      "إعداد مديرين وقادة أكفاء بمعرفة أعمال متقدمة عبر تعليم مدمج عالي الجودة، وكفاءات تدريسية مميزة، ومهارات إدارية متقدمة تسهل اندماجهم في بيئة الأعمال السعودية الديناميكية.",
+    careers: ["مدير عام / رئيس قسم", "محلل أعمال", "منسق تطوير أعمال", "مستشار أنظمة أعمال", "أخصائي تخطيط", "مدير عمليات"],
+    levels: [
+      { label: "السنة الأولى", en: "First year", hours: 26, courses: [
+        ["ENG001", "English Language Skills", "مهارات اللغة الإنجليزية", 8, "—"],
+        ["CS001", "Computer Essentials", "أساسيات الحاسب", 3, "—"],
+        ["COMM001", "Communication Skills", "مهارات الاتصال", 2, "—"],
+        ["ENG001", "English Language Skills (Continued)", "مهارات اللغة الإنجليزية (متابعة)", 8, "—"],
+        ["MATH001", "Fundamentals of Math", "أساسيات الرياضيات", 3, "—"],
+        ["CI001", "Academic Skills", "المهارات الأكاديمية", 2, "—"],
+      ]},
+      { label: "المستوى الثالث", en: "Level three", hours: 17, courses: [
+        ["ISLM101", "Introduction to Islamic Culture", "مدخل إلى الثقافة الإسلامية", 2, "اجتياز السنة الأولى"],
+        ["STAT101", "Statistics", "الإحصاء", 3, "اجتياز السنة الأولى"],
+        ["LAW101", "Legal Environment of Business", "البيئة القانونية للأعمال", 3, "اجتياز السنة الأولى"],
+        ["ECON101", "Microeconomics", "الاقتصاد الجزئي", 3, "اجتياز السنة الأولى"],
+        ["MGT101", "Principles of Management", "مبادئ الإدارة", 3, "اجتياز السنة الأولى"],
+        ["ACCT101", "Principles of Accounting", "مبادئ المحاسبة", 3, "اجتياز السنة الأولى"],
+      ]},
+      { label: "المستوى الرابع", en: "Level four", hours: 17, courses: [
+        ["ISLM102", "Professional Conduct & Ethics in Islam", "السلوك المهني والأخلاق في الإسلام", 2, "—"],
+        ["STAT201", "Quantitative Methods", "الأساليب الكمية", 3, "ACCT101"],
+        ["FIN101", "Principles of Finance", "مبادئ المالية", 3, "MGT101"],
+        ["MGT201", "Marketing Management", "إدارة التسويق", 3, "MGT101"],
+        ["MGT211", "H.R Management", "إدارة الموارد البشرية", 3, "MGT101"],
+        ["ECOM101", "E-Commerce", "التجارة الإلكترونية", 3, "—"],
+      ]},
+      { label: "المستوى الخامس", en: "Level five", hours: 18, courses: [
+        ["ECON201", "Macroeconomics", "الاقتصاد الكلي", 3, "—"],
+        ["MIS201", "Management of Information Systems", "إدارة نظم المعلومات", 3, "MGT101"],
+        ["ECOM201", "Introduction to E-Management", "مقدمة في الإدارة الإلكترونية", 3, "MGT101"],
+        ["MGT301", "Organizational Behavior", "السلوك التنظيمي", 3, "MGT211"],
+        ["MGT311", "Intro to Operations Management", "مقدمة في إدارة العمليات", 3, "MGT101 + STAT101"],
+        ["MGT312", "Decision Making and Problem Solving", "اتخاذ القرارات وحل المشكلات", 3, "MGT101"],
+      ]},
+      { label: "المستوى السادس", en: "Level six", hours: 17, courses: [
+        ["ISLM103", "Islamic Economic System", "النظام الاقتصادي الإسلامي", 2, "ISLM101"],
+        ["ACCT301", "Cost Accounting", "محاسبة التكاليف", 3, "ACCT101"],
+        ["MGT321", "Intro to International Business", "مقدمة في الأعمال الدولية", 3, "—"],
+        ["MGT322", "Logistics Management", "إدارة الإمداد والتموين", 3, "MGT101"],
+        ["MGT323", "Project Management", "إدارة المشاريع", 3, "MGT311"],
+        ["MGT325", "Management of Technology", "إدارة التقنية", 3, "MGT101"],
+      ]},
+      { label: "المستوى السابع", en: "Level seven", hours: 17, courses: [
+        ["ISLM104", "Social System and Human Rights", "النظام الاجتماعي وحقوق الإنسان", 2, "ISLM102"],
+        ["MGT401", "Strategic Management", "الإدارة الاستراتيجية", 3, "MGT201 + FIN101"],
+        ["MGT324", "Public Management", "الإدارة العامة", 3, "MGT101"],
+        ["MGT402", "Entrepreneurship", "ريادة الأعمال", 3, "MGT101"],
+        ["MGT403", "Knowledge Management", "إدارة المعرفة", 3, "MGT101"],
+        ["MGT424", "Quality Management", "إدارة الجودة", 3, "MGT101"],
+      ]},
+      { label: "المستوى الثامن", en: "Level eight", hours: 18, courses: [
+        ["MGT404", "Organization Design and Development", "تصميم وتطوير المنظمات", 3, "MGT101"],
+        ["MGT421", "Communications Management", "إدارة الاتصالات", 3, "MGT101"],
+        ["MGT422", "Business Ethics & Social Responsibility", "أخلاقيات الأعمال والمسؤولية الاجتماعية", 3, "—"],
+        ["MGT430", "Internship", "التدريب التعاوني", 6, "إكمال 90 ساعة معتمدة"],
+        ["MGT425", "Spreadsheet Decision Modeling", "نمذجة القرارات بجداول البيانات", 3, "MGT101"],
+      ]},
+    ],
+  },
+  fin: {
+    label: "المالية",
+    name: "بكالوريوس إدارة الأعمال — تخصص المالية",
+    en: "BSBA — Major in Finance",
+    mission:
+      "إعداد قادة المستقبل في التخطيط المالي القائم على القيم، ارتكازاً على ركائز الجامعة في التميز والنزاهة والقيادة والولاء والاحترام والعطاء بلا حدود.",
+    careers: ["مدير مالي", "باحث مالي", "مستشار مالي", "محلل مالي", "وسيط مالي (وكالات مالية)"],
+    levels: [
+      { label: "السنة الأولى", en: "First year", hours: 26, courses: [
+        ["ENG001", "English Skills", "مهارات اللغة الإنجليزية", 16, "—"],
+        ["CS001", "Computer Essentials", "أساسيات الحاسب", 3, "—"],
+        ["COMM001", "Communication Skills", "مهارات الاتصال", 2, "—"],
+        ["MATH001", "Fundamentals of Math", "أساسيات الرياضيات", 3, "—"],
+        ["CI001", "Academic Skills", "المهارات الأكاديمية", 2, "—"],
+      ]},
+      { label: "المستوى الثالث", en: "Level three", hours: 17, courses: [
+        ["ISLM101", "Introduction to Islamic Culture", "مدخل إلى الثقافة الإسلامية", 2, "اجتياز السنة الأولى"],
+        ["STAT101", "Statistics", "الإحصاء", 3, "اجتياز السنة الأولى"],
+        ["LAW101", "Legal Environment of Business", "البيئة القانونية للأعمال", 3, "اجتياز السنة الأولى"],
+        ["ECON101", "Microeconomics", "الاقتصاد الجزئي", 3, "اجتياز السنة الأولى"],
+        ["MGT101", "Principles of Management", "مبادئ الإدارة", 3, "اجتياز السنة الأولى"],
+        ["ACCT101", "Principles of Accounting", "مبادئ المحاسبة", 3, "اجتياز السنة الأولى"],
+      ]},
+      { label: "المستوى الرابع", en: "Level four", hours: 17, courses: [
+        ["ISLM102", "Professional Conduct & Ethics in Islam", "السلوك المهني والأخلاق في الإسلام", 2, "—"],
+        ["STAT201", "Quantitative Methods", "الأساليب الكمية", 3, "STAT101"],
+        ["FIN101", "Principles of Finance", "مبادئ المالية", 3, "ACCT101"],
+        ["MGT201", "Marketing Management", "إدارة التسويق", 3, "MGT101"],
+        ["MGT211", "H.R Management", "إدارة الموارد البشرية", 3, "MGT101"],
+        ["ECOM101", "E-Commerce", "التجارة الإلكترونية", 3, "—"],
+      ]},
+      { label: "المستوى الخامس", en: "Level five", hours: 18, courses: [
+        ["ECON201", "Macroeconomics", "الاقتصاد الكلي", 3, "—"],
+        ["MIS201", "Management of Information Systems", "إدارة نظم المعلومات", 3, "MGT101"],
+        ["ECOM201", "Introduction to E-Management", "مقدمة في الإدارة الإلكترونية", 3, "MGT101"],
+        ["MGT301", "Organizational Behavior", "السلوك التنظيمي", 3, "MGT211"],
+        ["MGT311", "Intro to Operations Management", "مقدمة في إدارة العمليات", 3, "MGT101 + STAT101"],
+        ["FIN201", "Corporate Finance", "تمويل الشركات", 3, "FIN101"],
+      ]},
+      { label: "المستوى السادس", en: "Level six", hours: 17, courses: [
+        ["ISLM103", "Islamic Economic System", "النظام الاقتصادي الإسلامي", 2, "ISLM101"],
+        ["ACCT301", "Cost Accounting", "محاسبة التكاليف", 3, "ACCT101"],
+        ["MGT321", "Intro to International Business", "مقدمة في الأعمال الدولية", 3, "—"],
+        ["MGT322", "Logistics Management", "إدارة الإمداد والتموين", 3, "MGT101"],
+        ["FIN301", "Risk Management", "إدارة المخاطر", 3, "FIN101"],
+        ["FIN416", "Islamic Finance", "التمويل الإسلامي", 3, "FIN201"],
+      ]},
+      { label: "المستوى السابع", en: "Level seven", hours: 17, courses: [
+        ["ISLM104", "Social System and Human Rights", "النظام الاجتماعي وحقوق الإنسان", 2, "ISLM102"],
+        ["MGT401", "Strategic Management", "الإدارة الاستراتيجية", 3, "MGT201 + FIN101"],
+        ["FIN401", "Banks Management", "إدارة المصارف", 3, "FIN101"],
+        ["FIN402", "Financial Institutions and Markets", "المؤسسات والأسواق المالية", 3, "FIN101"],
+        ["FIN403", "Investments", "الاستثمار", 3, "FIN101"],
+        ["FIN414", "Real Estate Finance", "التمويل العقاري", 3, "FIN201"],
+      ]},
+      { label: "المستوى الثامن", en: "Level eight", hours: 18, courses: [
+        ["FIN405", "Financial Derivatives", "المشتقات المالية", 3, "FIN402"],
+        ["FIN406", "International Finance", "التمويل الدولي", 3, "FIN401"],
+        ["FIN424", "Portfolio Management", "إدارة المحافظ الاستثمارية", 3, "FIN403"],
+        ["FIN408", "Internship", "التدريب التعاوني", 6, "إكمال 90 ساعة معتمدة"],
+        ["FIN421", "Small Business Financing", "تمويل المنشآت الصغيرة", 3, "FIN301"],
+      ]},
+    ],
+  },
+  ecom: {
+    label: "التجارة الإلكترونية",
+    name: "بكالوريوس إدارة الأعمال — تخصص التجارة الإلكترونية",
+    en: "BSBA — Major in E-Commerce",
+    mission:
+      "تزويد طلاب التجارة الإلكترونية بالمهارات اللازمة من خلال تعلم ذاتي مدعوم بتعليم تفاعلي عالي الجودة عبر الإنترنت، وتشجيع روح ريادة الأعمال، والمساهمة في الأبحاث والدراسات ضمن قطاع التجارة الإلكترونية.",
+    careers: ["مدير تجارة إلكترونية", "محلل تجارة إلكترونية", "محلل استخبارات تجارية", "مستشار تجارة إلكترونية", "مستشار أمن معلومات", "مطوّر مواقع للأغراض التجارية"],
+    levels: [
+      { label: "السنة الأولى", en: "First year", hours: 26, courses: [
+        ["ENG001", "English Skills", "مهارات اللغة الإنجليزية", 8, "—"],
+        ["CS001", "Computer Essentials", "أساسيات الحاسب", 3, "—"],
+        ["COMM001", "Communication Skills", "مهارات الاتصال", 2, "—"],
+        ["ENG001", "English Skills (Continued)", "مهارات اللغة الإنجليزية (متابعة)", 8, "—"],
+        ["MATH001", "Fundamentals of Math", "أساسيات الرياضيات", 3, "—"],
+        ["CI001", "Academic Skills", "المهارات الأكاديمية", 2, "—"],
+      ]},
+      { label: "المستوى الثالث", en: "Level three", hours: 17, courses: [
+        ["ISLM101", "Introduction to Islamic Culture", "مدخل إلى الثقافة الإسلامية", 2, "اجتياز السنة الأولى"],
+        ["STAT101", "Statistics", "الإحصاء", 3, "اجتياز السنة الأولى"],
+        ["LAW101", "Legal Environment of Business", "البيئة القانونية للأعمال", 3, "اجتياز السنة الأولى"],
+        ["ECON101", "Microeconomics", "الاقتصاد الجزئي", 3, "اجتياز السنة الأولى"],
+        ["MGT101", "Principles of Management", "مبادئ الإدارة", 3, "اجتياز السنة الأولى"],
+        ["ACCT101", "Principles of Accounting", "مبادئ المحاسبة", 3, "اجتياز السنة الأولى"],
+      ]},
+      { label: "المستوى الرابع", en: "Level four", hours: 17, courses: [
+        ["ISLM102", "Professional Conduct & Ethics in Islam", "السلوك المهني والأخلاق في الإسلام", 2, "—"],
+        ["STAT201", "Quantitative Methods", "الأساليب الكمية", 3, "STAT101"],
+        ["FIN101", "Principles of Finance", "مبادئ المالية", 3, "ACCT101"],
+        ["MGT201", "Marketing Management", "إدارة التسويق", 3, "MGT101"],
+        ["MGT211", "H.R Management", "إدارة الموارد البشرية", 3, "MGT101"],
+        ["ECOM101", "E-Commerce", "التجارة الإلكترونية", 3, "—"],
+      ]},
+      { label: "المستوى الخامس", en: "Level five", hours: 18, courses: [
+        ["ECON201", "Macroeconomics", "الاقتصاد الكلي", 3, "—"],
+        ["MIS201", "Management of Information Systems", "إدارة نظم المعلومات", 3, "MGT101"],
+        ["ECOM201", "Introduction to E-Management", "مقدمة في الإدارة الإلكترونية", 3, "MGT101"],
+        ["MGT301", "Organizational Behavior", "السلوك التنظيمي", 3, "MGT211"],
+        ["MGT311", "Intro to Operations Management", "مقدمة في إدارة العمليات", 3, "MGT101 + STAT101"],
+        ["ECOM301", "E-Marketing (Digital Marketing)", "التسويق الإلكتروني", 3, "MGT201"],
+      ]},
+      { label: "المستوى السادس", en: "Level six", hours: 17, courses: [
+        ["ISLM103", "Islamic Economic System", "النظام الاقتصادي الإسلامي", 2, "ISLM101"],
+        ["ACCT301", "Cost Accounting", "محاسبة التكاليف", 3, "ACCT101"],
+        ["MGT321", "Intro to International Business", "مقدمة في الأعمال الدولية", 3, "—"],
+        ["MGT322", "Logistics Management", "إدارة الإمداد والتموين", 3, "MGT101"],
+        ["IT401", "Business Computer Languages", "لغات الحاسب للأعمال", 3, "MGT311"],
+        ["ECOM322", "Social Media Marketing", "التسويق عبر وسائل التواصل الاجتماعي", 3, "ECOM301"],
+      ]},
+      { label: "المستوى السابع", en: "Level seven", hours: 17, courses: [
+        ["ISLM104", "Social System and Human Rights", "النظام الاجتماعي وحقوق الإنسان", 2, "ISLM102"],
+        ["MGT401", "Strategic Management", "الإدارة الاستراتيجية", 3, "MGT201 + FIN101"],
+        ["IT403", "Fundamentals of Databases", "أساسيات قواعد البيانات", 3, "IT401"],
+        ["IT404", "Website Design", "تصميم مواقع الويب", 3, "—"],
+        ["LAW402", "Law of E-Commerce", "قانون التجارة الإلكترونية", 3, "LAW101"],
+        ["ECOM425", "Virtual Organization Management", "إدارة المنظمات الافتراضية", 3, "MGT101"],
+      ]},
+      { label: "المستوى الثامن", en: "Level eight", hours: 18, courses: [
+        ["IT402", "Integrated Enterprise Systems", "نظم المؤسسات المتكاملة", 3, "MIS201"],
+        ["ECOM421", "E-Business Strategy and Business Models", "استراتيجيات ونماذج الأعمال الإلكترونية", 3, "MGT401"],
+        ["ECOM402", "E-Supply Chain Management", "إدارة سلسلة الإمداد الإلكترونية", 3, "MGT211"],
+        ["ECOM430", "Internship", "التدريب التعاوني", 6, "إكمال 90 ساعة معتمدة"],
+        ["IT405", "E-Portals Development", "تطوير البوابات الإلكترونية", 3, "IT404"],
+      ]},
+    ],
+  },
+  acct: {
+    label: "المحاسبة",
+    name: "بكالوريوس إدارة الأعمال — تخصص المحاسبة",
+    en: "BSBA — Major in Accounting",
+    mission:
+      "يهدف برنامج بكالوريوس المحاسبة إلى إعداد محاسبين مؤهلين وفق المعايير المهنية والأكاديمية الحديثة، مع تغطية شاملة للمحاسبة المالية والإدارية والحكومية والضريبية ومحاسبة المؤسسات المالية والتأمين.",
+    careers: ["محاسب قانوني", "مراجع حسابات", "محاسب ضرائب وزكاة", "محاسب حكومي وغير ربحي", "محاسب مؤسسات مالية", "محاسب تأمين"],
+    levels: [
+      { label: "السنة الأولى", en: "First year", hours: 26, courses: [
+        ["ENG001", "English Language Skills", "مهارات اللغة الإنجليزية", 8, "—"],
+        ["CS001", "Intro to AI and Computing", "مقدمة في الذكاء الاصطناعي والحوسبة", 3, "—"],
+        ["COMM001", "Communication Skills", "مهارات الاتصال", 2, "—"],
+        ["ENG001", "English Language Skills (Continued)", "مهارات اللغة الإنجليزية (متابعة)", 8, "—"],
+        ["MATH001", "Fundamentals of Math", "أساسيات الرياضيات", 3, "—"],
+        ["CI001", "Academic Skills", "المهارات الأكاديمية", 2, "—"],
+      ]},
+      { label: "المستوى الثالث", en: "Level three", hours: 17, courses: [
+        ["ISLM101", "Introduction to Islamic Culture", "مدخل إلى الثقافة الإسلامية", 2, "اجتياز السنة الأولى"],
+        ["STAT101", "Statistics", "الإحصاء", 3, "اجتياز السنة الأولى"],
+        ["LAW101", "Legal Environment of Business", "البيئة القانونية للأعمال", 3, "اجتياز السنة الأولى"],
+        ["ECON101", "Microeconomics", "الاقتصاد الجزئي", 3, "اجتياز السنة الأولى"],
+        ["MGT101", "Principles of Management", "مبادئ الإدارة", 3, "اجتياز السنة الأولى"],
+        ["ACCT101", "Principles of Accounting", "مبادئ المحاسبة", 3, "اجتياز السنة الأولى"],
+      ]},
+      { label: "المستوى الرابع", en: "Level four", hours: 17, courses: [
+        ["ISLM102", "Professional Conduct & Ethics in Islam", "السلوك المهني والأخلاق في الإسلام", 2, "—"],
+        ["STAT201", "Quantitative Methods", "الأساليب الكمية", 3, "STAT101"],
+        ["FIN101", "Principles of Finance", "مبادئ المالية", 3, "ACCT101"],
+        ["MGT201", "Marketing Management", "إدارة التسويق", 3, "MGT101"],
+        ["MGT211", "H.R Management", "إدارة الموارد البشرية", 3, "MGT101"],
+        ["ECOM101", "E-Commerce", "التجارة الإلكترونية", 3, "—"],
+      ]},
+      { label: "المستوى الخامس", en: "Level five", hours: 18, courses: [
+        ["ECON201", "Macroeconomics", "الاقتصاد الكلي", 3, "—"],
+        ["MIS201", "Management of Information Systems", "إدارة نظم المعلومات", 3, "MGT101"],
+        ["ECOM201", "Introduction to E-Management", "مقدمة في الإدارة الإلكترونية", 3, "MGT101"],
+        ["MGT301", "Organizational Behavior", "السلوك التنظيمي", 3, "MGT211"],
+        ["MGT311", "Intro to Operations Management", "مقدمة في إدارة العمليات", 3, "MGT101 + STAT101"],
+        ["ACCT201", "Financial Accounting", "المحاسبة المالية", 3, "ACCT101"],
+      ]},
+      { label: "المستوى السادس", en: "Level six", hours: 17, courses: [
+        ["ISLM103", "Islamic Economic System", "النظام الاقتصادي الإسلامي", 2, "ISLM101"],
+        ["ACCT301", "Cost Accounting", "محاسبة التكاليف", 3, "ACCT101"],
+        ["MGT321", "Intro to International Business", "مقدمة في الأعمال الدولية", 3, "—"],
+        ["MGT322", "Logistics Management", "إدارة الإمداد والتموين", 3, "MGT101"],
+        ["ACCT302", "Advanced Financial Accounting", "المحاسبة المالية المتقدمة", 3, "ACCT201"],
+        ["ACCT405", "Accounting of Financial Institutions", "محاسبة المؤسسات المالية", 3, "ACCT201"],
+      ]},
+      { label: "المستوى السابع", en: "Level seven", hours: 17, courses: [
+        ["ISLM104", "Social System and Human Rights", "النظام الاجتماعي وحقوق الإنسان", 2, "ISLM102"],
+        ["MGT401", "Strategic Management", "الإدارة الاستراتيجية", 3, "MGT201 + FIN101"],
+        ["ACCT401", "Auditing Principles & Procedures", "أصول ومعايير المراجعة", 3, "ACCT302"],
+        ["ACCT403", "Accounting Research and Practice", "بحوث وممارسات محاسبية", 3, "—"],
+        ["ACCT402", "Intro to Accounting Information System", "مقدمة في نظم المعلومات المحاسبية", 3, "ACCT201 + MIS201"],
+        ["ACCT321", "Government and Non-Profit Accounting", "محاسبة الحكومات والمنظمات غير الربحية", 3, "ACCT201"],
+      ]},
+      { label: "المستوى الثامن", en: "Level eight", hours: 18, courses: [
+        ["ACCT422", "Tax and Zakat Accounting", "محاسبة الزكاة والضريبة", 3, "ACCT201"],
+        ["LAW401", "Companies Law", "قانون الشركات", 3, "LAW101"],
+        ["ACCT322", "Managerial Accounting", "المحاسبة الإدارية", 3, "ACCT301"],
+        ["ACCT424", "Insurance Accounting", "محاسبة التأمين", 3, "ACCT201"],
+        ["ACCT430", "Internship", "التدريب التعاوني", 6, "إكمال 90 ساعة معتمدة"],
+      ]},
+    ],
+  },
+};
+  var ORDER=['mgt','fin','ecom','acct'];
+  var META={mgt:{e:'🧭',bg:'#EFE6D6',ac:'#B08A4E'},fin:{e:'💰',bg:'#F3E9CF',ac:'#B8943A'},ecom:{e:'🛒',bg:'#DCEBEA',ac:'#568A88'},acct:{e:'🧮',bg:'#DDE8F2',ac:'#4F7CA8'}};
+  var PFX={ENG:'#E4E9EB',COMM:'#E4E9EB',CI:'#E4E9EB',MATH:'#E4E9EB',CS:'#E4E9EB',ISLM:'#E2ECDD',MGT:'#EFE6D6',FIN:'#F3E9CF',ACCT:'#DDE8F2',ECOM:'#DCEBEA',IT:'#DCEBEA',STAT:'#E5E0EE',ECON:'#E5E0EE',MIS:'#E5E0EE',LAW:'#F0DEDB'};
+  var KEY='najd_plans_v1';
+  var st={major:'mgt',open:{},done:{},name:''};
+  try{var sv=JSON.parse(localStorage.getItem(KEY)||'null')||JSON.parse(localStorage.getItem('seu_plans_v1')||'null');if(sv){if(sv.major)st.major=sv.major;if(sv.open)st.open=sv.open;if(sv.done)st.done=sv.done;if(sv.name)st.name=sv.name;}}catch(e){}
+  if(!majors[st.major])st.major='mgt';
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function $(id){return document.getElementById(id);}
+  function dkey(li,ci){return st.major+'|'+li+'|'+ci;}
+  function doneHours(){var h=0;majors[st.major].levels.forEach(function(lv,li){lv.courses.forEach(function(c,ci){if(st.done[dkey(li,ci)])h+=c[3];});});return h;}
+  function renderMajor(){
+    var o='';
+    ORDER.forEach(function(k){var on=k===st.major,mt=META[k];o+='<button type="button" class="pl-mj" data-major="'+k+'" aria-pressed="'+on+'" style="'+(on?'background:'+mt.bg+';border-color:'+mt.ac:'')+'">'+mt.e+' '+esc(majors[k].label)+'</button>';});
+    $('pl-majors').innerHTML=o;
+    var m=majors[st.major],mt=META[st.major];
+    var c='<div class="nj-card" style="border-top:5px solid '+mt.ac+'"><h2>'+mt.e+' '+esc(m.name)+'</h2><p class="pl-en">'+esc(m.en)+'</p>';
+    if(m.note)c+='<p class="pl-note">'+esc(m.note)+'</p>';
+    c+='<p class="pl-mission">'+esc(m.mission)+'</p><p class="pl-lbl">وين تشتغل بعد التخرج؟</p><div class="pl-careers">';
+    m.careers.forEach(function(x){c+='<span style="background:'+mt.bg+'">'+esc(x)+'</span>';});
+    $('pl-major').innerHTML=c+'</div></div>';
+  }
+  function renderProgress(){
+    var h=doneHours(),pct=Math.min(100,Math.round(h/130*100)),msg;
+    if(h===0)msg='علّم على المقررات اللي خلصتها وشوف تقدمك نحو القمة 👇';
+    else if(pct<25)msg='بداية موفقة، كل ساعة تفرق 🌱';
+    else if(pct<50)msg='ماشي صح، كمّل 💪';
+    else if(pct<75)msg='تعديت النص! 🔥';
+    else if(pct<100)msg='قربت توصل القمة 🏁';
+    else msg='خلصت الخطة كاملة، مبروك التخرج! 🎓';
+    $('pl-prog-title').textContent='أنجزت '+h+' من 130 ساعة ('+pct+'%)';
+    $('pl-prog-msg').textContent=msg;$('pl-bar').style.width=pct+'%';
+    $('pl-t1').setAttribute('fill',pct>0?'#B0B8BC':'#E4E9EB');$('pl-t2').setAttribute('fill',pct>=40?'#7A9FA3':'#E4E9EB');$('pl-t3').setAttribute('fill',pct>=100?'#568A88':'#E4E9EB');
+    var dh=$('pl-done-h');if(dh)dh.textContent=h;
+  }
+  function dotSvg(state){var f=state==='full'?'#2F4F4E':state==='open'?'#568A88':'#FFFFFF',s=state==='idle'?'#C8CFD2':f;return '<svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L23 22H1Z" fill="'+f+'" stroke="'+s+'" stroke-width="2.5" stroke-linejoin="round"/></svg>';}
+  function renderTimeline(){
+    var m=majors[st.major],open=st.open[st.major];if(open===undefined)open=0;var o='';
+    m.levels.forEach(function(lv,li){
+      var n=0;lv.courses.forEach(function(c,ci){if(st.done[dkey(li,ci)])n++;});
+      var full=n===lv.courses.length,isOpen=open===li;
+      o+='<div class="pl-lv'+(isOpen?' is-open':'')+'"><span class="pl-dot" aria-hidden="true">'+dotSvg(full?'full':isOpen?'open':'idle')+'<b>'+(full?'✓':'')+'</b></span>'
+        +'<button type="button" class="pl-lvh" data-level="'+li+'" aria-expanded="'+isOpen+'"><span><b>'+esc(lv.label)+'</b><small>'+esc(lv.en)+'</small></span>'
+        +'<span class="pl-lvm"><span class="pl-cnt">'+n+'/'+lv.courses.length+'</span><span class="pl-hrs">'+lv.hours+' ساعة</span><span class="pl-chev" aria-hidden="true"></span></span></button><div class="pl-courses">';
+      lv.courses.forEach(function(c,ci){
+        var d=!!st.done[dkey(li,ci)],pf=c[0].replace(/[0-9]/g,'');
+        o+='<label class="pl-c'+(d?' is-done':'')+'"><input type="checkbox" data-done="'+li+'|'+ci+'"'+(d?' checked':'')+'><span class="pl-box" aria-hidden="true">'+(d?'✓':'')+'</span>'
+          +'<span class="pl-code" style="background:'+(PFX[pf]||'#E4E9EB')+'">'+esc(c[0])+'</span>'
+          +'<span class="pl-cn"><b>'+esc(c[2])+'</b><small dir="ltr" style="text-align:right">'+esc(c[1])+'</small><small>المتطلب السابق: '+esc(c[4])+'</small></span>'
+          +'<span class="pl-ch">'+c[3]+'<small>ساعات</small></span></label>';
+      });
+      o+='</div></div>';
+    });
+    $('pl-tl').innerHTML=o;
+  }
+  function renderAll(){renderMajor();renderTimeline();renderProgress();}
+  root.addEventListener('click',function(e){
+    var t=e.target.closest('button');if(!t||!root.contains(t))return;
+    if(t.hasAttribute('data-major')){st.major=t.getAttribute('data-major');renderAll();save();return;}
+    if(t.hasAttribute('data-level')){var li=+t.getAttribute('data-level'),cur=st.open[st.major];if(cur===undefined)cur=0;st.open[st.major]=cur===li?-1:li;renderTimeline();save();}
+  });
+  root.addEventListener('change',function(e){
+    var t=e.target;if(!t.hasAttribute('data-done'))return;
+    var p=t.getAttribute('data-done').split('|'),k=dkey(p[0],p[1]);if(t.checked)st.done[k]=1;else delete st.done[k];
+    save();renderTimeline();renderProgress();
+    var again=root.querySelector('[data-done="'+p[0]+'|'+p[1]+'"]');if(again)again.focus();
+  });
+  /* ===== PDF report ===== */
+  var FONT="'Tajawal','Geeza Pro',Tahoma,sans-serif",SITE='najdacdemy.com';
+  var PW=1000,PH=1414,M=50,HEAD1=250,HEAD2=100,FOOT=80,ROW=61,LVH=62,GAP=18,SUMH=240;
+  function rr(ctx,x,y,w,h,r){r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
+  function poly(ctx,pts,fill){ctx.beginPath();ctx.moveTo(pts[0],pts[1]);for(var i=2;i<pts.length;i+=2)ctx.lineTo(pts[i],pts[i+1]);ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
+  function fit1(ctx,text,maxW,size,min,weight){
+    var fs=size;for(;fs>min;fs--){ctx.font=weight+' '+fs+'px '+FONT;if(ctx.measureText(text).width<=maxW)return text;}
+    ctx.font=weight+' '+min+'px '+FONT;var t=text;while(t.length>1&&ctx.measureText(t+'…').width>maxW)t=t.slice(0,-1);return t===text?t:t+'…';
+  }
+  function drawMark(ctx,x,y,h){var s=h/76;ctx.save();ctx.translate(x-18*s,y-24*s);ctx.scale(s,s);
+    poly(ctx,[26,48,36,36,46,48],'#758A8C');poly(ctx,[50,48,60,30,70,48],'#7A9FA3');poly(ctx,[74,48,84,24,94,48],'#C8CFD2');
+    poly(ctx,[58,100,18,88,18,56,58,68],'#C8CFD2');poly(ctx,[62,100,102,88,102,56,62,68],'#E4E9EB');ctx.restore();}
+  function layout(){
+    var m=majors[st.major],pages=[],cur,y;
+    var S={tot:0,done:0,n:0,d:0};
+    m.levels.forEach(function(lv,li){lv.courses.forEach(function(c,ci){S.tot+=c[3];S.n++;if(st.done[dkey(li,ci)]){S.done+=c[3];S.d++;}});});
+    function newPage(){cur=[];pages.push(cur);y=(pages.length===1?HEAD1:HEAD2)+16;}
+    function room(){return PH-FOOT-y;}
+    newPage();cur.push({t:'sum',y:y});y+=SUMH;
+    m.levels.forEach(function(lv,li){
+      var rows=lv.courses.map(function(c,ci){return {c:c,d:!!st.done[dkey(li,ci)]};});
+      var dn=rows.filter(function(r){return r.d;}).length,i=0,first=true;
+      while(i<rows.length){
+        if(room()<LVH+ROW*Math.min(2,rows.length-i))newPage();
+        cur.push({t:'lv',y:y,lv:lv,dn:dn,n:rows.length,cont:!first});y+=LVH;first=false;
+        while(i<rows.length&&room()>=ROW){cur.push({t:'row',y:y,r:rows[i]});y+=ROW;i++;}
+        y+=GAP;
+      }
+    });
+    return {pages:pages,S:S,m:m};
+  }
+  var dateFmt=null;try{dateFmt=new Intl.DateTimeFormat('ar-u-ca-gregory-nu-latn',{day:'numeric',month:'long',year:'numeric'});}catch(e){}
+  function drawPage(ctx,L,pi){
+    var ops=L.pages[pi],S=L.S,m=L.m,total=L.pages.length,name=(st.name||'').trim();
+    ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,PW,PH);ctx.direction='rtl';
+    if(pi===0){
+      ctx.fillStyle='#2F4F4E';ctx.fillRect(0,0,PW,HEAD1-20);
+      poly(ctx,[0,HEAD1-20,0,HEAD1-46,90,HEAD1-62,170,HEAD1-44,260,HEAD1-70,350,HEAD1-46,440,HEAD1-64,530,HEAD1-40,620,HEAD1-66,710,HEAD1-46,800,HEAD1-62,900,HEAD1-42,1000,HEAD1-58,1000,HEAD1-20],'#35595A');
+      poly(ctx,[0,HEAD1-10,0,HEAD1-32,100,HEAD1-44,190,HEAD1-30,290,HEAD1-48,380,HEAD1-32,480,HEAD1-46,570,HEAD1-30,670,HEAD1-48,760,HEAD1-32,860,HEAD1-46,1000,HEAD1-30,1000,HEAD1-10],'#FFFFFF');
+      ctx.fillStyle='#FFFFFF';ctx.fillRect(0,HEAD1-12,PW,12);
+      drawMark(ctx,M,58,96);
+      ctx.textAlign='right';ctx.textBaseline='alphabetic';
+      ctx.font='800 44px '+FONT;ctx.fillStyle='#FFFFFF';ctx.fillText('تقرير الخطة الدراسية',PW-M,92);
+      ctx.fillStyle='#C8CFD2';ctx.fillText(fit1(ctx,m.name,PW-2*M-170,24,16,'500'),PW-M,132);
+      var line=(name?name+'   |   ':'')+(dateFmt?dateFmt.format(new Date()):'');
+      ctx.font='500 20px '+FONT;ctx.fillStyle='#B0B8BC';ctx.fillText(line,PW-M,166);
+    }else{
+      ctx.fillStyle='#2F4F4E';ctx.fillRect(0,0,PW,78);
+      drawMark(ctx,M,16,46);
+      ctx.textAlign='right';ctx.textBaseline='middle';ctx.font='700 22px '+FONT;ctx.fillStyle='#FFFFFF';
+      ctx.fillText(fit1(ctx,'تقرير الخطة الدراسية  |  '+m.label,PW-2*M-90,22,16,'700'),PW-M,40);
+    }
+    ops.forEach(function(o){
+      if(o.t==='sum'){
+        var y=o.y,bw=(PW-2*M-3*16)/4,pct=Math.min(100,Math.round(S.done/130*100));
+        var stats=[[S.done+'','ساعة أنجزتها'],[Math.max(0,130-S.done)+'','ساعة متبقية'],[S.d+' / '+S.n,'مقرر اجتزته'],[pct+'%','نسبة الإنجاز']];
+        stats.forEach(function(s,i){var x=PW-M-(i+1)*bw-i*16;rr(ctx,x,y,bw,108,16);ctx.fillStyle='#F4F7F7';ctx.fill();
+          ctx.textAlign='center';ctx.textBaseline='middle';ctx.direction='ltr';ctx.font='800 40px '+FONT;ctx.fillStyle=i===0?'#568A88':'#2F4F4E';ctx.fillText(s[0],x+bw/2,y+44);ctx.direction='rtl';
+          ctx.font='500 18px '+FONT;ctx.fillStyle='#758A8C';ctx.fillText(s[1],x+bw/2,y+82);});
+        var by=y+138;ctx.textAlign='right';ctx.textBaseline='middle';ctx.font='700 20px '+FONT;ctx.fillStyle='#2F4F4E';ctx.fillText('تقدمك نحو التخرج',PW-M,by);
+        ctx.textAlign='left';ctx.direction='ltr';ctx.fillText(S.done+' / 130',M,by);ctx.direction='rtl';
+        rr(ctx,M,by+20,PW-2*M,18,9);ctx.fillStyle='#E4E9EB';ctx.fill();
+        if(pct>0){var fw=Math.max(18,(PW-2*M)*pct/100);rr(ctx,PW-M-fw,by+20,fw,18,9);ctx.fillStyle='#568A88';ctx.fill();}
+        var ly=by+76;
+        ctx.beginPath();ctx.arc(PW-M-12,ly,11,0,Math.PI*2);ctx.fillStyle='#568A88';ctx.fill();tick(ctx,PW-M-12,ly,11);
+        ctx.textAlign='right';ctx.font='500 18px '+FONT;ctx.fillStyle='#55696B';ctx.fillText('مجتاز',PW-M-32,ly+1);
+        ctx.beginPath();ctx.arc(PW-M-120,ly,10,0,Math.PI*2);ctx.lineWidth=3;ctx.strokeStyle='#C8CFD2';ctx.stroke();
+        ctx.fillText('متبقي',PW-M-140,ly+1);
+      }else if(o.t==='lv'){
+        var yy=o.y+LVH/2-4;ctx.textBaseline='middle';ctx.textAlign='right';
+        ctx.font='800 28px '+FONT;ctx.fillStyle='#2F4F4E';var title=o.lv.label+(o.cont?' (تابع)':'');ctx.fillText(title,PW-M,yy);
+        var tw=ctx.measureText(title).width;
+        if(o.dn===o.n){var cx=PW-M-tw-16-96;rr(ctx,cx,yy-17,96,34,17);ctx.fillStyle='#E2ECDD';ctx.fill();ctx.textAlign='center';ctx.font='700 17px '+FONT;ctx.fillStyle='#3E5A33';ctx.fillText('✓ مكتمل',cx+48,yy+1);}
+        ctx.textAlign='left';ctx.font='500 19px '+FONT;ctx.fillStyle='#758A8C';ctx.fillText(o.dn+' من '+o.n+' مقررات  |  '+o.lv.hours+' ساعة',M,yy);
+        ctx.fillStyle='#E4E9EB';ctx.fillRect(M,o.y+LVH-10,PW-2*M,2);
+      }else{
+        var r=o.r,c=r.c,y2=o.y,h=ROW-8;
+        rr(ctx,M,y2,PW-2*M,h,12);ctx.fillStyle=r.d?'#F1F6F5':'#FFFFFF';ctx.fill();ctx.lineWidth=1.5;ctx.strokeStyle=r.d?'#CFE0DE':'#E4E9EB';ctx.stroke();
+        var cy=y2+h/2,sx=PW-M-30;
+        ctx.beginPath();ctx.arc(sx,cy,13,0,Math.PI*2);
+        if(r.d){ctx.fillStyle='#568A88';ctx.fill();tick(ctx,sx,cy,13);}else{ctx.lineWidth=3;ctx.strokeStyle='#C8CFD2';ctx.stroke();}
+        var chipW=108,chipX=sx-22-chipW,pf=c[0].replace(/[0-9]/g,'');
+        rr(ctx,chipX,cy-16,chipW,32,9);ctx.fillStyle=PFX[pf]||'#E4E9EB';ctx.fill();
+        ctx.textAlign='center';ctx.textBaseline='middle';ctx.direction='ltr';ctx.font='800 17px '+FONT;ctx.fillStyle='#2F4F4E';ctx.fillText(c[0],chipX+chipW/2,cy+1);ctx.direction='rtl';
+        var nameR=chipX-16,nameW=nameR-(M+210);
+        ctx.textAlign='right';ctx.fillStyle=r.d?'#2F4F4E':'#2F4F4E';var ar=fit1(ctx,c[2],nameW,21,15,'700');ctx.fillText(ar,nameR,cy-11);
+        ctx.direction='ltr';ctx.textAlign='right';var en=fit1(ctx,c[1],nameW,15,12,'500');ctx.fillStyle='#758A8C';ctx.fillText(en,nameR,cy+13);ctx.direction='rtl';
+        var lx=M+14,lw=84;rr(ctx,lx,cy-16,lw,32,16);ctx.fillStyle=r.d?'#E2ECDD':'#F3E9CF';ctx.fill();
+        ctx.textAlign='center';ctx.font='700 16px '+FONT;ctx.fillStyle=r.d?'#3E5A33':'#6B5320';ctx.fillText(r.d?'مجتاز':'متبقي',lx+lw/2,cy+1);
+        ctx.font='700 18px '+FONT;ctx.fillStyle='#2F4F4E';ctx.fillText(c[3]+(c[3]>2&&c[3]<11?' ساعات':' ساعة'),M+150,cy+1);
+      }
+    });
+    ctx.fillStyle='#E4E9EB';ctx.fillRect(M,PH-FOOT+10,PW-2*M,2);
+    ctx.textBaseline='middle';ctx.textAlign='right';ctx.font='700 16px '+FONT;ctx.fillStyle='#2F4F4E';ctx.fillText('أكاديمية نجد',PW-M,PH-FOOT+38);
+    ctx.textAlign='left';ctx.font='500 16px '+FONT;ctx.fillStyle='#758A8C';ctx.fillText('صفحة '+(pi+1)+' من '+total,M,PH-FOOT+38);
+    ctx.textAlign='center';ctx.font='500 14px '+FONT;ctx.fillText('للمتابعة الشخصية فقط، وليس وثيقة رسمية من الجامعة'+(SITE?'  |  '+SITE:''),PW/2,PH-FOOT+62);
+  }
+  function tick(ctx,x,y,r){ctx.beginPath();ctx.moveTo(x-r*.45,y+r*.02);ctx.lineTo(x-r*.1,y+r*.38);ctx.lineTo(x+r*.48,y-r*.32);ctx.lineWidth=r*.24;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#FFFFFF';ctx.stroke();ctx.lineCap='butt';}
+  var pdfP=null;
+  function loadPdf(){
+    if(window.jspdf)return Promise.resolve(window.jspdf);if(pdfP)return pdfP;
+    pdfP=new Promise(function(res,rej){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';s.onload=function(){window.jspdf?res(window.jspdf):rej();};s.onerror=function(){pdfP=null;rej();};document.head.appendChild(s);});
+    return pdfP;
+  }
+  function fontsReady(){
+    if(!document.fonts||!document.fonts.load)return Promise.resolve();
+    var all=Promise.all(['500','700','800'].map(function(w){return document.fonts.load(w+' 24px "Tajawal"');}));
+    return Promise.race([all,new Promise(function(r){setTimeout(r,2500);})]).catch(function(){});
+  }
+  function isMobile(){return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform));}
+  function saveFile(blob,name,cb){var url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},4000);cb('تم تحميل الملف 🎉');}
+  function deliver(blob,name,cb){
+    var file=null;try{file=new File([blob],name,{type:'application/pdf'});}catch(e){}
+    if(isMobile()&&file&&navigator.canShare&&navigator.canShare({files:[file]})){
+      navigator.share({files:[file]}).then(function(){cb('تم 🎉');}).catch(function(e){if(e&&e.name==='AbortError'){cb('');return;}saveFile(blob,name,cb);});return;
+    }
+    saveFile(blob,name,cb);
+  }
+  var pBtn=$('pl-pdf-btn'),pMsg=$('pl-pdf-msg'),nameIn=$('pl-name');
+  nameIn.value=st.name||'';
+  nameIn.addEventListener('input',function(){st.name=nameIn.value;save();});
+  pBtn.addEventListener('click',function(){
+    pBtn.disabled=true;pMsg.textContent='جاري تجهيز الملف…';
+    function done(t){pBtn.disabled=false;if(t!==undefined)pMsg.textContent=t;}
+    Promise.all([loadPdf(),fontsReady()]).then(function(res){
+      var lib=res[0],L=layout(),SC=1654/PW;
+      var doc=new lib.jsPDF({unit:'mm',format:'a4',orientation:'portrait',compress:true});
+      doc.setProperties({title:'تقرير الخطة الدراسية - أكاديمية نجد'});
+      L.pages.forEach(function(_,pi){
+        var cv=document.createElement('canvas');cv.width=1654;cv.height=2339;var ctx=cv.getContext('2d');ctx.scale(SC,SC);drawPage(ctx,L,pi);
+        if(pi>0)doc.addPage();doc.addImage(cv.toDataURL('image/jpeg',0.9),'JPEG',0,0,210,297,undefined,'FAST');
+      });
+      deliver(doc.output('blob'),'خطتي الدراسية - أكاديمية نجد.pdf',done);
+    }).catch(function(){done('ما قدرنا نجهز الملف. تأكد من الإنترنت وجرب مرة ثانية.');});
+  });
+  renderAll();
+})();
+</script>
+</body>
+</html>
