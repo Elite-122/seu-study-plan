@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>أنشئ حسابك | أكاديمية نجد</title>
+<meta name="description" content="أنشئ حسابك المجاني في أكاديمية نجد واحفظ تقدمك في السحابة.">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css">
+<link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+<div id="najd" dir="rtl" data-page="register">
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="home.html">الرئيسية</a><span>/</span>إنشاء حساب</p>
+<h1>أنشئ حسابك</h1>
+<p class="nj-band-sub">حساب واحد يفتح لك كل خدمات أكاديمية نجد، ويحفظ تقدمك في السحابة. والتسجيل مجاني.</p>
+</div>
+</section>
+<main class="nj-main">
+<div class="nj-in">
+<div class="au-grid">
+<div class="nj-card au-card">
+<div class="au-in" id="au-in" hidden>
+<span class="nj-av" data-u="init">ن</span>
+<h2>عندك حساب من قبل ✅</h2>
+<p>أهلًا <b data-u="name"></b>، كمّل من حيث وقفت.</p>
+<a class="nj-btn nj-btn-fill" href="plans.html">خطتك الدراسية</a>
+<a class="nj-btn nj-btn-line" href="schedule.html">جدولك</a>
+<p style="margin:14px 0 0"><button type="button" class="au-link au-linkbtn" data-logout>تسجيل الخروج</button></p>
+</div>
+<p class="au-err" id="au-err" role="alert" hidden></p>
+<div id="au-gwrap"><button type="button" class="au-google" id="au-google"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>المتابعة بحساب قوقل</button><p class="au-or">أو بالبريد الإلكتروني</p></div>
+<form id="au-form" data-mode="register" novalidate>
+<div class="au-field"><label for="au-name">اسمك</label><input id="au-name" name="name" type="text" autocomplete="name" maxlength="40" dir="auto" placeholder="مثلًا: أحمد"><small>يظهر في حسابك وفي ملف خطتك.</small></div>
+<div class="au-field"><label for="au-mail">البريد الإلكتروني</label><input id="au-mail" name="email" type="email" autocomplete="email" required dir="ltr" placeholder="name@example.com"><small>بيوصلك عليه رابط تأكيد الحساب.</small></div>
+<div class="au-field"><label for="au-pwd">كلمة المرور</label><div class="au-pass"><input id="au-pwd" name="password" type="password" autocomplete="new-password" required minlength="6" dir="ltr"><button type="button" class="au-eye" data-eye="au-pwd">إظهار</button></div><small>6 أحرف أو أكثر.</small></div>
+<div class="au-field"><label for="au-pwd2">أعد كتابة كلمة المرور</label><div class="au-pass"><input id="au-pwd2" name="password2" type="password" autocomplete="new-password" required dir="ltr"><button type="button" class="au-eye" data-eye="au-pwd2">إظهار</button></div></div>
+<button type="submit" class="nj-btn nj-btn-fill au-submit">أنشئ حسابي</button>
+<p class="au-alt" style="margin-top:12px">التسجيل مجاني، والاشتراك في الشروحات والمساعد اختياري.</p>
+</form>
+<p class="au-alt" id="au-alt">عندك حساب؟ <a class="au-link" href="login.html">سجّل دخولك</a></p>
+</div>
+<aside class="au-side"><svg class="au-side-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#fff"/><path d="M50 48 L60 30 L70 48 Z" fill="#fff"/><path d="M74 48 L84 24 L94 48 Z" fill="#fff"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#fff"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#fff"/></svg>
+<h2>وش يفتح لك حسابك؟</h2>
+<ul>
+<li><svg width="22" height="22" viewBox="0 0 52 52" aria-hidden="true"><path d="M14 38a10 10 0 0 1 1-20 13 13 0 0 1 25 3 8.5 8.5 0 0 1-1 17Z" fill="#E4E9EB"/></svg><div><b>تقدمك محفوظ في السحابة</b><span>خطتك وجدولك ومعدلك ترجع لك من أي جهاز.</span></div></li>
+<li><svg width="22" height="22" viewBox="0 0 52 52" aria-hidden="true"><path d="M25 46L5 40V16L25 22Z" fill="#C8CFD2"/><path d="M27 46L47 40V16L27 22Z" fill="#E4E9EB"/></svg><div><b>الشروحات</b><span>شروحات لمن يبي يطور نفسه في بعض المقررات.</span></div></li>
+<li><svg width="22" height="22" viewBox="0 0 52 52" aria-hidden="true"><path d="M6 8H46V36H20L10 46V36H6Z" fill="#E4E9EB"/></svg><div><b>مساعدك الدراسي</b><span>يساعدك تفهم الدروس وتستعد لاختباراتك.</span></div></li>
+<li><svg width="22" height="22" viewBox="0 0 52 52" aria-hidden="true"><path d="M4 44L11 34L18 44Z" fill="#B0B8BC"/><path d="M17 44L26 26L35 44Z" fill="#C8CFD2"/><path d="M33 44L41 14L49 44Z" fill="#E4E9EB"/></svg><div><b>أول من يعرف</b><span>يوصلك جديد أكاديمية نجد قبل الكل.</span></div></li>
+</ul>
+</aside>
+</div>
+</div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js"></script>
+<script type="module" src="assets/js/auth.js"></script>
+<script src="assets/js/auth-forms.js"></script>
+</body>
+</html>

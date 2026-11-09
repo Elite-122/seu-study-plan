@@ -1,0 +1,152 @@
+/* أكاديمية نجد — التصميم المشترك لكل الصفحات */
+html{scroll-behavior:smooth}
+body{margin:0;background:#F4F7F7}
+#najd{--deep:#2F4F4E;--deeper:#243D3C;--teal:#568A88;--slate:#758A8C;--soft:#7A9FA3;--grey:#B0B8BC;--mist:#C8CFD2;--light:#E4E9EB;--ink:#2F4F4E;--muted:#55696B;--bg:#F4F7F7;--card:#FFFFFF;--line:#DCE3E5;--tint:#EAF2F1;--shadow:0 1px 2px rgba(36,61,60,.05),0 8px 24px rgba(36,61,60,.07);--shadow-lg:0 2px 4px rgba(36,61,60,.06),0 18px 44px rgba(36,61,60,.12);--r:20px;font-family:'Tajawal','Geeza Pro',Tahoma,sans-serif;color:var(--ink);background:var(--bg);direction:rtl;text-align:right;line-height:1.7;font-size:17px;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+#najd>main,#najd>.nj-page{flex:1 0 auto}
+#najd *{box-sizing:border-box;font-family:inherit}
+#najd h1,#najd h2,#najd h3,#najd p,#najd ul,#najd li{margin:0;padding:0;border:0;list-style:none;color:inherit;letter-spacing:0;text-transform:none}
+#najd a{text-decoration:none;color:inherit}
+#najd img{max-width:100%;height:auto;display:block;border:0}
+#najd button{font-family:inherit;margin:0;letter-spacing:0;text-transform:none}
+#najd [hidden]{display:none!important}
+#najd a:focus-visible,#najd button:focus-visible{outline:3px solid var(--soft);outline-offset:3px;border-radius:10px}
+#najd input:focus,#najd select:focus{outline:2px solid var(--soft);outline-offset:1px}
+#najd .nj-in{max-width:1180px;margin:0 auto;padding:0 20px}
+#najd .nj-narrow{max-width:960px}
+
+/* ===== الهيدر ===== */
+#najd .nj-head{background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+#najd .nj-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:74px}
+#najd .nj-logo img{height:44px;width:auto}
+#najd .nj-nav{display:flex;align-items:center;gap:4px}
+#najd .nj-nav a{font-size:15.5px;font-weight:500;color:var(--muted);padding:8px 12px;border-radius:10px;transition:background .15s,color .15s}
+#najd .nj-nav a:hover{color:var(--deep);background:var(--bg)}
+#najd .nj-nav a[aria-current="page"]{color:var(--deep);font-weight:700;background:var(--tint)}
+#najd .nj-acts{display:flex;align-items:center;gap:10px}
+#najd .nj-user{display:flex;align-items:center;gap:8px}
+#najd .nj-av{width:40px;height:40px;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:17px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+#najd .nj-uname{font-size:15px;font-weight:700;max-width:12em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#najd .nj-sync{font-size:12px;color:var(--slate);display:block;line-height:1.2}
+#najd .nj-out{border:0;background:none;color:var(--muted);font-size:14px;font-weight:700;cursor:pointer;padding:6px 8px;border-radius:8px}
+#najd .nj-out:hover{background:var(--bg);color:var(--deep)}
+#najd.is-in .nj-guest{display:none!important}
+#najd:not(.is-in) .nj-member{display:none!important}
+
+/* ===== الأزرار ===== */
+#najd .nj-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border-radius:12px;font-size:16px;font-weight:700;border:2px solid transparent;cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .15s,box-shadow .15s;white-space:nowrap;text-decoration:none}
+#najd .nj-btn-fill{background:var(--deep);color:#fff;box-shadow:0 6px 16px rgba(47,79,78,.22)}
+#najd .nj-btn-fill:hover{background:var(--teal);transform:translateY(-1px)}
+#najd .nj-btn-line{border-color:var(--teal);color:var(--deep);background:transparent}
+#najd .nj-btn-line:hover{background:var(--teal);color:#fff}
+#najd .nj-btn-white{background:#fff;color:var(--deep)}
+#najd .nj-btn-white:hover{background:var(--light)}
+#najd .nj-btn-ghost{border-color:rgba(255,255,255,.4);color:#fff;background:transparent}
+#najd .nj-btn-ghost:hover{background:rgba(255,255,255,.12)}
+#najd .nj-btn-sm{height:40px;padding:0 16px;font-size:15px}
+#najd .nj-btn[disabled]{opacity:.6;cursor:wait;transform:none}
+#najd .nj-arrow{display:inline-block;transition:transform .15s}
+#najd .nj-btn:hover .nj-arrow{transform:translateX(-3px)}
+
+/* ===== قائمة الجوال ===== */
+#najd .nj-menu{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:0}
+#najd .nj-menu i{display:block;width:18px;height:2px;border-radius:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+#najd .nj-head.is-open .nj-menu i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#najd .nj-head.is-open .nj-menu i:nth-child(2){opacity:0}
+#najd .nj-head.is-open .nj-menu i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#najd .nj-drawer{display:none}
+
+/* ===== عناوين الأقسام (بأسلوب سطر) ===== */
+#najd .nj-sec{padding:72px 0}
+#najd .nj-sec-white{background:var(--card)}
+#najd .nj-sh{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 30px}
+#najd .nj-sh-c{flex-direction:column;align-items:center;text-align:center}
+#najd .nj-sh-c p{margin-left:auto;margin-right:auto}
+#najd .nj-tt{display:flex;align-items:center;gap:12px;font-size:32px;font-weight:800;line-height:1.35}
+#najd .nj-dots{display:inline-grid;grid-template-columns:repeat(2,9px);gap:3px;flex-shrink:0}
+#najd .nj-dots i{width:9px;height:9px;border-radius:2px;background:var(--teal)}
+#najd .nj-dots i:nth-child(2){background:var(--mist)}
+#najd .nj-dots i:nth-child(3){background:var(--soft)}
+#najd .nj-dots i:nth-child(4){background:var(--deep)}
+#najd .nj-sh p{font-size:17px;color:var(--muted);max-width:36em;margin:6px 0 0}
+#najd .nj-pill{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--teal);background:var(--tint);border:1px solid #D3E3E1;border-radius:999px;padding:4px 14px;margin:0 0 12px}
+
+/* ===== رأس الصفحات الداخلية ===== */
+#najd .nj-band{background:radial-gradient(1200px 400px at 85% -10%,#3E6766 0%,rgba(62,103,102,0) 60%),linear-gradient(160deg,var(--deep),var(--deeper));color:#fff;position:relative;padding:44px 0 92px;overflow:hidden}
+#najd .nj-band .nj-in{position:relative;z-index:1}
+#najd .nj-band::after{content:"";position:absolute;inset:auto 0 -1px 0;height:44px;background:var(--bg);border-radius:44px 44px 0 0}
+#najd .nj-crumb{font-size:14px;color:var(--mist);margin:0 0 12px}
+#najd .nj-crumb a{color:var(--mist);text-decoration:underline;text-underline-offset:3px}
+#najd .nj-crumb span{margin:0 6px;opacity:.6}
+#najd .nj-band h1{font-size:42px;font-weight:800;line-height:1.3;color:#fff}
+#najd .nj-band-sub{font-size:18px;color:var(--mist);margin:8px 0 0;max-width:36em}
+#najd .nj-band-mark{position:absolute;left:24px;bottom:56px;width:150px;opacity:.16;z-index:0}
+#najd .nj-ridge{display:none}
+#najd .nj-main{padding:4px 0 0;position:relative;z-index:2}
+#najd .nj-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;margin:0 0 16px;box-shadow:var(--shadow)}
+#najd .nj-card h2{font-size:22px;font-weight:800;line-height:1.4}
+#najd .nj-hint{font-size:15px;color:var(--muted);margin:4px 0 14px}
+
+/* ===== بطاقات عامة (بأسلوب سطر) ===== */
+#najd .nj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+#najd .nj-tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+#najd .nj-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#CBDAD9}
+#najd .nj-tile-ic{height:132px;border-radius:14px;background:linear-gradient(150deg,var(--tint),var(--light));display:flex;align-items:center;justify-content:center;margin:0 0 6px;position:relative;overflow:hidden}
+#najd .nj-tile-ic svg{width:64px;height:64px}
+#najd .nj-tile h3{font-size:20px;font-weight:800;line-height:1.4}
+#najd .nj-tile p{font-size:15.5px;color:var(--muted);flex:1}
+#najd .nj-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:13.5px;color:var(--slate);padding-top:12px;border-top:1px solid var(--line)}
+#najd .nj-meta span{display:inline-flex;align-items:center;gap:5px}
+#najd .nj-meta svg{width:15px;height:15px}
+#najd .nj-badge{position:absolute;top:30px;right:30px;font-size:13px;font-weight:800;border-radius:999px;padding:3px 12px;z-index:1}
+#najd .nj-free{background:#fff;color:var(--teal);border:1px solid #CFE0DE}
+#najd .nj-paid{background:var(--deep);color:#fff}
+#najd .nj-tile .nj-btn{margin-top:4px}
+#najd .nj-lock{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--slate)}
+
+/* ===== الفوتر ===== */
+#najd .nj-foot{background:linear-gradient(170deg,var(--deeper),#1C302F);color:var(--light);padding:56px 0 28px;margin-top:72px}
+#najd .nj-foot-g{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.12)}
+#najd .nj-foot .nj-logo img{height:50px;width:auto}
+#najd .nj-foot-about{font-size:15px;color:var(--mist);margin:14px 0 0;max-width:26em}
+#najd .nj-foot h4{font-size:16px;font-weight:800;color:#fff;margin:0 0 12px}
+#najd .nj-foot-links{display:flex;flex-direction:column;gap:8px}
+#najd .nj-foot-links a{color:var(--mist);font-size:15px}
+#najd .nj-foot-links a:hover{color:#fff}
+#najd .nj-foot-bot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:20px}
+#najd .nj-love{font-size:15px;color:#fff;font-weight:500}
+#najd .nj-disc{font-size:13.5px;color:var(--grey);margin:2px 0 0}
+#najd .nj-copy{font-size:13px;color:var(--slate)}
+
+/* ===== رسالة سريعة ===== */
+#najd .nj-toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:var(--deeper);color:#fff;font-size:15px;font-weight:700;padding:12px 20px;border-radius:12px;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:60;max-width:calc(100% - 32px)}
+#najd .nj-toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+/* ===== الحركة عند الظهور ===== */
+#najd .nj-rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+#najd .nj-rv.is-vis{opacity:1;transform:none}
+
+@media (max-width:1080px){
+#najd .nj-nav,#najd .nj-acts .nj-btn,#najd .nj-acts .nj-user{display:none!important}
+#najd .nj-menu{display:inline-flex}
+#najd .nj-head.is-open .nj-drawer{display:block}
+#najd .nj-drawer{border-top:1px solid var(--line);padding:8px 20px 20px;max-height:calc(100vh - 74px);overflow:auto}
+#najd .nj-drawer a:not(.nj-btn){display:block;padding:12px 4px;font-size:17px;font-weight:500;border-bottom:1px solid var(--line)}
+#najd .nj-drawer a[aria-current="page"]{color:var(--teal);font-weight:700}
+#najd .nj-drawer .nj-btn{width:100%;margin-top:12px;height:50px}
+#najd .nj-drawer .nj-user{padding:14px 4px 0}
+}
+@media (max-width:860px){
+#najd .nj-bar{height:66px}
+#najd .nj-logo img{height:38px}
+#najd .nj-sec{padding:52px 0}
+#najd .nj-tt{font-size:26px}
+#najd .nj-band{padding:30px 0 76px}
+#najd .nj-band h1{font-size:30px}
+#najd .nj-band-sub{font-size:16px}
+#najd .nj-band-mark{display:none}
+#najd .nj-card{padding:18px;border-radius:18px}
+#najd .nj-foot-g{grid-template-columns:1fr 1fr}
+#najd .nj-foot-g>div:first-child{grid-column:1/-1}
+}
+@media (max-width:560px){#najd .nj-in{padding:0 16px}#najd .nj-logo img{height:34px}#najd .nj-tt{font-size:24px}}
+@media (prefers-reduced-motion:reduce){#najd *{animation:none!important;transition:none!important}#najd .nj-rv{opacity:1;transform:none}}

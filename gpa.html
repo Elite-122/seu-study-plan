@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>حاسبة المعدل | أكاديمية نجد</title>
+<meta name="description" content="احسب معدلك الفصلي والتراكمي على سلم 4.00 واعرف وش تحتاج توصل هدفك.">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css">
+<style>#najd .gp-rows{display:flex;flex-direction:column;gap:8px}
+#najd .gp-row{display:flex;gap:8px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px}
+#najd .gp-row input,#najd .gp-row select,#najd .gp-cum input{height:46px;border:1px solid var(--line);border-radius:12px;padding:0 10px;font-size:15px;background:#fff;color:var(--ink);margin:0;box-shadow:none;min-width:0}
+#najd .gp-rn{flex:1 1 auto}
+#najd .gp-rh{flex:0 0 70px;text-align:center}
+#najd .gp-rg{flex:0 0 110px}
+#najd .gp-del{flex:0 0 40px;height:40px;border:0;border-radius:12px;background:#F0DEDB;color:#8E3F37;font-size:20px;line-height:1;cursor:pointer}
+#najd .gp-head{display:flex;gap:8px;padding:0 8px 6px;font-size:13px;font-weight:700;color:var(--slate)}
+#najd .gp-head span:first-child{flex:1}
+#najd .gp-head span:nth-child(2){flex:0 0 70px;text-align:center}
+#najd .gp-head span:nth-child(3){flex:0 0 110px}
+#najd .gp-head span:nth-child(4){flex:0 0 40px}
+#najd .gp-add{width:100%;height:48px;border:1.5px dashed var(--grey);background:none;border-radius:12px;color:var(--deep);font-size:16px;font-weight:700;margin:10px 0 0;cursor:pointer}
+#najd .gp-add:hover{border-color:var(--teal);background:var(--bg)}
+#najd .gp-layout{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:start}
+#najd .gp-res{background:var(--deep);color:#fff;border-radius:20px;padding:24px 20px 0;text-align:center;position:sticky;top:16px;overflow:hidden}
+#najd .gp-res h2{color:var(--mist);font-size:16px;font-weight:700}
+#najd .gp-big{font-size:60px;font-weight:800;line-height:1.1;color:#fff;margin:6px 0 0}
+#najd .gp-big small{font-size:20px;color:var(--grey);font-weight:500}
+#najd .gp-rate{display:inline-block;font-size:16px;font-weight:700;background:rgba(255,255,255,.12);border-radius:999px;padding:4px 16px;margin:8px 0 0}
+#najd .gp-mini{display:flex;justify-content:center;gap:20px;font-size:14px;color:var(--mist);margin:14px 0 0}
+#najd .gp-mini b{color:#fff;font-size:18px}
+#najd .gp-peaks{display:block;width:100%;height:70px;margin-top:16px}
+#najd .gp-peaks path{transition:fill .3s}
+#najd .gp-cum-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#najd .gp-cum label{display:block;font-size:14px;font-weight:700;color:var(--muted);margin:0 0 6px}
+#najd .gp-cum input{width:100%}
+#najd .gp-out{font-size:16px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:12px 0 0}
+#najd .gp-out b{font-size:22px;font-weight:800;color:var(--deep)}
+#najd .gp-scale{display:flex;flex-wrap:wrap;gap:6px;direction:ltr;justify-content:flex-end}
+#najd .gp-scale span{font-size:13px;font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:3px 9px;color:var(--muted)}
+#najd .gp-link{display:inline-flex;margin-top:14px}
+@media (max-width:860px){#najd .gp-layout{grid-template-columns:1fr}#najd .gp-res{position:relative;top:0;order:-1}}
+@media (max-width:480px){#najd .gp-row{flex-wrap:wrap}#najd .gp-rn{flex:1 1 100%}#najd .gp-rh{flex:1 1 70px}#najd .gp-rg{flex:2 1 110px}#najd .gp-head{display:none}}
+#najd .gp-need-in label{display:block;font-size:14px;font-weight:700;color:var(--muted);margin:0 0 6px}
+#najd .gp-need-in input{width:100%;max-width:260px;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font-size:18px;font-weight:700;background:#fff;color:var(--ink);margin:0}
+#najd .gp-plan{margin:14px 0 0}
+#najd .gp-sum{font-size:16px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+#najd .gp-sum b{font-size:20px;font-weight:800;color:var(--deep)}
+#najd .gp-sum.is-warn{background:#F0DEDB;border-color:#E3C4BF;color:#6E2F29}
+#najd .gp-sum.is-ok{background:#E2ECDD;border-color:#C9DBC0;color:#3E5A33}
+#najd .gp-list{display:flex;flex-direction:column;gap:6px;margin:10px 0 0}
+#najd .gp-li{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:15px}
+#najd .gp-li span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#najd .gp-li small{color:var(--slate);margin-right:6px}
+#najd .gp-g{flex-shrink:0;font-size:15px;font-weight:800;border-radius:999px;padding:2px 12px;background:var(--deep);color:#fff}
+#najd .gp-g.is-up{background:var(--teal)}
+#najd .gp-apply{margin:12px 0 0;width:100%}</style>
+</head>
+<body>
+<div id="najd" dir="rtl" data-page="gpa" data-sync>
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="#" data-link="home">الرئيسية</a><span>/</span>حاسبة المعدل</p>
+<h1>حاسبة المعدل</h1>
+<p class="nj-band-sub">احسب معدلك الفصلي والتراكمي على سلم 4.00، واعرف وش التقديرات اللي تحتاجها عشان توصل هدفك.</p>
+</div>
+
+</section>
+<main class="nj-main">
+<div class="nj-in">
+<div class="gp-layout">
+<div>
+<div class="nj-card">
+<h2>مقررات الفصل</h2>
+<p class="nj-hint">أضف مقرراتك واختر عدد الساعات والتقدير المتوقع أو النهائي.</p>
+<div class="gp-head" aria-hidden="true"><span>المقرر</span><span>الساعات</span><span>التقدير</span><span></span></div>
+<div class="gp-rows" id="gp-rows"></div>
+<button type="button" class="gp-add" id="gp-add">+ إضافة مقرر</button>
+</div>
+<div class="nj-card gp-cum">
+<h2>المعدل التراكمي</h2>
+<p class="nj-hint">اكتب ساعاتك ومعدلك التراكمي قبل هذا الفصل.</p>
+<div class="gp-cum-g">
+<div><label for="gp-ph">ساعاتك السابقة</label><input id="gp-ph" type="number" min="0" max="200" inputmode="numeric" placeholder="مثلاً 60"></div>
+<div><label for="gp-pg">معدلك التراكمي السابق</label><input id="gp-pg" type="number" min="0" max="4" step="0.01" inputmode="decimal" placeholder="مثلاً 3.25"></div>
+</div>
+<p class="gp-out" id="gp-out"></p>
+</div>
+<div class="nj-card">
+<h2>🎯 كم أحتاج؟</h2>
+<p class="nj-hint">اكتب المعدل التراكمي اللي تبي توصله نهاية هذا الفصل، ونقولك وش التقديرات اللي تحتاجها في مقرراتك.</p>
+<div class="gp-need-in"><label for="gp-target">المعدل المستهدف</label><input id="gp-target" type="number" min="0" max="4" step="0.01" inputmode="decimal" placeholder="مثلاً 3.50"></div>
+<div class="gp-plan" id="gp-plan" aria-live="polite"></div>
+</div>
+<div class="nj-card">
+<h2>سلم التقديرات</h2>
+<p class="nj-hint">على نظام 4.00.</p>
+<div class="gp-scale" id="gp-scale"></div>
+</div>
+</div>
+<aside class="gp-res" aria-live="polite">
+<h2>معدلك الفصلي</h2>
+<div class="gp-big"><span id="gp-v">0.00</span> <small>/ 4.00</small></div>
+<span class="gp-rate" id="gp-r"></span>
+<div class="gp-mini"><span><b id="gp-h">0</b> ساعة</span><span><b id="gp-p">0.00</b> نقطة</span></div>
+<svg class="gp-peaks" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><path id="gp-k1" d="M0 70L50 40L100 70Z" fill="#35595A"/><path id="gp-k2" d="M70 70L135 22L200 70Z" fill="#35595A"/><path id="gp-k3" d="M160 70L235 4L300 70Z" fill="#35595A"/></svg>
+</aside>
+</div>
+<a class="nj-btn nj-btn-line gp-link" href="#" data-link="plans">ارجع لخطتك الدراسية</a>
+</div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js"></script>
+<script type="module" src="assets/js/auth.js"></script>
+<script>
+(function(){
+  var root=document.getElementById('najd');if(!root||!document.getElementById('gp-rows'))return;
+  var GRADES=[['A+',4],['A',3.75],['B+',3.5],['B',3],['C+',2.5],['C',2],['D+',1.5],['D',1],['F',0]];
+  var KEY='najd_gpa_v1';
+  var st={rows:[{name:'',hours:3,grade:'A'},{name:'',hours:3,grade:'B+'},{name:'',hours:3,grade:'A+'}],ph:'',pg:'',target:''};
+  try{var sv=JSON.parse(localStorage.getItem(KEY)||'null')||JSON.parse(localStorage.getItem('seu_plans_v1')||'null');if(sv){if(sv.rows)st.rows=sv.rows;if(sv.ph!==undefined)st.ph=sv.ph;if(sv.pg!==undefined)st.pg=sv.pg;if(sv.target!==undefined)st.target=sv.target;}}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function $(id){return document.getElementById(id);}
+  function gp(g){for(var i=0;i<GRADES.length;i++){if(GRADES[i][0]===g)return GRADES[i][1];}return 0;}
+  function num(v){var n=parseFloat(v);return isNaN(n)?0:n;}
+  function renderRows(){
+    var o='';
+    st.rows.forEach(function(r,i){
+      var hs='';for(var h=1;h<=8;h++){hs+='<option value="'+h+'"'+(+r.hours===h?' selected':'')+'>'+h+'</option>';}
+      var gs='';GRADES.forEach(function(g){gs+='<option value="'+g[0]+'"'+(r.grade===g[0]?' selected':'')+'>'+g[0]+' ('+g[1].toFixed(2)+')</option>';});
+      o+='<div class="gp-row" data-i="'+i+'"><input class="gp-rn" type="text" maxlength="40" placeholder="اسم المقرر (اختياري)" data-f="name" value="'+esc(r.name)+'" aria-label="اسم المقرر">'
+        +'<select class="gp-rh" data-f="hours" aria-label="الساعات">'+hs+'</select><select class="gp-rg" data-f="grade" aria-label="التقدير">'+gs+'</select>'
+        +'<button type="button" class="gp-del" data-del="'+i+'" aria-label="حذف المقرر">×</button></div>';
+    });
+    $('gp-rows').innerHTML=o||'<p class="nj-hint" style="margin:0">ما فيه مقررات. أضف أول مقرر.</p>';
+  }
+  function rate(g,h){if(!h)return 'أضف مقرراتك ✏️';if(g>=3.5)return 'ممتاز 🌟';if(g>=2.75)return 'جيد جدًا 😄';if(g>=1.75)return 'جيد 🙂';if(g>=1)return 'مقبول 😅';return 'يبي له شدّة حيل 💪';}
+  function calc(){
+    var th=0,tp=0;st.rows.forEach(function(r){var h=num(r.hours);th+=h;tp+=h*gp(r.grade);});
+    var g=th?tp/th:0;
+    $('gp-v').textContent=g.toFixed(2);$('gp-h').textContent=th;$('gp-p').textContent=tp.toFixed(2);$('gp-r').textContent=rate(g,th);
+    $('gp-k1').setAttribute('fill',th&&g>=1.75?'#B0B8BC':'#35595A');$('gp-k2').setAttribute('fill',th&&g>=2.75?'#7A9FA3':'#35595A');$('gp-k3').setAttribute('fill',th&&g>=3.5?'#C8CFD2':'#35595A');
+    var ph=Math.max(0,num(st.ph)),pg=Math.min(4,Math.max(0,num(st.pg))),out=$('gp-out');
+    if(ph>0){var ch=ph+th,cg=ch?(ph*pg+tp)/ch:0;out.innerHTML='معدلك التراكمي الجديد: <b>'+cg.toFixed(2)+'</b> من 4.00، بإجمالي '+ch+' ساعة. '+rate(cg,ch);}
+    else out.textContent='اكتب ساعاتك ومعدلك السابق عشان نحسب لك التراكمي الجديد.';
+    need();
+  }
+  var plan=null;
+  function need(){
+    var box=$('gp-plan'),tg=parseFloat(st.target);plan=null;
+    if(isNaN(tg)){box.innerHTML='';return;}
+    tg=Math.min(4,Math.max(0,tg));
+    var th=0;st.rows.forEach(function(r){th+=num(r.hours);});
+    if(!th){box.innerHTML='<p class="gp-sum">أضف مقررات الفصل فوق أول، وبعدها نحسب لك.</p>';return;}
+    var ph=Math.max(0,num(st.ph)),pg=Math.min(4,Math.max(0,num(st.pg)));
+    var needPts=tg*(ph+th)-ph*pg,needG=needPts/th;
+    var who=ph>0?'عشان يصير تراكمي <b>'+tg.toFixed(2)+'</b>':'عشان يصير معدلك <b>'+tg.toFixed(2)+'</b>';
+    if(needPts>4*th+1e-9){
+      var best=(ph*pg+4*th)/(ph+th);
+      box.innerHTML='<p class="gp-sum is-warn">حتى لو جبت A+ في كل المقررات، أعلى تراكمي توصله هذا الفصل هو <b>'+best.toFixed(2)+'</b>. هدفك ممكن بس يحتاج أكثر من فصل، فلا تستسلم 💪</p>';return;
+    }
+    if(needPts<=1*th+1e-9){box.innerHTML='<p class="gp-sum is-ok">هدفك مضمون حتى لو جبت D في كل المقررات. بس المهم تنجح فيها كلها 😉</p>';return;}
+    var pass=GRADES.filter(function(g){return g[1]>0;}).slice().reverse();
+    var ui=0;while(ui<pass.length&&pass[ui][1]*th<needPts-1e-9)ui++;
+    var U=pass[ui],Lg=pass[ui-1];
+    var order=st.rows.map(function(r,i){return i;}).sort(function(a,b){return num(st.rows[b].hours)-num(st.rows[a].hours);});
+    var gr=st.rows.map(function(){return Lg[0];}),tot=Lg[1]*th;
+    for(var k=0;k<order.length&&tot<needPts-1e-9;k++){gr[order[k]]=U[0];tot+=(U[1]-Lg[1])*num(st.rows[order[k]].hours);}
+    plan=gr;
+    var o='<p class="gp-sum">تحتاج معدل فصلي <b>'+needG.toFixed(2)+'</b> على الأقل '+who+'. هذي أسهل طريقة توصل فيها:</p><div class="gp-list">';
+    st.rows.forEach(function(r,i){o+='<div class="gp-li"><span>'+esc((r.name||'').trim()||('مقرر '+(i+1)))+'<small>· '+num(r.hours)+' ساعات</small></span><span class="gp-g'+(gr[i]===U[0]&&U[0]!==Lg[0]?' is-up':'')+'"><bdi dir="ltr">'+gr[i]+'</bdi>'+(gr[i]==='A+'?'':' أو أعلى')+'</span></div>';});
+    o+='</div><button type="button" class="nj-btn nj-btn-line gp-apply" id="gp-apply">جرّب هذي التقديرات في الحاسبة</button>';
+    box.innerHTML=o;
+  }
+  function onRow(e){var t=e.target,f=t.getAttribute('data-f');if(!f)return;var row=t.closest('.gp-row');st.rows[+row.getAttribute('data-i')][f]=t.value;calc();save();}
+  $('gp-rows').addEventListener('change',onRow);
+  $('gp-rows').addEventListener('input',function(e){if(e.target.getAttribute('data-f')==='name')onRow(e);});
+  $('gp-rows').addEventListener('click',function(e){var d=e.target.getAttribute('data-del');if(d===null)return;st.rows.splice(+d,1);renderRows();calc();save();});
+  $('gp-add').addEventListener('click',function(){st.rows.push({name:'',hours:3,grade:'A'});renderRows();calc();save();var ins=$('gp-rows').querySelectorAll('.gp-rn');if(ins.length)ins[ins.length-1].focus();});
+  $('gp-target').value=st.target;
+  $('gp-target').addEventListener('input',function(){st.target=this.value;need();save();});
+  $('gp-plan').addEventListener('click',function(e){if(e.target.id!=='gp-apply'||!plan)return;plan.forEach(function(g,i){st.rows[i].grade=g;});renderRows();calc();save();$('gp-rows').scrollIntoView({behavior:'smooth',block:'center'});});
+  $('gp-ph').value=st.ph;$('gp-pg').value=st.pg;
+  $('gp-ph').addEventListener('input',function(){st.ph=this.value;calc();save();});
+  $('gp-pg').addEventListener('input',function(){st.pg=this.value;calc();save();});
+  var sc='';GRADES.forEach(function(g){sc+='<span>'+g[0]+' = '+g[1].toFixed(2)+'</span>';});$('gp-scale').innerHTML=sc;
+  renderRows();calc();
+})();
+</script>
+</body>
+</html>

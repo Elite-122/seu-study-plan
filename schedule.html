@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الجدول الدراسي | أكاديمية نجد</title>
+<meta name="description" content="صمّم جدولك الدراسي، أضف اختباراتك لتقويم جوالك، وحمّله خلفية أو PDF.">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css">
+<style>#najd .sc-title{width:100%;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-size:18px;font-weight:700;background:var(--bg);color:var(--ink);margin:0}
+#najd .sc-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -6px}
+#najd .sc-grid{border-collapse:separate;border-spacing:6px;width:100%;min-width:540px;margin:0;border:0;table-layout:fixed;background:none}
+#najd .sc-grid th,#najd .sc-grid td{border:0;padding:0;background:none;vertical-align:middle}
+#najd .sc-grid th{font-size:15px;font-weight:700;text-align:center;padding:4px 0;color:var(--ink)}
+#najd .sc-grid th.sc-tcol{width:62px;color:var(--slate);font-weight:500}
+#najd .sc-time{text-align:center;font-size:14px;line-height:1.25}
+#najd .sc-time b{display:block;font-weight:800}
+#najd .sc-time span{color:var(--slate);font-size:12px}
+#najd .sc-cell{width:100%;height:52px;border:1px solid var(--line);border-radius:12px;padding:4px 6px;font-size:14px;font-weight:500;text-align:center;background:var(--bg);color:var(--ink);margin:0;box-shadow:none}
+#najd .sc-exam{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:14px;margin:0 0 8px;background:var(--bg)}
+#najd .sc-exam input,#najd .sc-exam select,#najd .sc-dev{height:46px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font-size:15px;background:#fff;color:var(--ink);margin:0;box-shadow:none;min-width:0}
+#najd .sc-exam .sc-subj{flex:2 1 180px}
+#najd .sc-exam select{flex:1 1 110px}
+#najd .sc-exam input[type=date]{flex:1 1 150px}
+#najd .sc-exam input[type=time]{flex:1 1 110px}
+#najd .sc-del{background:none;border:0;color:#8E3F37;font-size:14px;font-weight:700;padding:8px;cursor:pointer}
+#najd .sc-empty{font-size:15px;color:var(--slate);margin:0 0 10px}
+#najd .sc-add{width:100%;height:48px;border:1.5px dashed var(--grey);background:none;border-radius:12px;color:var(--deep);font-size:16px;font-weight:700;cursor:pointer}
+#najd .sc-add:hover{border-color:var(--teal);background:var(--bg)}
+#najd .sc-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 14px}
+#najd .sc-mode{display:flex;flex-direction:column;align-items:center;gap:6px;border:2px solid var(--line);background:var(--card);border-radius:16px;padding:14px 8px;cursor:pointer;color:var(--ink);text-align:center}
+#najd .sc-mode svg{display:block}
+#najd .sc-mode b{font-size:16px;font-weight:800}
+#najd .sc-mode small{font-size:13px;color:var(--slate);line-height:1.4}
+#najd .sc-mode[aria-pressed="true"]{border-color:var(--teal);background:#EEF4F4}
+#najd .sc-lbl{display:block;font-size:14px;font-weight:700;color:var(--muted);margin:0 0 6px}
+#najd .sc-dev{width:100%;margin:0 0 14px}
+#najd .sc-go{width:100%;height:56px;font-size:18px}
+#najd .sc-go:disabled{opacity:.6;cursor:wait}
+#najd .sc-msg{font-size:14px;color:var(--muted);margin:10px 0 0;min-height:1.2em}
+#najd .sc-reset{background:none;border:0;color:var(--slate);font-size:14px;text-decoration:underline;cursor:pointer;padding:6px 0;margin:6px 0 0}
+@media (max-width:560px){#najd .sc-modes{gap:6px}#najd .sc-mode{padding:12px 4px}#najd .sc-mode small{display:none}}
+#najd .sc-pick{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px;margin:0 0 14px}
+#najd .sc-pick-t{font-size:16px;font-weight:800;margin:0 0 2px}
+#najd .sc-pick-h{font-size:14px;color:var(--muted);margin:0 0 10px}
+#najd .sc-pick-sel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
+#najd .sc-pick-sel select{height:44px;border:1px solid var(--line);border-radius:12px;padding:0 10px;font-size:15px;background:#fff;color:var(--ink);margin:0;min-width:0}
+#najd .sc-chips{display:flex;flex-wrap:wrap;gap:8px}
+#najd .sc-chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;line-height:1.5}
+#najd .sc-chip small{font-weight:500;color:var(--slate);margin-right:4px}
+#najd .sc-chip[aria-pressed="true"]{border-color:var(--deep);box-shadow:0 0 0 3px rgba(86,138,136,.25)}
+#najd .sc-brush{display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--deep);color:#fff;border-radius:14px;padding:10px 14px;margin:0 0 10px;font-size:15px;position:sticky;top:8px;z-index:3}
+#najd .sc-brush.is-on{display:flex}
+#najd .sc-brush b{color:#F3E9CF}
+#najd .sc-brush button{flex-shrink:0;height:36px;border:0;border-radius:10px;background:var(--light);color:var(--deep);font-size:14px;font-weight:800;padding:0 14px;cursor:pointer}
+#najd .sc-grid.is-brush .sc-cell{cursor:copy}
+#najd .sc-grid.is-brush .sc-cell:hover{border-color:var(--deep)}
+#najd .sc-cal{margin:14px 0 0;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px}
+#najd .sc-cal .nj-btn{width:100%;height:52px;font-size:17px}
+#najd .sc-cal-note{font-size:14px;color:var(--muted);margin:8px 0 0}
+#najd .sc-gcal{margin:10px 0 0;font-size:14px;color:var(--muted)}
+#najd .sc-gcal a{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;margin:6px 0 0 6px;color:var(--deep);font-weight:700;font-size:13px}
+#najd .sc-gcal a:hover{border-color:var(--teal)}
+#najd .sc-theme{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+#najd .sc-th{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border:2px solid var(--line);border-radius:12px;background:#fff;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
+#najd .sc-th i{width:22px;height:22px;border-radius:6px;border:1px solid var(--line)}
+#najd .sc-th[aria-pressed="true"]{border-color:var(--teal);background:#EEF4F4}</style>
+</head>
+<body>
+<div id="najd" dir="rtl" data-page="schedule" data-sync>
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="#" data-link="home">الرئيسية</a><span>/</span>الجدول الدراسي</p>
+<h1>صمّم جدولك الدراسي</h1>
+<p class="nj-band-sub">رتّب محاضراتك من الأحد إلى الخميس، وأضف اختباراتك لتقويم جوالك، وحمّل جدولك خلفية أو ملف PDF أو اطبعه.</p>
+</div>
+
+</section>
+<main class="nj-main">
+<div class="nj-in nj-narrow">
+<div class="nj-card">
+<h2>عنوان الجدول</h2>
+<p class="nj-hint">يظهر أعلى الصورة، مثلًا اسمك أو الفصل الدراسي.</p>
+<input class="sc-title" id="sc-title" type="text" maxlength="40" placeholder="جدولي الدراسي" aria-label="عنوان الجدول">
+</div>
+<div class="nj-card">
+<h2>جدول المحاضرات</h2>
+<p class="nj-hint">اكتب اسم المادة في خانة المحاضرة، أو أضفها من خطتك بضغطة. كل مادة تاخذ لون خاص فيها تلقائيًا.</p>
+<div class="sc-pick">
+<p class="sc-pick-t">⚡ أضف موادك من الخطة</p>
+<p class="sc-pick-h">اختر تخصصك ومستواك، اضغط المادة، وبعدها اضغط خانات محاضراتها في الجدول.</p>
+<div class="sc-pick-sel"><select id="sc-major" aria-label="التخصص"></select><select id="sc-level" aria-label="المستوى"></select></div>
+<div class="sc-chips" id="sc-chips"></div>
+</div>
+<div class="sc-brush" id="sc-brush" role="status"><span>تضيف الحين: <b id="sc-brush-name"></b>. اضغط خانات محاضراتها.</span><button type="button" id="sc-brush-off">تم</button></div>
+<div class="sc-scroll"><table class="sc-grid" id="sc-grid"></table></div>
+</div>
+<div class="nj-card">
+<h2>مواعيد الاختبارات</h2>
+<p class="nj-hint">أضف اختبارات الميدتيرم والفاينل عشان تظهر تحت الجدول، مرتبة من الأقرب.</p>
+<div id="sc-exams"></div>
+<button type="button" class="sc-add" id="sc-add">+ إضافة اختبار</button>
+<div class="sc-cal">
+<button type="button" class="nj-btn nj-btn-fill" id="sc-ics">🔔 أضف الاختبارات لتقويم جوالك</button>
+<p class="sc-cal-note" id="sc-cal-note">تنضاف لتقويم الآيفون أو سامسونج أو أوتلوك، مع تنبيه قبل الاختبار بيوم وقبله بساعتين.</p>
+<div class="sc-gcal" id="sc-gcal"></div>
+</div>
+</div>
+<div class="nj-card" id="sc-save">
+<h2>احفظ جدولك</h2>
+<p class="nj-hint">اختر الطريقة اللي تناسبك.</p>
+<div class="sc-modes" role="group" aria-label="طريقة الحفظ">
+<button type="button" class="sc-mode" data-mode="wall" aria-pressed="true"><svg width="30" height="36" viewBox="0 0 30 36" aria-hidden="true"><rect x="3" y="1" width="24" height="34" rx="5" fill="#2F4F4E"/><path d="M8 14L11 10L14 14Z" fill="#B0B8BC"/><path d="M13 14L16 8L19 14Z" fill="#7A9FA3"/><path d="M18 14L21 6L24 14Z" fill="#C8CFD2"/><rect x="7" y="18" width="16" height="12" rx="2" fill="#E4E9EB"/></svg><b>خلفية شاشة</b><small>صورة بمقاس جهازك</small></button>
+<button type="button" class="sc-mode" data-mode="pdf" aria-pressed="false"><svg width="30" height="36" viewBox="0 0 30 36" aria-hidden="true"><path d="M3 3a2 2 0 0 1 2-2h14l8 8v24a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" fill="#568A88"/><path d="M19 1v8h8" fill="#7A9FA3"/><rect x="8" y="17" width="14" height="3" rx="1.5" fill="#fff"/><rect x="8" y="23" width="10" height="3" rx="1.5" fill="#fff"/></svg><b>ملف PDF</b><small>بمقاس A4</small></button>
+<button type="button" class="sc-mode" data-mode="print" aria-pressed="false"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect x="9" y="2" width="18" height="10" rx="2" fill="#B0B8BC"/><rect x="2" y="11" width="32" height="15" rx="4" fill="#758A8C"/><rect x="9" y="20" width="18" height="14" rx="2" fill="#E4E9EB"/><rect x="12" y="24" width="12" height="2" rx="1" fill="#758A8C"/><rect x="12" y="28" width="8" height="2" rx="1" fill="#758A8C"/></svg><b>طباعة</b><small>ورقة A4</small></button>
+</div>
+<div id="sc-theme-wrap">
+<span class="sc-lbl">لون الجدول</span>
+<div class="sc-theme" role="group" aria-label="لون الجدول">
+<button type="button" class="sc-th" data-theme="light" aria-pressed="true"><i style="background:#F4F7F7"></i>فاتح</button>
+<button type="button" class="sc-th" data-theme="dark" aria-pressed="false"><i style="background:#1E3433"></i>غامق</button>
+</div>
+</div>
+<div id="sc-dev-wrap">
+<label class="sc-lbl" for="sc-dev">اختر جهازك</label>
+<select class="sc-dev" id="sc-dev">
+<option value="1080x1920">مقاس موحد يناسب أي جهاز</option>
+<optgroup label="آيفون">
+<option value="1179x2556">6.1 بوصة (آيفون 15، 15 برو، 16)</option>
+<option value="1206x2622">6.3 بوصة (آيفون 16 برو، 17، 17 برو، 18 برو)</option>
+<option value="1290x2796">6.7 بوصة (آيفون 15 بلس، 15 برو ماكس، 16 بلس)</option>
+<option value="1320x2868">6.9 بوصة (آيفون 16 برو ماكس، 17 برو ماكس، 18 برو ماكس)</option>
+</optgroup>
+<optgroup label="سامسونج وأندرويد">
+<option value="1080x2340">جالكسي S26، S25، S24 وأغلب فئة A</option>
+<option value="1440x3120">جالكسي S26 بلس وألترا، S25 بلس وألترا، S24 بلس وألترا</option>
+<option value="1080x2400">أجهزة أندرويد أخرى (شاومي، أوبو، هواوي…)</option>
+</optgroup>
+<optgroup label="آيباد">
+<option value="2048x2732">13 / 12.9 بوصة (آيباد برو)</option>
+<option value="1668x2388">11 بوصة (آيباد برو، آيباد إير)</option>
+<option value="1640x2360">10.9 بوصة (آيباد الجيل العاشر)</option>
+<option value="1620x2160">10.2 بوصة (آيباد الجيل 7 و8 و9)</option>
+<option value="1488x2266">8.3 بوصة (آيباد ميني)</option>
+</optgroup>
+</select>
+</div>
+<button type="button" class="nj-btn nj-btn-fill sc-go" id="sc-go">تحميل الخلفية</button>
+<p class="sc-msg" id="sc-msg"></p>
+<button type="button" class="sc-reset" id="sc-reset">مسح الجدول والبدء من جديد</button>
+</div>
+</div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js"></script>
+<script type="module" src="assets/js/auth.js"></script>
+<script>
+(function(){
+  var root=document.getElementById('najd');if(!root||!document.getElementById('sc-grid'))return;
+  var SITE='najdacdemy.com';
+  var FONT="'Tajawal','Geeza Pro',Tahoma,sans-serif";
+  var DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس'];
+  var C={deep:'#2F4F4E',ridge:'#35595A',bg:'#F4F7F7',empty:'#E4E9EB',slate:'#758A8C',mist:'#C8CFD2',light:'#E4E9EB'};
+  var PAL=[{bg:'#DCEBEA',ac:'#568A88'},{bg:'#EFE6D6',ac:'#B08A4E'},{bg:'#DDE8F2',ac:'#4F7CA8'},{bg:'#F0DEDB',ac:'#B0625A'},{bg:'#E2ECDD',ac:'#6E8F5E'},{bg:'#E5E0EE',ac:'#7B6A9E'},{bg:'#F3E9CF',ac:'#B8943A'},{bg:'#E1E6E8',ac:'#758A8C'}];
+  function clock(h,m){return ((h%12)||12)+':'+(m<10?'0':'')+m;}
+  var SLOTS=[];for(var h=15;h<22;h++){SLOTS.push({s:clock(h,0),e:clock(h,50)});}
+  var KEY='stq_schedule_v1';
+  var st={title:'',cells:{},colors:{},exams:[],size:'1080x1920',mode:'wall',theme:'light',pick:null};
+  try{var sv=JSON.parse(localStorage.getItem(KEY)||'null');if(sv&&sv.cells){for(var k0 in st){if(sv[k0]!==undefined)st[k0]=sv[k0];}}}catch(e){}
+  for(var n0 in st.colors){if(!(st.colors[n0]>=0&&st.colors[n0]<PAL.length))delete st.colors[n0];}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function $(id){return document.getElementById(id);}
+  function syncColors(){
+    var used={},n;
+    for(var k in st.cells){var v=(st.cells[k]||'').trim();if(v)used[v]=1;}
+    for(n in st.colors){if(!used[n])delete st.colors[n];}
+    for(n in used){if(st.colors[n]===undefined){var cnt=PAL.map(function(){return 0;});for(var m in st.colors)cnt[st.colors[m]]++;var best=0;for(var i=1;i<PAL.length;i++){if(cnt[i]<cnt[best])best=i;}st.colors[n]=best;}}
+  }
+  function colorOf(name){var i=st.colors[(name||'').trim()];return i===undefined?null:PAL[i];}
+  /* grid */
+  var grid=$('sc-grid');
+  var gh='<thead><tr><th class="sc-tcol">الوقت</th>';
+  DAYS.forEach(function(d){gh+='<th>'+d+'</th>';});
+  gh+='</tr></thead><tbody>';
+  SLOTS.forEach(function(sl,r){
+    gh+='<tr><td class="sc-time"><b>'+sl.s+'</b><span>'+sl.e+'</span></td>';
+    DAYS.forEach(function(d,c){var k=c+'-'+r;gh+='<td><input class="sc-cell" type="text" maxlength="40" data-k="'+k+'" aria-label="'+d+' '+sl.s+'" value="'+esc(st.cells[k])+'"></td>';});
+    gh+='</tr>';
+  });
+  grid.innerHTML=gh+'</tbody>';
+  var cells=grid.querySelectorAll('.sc-cell');
+  function paint(inp){var c=colorOf(inp.value);inp.style.background=c?c.bg:'';inp.style.borderColor=c?c.ac:'';}
+  function paintAll(){for(var i=0;i<cells.length;i++)paint(cells[i]);}
+  var dl=document.createElement('datalist');dl.id='sc-subjects';root.appendChild(dl);
+  function refreshList(){var o='';Object.keys(st.colors).forEach(function(n){o+='<option value="'+esc(n)+'">';});dl.innerHTML=o;}
+  grid.addEventListener('input',function(e){var t=e.target;if(!t.classList.contains('sc-cell'))return;st.cells[t.getAttribute('data-k')]=t.value;paint(t);save();});
+  grid.addEventListener('change',function(e){if(!e.target.classList.contains('sc-cell'))return;syncColors();paintAll();refreshList();save();});
+  syncColors();paintAll();refreshList();
+  /* title */
+  var titleIn=$('sc-title');titleIn.value=st.title;
+  titleIn.addEventListener('input',function(){st.title=titleIn.value;save();});
+  /* exams */
+  var box=$('sc-exams');
+  function renderExams(){
+    if(!st.exams.length){box.innerHTML='<p class="sc-empty">ما فيه اختبارات مضافة.</p>';renderGcal();return;}
+    var o='';
+    st.exams.forEach(function(x,i){
+      o+='<div class="sc-exam" data-i="'+i+'"><input class="sc-subj" type="text" list="sc-subjects" maxlength="40" placeholder="اسم المادة" data-f="subject" value="'+esc(x.subject)+'" aria-label="اسم المادة">'
+        +'<select data-f="type" aria-label="نوع الاختبار"><option value="mid"'+(x.type==='mid'?' selected':'')+'>ميدتيرم</option><option value="final"'+(x.type==='final'?' selected':'')+'>فاينل</option></select>'
+        +'<input type="date" data-f="date" value="'+esc(x.date)+'" aria-label="التاريخ"><input type="time" data-f="time" value="'+esc(x.time)+'" aria-label="الوقت">'
+        +'<button type="button" class="sc-del" data-del="'+i+'">حذف</button></div>';
+    });
+    box.innerHTML=o;
+    renderGcal();
+  }
+  function onEx(e){var f=e.target.getAttribute('data-f');if(!f)return;var row=e.target.closest('.sc-exam');st.exams[+row.getAttribute('data-i')][f]=e.target.value;save();if(e.type==='change')renderGcal();}
+  box.addEventListener('input',onEx);box.addEventListener('change',onEx);
+  box.addEventListener('click',function(e){var d=e.target.getAttribute('data-del');if(d===null)return;st.exams.splice(+d,1);save();renderExams();});
+  $('sc-add').addEventListener('click',function(){st.exams.push({subject:'',type:'mid',date:'',time:''});save();renderExams();var all=box.querySelectorAll('.sc-subj');if(all.length)all[all.length-1].focus();});
+  renderExams();
+  /* modes */
+  var dev=$('sc-dev'),go=$('sc-go'),msg=$('sc-msg');
+  dev.value=st.size;if(!dev.value)dev.value='1080x1920';
+  dev.addEventListener('change',function(){st.size=dev.value;save();});
+  var LABELS={wall:'تحميل الخلفية',pdf:'تحميل PDF',print:'طباعة الجدول'};
+  var HINTS={wall:'على الآيفون اختر «حفظ الصورة»، وبعدها من الصور اضغط مشاركة ثم «استخدام كخلفية».',pdf:'ملف A4 تقدر ترسله أو تطبعه في أي وقت.',print:'من الجوال، الأسهل تحمل PDF وتطبعه منه.'};
+  function showMode(){
+    var bs=root.querySelectorAll('.sc-mode');for(var i=0;i<bs.length;i++)bs[i].setAttribute('aria-pressed',bs[i].getAttribute('data-mode')===st.mode?'true':'false');
+    $('sc-dev-wrap').hidden=st.mode!=='wall';$('sc-theme-wrap').hidden=st.mode==='print';go.textContent=LABELS[st.mode];msg.textContent=HINTS[st.mode];
+    if(st.mode==='pdf')loadPdf().catch(function(){});
+  }
+  root.querySelector('.sc-modes').addEventListener('click',function(e){var b=e.target.closest('.sc-mode');if(!b)return;st.mode=b.getAttribute('data-mode');save();showMode();});
+  $('sc-reset').addEventListener('click',function(){
+    if(!confirm('بيتم مسح الجدول والاختبارات. متأكد؟'))return;
+    st.title='';st.cells={};st.colors={};st.exams=[];save();
+    titleIn.value='';for(var i=0;i<cells.length;i++)cells[i].value='';paintAll();refreshList();renderExams();
+  });
+  /* drawing */
+  var dFmt=null;try{dFmt=new Intl.DateTimeFormat('ar-u-ca-gregory-nu-latn',{weekday:'long',day:'numeric',month:'long'});}catch(e){}
+  function fDate(s){if(!s)return 'بدون تاريخ';var p=s.split('-');var d=new Date(+p[0],+p[1]-1,+p[2]);return dFmt?dFmt.format(d):s;}
+  function fTime(t){if(!t)return '';var p=t.split(':'),hh=+p[0];return ((hh%12)||12)+':'+p[1]+' '+(hh<12?'ص':'م');}
+  function rr(ctx,x,y,w,h,r){r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
+  function poly(ctx,pts,fill){ctx.beginPath();ctx.moveTo(pts[0],pts[1]);for(var i=2;i<pts.length;i+=2)ctx.lineTo(pts[i],pts[i+1]);ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
+  function fit(ctx,text,maxW,maxLines,size,minSize,weight){
+    var words=text.split(/\s+/),lines,fs;
+    for(fs=size;fs>=minSize;fs--){
+      ctx.font=weight+' '+fs+'px '+FONT;lines=[];var cur='';
+      for(var i=0;i<words.length;i++){var t=cur?cur+' '+words[i]:words[i];if(!cur||ctx.measureText(t).width<=maxW){cur=t;}else{lines.push(cur);cur=words[i];}}
+      if(cur)lines.push(cur);
+      var ok=lines.length<=maxLines;for(var j=0;ok&&j<lines.length;j++){if(ctx.measureText(lines[j]).width>maxW)ok=false;}
+      if(ok)return {lines:lines,size:fs};
+    }
+    fs=minSize;ctx.font=weight+' '+fs+'px '+FONT;lines=lines.slice(0,maxLines);
+    var last=lines.length-1;while(lines[last].length>1&&ctx.measureText(lines[last]+'…').width>maxW){lines[last]=lines[last].slice(0,-1);}
+    lines[last]+='…';return {lines:lines,size:fs};
+  }
+  function examList(){
+    return st.exams.filter(function(x){return (x.subject||'').trim()||x.date;}).slice().sort(function(a,b){
+      if(!a.date&&!b.date)return 0;if(!a.date)return 1;if(!b.date)return -1;return (a.date+(a.time||'')).localeCompare(b.date+(b.time||''));
+    });
+  }
+  function drawMark(ctx,x,y,h){
+    var s=h/76;ctx.save();ctx.translate(x-18*s,y-24*s);ctx.scale(s,s);
+    poly(ctx,[26,48,36,36,46,48],'#758A8C');poly(ctx,[50,48,60,30,70,48],'#7A9FA3');poly(ctx,[74,48,84,24,94,48],'#C8CFD2');
+    poly(ctx,[58,100,18,88,18,56,58,68],'#C8CFD2');poly(ctx,[62,100,102,88,102,56,62,68],'#E4E9EB');ctx.restore();
+  }
+  var THEMES={
+    light:{bg:'#F4F7F7',band:'#2F4F4E',ridge:'#35595A',empty:'#E4E9EB',ink:'#2F4F4E',muted:'#758A8C',sub:'#C8CFD2',card:'#FFFFFF',dark:false},
+    dark:{bg:'#1E3433',band:'#2F4F4E',ridge:'#3A605F',empty:'#284443',ink:'#E4E9EB',muted:'#93A9AA',sub:'#C8CFD2',card:'#284443',dark:true}
+  };
+  function draw(ctx,W,H,wide,themeKey){
+    var C=THEMES[themeKey]||THEMES.light;
+    var LW=1000,s=W/LW,lh=H/s,offX=0;
+    var tall=H/W>1.7;
+    var padX=wide?110:40;
+    var headH=tall?lh*0.30:230;
+    var gap=36,gridHeadH=60,rowGap=8,colGap=8;
+    var bottom=tall?Math.max(110,lh*0.07):90;
+    var exams=examList(),exTitleH=64,exRowH=80;
+    var exH=exams.length?(gap+exTitleH+exams.length*exRowH):0;
+    var fixed=headH+gap+gridHeadH+exH+bottom;
+    var rowH=(lh-fixed)/7-rowGap;
+    if(rowH>150)rowH=150;
+    if(rowH<78){rowH=78;var need=fixed+7*(rowH+rowGap);s=H/need;lh=need;offX=(W-LW*s)/2;}
+    var content=headH+gap+gridHeadH+7*(rowH+rowGap)+exH+bottom;
+    var shift=Math.max(0,(lh-content)/2);
+    ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;
+    ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+    ctx.fillStyle=C.band;ctx.fillRect(0,0,W,headH*s);
+    ctx.setTransform(s,0,0,s,offX,0);
+    var L=-offX/s,R=(W-offX)/s,rw=R-L;
+    function ridge(pts,col){var p=[L,headH+1];for(var i=0;i<pts.length;i+=2){p.push(L+pts[i]*rw,headH-pts[i+1]);}p.push(R,headH+1);poly(ctx,p,col);}
+    ridge([0,24,.07,40,.13,28,.2,52,.27,32,.33,42,.4,26,.47,54,.54,34,.6,44,.67,28,.74,50,.8,30,.87,44,.93,26,1,38],C.ridge);
+    ridge([0,12,.08,24,.16,10,.24,28,.31,14,.39,30,.47,12,.54,26,.62,10,.7,28,.78,14,.86,24,.93,10,1,18],C.bg);
+    drawMark(ctx,padX,headH-150,96);
+    ctx.direction='rtl';ctx.textBaseline='alphabetic';ctx.textAlign='right';
+    var title=(st.title||'').trim()||'جدولي الدراسي';
+    var tf=fit(ctx,title,LW-2*padX-170,1,58,30,'800');
+    ctx.font='800 '+tf.size+'px '+FONT;ctx.fillStyle='#FFFFFF';ctx.fillText(tf.lines[0],LW-padX,headH-110);
+    ctx.font='500 24px '+FONT;ctx.fillStyle=C.sub;ctx.fillText('من الأحد إلى الخميس',LW-padX,headH-70);
+    var timeW=110,dayW=(LW-2*padX-timeW-5*colGap)/5,xTime=LW-padX-timeW;
+    function dayX(i){return xTime-colGap-(i+1)*dayW-i*colGap;}
+    var y0=headH+gap+shift;
+    ctx.textBaseline='middle';ctx.textAlign='center';
+    ctx.font='500 22px '+FONT;ctx.fillStyle=C.muted;ctx.fillText('الوقت',xTime+timeW/2,y0+gridHeadH/2);
+    ctx.font='800 26px '+FONT;ctx.fillStyle=C.ink;DAYS.forEach(function(d,i){ctx.fillText(d,dayX(i)+dayW/2,y0+gridHeadH/2);});
+    var maxLines=rowH>118?3:2;
+    SLOTS.forEach(function(sl,r){
+      var y=y0+gridHeadH+r*(rowH+rowGap);
+      ctx.textAlign='center';
+      ctx.font='800 26px '+FONT;ctx.fillStyle=C.ink;ctx.fillText(sl.s,xTime+timeW/2,y+rowH/2-14);
+      ctx.font='500 20px '+FONT;ctx.fillStyle=C.muted;ctx.fillText(sl.e,xTime+timeW/2,y+rowH/2+16);
+      for(var c=0;c<5;c++){
+        var x=dayX(c),v=(st.cells[c+'-'+r]||'').trim(),col=colorOf(v);
+        rr(ctx,x,y,dayW,rowH,14);ctx.fillStyle=C.empty;ctx.fill();
+        if(!v||!col)continue;
+        if(C.dark){ctx.globalAlpha=.42;ctx.fillStyle=col.ac;ctx.fill();ctx.globalAlpha=1;}else{ctx.fillStyle=col.bg;ctx.fill();}
+        rr(ctx,x+dayW-13,y+12,6,rowH-24,3);ctx.fillStyle=C.dark?col.bg:col.ac;ctx.fill();
+        var t=fit(ctx,v,dayW-34,maxLines,26,15,'700');
+        ctx.font='700 '+t.size+'px '+FONT;ctx.fillStyle=C.dark?'#FFFFFF':C.ink;
+        var lhh=t.size*1.3,ty=y+rowH/2-(t.lines.length-1)*lhh/2;
+        for(var li=0;li<t.lines.length;li++){ctx.fillText(t.lines[li],x+(dayW-14)/2,ty+li*lhh);}
+      }
+    });
+    var endY=y0+gridHeadH+7*(rowH+rowGap)-rowGap;
+    if(exams.length){
+      var ey=endY+gap;
+      ctx.textAlign='right';ctx.textBaseline='middle';
+      ctx.font='800 34px '+FONT;ctx.fillStyle=C.ink;ctx.fillText('مواعيد الاختبارات',LW-padX,ey+exTitleH/2-6);
+      var cw=LW-2*padX;
+      exams.forEach(function(x,i){
+        var y=ey+exTitleH+i*exRowH,h=exRowH-12;
+        rr(ctx,padX,y,cw,h,14);ctx.fillStyle=C.card;ctx.fill();
+        var col=colorOf(x.subject);if(col){rr(ctx,padX+cw-10,y+12,5,h-24,3);ctx.fillStyle=C.dark?col.bg:col.ac;ctx.fill();}
+        var fin=x.type==='final',chipW=118,chipX=padX+cw-24-chipW;
+        rr(ctx,chipX,y+h/2-20,chipW,40,20);
+        if(C.dark){ctx.globalAlpha=.4;ctx.fillStyle=fin?'#B0625A':'#B08A4E';ctx.fill();ctx.globalAlpha=1;}else{ctx.fillStyle=fin?'#F0DEDB':'#EFE6D6';ctx.fill();}
+        ctx.textAlign='center';ctx.font='700 22px '+FONT;ctx.fillStyle=C.dark?(fin?'#F6D9D4':'#F3E9CF'):(fin?'#8E3F37':'#7A5A22');ctx.fillText(fin?'فاينل':'ميدتيرم',chipX+chipW/2,y+h/2+1);
+        var dateW=270,sub=fit(ctx,(x.subject||'').trim()||'مادة',cw-24-chipW-18-dateW-24,1,28,18,'700');
+        ctx.textAlign='right';ctx.font='700 '+sub.size+'px '+FONT;ctx.fillStyle=C.ink;ctx.fillText(sub.lines[0],chipX-18,y+h/2+1);
+        ctx.textAlign='left';var tm=fTime(x.time);
+        ctx.font='700 22px '+FONT;ctx.fillStyle=C.ink;ctx.fillText(fDate(x.date),padX+22,tm?y+h/2-13:y+h/2+1);
+        if(tm){ctx.font='500 20px '+FONT;ctx.fillStyle=C.muted;ctx.fillText(tm,padX+22,y+h/2+15);}
+      });
+      endY=ey+exTitleH+exams.length*exRowH;
+    }
+    if(SITE){ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='500 20px '+FONT;ctx.fillStyle=C.muted;ctx.direction='ltr';ctx.fillText(SITE,LW/2,Math.min(lh-bottom/2,endY+(lh-endY)/2));ctx.direction='rtl';}
+  }
+  /* output */
+  if(document.fonts&&document.fonts.load){['500','700','800'].forEach(function(w){document.fonts.load(w+' 24px "Tajawal"').catch(function(){});});}
+  var pdfP=null;
+  function loadPdf(){
+    if(window.jspdf)return Promise.resolve(window.jspdf);
+    if(pdfP)return pdfP;
+    pdfP=new Promise(function(res,rej){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';s.onload=function(){window.jspdf?res(window.jspdf):rej();};s.onerror=function(){pdfP=null;rej();};document.head.appendChild(s);});
+    return pdfP;
+  }
+  function isMobile(){return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform));}
+  function saveFile(blob,name){var url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},4000);}
+  function deliver(blob,name,type,done){
+    var file=null;try{file=new File([blob],name,{type:type});}catch(e){}
+    if(isMobile()&&file&&navigator.canShare&&navigator.canShare({files:[file]})){
+      navigator.share({files:[file]}).then(function(){done('تم.');}).catch(function(e){if(e&&e.name==='AbortError'){done('');return;}saveFile(blob,name);done('تم التحميل.');});
+      return;
+    }
+    saveFile(blob,name);done('تم التحميل.');
+  }
+  function canvasFor(W,H,wide,th){var cv=document.createElement('canvas');cv.width=W;cv.height=H;draw(cv.getContext('2d'),W,H,wide,th);return cv;}
+  function printCanvas(cv){
+    var url=cv.toDataURL('image/png');
+    var f=document.createElement('iframe');f.setAttribute('aria-hidden','true');f.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0;';
+    document.body.appendChild(f);
+    var d=f.contentWindow.document;
+    d.open();d.write('<!DOCTYPE html><html dir="rtl"><head><title>جدولي الدراسي</title><style>@page{size:A4;margin:0}html,body{margin:0;padding:0}img{display:block;width:209mm;height:296mm}</style></head><body><img id="i" src="'+url+'"></body></html>');d.close();
+    var img=d.getElementById('i');
+    function goPrint(){try{f.contentWindow.focus();f.contentWindow.print();}catch(e){window.print();}setTimeout(function(){f.remove();},60000);}
+    if(img.complete)setTimeout(goPrint,150);else img.onload=goPrint;
+  }
+  function finish(t){go.disabled=false;if(t)msg.textContent=t;}
+  go.addEventListener('click',function(){
+    go.disabled=true;msg.textContent='جاري التجهيز…';
+    try{
+      if(st.mode==='wall'){
+        var p=dev.value.split('x'),cv=canvasFor(+p[0],+p[1],dev.value==='1080x1920',st.theme);
+        cv.toBlob(function(b){if(!b){finish('ما قدرنا نجهز الصورة. جرب مقاس ثاني.');return;}deliver(b,'جدولي.png','image/png',finish);},'image/png');
+      }else if(st.mode==='print'){
+        printCanvas(canvasFor(2480,3508,false,'light'));finish(HINTS.print);
+      }else{
+        var cvA=canvasFor(2480,3508,false,st.theme);
+        loadPdf().then(function(lib){
+          var doc=new lib.jsPDF({unit:'mm',format:'a4',orientation:'portrait',compress:true});
+          doc.addImage(cvA.toDataURL('image/jpeg',0.93),'JPEG',0,0,210,297);
+          deliver(doc.output('blob'),'جدولي.pdf','application/pdf',finish);
+        }).catch(function(){finish('ما قدرنا نحمّل أداة PDF. تأكد من الإنترنت وجرب مرة ثانية.');});
+      }
+    }catch(err){finish('صار خطأ أثناء التجهيز. حدّث الصفحة وجرب مرة ثانية.');}
+  });
+  /* plan picker */
+  var majors={
+  mgt: {
+    label: "إدارة الأعمال",
+    name: "بكالوريوس إدارة الأعمال — تخصص الإدارة",
+    en: "BSBA — Major in Management",
+    mission:
+      "إعداد مديرين وقادة أكفاء بمعرفة أعمال متقدمة عبر تعليم مدمج عالي الجودة، وكفاءات تدريسية مميزة، ومهارات إدارية متقدمة تسهل اندماجهم في بيئة الأعمال السعودية الديناميكية.",
+    careers: ["مدير عام / رئيس قسم", "محلل أعمال", "منسق تطوير أعمال", "مستشار أنظمة أعمال", "أخصائي تخطيط", "مدير عمليات"],
+    levels: [
+      { label: "السنة الأولى", en: "First year", hours: 26, courses: [
+        ["ENG001", "English Language Skills", "مهارات اللغة الإنجليزية", 8, "—"],
+        ["CS001", "Computer Essentials", "أساسيات الحاسب", 3, "—"],
+        ["COMM001", "Communication Skills", "مهارات الاتصال", 2, "—"],
+        ["ENG001", "English Language Skills (Continued)", "مهارات اللغة الإنجليزية (متابعة)", 8, "—"],
+        ["MATH001", "Fundamentals of Math", "أساسيات الرياضيات", 3, "—"],
+        ["CI001", "Academic Skills", "المهارات الأكاديمية", 2, "—"],
+      ]},
+      { label: "المستوى الثالث", en: "Level three", hours: 17, courses: [
+        ["ISLM101", "Introduction to Islamic Culture", "مدخل إلى الثقافة الإسلامية", 2, "اجتياز السنة الأولى"],
+        ["STAT101", "Statistics", "الإحصاء", 3, "اجتياز السنة الأولى"],
+        ["LAW101", "Legal Environment of Business", "البيئة القانونية للأعمال", 3, "اجتياز السنة الأولى"],
+        ["ECON101", "Microeconomics", "الاقتصاد الجزئي", 3, "اجتياز السنة الأولى"],
+        ["MGT101", "Principles of Management", "مبادئ الإدارة", 3, "اجتياز السنة الأولى"],
+        ["ACCT101", "Principles of Accounting", "مبادئ المحاسبة", 3, "اجتياز السنة الأولى"],
+      ]},
+      { label: "المستوى الرابع", en: "Level four", hours: 17, courses: [
+        ["ISLM102", "Professional Conduct & Ethics in Islam", "السلوك المهني والأخلاق في الإسلام", 2, "—"],
+        ["STAT201", "Quantitative Methods", "الأساليب الكمية", 3, "ACCT101"],
+        ["FIN101", "Principles of Finance", "مبادئ المالية", 3, "MGT101"],
+        ["MGT201", "Marketing Management", "إدارة التسويق", 3, "MGT101"],
+        ["MGT211", "H.R Management", "إدارة الموارد البشرية", 3, "MGT101"],
+        ["ECOM101", "E-Commerce", "التجارة الإلكترونية", 3, "—"],
+      ]},
+      { label: "المستوى الخامس", en: "Level five", hours: 18, courses: [
+        ["ECON201", "Macroeconomics", "الاقتصاد الكلي", 3, "—"],
+        ["MIS201", "Management of Information Systems", "إدارة نظم المعلومات", 3, "MGT101"],
+        ["ECOM201", "Introduction to E-Management", "مقدمة في الإدارة الإلكترونية", 3, "MGT101"],
+        ["MGT301", "Organizational Behavior", "السلوك التنظيمي", 3, "MGT211"],
+        ["MGT311", "Intro to Operations Management", "مقدمة في إدارة العمليات", 3, "MGT101 + STAT101"],
+        ["MGT312", "Decision Making and Problem Solving", "اتخاذ القرارات وحل المشكلات", 3, "MGT101"],
+      ]},
+      { label: "المستوى السادس", en: "Level six", hours: 17, courses: [
+        ["ISLM103", "Islamic Economic System", "النظام الاقتصادي الإسلامي", 2, "ISLM101"],
+        ["ACCT301", "Cost Accounting", "محاسبة التكاليف", 3, "ACCT101"],
+        ["MGT321", "Intro to International Business", "مقدمة في الأعمال الدولية", 3, "—"],
+        ["MGT322", "Logistics Management", "إدارة الإمداد والتموين", 3, "MGT101"],
+        ["MGT323", "Project Management", "إدارة المشاريع", 3, "MGT311"],
+        ["MGT325", "Management of Technology", "إدارة التقنية", 3, "MGT101"],
+      ]},
+      { label: "المستوى السابع", en: "Level seven", hours: 17, courses: [
+        ["ISLM104", "Social System and Human Rights", "النظام الاجتماعي وحقوق الإنسان", 2, "ISLM102"],
+        ["MGT401", "Strategic Management", "الإدارة الاستراتيجية", 3, "MGT201 + FIN101"],
+        ["MGT324", "Public Management", "الإدارة العامة", 3, "MGT101"],
+        ["MGT402", "Entrepreneurship", "ريادة الأعمال", 3, "MGT101"],
+        ["MGT403", "Knowledge Management", "إدارة المعرفة", 3, "MGT101"],
+        ["MGT424", "Quality Management", "إدارة الجودة", 3, "MGT101"],
+      ]},
+      { label: "المستوى الثامن", en: "Level eight", hours: 18, courses: [
+        ["MGT404", "Organization Design and Development", "تصميم وتطوير المنظمات", 3, "MGT101"],
+        ["MGT421", "Communications Management", "إدارة الاتصالات", 3, "MGT101"],
+        ["MGT422", "Business Ethics & Social Responsibility", "أخلاقيات الأعمال والمسؤولية الاجتماعية", 3, "—"],
+        ["MGT430", "Internship", "التدريب التعاوني", 6, "إكمال 90 ساعة معتمدة"],
+        ["MGT425", "Spreadsheet Decision Modeling", "نمذجة القرارات بجداول البيانات", 3, "MGT101"],
+      ]},
+    ],
+  },
+  fin: {
+    label: "المالية",
+    name: "بكالوريوس إدارة الأعمال — تخصص المالية",
+    en: "BSBA — Major in Finance",
+    mission:
+      "إعداد قادة المستقبل في التخطيط المالي القائم على القيم، ارتكازاً على ركائز الجامعة في التميز والنزاهة والقيادة والولاء والاحترام والعطاء بلا حدود.",
+    careers: ["مدير مالي", "باحث مالي", "مستشار مالي", "محلل مالي", "وسيط مالي (وكالات مالية)"],
+    levels: [
+      { label: "السنة الأولى", en: "First year", hours: 26, courses: [
+        ["ENG001", "English Skills", "مهارات اللغة الإنجليزية", 16, "—"],
+        ["CS001", "Computer Essentials", "أساسيات الحاسب", 3, "—"],
+        ["COMM001", "Communication Skills", "مهارات الاتصال", 2, "—"],
+        ["MATH001", "Fundamentals of Math", "أساسيات الرياضيات", 3, "—"],
+        ["CI001", "Academic Skills", "المهارات الأكاديمية", 2, "—"],
+      ]},
+      { label: "المستوى الثالث", en: "Level three", hours: 17, courses: [
+        ["ISLM101", "Introduction to Islamic Culture", "مدخل إلى الثقافة الإسلامية", 2, "اجتياز السنة الأولى"],
+        ["STAT101", "Statistics", "الإحصاء", 3, "اجتياز السنة الأولى"],
+        ["LAW101", "Legal Environment of Business", "البيئة القانونية للأعمال", 3, "اجتياز السنة الأولى"],
+        ["ECON101", "Microeconomics", "الاقتصاد الجزئي", 3, "اجتياز السنة الأولى"],
+        ["MGT101", "Principles of Management", "مبادئ الإدارة", 3, "اجتياز السنة الأولى"],
+        ["ACCT101", "Principles of Accounting", "مبادئ المحاسبة", 3, "اجتياز السنة الأولى"],
+      ]},
+      { label: "المستوى الرابع", en: "Level four", hours: 17, courses: [
+        ["ISLM102", "Professional Conduct & Ethics in Islam", "السلوك المهني والأخلاق في الإسلام", 2, "—"],
+        ["STAT201", "Quantitative Methods", "الأساليب الكمية", 3, "STAT101"],
+        ["FIN101", "Principles of Finance", "مبادئ المالية", 3, "ACCT101"],
+        ["MGT201", "Marketing Management", "إدارة التسويق", 3, "MGT101"],
+        ["MGT211", "H.R Management", "إدارة الموارد البشرية", 3, "MGT101"],
+        ["ECOM101", "E-Commerce", "التجارة الإلكترونية", 3, "—"],
+      ]},
+      { label: "المستوى الخامس", en: "Level five", hours: 18, courses: [
+        ["ECON201", "Macroeconomics", "الاقتصاد الكلي", 3, "—"],
+        ["MIS201", "Management of Information Systems", "إدارة نظم المعلومات", 3, "MGT101"],
+        ["ECOM201", "Introduction to E-Management", "مقدمة في الإدارة الإلكترونية", 3, "MGT101"],
+        ["MGT301", "Organizational Behavior", "السلوك التنظيمي", 3, "MGT211"],
+        ["MGT311", "Intro to Operations Management", "مقدمة في إدارة العمليات", 3, "MGT101 + STAT101"],
+        ["FIN201", "Corporate Finance", "تمويل الشركات", 3, "FIN101"],
+      ]},
+      { label: "المستوى السادس", en: "Level six", hours: 17, courses: [
+        ["ISLM103", "Islamic Economic System", "النظام الاقتصادي الإسلامي", 2, "ISLM101"],
+        ["ACCT301", "Cost Accounting", "محاسبة التكاليف", 3, "ACCT101"],
+        ["MGT321", "Intro to International Business", "مقدمة في الأعمال الدولية", 3, "—"],
+        ["MGT322", "Logistics Management", "إدارة الإمداد والتموين", 3, "MGT101"],
+        ["FIN301", "Risk Management", "إدارة المخاطر", 3, "FIN101"],
+        ["FIN416", "Islamic Finance", "التمويل الإسلامي", 3, "FIN201"],
+      ]},
+      { label: "المستوى السابع", en: "Level seven", hours: 17, courses: [
+        ["ISLM104", "Social System and Human Rights", "النظام الاجتماعي وحقوق الإنسان", 2, "ISLM102"],
+        ["MGT401", "Strategic Management", "الإدارة الاستراتيجية", 3, "MGT201 + FIN101"],
+        ["FIN401", "Banks Management", "إدارة المصارف", 3, "FIN101"],
+        ["FIN402", "Financial Institutions and Markets", "المؤسسات والأسواق المالية", 3, "FIN101"],
+        ["FIN403", "Investments", "الاستثمار", 3, "FIN101"],
+        ["FIN414", "Real Estate Finance", "التمويل العقاري", 3, "FIN201"],
+      ]},
+      { label: "المستوى الثامن", en: "Level eight", hours: 18, courses: [
+        ["FIN405", "Financial Derivatives", "المشتقات المالية", 3, "FIN402"],
+        ["FIN406", "International Finance", "التمويل الدولي", 3, "FIN401"],
+        ["FIN424", "Portfolio Management", "إدارة المحافظ الاستثمارية", 3, "FIN403"],
+        ["FIN408", "Internship", "التدريب التعاوني", 6, "إكمال 90 ساعة معتمدة"],
+        ["FIN421", "Small Business Financing", "تمويل المنشآت الصغيرة", 3, "FIN301"],
+      ]},
+    ],
+  },
+  ecom: {
+    label: "التجارة الإلكترونية",
+    name: "بكالوريوس إدارة الأعمال — تخصص التجارة الإلكترونية",
+    en: "BSBA — Major in E-Commerce",
+    mission:
+      "تزويد طلاب التجارة الإلكترونية بالمهارات اللازمة من خلال تعلم ذاتي مدعوم بتعليم تفاعلي عالي الجودة عبر الإنترنت، وتشجيع روح ريادة الأعمال، والمساهمة في الأبحاث والدراسات ضمن قطاع التجارة الإلكترونية.",
+    careers: ["مدير تجارة إلكترونية", "محلل تجارة إلكترونية", "محلل استخبارات تجارية", "مستشار تجارة إلكترونية", "مستشار أمن معلومات", "مطوّر مواقع للأغراض التجارية"],
+    levels: [
+      { label: "السنة الأولى", en: "First year", hours: 26, courses: [
+        ["ENG001", "English Skills", "مهارات اللغة الإنجليزية", 8, "—"],
+        ["CS001", "Computer Essentials", "أساسيات الحاسب", 3, "—"],
+        ["COMM001", "Communication Skills", "مهارات الاتصال", 2, "—"],
+        ["ENG001", "English Skills (Continued)", "مهارات اللغة الإنجليزية (متابعة)", 8, "—"],
+        ["MATH001", "Fundamentals of Math", "أساسيات الرياضيات", 3, "—"],
+        ["CI001", "Academic Skills", "المهارات الأكاديمية", 2, "—"],
+      ]},
+      { label: "المستوى الثالث", en: "Level three", hours: 17, courses: [
+        ["ISLM101", "Introduction to Islamic Culture", "مدخل إلى الثقافة الإسلامية", 2, "اجتياز السنة الأولى"],
+        ["STAT101", "Statistics", "الإحصاء", 3, "اجتياز السنة الأولى"],
+        ["LAW101", "Legal Environment of Business", "البيئة القانونية للأعمال", 3, "اجتياز السنة الأولى"],
+        ["ECON101", "Microeconomics", "الاقتصاد الجزئي", 3, "اجتياز السنة الأولى"],
+        ["MGT101", "Principles of Management", "مبادئ الإدارة", 3, "اجتياز السنة الأولى"],
+        ["ACCT101", "Principles of Accounting", "مبادئ المحاسبة", 3, "اجتياز السنة الأولى"],
+      ]},
+      { label: "المستوى الرابع", en: "Level four", hours: 17, courses: [
+        ["ISLM102", "Professional Conduct & Ethics in Islam", "السلوك المهني والأخلاق في الإسلام", 2, "—"],
+        ["STAT201", "Quantitative Methods", "الأساليب الكمية", 3, "STAT101"],
+        ["FIN101", "Principles of Finance", "مبادئ المالية", 3, "ACCT101"],
+        ["MGT201", "Marketing Management", "إدارة التسويق", 3, "MGT101"],
+        ["MGT211", "H.R Management", "إدارة الموارد البشرية", 3, "MGT101"],
+        ["ECOM101", "E-Commerce", "التجارة الإلكترونية", 3, "—"],
+      ]},
+      { label: "المستوى الخامس", en: "Level five", hours: 18, courses: [
+        ["ECON201", "Macroeconomics", "الاقتصاد الكلي", 3, "—"],
+        ["MIS201", "Management of Information Systems", "إدارة نظم المعلومات", 3, "MGT101"],
+        ["ECOM201", "Introduction to E-Management", "مقدمة في الإدارة الإلكترونية", 3, "MGT101"],
+        ["MGT301", "Organizational Behavior", "السلوك التنظيمي", 3, "MGT211"],
+        ["MGT311", "Intro to Operations Management", "مقدمة في إدارة العمليات", 3, "MGT101 + STAT101"],
+        ["ECOM301", "E-Marketing (Digital Marketing)", "التسويق الإلكتروني", 3, "MGT201"],
+      ]},
+      { label: "المستوى السادس", en: "Level six", hours: 17, courses: [
+        ["ISLM103", "Islamic Economic System", "النظام الاقتصادي الإسلامي", 2, "ISLM101"],
+        ["ACCT301", "Cost Accounting", "محاسبة التكاليف", 3, "ACCT101"],
+        ["MGT321", "Intro to International Business", "مقدمة في الأعمال الدولية", 3, "—"],
+        ["MGT322", "Logistics Management", "إدارة الإمداد والتموين", 3, "MGT101"],
+        ["IT401", "Business Computer Languages", "لغات الحاسب للأعمال", 3, "MGT311"],
+        ["ECOM322", "Social Media Marketing", "التسويق عبر وسائل التواصل الاجتماعي", 3, "ECOM301"],
+      ]},
+      { label: "المستوى السابع", en: "Level seven", hours: 17, courses: [
+        ["ISLM104", "Social System and Human Rights", "النظام الاجتماعي وحقوق الإنسان", 2, "ISLM102"],
+        ["MGT401", "Strategic Management", "الإدارة الاستراتيجية", 3, "MGT201 + FIN101"],
+        ["IT403", "Fundamentals of Databases", "أساسيات قواعد البيانات", 3, "IT401"],
+        ["IT404", "Website Design", "تصميم مواقع الويب", 3, "—"],
+        ["LAW402", "Law of E-Commerce", "قانون التجارة الإلكترونية", 3, "LAW101"],
+        ["ECOM425", "Virtual Organization Management", "إدارة المنظمات الافتراضية", 3, "MGT101"],
+      ]},
+      { label: "المستوى الثامن", en: "Level eight", hours: 18, courses: [
+        ["IT402", "Integrated Enterprise Systems", "نظم المؤسسات المتكاملة", 3, "MIS201"],
+        ["ECOM421", "E-Business Strategy and Business Models", "استراتيجيات ونماذج الأعمال الإلكترونية", 3, "MGT401"],
+        ["ECOM402", "E-Supply Chain Management", "إدارة سلسلة الإمداد الإلكترونية", 3, "MGT211"],
+        ["ECOM430", "Internship", "التدريب التعاوني", 6, "إكمال 90 ساعة معتمدة"],
+        ["IT405", "E-Portals Development", "تطوير البوابات الإلكترونية", 3, "IT404"],
+      ]},
+    ],
+  },
+  acct: {
+    label: "المحاسبة",
+    name: "بكالوريوس إدارة الأعمال — تخصص المحاسبة",
+    en: "BSBA — Major in Accounting",
+    mission:
+      "يهدف برنامج بكالوريوس المحاسبة إلى إعداد محاسبين مؤهلين وفق المعايير المهنية والأكاديمية الحديثة، مع تغطية شاملة للمحاسبة المالية والإدارية والحكومية والضريبية ومحاسبة المؤسسات المالية والتأمين.",
+    careers: ["محاسب قانوني", "مراجع حسابات", "محاسب ضرائب وزكاة", "محاسب حكومي وغير ربحي", "محاسب مؤسسات مالية", "محاسب تأمين"],
+    note: "هذا البرنامج لا يحتوي على مسارات تخصص اختيارية — جميع مقرراته إلزامية حسب دليل الطالب الرسمي.",
+    levels: [
+      { label: "السنة الأولى", en: "First year", hours: 26, courses: [
+        ["ENG001", "English Language Skills", "مهارات اللغة الإنجليزية", 8, "—"],
+        ["CS001", "Intro to AI and Computing", "مقدمة في الذكاء الاصطناعي والحوسبة", 3, "—"],
+        ["COMM001", "Communication Skills", "مهارات الاتصال", 2, "—"],
+        ["ENG001", "English Language Skills (Continued)", "مهارات اللغة الإنجليزية (متابعة)", 8, "—"],
+        ["MATH001", "Fundamentals of Math", "أساسيات الرياضيات", 3, "—"],
+        ["CI001", "Academic Skills", "المهارات الأكاديمية", 2, "—"],
+      ]},
+      { label: "المستوى الثالث", en: "Level three", hours: 17, courses: [
+        ["ISLM101", "Introduction to Islamic Culture", "مدخل إلى الثقافة الإسلامية", 2, "اجتياز السنة الأولى"],
+        ["STAT101", "Statistics", "الإحصاء", 3, "اجتياز السنة الأولى"],
+        ["LAW101", "Legal Environment of Business", "البيئة القانونية للأعمال", 3, "اجتياز السنة الأولى"],
+        ["ECON101", "Microeconomics", "الاقتصاد الجزئي", 3, "اجتياز السنة الأولى"],
+        ["MGT101", "Principles of Management", "مبادئ الإدارة", 3, "اجتياز السنة الأولى"],
+        ["ACCT101", "Principles of Accounting", "مبادئ المحاسبة", 3, "اجتياز السنة الأولى"],
+      ]},
+      { label: "المستوى الرابع", en: "Level four", hours: 17, courses: [
+        ["ISLM102", "Professional Conduct & Ethics in Islam", "السلوك المهني والأخلاق في الإسلام", 2, "—"],
+        ["STAT201", "Quantitative Methods", "الأساليب الكمية", 3, "STAT101"],
+        ["FIN101", "Principles of Finance", "مبادئ المالية", 3, "ACCT101"],
+        ["MGT201", "Marketing Management", "إدارة التسويق", 3, "MGT101"],
+        ["MGT211", "H.R Management", "إدارة الموارد البشرية", 3, "MGT101"],
+        ["ECOM101", "E-Commerce", "التجارة الإلكترونية", 3, "—"],
+      ]},
+      { label: "المستوى الخامس", en: "Level five", hours: 18, courses: [
+        ["ECON201", "Macroeconomics", "الاقتصاد الكلي", 3, "—"],
+        ["MIS201", "Management of Information Systems", "إدارة نظم المعلومات", 3, "MGT101"],
+        ["ECOM201", "Introduction to E-Management", "مقدمة في الإدارة الإلكترونية", 3, "MGT101"],
+        ["MGT301", "Organizational Behavior", "السلوك التنظيمي", 3, "MGT211"],
+        ["MGT311", "Intro to Operations Management", "مقدمة في إدارة العمليات", 3, "MGT101 + STAT101"],
+        ["ACCT201", "Financial Accounting", "المحاسبة المالية", 3, "ACCT101"],
+      ]},
+      { label: "المستوى السادس", en: "Level six", hours: 17, courses: [
+        ["ISLM103", "Islamic Economic System", "النظام الاقتصادي الإسلامي", 2, "ISLM101"],
+        ["ACCT301", "Cost Accounting", "محاسبة التكاليف", 3, "ACCT101"],
+        ["MGT321", "Intro to International Business", "مقدمة في الأعمال الدولية", 3, "—"],
+        ["MGT322", "Logistics Management", "إدارة الإمداد والتموين", 3, "MGT101"],
+        ["ACCT302", "Advanced Financial Accounting", "المحاسبة المالية المتقدمة", 3, "ACCT201"],
+        ["ACCT405", "Accounting of Financial Institutions", "محاسبة المؤسسات المالية", 3, "ACCT201"],
+      ]},
+      { label: "المستوى السابع", en: "Level seven", hours: 17, courses: [
+        ["ISLM104", "Social System and Human Rights", "النظام الاجتماعي وحقوق الإنسان", 2, "ISLM102"],
+        ["MGT401", "Strategic Management", "الإدارة الاستراتيجية", 3, "MGT201 + FIN101"],
+        ["ACCT401", "Auditing Principles & Procedures", "أصول ومعايير المراجعة", 3, "ACCT302"],
+        ["ACCT403", "Accounting Research and Practice", "بحوث وممارسات محاسبية", 3, "—"],
+        ["ACCT402", "Intro to Accounting Information System", "مقدمة في نظم المعلومات المحاسبية", 3, "ACCT201 + MIS201"],
+        ["ACCT321", "Government and Non-Profit Accounting", "محاسبة الحكومات والمنظمات غير الربحية", 3, "ACCT201"],
+      ]},
+      { label: "المستوى الثامن", en: "Level eight", hours: 18, courses: [
+        ["ACCT422", "Tax and Zakat Accounting", "محاسبة الزكاة والضريبة", 3, "ACCT201"],
+        ["LAW401", "Companies Law", "قانون الشركات", 3, "LAW101"],
+        ["ACCT322", "Managerial Accounting", "المحاسبة الإدارية", 3, "ACCT301"],
+        ["ACCT424", "Insurance Accounting", "محاسبة التأمين", 3, "ACCT201"],
+        ["ACCT430", "Internship", "التدريب التعاوني", 6, "إكمال 90 ساعة معتمدة"],
+      ]},
+    ],
+  },
+},MORDER=['mgt','fin','ecom','acct'];
+  var mSel=$('sc-major'),lSel=$('sc-level'),chipsBox=$('sc-chips'),brush=null;
+  if(!st.pick||!majors[st.pick.major]){var pm='mgt';try{var ps=JSON.parse(localStorage.getItem('najd_plans_v1')||'null');if(ps&&majors[ps.major])pm=ps.major;}catch(e){}st.pick={major:pm,level:0};}
+  mSel.innerHTML=MORDER.map(function(k){return '<option value="'+k+'">'+esc(majors[k].label)+'</option>';}).join('');
+  function fillLevels(){var lv=majors[st.pick.major].levels;lSel.innerHTML=lv.map(function(l,i){return '<option value="'+i+'">'+esc(l.label)+'</option>';}).join('');if(!(st.pick.level<lv.length))st.pick.level=0;lSel.value=String(st.pick.level);}
+  function renderChips(){
+    var cs=majors[st.pick.major].levels[st.pick.level].courses,seen={},o='';
+    cs.forEach(function(c){var n=c[2];if(seen[n])return;seen[n]=1;var col=colorOf(n),on=brush===n,sty='';
+      if(col)sty='background:'+col.bg+(on?'':';border-color:'+col.ac);
+      o+='<button type="button" class="sc-chip" data-sub="'+esc(n)+'" aria-pressed="'+on+'"'+(sty?' style="'+sty+'"':'')+'>'+esc(n)+'<small>'+esc(c[0])+'</small></button>';});
+    chipsBox.innerHTML=o;
+  }
+  function setBrush(n){
+    brush=(n&&brush!==n)?n:null;
+    $('sc-brush').classList.toggle('is-on',!!brush);$('sc-brush-name').textContent=brush?'«'+brush+'»':'';
+    grid.classList.toggle('is-brush',!!brush);for(var i=0;i<cells.length;i++)cells[i].readOnly=!!brush;
+    renderChips();
+  }
+  mSel.value=st.pick.major;fillLevels();renderChips();
+  mSel.addEventListener('change',function(){st.pick.major=mSel.value;st.pick.level=0;fillLevels();setBrush(null);save();});
+  lSel.addEventListener('change',function(){st.pick.level=+lSel.value;setBrush(null);save();});
+  chipsBox.addEventListener('click',function(e){var b=e.target.closest('.sc-chip');if(!b)return;setBrush(b.getAttribute('data-sub'));});
+  $('sc-brush-off').addEventListener('click',function(){setBrush(null);});
+  function applyBrush(cell){var k=cell.getAttribute('data-k'),v=cell.value.trim()===brush?'':brush;cell.value=v;st.cells[k]=v;syncColors();paintAll();refreshList();renderChips();save();}
+  grid.addEventListener('click',function(e){if(!brush)return;var c=e.target.closest('.sc-cell');if(!c)return;e.preventDefault();c.blur();applyBrush(c);});
+  grid.addEventListener('keydown',function(e){if(!brush||(e.key!=='Enter'&&e.key!==' '))return;var c=e.target.closest('.sc-cell');if(!c)return;e.preventDefault();applyBrush(c);});
+  /* calendar */
+  function pad(n){return (n<10?'0':'')+n;}
+  function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0;}return Math.abs(h);}
+  function icsEsc(s){return String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');}
+  function fold(line){var out='',cur='',bytes=0;for(var i=0;i<line.length;i++){var ch=line.charAt(i),code=line.charCodeAt(i),b=code<0x80?1:code<0x800?2:3;if(code>=0xD800&&code<=0xDBFF){ch=line.substr(i,2);i++;b=4;}if(bytes+b>73){out+=cur+'\r\n ';cur='';bytes=1;}cur+=ch;bytes+=b;}return out+cur;}
+  function utc(y,mo,d,h,mi){var x=new Date(Date.UTC(y,mo-1,d,h-3,mi));return x.getUTCFullYear()+pad(x.getUTCMonth()+1)+pad(x.getUTCDate())+'T'+pad(x.getUTCHours())+pad(x.getUTCMinutes())+'00Z';}
+  function nextDay(y,mo,d){var x=new Date(Date.UTC(y,mo-1,d+1));return x.getUTCFullYear()+pad(x.getUTCMonth()+1)+pad(x.getUTCDate());}
+  function typeName(x){return x.type==='final'?'فاينل':'ميدتيرم';}
+  function datedExams(){return examList().filter(function(x){return /^\d{4}-\d{2}-\d{2}$/.test(x.date||'');});}
+  function buildIcs(list){
+    var n=new Date(),stamp=n.getUTCFullYear()+pad(n.getUTCMonth()+1)+pad(n.getUTCDate())+'T'+pad(n.getUTCHours())+pad(n.getUTCMinutes())+pad(n.getUTCSeconds())+'Z';
+    var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Najd Academy//Exam Reminders//AR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:'+icsEsc('اختباراتي من أكاديمية نجد')];
+    list.forEach(function(x,i){
+      var p=x.date.split('-').map(Number),sub=(x.subject||'').trim()||'مادة',title=typeName(x)+': '+sub;
+      L.push('BEGIN:VEVENT','UID:najd-'+x.date.replace(/-/g,'')+'-'+i+'-'+hash(title+(x.time||''))+'@'+(SITE||'najd-academy'),'DTSTAMP:'+stamp);
+      if(x.time){var t=x.time.split(':').map(Number);L.push('DTSTART:'+utc(p[0],p[1],p[2],t[0],t[1]),'DTEND:'+utc(p[0],p[1],p[2],t[0]+2,t[1]));}
+      else L.push('DTSTART;VALUE=DATE:'+p[0]+pad(p[1])+pad(p[2]),'DTEND;VALUE=DATE:'+nextDay(p[0],p[1],p[2]));
+      L.push('SUMMARY:'+icsEsc('📝 '+title),'DESCRIPTION:'+icsEsc('بالتوفيق! تذكير من أكاديمية نجد'+(SITE?' | '+SITE:'')),'TRANSP:OPAQUE');
+      L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsEsc('بكرة اختبار '+title),'TRIGGER:'+(x.time?'-P1D':'-PT9H'),'END:VALARM');
+      if(x.time)L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsEsc('بعد ساعتين اختبار '+title),'TRIGGER:-PT2H','END:VALARM');
+      L.push('END:VEVENT');
+    });
+    L.push('END:VCALENDAR');
+    return L.map(fold).join('\r\n')+'\r\n';
+  }
+  function gDates(x){
+    var p=x.date.split('-').map(Number),d=x.date.replace(/-/g,'');
+    if(!x.time)return d+'/'+nextDay(p[0],p[1],p[2]);
+    var t=x.time.split(':').map(Number),eh=t[0]+2,ed=d;if(eh>=24){eh-=24;ed=nextDay(p[0],p[1],p[2]);}
+    return d+'T'+pad(t[0])+pad(t[1])+'00/'+ed+'T'+pad(eh)+pad(t[1])+'00';
+  }
+  function renderGcal(){
+    var list=datedExams(),b2=$('sc-gcal');if(!list.length){b2.innerHTML='';return;}
+    var o='<span>تستخدم تقويم قوقل؟ أضف كل اختبار بضغطة:</span><br>';
+    list.forEach(function(x){var sub=(x.subject||'').trim()||'مادة',title=typeName(x)+': '+sub;
+      var u='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('📝 '+title)+'&dates='+gDates(x)+'&ctz=Asia%2FRiyadh&details='+encodeURIComponent('تذكير من أكاديمية نجد');
+      o+='<a href="'+esc(u)+'" target="_blank" rel="noopener">＋ '+esc(typeName(x)+' '+sub)+'</a>';});
+    b2.innerHTML=o;
+  }
+  $('sc-ics').addEventListener('click',function(){
+    var list=datedExams(),note=$('sc-cal-note');
+    if(!list.length){note.textContent='أضف تاريخ لاختبار واحد على الأقل عشان نقدر نضيفه للتقويم.';return;}
+    var ics=buildIcs(list);
+    if(/iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform))){
+      window.location.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
+      note.textContent='اضغط «إضافة الكل» في النافذة اللي تطلع لك. إذا ما طلعت، افتح الصفحة من سفاري وجرب مرة ثانية.';return;
+    }
+    saveFile(new Blob([ics],{type:'text/calendar;charset=utf-8'}),'اختباراتي.ics');
+    note.textContent='تم تحميل ملف التقويم. افتحه وبينضاف '+list.length+' '+(list.length===1?'اختبار':'اختبارات')+' لتقويمك مع التنبيهات.';
+  });
+  /* theme */
+  function showTheme(){var bs=root.querySelectorAll('.sc-th');for(var i=0;i<bs.length;i++)bs[i].setAttribute('aria-pressed',bs[i].getAttribute('data-theme')===st.theme?'true':'false');}
+  root.querySelector('.sc-theme').addEventListener('click',function(e){var b=e.target.closest('.sc-th');if(!b)return;st.theme=b.getAttribute('data-theme');save();showTheme();});
+  showTheme();
+  showMode();
+})();
+</script>
+</body>
+</html>

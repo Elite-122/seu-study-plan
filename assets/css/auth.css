@@ -1,0 +1,41 @@
+/* صفحات الدخول والتسجيل */
+#najd .au-grid{display:grid;grid-template-columns:1fr .9fr;gap:20px;align-items:start;max-width:980px;margin:0 auto}
+#najd .au-card{padding:28px}
+#najd .au-field{margin:0 0 16px}
+#najd .au-field label{display:block;font-size:15px;font-weight:700;color:var(--ink);margin:0 0 6px}
+#najd .au-field input[type=text],#najd .au-field input[type=email],#najd .au-field input[type=password]{width:100%;height:52px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-size:16px;background:var(--bg);color:var(--ink);margin:0;box-shadow:none}
+#najd .au-field input:focus{background:#fff;border-color:var(--teal)}
+#najd .au-field small{display:block;font-size:13px;color:var(--slate);margin:6px 0 0}
+#najd .au-pass{position:relative}
+#najd .au-pass input{padding-left:64px!important}
+#najd .au-eye{position:absolute;left:8px;top:50%;transform:translateY(-50%);height:36px;border:0;background:none;color:var(--teal);font-size:14px;font-weight:700;padding:0 8px;cursor:pointer}
+#najd .au-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 18px;font-size:15px}
+#najd .au-check{display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;font-weight:500}
+#najd .au-check input{width:20px;height:20px;accent-color:var(--teal);margin:0}
+#najd .au-link{color:var(--teal);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+#najd .au-submit{width:100%;height:54px;font-size:17px}
+#najd .au-alt{text-align:center;font-size:15px;color:var(--muted);margin:18px 0 0}
+#najd .au-flash{background:#E2ECDD;border:1px solid #C9DBC0;color:#3E5A33;border-radius:14px;padding:12px 14px;font-size:15px;margin:0 0 18px}
+#najd .au-side{background:var(--deep);color:#fff;border-radius:20px;padding:28px;position:relative;overflow:hidden}
+#najd .au-side h2{color:#fff;font-size:22px;font-weight:800;margin:0 0 16px}
+#najd .au-side li{display:flex;gap:12px;align-items:flex-start;margin:0 0 14px;font-size:16px;color:var(--light)}
+#najd .au-side li svg{flex-shrink:0;margin-top:4px}
+#najd .au-side li b{display:block;color:#fff}
+#najd .au-side li span{color:var(--mist);font-size:15px}
+#najd .au-in{text-align:center}
+#najd .au-in h2{margin:8px 0 6px}
+#najd .au-in p{color:var(--muted);margin:0 0 18px}
+#najd .au-in .nj-btn{margin:4px}
+@media (max-width:860px){#najd .au-grid{grid-template-columns:1fr}#najd .au-card{padding:20px}#najd .au-side{padding:22px}}
+
+/* إضافات الحسابات */
+#najd .au-err{background:#F6E4E1;border:1px solid #E8C7C1;color:#7A2F27;border-radius:14px;padding:12px 14px;font-size:15px;margin:0 0 16px}
+#najd .au-or{display:flex;align-items:center;gap:12px;color:var(--slate);font-size:14px;margin:18px 0}
+#najd .au-or::before,#najd .au-or::after{content:"";flex:1;height:1px;background:var(--line)}
+#najd .au-google{width:100%;height:52px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:background .15s,border-color .15s}
+#najd .au-google:hover{background:var(--bg);border-color:var(--grey)}
+#najd .au-google svg{width:20px;height:20px}
+#najd .au-side{background:radial-gradient(400px 220px at 0% 0%,#4C7A78 0%,rgba(76,122,120,0) 70%),linear-gradient(160deg,var(--deep),var(--deeper));box-shadow:var(--shadow-lg)}
+#najd .au-side-mark{position:absolute;left:-16px;bottom:-24px;width:150px;opacity:.1}
+#najd .au-in .nj-av{width:64px;height:64px;font-size:26px;margin:0 auto 6px}
+#najd .au-linkbtn{border:0;background:none;padding:0;font-size:15px;cursor:pointer}
