@@ -163,3 +163,28 @@ body{margin:0;background:#F4F7F7}
 #najd .nj-gate-ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0 0}
 #najd .nj-gate-ctas .nj-btn{flex:1 1 220px}
 #najd .nj-gate-note{font-size:14px!important;color:var(--slate)!important}
+
+/* ===== شريط الإعلان ===== */
+#najd .nj-ann{color:#fff;font-size:15px;font-weight:500}
+#najd .nj-ann-teal{background:linear-gradient(90deg,var(--teal),var(--deep))}
+#najd .nj-ann-gold{background:#F3E9CF;color:#4F3D14}
+#najd .nj-ann .nj-in{display:flex;align-items:center;justify-content:center;gap:12px;min-height:44px;padding-top:6px;padding-bottom:6px}
+#najd .nj-ann p{flex:1;text-align:center;line-height:1.5}
+#najd .nj-ann a{font-weight:800;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+#najd .nj-ann button{flex-shrink:0;width:30px;height:30px;border:0;border-radius:8px;background:rgba(255,255,255,.16);color:inherit;font-size:20px;line-height:1;cursor:pointer}
+#najd .nj-ann-gold button{background:rgba(0,0,0,.06)}
+
+/* ===== نافذة منبثقة عامة ===== */
+#najd .nj-modal{position:fixed;inset:0;z-index:70;background:rgba(20,34,33,.72);display:flex;align-items:center;justify-content:center;padding:16px}
+#najd .nj-modal-box{background:#000;border-radius:18px;overflow:hidden;width:min(960px,100%);position:relative;box-shadow:var(--shadow-lg)}
+#najd .nj-modal-box iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+#najd .nj-modal-x{position:absolute;top:10px;left:10px;width:38px;height:38px;border:0;border-radius:10px;background:rgba(255,255,255,.9);color:var(--deep);font-size:22px;cursor:pointer;z-index:2}
+#najd .nj-modal-t{background:var(--deeper);color:#fff;font-weight:700;padding:12px 16px 12px 56px;font-size:15.5px}
+
+/* الهيدر مع 7 روابط: زر «أنشئ حسابك» يظهر في قائمة الجوال وصفحة الدخول بدل الهيدر */
+#najd .nj-acts .nj-btn-fill.nj-guest{display:none}
+#najd .nj-nav a{padding:8px 9px;font-size:15px}
+@media (max-width:1320px){#najd .nj-nav{gap:0}#najd .nj-nav a{padding:8px 7px;font-size:14.5px}#najd .nj-bar{gap:10px}}
+#najd .nj-acts .nj-sync{display:none}
+#najd .nj-acts .nj-uname{display:none}
+#najd .nj-acts .nj-user{gap:6px}

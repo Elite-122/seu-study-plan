@@ -2,17 +2,31 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function signedIn() { return request.auth != null; }
+
     function isAdmin() {
-      return request.auth != null
+      return signedIn()
         && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function myEmail() { return request.auth.token.email.lower(); }
+
+    // اشتراك الشروحات: المشرف يضيف بريد الطالب في access/{البريد}
+    // ونشترط إن البريد مؤكد، عشان ما أحد يسجل ببريد غيره وياخذ اشتراكه
+    function accessDoc() { return get(/databases/$(database)/documents/access/$(myEmail())); }
+    function hasAccess() {
+      return signedIn()
+        && request.auth.token.email_verified == true
+        && exists(/databases/$(database)/documents/access/$(myEmail()))
+        && (!('until' in accessDoc().data) || accessDoc().data.until > request.time);
     }
 
     // تقدم كل طالب (الخطة، الجدول، المعدل): هو بس يقرأ ويكتب ملفه
     match /users/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+      allow read, write: if signedIn() && request.auth.uid == uid;
     }
 
-    // إعلانات التدريب التعاوني: القراءة للكل بدون تسجيل، والكتابة للمشرفين فقط
+    // إعلانات التدريب التعاوني: القراءة للكل، والكتابة للمشرفين
     match /coop/{id} {
       allow read: if true;
       allow create, update: if isAdmin()
@@ -22,9 +36,38 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    // منتجات المتجر (روابط سلة/زد): القراءة للكل، والكتابة للمشرفين
+    match /products/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // إعدادات عامة مثل شريط الإعلان: القراءة للكل، والكتابة للمشرفين
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // الشروحات: العنوان والوصف للمسجلين، والرابط نفسه في lessonLinks
+    match /lessons/{id} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+    match /lessonLinks/{id} {
+      allow read: if isAdmin()
+        || (signedIn() && (get(/databases/$(database)/documents/lessons/$(id)).data.free == true || hasAccess()));
+      allow write: if isAdmin();
+    }
+
+    // المشتركين في الشروحات: الطالب يشوف اشتراكه بس، والمشرف يدير الكل
+    match /access/{email} {
+      allow read: if isAdmin() || (signedIn() && request.auth.token.email != null && email == myEmail());
+      allow write: if isAdmin();
+    }
+
     // المشرفين: تضيفهم يدويًا من Firebase Console، وكل واحد يقدر يشيك على نفسه بس
     match /admins/{uid} {
-      allow read: if request.auth != null && request.auth.uid == uid;
+      allow read: if signedIn() && request.auth.uid == uid;
       allow write: if false;
     }
 
