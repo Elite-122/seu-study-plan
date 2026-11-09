@@ -5,7 +5,7 @@ import {
   getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword,
   updateProfile, sendPasswordResetEmail, sendEmailVerification, signOut,
   setPersistence, browserLocalPersistence, browserSessionPersistence,
-  GoogleAuthProvider, signInWithPopup, RecaptchaVerifier, signInWithPhoneNumber
+  GoogleAuthProvider, signInWithPopup
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
@@ -49,15 +49,8 @@ const MSG = {
   "auth/popup-blocked": "المتصفح منع نافذة قوقل. اسمح بالنوافذ المنبثقة وجرب مرة ثانية.",
   "auth/operation-not-allowed": "طريقة الدخول هذي غير مفعّلة حاليًا.",
   "auth/unauthorized-domain": "هذا النطاق غير مضاف في إعدادات Firebase (Authorized domains).",
-  "auth/invalid-phone-number": "رقم الجوال غير صحيح. اكتبه بهذا الشكل: 05XXXXXXXX",
-  "auth/missing-phone-number": "اكتب رقم جوالك.",
-  "auth/invalid-verification-code": "الكود غير صحيح. تأكد منه وجرب مرة ثانية.",
-  "auth/missing-verification-code": "اكتب الكود اللي وصلك.",
-  "auth/code-expired": "انتهت صلاحية الكود. اطلب كود جديد.",
-  "auth/captcha-check-failed": "ما قدرنا نتحقق إنك مو روبوت. حدّث الصفحة وجرب مرة ثانية.",
-  "auth/quota-exceeded": "وصلنا الحد الأعلى لرسائل التحقق اليوم. جرب بعدين أو ادخل بالبريد.",
-  "auth/billing-not-enabled": "الدخول بالجوال غير مفعّل حاليًا. ادخل بالبريد الإلكتروني.",
-  "auth/requires-recent-login": "سجّل دخولك من جديد وبعدها جرب."
+  "auth/cancelled-popup-request": "فيه نافذة دخول مفتوحة من قبل. كمّل فيها أو قفلها وجرب مرة ثانية.",
+  "auth/account-exists-with-different-credential": "هذا البريد مسجل بطريقة دخول ثانية. جرّب تدخل بالبريد وكلمة المرور."
 };
 const errText = (e) => MSG[e && e.code] || "صار خطأ غير متوقع. جرب مرة ثانية.";
 
@@ -128,7 +121,6 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 function userInfo(u) { return { name: u.displayName || "", email: u.email || "", phone: u.phoneNumber || "" }; }
-let verifier = null, confirmation = null;
 
 /* ===== واجهة للصفحات ===== */
 window.NajdAuth = {
@@ -145,25 +137,12 @@ window.NajdAuth = {
     await push();
     return cred;
   },
-  google() { return signInWithPopup(auth, new GoogleAuthProvider()); },
+  google() {
+    const p = new GoogleAuthProvider();
+    p.setCustomParameters({ prompt: "select_account" });
+    return signInWithPopup(auth, p);
+  },
   reset(email) { return sendPasswordResetEmail(auth, email.trim()); },
-  /* الدخول برقم الجوال: نرسل كود SMS، وبعدين نأكده */
-  async phoneStart(phone, containerId) {
-    if (!verifier) verifier = new RecaptchaVerifier(auth, containerId, { size: "invisible" });
-    try {
-      confirmation = await signInWithPhoneNumber(auth, phone, verifier);
-    } catch (e) {
-      try { verifier.clear(); } catch (x) {}
-      verifier = null;
-      throw e;
-    }
-  },
-  async phoneConfirm(code) {
-    if (!confirmation) throw { code: "auth/code-expired" };
-    const cred = await confirmation.confirm(code.trim());
-    confirmation = null;
-    return cred;
-  },
   async setName(name) {
     if (!current || !name) return;
     await updateProfile(current, { displayName: name.trim() });
