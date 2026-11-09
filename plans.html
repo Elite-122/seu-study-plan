@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>الخطط الدراسية | أكاديمية نجد</title>
 <meta name="description" content="خطط كلية العلوم الإدارية والمالية: علّم على مقرراتك وتابع تقدمك نحو التخرج.">
@@ -10,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261110d">
 <style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:10px;margin:20px 0 0}
 #najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px 8px;text-align:center}
 #najd .pl-stat b{display:block;font-size:26px;font-weight:800;color:var(--light);line-height:1.2}
@@ -52,20 +53,20 @@
 #najd .pl-c{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--light);cursor:pointer;margin:0;font-weight:400;position:relative}
 #najd .pl-c:last-child{border-bottom:0}
 #najd .pl-c input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
-#najd .pl-box{flex-shrink:0;width:26px;height:26px;border-radius:8px;border:2px solid var(--mist);background:#fff;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;transition:background .15s,border-color .15s}
+#najd .pl-box{flex-shrink:0;width:26px;height:26px;border-radius:8px;border:2px solid var(--mist);background:var(--surface);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;transition:background .15s,border-color .15s}
 #najd .pl-c.is-done .pl-box{background:var(--teal);border-color:var(--teal)}
 #najd .pl-c input:focus-visible+.pl-box{outline:2px solid var(--soft);outline-offset:2px}
-#najd .pl-code{flex-shrink:0;font-size:12px;font-weight:800;border-radius:8px;padding:3px 6px;direction:ltr;min-width:66px;text-align:center;color:var(--deep)}
+#najd .pl-code{flex-shrink:0;font-size:12px;font-weight:800;border-radius:8px;padding:3px 6px;direction:ltr;min-width:66px;text-align:center;color:var(--dtext)}
 #najd .pl-cn{flex:1;min-width:0}
 #najd .pl-cn b{display:block;font-size:15px;font-weight:700;line-height:1.45}
 #najd .pl-cn small{display:block;font-size:13px;color:var(--slate);line-height:1.45}
 #najd .pl-c.is-done .pl-cn b{text-decoration:line-through;text-decoration-color:rgba(47,79,78,.35);color:var(--slate)}
-#najd .pl-ch{flex-shrink:0;font-size:15px;font-weight:800;color:var(--deep);text-align:center;line-height:1.1}
+#najd .pl-ch{flex-shrink:0;font-size:15px;font-weight:800;color:var(--dtext);text-align:center;line-height:1.1}
 #najd .pl-ch small{display:block;font-size:11px;font-weight:500;color:var(--slate)}
 #najd .pl-gpa{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--deep);color:#fff;border-radius:20px;padding:22px;margin:24px 0 0}
 #najd .pl-gpa h2{color:#fff;font-size:20px}
 #najd .pl-gpa p{color:var(--mist);font-size:15px}
-#najd .pl-gpa .nj-btn{background:var(--light);color:var(--deep)}
+#najd .pl-gpa .nj-btn{background:var(--light);color:var(--dtext)}
 #najd .pl-src{font-size:13px;color:var(--slate);margin:18px 0 0;text-align:center}
 @media (max-width:560px){#najd .pl-stats{grid-template-columns:repeat(3,1fr)}#najd .pl-code{min-width:58px;font-size:11px}#najd .pl-c{padding:11px 10px;gap:8px}}
 #najd .pl-pdf-top{display:flex;gap:14px;align-items:center;margin:0 0 14px}
@@ -106,8 +107,9 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js"></script>
-<script type="module" src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js?v=20261110d"></script>
+<script src="assets/js/i18n.js?v=20261110d"></script>
+<script type="module" src="assets/js/auth.js?v=20261110d"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('pl-tl'))return;
@@ -471,7 +473,7 @@
     });
     return {pages:pages,S:S,m:m};
   }
-  var dateFmt=null;try{dateFmt=new Intl.DateTimeFormat('ar-u-ca-gregory-nu-latn',{day:'numeric',month:'long',year:'numeric'});}catch(e){}
+  var dateFmt=null;try{dateFmt=new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric'});}catch(e){}
   function drawPage(ctx,L,pi){
     var ops=L.pages[pi],S=L.S,m=L.m,total=L.pages.length,name=(st.name||'').trim();
     ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,PW,PH);ctx.direction='rtl';

@@ -4,7 +4,7 @@
 #najd .au-field{margin:0 0 16px}
 #najd .au-field label{display:block;font-size:15px;font-weight:700;color:var(--ink);margin:0 0 6px}
 #najd .au-field input[type=text],#najd .au-field input[type=email],#najd .au-field input[type=password]{width:100%;height:52px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-size:16px;background:var(--bg);color:var(--ink);margin:0;box-shadow:none}
-#najd .au-field input:focus{background:#fff;border-color:var(--teal)}
+#najd .au-field input:focus{background:var(--surface);border-color:var(--teal)}
 #najd .au-field small{display:block;font-size:13px;color:var(--slate);margin:6px 0 0}
 #najd .au-pass{position:relative}
 #najd .au-pass input{padding-left:64px!important}
@@ -32,7 +32,7 @@
 #najd .au-err{background:#F6E4E1;border:1px solid #E8C7C1;color:#7A2F27;border-radius:14px;padding:12px 14px;font-size:15px;margin:0 0 16px}
 #najd .au-or{display:flex;align-items:center;gap:12px;color:var(--slate);font-size:14px;margin:18px 0}
 #najd .au-or::before,#najd .au-or::after{content:"";flex:1;height:1px;background:var(--line)}
-#najd .au-google{width:100%;height:52px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:background .15s,border-color .15s}
+#najd .au-google{width:100%;height:52px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:background .15s,border-color .15s}
 #najd .au-google:hover{background:var(--bg);border-color:var(--grey)}
 #najd .au-google svg{width:20px;height:20px}
 #najd .au-side{background:radial-gradient(400px 220px at 0% 0%,#4C7A78 0%,rgba(76,122,120,0) 70%),linear-gradient(160deg,var(--deep),var(--deeper));box-shadow:var(--shadow-lg)}

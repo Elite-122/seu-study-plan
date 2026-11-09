@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
 <title>لوحة الإدارة | أكاديمية نجد</title>
@@ -10,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261110d">
 <style>
 #najd .ad-tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
 #najd .ad-tab{flex:1 1 auto;height:44px;padding:0 14px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap}
@@ -20,7 +21,7 @@
 #najd .ad-f label,#najd .ad-lbl{display:block;font-size:14.5px;font-weight:700;margin:0 0 6px}
 #najd .ad-f input[type=text],#najd .ad-f input[type=url],#najd .ad-f input[type=email],#najd .ad-f input[type=number],#najd .ad-f input[type=date],#najd .ad-f select,#najd .ad-f textarea{width:100%;height:48px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:0 12px;font-size:15.5px;color:var(--ink)}
 #najd .ad-f textarea{height:90px;padding:10px 12px;resize:vertical;font-family:inherit}
-#najd .ad-f input:focus,#najd .ad-f select:focus,#najd .ad-f textarea:focus{background:#fff;border-color:var(--teal)}
+#najd .ad-f input:focus,#najd .ad-f select:focus,#najd .ad-f textarea:focus{background:var(--surface);border-color:var(--teal)}
 #najd .ad-f small{display:block;font-size:13px;color:var(--slate);margin:4px 0 0}
 #najd .ad-checks{display:flex;flex-wrap:wrap;gap:8px}
 #najd .ad-checks label{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;margin:0}
@@ -35,7 +36,7 @@
 #najd .ad-row b{display:block;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #najd .ad-row small{color:var(--slate);font-size:13.5px}
 #najd .ad-row .is-off{color:#8E3F37;font-weight:700}
-#najd .ad-row button{height:38px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:0 12px;font-size:14px;font-weight:700;cursor:pointer;color:var(--deep);flex-shrink:0}
+#najd .ad-row button{height:38px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 12px;font-size:14px;font-weight:700;cursor:pointer;color:var(--dtext);flex-shrink:0}
 #najd .ad-row button.del{color:#8E3F37;border-color:#E8C7C1}
 #najd .ad-uid{direction:ltr;font-family:ui-monospace,Menlo,monospace;background:var(--bg);border:1px dashed var(--grey);border-radius:10px;padding:10px 12px;font-size:14px;word-break:break-all;margin:10px 0}
 #najd .ad-steps{margin:10px 0 0;padding-right:18px!important}
@@ -86,10 +87,11 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js"></script>
-<script src="assets/js/coop-data.js"></script>
+<script src="assets/js/layout.js?v=20261110d"></script>
+<script src="assets/js/i18n.js?v=20261110d"></script>
+<script src="assets/js/coop-data.js?v=20261110d"></script>
 <script type="module">
-import { auth, db } from "./assets/js/auth.js";
+import { auth, db } from "./assets/js/auth.js?v=20261110d";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, setDoc, deleteDoc, writeBatch, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 

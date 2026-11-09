@@ -27,18 +27,27 @@
   function navLinks(){return NAV.map(function(n){return '<a href="'+LINKS[n[0]]+'"'+(PAGE===n[0]?' aria-current="page"':'')+'>'+n[1]+'</a>';}).join('');}
   var userBox='<div class="nj-user nj-member"><span class="nj-av" data-u="init">ن</span><span><span class="nj-uname" data-u="name"></span><span class="nj-sync" data-u="sync">تقدمك محفوظ في حسابك</span></span><button type="button" class="nj-out" data-logout>خروج</button></div>';
 
+  /* الوضع الداكن/الفاتح واللغة */
+  var SUN='<svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>';
+  var MOON='<svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>';
+  var PREFS='<button type="button" class="nj-ic" data-theme-toggle aria-label="تبديل الوضع الداكن" title="الوضع الداكن / الفاتح">'+MOON+SUN+'</button>';
+  var PREFS_LBL='<button type="button" class="nj-ic" data-theme-toggle>'+MOON+SUN+'<span>الوضع الداكن / الفاتح</span></button>';
+  function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('najd_theme',t);}catch(e){}var mc=document.querySelector('meta[name=theme-color]');if(mc)mc.setAttribute('content',t==='dark'?'#0F1817':'#2F4F4E');}
+  if(!document.documentElement.getAttribute('data-theme')){var t0='light';try{t0=localStorage.getItem('najd_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){}document.documentElement.setAttribute('data-theme',t0);}
+  root.addEventListener('click',function(e){if(e.target.closest('[data-theme-toggle]'))setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
+
   var head=document.getElementById('nj-header');
   if(head){
     head.outerHTML='<header class="nj-head" id="nj-head"><div class="nj-in nj-bar">'
-      +'<a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo.svg" alt="أكاديمية نجد" width="184" height="45"></a>'
+      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg" alt="أكاديمية نجد" width="184" height="45"></a>'
       +'<nav class="nj-nav" aria-label="القائمة الرئيسية">'+navLinks()+'</nav>'
-      +'<div class="nj-acts">'
+      +'<div class="nj-acts">'+PREFS
       +'<a class="nj-btn nj-btn-line nj-btn-sm nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
       +'<a class="nj-btn nj-btn-fill nj-btn-sm nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a>'
       +userBox
       +'<button type="button" class="nj-menu" id="nj-menu" aria-expanded="false" aria-controls="nj-drawer" aria-label="فتح القائمة"><i></i><i></i><i></i></button>'
       +'</div></div>'
-      +'<div class="nj-drawer" id="nj-drawer">'+navLinks()
+      +'<div class="nj-drawer" id="nj-drawer">'+navLinks()+'<div class="nj-prefs">'+PREFS_LBL+'</div>'
       +userBox
       +'<a class="nj-btn nj-btn-fill nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a>'
       +'<a class="nj-btn nj-btn-line nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
@@ -58,6 +67,11 @@
       +'</div></footer>';
   }
   var t=document.createElement('div');t.className='nj-toast';t.setAttribute('role','status');t.setAttribute('aria-live','polite');root.appendChild(t);
+
+  /* حقول التاريخ والوقت والأرقام: نخليها بالإنجليزي */
+  function enInputs(scope){var ins=(scope||root).querySelectorAll('input[type=date],input[type=time],input[type=datetime-local],input[type=month],input[type=number]');for(var q=0;q<ins.length;q++){ins[q].setAttribute('lang','en');ins[q].setAttribute('dir','ltr');}}
+  enInputs();
+  try{new MutationObserver(function(ms){for(var q=0;q<ms.length;q++)for(var z=0;z<ms[q].addedNodes.length;z++){var nd=ms[q].addedNodes[z];if(nd.nodeType===1)enInputs(nd.parentNode||nd);}}).observe(root,{childList:true,subtree:true});}catch(e){}
 
   /* القائمة في الجوال */
   var hd=document.getElementById('nj-head'),btn=document.getElementById('nj-menu');

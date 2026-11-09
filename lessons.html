@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>الشروحات | أكاديمية نجد</title>
 <meta name="description" content="شروحات فيديو وملفات PDF مرتبة حسب المقرر، لطلاب أكاديمية نجد.">
@@ -10,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261110d">
 <style>
 #najd .ls-status{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 #najd .ls-status .ic{flex-shrink:0;width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--tint)}
@@ -19,10 +20,10 @@
 #najd .ls-status p{font-size:15px;color:var(--muted)}
 #najd .ls-status.is-on{border-color:#C9DBC0;background:#F3F8F0}
 #najd .ls-status.is-on .ic{background:#E2ECDD}
-#najd .ls-mail{direction:ltr;unicode-bidi:embed;font-weight:700;color:var(--deep)}
+#najd .ls-mail{direction:ltr;unicode-bidi:embed;font-weight:700;color:var(--dtext)}
 #najd .ls-chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
-#najd .ls-chip{height:40px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:15px;font-weight:700;cursor:pointer;color:var(--ink)}
-#najd .ls-chip[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+#najd .ls-chip{height:40px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:15px;font-weight:700;cursor:pointer;color:var(--ink)}
+#najd .ls-chip[aria-pressed="true"]{background:var(--deep);border-color:var(--dtext);color:#fff}
 #najd .ls-gh{font-size:21px;font-weight:800;margin:22px 0 12px;display:flex;align-items:center;gap:10px}
 #najd .ls-gh span{font-size:14px;font-weight:700;color:var(--teal);background:var(--tint);border-radius:999px;padding:2px 12px}
 #najd .ls-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
@@ -63,8 +64,9 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js"></script>
-<script type="module" src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js?v=20261110d"></script>
+<script src="assets/js/i18n.js?v=20261110d"></script>
+<script type="module" src="assets/js/auth.js?v=20261110d"></script>
 <script type="module">
 const esc = window.Najd.esc, $ = (id) => document.getElementById(id);
 let lessons = [], access = false, course = "", user = null, F = null;
@@ -73,7 +75,7 @@ function ytId(u) {
   const m = String(u || "").match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/);
   return m ? m[1] : "";
 }
-function fmt(ts) { try { return ts.toDate().toLocaleDateString("ar-SA-u-ca-gregory-nu-latn", { day: "numeric", month: "long", year: "numeric" }); } catch (e) { return ""; } }
+function fmt(ts) { try { return ts.toDate().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); } catch (e) { return ""; } }
 
 function status(acc, info) {
   const s = $("ls-status"), mail = esc((user && user.email) || "");
@@ -131,7 +133,7 @@ $("ls-list").addEventListener("click", async (e) => {
 });
 
 try {
-  const A = await import("./assets/js/auth.js");
+  const A = await import("./assets/js/auth.js?v=20261110d");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: A.db, doc: fs.doc, getDoc: fs.getDoc, sendEmailVerification: fa.sendEmailVerification };

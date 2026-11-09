@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>الجدول الدراسي | أكاديمية نجد</title>
 <meta name="description" content="صمّم جدولك الدراسي، أضف اختباراتك لتقويم جوالك، وحمّله خلفية أو PDF.">
@@ -10,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261110d">
 <style>#najd .sc-title{width:100%;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-size:18px;font-weight:700;background:var(--bg);color:var(--ink);margin:0}
 #najd .sc-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -6px}
 #najd .sc-grid{border-collapse:separate;border-spacing:6px;width:100%;min-width:540px;margin:0;border:0;table-layout:fixed;background:none}
@@ -22,14 +23,14 @@
 #najd .sc-time span{color:var(--slate);font-size:12px}
 #najd .sc-cell{width:100%;height:52px;border:1px solid var(--line);border-radius:12px;padding:4px 6px;font-size:14px;font-weight:500;text-align:center;background:var(--bg);color:var(--ink);margin:0;box-shadow:none}
 #najd .sc-exam{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:14px;margin:0 0 8px;background:var(--bg)}
-#najd .sc-exam input,#najd .sc-exam select,#najd .sc-dev{height:46px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font-size:15px;background:#fff;color:var(--ink);margin:0;box-shadow:none;min-width:0}
+#najd .sc-exam input,#najd .sc-exam select,#najd .sc-dev{height:46px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font-size:15px;background:var(--surface);color:var(--ink);margin:0;box-shadow:none;min-width:0}
 #najd .sc-exam .sc-subj{flex:2 1 180px}
 #najd .sc-exam select{flex:1 1 110px}
 #najd .sc-exam input[type=date]{flex:1 1 150px}
 #najd .sc-exam input[type=time]{flex:1 1 110px}
 #najd .sc-del{background:none;border:0;color:#8E3F37;font-size:14px;font-weight:700;padding:8px;cursor:pointer}
 #najd .sc-empty{font-size:15px;color:var(--slate);margin:0 0 10px}
-#najd .sc-add{width:100%;height:48px;border:1.5px dashed var(--grey);background:none;border-radius:12px;color:var(--deep);font-size:16px;font-weight:700;cursor:pointer}
+#najd .sc-add{width:100%;height:48px;border:1.5px dashed var(--grey);background:none;border-radius:12px;color:var(--dtext);font-size:16px;font-weight:700;cursor:pointer}
 #najd .sc-add:hover{border-color:var(--teal);background:var(--bg)}
 #najd .sc-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 14px}
 #najd .sc-mode{display:flex;flex-direction:column;align-items:center;gap:6px;border:2px solid var(--line);background:var(--card);border-radius:16px;padding:14px 8px;cursor:pointer;color:var(--ink);text-align:center}
@@ -48,25 +49,35 @@
 #najd .sc-pick-t{font-size:16px;font-weight:800;margin:0 0 2px}
 #najd .sc-pick-h{font-size:14px;color:var(--muted);margin:0 0 10px}
 #najd .sc-pick-sel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
-#najd .sc-pick-sel select{height:44px;border:1px solid var(--line);border-radius:12px;padding:0 10px;font-size:15px;background:#fff;color:var(--ink);margin:0;min-width:0}
+#najd .sc-pick-sel select{height:44px;border:1px solid var(--line);border-radius:12px;padding:0 10px;font-size:15px;background:var(--surface);color:var(--ink);margin:0;min-width:0}
 #najd .sc-chips{display:flex;flex-wrap:wrap;gap:8px}
-#najd .sc-chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;line-height:1.5}
-#najd .sc-chip small{font-weight:500;color:var(--slate);margin-right:4px}
-#najd .sc-chip[aria-pressed="true"]{border-color:var(--deep);box-shadow:0 0 0 3px rgba(86,138,136,.25)}
+#najd .sc-chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;line-height:1.5}
+#najd .sc-chip b{font-weight:800;letter-spacing:.3px}
+#najd .sc-chip small{display:block;font-weight:500;color:var(--slate);font-size:12.5px;line-height:1.3}
+#najd .sc-chip{line-height:1.25!important;padding:6px 14px!important;border-radius:14px!important;text-align:center}
+#najd .sc-wrap{position:relative}
+#najd .sc-show{position:absolute;inset:2px;display:none;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;line-height:1.15;padding:2px 6px;overflow:hidden;text-align:center}
+#najd .sc-show b{font-size:15px;font-weight:800;letter-spacing:.3px;color:var(--ink)}
+#najd .sc-show small{font-size:11px;font-weight:500;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#najd .sc-wrap.has-c .sc-show{display:flex}
+#najd .sc-wrap.has-c .sc-cell{color:transparent}
+#najd .sc-wrap.has-c .sc-cell:focus{color:var(--ink)}
+#najd .sc-wrap.has-c .sc-cell:focus+.sc-show{display:none}
+#najd .sc-chip[aria-pressed="true"]{border-color:var(--dtext);box-shadow:0 0 0 3px rgba(86,138,136,.25)}
 #najd .sc-brush{display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--deep);color:#fff;border-radius:14px;padding:10px 14px;margin:0 0 10px;font-size:15px;position:sticky;top:8px;z-index:3}
 #najd .sc-brush.is-on{display:flex}
 #najd .sc-brush b{color:#F3E9CF}
-#najd .sc-brush button{flex-shrink:0;height:36px;border:0;border-radius:10px;background:var(--light);color:var(--deep);font-size:14px;font-weight:800;padding:0 14px;cursor:pointer}
+#najd .sc-brush button{flex-shrink:0;height:36px;border:0;border-radius:10px;background:var(--light);color:var(--dtext);font-size:14px;font-weight:800;padding:0 14px;cursor:pointer}
 #najd .sc-grid.is-brush .sc-cell{cursor:copy}
-#najd .sc-grid.is-brush .sc-cell:hover{border-color:var(--deep)}
+#najd .sc-grid.is-brush .sc-cell:hover{border-color:var(--dtext)}
 #najd .sc-cal{margin:14px 0 0;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px}
 #najd .sc-cal .nj-btn{width:100%;height:52px;font-size:17px}
 #najd .sc-cal-note{font-size:14px;color:var(--muted);margin:8px 0 0}
 #najd .sc-gcal{margin:10px 0 0;font-size:14px;color:var(--muted)}
-#najd .sc-gcal a{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;margin:6px 0 0 6px;color:var(--deep);font-weight:700;font-size:13px}
+#najd .sc-gcal a{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;margin:6px 0 0 6px;color:var(--dtext);font-weight:700;font-size:13px}
 #najd .sc-gcal a:hover{border-color:var(--teal)}
 #najd .sc-theme{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
-#najd .sc-th{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border:2px solid var(--line);border-radius:12px;background:#fff;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
+#najd .sc-th{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border:2px solid var(--line);border-radius:12px;background:var(--surface);font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
 #najd .sc-th i{width:22px;height:22px;border-radius:6px;border:1px solid var(--line)}
 #najd .sc-th[aria-pressed="true"]{border-color:var(--teal);background:#EEF4F4}</style>
 </head>
@@ -159,12 +170,14 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js"></script>
-<script type="module" src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js?v=20261110d"></script>
+<script src="assets/js/i18n.js?v=20261110d"></script>
+<script type="module" src="assets/js/auth.js?v=20261110d"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('sc-grid'))return;
   var SITE='najdacdemy.com';
+  function T(s){return window.NajdT?window.NajdT(s):s;}
   var FONT="'Tajawal','Geeza Pro',Tahoma,sans-serif";
   var DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس'];
   var C={deep:'#2F4F4E',ridge:'#35595A',bg:'#F4F7F7',empty:'#E4E9EB',slate:'#758A8C',mist:'#C8CFD2',light:'#E4E9EB'};
@@ -184,6 +197,11 @@
     for(n in st.colors){if(!used[n])delete st.colors[n];}
     for(n in used){if(st.colors[n]===undefined){var cnt=PAL.map(function(){return 0;});for(var m in st.colors)cnt[st.colors[m]]++;var best=0;for(var i=1;i<PAL.length;i++){if(cnt[i]<cnt[best])best=i;}st.colors[n]=best;}}
   }
+  /* رمز المقرر + اسمه: نعرض الرمز كبير والاسم تحته */
+  var BYNAME={},BYCODE={};
+  function buildCourses(){if(typeof majors==='undefined')return;Object.keys(majors).forEach(function(k){majors[k].levels.forEach(function(l){l.courses.forEach(function(c){BYNAME[c[2].trim()]=c[0];BYCODE[c[0].toUpperCase()]=c[2];});});});}
+  function course(v){v=(v||'').trim();if(!v)return null;var up=v.toUpperCase().replace(/\s+/g,'');if(BYCODE[up])return {code:up,name:BYCODE[up]};if(BYNAME[v])return {code:BYNAME[v],name:v};return null;}
+  function label(v){var c=course(v);return c?c.code+' - '+c.name:(v||'').trim();}
   function colorOf(name){var i=st.colors[(name||'').trim()];return i===undefined?null:PAL[i];}
   /* grid */
   var grid=$('sc-grid');
@@ -192,12 +210,13 @@
   gh+='</tr></thead><tbody>';
   SLOTS.forEach(function(sl,r){
     gh+='<tr><td class="sc-time"><b>'+sl.s+'</b><span>'+sl.e+'</span></td>';
-    DAYS.forEach(function(d,c){var k=c+'-'+r;gh+='<td><input class="sc-cell" type="text" maxlength="40" data-k="'+k+'" aria-label="'+d+' '+sl.s+'" value="'+esc(st.cells[k])+'"></td>';});
+    DAYS.forEach(function(d,c){var k=c+'-'+r;gh+='<td><div class="sc-wrap"><input class="sc-cell" type="text" maxlength="40" data-k="'+k+'" aria-label="'+d+' '+sl.s+'" value="'+esc(st.cells[k])+'"><span class="sc-show" aria-hidden="true"></span></div></td>';});
     gh+='</tr>';
   });
   grid.innerHTML=gh+'</tbody>';
   var cells=grid.querySelectorAll('.sc-cell');
-  function paint(inp){var c=colorOf(inp.value);inp.style.background=c?c.bg:'';inp.style.borderColor=c?c.ac:'';}
+  function paint(inp){var c=colorOf(inp.value);inp.style.background=c?c.bg:'';inp.style.borderColor=c?c.ac:'';
+    var cr=course(inp.value),w=inp.parentNode,sh=w.querySelector('.sc-show');w.classList.toggle('has-c',!!cr);sh.innerHTML=cr?'<b>'+esc(cr.code)+'</b><small>'+esc(cr.name)+'</small>':'';}
   function paintAll(){for(var i=0;i<cells.length;i++)paint(cells[i]);}
   var dl=document.createElement('datalist');dl.id='sc-subjects';root.appendChild(dl);
   function refreshList(){var o='';Object.keys(st.colors).forEach(function(n){o+='<option value="'+esc(n)+'">';});dl.innerHTML=o;}
@@ -244,9 +263,9 @@
     titleIn.value='';for(var i=0;i<cells.length;i++)cells[i].value='';paintAll();refreshList();renderExams();
   });
   /* drawing */
-  var dFmt=null;try{dFmt=new Intl.DateTimeFormat('ar-u-ca-gregory-nu-latn',{weekday:'long',day:'numeric',month:'long'});}catch(e){}
+  var dFmt=null;try{dFmt=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short'});}catch(e){}
   function fDate(s){if(!s)return 'بدون تاريخ';var p=s.split('-');var d=new Date(+p[0],+p[1]-1,+p[2]);return dFmt?dFmt.format(d):s;}
-  function fTime(t){if(!t)return '';var p=t.split(':'),hh=+p[0];return ((hh%12)||12)+':'+p[1]+' '+(hh<12?'ص':'م');}
+  function fTime(t){if(!t)return '';var p=t.split(':'),hh=+p[0];return ((hh%12)||12)+':'+p[1]+' '+(hh<12?'AM':'PM');}
   function rr(ctx,x,y,w,h,r){r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
   function poly(ctx,pts,fill){ctx.beginPath();ctx.moveTo(pts[0],pts[1]);for(var i=2;i<pts.length;i+=2)ctx.lineTo(pts[i],pts[i+1]);ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
   function fit(ctx,text,maxW,maxLines,size,minSize,weight){
@@ -302,16 +321,16 @@
     ridge([0,12,.08,24,.16,10,.24,28,.31,14,.39,30,.47,12,.54,26,.62,10,.7,28,.78,14,.86,24,.93,10,1,18],C.bg);
     drawMark(ctx,padX,headH-150,96);
     ctx.direction='rtl';ctx.textBaseline='alphabetic';ctx.textAlign='right';
-    var title=(st.title||'').trim()||'جدولي الدراسي';
+    var title=(st.title||'').trim()||T('جدولي الدراسي');
     var tf=fit(ctx,title,LW-2*padX-170,1,58,30,'800');
     ctx.font='800 '+tf.size+'px '+FONT;ctx.fillStyle='#FFFFFF';ctx.fillText(tf.lines[0],LW-padX,headH-110);
-    ctx.font='500 24px '+FONT;ctx.fillStyle=C.sub;ctx.fillText('من الأحد إلى الخميس',LW-padX,headH-70);
+    ctx.font='500 24px '+FONT;ctx.fillStyle=C.sub;ctx.fillText(T('من الأحد إلى الخميس'),LW-padX,headH-70);
     var timeW=110,dayW=(LW-2*padX-timeW-5*colGap)/5,xTime=LW-padX-timeW;
     function dayX(i){return xTime-colGap-(i+1)*dayW-i*colGap;}
     var y0=headH+gap+shift;
     ctx.textBaseline='middle';ctx.textAlign='center';
-    ctx.font='500 22px '+FONT;ctx.fillStyle=C.muted;ctx.fillText('الوقت',xTime+timeW/2,y0+gridHeadH/2);
-    ctx.font='800 26px '+FONT;ctx.fillStyle=C.ink;DAYS.forEach(function(d,i){ctx.fillText(d,dayX(i)+dayW/2,y0+gridHeadH/2);});
+    ctx.font='500 22px '+FONT;ctx.fillStyle=C.muted;ctx.fillText(T('الوقت'),xTime+timeW/2,y0+gridHeadH/2);
+    ctx.font='800 26px '+FONT;ctx.fillStyle=C.ink;DAYS.forEach(function(d,i){ctx.fillText(window.NajdLang==='en'?T(['أحد','اثنين','ثلاثاء','أربعاء','خميس'][i]):d,dayX(i)+dayW/2,y0+gridHeadH/2);});
     var maxLines=rowH>118?3:2;
     SLOTS.forEach(function(sl,r){
       var y=y0+gridHeadH+r*(rowH+rowGap);
@@ -324,17 +343,26 @@
         if(!v||!col)continue;
         if(C.dark){ctx.globalAlpha=.42;ctx.fillStyle=col.ac;ctx.fill();ctx.globalAlpha=1;}else{ctx.fillStyle=col.bg;ctx.fill();}
         rr(ctx,x+dayW-13,y+12,6,rowH-24,3);ctx.fillStyle=C.dark?col.bg:col.ac;ctx.fill();
+        var cr=course(v),cx=x+(dayW-14)/2;
+        if(cr){
+          var cf=fit(ctx,cr.code,dayW-34,1,30,16,'800'),nf=fit(ctx,T(cr.name),dayW-34,Math.max(1,maxLines-1),18,12,'500');
+          var nlh=nf.size*1.25,blockH=cf.size+6+nf.lines.length*nlh,by=y+rowH/2-blockH/2;
+          ctx.font='800 '+cf.size+'px '+FONT;ctx.fillStyle=C.dark?'#FFFFFF':C.ink;ctx.fillText(cf.lines[0],cx,by+cf.size/2);
+          ctx.font='500 '+nf.size+'px '+FONT;ctx.fillStyle=C.dark?'rgba(255,255,255,.85)':C.muted;
+          for(var ni=0;ni<nf.lines.length;ni++){ctx.fillText(nf.lines[ni],cx,by+cf.size+6+nlh/2+ni*nlh);}
+        }else{
         var t=fit(ctx,v,dayW-34,maxLines,26,15,'700');
         ctx.font='700 '+t.size+'px '+FONT;ctx.fillStyle=C.dark?'#FFFFFF':C.ink;
         var lhh=t.size*1.3,ty=y+rowH/2-(t.lines.length-1)*lhh/2;
-        for(var li=0;li<t.lines.length;li++){ctx.fillText(t.lines[li],x+(dayW-14)/2,ty+li*lhh);}
+        for(var li=0;li<t.lines.length;li++){ctx.fillText(t.lines[li],cx,ty+li*lhh);}
+        }
       }
     });
     var endY=y0+gridHeadH+7*(rowH+rowGap)-rowGap;
     if(exams.length){
       var ey=endY+gap;
       ctx.textAlign='right';ctx.textBaseline='middle';
-      ctx.font='800 34px '+FONT;ctx.fillStyle=C.ink;ctx.fillText('مواعيد الاختبارات',LW-padX,ey+exTitleH/2-6);
+      ctx.font='800 34px '+FONT;ctx.fillStyle=C.ink;ctx.fillText(T('مواعيد الاختبارات'),LW-padX,ey+exTitleH/2-6);
       var cw=LW-2*padX;
       exams.forEach(function(x,i){
         var y=ey+exTitleH+i*exRowH,h=exRowH-12;
@@ -343,12 +371,22 @@
         var fin=x.type==='final',chipW=118,chipX=padX+cw-24-chipW;
         rr(ctx,chipX,y+h/2-20,chipW,40,20);
         if(C.dark){ctx.globalAlpha=.4;ctx.fillStyle=fin?'#B0625A':'#B08A4E';ctx.fill();ctx.globalAlpha=1;}else{ctx.fillStyle=fin?'#F0DEDB':'#EFE6D6';ctx.fill();}
-        ctx.textAlign='center';ctx.font='700 22px '+FONT;ctx.fillStyle=C.dark?(fin?'#F6D9D4':'#F3E9CF'):(fin?'#8E3F37':'#7A5A22');ctx.fillText(fin?'فاينل':'ميدتيرم',chipX+chipW/2,y+h/2+1);
-        var dateW=270,sub=fit(ctx,(x.subject||'').trim()||'مادة',cw-24-chipW-18-dateW-24,1,28,18,'700');
-        ctx.textAlign='right';ctx.font='700 '+sub.size+'px '+FONT;ctx.fillStyle=C.ink;ctx.fillText(sub.lines[0],chipX-18,y+h/2+1);
-        ctx.textAlign='left';var tm=fTime(x.time);
+        ctx.textAlign='center';ctx.font='700 22px '+FONT;ctx.fillStyle=C.dark?(fin?'#F6D9D4':'#F3E9CF'):(fin?'#8E3F37':'#7A5A22');ctx.fillText(T(fin?'فاينل':'ميدتيرم'),chipX+chipW/2,y+h/2+1);
+        var dateW=270,availW=cw-24-chipW-18-dateW-24,ec=course(x.subject);
+        ctx.textAlign='right';
+        if(ec){
+          ctx.font='800 28px '+FONT;var codeW=ctx.measureText(ec.code).width;
+          ctx.fillStyle=C.ink;ctx.fillText(ec.code,chipX-18,y+h/2+1);
+          var en=fit(ctx,T(ec.name),Math.max(60,availW-codeW-14),1,20,14,'500');
+          ctx.font='500 '+en.size+'px '+FONT;ctx.fillStyle=C.muted;ctx.fillText(en.lines[0],chipX-18-codeW-14,y+h/2+2);
+        }else{
+          var sub=fit(ctx,(x.subject||'').trim()||'مادة',availW,1,28,18,'700');
+          ctx.font='700 '+sub.size+'px '+FONT;ctx.fillStyle=C.ink;ctx.fillText(sub.lines[0],chipX-18,y+h/2+1);
+        }
+        ctx.textAlign='left';ctx.direction='ltr';var tm=fTime(x.time);
         ctx.font='700 22px '+FONT;ctx.fillStyle=C.ink;ctx.fillText(fDate(x.date),padX+22,tm?y+h/2-13:y+h/2+1);
         if(tm){ctx.font='500 20px '+FONT;ctx.fillStyle=C.muted;ctx.fillText(tm,padX+22,y+h/2+15);}
+        ctx.direction='rtl';
       });
       endY=ey+exTitleH+exams.length*exRowH;
     }
@@ -674,7 +712,7 @@
     var cs=majors[st.pick.major].levels[st.pick.level].courses,seen={},o='';
     cs.forEach(function(c){var n=c[2];if(seen[n])return;seen[n]=1;var col=colorOf(n),on=brush===n,sty='';
       if(col)sty='background:'+col.bg+(on?'':';border-color:'+col.ac);
-      o+='<button type="button" class="sc-chip" data-sub="'+esc(n)+'" aria-pressed="'+on+'"'+(sty?' style="'+sty+'"':'')+'>'+esc(n)+'<small>'+esc(c[0])+'</small></button>';});
+      o+='<button type="button" class="sc-chip" data-sub="'+esc(n)+'" aria-pressed="'+on+'"'+(sty?' style="'+sty+'"':'')+'><b>'+esc(c[0])+'</b><small>'+esc(n)+'</small></button>';});
     chipsBox.innerHTML=o;
   }
   function setBrush(n){
@@ -683,6 +721,7 @@
     grid.classList.toggle('is-brush',!!brush);for(var i=0;i<cells.length;i++)cells[i].readOnly=!!brush;
     renderChips();
   }
+  buildCourses();paintAll();
   mSel.value=st.pick.major;fillLevels();renderChips();
   mSel.addEventListener('change',function(){st.pick.major=mSel.value;st.pick.level=0;fillLevels();setBrush(null);save();});
   lSel.addEventListener('change',function(){st.pick.level=+lSel.value;setBrush(null);save();});
@@ -698,13 +737,13 @@
   function fold(line){var out='',cur='',bytes=0;for(var i=0;i<line.length;i++){var ch=line.charAt(i),code=line.charCodeAt(i),b=code<0x80?1:code<0x800?2:3;if(code>=0xD800&&code<=0xDBFF){ch=line.substr(i,2);i++;b=4;}if(bytes+b>73){out+=cur+'\r\n ';cur='';bytes=1;}cur+=ch;bytes+=b;}return out+cur;}
   function utc(y,mo,d,h,mi){var x=new Date(Date.UTC(y,mo-1,d,h-3,mi));return x.getUTCFullYear()+pad(x.getUTCMonth()+1)+pad(x.getUTCDate())+'T'+pad(x.getUTCHours())+pad(x.getUTCMinutes())+'00Z';}
   function nextDay(y,mo,d){var x=new Date(Date.UTC(y,mo-1,d+1));return x.getUTCFullYear()+pad(x.getUTCMonth()+1)+pad(x.getUTCDate());}
-  function typeName(x){return x.type==='final'?'فاينل':'ميدتيرم';}
+  function typeName(x){return T(x.type==='final'?'فاينل':'ميدتيرم');}
   function datedExams(){return examList().filter(function(x){return /^\d{4}-\d{2}-\d{2}$/.test(x.date||'');});}
   function buildIcs(list){
     var n=new Date(),stamp=n.getUTCFullYear()+pad(n.getUTCMonth()+1)+pad(n.getUTCDate())+'T'+pad(n.getUTCHours())+pad(n.getUTCMinutes())+pad(n.getUTCSeconds())+'Z';
     var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Najd Academy//Exam Reminders//AR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:'+icsEsc('اختباراتي من أكاديمية نجد')];
     list.forEach(function(x,i){
-      var p=x.date.split('-').map(Number),sub=(x.subject||'').trim()||'مادة',title=typeName(x)+': '+sub;
+      var p=x.date.split('-').map(Number),sub=label(x.subject)||'مادة',title=typeName(x)+': '+sub;
       L.push('BEGIN:VEVENT','UID:najd-'+x.date.replace(/-/g,'')+'-'+i+'-'+hash(title+(x.time||''))+'@'+(SITE||'najd-academy'),'DTSTAMP:'+stamp);
       if(x.time){var t=x.time.split(':').map(Number);L.push('DTSTART:'+utc(p[0],p[1],p[2],t[0],t[1]),'DTEND:'+utc(p[0],p[1],p[2],t[0]+2,t[1]));}
       else L.push('DTSTART;VALUE=DATE:'+p[0]+pad(p[1])+pad(p[2]),'DTEND;VALUE=DATE:'+nextDay(p[0],p[1],p[2]));
@@ -725,7 +764,7 @@
   function renderGcal(){
     var list=datedExams(),b2=$('sc-gcal');if(!list.length){b2.innerHTML='';return;}
     var o='<span>تستخدم تقويم قوقل؟ أضف كل اختبار بضغطة:</span><br>';
-    list.forEach(function(x){var sub=(x.subject||'').trim()||'مادة',title=typeName(x)+': '+sub;
+    list.forEach(function(x){var sub=label(x.subject)||'مادة',title=typeName(x)+': '+sub;
       var u='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('📝 '+title)+'&dates='+gDates(x)+'&ctz=Asia%2FRiyadh&details='+encodeURIComponent('تذكير من أكاديمية نجد');
       o+='<a href="'+esc(u)+'" target="_blank" rel="noopener">＋ '+esc(typeName(x)+' '+sub)+'</a>';});
     b2.innerHTML=o;

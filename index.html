@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>أكاديمية نجد | دراستك أوضح، وخطتك أسهل</title>
 <meta name="description" content="أكاديمية نجد لطلاب جامعة الأمير مساعد بن عبدالرحمن: خطتك الدراسية، جدولك، حاسبة المعدل، وشروحات ومساعد دراسي في مكان واحد.">
@@ -10,12 +11,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261110d">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
 #najd .hm-hero .nj-in{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-#najd .hm-kick{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;color:var(--teal);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:var(--shadow)}
+#najd .hm-kick{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;color:var(--teal);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:var(--shadow)}
 #najd .hm-hero h1{font-size:50px;font-weight:800;line-height:1.25;margin:18px 0 0;isolation:isolate}
 #najd .hm-hero h1 em{font-style:normal;color:var(--teal);position:relative;white-space:nowrap}
 #najd .hm-hero h1 em::after{content:"";position:absolute;right:0;left:0;bottom:4px;height:10px;background:#D6E6E4;border-radius:6px;z-index:-1}
@@ -27,7 +28,7 @@
 #najd .hm-trust svg{width:18px;height:18px;color:var(--teal)}
 /* لوحة توضيحية */
 #najd .hm-vis{position:relative;min-height:440px}
-#najd .hm-win{position:absolute;inset:20px 0 40px 40px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow-lg);padding:18px;overflow:hidden}
+#najd .hm-win{position:absolute;inset:20px 0 40px 40px;background:var(--surface);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow-lg);padding:18px;overflow:hidden}
 #najd .hm-win-bar{display:flex;gap:6px;margin:0 0 16px}
 #najd .hm-win-bar i{width:10px;height:10px;border-radius:50%;background:var(--light)}
 #najd .hm-win-bar i:first-child{background:var(--soft)}
@@ -45,14 +46,14 @@
 #najd .hm-gpa small{color:var(--mist);font-size:13px}
 #najd .hm-gpa b{display:block;font-size:38px;line-height:1.1;font-weight:800}
 #najd .hm-gpa span{display:inline-block;font-size:12.5px;background:rgba(255,255,255,.14);border-radius:999px;padding:2px 10px;margin-top:4px}
-#najd .hm-chip{position:absolute;top:0;left:0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow);font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;animation:hmFloat 6s ease-in-out infinite reverse}
+#najd .hm-chip{position:absolute;top:0;left:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow);font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;animation:hmFloat 6s ease-in-out infinite reverse}
 #najd .hm-chip i{width:28px;height:28px;border-radius:8px;background:var(--tint);display:inline-flex;align-items:center;justify-content:center;font-style:normal}
 @keyframes hmFloat{50%{transform:translateY(-8px)}}
 
 /* شريط الأرقام (بأسلوب فرونت إيدوس) */
 #najd .hm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:-44px;position:relative;z-index:2}
-#najd .hm-stat{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
-#najd .hm-stat b{display:block;font-size:40px;font-weight:800;line-height:1.1;color:var(--deep)}
+#najd .hm-stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
+#najd .hm-stat b{display:block;font-size:40px;font-weight:800;line-height:1.1;color:var(--dtext)}
 #najd .hm-stat b sup{font-size:20px;color:var(--teal);margin-inline-start:2px}
 #najd .hm-stat>span{display:block;font-size:16px;font-weight:700;margin:6px 0 0}
 #najd .hm-stat small{display:block;font-size:13.5px;color:var(--slate)}
@@ -67,7 +68,7 @@
 #najd .hm-story{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 #najd .hm-story h2{font-size:34px;font-weight:800;line-height:1.35}
 #najd .hm-story-t p{font-size:17.5px;color:var(--muted);margin:16px 0 0}
-#najd .hm-story-t p b{color:var(--deep)}
+#najd .hm-story-t p b{color:var(--dtext)}
 #najd .hm-vals{display:grid;gap:12px}
 #najd .hm-val{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
 #najd .hm-val svg{flex-shrink:0;width:48px;height:48px}
@@ -79,8 +80,8 @@
 #najd .hm-coop h2{font-size:32px;font-weight:800;line-height:1.35}
 #najd .hm-coop p{font-size:17px;color:var(--muted);margin:10px 0 0}
 #najd .hm-cities{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:28px;border-radius:24px;background:linear-gradient(160deg,var(--tint),var(--light))}
-#najd .hm-cities span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:15px;font-weight:700;color:var(--deep);box-shadow:var(--shadow)}
-#najd .hm-cities span:nth-child(3n+1){background:var(--deep);color:#fff;border-color:var(--deep)}
+#najd .hm-cities span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:15px;font-weight:700;color:var(--dtext);box-shadow:var(--shadow)}
+#najd .hm-cities span:nth-child(3n+1){background:var(--deep);color:#fff;border-color:var(--dtext)}
 @media (max-width:1000px){#najd .hm-coop{grid-template-columns:1fr}}
 @media (max-width:760px){#najd .hm-coop h2{font-size:26px}}
 /* الخطوات */
@@ -100,14 +101,14 @@
 #najd .hm-acc li{display:flex;gap:10px;align-items:center;font-size:16px;font-weight:500}
 #najd .hm-acc li::before{content:"✓";flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--tint);color:var(--teal);font-weight:800;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
 #najd .hm-dev{display:flex;align-items:flex-end;justify-content:center;gap:18px;padding:20px;background:linear-gradient(160deg,var(--tint),var(--light));border-radius:22px;min-height:260px;position:relative}
-#najd .hm-phone{width:118px;height:220px;border-radius:24px;background:#fff;border:6px solid var(--deep);padding:10px 8px;display:flex;flex-direction:column;gap:6px}
+#najd .hm-phone{width:118px;height:220px;border-radius:24px;background:var(--surface);border:6px solid var(--deep);padding:10px 8px;display:flex;flex-direction:column;gap:6px}
 #najd .hm-lap{width:260px}
-#najd .hm-lap-s{height:160px;border-radius:14px 14px 0 0;background:#fff;border:6px solid var(--deep);border-bottom:0;padding:12px;display:flex;flex-direction:column;gap:7px}
+#najd .hm-lap-s{height:160px;border-radius:14px 14px 0 0;background:var(--surface);border:6px solid var(--deep);border-bottom:0;padding:12px;display:flex;flex-direction:column;gap:7px}
 #najd .hm-lap-b{height:14px;background:var(--deep);border-radius:0 0 12px 12px;margin:0 -16px}
 #najd .hm-ln{height:9px;border-radius:5px;background:var(--light)}
 #najd .hm-ln.t{background:var(--teal);width:60%}
 #najd .hm-ln.s{width:80%}
-#najd .hm-cloud{position:absolute;top:18px;left:50%;transform:translateX(-50%);background:#fff;border-radius:999px;padding:6px 14px;font-size:13.5px;font-weight:800;color:var(--teal);box-shadow:var(--shadow);white-space:nowrap}
+#najd .hm-cloud{position:absolute;top:18px;left:50%;transform:translateX(-50%);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:13.5px;font-weight:800;color:var(--teal);box-shadow:var(--shadow);white-space:nowrap}
 
 /* الدعوة الأخيرة */
 #najd .hm-cta{position:relative;overflow:hidden;border-radius:28px;padding:44px;background:radial-gradient(500px 260px at 10% 0%,#4C7A78 0%,rgba(76,122,120,0) 70%),linear-gradient(150deg,var(--deep),var(--deeper));color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -324,7 +325,8 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js"></script>
-<script type="module" src="assets/js/auth.js"></script>
+<script src="assets/js/layout.js?v=20261110d"></script>
+<script src="assets/js/i18n.js?v=20261110d"></script>
+<script type="module" src="assets/js/auth.js?v=20261110d"></script>
 </body>
 </html>
