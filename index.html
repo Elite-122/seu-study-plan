@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261111g">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112a">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
@@ -92,6 +92,19 @@
 #najd .hm-say footer{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--line)}
 #najd .hm-say footer b{display:block;font-size:15.5px}
 #najd .hm-say footer small{font-size:13.5px;color:var(--slate)}
+#najd .hm-share{max-width:640px;margin:22px auto 0;text-align:center}
+#najd .hm-share>p{font-size:16.5px;color:var(--muted);margin:0 0 12px}
+#najd .hm-share-f{text-align:start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);margin-top:6px;position:relative}
+#najd .hm-share-g{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+#najd .hm-share-f label{display:block;font-size:14.5px;font-weight:700;margin:0 0 6px}
+#najd .hm-share-f input[type=text],#najd .hm-share-f textarea{width:100%;height:48px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:0 12px;font-size:15.5px;color:var(--ink);font-family:inherit}
+#najd .hm-share-f textarea{height:110px;padding:10px 12px;resize:vertical}
+#najd .hm-share-n{font-size:13.5px;color:var(--slate);margin:8px 0 0}
+#najd .hm-share-f .hm-ctas{margin:14px 0 0}
+#najd .hm-share-m{font-size:15px;min-height:1.4em;margin:10px 0 0;color:#8E3F37}
+#najd .hm-share-ok{background:var(--tint);border-radius:var(--r);padding:20px;font-size:17px;font-weight:700;color:var(--dtext)}
+html[data-theme="dark"] #najd .hm-share-m{color:#F2C7C1}
+@media (max-width:560px){#najd .hm-share-g{grid-template-columns:1fr}}
 /* القصة والرؤية */
 #najd .hm-story{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 #najd .hm-story h2{font-size:34px;font-weight:800;line-height:1.35}
@@ -335,12 +348,27 @@
 </section>
 
 <!-- آراء الطلاب (تنضاف من لوحة الإدارة، والقسم يختفي لو ما فيه آراء) -->
-<section class="nj-sec" id="says" hidden>
+<section class="nj-sec" id="says">
 <div class="nj-in">
 <div class="nj-sh nj-sh-c">
 <h2 class="nj-tt"><span class="nj-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>وش يقولون الطلاب عن أكاديمية نجد؟</h2>
 </div>
 <div class="hm-says" id="hm-says"></div>
+<div class="hm-share" id="hm-share">
+<p id="hm-share-lead">جرّبت أكاديمية نجد؟ رأيك يهمنا ويساعد غيرك من الطلاب.</p>
+<button type="button" class="nj-btn nj-btn-fill" id="hm-share-btn">شاركنا رأيك</button>
+<form class="hm-share-f" id="hm-share-f" hidden novalidate>
+<div class="hm-share-g">
+<div><label for="sh-name">اسمك *</label><input id="sh-name" type="text" maxlength="40" autocomplete="given-name" placeholder="الاسم الأول يكفي"></div>
+<div><label for="sh-role">تخصصك أو مستواك</label><input id="sh-role" type="text" maxlength="60" placeholder="مثلًا: محاسبة، المستوى السادس"></div>
+</div>
+<label for="sh-text">رأيك *</label><textarea id="sh-text" maxlength="320" placeholder="وش أكثر شي أفادك في أكاديمية نجد؟"></textarea>
+<input type="text" id="sh-web" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+<p class="hm-share-n">رأيك يوصل للإدارة أول، وينشر هنا بعد المراجعة. بنشره توافق إن اسمك ورأيك يظهرون في الموقع.</p>
+<div class="hm-ctas"><button type="submit" class="nj-btn nj-btn-fill" id="sh-send">أرسل رأيي</button><button type="button" class="nj-btn nj-btn-line" id="sh-cancel">إلغاء</button></div>
+<p class="hm-share-m" id="sh-msg" aria-live="polite"></p>
+</form>
+</div>
 </div>
 </section>
 
@@ -373,9 +401,9 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261111g"></script>
-<script src="assets/js/i18n.js?v=20261111g"></script>
-<script type="module" src="assets/js/auth.js?v=20261111g"></script>
+<script src="assets/js/layout.js?v=20261112a"></script>
+<script src="assets/js/i18n.js?v=20261112a"></script>
+<script type="module" src="assets/js/auth.js?v=20261112a"></script>
 <script>
 /* عدّاد الاختبار القادم: من جدول الطالب المحفوظ */
 (function(){
@@ -399,14 +427,35 @@
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=20261111g");
+  const { db } = await import("./assets/js/auth.js?v=20261112a");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
   l.sort((a, b) => (+a.order || 0) - (+b.order || 0));
+  /* إرسال رأي جديد (بدون تسجيل دخول): يروح لصندوق المراجعة، وما ينشر إلا بعد موافقة المشرف */
+  const { addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
+  const $ = (id) => document.getElementById(id), T = (s) => (window.NajdT ? window.NajdT(s) : s);
+  const form = $("hm-share-f"), msg = (t) => { $("sh-msg").textContent = T(t); };
+  $("hm-share-btn").onclick = () => { form.hidden = false; $("hm-share-btn").hidden = true; $("sh-name").focus(); };
+  $("sh-cancel").onclick = () => { form.hidden = true; $("hm-share-btn").hidden = false; msg(""); };
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); msg("");
+    const name = $("sh-name").value.trim(), role = $("sh-role").value.trim(), text = $("sh-text").value.trim();
+    if ($("sh-web").value) return;
+    if (name.length < 2) return msg("اكتب اسمك.");
+    if (text.length < 10) return msg("اكتب رأيك في 10 أحرف على الأقل.");
+    let last = 0; try { last = +localStorage.getItem("najd_said") || 0; } catch (x) {}
+    if (Date.now() - last < 6 * 3600 * 1000) return msg("وصلنا رأيك قبل شوي، شكرًا لك 🤍");
+    const b = $("sh-send"); b.disabled = true;
+    try {
+      await addDoc(collection(db, "testimonialInbox"), { name, role, text, createdAt: serverTimestamp() });
+      try { localStorage.setItem("najd_said", String(Date.now())); } catch (x) {}
+      $("hm-share").innerHTML = '<p class="hm-share-ok">' + T("وصل رأيك، شكرًا لك 🤍 بينشر بعد مراجعة الإدارة.") + "</p>";
+    } catch (er) { console.warn(er); b.disabled = false; msg("ما قدرنا نرسل رأيك. جرب مرة ثانية."); }
+  });
+  if (!l.length) document.querySelector("#says .nj-tt").lastChild.nodeValue = T("شاركنا رأيك في أكاديمية نجد");
   if (l.length) {
     document.getElementById("hm-says").innerHTML = l.slice(0, 6).map((x) => `<article class="hm-say"><p>${esc(x.text)}</p><footer><span class="nj-av" aria-hidden="true">${esc(x.name.trim().charAt(0))}</span><div><b>${esc(x.name)}</b><small>${esc(x.role || "")}</small></div></footer></article>`).join("");
-    document.getElementById("says").hidden = false;
   }
 } catch (e) { console.warn("najd testimonials", e); }
 </script>

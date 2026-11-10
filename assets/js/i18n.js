@@ -1,6 +1,22 @@
 /* أكاديمية نجد — الترجمة للإنجليزي. يترجم نصوص الصفحة بعد ما تنرسم، ويراقب أي محتوى جديد.
    لإضافة ترجمة: أضف السطر في DICT (النص العربي بالضبط: الترجمة). الأرقام في TPL تنكتب {n}. */
 window.NAJD_I18N={DICT:{
+"جرّبت أكاديمية نجد؟ رأيك يهمنا ويساعد غيرك من الطلاب.": "Tried Najd Academy? Your opinion matters and helps other students.",
+"شاركنا رأيك": "Share your opinion",
+"اسمك *": "Your name *",
+"تخصصك أو مستواك": "Your major or level",
+"رأيك *": "Your opinion *",
+"الاسم الأول يكفي": "First name is enough",
+"مثلًا: محاسبة، المستوى السادس": "e.g. Accounting, level six",
+"وش أكثر شي أفادك في أكاديمية نجد؟": "What helped you most in Najd Academy?",
+"رأيك يوصل للإدارة أول، وينشر هنا بعد المراجعة. بنشره توافق إن اسمك ورأيك يظهرون في الموقع.": "Your opinion goes to the admins first and is published here after review. By sending it you agree that your name and opinion may appear on the site.",
+"أرسل رأيي": "Send my opinion",
+"اكتب اسمك.": "Enter your name.",
+"اكتب رأيك في 10 أحرف على الأقل.": "Write your opinion in at least 10 characters.",
+"وصلنا رأيك قبل شوي، شكرًا لك 🤍": "We already received your opinion, thank you 🤍",
+"وصل رأيك، شكرًا لك 🤍 بينشر بعد مراجعة الإدارة.": "Opinion received, thank you 🤍 It will be published after review.",
+"ما قدرنا نرسل رأيك. جرب مرة ثانية.": "We couldn't send your opinion. Try again.",
+"شاركنا رأيك في أكاديمية نجد": "Share your opinion of Najd Academy",
 "شروحات فيديو وملخصات لمقرراتك، ترجع لها متى ما احتجت.": "Video lessons and summaries for your courses, there whenever you need them.",
 "اختبر فهمك قبل الاختبار، واعرف أخطاءك على طول.": "Test your understanding before the exam and see your mistakes right away.",
 "حل الاختبار، وشوف نتيجتك وأخطاءك على طول، وأعده متى ما حبيت.": "Take the quiz, see your score and mistakes right away, and retake it anytime.",
