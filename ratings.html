@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تجارب الطلاب | أكاديمية نجد</title>
+<meta name="description" content="تجارب الطلاب مع المقررات وأعضاء هيئة التدريس: التقييم، والصعوبة، والنصايح.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="أكاديمية نجد">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="تجارب الطلاب | أكاديمية نجد">
+<meta property="og:description" content="تجارب الطلاب مع المقررات وأعضاء هيئة التدريس: التقييم، والصعوبة، والنصايح.">
+<meta property="og:url" content="https://najdacdemy.com/ratings.html">
+<meta property="og:image" content="https://najdacdemy.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://najdacdemy.com/ratings.html">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261111g">
+<style>
+#najd .rt-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
+#najd .rt-tab{height:46px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15.5px;font-weight:700;cursor:pointer}
+#najd .rt-tab[aria-selected="true"]{background:var(--deep);color:#fff}
+#najd .rt-search{width:100%;height:50px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:0 14px;font-size:16px;color:var(--ink)}
+#najd .rt-rules{font-size:14.5px;color:var(--muted);background:var(--tint);border-radius:12px;padding:10px 14px;margin:12px 0 0}
+#najd .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+#najd .rt-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;cursor:pointer;text-align:start;box-shadow:var(--shadow);width:100%;color:var(--ink);transition:transform .15s,border-color .15s}
+#najd .rt-item:hover{transform:translateY(-2px);border-color:var(--teal)}
+#najd .rt-item>div{flex:1;min-width:0}
+#najd .rt-item b{display:block;font-size:16px;font-weight:800}
+#najd .rt-item small{display:block;font-size:13.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#najd .rt-score{flex-shrink:0;text-align:center;min-width:54px;border-radius:12px;background:var(--tint);padding:6px 8px}
+#najd .rt-score b{font-size:18px;color:var(--dtext)}
+#najd .rt-score small{font-size:11.5px}
+#najd .rt-score.is-none{background:var(--bg)}
+#najd .rt-score.is-none b{color:var(--grey);font-size:15px}
+#najd .rt-back{border:0;background:none;color:var(--dtext);font-weight:700;font-size:15px;cursor:pointer;padding:0;margin:0 0 12px;text-decoration:underline;text-underline-offset:3px}
+#najd .rt-head h2{font-size:24px}
+#najd .rt-head p{color:var(--muted);font-size:15px}
+#najd .rt-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 0}
+#najd .rt-stat{background:var(--bg);border-radius:14px;padding:12px;text-align:center}
+#najd .rt-stat b{display:block;font-size:26px;font-weight:800;color:var(--dtext);line-height:1.2}
+#najd .rt-stat span{font-size:13.5px;color:var(--muted)}
+#najd .rt-meter{height:8px;border-radius:999px;background:var(--light);margin:8px 0 0;overflow:hidden}
+#najd .rt-meter i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),var(--soft))}
+#najd .rt-tip{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 8px;background:var(--bg)}
+#najd .rt-tip p{font-size:15.5px;line-height:1.8;white-space:pre-line}
+#najd .rt-tip small{font-size:13px;color:var(--slate)}
+#najd .rt-lbl{display:block;font-size:15px;font-weight:700;margin:14px 0 6px}
+#najd .rt-stars{display:flex;gap:6px;direction:ltr;justify-content:flex-end}
+html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
+#najd .rt-stars button{width:46px;height:46px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:16px;font-weight:800;color:var(--muted);cursor:pointer}
+#najd .rt-stars button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+#najd .rt-scale{display:flex;justify-content:space-between;direction:ltr;font-size:12.5px;color:var(--slate);max-width:254px;margin:4px 0 0}
+#najd .rt-form textarea{width:100%;height:96px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:10px 12px;font-size:15.5px;color:var(--ink);resize:vertical;font-family:inherit}
+#najd .rt-msg{font-size:15px;margin:10px 0 0;min-height:1.4em}
+#najd .rt-msg.is-err{color:#8E3F37}
+#najd .rt-msg.is-ok{color:#3E6A3A}
+#najd .rt-pending{font-size:14px;background:#F3E9CF;color:#6B5320;border-radius:10px;padding:8px 12px;margin:10px 0 0}
+#najd .rt-empty{text-align:center;padding:30px 16px;color:var(--muted)}
+html[data-theme="dark"] #najd .rt-pending{background:#3A321C;color:#F3E9CF}
+html[data-theme="dark"] #najd .rt-msg.is-err{color:#F2C7C1}
+html[data-theme="dark"] #najd .rt-msg.is-ok{color:#C7E3BD}
+@media (max-width:520px){#najd .rt-stats{grid-template-columns:1fr 1fr 1fr;gap:6px}#najd .rt-stat b{font-size:21px}#najd .rt-stars button{width:42px;height:42px}}
+</style>
+</head>
+<body>
+<div id="najd" dir="rtl" data-auth="required" data-page="ratings">
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="index.html">الرئيسية</a><span>/</span>تجارب الطلاب</p>
+<h1>تجارب الطلاب</h1>
+<p class="nj-band-sub">شوف تجارب الطلاب قبل ما تسجل، وشاركهم تجربتك باحترام.</p>
+</div>
+</section>
+<main class="nj-main">
+<div class="nj-in nj-narrow">
+<div class="rt-tabs" role="tablist"><button type="button" class="rt-tab" role="tab" data-kind="course" aria-selected="true">📚 المقررات</button><button type="button" class="rt-tab" role="tab" data-kind="inst" aria-selected="false">👩‍🏫 أعضاء هيئة التدريس</button></div>
+<div id="rt-list-v">
+<div class="nj-card"><input class="rt-search" id="rt-q" type="search" placeholder="ابحث…" aria-label="بحث">
+<p class="rt-rules">🤝 قيّم باحترام وعن تجربتك أنت. التقييم بدون اسمك، والتعليقات المكتوبة تراجعها الإدارة قبل النشر، وأي إساءة أو تجريح ينحذف.</p></div>
+<div id="rt-grid" class="rt-grid"></div>
+</div>
+<div id="rt-detail-v" hidden></div>
+</div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js?v=20261111g"></script>
+<script src="assets/js/i18n.js?v=20261111g"></script>
+<script type="module" src="assets/js/auth.js?v=20261111g"></script>
+<script src="assets/js/courses-data.js?v=20261111g"></script>
+<script type="module">
+const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
+const KIND = {
+  course: { col: "courseReviews", lvl: "الصعوبة", lo: "سهل", hi: "صعب", ph: "ابحث برمز المقرر أو اسمه…", tipL: "نصيحتك للي بياخذ المقرر (اختياري)", tipP: "مثلًا: ركّز على الواجبات، والاختبار يجي من الشرائح…" },
+  inst: { col: "instructorReviews", lvl: "وضوح الشرح", lo: "ضعيف", hi: "ممتاز", ph: "ابحث باسم عضو هيئة التدريس…", tipL: "تجربتك (اختياري)", tipP: "اكتب عن طريقة الشرح والتعامل والتقييم، باحترام وبدون تجريح." }
+};
+let kind = "course", F = null, user = null, q = "", open = null;
+const items = { course: (window.NAJD_COURSES || []).map((c) => ({ id: c[0], name: c[0], sub: c[1], en: c[2] })), inst: [] };
+const reviews = { course: null, inst: null }, mine = {};
+
+function agg(k, id) {
+  const l = (reviews[k] || []).filter((r) => r.target === id); if (!l.length) return null;
+  const s = (f) => l.reduce((a, r) => a + (+r[f] || 0), 0) / l.length;
+  return { n: l.length, rating: s("rating"), level: s("level"), tips: l.filter((r) => r.tip).sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)) };
+}
+async function load(k) {
+  if (reviews[k]) return;
+  const { collection, query, where, getDocs } = F.fs;
+  if (k === "inst") { const s = await getDocs(collection(F.db, "instructors")); items.inst = []; s.forEach((d) => { const x = d.data(); if (x.active !== false && x.name) items.inst.push({ id: d.id, name: x.name, sub: x.dept || "" }); }); items.inst.sort((a, b) => a.name.localeCompare(b.name, "ar")); }
+  const sn = await getDocs(query(collection(F.db, KIND[k].col), where("status", "==", "approved")));
+  reviews[k] = []; sn.forEach((d) => reviews[k].push(d.data()));
+}
+function list() {
+  $("rt-list-v").hidden = false; $("rt-detail-v").hidden = true; $("rt-q").placeholder = KIND[kind].ph;
+  const qq = q.trim().toLowerCase();
+  let l = items[kind].filter((x) => !qq || (x.name + " " + x.sub + " " + (x.en || "")).toLowerCase().includes(qq));
+  if (kind === "course" && !qq) l = l.slice().sort((a, b) => (agg("course", b.id)?.n || 0) - (agg("course", a.id)?.n || 0));
+  $("rt-grid").className = l.length ? "rt-grid" : "";
+  $("rt-grid").innerHTML = l.length ? l.map((x) => { const a = agg(kind, x.id);
+    return `<button type="button" class="rt-item" data-id="${esc(x.id)}"><div><b${kind === "course" ? ' dir="ltr" style="text-align:start"' : ""}>${esc(x.name)}</b><small>${esc(x.sub)}</small></div><span class="rt-score${a ? "" : " is-none"}"><b>${a ? a.rating.toFixed(1) : "—"}</b><small>${a ? a.n + " تقييم" : "بدون تقييم"}</small></span></button>`; }).join("")
+    : `<div class="nj-card rt-empty">${kind === "inst" && !items.inst.length ? "ما فيه أعضاء مضافين حاليًا. نضيفهم قريب." : "ما لقينا نتيجة. جرّب كلمة ثانية."}</div>`;
+}
+async function detail(id) {
+  const x = items[kind].find((i) => i.id === id); if (!x) return list();
+  open = id; const K = KIND[kind], a = agg(kind, id), key = kind + ":" + id;
+  if (!(key in mine)) { try { const s = await F.fs.getDoc(F.fs.doc(F.db, K.col, id + "_" + user.uid)); mine[key] = s.exists() ? s.data() : null; } catch (e) { mine[key] = null; } }
+  const m = mine[key], v = $("rt-detail-v");
+  $("rt-list-v").hidden = true; v.hidden = false;
+  const stars = (name, val) => `<div class="rt-stars" data-name="${name}">${[1, 2, 3, 4, 5].map((n) => `<button type="button" data-v="${n}" aria-pressed="${val === n}">${n}</button>`).join("")}</div>`;
+  v.innerHTML = `<button type="button" class="rt-back" id="rt-back">→ رجوع للقائمة</button>
+  <div class="nj-card rt-head"><h2${kind === "course" ? ' dir="ltr" style="text-align:start"' : ""}>${esc(x.name)}</h2><p>${esc(x.sub)}</p>
+  ${a ? `<div class="rt-stats"><div class="rt-stat"><b>${a.rating.toFixed(1)}</b><span>التقييم العام</span><div class="rt-meter"><i style="width:${a.rating * 20}%"></i></div></div><div class="rt-stat"><b>${a.level.toFixed(1)}</b><span>${K.lvl}</span><div class="rt-meter"><i style="width:${a.level * 20}%"></i></div></div><div class="rt-stat"><b>${a.n}</b><span>عدد التقييمات</span></div></div>` : `<p class="rt-empty">ما فيه تقييمات بعد. كن أول من يقيّم 👇</p>`}</div>
+  ${a && a.tips.length ? `<div class="nj-card"><h2>تجارب الطلاب (${a.tips.length})</h2><div style="margin-top:12px">${a.tips.map((r) => `<div class="rt-tip"><p>${esc(r.tip)}</p><small>التقييم ${r.rating}/5 · ${K.lvl} ${r.level}/5</small></div>`).join("")}</div></div>` : ""}
+  <div class="nj-card rt-form"><h2>${m ? "تقييمك" : "أضف تقييمك"}</h2><p class="nj-hint">تقييمك بدون اسمك. وتقدر تعدله أو تحذفه بعدين.</p>
+  ${m && m.status === "pending" ? '<p class="rt-pending">⏳ تعليقك بانتظار مراجعة الإدارة، وبيظهر بعد الموافقة.</p>' : ""}
+  <span class="rt-lbl">التقييم العام</span>${stars("rating", m ? m.rating : 0)}<div class="rt-scale"><span>ضعيف</span><span>ممتاز</span></div>
+  <span class="rt-lbl">${K.lvl}</span>${stars("level", m ? m.level : 0)}<div class="rt-scale"><span>${K.lo}</span><span>${K.hi}</span></div>
+  <label class="rt-lbl" for="rt-tip">${K.tipL}</label><textarea id="rt-tip" maxlength="400" placeholder="${K.tipP}">${esc(m ? m.tip : "")}</textarea>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button type="button" class="nj-btn nj-btn-fill" id="rt-save">${m ? "حدّث تقييمي" : "أرسل التقييم"}</button>${m ? '<button type="button" class="nj-btn nj-btn-line" id="rt-del">احذف تقييمي</button>' : ""}</div>
+  <p class="rt-msg" id="rt-msg" aria-live="polite"></p></div>`;
+  window.scrollTo({ top: v.getBoundingClientRect().top + scrollY - 90 });
+  const val = { rating: m ? m.rating : 0, level: m ? m.level : 0 };
+  v.querySelectorAll(".rt-stars").forEach((g) => g.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; val[g.dataset.name] = +b.dataset.v; g.querySelectorAll("button").forEach((o) => o.setAttribute("aria-pressed", o === b ? "true" : "false")); }));
+  const msg = (t, ok) => { const el = $("rt-msg"); el.textContent = t; el.className = "rt-msg " + (ok ? "is-ok" : "is-err"); };
+  $("rt-back").onclick = () => { open = null; history.replaceState(null, "", "ratings.html" + (kind === "inst" ? "?tab=inst" : "")); list(); };
+  $("rt-save").onclick = async () => {
+    if (!val.rating || !val.level) return msg("اختر التقييم العام و" + K.lvl + " من 1 إلى 5.");
+    const tip = $("rt-tip").value.trim(), data = { target: id, uid: user.uid, rating: val.rating, level: val.level, tip, status: tip ? "pending" : "approved", createdAt: F.fs.serverTimestamp() };
+    const b = $("rt-save"); b.disabled = true;
+    try {
+      await F.fs.setDoc(F.fs.doc(F.db, K.col, id + "_" + user.uid), data);
+      mine[key] = data; reviews[kind] = reviews[kind].filter((r) => !(r.target === id && r.uid === user.uid)); if (!tip) reviews[kind].push(data);
+      await detail(id); const el = $("rt-msg"); el.textContent = tip ? "وصل تقييمك ✅ التعليق بيظهر بعد مراجعة الإدارة." : "تم حفظ تقييمك ✅ شكرًا لك."; el.className = "rt-msg is-ok";
+    } catch (e) { console.warn(e); b.disabled = false; msg("ما قدرنا نحفظ تقييمك. جرب مرة ثانية."); }
+  };
+  const del = $("rt-del"); if (del) del.onclick = async () => {
+    if (!confirm("تحذف تقييمك؟")) return;
+    try { await F.fs.deleteDoc(F.fs.doc(F.db, K.col, id + "_" + user.uid)); mine[key] = null; reviews[kind] = reviews[kind].filter((r) => !(r.target === id && r.uid === user.uid)); toast("انحذف تقييمك"); detail(id); }
+    catch (e) { msg("ما قدرنا نحذفه. جرب مرة ثانية."); }
+  };
+}
+async function show(k, id) {
+  kind = k; document.querySelectorAll(".rt-tab").forEach((b) => b.setAttribute("aria-selected", b.dataset.kind === k ? "true" : "false"));
+  $("rt-grid").innerHTML = '<div class="nj-card rt-empty">جاري التحميل…</div>'; $("rt-list-v").hidden = false; $("rt-detail-v").hidden = true;
+  try { await load(k); } catch (e) { console.warn(e); $("rt-grid").className = ""; $("rt-grid").innerHTML = '<div class="nj-card rt-empty">ما قدرنا نجيب التقييمات. تأكد من اتصالك وحدّث الصفحة.</div>'; return; }
+  id ? detail(id) : list();
+}
+document.querySelector(".rt-tabs").addEventListener("click", (e) => { const b = e.target.closest(".rt-tab"); if (b) { q = ""; $("rt-q").value = ""; show(b.dataset.kind); } });
+$("rt-grid").addEventListener("click", (e) => { const b = e.target.closest(".rt-item"); if (b) detail(b.dataset.id); });
+let qt; $("rt-q").addEventListener("input", function () { clearTimeout(qt); const v = this.value; qt = setTimeout(() => { q = v; list(); }, 150); });
+try {
+  const M = await import("./assets/js/auth.js?v=20261111g");
+  const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
+  const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
+  F = { db: M.db, fs };
+  fa.onAuthStateChanged(M.auth, (u) => {
+    if (!u || user) return; user = u;
+    const p = new URLSearchParams(location.search), c = (p.get("c") || "").toUpperCase();
+    show(p.get("tab") === "inst" ? "inst" : "course", c && items.course.some((x) => x.id === c) ? c : null);
+  });
+} catch (e) { console.warn("najd ratings", e); $("rt-grid").innerHTML = '<div class="nj-card rt-empty">تأكد من اتصالك بالإنترنت وحدّث الصفحة.</div>'; }
+</script>
+</body>
+</html>

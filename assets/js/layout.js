@@ -4,14 +4,19 @@
   var root=document.getElementById('najd');if(!root)return;
 
   /* روابط الصفحات — عدّلها هنا لو غيّرت أسماء الملفات */
-  var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',privacy:'privacy.html',terms:'terms.html',college:'college-plans.html'};
+  var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',privacy:'privacy.html',terms:'terms.html',quiz:'quiz.html',calendar:'calendar.html',ratings:'ratings.html',account:'account.html',college:'college-plans.html'};
   /* بريد التواصل (يظهر في سياسة الخصوصية والشروط) — اكتبه هنا */
+  /* حساب تيليقرام */
+  var TELEGRAM_URL='https://t.me/najdacdemy';
   var CONTACT_EMAIL='najdacdemy@gmail.com';
-  var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['assistant','مساعدك الدراسي'],['coop','التدريب التعاوني'],['store','المتجر']];
+  /* القائمة العلوية: مجموعتين منسدلتين + رابطين مباشرين */
+  var ITEMS={plans:['📋','الخطط الدراسية','مقررات كل مستوى وتقدمك'],schedule:['🗓️','الجدول الدراسي','صمّم جدولك واختباراتك'],gpa:['🧮','حاسبة المعدل','الفصلي والتراكمي'],calendar:['📅','التقويم الأكاديمي','مواعيد التسجيل والاختبارات'],
+    lessons:['🎬','الشروحات','فيديو وملفات PDF'],quiz:['📝','اختبر نفسك','اختبارات تتصحح على طول'],ratings:['⭐','تجارب الطلاب','تقييمات المقررات والأعضاء'],coop:['💼','التدريب التعاوني'],store:['🛍️','المتجر']};
+  var NAV=[{t:'أدواتك',items:['plans','schedule','gpa','calendar']},{t:'التعلّم',items:['lessons','quiz','ratings']},'coop','store'];
   var PAGE=root.getAttribute('data-page')||'';
 
   /* المفاتيح اللي تنحفظ في حسابك وتتزامن بين أجهزتك */
-  var SYNC_KEYS=['najd_plans_v1','najd_gpa_v1','stq_schedule_v1'];
+  var SYNC_KEYS=['najd_plans_v1','najd_gpa_v1','stq_schedule_v1','najd_quiz_v1'];
   var META='najd_sync_meta';
   function readMeta(){try{return JSON.parse(localStorage.getItem(META)||'{}')||{};}catch(e){return {};}}
   try{
@@ -26,8 +31,19 @@
   }catch(e){}
 
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-  function navLinks(){return NAV.map(function(n){return '<a href="'+LINKS[n[0]]+'"'+(PAGE===n[0]?' aria-current="page"':'')+'>'+n[1]+'</a>';}).join('');}
-  var userBox='<div class="nj-user nj-member"><span class="nj-av" data-u="init">ن</span><span><span class="nj-uname" data-u="name"></span><span class="nj-sync" data-u="sync">تقدمك محفوظ في حسابك</span></span><button type="button" class="nj-out" data-logout>خروج</button></div>';
+  var CHEV='<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>';
+  function cur(k){return PAGE===k?' aria-current="page"':'';}
+  function navLinks(){return NAV.map(function(n,i){
+    if(typeof n==='string')return '<a href="'+LINKS[n]+'"'+cur(n)+'>'+ITEMS[n][1]+'</a>';
+    var on=n.items.indexOf(PAGE)>-1;
+    return '<div class="nj-dd"><button type="button" class="nj-dd-btn'+(on?' is-cur':'')+'" aria-expanded="false" aria-haspopup="true" aria-controls="nj-dd-'+i+'">'+n.t+CHEV+'</button><div class="nj-dd-menu" id="nj-dd-'+i+'">'
+      +n.items.map(function(k){return '<a href="'+LINKS[k]+'"'+cur(k)+'><i aria-hidden="true">'+ITEMS[k][0]+'</i><span><b>'+ITEMS[k][1]+'</b><small>'+ITEMS[k][2]+'</small></span></a>';}).join('')+'</div></div>';
+  }).join('');}
+  function drawerLinks(){return NAV.map(function(n){
+    if(typeof n==='string')return '<a href="'+LINKS[n]+'"'+cur(n)+'>'+ITEMS[n][0]+' '+ITEMS[n][1]+'</a>';
+    return '<p class="nj-dr-h">'+n.t+'</p>'+n.items.map(function(k){return '<a href="'+LINKS[k]+'"'+cur(k)+'>'+ITEMS[k][0]+' '+ITEMS[k][1]+'</a>';}).join('');
+  }).join('');}
+  var userBox='<div class="nj-user nj-member"><a class="nj-av" href="account.html" data-u="init" aria-label="حسابي">ن</a><span><span class="nj-uname" data-u="name"></span><span class="nj-sync" data-u="sync">تقدمك محفوظ في حسابك</span></span><button type="button" class="nj-out" data-logout>خروج</button></div>';
 
   /* الوضع الداكن/الفاتح واللغة */
   var SUN='<svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>';
@@ -49,7 +65,7 @@
       +userBox
       +'<button type="button" class="nj-menu" id="nj-menu" aria-expanded="false" aria-controls="nj-drawer" aria-label="فتح القائمة"><i></i><i></i><i></i></button>'
       +'</div></div>'
-      +'<div class="nj-drawer" id="nj-drawer">'+navLinks()+'<div class="nj-prefs">'+PREFS_LBL+'</div>'
+      +'<div class="nj-drawer" id="nj-drawer">'+drawerLinks()+'<div class="nj-prefs">'+PREFS_LBL+'</div>'
       +userBox
       +'<a class="nj-btn nj-btn-fill nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a>'
       +'<a class="nj-btn nj-btn-line nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
@@ -61,10 +77,11 @@
       +'<div class="nj-foot-g">'
       +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
-      +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.store+'">المتجر</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.college+'">خطط كلية العلوم الإدارية والمالية</a></nav></div>'
-      +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a href="'+LINKS.lessons+'">الشروحات</a><a href="'+LINKS.assistant+'">مساعدك الدراسي</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav></div>'
+      +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.quiz+'">اختبر نفسك</a><a href="'+LINKS.ratings+'">تجارب الطلاب</a><a href="'+LINKS.calendar+'">التقويم الأكاديمي</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.store+'">المتجر</a><a href="'+LINKS.college+'">خطط كلية العلوم الإدارية والمالية</a></nav></div>'
+      +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav>'
+      +'<h4 class="nj-foot-h2">تواصل معنا</h4><nav class="nj-foot-links nj-foot-social" aria-label="تواصل معنا"><a href="'+TELEGRAM_URL+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 3.2 2.9 10.5c-.9.4-.9 1.1 0 1.400l4.700 1.500 1.800 5.600c.2.600.800.700 1.200.300l2.600-2.500 4.700 3.500c.6.400 1.200.200 1.400-.600L22.800 4.400c.2-1-.4-1.500-1.200-1.200zM9.700 13.800l8.100-5.800-6.300 6.700-.3 3.100z"/></svg>تيليقرام</a>'+(CONTACT_EMAIL?'<a href="mailto:'+CONTACT_EMAIL+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.500l8 6 8-6"/></svg><span dir="ltr">'+CONTACT_EMAIL+'</span></a>':'')+'</nav></div>'
       +'</div>'
-      +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب 🤍 من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد فردي ولا يتبع للجامعة بأي صلة.</p></div>'
+      +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب 🤍 من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد طلابي مستقل، ولا يتبع للجامعة بأي صلة.</p></div>'
       +'<p class="nj-copy"><a href="'+LINKS.privacy+'">سياسة الخصوصية</a> · <a href="'+LINKS.terms+'">الشروط والأحكام</a><br>© <span>'+new Date().getFullYear()+'</span> أكاديمية نجد. جميع الحقوق محفوظة.</p></div>'
       +'</div></footer>';
   }
@@ -103,6 +120,19 @@
   fpScan();
   try{new MutationObserver(function(ms){for(var q=0;q<ms.length;q++)for(var z=0;z<ms[q].addedNodes.length;z++){var nd=ms[q].addedNodes[z];if(nd.nodeType===1){enInputs(nd.parentNode||nd);fpScan(nd.parentNode||nd);}}}).observe(root,{childList:true,subtree:true});}catch(e){}
 
+  /* القوائم المنسدلة: تفتح بالضغط أو بالمرور، وتقفل بالضغط برّا أو Esc */
+  var dds=root.querySelectorAll('.nj-dd');
+  function ddClose(ex){for(var d=0;d<dds.length;d++)if(dds[d]!==ex){if(dds[d]._unpin)dds[d]._unpin();dds[d].classList.remove('is-open');dds[d].querySelector('.nj-dd-btn').setAttribute('aria-expanded','false');}}
+  function ddOpen(el,o){ddClose(el);el.classList.toggle('is-open',o);el.querySelector('.nj-dd-btn').setAttribute('aria-expanded',o?'true':'false');}
+  for(var di=0;di<dds.length;di++)(function(el){var tm;
+    var pinned=false;el._unpin=function(){pinned=false;};
+    el.querySelector('.nj-dd-btn').addEventListener('click',function(){var o=el.classList.contains('is-open');if(o&&pinned){pinned=false;ddOpen(el,false);}else{pinned=true;ddOpen(el,true);}});
+    el.addEventListener('mouseenter',function(){clearTimeout(tm);if(matchMedia('(hover:hover)').matches)ddOpen(el,true);});
+    el.addEventListener('mouseleave',function(){if(pinned)return;tm=setTimeout(function(){el.classList.remove('is-open');el.querySelector('.nj-dd-btn').setAttribute('aria-expanded','false');},180);});
+  })(dds[di]);
+  document.addEventListener('click',function(e){if(!e.target.closest('.nj-dd'))ddClose();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=root.querySelector('.nj-dd.is-open');if(o){ddClose();o.querySelector('.nj-dd-btn').focus();}}});
+
   /* روابط بريد التواصل */
   var cs=root.querySelectorAll('[data-contact]');
   for(var ci=0;ci<cs.length;ci++){if(CONTACT_EMAIL){cs[ci].href='mailto:'+CONTACT_EMAIL;cs[ci].textContent=CONTACT_EMAIL;cs[ci].setAttribute('dir','ltr');}else{cs[ci].removeAttribute('href');cs[ci].textContent=(document.documentElement.lang==='en'?'(contact email coming soon)':'(بريد التواصل بيُضاف قريبًا)');}}
@@ -122,7 +152,7 @@
 
   /* صفحات تحتاج تسجيل دخول: نعرض بطاقة دخول بدل المحتوى */
   var REQUIRED=root.getAttribute('data-auth')==='required';
-  var PAGE_NAMES={plans:'الخطط الدراسية',schedule:'الجدول الدراسي',gpa:'حاسبة المعدل',lessons:'الشروحات',assistant:'مساعدك الدراسي',admin:'لوحة الإدارة'};
+  var PAGE_NAMES={plans:'الخطط الدراسية',schedule:'الجدول الدراسي',gpa:'حاسبة المعدل',lessons:'الشروحات',quiz:'الاختبارات',ratings:'تجارب الطلاب',account:'حسابك',admin:'لوحة الإدارة'};
   if(REQUIRED){
     var main=root.querySelector('main');
     if(main){
@@ -130,8 +160,8 @@
       var g=document.createElement('section');g.className='nj-gate';
       g.innerHTML='<div class="nj-in"><div class="nj-gate-card">'
         +'<span class="nj-gate-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><rect x="4" y="10" width="16" height="11" rx="3" fill="currentColor"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></span>'
-        +'<h2>سجّل دخولك عشان تستخدم '+(PAGE_NAMES[PAGE]||'هذي الخدمة')+'</h2>'
-        +'<p>كل خدمات أكاديمية نجد تحتاج حساب. سجّل بحساب Gmail أو بريدك خلال دقيقة، ويتحفظ تقدمك في حسابك وترجع له من أي جهاز.</p>'
+        +'<h2>سجّل دخولك عشان تفتح '+(PAGE_NAMES[PAGE]||'هذي الصفحة')+'</h2>'
+        +'<p>هذي الصفحة تحتاج حساب. سجّل بحساب Gmail أو بريدك خلال دقيقة، ويتحفظ تقدمك في حسابك وترجع له من أي جهاز.</p>'
         +'<div class="nj-gate-ctas"><a class="nj-btn nj-btn-fill" href="'+LINKS.login+'?next='+nx+'">تسجيل الدخول</a><a class="nj-btn nj-btn-line" href="'+LINKS.coop+'">تصفح فرص التدريب التعاوني</a></div>'
         +'<p class="nj-gate-note">التسجيل مجاني.</p>'
         +'</div></div>';

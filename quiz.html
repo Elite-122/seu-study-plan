@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>اختبر نفسك | أكاديمية نجد</title>
+<meta name="description" content="اختبارات تفاعلية لمقرراتك: اختبر نفسك، وشوف أخطاءك، وأعد الاختبار متى ما حبيت.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="أكاديمية نجد">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="اختبر نفسك | أكاديمية نجد">
+<meta property="og:description" content="اختبارات تفاعلية لمقرراتك: اختبر نفسك، وشوف أخطاءك، وأعد الاختبار متى ما حبيت.">
+<meta property="og:url" content="https://najdacdemy.com/quiz.html">
+<meta property="og:image" content="https://najdacdemy.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://najdacdemy.com/quiz.html">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261111g">
+<style>
+#najd .qz-gh{font-size:21px;font-weight:800;margin:22px 0 12px}
+#najd .qz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+#najd .qz-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+#najd .qz-card h3{font-size:17.5px;font-weight:800;line-height:1.4}
+#najd .qz-card p{font-size:14.5px;color:var(--muted);flex:1}
+#najd .qz-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--slate)}
+#najd .qz-tag{font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:var(--tint);color:var(--dtext)}
+#najd .qz-tag.paid{background:var(--deep);color:#fff}
+#najd .qz-best{font-size:13px;font-weight:800;color:var(--dtext)}
+#najd .qz-card .nj-btn{height:42px;font-size:15px}
+#najd .qz-card .is-locked{background:var(--bg);color:var(--slate);border-color:var(--line);box-shadow:none}
+#najd .qz-empty{text-align:center;padding:40px 20px}
+#najd .qz-empty b{display:block;font-size:20px;font-weight:800;margin:8px 0 4px}
+#najd .qz-empty p{color:var(--muted)}
+#najd .qz-run{max-width:780px;margin:0 auto}
+#najd .qz-top{position:sticky;top:74px;z-index:5;display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px;margin:0 0 14px;box-shadow:var(--shadow)}
+#najd .qz-top b{font-size:15.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#najd .qz-top span{font-size:14px;font-weight:800;color:var(--dtext);white-space:nowrap}
+#najd .qz-prog{position:absolute;inset:auto 0 0 0;height:4px;background:var(--light);border-radius:0 0 16px 16px;overflow:hidden}
+#najd .qz-prog i{display:block;height:100%;background:var(--teal);transition:width .2s}
+#najd .qz-q h3{font-size:17.5px;font-weight:800;line-height:1.6;white-space:pre-line}
+#najd .qz-q h3 small{display:block;font-size:13px;color:var(--slate);font-weight:700}
+#najd .qz-opts{display:grid;gap:8px;margin:12px 0 0}
+#najd .qz-opt{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font-size:16px;cursor:pointer;background:var(--surface);line-height:1.6}
+#najd .qz-opt input{width:20px;height:20px;accent-color:var(--teal);margin:0;flex-shrink:0}
+#najd .qz-opt:has(input:checked){border-color:var(--teal);background:var(--tint)}
+#najd .qz-opt.is-right{border-color:#6E8F5E;background:#E2ECDD}
+#najd .qz-opt.is-wrong{border-color:#B0625A;background:#F6E4E1}
+#najd .qz-opt em{margin-inline-start:auto;font-style:normal;font-size:13px;font-weight:800;white-space:nowrap}
+#najd .qz-exp{font-size:15px;background:var(--bg);border-radius:12px;padding:10px 14px;margin:10px 0 0;line-height:1.8;white-space:pre-line}
+#najd .qz-res{text-align:center}
+#najd .qz-res b{display:block;font-size:54px;font-weight:800;line-height:1.1;color:var(--dtext)}
+#najd .qz-res p{font-size:17px;color:var(--muted);margin:4px 0 0}
+#najd .qz-acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:16px 0 0}
+#najd .qz-filter{display:inline-flex;align-items:center;gap:8px;font-size:15px;cursor:pointer;margin:12px 0 0}
+#najd .qz-filter input{width:20px;height:20px;accent-color:var(--teal);margin:0}
+html[data-theme="dark"] #najd .qz-opt.is-right{background:#16251A;border-color:#4F7A45}
+html[data-theme="dark"] #najd .qz-opt.is-wrong{background:#3A1F1C;border-color:#8A4A42}
+@media (max-width:860px){#najd .qz-top{top:66px}}
+</style>
+</head>
+<body>
+<div id="najd" dir="rtl" data-auth="required" data-page="quiz">
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="index.html">الرئيسية</a><span>/</span>اختبر نفسك</p>
+<h1>اختبر نفسك</h1>
+<p class="nj-band-sub">حل الاختبار، وشوف نتيجتك وأخطاءك على طول، وأعده متى ما حبيت.</p>
+</div>
+</section>
+<main class="nj-main">
+<div class="nj-in">
+<div id="qz-home"><div class="nj-card qz-empty"><p>جاري التحميل…</p></div></div>
+<div id="qz-run" class="qz-run" hidden></div>
+</div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js?v=20261111g"></script>
+<script src="assets/js/i18n.js?v=20261111g"></script>
+<script type="module" src="assets/js/auth.js?v=20261111g"></script>
+<script type="module">
+const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
+const KEY = "najd_quiz_v1";
+let F = null, quizzes = [], access = false;
+const scores = () => { try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { return {}; } };
+const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+function home() {
+  $("qz-run").hidden = true; const h = $("qz-home"); h.hidden = false;
+  const list = quizzes.filter((x) => x.active !== false), sc = scores();
+  if (!list.length) { h.innerHTML = '<div class="nj-card qz-empty"><span style="font-size:40px">📝</span><b>ما فيه اختبارات منشورة حاليًا</b><p>نضيف الاختبارات أول بأول، ارجع لنا قريب.</p></div>'; return; }
+  const g = {}; list.forEach((x) => { const c = x.course || "عام"; (g[c] = g[c] || []).push(x); });
+  h.innerHTML = Object.keys(g).map((c) => `<h2 class="qz-gh">${esc(c)}</h2><div class="qz-grid">` + g[c].map((x) => {
+    const ok = x.free || access, s = sc[x.id];
+    return `<article class="qz-card"><h3>${esc(x.title)}</h3><p>${esc(x.desc || "")}</p><div class="qz-meta"><span class="qz-tag ${x.free ? "" : "paid"}">${x.free ? "مجاني" : "للمشتركين"}</span><span>${+x.count || 0} سؤال</span>${s ? `<span class="qz-best">أفضل نتيجة ${s.best}/${s.n}</span>` : ""}</div>`
+      + (ok ? `<button type="button" class="nj-btn nj-btn-fill" data-start="${x.id}">${s ? "أعد الاختبار" : "ابدأ الاختبار"}</button>` : `<a class="nj-btn nj-btn-line is-locked" href="store.html">🔒 اشترك</a>`) + `</article>`;
+  }).join("") + "</div>").join("");
+}
+
+async function start(id) {
+  const meta = quizzes.find((x) => x.id === id); let qs;
+  try { const s = await F.fs.getDoc(F.fs.doc(F.db, "quizData", id)); qs = s.exists() ? s.data().questions || [] : []; }
+  catch (e) { toast(meta.free || access ? "ما قدرنا نفتح الاختبار، جرب مرة ثانية" : "هذا الاختبار للمشتركين 🔒"); return; }
+  if (!qs.length) { toast("الاختبار ما فيه أسئلة حاليًا"); return; }
+  /* نخلط ترتيب الأسئلة والخيارات كل مرة */
+  const run = shuffle(qs).map((q) => { const o = shuffle(q.options.map((t, i) => ({ t, ok: i === q.answer }))); return { q: q.q, o, exp: q.explain || "", pick: -1 }; });
+  const r = $("qz-run"); $("qz-home").hidden = true; r.hidden = false;
+  const draw = () => {
+    r.innerHTML = `<div class="qz-top"><b>${esc(meta.title)}</b><span id="qz-cnt">0/${run.length}</span><div class="qz-prog"><i id="qz-bar" style="width:0"></i></div></div>`
+      + run.map((q, i) => `<div class="nj-card qz-q" data-i="${i}"><h3><small>السؤال ${i + 1} من ${run.length}</small>${esc(q.q)}</h3><div class="qz-opts">${q.o.map((o, j) => `<label class="qz-opt"><input type="radio" name="q${i}" value="${j}">${esc(o.t)}</label>`).join("")}</div></div>`).join("")
+      + `<div class="qz-acts"><button type="button" class="nj-btn nj-btn-fill" id="qz-submit">سلّم الاختبار</button><button type="button" class="nj-btn nj-btn-line" id="qz-exit">خروج</button></div>`;
+    window.scrollTo({ top: r.getBoundingClientRect().top + scrollY - 90 });
+    r.onchange = (e) => { const inp = e.target; if (inp.type !== "radio") return; run[+inp.name.slice(1)].pick = +inp.value; const n = run.filter((q) => q.pick > -1).length; $("qz-cnt").textContent = n + "/" + run.length; $("qz-bar").style.width = (n / run.length * 100) + "%"; };
+    $("qz-exit").onclick = () => { if (run.some((q) => q.pick > -1) && !confirm("تطلع من الاختبار؟ إجاباتك ما راح تنحفظ.")) return; home(); };
+    $("qz-submit").onclick = () => {
+      const left = run.filter((q) => q.pick < 0).length;
+      if (left && !confirm("باقي " + left + " سؤال بدون إجابة. تسلّم الاختبار؟")) return;
+      result();
+    };
+  };
+  const result = () => {
+    const right = run.filter((q) => q.pick > -1 && q.o[q.pick].ok).length, pct = Math.round(right / run.length * 100);
+    const sc = scores(), old = sc[id]; sc[id] = { best: Math.max(right, old && old.n === run.length ? old.best : 0), last: right, n: run.length, at: Date.now() };
+    try { localStorage.setItem(KEY, JSON.stringify(sc)); } catch (e) {}
+    const word = pct >= 90 ? "ممتاز 🌟" : pct >= 75 ? "جيد جدًا 😄" : pct >= 60 ? "جيد 🙂" : "يبي له مراجعة 💪";
+    r.onchange = null;
+    r.innerHTML = `<div class="nj-card qz-res"><p>${esc(meta.title)}</p><b>${right}/${run.length}</b><p>${pct}% · ${word}</p><div class="qz-acts"><button type="button" class="nj-btn nj-btn-fill" id="qz-again">أعد الاختبار</button><button type="button" class="nj-btn nj-btn-line" id="qz-back">كل الاختبارات</button></div>${right < run.length ? '<label class="qz-filter"><input type="checkbox" id="qz-wrong">اعرض أخطائي فقط</label>' : ""}</div>`
+      + run.map((q, i) => { const good = q.pick > -1 && q.o[q.pick].ok;
+        return `<div class="nj-card qz-q" data-good="${good}"><h3><small>السؤال ${i + 1} · ${good ? "✅ صح" : q.pick < 0 ? "⚪ بدون إجابة" : "❌ خطأ"}</small>${esc(q.q)}</h3><div class="qz-opts">${q.o.map((o, j) => `<div class="qz-opt${o.ok ? " is-right" : j === q.pick ? " is-wrong" : ""}">${esc(o.t)}${o.ok ? "<em>الإجابة الصحيحة</em>" : j === q.pick ? "<em>إجابتك</em>" : ""}</div>`).join("")}</div>${q.exp ? `<p class="qz-exp">💡 ${esc(q.exp)}</p>` : ""}</div>`; }).join("");
+    window.scrollTo({ top: r.getBoundingClientRect().top + scrollY - 90 });
+    $("qz-again").onclick = () => start(id); $("qz-back").onclick = home;
+    const w = $("qz-wrong"); if (w) w.onchange = () => r.querySelectorAll('.qz-q[data-good="true"]').forEach((el) => { el.hidden = w.checked; });
+  };
+  draw();
+}
+$("qz-home").addEventListener("click", (e) => { const b = e.target.closest("[data-start]"); if (b) { b.disabled = true; start(b.dataset.start).finally(() => { b.disabled = false; }); } });
+
+try {
+  const M = await import("./assets/js/auth.js?v=20261111g");
+  const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
+  const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
+  F = { db: M.db, fs };
+  let loaded = false;
+  fa.onAuthStateChanged(M.auth, async (u) => {
+    if (!u || loaded) return; loaded = true;
+    try { if (u.email && u.emailVerified) { const a = await fs.getDoc(fs.doc(M.db, "access", u.email.toLowerCase())); if (a.exists()) { const d = a.data(); access = !d.until || d.until.toMillis() > Date.now(); } } } catch (e) {}
+    try {
+      const sn = await fs.getDocs(fs.collection(M.db, "quizzes")); quizzes = []; sn.forEach((d) => quizzes.push({ id: d.id, ...d.data() }));
+      quizzes.sort((a, b) => (+a.order || 0) - (+b.order || 0) || String(a.title).localeCompare(String(b.title), "ar")); home();
+    } catch (e) { console.warn(e); $("qz-home").innerHTML = '<div class="nj-card qz-empty"><span style="font-size:40px">📡</span><b>ما قدرنا نجيب الاختبارات</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>'; }
+  });
+} catch (e) { console.warn("najd quiz", e); }
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>حسابي | أكاديمية نجد</title>
+<meta name="description" content="بيانات حسابك في أكاديمية نجد وحالة اشتراكك.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="أكاديمية نجد">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="حسابي | أكاديمية نجد">
+<meta property="og:description" content="بيانات حسابك في أكاديمية نجد وحالة اشتراكك.">
+<meta property="og:url" content="https://najdacdemy.com/account.html">
+<meta property="og:image" content="https://najdacdemy.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://najdacdemy.com/account.html">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261111g">
+<style>
+#najd .ac-wrap{max-width:760px}
+#najd .ac-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+#najd .ac-top .nj-av{width:64px;height:64px;font-size:26px}
+#najd .ac-top h2{font-size:22px}
+#najd .ac-top p{font-size:15px;color:var(--muted)}
+#najd .ac-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
+#najd .ac-row:last-child{border-bottom:0}
+#najd .ac-row>span:first-child{color:var(--muted);font-size:15px}
+#najd .ac-row b{font-weight:700}
+#najd .ac-name{display:flex;gap:8px;flex:1 1 260px;max-width:420px}
+#najd .ac-name input{flex:1;min-width:0;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:0 12px;font-size:15.5px;color:var(--ink)}
+#najd .ac-name .nj-btn{height:44px;padding:0 16px;font-size:15px}
+#najd .ac-pill{font-size:13.5px;font-weight:800;border-radius:999px;padding:3px 12px;background:var(--tint);color:var(--dtext)}
+#najd .ac-pill.is-off{background:var(--bg);color:var(--slate);border:1px solid var(--line)}
+#najd .ac-link{border:0;background:none;color:var(--dtext);font-weight:700;font-size:14.5px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0}
+#najd .ac-acts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+#najd .ac-danger{border-color:#E8C7C1}
+#najd .ac-danger h2{color:#8E3F37}
+#najd .ac-check{display:flex;align-items:flex-start;gap:8px;font-size:15px;margin:10px 0;cursor:pointer}
+#najd .ac-check input{width:20px;height:20px;accent-color:#8E3F37;margin:3px 0 0;flex-shrink:0}
+#najd .ac-del{background:#8E3F37;color:#fff;box-shadow:none}
+#najd .ac-del:hover{background:#A34A41}
+#najd .ac-msg{font-size:15px;margin:10px 0 0;color:#8E3F37;min-height:1.4em}
+html[data-theme="dark"] #najd .ac-danger{border-color:#5A2E29}
+html[data-theme="dark"] #najd .ac-danger h2,html[data-theme="dark"] #najd .ac-msg{color:#F2C7C1}
+</style>
+</head>
+<body>
+<div id="najd" dir="rtl" data-auth="required" data-page="account">
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="index.html">الرئيسية</a><span>/</span>حسابي</p>
+<h1>حسابي</h1>
+<p class="nj-band-sub">بياناتك، وحالة اشتراكك، وإدارة حسابك.</p>
+</div>
+</section>
+<main class="nj-main">
+<div class="nj-in ac-wrap">
+<div class="nj-card">
+<div class="ac-top"><span class="nj-av" data-u="init">ن</span><div><h2 data-u="name"></h2><p id="ac-mail" dir="ltr"></p></div></div>
+</div>
+<div class="nj-card">
+<h2>بياناتك</h2>
+<div class="ac-row"><span>الاسم</span><form class="ac-name" id="ac-name-f"><input id="ac-name" type="text" maxlength="40" autocomplete="name" aria-label="الاسم"><button type="submit" class="nj-btn nj-btn-line">حفظ</button></form></div>
+<div class="ac-row"><span>البريد الإلكتروني</span><b id="ac-email" dir="ltr">—</b></div>
+<div class="ac-row"><span>طريقة الدخول</span><b id="ac-prov">—</b></div>
+<div class="ac-row"><span>تأكيد البريد</span><span id="ac-ver">—</span></div>
+</div>
+<div class="nj-card">
+<h2>اشتراك الشروحات والاختبارات</h2>
+<div class="ac-row"><span>الحالة</span><span id="ac-sub"><span class="ac-pill is-off">جاري التحقق…</span></span></div>
+<div class="ac-acts"><a class="nj-btn nj-btn-line nj-btn-sm" href="lessons.html">الشروحات</a><a class="nj-btn nj-btn-line nj-btn-sm" href="quiz.html">اختبر نفسك</a><a class="nj-btn nj-btn-fill nj-btn-sm" href="store.html" id="ac-store" hidden>اشترك من المتجر</a></div>
+</div>
+<div class="nj-card">
+<h2>بياناتك المحفوظة</h2>
+<p class="nj-hint">خطتك وجدولك ومعدلك ونتائج اختباراتك محفوظة في حسابك، وترجع لك من أي جهاز تسجل منه.</p>
+<div class="ac-acts"><a class="nj-btn nj-btn-line nj-btn-sm" href="plans.html">خطتك الدراسية</a><a class="nj-btn nj-btn-line nj-btn-sm" href="schedule.html">جدولك</a><a class="nj-btn nj-btn-line nj-btn-sm" href="gpa.html">حاسبة المعدل</a><button type="button" class="nj-btn nj-btn-line nj-btn-sm" data-logout>تسجيل الخروج</button></div>
+</div>
+<div class="nj-card ac-danger">
+<h2>حذف الحساب</h2>
+<p class="nj-hint">يحذف حسابك وكل بياناتك (الخطة، والجدول، والمعدل، ونتائج الاختبارات، وتقييماتك) نهائيًا، وما تقدر ترجعها. لو عندك اشتراك مدفوع، راسلنا قبل الحذف.</p>
+<label class="ac-check"><input type="checkbox" id="ac-sure">أفهم إن الحذف نهائي وما أقدر أرجع بياناتي.</label>
+<button type="button" class="nj-btn ac-del" id="ac-del" disabled>احذف حسابي نهائيًا</button>
+<p class="ac-msg" id="ac-msg" aria-live="polite"></p>
+</div>
+</div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js?v=20261111g"></script>
+<script src="assets/js/i18n.js?v=20261111g"></script>
+<script type="module" src="assets/js/auth.js?v=20261111g"></script>
+<script type="module">
+const $ = (id) => document.getElementById(id), toast = window.Najd.toast, T = (s) => (window.NajdT ? window.NajdT(s) : s);
+function ready() { return new Promise((r) => (window.NajdAuth ? r(window.NajdAuth) : window.addEventListener("najd:auth-ready", () => r(window.NajdAuth), { once: true }))); }
+try {
+  const M = await import("./assets/js/auth.js?v=20261111g");
+  const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
+  const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
+  const A = await ready();
+  fa.onAuthStateChanged(M.auth, async (u) => {
+    if (!u) return;
+    const i = A.info();
+    $("ac-mail").textContent = i.email; $("ac-email").textContent = i.email || "—"; $("ac-name").value = i.name;
+    $("ac-prov").textContent = i.google ? "حساب Gmail" : "البريد وكلمة المرور";
+    $("ac-ver").innerHTML = i.verified ? '<span class="ac-pill">مؤكد ✅</span>' : '<span class="ac-pill is-off">غير مؤكد</span> <button type="button" class="ac-link" id="ac-resend">أرسل رابط التأكيد</button>';
+    const rs = $("ac-resend"); if (rs) rs.onclick = async () => { try { await A.resendVerification(); toast("أرسلنا الرابط 📬"); } catch (e) { toast("انتظر شوي وجرب مرة ثانية"); } };
+    let sub = '<span class="ac-pill is-off">غير مشترك</span>', on = false;
+    try {
+      if (i.email) {
+        const s = await fs.getDoc(fs.doc(M.db, "access", i.email.toLowerCase()));
+        if (s.exists()) {
+          const d = s.data(), live = !d.until || d.until.toMillis() > Date.now();
+          const end = d.until ? d.until.toDate().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
+          if (live && !i.verified) sub = '<span class="ac-pill is-off">بانتظار تأكيد بريدك</span>';
+          else if (live) { on = true; sub = '<span class="ac-pill">مفعّل ✅</span>' + (end ? ' <small>ينتهي ' + end + "</small>" : ""); }
+          else sub = '<span class="ac-pill is-off">منتهي</span>' + (end ? " <small>" + end + "</small>" : "");
+        }
+      }
+    } catch (e) { console.warn(e); }
+    $("ac-sub").innerHTML = sub; $("ac-store").hidden = on;
+  });
+  $("ac-name-f").addEventListener("submit", async (e) => {
+    e.preventDefault(); const n = $("ac-name").value.trim(); if (!n) return toast("اكتب اسمك");
+    try { await A.setName(n); toast("تم حفظ الاسم ✅"); } catch (er) { toast(A.errText(er)); }
+  });
+  $("ac-sure").addEventListener("change", () => { $("ac-del").disabled = !$("ac-sure").checked; });
+  $("ac-del").addEventListener("click", async () => {
+    if (!confirm("متأكد تبي تحذف حسابك وكل بياناتك نهائيًا؟")) return;
+    const b = $("ac-del"); b.disabled = true; $("ac-msg").textContent = "";
+    try { await A.deleteAccount(); try { sessionStorage.setItem("najd_flash", "انحذف حسابك وبياناتك. نتمنى لك التوفيق 🤍"); } catch (x) {} location.href = "index.html"; }
+    catch (er) { b.disabled = false; $("ac-msg").textContent = T(A.errText(er)); }
+  });
+} catch (e) { console.warn("najd account", e); toast("تأكد من اتصالك بالإنترنت وحدّث الصفحة."); }
+</script>
+</body>
+</html>

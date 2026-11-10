@@ -4,14 +4,25 @@
 <meta charset="utf-8">
 <script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>أكاديمية نجد | دراستك أوضح، وخطتك أسهل</title>
-<meta name="description" content="أكاديمية نجد لطلاب جامعة الأمير مساعد بن عبدالرحمن: خطتك الدراسية، جدولك، حاسبة المعدل، وشروحات ومساعد دراسي في مكان واحد.">
+<title>أكاديمية نجد | دراستك أسهل، وخطتك أوضح</title>
+<meta name="description" content="أكاديمية نجد لطلاب جامعة الأمير مساعد بن عبدالرحمن: خطتك الدراسية، جدولك، حاسبة المعدل، وشروحات في مكان واحد.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="أكاديمية نجد">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="أكاديمية نجد | دراستك أسهل، وخطتك أوضح">
+<meta property="og:description" content="أكاديمية نجد لطلاب جامعة الأمير مساعد بن عبدالرحمن: خطتك الدراسية، جدولك، حاسبة المعدل، وشروحات في مكان واحد.">
+<meta property="og:url" content="https://najdacdemy.com/">
+<meta property="og:image" content="https://najdacdemy.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://najdacdemy.com/">
 <meta name="theme-color" content="#2F4F4E">
 <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261110m">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261111g">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
@@ -58,12 +69,29 @@
 #najd .hm-stat>span{display:block;font-size:16px;font-weight:700;margin:6px 0 0}
 #najd .hm-stat small{display:block;font-size:13.5px;color:var(--slate)}
 
-#najd .hm-tools{grid-template-columns:repeat(5,1fr);gap:16px}
+#najd .hm-tools{grid-template-columns:repeat(3,1fr);gap:16px}
 #najd .hm-tools .nj-tile{padding:16px}
 #najd .hm-tools .nj-badge{top:26px;right:26px}
-@media (max-width:1180px){#najd .hm-tools{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:1080px){#najd .hm-tools{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:760px){#najd .hm-tools{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:520px){#najd .hm-tools{grid-template-columns:1fr}}
+/* عدّاد الاختبار القادم */
+#najd .hm-next{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(150deg,var(--deep),var(--deeper));color:#fff;border-radius:var(--r);padding:16px 20px;margin:16px 0 0;box-shadow:var(--shadow)}
+#najd .hm-next .n{flex-shrink:0;min-width:64px;text-align:center;background:rgba(255,255,255,.12);border-radius:14px;padding:8px 10px}
+#najd .hm-next .n b{display:block;font-size:28px;font-weight:800;line-height:1.1}
+#najd .hm-next .n small{font-size:12.5px;color:var(--mist)}
+#najd .hm-next .t{flex:1;min-width:200px}
+#najd .hm-next .t small{color:var(--mist);font-size:14px}
+#najd .hm-next .t b{display:block;font-size:18px;font-weight:800}
+#najd .hm-next .nj-btn{height:42px;font-size:15px}
+/* آراء الطلاب */
+#najd .hm-says{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+#najd .hm-say{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px}
+#najd .hm-say p{font-size:16px;line-height:1.9;flex:1;white-space:pre-line}
+#najd .hm-say p::before{content:"“";display:block;font-size:44px;line-height:.6;color:var(--teal);font-weight:800;margin-bottom:6px}
+#najd .hm-say footer{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--line)}
+#najd .hm-say footer b{display:block;font-size:15.5px}
+#najd .hm-say footer small{font-size:13.5px;color:var(--slate)}
 /* القصة والرؤية */
 #najd .hm-story{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 #najd .hm-story h2{font-size:34px;font-weight:800;line-height:1.35}
@@ -148,8 +176,8 @@
 <div class="nj-in">
 <div>
 <span class="hm-kick"><svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M0 12L3 8L6 12Z" fill="#B0B8BC"/><path d="M6 12L9 6L12 12Z" fill="#7A9FA3"/><path d="M12 12L15 4L18 12Z" fill="#568A88"/></svg>لطلاب جامعة الأمير مساعد بن عبدالرحمن</span>
-<h1>دراستك أوضح، وخطتك أسهل مع <em>أكاديمية نجد</em></h1>
-<p class="hm-lead">تابع خطتك الدراسية، وصمّم جدولك بدقائق، واحسب معدلك، وطوّر نفسك بشروحات ومساعد دراسي يرافقك طول الفصل.</p>
+<h1>دراستك أسهل، وخطتك أوضح مع <em>أكاديمية نجد</em></h1>
+<p class="hm-lead">تابع خطتك الدراسية، وصمّم جدولك بدقائق، واحسب معدلك، وطوّر نفسك بشروحات تساعدك طول الفصل.</p>
 <div class="hm-ctas">
 <a class="nj-btn nj-btn-fill nj-guest" href="login.html">ابدأ مجانًا <span class="nj-arrow">←</span></a>
 <a class="nj-btn nj-btn-fill nj-member" href="plans.html">كمّل خطتك <span class="nj-arrow">←</span></a>
@@ -180,11 +208,13 @@
 <div class="nj-in">
 <div class="hm-stats nj-rv">
 <div class="hm-stat"><b><span data-count="4">4</span></b><span>تخصصات</span><small>بخططها الكاملة</small></div>
-<div class="hm-stat"><b><span data-count="130">130</span></b><span>ساعة موثقة</span><small>مرتبة حسب المستوى</small></div>
+<div class="hm-stat"><b><span data-count="130">130</span></b><span>ساعة معتمدة</span><small>مرتبة حسب المستوى</small></div>
 <div class="hm-stat"><b><span data-count="11">11</span></b><span>مقاس لجدولك</span><small>جوال، آيباد، وA4</small></div>
 <div class="hm-stat"><b><span data-count="3">3</span><sup>+</sup></b><span>أدوات مجانية</span><small>بدون أي اشتراك</small></div>
 </div>
 </div>
+
+<div class="nj-in"><div class="hm-next" id="hm-next" hidden></div></div>
 
 <!-- الأدوات (بطاقات بأسلوب سطر) -->
 <section class="nj-sec" id="tools">
@@ -199,7 +229,7 @@
 <div class="nj-tile-ic"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M4 44L11 34L18 44Z" fill="#B0B8BC"/><path d="M17 44L26 26L35 44Z" fill="#7A9FA3"/><path d="M33 44L41 14L49 44Z" fill="#568A88"/></svg></div>
 <h3>الخطة الدراسية</h3>
 <p>مقررات كل مستوى، والمتطلبات السابقة، وتقدمك نحو التخرج، وتحمّلها PDF.</p>
-<div class="nj-meta"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 5l6-3 6 3-6 3z"/><path d="M2 8.5l6 3 6-3"/></svg>4 تخصصات</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg>130 ساعة</span><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يتطلب حساب</span></div>
+<div class="nj-meta"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 5l6-3 6 3-6 3z"/><path d="M2 8.5l6 3 6-3"/></svg>4 تخصصات</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg>130 ساعة</span><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يحتاج تسجيل دخول</span></div>
 <a class="nj-btn nj-btn-line" href="plans.html">افتح الخطط</a>
 </article>
 <article class="nj-tile">
@@ -207,7 +237,7 @@
 <div class="nj-tile-ic"><svg viewBox="0 0 52 52" aria-hidden="true"><rect x="4" y="6" width="20" height="18" rx="4" fill="#568A88"/><rect x="28" y="6" width="20" height="18" rx="4" fill="#C8CFD2"/><rect x="4" y="28" width="20" height="18" rx="4" fill="#B0B8BC"/><rect x="28" y="28" width="20" height="18" rx="4" fill="#7A9FA3"/></svg></div>
 <h3>الجدول الدراسي</h3>
 <p>صمّم جدولك، وأضف اختباراتك لتقويم جوالك، وحمّله خلفية أو PDF.</p>
-<div class="nj-meta"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 7h12M5 1.5v3M11 1.5v3"/></svg>الأحد – الخميس</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4.5" y="1.5" width="7" height="13" rx="1.5"/></svg>11 مقاس</span><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يتطلب حساب</span></div>
+<div class="nj-meta"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 7h12M5 1.5v3M11 1.5v3"/></svg>الأحد – الخميس</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4.5" y="1.5" width="7" height="13" rx="1.5"/></svg>11 مقاس</span><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يحتاج تسجيل دخول</span></div>
 <a class="nj-btn nj-btn-line" href="schedule.html">صمّم جدولك</a>
 </article>
 <article class="nj-tile">
@@ -215,24 +245,32 @@
 <div class="nj-tile-ic"><svg viewBox="0 0 52 52" aria-hidden="true"><rect x="8" y="4" width="36" height="44" rx="7" fill="#568A88"/><rect x="13" y="9" width="26" height="10" rx="3" fill="#E4E9EB"/><g fill="#C8CFD2"><rect x="13" y="24" width="7" height="6" rx="2"/><rect x="22.5" y="24" width="7" height="6" rx="2"/><rect x="32" y="24" width="7" height="6" rx="2"/><rect x="13" y="34" width="7" height="6" rx="2"/><rect x="22.5" y="34" width="7" height="6" rx="2"/></g><rect x="32" y="34" width="7" height="6" rx="2" fill="#7A9FA3"/></svg></div>
 <h3>حاسبة المعدل</h3>
 <p>احسب معدلك الفصلي والتراكمي، واعرف وش التقديرات اللي توصلك لهدفك.</p>
-<div class="nj-meta"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 13l4-5 3 3 5-7"/></svg>سلم 4.00</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>كم أحتاج؟</span><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يتطلب حساب</span></div>
+<div class="nj-meta"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 13l4-5 3 3 5-7"/></svg>سلم 4.00</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>كم أحتاج؟</span><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يحتاج تسجيل دخول</span></div>
 <a class="nj-btn nj-btn-line" href="gpa.html">احسب معدلك</a>
 </article>
 <article class="nj-tile">
 <span class="nj-badge nj-paid">للمشتركين</span>
 <div class="nj-tile-ic"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M25 46L5 40V16L25 22Z" fill="#758A8C"/><path d="M27 46L47 40V16L27 22Z" fill="#568A88"/><path d="M21 4L33 11L21 18Z" fill="#7A9FA3"/></svg></div>
 <h3>الشروحات</h3>
-<p>شروحات مختارة مرتبة حسب المقرر، لمن يبي يطور نفسه في بعض المناهج.</p>
-<div class="nj-meta"><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يتطلب حساب</span><span>⏳ قريبًا</span></div>
+<p>شروحات فيديو وملخصات لمقرراتك، ترجع لها متى ما احتجت.</p>
+<div class="nj-meta"><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يحتاج تسجيل دخول</span></div>
 <a class="nj-btn nj-btn-fill" href="lessons.html">تصفح الشروحات</a>
 </article>
 <article class="nj-tile">
-<span class="nj-badge nj-paid">للمشتركين</span>
-<div class="nj-tile-ic"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M6 8H46V36H20L10 46V36H6Z" fill="#568A88"/><path d="M14 28L18 21L22 28Z" fill="#E4E9EB"/><path d="M22 28L26 18L30 28Z" fill="#C8CFD2"/><path d="M30 28L34 15L38 28Z" fill="#E4E9EB"/></svg></div>
-<h3>مساعدك الدراسي</h3>
-<p>مساعد يجاوب أسئلتك، ويساعدك تفهم الدروس الصعبة وتستعد لاختباراتك.</p>
-<div class="nj-meta"><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يتطلب حساب</span><span>⏳ قريبًا</span></div>
-<a class="nj-btn nj-btn-fill" href="assistant.html">جرّب المساعد</a>
+<span class="nj-badge nj-free">جديد</span>
+<div class="nj-tile-ic"><svg viewBox="0 0 52 52" aria-hidden="true"><rect x="9" y="5" width="34" height="42" rx="6" fill="#568A88"/><path d="M16 17l3 3 6-6" fill="none" stroke="#E4E9EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="29" y="15" width="9" height="3.5" rx="1.75" fill="#C8CFD2"/><path d="M16 31l3 3 6-6" fill="none" stroke="#E4E9EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="29" y="29" width="9" height="3.5" rx="1.75" fill="#C8CFD2"/></svg></div>
+<h3>اختبر نفسك</h3>
+<p>اختبر فهمك قبل الاختبار، واعرف أخطاءك على طول.</p>
+<div class="nj-meta"><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يحتاج تسجيل دخول</span></div>
+<a class="nj-btn nj-btn-line" href="quiz.html">اختبر نفسك</a>
+</article>
+<article class="nj-tile">
+<span class="nj-badge nj-free">جديد</span>
+<div class="nj-tile-ic"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M26 6l6.200 12.600 13.800 2-10 9.800 2.400 13.800L26 37.600 13.600 44.200 16 30.400 6 20.600l13.800-2z" fill="#568A88"/><path d="M26 15l3.300 6.700 7.400 1.100-5.300 5.200 1.200 7.300L26 31.800l-6.600 3.500 1.200-7.300-5.300-5.200 7.400-1.100z" fill="#7A9FA3"/></svg></div>
+<h3>تجارب الطلاب</h3>
+<p>شوف تجارب الطلاب ونصايحهم قبل ما تسجل، وشاركهم تجربتك.</p>
+<div class="nj-meta"><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يحتاج تسجيل دخول</span></div>
+<a class="nj-btn nj-btn-line" href="ratings.html">شوف التجارب</a>
 </article>
 </div>
 </div>
@@ -244,7 +282,7 @@
 <div class="hm-story-t nj-rv">
 <span class="nj-pill">من نحن</span>
 <h2>القصة والرؤية</h2>
-<p>أكاديمية نجد مبادرة تعليمية هدفها <b>تسهيل التعلم على الطلاب</b>. مثل ما يفتح الكتاب الطريق للقمة، جمعنا في مكان واحد الأدوات اللي يحتاجها الطالب كل فصل.</p>
+<p>أكاديمية نجد مبادرة تعليمية هدفها <b>تسهيل التعلم على الطلاب</b>. جمعنا في مكان واحد كل اللي يحتاجه الطالب في فصله الدراسي.</p>
 <p>خطة واضحة يتابعها، وجدول يرتبه بنفسه، وحاسبة تعطيه صورة واضحة عن معدله، وشروحات تساعده يتقدم في المقررات اللي يحتاج فيها دعم.</p>
 <p>رؤيتنا: <b>كل طالب يبدأ فصله وهو عارف طريقه.</b></p>
 </div>
@@ -283,7 +321,7 @@
 <li>المقررات اللي علّمت عليها في خطتك</li>
 <li>جدولك ومواعيد اختباراتك</li>
 <li>مقرراتك ومعدلك في الحاسبة</li>
-<li>أول من يوصله جديد الشروحات والمساعد</li>
+<li>أول من يوصله جديد الشروحات</li>
 </ul>
 <div class="hm-ctas"><a class="nj-btn nj-btn-fill nj-guest" href="register.html">أنشئ حسابك مجانًا</a><a class="nj-btn nj-btn-line nj-guest" href="login.html">عندي حساب</a><a class="nj-btn nj-btn-fill nj-member" href="schedule.html">افتح جدولك</a></div>
 </div>
@@ -296,6 +334,16 @@
 </div>
 </section>
 
+<!-- آراء الطلاب (تنضاف من لوحة الإدارة، والقسم يختفي لو ما فيه آراء) -->
+<section class="nj-sec" id="says" hidden>
+<div class="nj-in">
+<div class="nj-sh nj-sh-c">
+<h2 class="nj-tt"><span class="nj-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>وش يقولون الطلاب عن أكاديمية نجد؟</h2>
+</div>
+<div class="hm-says" id="hm-says"></div>
+</div>
+</section>
+
 <!-- الخطوات -->
 <section class="nj-sec nj-sec-white">
 <div class="nj-in">
@@ -304,7 +352,7 @@
 <p>ثلاث خطوات، وكل خطوة تقربك من القمة.</p>
 </div>
 <div class="hm-steps nj-rv">
-<div class="hm-step"><h3>أنشئ حسابك</h3><p>ادخل بحساب Gmail بضغطة، أو سجّل ببريدك. والتسجيل مجاني.</p></div>
+<div class="hm-step"><h3>أنشئ حسابك</h3><p>دقيقة وحدة ويصير عندك حساب، بـ Gmail أو بريدك.</p></div>
 <div class="hm-step"><h3>رتّب فصلك</h3><p>علّم على خطتك، وصمّم جدولك، واحسب معدلك، وكل شي يتحفظ في حسابك.</p></div>
 <div class="hm-step"><h3>ابدأ التعلم</h3><p>سجّل دخولك من أي جهاز وكمّل من حيث وقفت.</p></div>
 </div>
@@ -325,8 +373,42 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261110m"></script>
-<script src="assets/js/i18n.js?v=20261110m"></script>
-<script type="module" src="assets/js/auth.js?v=20261110m"></script>
+<script src="assets/js/layout.js?v=20261111g"></script>
+<script src="assets/js/i18n.js?v=20261111g"></script>
+<script type="module" src="assets/js/auth.js?v=20261111g"></script>
+<script>
+/* عدّاد الاختبار القادم: من جدول الطالب المحفوظ */
+(function(){
+  var box=document.getElementById('hm-next'),esc=window.Najd.esc;
+  function show(){
+    var root=document.getElementById('najd');if(!root.classList.contains('is-in')){box.hidden=true;return;}
+    var st=null;try{st=JSON.parse(localStorage.getItem('stq_schedule_v1')||'null');}catch(e){}
+    var t=new Date();t.setHours(0,0,0,0);
+    var l=((st&&st.exams)||[]).filter(function(x){return /^\d{4}-\d{2}-\d{2}$/.test(x.date||'')&&new Date(x.date+'T00:00:00')>=t;}).sort(function(a,b){return (a.date+(a.time||'')).localeCompare(b.date+(b.time||''));});
+    if(!l.length){box.hidden=true;return;}
+    var x=l[0],n=Math.round((new Date(x.date+'T00:00:00')-t)/864e5),type=x.type==='final'?'فاينل':'ميدتيرم';
+    var when=new Date(x.date+'T00:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+    box.innerHTML='<div class="n"><b>'+(n===0?'🔔':n)+'</b><small>'+(n===0?'اليوم':n===1?'يوم':n===2?'يومين':n<=10?'أيام':'يوم')+'</small></div>'
+      +'<div class="t"><small>اختبارك القادم</small><b>'+type+' <span dir="ltr">'+esc((x.subject||'').trim()||'—')+'</span></b><small dir="ltr">'+esc(when)+'</small></div>'
+      +(l.length===2?'<small>وبعده اختبار واحد</small>':l.length===3?'<small>وبعده اختبارين</small>':l.length>2?'<small>وبعده '+(l.length-1)+' اختبارات</small>':'')+'<a class="nj-btn nj-btn-white" href="schedule.html">جدولي</a>';
+    box.hidden=false;
+  }
+  show();window.addEventListener('najd:auth',show);
+})();
+</script>
+<script type="module">
+/* آراء الطلاب من Firestore */
+try {
+  const { db } = await import("./assets/js/auth.js?v=20261111g");
+  const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
+  const esc = window.Najd.esc, l = [];
+  (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
+  l.sort((a, b) => (+a.order || 0) - (+b.order || 0));
+  if (l.length) {
+    document.getElementById("hm-says").innerHTML = l.slice(0, 6).map((x) => `<article class="hm-say"><p>${esc(x.text)}</p><footer><span class="nj-av" aria-hidden="true">${esc(x.name.trim().charAt(0))}</span><div><b>${esc(x.name)}</b><small>${esc(x.role || "")}</small></div></footer></article>`).join("");
+    document.getElementById("says").hidden = false;
+  }
+} catch (e) { console.warn("najd testimonials", e); }
+</script>
 </body>
 </html>
