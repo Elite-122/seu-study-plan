@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261111g">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112a">
 <style>
 #najd .ad-tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
 #najd .ad-tab{flex:1 1 auto;height:44px;padding:0 14px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap}
@@ -92,11 +92,11 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261111g"></script>
-<script src="assets/js/i18n.js?v=20261111g"></script>
-<script src="assets/js/coop-data.js?v=20261111g"></script>
+<script src="assets/js/layout.js?v=20261112a"></script>
+<script src="assets/js/i18n.js?v=20261112a"></script>
+<script src="assets/js/coop-data.js?v=20261112a"></script>
 <script type="module">
-import { auth, db } from "./assets/js/auth.js?v=20261111g";
+import { auth, db } from "./assets/js/auth.js?v=20261112a";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, writeBatch, query, where, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
@@ -181,7 +181,7 @@ SECTIONS.instructors = {
 };
 SECTIONS.testimonials = {
   col: "testimonials", title: "رأي", plural: "آراء الطلاب",
-  hint: "أضف آراء حقيقية من طلاب وبإذنهم. تظهر في الصفحة الرئيسية، والقسم يختفي لو ما فيه آراء.",
+  hint: "الآراء المنشورة في الصفحة الرئيسية. تقدر تضيف رأي يدويًا، أو تعدّل وتخفي وتحذف المنشور.",
   fields: [
     { k: "name", label: "اسم الطالب *", type: "text", req: true, max: 40, hint: "الاسم الأول يكفي، مثل: سارة م." },
     { k: "role", label: "التخصص أو المستوى", type: "text", max: 60 },
@@ -450,8 +450,33 @@ async function reviews() {
   await load();
 }
 
+/* ===== آراء الطلاب: صندوق المراجعة + المنشور ===== */
+async function testimonials() {
+  await crud("testimonials");
+  const box = document.createElement("div"); box.className = "nj-card";
+  box.innerHTML = '<h2>آراء بانتظار المراجعة (<span id="in-n">0</span>)</h2><p class="nj-hint">هذي آراء أرسلها الطلاب من الصفحة الرئيسية. «نشر» ينقل الرأي للرئيسية، و«حذف» يشيله نهائيًا. وتقدر تعدّل صياغته بعد النشر من القائمة تحت.</p><div id="in-list"><p class="nj-hint">جاري التحميل…</p></div>';
+  $("ad-body").prepend(box);
+  let inbox = [];
+  async function load() {
+    const sn = await getDocs(collection(db, "testimonialInbox")); inbox = []; sn.forEach((d) => inbox.push({ id: d.id, ...d.data() }));
+    inbox.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+    $("in-n").textContent = inbox.length;
+    $("in-list").innerHTML = inbox.length ? inbox.map((x) => `<div class="ad-row" style="align-items:flex-start"><div><b style="white-space:normal">${esc(x.name)}${x.role ? " · " + esc(x.role) : ""}</b><small style="display:block;white-space:pre-line;font-size:15px;color:var(--ink);margin-top:4px">${esc(x.text)}</small></div><button type="button" data-pub="${x.id}">نشر</button><button type="button" class="del" data-rm="${x.id}">حذف</button></div>`).join("") : '<p class="nj-hint">ما فيه آراء جديدة.</p>';
+  }
+  $("in-list").onclick = async (e) => {
+    const pub = e.target.closest("[data-pub]"), rm = e.target.closest("[data-rm]"); if (!pub && !rm) return;
+    const x = inbox.find((i) => i.id === (pub || rm).dataset[pub ? "pub" : "rm"]);
+    try {
+      if (pub) { const b = writeBatch(db); b.set(doc(collection(db, "testimonials")), { name: x.name || "", role: x.role || "", text: x.text || "", order: null, active: true, createdAt: serverTimestamp() }); b.delete(doc(db, "testimonialInbox", x.id)); await b.commit(); toast("انتشر الرأي ✅"); openTab("testimonials"); return; }
+      if (!confirm("تحذف هذا الرأي؟")) return;
+      await deleteDoc(doc(db, "testimonialInbox", x.id)); toast("انحذف"); await load();
+    } catch (er) { console.warn(er); toast("ما قدرنا ننفذ. تأكد من قواعد Firestore."); }
+  };
+  await load();
+}
+
 /* ===== التبويبات ===== */
-const VIEWS = { ann, products: () => crud("products"), lessons: () => crud("lessons"), quizzes, access, coop: () => crud("coop"), calendar: () => crud("calendar"), reviews, instructors: () => crud("instructors"), testimonials: () => crud("testimonials") };
+const VIEWS = { ann, products: () => crud("products"), lessons: () => crud("lessons"), quizzes, access, coop: () => crud("coop"), calendar: () => crud("calendar"), reviews, instructors: () => crud("instructors"), testimonials };
 function openTab(t) {
   if (!VIEWS[t]) t = "ann";
   document.querySelectorAll(".ad-tab").forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === t ? "true" : "false"));
