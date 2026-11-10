@@ -1,6 +1,10 @@
 /* أكاديمية نجد — الترجمة للإنجليزي. يترجم نصوص الصفحة بعد ما تنرسم، ويراقب أي محتوى جديد.
    لإضافة ترجمة: أضف السطر في DICT (النص العربي بالضبط: الترجمة). الأرقام في TPL تنكتب {n}. */
 window.NAJD_I18N={DICT:{
+"تابع خطتك الدراسية، وصمّم جدولك بدقائق، واحسب معدلك، وطوّر نفسك بشروحات تساعدك طول الفصل.": "Track your study plan, build your schedule in minutes, calculate your GPA, and grow with lessons that support you all semester.",
+"أول من يوصله جديد الشروحات": "First to hear about new lessons",
+"أكاديمية نجد لطلاب جامعة الأمير مساعد بن عبدالرحمن: خطتك الدراسية، جدولك، حاسبة المعدل، وشروحات في مكان واحد.": "Najd Academy for Prince Musaed bin Abdulrahman University students: your study plan, schedule, GPA calculator and lessons in one place.",
+"التسجيل مجاني، والاشتراك في الشروحات اختياري.": "Sign-up is free; subscribing to lessons is optional.",
 "أكاديمية نجد. جميع الحقوق محفوظة.": "Najd Academy. All rights reserved.",
 "سياسة الخصوصية": "Privacy Policy",
 "الشروط والأحكام": "Terms & Conditions",

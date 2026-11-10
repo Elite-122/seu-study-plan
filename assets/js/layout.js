@@ -4,10 +4,10 @@
   var root=document.getElementById('najd');if(!root)return;
 
   /* روابط الصفحات — عدّلها هنا لو غيّرت أسماء الملفات */
-  var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',assistant:'assistant.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',privacy:'privacy.html',terms:'terms.html',college:'college-plans.html'};
+  var LINKS={home:'index.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',privacy:'privacy.html',terms:'terms.html',college:'college-plans.html'};
   /* بريد التواصل (يظهر في سياسة الخصوصية والشروط) — اكتبه هنا */
   var CONTACT_EMAIL='najdacdemy@gmail.com';
-  var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['assistant','مساعدك الدراسي'],['coop','التدريب التعاوني'],['store','المتجر']];
+  var NAV=[['plans','الخطط الدراسية'],['schedule','الجدول الدراسي'],['gpa','حاسبة المعدل'],['lessons','الشروحات'],['coop','التدريب التعاوني'],['store','المتجر']];
   var PAGE=root.getAttribute('data-page')||'';
 
   /* المفاتيح اللي تنحفظ في حسابك وتتزامن بين أجهزتك */
@@ -62,7 +62,7 @@
       +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
       +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.store+'">المتجر</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.college+'">خطط كلية العلوم الإدارية والمالية</a></nav></div>'
-      +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a href="'+LINKS.lessons+'">الشروحات</a><a href="'+LINKS.assistant+'">مساعدك الدراسي</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav></div>'
+      +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav></div>'
       +'</div>'
       +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب 🤍 من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد فردي ولا يتبع للجامعة بأي صلة.</p></div>'
       +'<p class="nj-copy"><a href="'+LINKS.privacy+'">سياسة الخصوصية</a> · <a href="'+LINKS.terms+'">الشروط والأحكام</a><br>© <span>'+new Date().getFullYear()+'</span> أكاديمية نجد. جميع الحقوق محفوظة.</p></div>'
@@ -122,7 +122,7 @@
 
   /* صفحات تحتاج تسجيل دخول: نعرض بطاقة دخول بدل المحتوى */
   var REQUIRED=root.getAttribute('data-auth')==='required';
-  var PAGE_NAMES={plans:'الخطط الدراسية',schedule:'الجدول الدراسي',gpa:'حاسبة المعدل',lessons:'الشروحات',assistant:'مساعدك الدراسي',admin:'لوحة الإدارة'};
+  var PAGE_NAMES={plans:'الخطط الدراسية',schedule:'الجدول الدراسي',gpa:'حاسبة المعدل',lessons:'الشروحات',admin:'لوحة الإدارة'};
   if(REQUIRED){
     var main=root.querySelector('main');
     if(main){
