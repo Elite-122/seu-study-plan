@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261111c">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261111d">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
@@ -262,7 +262,7 @@
 <h3>اختبر نفسك</h3>
 <p>اختبارات لمقرراتك تتصحح على طول، وتشوف أخطاءك، وتعيدها متى ما حبيت.</p>
 <div class="nj-meta"><span class="nj-lock"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>يتطلب حساب</span></div>
-<a class="nj-btn nj-btn-line" href="quiz.html">ابدأ اختبار</a>
+<a class="nj-btn nj-btn-line" href="quiz.html">اختبر نفسك</a>
 </article>
 <article class="nj-tile">
 <span class="nj-badge nj-free">جديد</span>
@@ -373,9 +373,9 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261111c"></script>
-<script src="assets/js/i18n.js?v=20261111c"></script>
-<script type="module" src="assets/js/auth.js?v=20261111c"></script>
+<script src="assets/js/layout.js?v=20261111d"></script>
+<script src="assets/js/i18n.js?v=20261111d"></script>
+<script type="module" src="assets/js/auth.js?v=20261111d"></script>
 <script>
 /* عدّاد الاختبار القادم: من جدول الطالب المحفوظ */
 (function(){
@@ -399,7 +399,7 @@
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=20261111c");
+  const { db } = await import("./assets/js/auth.js?v=20261111d");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
