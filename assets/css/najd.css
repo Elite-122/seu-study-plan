@@ -317,3 +317,9 @@ html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selecti
 #najd .nj-copy a{color:var(--mist);text-decoration:underline;text-underline-offset:3px}
 #najd .nj-copy a:hover{color:#fff}
 #najd .nj-copy{line-height:1.9}
+
+/* ===== إضافات: تواصل، حسابي ===== */
+#najd a.nj-av{text-decoration:none}
+#najd .nj-foot-h2{margin-top:18px!important}
+#najd .nj-foot-social a{display:inline-flex;align-items:center;gap:8px}
+#najd .nj-foot-social svg{width:18px;height:18px}

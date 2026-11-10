@@ -65,6 +65,61 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // الاختبارات: العنوان والوصف للمسجلين، والأسئلة نفسها في quizData
+    match /quizzes/{id} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+    match /quizData/{id} {
+      allow read: if isAdmin()
+        || (signedIn() && (get(/databases/$(database)/documents/quizzes/$(id)).data.free == true || hasAccess()));
+      allow write: if isAdmin();
+    }
+
+    // التقويم الأكاديمي وآراء الطلاب وأسماء الأعضاء: القراءة للكل، والكتابة للمشرفين
+    match /calendar/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /testimonials/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /instructors/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // تقييمات المقررات والأعضاء: تقييم واحد لكل طالب لكل عنصر (رقم المستند = العنصر_رقم الطالب).
+    // التقييم بدون تعليق ينشر على طول، والتعليق المكتوب يبقى "pending" لين يوافق المشرف.
+    function validReview(id) {
+      let d = request.resource.data;
+      return signedIn()
+        && d.keys().hasOnly(['target', 'uid', 'rating', 'level', 'tip', 'status', 'createdAt'])
+        && d.uid == request.auth.uid
+        && d.target is string && id == d.target + '_' + request.auth.uid
+        && d.rating is int && d.rating >= 1 && d.rating <= 5
+        && d.level is int && d.level >= 1 && d.level <= 5
+        && d.tip is string && d.tip.size() <= 400
+        && ((d.tip.size() == 0 && d.status == 'approved') || (d.tip.size() > 0 && d.status == 'pending'));
+    }
+    function canSeeReview() {
+      return resource.data.status == 'approved' || isAdmin()
+        || (signedIn() && resource.data.uid == request.auth.uid);
+    }
+    match /courseReviews/{id} {
+      allow get: if resource == null || canSeeReview();
+      allow list: if canSeeReview();
+      allow create, update: if validReview(id) || isAdmin();
+      allow delete: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+    }
+    match /instructorReviews/{id} {
+      allow get: if resource == null || canSeeReview();
+      allow list: if canSeeReview();
+      allow create, update: if validReview(id) || isAdmin();
+      allow delete: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+    }
+
     // المشرفين: تضيفهم يدويًا من Firebase Console، وكل واحد يقدر يشيك على نفسه بس
     match /admins/{uid} {
       allow read: if signedIn() && request.auth.uid == uid;

@@ -5,9 +5,9 @@ import {
   getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword,
   updateProfile, sendPasswordResetEmail, sendEmailVerification, signOut,
   setPersistence, browserLocalPersistence, browserSessionPersistence,
-  GoogleAuthProvider, signInWithPopup
+  GoogleAuthProvider, signInWithPopup, deleteUser, reauthenticateWithPopup
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp, collection, query, where, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCP2uDTCYm22Dy7B4KTFbeRFNTpwPOnzpY",
@@ -49,6 +49,7 @@ const MSG = {
   "auth/popup-blocked": "المتصفح منع نافذة قوقل. اسمح بالنوافذ المنبثقة وجرب مرة ثانية.",
   "auth/operation-not-allowed": "طريقة الدخول هذي غير مفعّلة حاليًا.",
   "auth/unauthorized-domain": "هذا النطاق غير مضاف في إعدادات Firebase (Authorized domains).",
+  "auth/requires-recent-login": "للأمان، سجّل خروج وادخل من جديد، وبعدها جرّب مرة ثانية.",
   "auth/cancelled-popup-request": "فيه نافذة دخول مفتوحة من قبل. كمّل فيها أو قفلها وجرب مرة ثانية.",
   "auth/account-exists-with-different-credential": "هذا البريد مسجل بطريقة دخول ثانية. جرّب تدخل بالبريد وكلمة المرور."
 };
@@ -154,7 +155,27 @@ window.NajdAuth = {
     await signOut(auth);
     N.toast("سجلت خروجك. نشوفك قريب 👋");
   },
-  user: () => current
+  user: () => current,
+  info() {
+    if (!current) return null;
+    const pv = (current.providerData[0] || {}).providerId || "";
+    return { name: current.displayName || "", email: current.email || "", verified: !!current.emailVerified, google: pv === "google.com" };
+  },
+  resendVerification() { return sendEmailVerification(current); },
+  /* حذف الحساب نهائيًا: تقييمات الطالب، ثم بياناته، ثم الحساب نفسه */
+  async deleteAccount() {
+    if (!current) return;
+    const uid = current.uid;
+    if ((current.providerData[0] || {}).providerId === "google.com") {
+      await reauthenticateWithPopup(current, new GoogleAuthProvider());
+    }
+    for (const c of ["courseReviews", "instructorReviews"]) {
+      try { const sn = await getDocs(query(collection(db, c), where("uid", "==", uid))); for (const d of sn.docs) await deleteDoc(d.ref); } catch (e) { console.warn("najd delete", c, e); }
+    }
+    try { await deleteDoc(doc(db, "users", uid)); } catch (e) { console.warn("najd delete user doc", e); }
+    await deleteUser(current);
+    try { KEYS.forEach((k) => localStorage.removeItem(k)); localStorage.removeItem(N.META); localStorage.removeItem("najd_user"); } catch (e) {}
+  }
 };
 window.dispatchEvent(new CustomEvent("najd:auth-ready"));
 
