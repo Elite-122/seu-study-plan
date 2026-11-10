@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261111f">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261111g">
 <style>
 #najd .rt-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
 #najd .rt-tab{height:46px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15.5px;font-weight:700;cursor:pointer}
@@ -94,10 +94,10 @@ html[data-theme="dark"] #najd .rt-msg.is-ok{color:#C7E3BD}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261111f"></script>
-<script src="assets/js/i18n.js?v=20261111f"></script>
-<script type="module" src="assets/js/auth.js?v=20261111f"></script>
-<script src="assets/js/courses-data.js?v=20261111f"></script>
+<script src="assets/js/layout.js?v=20261111g"></script>
+<script src="assets/js/i18n.js?v=20261111g"></script>
+<script type="module" src="assets/js/auth.js?v=20261111g"></script>
+<script src="assets/js/courses-data.js?v=20261111g"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KIND = {
@@ -179,7 +179,7 @@ document.querySelector(".rt-tabs").addEventListener("click", (e) => { const b = 
 $("rt-grid").addEventListener("click", (e) => { const b = e.target.closest(".rt-item"); if (b) detail(b.dataset.id); });
 let qt; $("rt-q").addEventListener("input", function () { clearTimeout(qt); const v = this.value; qt = setTimeout(() => { q = v; list(); }, 150); });
 try {
-  const M = await import("./assets/js/auth.js?v=20261111f");
+  const M = await import("./assets/js/auth.js?v=20261111g");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };

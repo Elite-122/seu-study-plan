@@ -1,6 +1,14 @@
 /* أكاديمية نجد — الترجمة للإنجليزي. يترجم نصوص الصفحة بعد ما تنرسم، ويراقب أي محتوى جديد.
    لإضافة ترجمة: أضف السطر في DICT (النص العربي بالضبط: الترجمة). الأرقام في TPL تنكتب {n}. */
 window.NAJD_I18N={DICT:{
+"شروحات فيديو وملخصات لمقرراتك، ترجع لها متى ما احتجت.": "Video lessons and summaries for your courses, there whenever you need them.",
+"اختبر فهمك قبل الاختبار، واعرف أخطاءك على طول.": "Test your understanding before the exam and see your mistakes right away.",
+"حل الاختبار، وشوف نتيجتك وأخطاءك على طول، وأعده متى ما حبيت.": "Take the quiz, see your score and mistakes right away, and retake it anytime.",
+". جمعنا في مكان واحد كل اللي يحتاجه الطالب في فصله الدراسي.": ". We gathered in one place everything a student needs for the semester.",
+"دقيقة وحدة ويصير عندك حساب، بـ Gmail أو بريدك.": "One minute and you have an account, with Gmail or your email.",
+"شروحات فيديو وملخصات تساعدك تفهم مقرراتك.": "Video lessons and summaries that help you understand your courses.",
+"ساعة معتمدة": "Credit hours",
+"فرص": "opportunities",
 "أدواتك": "Your tools",
 "التعلّم": "Learning",
 "مقررات كل مستوى وتقدمك": "Courses by level and your progress",
@@ -985,6 +993,7 @@ window.NAJD_I18N={DICT:{
 "الكل": "All"
 },
 TPL:{
+"{n} فرص": "{n} opportunities",
 "{n} تقييم": "{n} ratings",
 "{n} سؤال": "{n} questions",
 "السؤال {n} من {n}": "Question {n} of {n}",
