@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261111d">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261111f">
 <style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:10px;margin:20px 0 0}
 #najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px 8px;text-align:center}
 #najd .pl-stat b{display:block;font-size:26px;font-weight:800;color:var(--light);line-height:1.2}
@@ -119,9 +119,9 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261111d"></script>
-<script src="assets/js/i18n.js?v=20261111d"></script>
-<script type="module" src="assets/js/auth.js?v=20261111d"></script>
+<script src="assets/js/layout.js?v=20261111f"></script>
+<script src="assets/js/i18n.js?v=20261111f"></script>
+<script type="module" src="assets/js/auth.js?v=20261111f"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('pl-tl'))return;
@@ -435,7 +435,7 @@
         var d=!!st.done[dkey(li,ci)],pf=c[0].replace(/[0-9]/g,'');
         o+='<label class="pl-c'+(d?' is-done':'')+'"><input type="checkbox" data-done="'+li+'|'+ci+'"'+(d?' checked':'')+'><span class="pl-box" aria-hidden="true">'+(d?'✓':'')+'</span>'
           +'<span class="pl-code" style="background:'+(PFX[pf]||'#E4E9EB')+'">'+esc(c[0])+'</span>'
-          +'<span class="pl-cn"><b>'+esc(c[2])+'</b><small dir="ltr" style="text-align:right">'+esc(c[1])+'</small><small>المتطلب السابق: '+esc(c[4])+'</small><a class="pl-rate" href="ratings.html?c='+esc(c[0])+'">⭐ التقييمات والنصايح</a></span>'
+          +'<span class="pl-cn"><b>'+esc(c[2])+'</b><small dir="ltr" style="text-align:right">'+esc(c[1])+'</small><small>المتطلب السابق: '+esc(c[4])+'</small><a class="pl-rate" href="ratings.html?c='+esc(c[0])+'">⭐ تجارب الطلاب ونصايحهم</a></span>'
           +'<span class="pl-ch">'+c[3]+'<small>ساعات</small></span></label>';
       });
       o+='</div></div>';
