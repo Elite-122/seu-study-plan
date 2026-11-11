@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112b">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
 <style>
 #najd .ac-wrap{max-width:760px}
 #najd .ac-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -49,6 +49,11 @@
 #najd .ac-msg{font-size:15px;margin:10px 0 0;color:#8E3F37;min-height:1.4em}
 html[data-theme="dark"] #najd .ac-danger{border-color:#5A2E29}
 html[data-theme="dark"] #najd .ac-danger h2,html[data-theme="dark"] #najd .ac-msg{color:#F2C7C1}
+#najd .ac-subs{display:flex;flex-direction:column;gap:6px;margin:4px 0 0}
+#najd .ac-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;font-size:14.5px;background:var(--bg);border-radius:10px;padding:6px 10px}
+#najd .ac-sub b{font-weight:800}
+#najd .ac-sub small{color:var(--slate);font-size:12.5px;margin-inline-start:auto}
+#najd .ac-sub.is-end{opacity:.6}
 </style>
 </head>
 <body>
@@ -95,14 +100,16 @@ html[data-theme="dark"] #najd .ac-danger h2,html[data-theme="dark"] #najd .ac-ms
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112b"></script>
-<script src="assets/js/i18n.js?v=20261112b"></script>
-<script type="module" src="assets/js/auth.js?v=20261112b"></script>
+<script src="assets/js/layout.js?v=20261112c"></script>
+<script src="assets/js/i18n.js?v=20261112c"></script>
+<script src="assets/js/courses-data.js?v=20261112c"></script>
+<script src="assets/js/access.js?v=20261112c"></script>
+<script type="module" src="assets/js/auth.js?v=20261112c"></script>
 <script type="module">
 const $ = (id) => document.getElementById(id), toast = window.Najd.toast, T = (s) => (window.NajdT ? window.NajdT(s) : s);
 function ready() { return new Promise((r) => (window.NajdAuth ? r(window.NajdAuth) : window.addEventListener("najd:auth-ready", () => r(window.NajdAuth), { once: true }))); }
 try {
-  const M = await import("./assets/js/auth.js?v=20261112b");
+  const M = await import("./assets/js/auth.js?v=20261112c");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const A = await ready();
@@ -116,13 +123,12 @@ try {
     let sub = '<span class="ac-pill is-off">غير مشترك</span>', on = false;
     try {
       if (i.email) {
-        const s = await fs.getDoc(fs.doc(M.db, "access", i.email.toLowerCase()));
-        if (s.exists()) {
-          const d = s.data(), live = !d.until || d.until.toMillis() > Date.now();
-          const end = d.until ? d.until.toDate().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
-          if (live && !i.verified) sub = '<span class="ac-pill is-off">بانتظار تأكيد بريدك</span>';
-          else if (live) { on = true; sub = '<span class="ac-pill">مفعّل</span>' + (end ? ' <small>ينتهي ' + end + "</small>" : ""); }
-          else sub = '<span class="ac-pill is-off">منتهي</span>' + (end ? " <small>" + end + "</small>" : "");
+        const s = await fs.getDoc(fs.doc(M.db, "access", i.email.toLowerCase())), NA = window.NajdAccess;
+        const g = s.exists() ? NA.list(s.data()) : [], live = g.filter((x) => x.live);
+        if (live.length && !i.verified) sub = '<span class="ac-pill is-off">بانتظار تأكيد بريدك</span>';
+        else if (g.length) {
+          on = live.length > 0;
+          sub = '<div class="ac-subs">' + g.map((x) => '<span class="ac-sub' + (x.live ? "" : " is-end") + '"><b dir="auto">' + window.Najd.esc(x.code === "all" ? "كل المقررات" : NA.label(x.code)) + "</b>" + (NA.KINDS[x.kind] || "") + "<small>" + (x.until ? (x.live ? "لين " : "انتهى ") + "<span data-no-i18n>" + NA.fmt(x.until) + "</span>" : "بدون انتهاء") + "</small></span>").join("") + "</div>";
         }
       }
     } catch (e) { console.warn(e); }

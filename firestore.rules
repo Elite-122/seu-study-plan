@@ -14,11 +14,28 @@ service cloud.firestore {
     // اشتراك الشروحات: المشرف يضيف بريد الطالب في access/{البريد}
     // ونشترط إن البريد مؤكد، عشان ما أحد يسجل ببريد غيره وياخذ اشتراكه
     function accessDoc() { return get(/databases/$(database)/documents/access/$(myEmail())); }
-    function hasAccess() {
+    // الاشتراك حسب المقرر والنوع: access/{البريد}.grants = { "ACCT101_pdf": تاريخ الانتهاء أو true }
+    // النوع video = شروحات، pdf = ملخصات، all = الاثنين. المقرر all = كل المقررات
+    function grantOk(g, k) { return k in g && (g[k] == true || g[k] > request.time); }
+    function grantsMatch(g, code, kind) {
+      return grantOk(g, code + '_' + kind) || grantOk(g, code + '_all')
+        || grantOk(g, 'all_' + kind) || grantOk(g, 'all_all');
+    }
+    function granted(code, kind) {
       return signedIn()
         && request.auth.token.email_verified == true
         && exists(/databases/$(database)/documents/access/$(myEmail()))
-        && (!('until' in accessDoc().data) || accessDoc().data.until > request.time);
+        && grantsMatch(accessDoc().data.get('grants', {}), code, kind);
+    }
+    function lessonOpen(l) {
+      return l.get('free', false) == true
+        || (l.get('type', 'video') == 'pdf' && granted(l.get('code', 'none'), 'pdf'))
+        || (l.get('type', 'video') != 'pdf' && granted(l.get('code', 'none'), 'video'));
+    }
+    function quizOpen(q) {
+      return q.get('free', false) == true
+        || (q.get('need', 'pdf') == 'video' && granted(q.get('code', 'none'), 'video'))
+        || (q.get('need', 'pdf') != 'video' && granted(q.get('code', 'none'), 'pdf'));
     }
 
     // تقدم كل طالب (الخطة، الجدول، المعدل): هو بس يقرأ ويكتب ملفه
@@ -55,7 +72,7 @@ service cloud.firestore {
     }
     match /lessonLinks/{id} {
       allow read: if isAdmin()
-        || (signedIn() && (get(/databases/$(database)/documents/lessons/$(id)).data.free == true || hasAccess()));
+        || (signedIn() && lessonOpen(get(/databases/$(database)/documents/lessons/$(id)).data));
       allow write: if isAdmin();
     }
 
@@ -72,7 +89,7 @@ service cloud.firestore {
     }
     match /quizData/{id} {
       allow read: if isAdmin()
-        || (signedIn() && (get(/databases/$(database)/documents/quizzes/$(id)).data.free == true || hasAccess()));
+        || (signedIn() && quizOpen(get(/databases/$(database)/documents/quizzes/$(id)).data));
       allow write: if isAdmin();
     }
 

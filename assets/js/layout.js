@@ -67,7 +67,7 @@
     if(typeof n==='string')return '<a href="'+LINKS[n]+'"'+cur(n)+'>'+ITEMS[n][1]+'</a>';
     var on=n.items.indexOf(PAGE)>-1;
     return '<div class="nj-dd"><button type="button" class="nj-dd-btn'+(on?' is-cur':'')+'" aria-expanded="false" aria-haspopup="true" aria-controls="nj-dd-'+i+'">'+n.t+CHEV+'</button><div class="nj-dd-menu" id="nj-dd-'+i+'">'
-      +n.items.map(function(k){return '<a href="'+LINKS[k]+'"'+cur(k)+'><i aria-hidden="true">'+ITEMS[k][0]+'</i><span><b>'+ITEMS[k][1]+'</b><small>'+ITEMS[k][2]+'</small></span></a>';}).join('')+'</div></div>';
+      +n.items.map(function(k){return '<a href="'+LINKS[k]+'"'+cur(k)+'><i aria-hidden="true">'+icon(ITEMS[k][0])+'</i><span><b>'+ITEMS[k][1]+'</b><small>'+ITEMS[k][2]+'</small></span></a>';}).join('')+'</div></div>';
   }).join('');}
   function drawerLinks(){return NAV.map(function(n){
     if(typeof n==='string')return '<a href="'+LINKS[n]+'"'+cur(n)+'>'+icon(ITEMS[n][0])+ITEMS[n][1]+'</a>';
