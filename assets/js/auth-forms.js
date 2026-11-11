@@ -32,7 +32,7 @@
   g.addEventListener('click',function(){
     showErr('');acting=true;g.disabled=true;
     ready(function(A){
-      A.google().then(function(){done('أهلًا فيك 👋 دخلت بحساب Gmail.');})
+      A.google().then(function(){done('أهلًا فيك، دخلت بحساب Gmail.');})
         .catch(function(x){acting=false;g.disabled=false;showErr(A.errText(x));});
     });
   });
@@ -49,7 +49,7 @@
     busy(true,MODE==='register'?'جاري إنشاء حسابك…':'جاري تسجيل الدخول…');acting=true;
     ready(function(A){
       var p=MODE==='register'?A.register(form.elements.name.value,email,pass):A.login(email,pass,form.elements.remember.checked);
-      p.then(function(){done(MODE==='register'?'تم إنشاء حسابك 🎉 أرسلنا لك رابط تأكيد على بريدك.':'أهلًا فيك من جديد 👋');})
+      p.then(function(){done(MODE==='register'?'تم إنشاء حسابك، أرسلنا لك رابط تأكيد على بريدك.':'أهلًا فيك من جديد');})
        .catch(function(x){acting=false;busy(false);showErr(A.errText(x));});
     });
   });
@@ -59,6 +59,6 @@
     e.preventDefault();showErr('');
     var email=form.elements.email.value.trim();
     if(!email){showErr('اكتب بريدك الإلكتروني فوق، وبعدها اضغط «نسيت كلمة المرور؟».');form.elements.email.focus();return;}
-    ready(function(A){A.reset(email).then(function(){showFlash('أرسلنا رابط تغيير كلمة المرور إلى '+email+' 📬 (شيك على الرسائل غير المرغوبة بعد).');}).catch(function(x){showErr(A.errText(x));});});
+    ready(function(A){A.reset(email).then(function(){showFlash('أرسلنا رابط تغيير كلمة المرور إلى '+email+' (شيك على الرسائل غير المرغوبة بعد).');}).catch(function(x){showErr(A.errText(x));});});
   });
 })();

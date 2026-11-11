@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112b">
 <style>
 #najd .cl-wrap{max-width:860px}
 #najd .cl-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
@@ -72,7 +72,7 @@
 <div class="cl-chips" id="cl-chips" role="group" aria-label="نوع الموعد"></div>
 <label class="cl-tg"><input type="checkbox" id="cl-past">إظهار المواعيد السابقة</label>
 </div>
-<div style="margin-top:14px"><button type="button" class="nj-btn nj-btn-fill" id="cl-ics">🔔 أضف المواعيد لتقويم جوالك</button></div>
+<div style="margin-top:14px"><button type="button" class="nj-btn nj-btn-fill" id="cl-ics"><svg class="nj-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>أضف المواعيد لتقويم جوالك</button></div>
 </div>
 <div id="cl-list"><div class="nj-card cl-empty"><p>جاري التحميل…</p></div></div>
 <p class="cl-note">المواعيد مجمّعة لتسهيل المتابعة. المرجع الرسمي هو التقويم الأكاديمي المعتمد من الجامعة.</p>
@@ -80,9 +80,9 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112a"></script>
-<script src="assets/js/i18n.js?v=20261112a"></script>
-<script type="module" src="assets/js/auth.js?v=20261112a"></script>
+<script src="assets/js/layout.js?v=20261112b"></script>
+<script src="assets/js/i18n.js?v=20261112b"></script>
+<script type="module" src="assets/js/auth.js?v=20261112b"></script>
 <script>
 (function(){
   var esc=window.Najd.esc,$=function(id){return document.getElementById(id);};
@@ -103,9 +103,9 @@
     Object.keys(TYPES).forEach(function(k){if(used[k])ch+='<button type="button" class="cl-chip" data-t="'+k+'" aria-pressed="'+(type===k)+'">'+TYPES[k]+'</button>';});
     $('cl-chips').innerHTML=ch;
     var up=all.filter(function(x){return !isPast(x)&&left(x)>=0;})[0],nx=$('cl-next');
-    if(up){var n=left(up);nx.hidden=false;nx.innerHTML='<div><b>'+(n===0?'🔔':n)+'</b><small>'+(n===0?'اليوم':n===1?'يوم':n===2?'يومين':n<=10?'أيام':'يوم')+'</small></div><div><small>الموعد القادم</small><h2>'+esc(up.title)+'</h2><small dir="ltr">'+esc(range(up))+'</small></div>';}else nx.hidden=true;
+    if(up){var n=left(up);nx.hidden=false;nx.innerHTML='<div><b>'+(n===0?window.Najd.icon('bell'):n)+'</b><small>'+(n===0?'اليوم':n===1?'يوم':n===2?'يومين':n<=10?'أيام':'يوم')+'</small></div><div><small>الموعد القادم</small><h2>'+esc(up.title)+'</h2><small dir="ltr">'+esc(range(up))+'</small></div>';}else nx.hidden=true;
     var l=view();
-    if(!l.length){$('cl-list').innerHTML='<div class="nj-card cl-empty"><span style="font-size:40px">🗓️</span><b>'+(all.length?'ما فيه مواعيد قادمة':'ما فيه مواعيد مضافة حاليًا')+'</b><p>'+(all.length?'فعّل «إظهار المواعيد السابقة» أو غيّر النوع.':'نضيف مواعيد الفصل أول ما تنعلن، ارجع لنا قريب.')+'</p></div>';return;}
+    if(!l.length){$('cl-list').innerHTML='<div class="nj-card cl-empty"><span class="nj-ic-xl">'+window.Najd.icon('calendar')+'</span><b>'+(all.length?'ما فيه مواعيد قادمة':'ما فيه مواعيد مضافة حاليًا')+'</b><p>'+(all.length?'فعّل «إظهار المواعيد السابقة» أو غيّر النوع.':'نضيف مواعيد الفصل أول ما تنعلن، ارجع لنا قريب.')+'</p></div>';return;}
     var o='',cur='';
     l.forEach(function(x){
       var d=D(x.date),mk=d.toLocaleDateString('en-GB',{month:'long',year:'numeric'});
@@ -138,13 +138,13 @@
   var done=false,ft=setTimeout(function(){window.NajdCal.fail();},15000);
   window.NajdCal={
     set:function(list){done=true;clearTimeout(ft);all=(list||[]).filter(function(x){return x&&x.title&&/^\d{4}-\d{2}-\d{2}$/.test(x.date||'')&&x.active!==false;}).sort(function(a,b){return a.date.localeCompare(b.date);});render();},
-    fail:function(){if(done)return;$('cl-list').innerHTML='<div class="nj-card cl-empty"><span style="font-size:40px">📡</span><b>ما قدرنا نجيب المواعيد</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>';}
+    fail:function(){if(done)return;$('cl-list').innerHTML='<div class="nj-card cl-empty"><span class="nj-ic-xl">'+window.Najd.icon('offline')+'</span><b>ما قدرنا نجيب المواعيد</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>';}
   };
 })();
 </script>
 <script type="module">
 try {
-  const { db } = await import("./assets/js/auth.js?v=20261112a");
+  const { db } = await import("./assets/js/auth.js?v=20261112b");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const snap = await getDocs(collection(db, "calendar"));
   const list = []; snap.forEach((d) => list.push({ id: d.id, ...d.data() }));

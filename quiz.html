@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112b">
 <style>
 #najd .qz-gh{font-size:21px;font-weight:800;margin:22px 0 12px}
 #najd .qz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
@@ -84,9 +84,9 @@ html[data-theme="dark"] #najd .qz-opt.is-wrong{background:#3A1F1C;border-color:#
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112a"></script>
-<script src="assets/js/i18n.js?v=20261112a"></script>
-<script type="module" src="assets/js/auth.js?v=20261112a"></script>
+<script src="assets/js/layout.js?v=20261112b"></script>
+<script src="assets/js/i18n.js?v=20261112b"></script>
+<script type="module" src="assets/js/auth.js?v=20261112b"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KEY = "najd_quiz_v1";
@@ -97,19 +97,19 @@ const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) {
 function home() {
   $("qz-run").hidden = true; const h = $("qz-home"); h.hidden = false;
   const list = quizzes.filter((x) => x.active !== false), sc = scores();
-  if (!list.length) { h.innerHTML = '<div class="nj-card qz-empty"><span style="font-size:40px">📝</span><b>ما فيه اختبارات منشورة حاليًا</b><p>نضيف الاختبارات أول بأول، ارجع لنا قريب.</p></div>'; return; }
+  if (!list.length) { h.innerHTML = '<div class="nj-card qz-empty"><span class="nj-ic-xl">'+window.Najd.icon('quiz')+'</span><b>ما فيه اختبارات منشورة حاليًا</b><p>نضيف الاختبارات أول بأول، ارجع لنا قريب.</p></div>'; return; }
   const g = {}; list.forEach((x) => { const c = x.course || "عام"; (g[c] = g[c] || []).push(x); });
   h.innerHTML = Object.keys(g).map((c) => `<h2 class="qz-gh">${esc(c)}</h2><div class="qz-grid">` + g[c].map((x) => {
     const ok = x.free || access, s = sc[x.id];
     return `<article class="qz-card"><h3>${esc(x.title)}</h3><p>${esc(x.desc || "")}</p><div class="qz-meta"><span class="qz-tag ${x.free ? "" : "paid"}">${x.free ? "مجاني" : "للمشتركين"}</span><span>${+x.count || 0} سؤال</span>${s ? `<span class="qz-best">أفضل نتيجة ${s.best}/${s.n}</span>` : ""}</div>`
-      + (ok ? `<button type="button" class="nj-btn nj-btn-fill" data-start="${x.id}">${s ? "أعد الاختبار" : "ابدأ الاختبار"}</button>` : `<a class="nj-btn nj-btn-line is-locked" href="store.html">🔒 اشترك</a>`) + `</article>`;
+      + (ok ? `<button type="button" class="nj-btn nj-btn-fill" data-start="${x.id}">${s ? "أعد الاختبار" : "ابدأ الاختبار"}</button>` : `<a class="nj-btn nj-btn-line is-locked" href="store.html">${window.Najd.icon("lock")}اشترك</a>`) + `</article>`;
   }).join("") + "</div>").join("");
 }
 
 async function start(id) {
   const meta = quizzes.find((x) => x.id === id); let qs;
   try { const s = await F.fs.getDoc(F.fs.doc(F.db, "quizData", id)); qs = s.exists() ? s.data().questions || [] : []; }
-  catch (e) { toast(meta.free || access ? "ما قدرنا نفتح الاختبار، جرب مرة ثانية" : "هذا الاختبار للمشتركين 🔒"); return; }
+  catch (e) { toast(meta.free || access ? "ما قدرنا نفتح الاختبار، جرب مرة ثانية" : "هذا الاختبار للمشتركين"); return; }
   if (!qs.length) { toast("الاختبار ما فيه أسئلة حاليًا"); return; }
   /* نخلط ترتيب الأسئلة والخيارات كل مرة */
   const run = shuffle(qs).map((q) => { const o = shuffle(q.options.map((t, i) => ({ t, ok: i === q.answer }))); return { q: q.q, o, exp: q.explain || "", pick: -1 }; });
@@ -131,11 +131,11 @@ async function start(id) {
     const right = run.filter((q) => q.pick > -1 && q.o[q.pick].ok).length, pct = Math.round(right / run.length * 100);
     const sc = scores(), old = sc[id]; sc[id] = { best: Math.max(right, old && old.n === run.length ? old.best : 0), last: right, n: run.length, at: Date.now() };
     try { localStorage.setItem(KEY, JSON.stringify(sc)); } catch (e) {}
-    const word = pct >= 90 ? "ممتاز 🌟" : pct >= 75 ? "جيد جدًا 😄" : pct >= 60 ? "جيد 🙂" : "يبي له مراجعة 💪";
+    const word = pct >= 90 ? "ممتاز" : pct >= 75 ? "جيد جدًا" : pct >= 60 ? "جيد" : "يبي له مراجعة";
     r.onchange = null;
     r.innerHTML = `<div class="nj-card qz-res"><p>${esc(meta.title)}</p><b>${right}/${run.length}</b><p>${pct}% · ${word}</p><div class="qz-acts"><button type="button" class="nj-btn nj-btn-fill" id="qz-again">أعد الاختبار</button><button type="button" class="nj-btn nj-btn-line" id="qz-back">كل الاختبارات</button></div>${right < run.length ? '<label class="qz-filter"><input type="checkbox" id="qz-wrong">اعرض أخطائي فقط</label>' : ""}</div>`
       + run.map((q, i) => { const good = q.pick > -1 && q.o[q.pick].ok;
-        return `<div class="nj-card qz-q" data-good="${good}"><h3><small>السؤال ${i + 1} · ${good ? "✅ صح" : q.pick < 0 ? "⚪ بدون إجابة" : "❌ خطأ"}</small>${esc(q.q)}</h3><div class="qz-opts">${q.o.map((o, j) => `<div class="qz-opt${o.ok ? " is-right" : j === q.pick ? " is-wrong" : ""}">${esc(o.t)}${o.ok ? "<em>الإجابة الصحيحة</em>" : j === q.pick ? "<em>إجابتك</em>" : ""}</div>`).join("")}</div>${q.exp ? `<p class="qz-exp">💡 ${esc(q.exp)}</p>` : ""}</div>`; }).join("");
+        return `<div class="nj-card qz-q" data-good="${good}"><h3><small>السؤال ${i + 1} · ${good ? "صح" : q.pick < 0 ? "بدون إجابة" : "خطأ"}</small>${esc(q.q)}</h3><div class="qz-opts">${q.o.map((o, j) => `<div class="qz-opt${o.ok ? " is-right" : j === q.pick ? " is-wrong" : ""}">${esc(o.t)}${o.ok ? "<em>الإجابة الصحيحة</em>" : j === q.pick ? "<em>إجابتك</em>" : ""}</div>`).join("")}</div>${q.exp ? `<p class="qz-exp">${window.Najd.icon("bulb")} ${esc(q.exp)}</p>` : ""}</div>`; }).join("");
     window.scrollTo({ top: r.getBoundingClientRect().top + scrollY - 90 });
     $("qz-again").onclick = () => start(id); $("qz-back").onclick = home;
     const w = $("qz-wrong"); if (w) w.onchange = () => r.querySelectorAll('.qz-q[data-good="true"]').forEach((el) => { el.hidden = w.checked; });
@@ -145,7 +145,7 @@ async function start(id) {
 $("qz-home").addEventListener("click", (e) => { const b = e.target.closest("[data-start]"); if (b) { b.disabled = true; start(b.dataset.start).finally(() => { b.disabled = false; }); } });
 
 try {
-  const M = await import("./assets/js/auth.js?v=20261112a");
+  const M = await import("./assets/js/auth.js?v=20261112b");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
@@ -156,7 +156,7 @@ try {
     try {
       const sn = await fs.getDocs(fs.collection(M.db, "quizzes")); quizzes = []; sn.forEach((d) => quizzes.push({ id: d.id, ...d.data() }));
       quizzes.sort((a, b) => (+a.order || 0) - (+b.order || 0) || String(a.title).localeCompare(String(b.title), "ar")); home();
-    } catch (e) { console.warn(e); $("qz-home").innerHTML = '<div class="nj-card qz-empty"><span style="font-size:40px">📡</span><b>ما قدرنا نجيب الاختبارات</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>'; }
+    } catch (e) { console.warn(e); $("qz-home").innerHTML = '<div class="nj-card qz-empty"><span class="nj-ic-xl">'+window.Najd.icon('offline')+'</span><b>ما قدرنا نجيب الاختبارات</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>'; }
   });
 } catch (e) { console.warn("najd quiz", e); }
 </script>
