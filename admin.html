@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112b">
 <style>
 #najd .ad-tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
 #najd .ad-tab{flex:1 1 auto;height:44px;padding:0 14px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap}
@@ -74,16 +74,16 @@
 
 <div id="ad-panel" hidden>
 <div class="ad-tabs" role="tablist" id="ad-tabs">
-<button type="button" class="ad-tab" role="tab" data-tab="ann">📢 الإعلان</button>
-<button type="button" class="ad-tab" role="tab" data-tab="products">🛍️ المنتجات</button>
-<button type="button" class="ad-tab" role="tab" data-tab="lessons">🎬 الشروحات</button>
-<button type="button" class="ad-tab" role="tab" data-tab="quizzes">📝 الاختبارات</button>
-<button type="button" class="ad-tab" role="tab" data-tab="access">🎟️ المشتركين</button>
-<button type="button" class="ad-tab" role="tab" data-tab="coop">💼 التدريب التعاوني</button>
-<button type="button" class="ad-tab" role="tab" data-tab="calendar">🗓️ التقويم</button>
-<button type="button" class="ad-tab" role="tab" data-tab="reviews">⭐ التقييمات</button>
-<button type="button" class="ad-tab" role="tab" data-tab="instructors">👩‍🏫 الأعضاء</button>
-<button type="button" class="ad-tab" role="tab" data-tab="testimonials">💬 آراء الطلاب</button>
+<button type="button" class="ad-tab" role="tab" data-tab="ann">الإعلان</button>
+<button type="button" class="ad-tab" role="tab" data-tab="products">المنتجات</button>
+<button type="button" class="ad-tab" role="tab" data-tab="lessons">الشروحات</button>
+<button type="button" class="ad-tab" role="tab" data-tab="quizzes">الاختبارات</button>
+<button type="button" class="ad-tab" role="tab" data-tab="access">المشتركين</button>
+<button type="button" class="ad-tab" role="tab" data-tab="coop">التدريب التعاوني</button>
+<button type="button" class="ad-tab" role="tab" data-tab="calendar">التقويم</button>
+<button type="button" class="ad-tab" role="tab" data-tab="reviews">التقييمات</button>
+<button type="button" class="ad-tab" role="tab" data-tab="instructors">الأعضاء</button>
+<button type="button" class="ad-tab" role="tab" data-tab="testimonials">آراء الطلاب</button>
 </div>
 <div id="ad-body" data-no-i18n dir="rtl" lang="ar"></div>
 </div>
@@ -92,11 +92,11 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112a"></script>
-<script src="assets/js/i18n.js?v=20261112a"></script>
-<script src="assets/js/coop-data.js?v=20261112a"></script>
+<script src="assets/js/layout.js?v=20261112b"></script>
+<script src="assets/js/i18n.js?v=20261112b"></script>
+<script src="assets/js/coop-data.js?v=20261112b"></script>
 <script type="module">
-import { auth, db } from "./assets/js/auth.js?v=20261112a";
+import { auth, db } from "./assets/js/auth.js?v=20261112b";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, writeBatch, query, where, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
@@ -152,7 +152,7 @@ const SECTIONS = {
       { k: "notes", label: "ملاحظات", type: "textarea", full: true, max: 300 },
       { k: "active", label: "منشورة", type: "check", def: true }
     ],
-    line: (x) => `📍 ${esc(x.city)} · آخر موعد: ${esc(x.deadline || "مفتوح")}${x.deadline && x.deadline < today() ? ' · <span class="is-off">منتهية</span>' : ""}`
+    line: (x) => `${esc(x.city)} · آخر موعد: ${esc(x.deadline || "مفتوح")}${x.deadline && x.deadline < today() ? ' · <span class="is-off">منتهية</span>' : ""}`
   }
 };
 
@@ -275,7 +275,7 @@ async function crud(key) {
       b.set(ref, editing ? data : { ...data, createdAt: serverTimestamp() }, { merge: true });
       if (S.secret) b.set(doc(db, "lessonLinks", ref.id), { url: secret });
       await b.commit();
-      msg(editing ? "تم حفظ التعديل ✅" : "تم النشر ✅", true);
+      msg(editing ? "تم حفظ التعديل" : "تم النشر", true);
       editing = null; fillForm(S, null); setMode(null); await load();
     } catch (er) { console.warn(er); msg("ما قدرنا نحفظ. تأكد من الصلاحية وقواعد Firestore."); }
     btn.disabled = false;
@@ -287,7 +287,7 @@ async function crud(key) {
 async function ann() {
   $("ad-body").innerHTML = `<div class="nj-card"><h2>شريط الإعلان</h2><p class="nj-hint">يظهر أعلى كل صفحات الموقع، والزائر يقدر يقفله. لما تحفظ إعلان جديد، يرجع يظهر للكل.</p>
   <form id="ad-form" novalidate><div class="ad-grid">
-  <div class="ad-f full"><label for="a-text">نص الإعلان *</label><input id="a-text" type="text" maxlength="160" placeholder="مثلًا: خصم 20% على اشتراك الشروحات لين نهاية الأسبوع 🎉"></div>
+  <div class="ad-f full"><label for="a-text">نص الإعلان *</label><input id="a-text" type="text" maxlength="160" placeholder="مثلًا: خصم 20% على اشتراك الشروحات لين نهاية الأسبوع"></div>
   <div class="ad-f"><label for="a-link">رابط (اختياري)</label><input id="a-link" type="text" dir="ltr" maxlength="300" placeholder="store.html أو https://…"><small>صفحة من الموقع مثل store.html، أو رابط يبدأ بـ https://</small></div>
   <div class="ad-f"><label for="a-lt">نص الرابط</label><input id="a-lt" type="text" maxlength="30" placeholder="اطلب الحين"></div>
   <div class="ad-f"><label for="a-tone">اللون</label><select id="a-tone"><option value="teal">تركوازي</option><option value="gold">ذهبي فاتح</option></select></div>
@@ -305,7 +305,7 @@ async function ann() {
     if (link && !/^https:\/\/\S+$/i.test(link) && !/^[a-z0-9_-]+\.html(#[\w-]*)?$/i.test(link)) return msg("الرابط لازم يكون صفحة مثل store.html أو يبدأ بـ https://");
     try {
       await setDoc(doc(db, "settings", "announcement"), { text, link, linkText: $("a-lt").value.trim(), tone: $("a-tone").value, active: on, v: Date.now(), updatedAt: serverTimestamp() });
-      msg(on ? "تم نشر الإعلان ✅ حدّث أي صفحة عشان تشوفه." : "تم إخفاء الإعلان ✅", true);
+      msg(on ? "تم نشر الإعلان، حدّث أي صفحة عشان تشوفه." : "تم إخفاء الإعلان", true);
     } catch (er) { msg("ما قدرنا نحفظ. تأكد من الصلاحية وقواعد Firestore."); }
   };
 }
@@ -340,7 +340,7 @@ async function access() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return msg("اكتب بريد صحيح.");
     const data = { note: $("s-note").value.trim(), createdAt: serverTimestamp() };
     if (u) data.until = Timestamp.fromDate(new Date(u + "T23:59:59"));
-    try { await setDoc(doc(db, "access", mail), data); msg("تم تفعيل الاشتراك لـ " + mail + " ✅", true); $("ad-form").reset(); await load(); }
+    try { await setDoc(doc(db, "access", mail), data); msg("تم تفعيل الاشتراك لـ " + mail + "", true); $("ad-form").reset(); await load(); }
     catch (er) { msg("ما قدرنا نفعّل. تأكد من الصلاحية وقواعد Firestore."); }
   };
   await load();
@@ -421,7 +421,7 @@ async function quizzes() {
     try {
       const ref = editing ? doc(db, "quizzes", editing) : doc(collection(db, "quizzes")); const b = writeBatch(db);
       b.set(ref, editing ? meta : { ...meta, createdAt: serverTimestamp() }, { merge: true }); b.set(doc(db, "quizData", ref.id), { questions: r.out });
-      await b.commit(); const was = editing; reset(); msg(was ? "تم حفظ التعديل ✅" : "تم النشر ✅ (" + r.out.length + " سؤال)", true); await load();
+      await b.commit(); const was = editing; reset(); msg(was ? "تم حفظ التعديل" : "تم النشر (" + r.out.length + " سؤال)", true); await load();
     } catch (er) { console.warn(er); msg("ما قدرنا نحفظ. تأكد من الصلاحية وقواعد Firestore."); }
     btn.disabled = false;
   };
@@ -439,12 +439,12 @@ async function reviews() {
       sn.forEach((d) => rows.push({ col, lbl, id: d.id, ...d.data() }));
     }
     $("ad-n").textContent = rows.length;
-    $("ad-list").innerHTML = rows.length ? rows.map((x) => `<div class="ad-row" style="align-items:flex-start"><div><b style="white-space:normal">${esc(x.lbl)}: ${esc(names[x.target] || x.target)} · ${x.rating}/5</b><small style="display:block;white-space:pre-line;font-size:15px;color:var(--ink);margin-top:4px">${esc(x.tip)}</small></div><button type="button" data-ok="${x.col}|${esc(x.id)}">نشر</button><button type="button" class="del" data-no="${x.col}|${esc(x.id)}">حذف</button></div>`).join("") : '<p class="nj-hint">ما فيه تعليقات بانتظار المراجعة 👍</p>';
+    $("ad-list").innerHTML = rows.length ? rows.map((x) => `<div class="ad-row" style="align-items:flex-start"><div><b style="white-space:normal">${esc(x.lbl)}: ${esc(names[x.target] || x.target)} · ${x.rating}/5</b><small style="display:block;white-space:pre-line;font-size:15px;color:var(--ink);margin-top:4px">${esc(x.tip)}</small></div><button type="button" data-ok="${x.col}|${esc(x.id)}">نشر</button><button type="button" class="del" data-no="${x.col}|${esc(x.id)}">حذف</button></div>`).join("") : '<p class="nj-hint">ما فيه تعليقات بانتظار المراجعة</p>';
   }
   $("ad-list").onclick = async (e) => {
     const ok = e.target.closest("[data-ok]"), no = e.target.closest("[data-no]"); if (!ok && !no) return;
     const [col, id] = (ok || no).dataset[ok ? "ok" : "no"].split("|");
-    try { if (ok) await updateDoc(doc(db, col, id), { status: "approved" }); else { if (!confirm("تحذف هذا التعليق؟")) return; await deleteDoc(doc(db, col, id)); } toast(ok ? "انتشر التعليق ✅" : "انحذف"); await load(); }
+    try { if (ok) await updateDoc(doc(db, col, id), { status: "approved" }); else { if (!confirm("تحذف هذا التعليق؟")) return; await deleteDoc(doc(db, col, id)); } toast(ok ? "انتشر التعليق" : "انحذف"); await load(); }
     catch (er) { console.warn(er); toast("ما قدرنا ننفذ. تأكد من قواعد Firestore."); }
   };
   await load();
@@ -467,7 +467,7 @@ async function testimonials() {
     const pub = e.target.closest("[data-pub]"), rm = e.target.closest("[data-rm]"); if (!pub && !rm) return;
     const x = inbox.find((i) => i.id === (pub || rm).dataset[pub ? "pub" : "rm"]);
     try {
-      if (pub) { const b = writeBatch(db); b.set(doc(collection(db, "testimonials")), { name: x.name || "", role: x.role || "", text: x.text || "", order: null, active: true, createdAt: serverTimestamp() }); b.delete(doc(db, "testimonialInbox", x.id)); await b.commit(); toast("انتشر الرأي ✅"); openTab("testimonials"); return; }
+      if (pub) { const b = writeBatch(db); b.set(doc(collection(db, "testimonials")), { name: x.name || "", role: x.role || "", text: x.text || "", order: null, active: true, createdAt: serverTimestamp() }); b.delete(doc(db, "testimonialInbox", x.id)); await b.commit(); toast("انتشر الرأي"); openTab("testimonials"); return; }
       if (!confirm("تحذف هذا الرأي؟")) return;
       await deleteDoc(doc(db, "testimonialInbox", x.id)); toast("انحذف"); await load();
     } catch (er) { console.warn(er); toast("ما قدرنا ننفذ. تأكد من قواعد Firestore."); }

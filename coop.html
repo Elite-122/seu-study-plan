@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112b">
 <style>
 #najd .cp-stats{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0 0}
 #najd .cp-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:10px 18px;min-width:120px}
@@ -127,10 +127,10 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112a"></script>
-<script src="assets/js/i18n.js?v=20261112a"></script>
-<script type="module" src="assets/js/auth.js?v=20261112a"></script>
-<script src="assets/js/coop-data.js?v=20261112a"></script>
+<script src="assets/js/layout.js?v=20261112b"></script>
+<script src="assets/js/i18n.js?v=20261112b"></script>
+<script type="module" src="assets/js/auth.js?v=20261112b"></script>
+<script src="assets/js/coop-data.js?v=20261112b"></script>
 <script>
 (function(){
   var D=window.NAJD_COOP,esc=window.Najd.esc,$=function(id){return document.getElementById(id);};
@@ -176,7 +176,7 @@
     var url=safeUrl(x.link);
     var tags=majorsOf(x).map(function(k){return '<span class="cp-tag">'+esc(D.MAJORS[k]||k)+'</span>';}).join('');
     return '<article class="cp-card'+(closed?' is-closed':'')+'">'
-      +'<div class="cp-hd"><span class="cp-av" aria-hidden="true">'+esc(String(x.org||'؟').trim().charAt(0))+'</span><div><h3>'+esc(x.org||'')+'</h3><p class="cp-loc">📍 '+esc(x.city||'')+'</p></div></div>'
+      +'<div class="cp-hd"><span class="cp-av" aria-hidden="true">'+esc(String(x.org||'؟').trim().charAt(0))+'</span><div><h3>'+esc(x.org||'')+'</h3><p class="cp-loc">'+window.Najd.icon('pin')+' '+esc(x.city||'')+'</p></div></div>'
       +'<div class="cp-tags">'+tags+'</div>'
       +'<div class="cp-info"><div class="is-money"><small>المكافأة الشهرية</small><b>'+esc(money(x))+'</b></div><div><small>المدة</small><b>'+esc(x.duration||'غير محددة')+'</b></div>'
       +'<div><small>يبدأ</small><b>'+esc(x.start||'غير محدد')+'</b></div><div><small>آخر موعد</small><b>'+(x.deadline?esc(fmtDate(x.deadline)):'غير محدد')+'</b></div></div>'
@@ -205,14 +205,14 @@
     $('cp-count').innerHTML=view.length?'<b>'+view.length+'</b> '+opp(view.length)+(st.city!==ALL?' في '+esc(st.city):'')+(nOpen<view.length?' ('+nOpen+' متاحة)':''):'';
     $('cp-reset').hidden=!(st.city!==ALL||st.major||st.q||st.paid||st.closed);
     if(!view.length){
-      $('cp-list').innerHTML='<div class="nj-card cp-empty"><span style="font-size:40px">🔎</span><b>'+(all.length?'ما فيه فرص تطابق اختيارك'+(st.city!==ALL?' في '+esc(st.city):''):'ما فيه فرص منشورة حاليًا')+'</b><p>'+(all.length?'جرّب مدينة ثانية أو امسح الفلاتر.':'نضيف الفرص أول بأول، ارجع لنا قريب.')+'</p></div>';
+      $('cp-list').innerHTML='<div class="nj-card cp-empty"><span class="nj-ic-xl">'+window.Najd.icon('search')+'</span><b>'+(all.length?'ما فيه فرص تطابق اختيارك'+(st.city!==ALL?' في '+esc(st.city):''):'ما فيه فرص منشورة حاليًا')+'</b><p>'+(all.length?'جرّب مدينة ثانية أو امسح الفلاتر.':'نضيف الفرص أول بأول، ارجع لنا قريب.')+'</p></div>';
       return;
     }
     var o='';
     if(st.city===ALL&&st.sort==='deadline'){
       var groups={},order=[];view.forEach(function(x){if(!groups[x.city]){groups[x.city]=[];order.push(x.city);}groups[x.city].push(x);});
       order.sort(function(a,b){return groups[b].length-groups[a].length;});
-      order.forEach(function(c){o+='<section class="cp-group"><h2 class="cp-gh">📍 '+esc(c)+' <span>'+groups[c].length+' '+opp(groups[c].length)+'</span></h2><div class="cp-grid">'+groups[c].map(card).join('')+'</div></section>';});
+      order.forEach(function(c){o+='<section class="cp-group"><h2 class="cp-gh">'+window.Najd.icon('pin')+' '+esc(c)+' <span>'+groups[c].length+' '+opp(groups[c].length)+'</span></h2><div class="cp-grid">'+groups[c].map(card).join('')+'</div></section>';});
     }else{o='<div class="cp-grid">'+view.map(card).join('')+'</div>';}
     $('cp-list').innerHTML=o;
   }
@@ -237,10 +237,10 @@
   var failT=setTimeout(function(){if(!all)window.NajdCoop.fail();},15000);
   window.NajdCoop={
     set:function(list){clearTimeout(failT);all=(list||[]).filter(function(x){return x&&x.org&&x.city&&x.active!==false;});stats();render();},
-    fail:function(){if(all)return;$('cp-list').innerHTML='<div class="nj-card cp-empty"><span style="font-size:40px">📡</span><b>ما قدرنا نجيب الفرص</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>';}
+    fail:function(){if(all)return;$('cp-list').innerHTML='<div class="nj-card cp-empty"><span class="nj-ic-xl">'+window.Najd.icon('offline')+'</span><b>ما قدرنا نجيب الفرص</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>';}
   };
 })();
 </script>
-<script type="module" src="assets/js/coop.js?v=20261112a"></script>
+<script type="module" src="assets/js/coop.js?v=20261112b"></script>
 </body>
 </html>

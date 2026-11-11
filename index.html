@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112b">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
@@ -205,14 +205,14 @@ html[data-theme="dark"] #najd .hm-share-m{color:#F2C7C1}
 <div class="hm-vis" aria-hidden="true">
 <div class="hm-win">
 <div class="hm-win-bar"><i></i><i></i><i></i></div>
-<div class="hm-prog"><b>تقدمك في الخطة</b><small>80 من 130 ساعة</small><div class="hm-bar"><i></i></div></div>
+<div class="hm-prog"><b>تقدمك في الخطة</b><small id="hm-ph">0 من 130 ساعة</small><div class="hm-bar"><i id="hm-pb" style="width:0"></i></div></div>
 <div class="hm-week"><span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span>
 <i class="a"></i><i></i><i class="c"></i><i class="b"></i><i></i>
 <i></i><i class="d"></i><i class="a"></i><i></i><i class="c"></i>
 <i class="b"></i><i></i><i></i><i class="d"></i><i class="a"></i></div>
 </div>
-<div class="hm-chip"><i>📝</i>اختبار الميدتيرم بعد 3 أيام</div>
-<div class="hm-gpa"><small>معدلك الفصلي</small><b>3.75</b><span>ممتاز 🌟</span></div>
+<div class="hm-chip"><i><svg class="nj-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4h6l4 4v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M8.5 12.5l2 2 4.5-4.5"/></svg></i>اختبار الميدتيرم بعد 3 أيام</div>
+<div class="hm-gpa"><small>معدلك الفصلي</small><b>3.75</b><span>ممتاز</span></div>
 </div>
 </div>
 </section>
@@ -339,7 +339,7 @@ html[data-theme="dark"] #najd .hm-share-m{color:#F2C7C1}
 <div class="hm-ctas"><a class="nj-btn nj-btn-fill nj-guest" href="register.html">أنشئ حسابك مجانًا</a><a class="nj-btn nj-btn-line nj-guest" href="login.html">عندي حساب</a><a class="nj-btn nj-btn-fill nj-member" href="schedule.html">افتح جدولك</a></div>
 </div>
 <div class="hm-dev" aria-hidden="true">
-<span class="hm-cloud">☁️ متزامن</span>
+<span class="hm-cloud"><svg class="nj-ic is-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 18.500a4 4 0 0 1-.6-7.95 5.5 5.5 0 0 1 10.6 1.200A3.5 3.5 0 0 1 17 18.500z"/></svg> متزامن</span>
 <div class="hm-lap"><div class="hm-lap-s"><span class="hm-ln t"></span><span class="hm-ln"></span><span class="hm-ln s"></span><span class="hm-ln"></span><span class="hm-ln s"></span></div><div class="hm-lap-b"></div></div>
 <div class="hm-phone"><span class="hm-ln t"></span><span class="hm-ln"></span><span class="hm-ln s"></span><span class="hm-ln"></span></div>
 </div>
@@ -401,9 +401,23 @@ html[data-theme="dark"] #najd .hm-share-m{color:#F2C7C1}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112a"></script>
-<script src="assets/js/i18n.js?v=20261112a"></script>
-<script type="module" src="assets/js/auth.js?v=20261112a"></script>
+<script src="assets/js/layout.js?v=20261112b"></script>
+<script src="assets/js/plans-data.js?v=20261112b"></script>
+<script>
+/* بطاقة «تقدمك في الخطة»: تقرأ تقدم الطالب الفعلي وتتحدث مع أي تغيير أو مزامنة */
+(function(){
+  function draw(){
+    var h=0;try{var s=JSON.parse(localStorage.getItem('najd_plans_v1')||'null');if(s&&s.done&&window.NAJD_PLANS[s.major]){var d=s.done;window.NajdPlan.cleanAll(d);h=window.NajdPlan.hours(s.major,d);}}catch(e){}
+    var a=document.getElementById('hm-ph'),b=document.getElementById('hm-pb');if(!a||!b)return;
+    var txt=h+' من 130 ساعة';a.textContent=window.NajdT?window.NajdT(txt):txt;b.style.width=Math.min(100,Math.round(h/130*100))+'%';
+  }
+  draw();
+  ['najd:dirty','najd:auth','najd:auth-ready','storage','pageshow','najd:lang'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(draw,50);});});
+  setTimeout(draw,1500);setTimeout(draw,4000);
+})();
+</script>
+<script src="assets/js/i18n.js?v=20261112b"></script>
+<script type="module" src="assets/js/auth.js?v=20261112b"></script>
 <script>
 /* عدّاد الاختبار القادم: من جدول الطالب المحفوظ */
 (function(){
@@ -416,7 +430,7 @@ html[data-theme="dark"] #najd .hm-share-m{color:#F2C7C1}
     if(!l.length){box.hidden=true;return;}
     var x=l[0],n=Math.round((new Date(x.date+'T00:00:00')-t)/864e5),type=x.type==='final'?'فاينل':'ميدتيرم';
     var when=new Date(x.date+'T00:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
-    box.innerHTML='<div class="n"><b>'+(n===0?'🔔':n)+'</b><small>'+(n===0?'اليوم':n===1?'يوم':n===2?'يومين':n<=10?'أيام':'يوم')+'</small></div>'
+    box.innerHTML='<div class="n"><b>'+(n===0?window.Najd.icon('bell'):n)+'</b><small>'+(n===0?'اليوم':n===1?'يوم':n===2?'يومين':n<=10?'أيام':'يوم')+'</small></div>'
       +'<div class="t"><small>اختبارك القادم</small><b>'+type+' <span dir="ltr">'+esc((x.subject||'').trim()||'—')+'</span></b><small dir="ltr">'+esc(when)+'</small></div>'
       +(l.length===2?'<small>وبعده اختبار واحد</small>':l.length===3?'<small>وبعده اختبارين</small>':l.length>2?'<small>وبعده '+(l.length-1)+' اختبارات</small>':'')+'<a class="nj-btn nj-btn-white" href="schedule.html">جدولي</a>';
     box.hidden=false;
@@ -427,7 +441,7 @@ html[data-theme="dark"] #najd .hm-share-m{color:#F2C7C1}
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=20261112a");
+  const { db } = await import("./assets/js/auth.js?v=20261112b");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
@@ -445,12 +459,12 @@ try {
     if (name.length < 2) return msg("اكتب اسمك.");
     if (text.length < 10) return msg("اكتب رأيك في 10 أحرف على الأقل.");
     let last = 0; try { last = +localStorage.getItem("najd_said") || 0; } catch (x) {}
-    if (Date.now() - last < 6 * 3600 * 1000) return msg("وصلنا رأيك قبل شوي، شكرًا لك 🤍");
+    if (Date.now() - last < 6 * 3600 * 1000) return msg("وصلنا رأيك قبل شوي، شكرًا لك");
     const b = $("sh-send"); b.disabled = true;
     try {
       await addDoc(collection(db, "testimonialInbox"), { name, role, text, createdAt: serverTimestamp() });
       try { localStorage.setItem("najd_said", String(Date.now())); } catch (x) {}
-      $("hm-share").innerHTML = '<p class="hm-share-ok">' + T("وصل رأيك، شكرًا لك 🤍 بينشر بعد مراجعة الإدارة.") + "</p>";
+      $("hm-share").innerHTML = '<p class="hm-share-ok">' + T("وصل رأيك، شكرًا لك، بينشر بعد مراجعة الإدارة.") + "</p>";
     } catch (er) { console.warn(er); b.disabled = false; msg("ما قدرنا نرسل رأيك. جرب مرة ثانية."); }
   });
   if (!l.length) document.querySelector("#says .nj-tt").lastChild.nodeValue = T("شاركنا رأيك في أكاديمية نجد");

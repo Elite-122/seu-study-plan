@@ -341,3 +341,12 @@ html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selecti
 #najd .nj-dd-menu b{display:block;font-weight:700;line-height:1.5}
 #najd .nj-dd-menu small{display:block;font-size:13px;color:var(--slate);line-height:1.5}
 #najd .nj-dr-h{font-size:13px;font-weight:800;color:var(--teal);padding:14px 4px 2px!important}
+
+/* أيقونات مرسومة */
+#najd .nj-ic{width:1.25em;height:1.25em;flex-shrink:0;display:inline-block;vertical-align:-.25em;color:var(--teal)}
+#najd .nj-btn .nj-ic,#najd .nj-ic.is-in{color:inherit}
+#najd .nj-btn .nj-ic{margin-inline-end:6px}
+#najd .nj-dd-menu i .nj-ic{width:22px;height:22px}
+#najd .nj-drawer a .nj-ic{margin-inline-end:8px}
+#najd .nj-ic-xl{display:inline-flex;width:64px;height:64px;border-radius:20px;background:var(--tint);align-items:center;justify-content:center}
+#najd .nj-ic-xl .nj-ic{width:34px;height:34px}

@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112b">
 <style>
 #najd .ls-status{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 #najd .ls-status .ic{flex-shrink:0;width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--tint)}
@@ -75,9 +75,9 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112a"></script>
-<script src="assets/js/i18n.js?v=20261112a"></script>
-<script type="module" src="assets/js/auth.js?v=20261112a"></script>
+<script src="assets/js/layout.js?v=20261112b"></script>
+<script src="assets/js/i18n.js?v=20261112b"></script>
+<script type="module" src="assets/js/auth.js?v=20261112b"></script>
 <script type="module">
 const esc = window.Najd.esc, $ = (id) => document.getElementById(id);
 let lessons = [], access = false, course = "", user = null, F = null;
@@ -92,12 +92,12 @@ function status(acc, info) {
   const s = $("ls-status"), mail = esc((user && user.email) || "");
   s.classList.toggle("is-on", !!acc);
   if (acc) {
-    s.innerHTML = `<span class="ic">✅</span><div><h2>اشتراكك مفعّل</h2><p>${info && info.until ? "ينتهي " + esc(fmt(info.until)) + ". " : ""}كل الشروحات مفتوحة لك.</p></div>`;
+    s.innerHTML = `<span class="ic">${window.Najd.icon("check")}</span><div><h2>اشتراكك مفعّل</h2><p>${info && info.until ? "ينتهي " + esc(fmt(info.until)) + ". " : ""}كل الشروحات مفتوحة لك.</p></div>`;
   } else if (info === "unverified") {
-    s.innerHTML = `<span class="ic">📧</span><div><h2>أكّد بريدك عشان يتفعّل اشتراكك</h2><p>أرسلنا لك رابط تأكيد على <span class="ls-mail">${mail}</span>. بعد ما تضغطه، سجّل خروج وادخل من جديد.</p></div><button type="button" class="nj-btn nj-btn-line" id="ls-verify">أعد إرسال رابط التأكيد</button>`;
-    $("ls-verify").onclick = async () => { try { await F.sendEmailVerification(user); window.Najd.toast("أرسلنا الرابط 📬"); } catch (e) { window.Najd.toast("انتظر شوي وجرب مرة ثانية"); } };
+    s.innerHTML = `<span class="ic">${window.Najd.icon("mail")}</span><div><h2>أكّد بريدك عشان يتفعّل اشتراكك</h2><p>أرسلنا لك رابط تأكيد على <span class="ls-mail">${mail}</span>. بعد ما تضغطه، سجّل خروج وادخل من جديد.</p></div><button type="button" class="nj-btn nj-btn-line" id="ls-verify">أعد إرسال رابط التأكيد</button>`;
+    $("ls-verify").onclick = async () => { try { await F.sendEmailVerification(user); window.Najd.toast("أرسلنا الرابط"); } catch (e) { window.Najd.toast("انتظر شوي وجرب مرة ثانية"); } };
   } else {
-    s.innerHTML = `<span class="ic">🔒</span><div><h2>الشروحات المدفوعة تحتاج اشتراك</h2><p>اشترِ الاشتراك من المتجر، وبنفعّله على بريد حسابك: <span class="ls-mail">${mail || "—"}</span></p></div><a class="nj-btn nj-btn-fill" href="store.html">اشترك من المتجر</a>`;
+    s.innerHTML = `<span class="ic">${window.Najd.icon("lock")}</span><div><h2>الشروحات المدفوعة تحتاج اشتراك</h2><p>اشترِ الاشتراك من المتجر، وبنفعّله على بريد حسابك: <span class="ls-mail">${mail || "—"}</span></p></div><a class="nj-btn nj-btn-fill" href="store.html">اشترك من المتجر</a>`;
   }
 }
 
@@ -106,14 +106,14 @@ function render() {
   const courses = [...new Set(list.map((x) => x.course || "عام"))];
   $("ls-chips").innerHTML = courses.length > 1 ? [`<button type="button" class="ls-chip" data-c="" aria-pressed="${!course}">الكل (${list.length})</button>`].concat(courses.map((c) => `<button type="button" class="ls-chip" data-c="${esc(c)}" aria-pressed="${course === c}">${esc(c)}</button>`)).join("") : "";
   const view = course ? list.filter((x) => (x.course || "عام") === course) : list;
-  if (!view.length) { $("ls-list").innerHTML = '<div class="nj-card ls-empty"><span style="font-size:40px">📚</span><b>ما فيه شروحات منشورة حاليًا</b><p>نضيف الشروحات أول بأول، ارجع لنا قريب.</p></div>'; return; }
+  if (!view.length) { $("ls-list").innerHTML = '<div class="nj-card ls-empty"><span class="nj-ic-xl">'+window.Najd.icon('book')+'</span><b>ما فيه شروحات منشورة حاليًا</b><p>نضيف الشروحات أول بأول، ارجع لنا قريب.</p></div>'; return; }
   const groups = {}; view.forEach((x) => { const c = x.course || "عام"; (groups[c] = groups[c] || []).push(x); });
   $("ls-list").innerHTML = Object.keys(groups).map((c) => `<h2 class="ls-gh">${esc(c)} <span>${groups[c].length}</span></h2><div class="ls-grid">` + groups[c].map((x) => {
     const open = x.free || access, vid = x.type !== "pdf";
-    return `<article class="ls-card"><div class="ls-top"><span class="ls-type ${vid ? "" : "pdf"}">${vid ? "▶️" : "📄"}</span><div><h3>${esc(x.title)}</h3><small>${vid ? "فيديو" : "ملف PDF"}</small></div></div>`
+    return `<article class="ls-card"><div class="ls-top"><span class="ls-type ${vid ? "" : "pdf"}">${window.Najd.icon(vid ? "play" : "file")}</span><div><h3>${esc(x.title)}</h3><small>${vid ? "فيديو" : "ملف PDF"}</small></div></div>`
       + `<p>${esc(x.desc || "")}</p>`
       + `<div class="ls-ft"><span class="ls-tag ${x.free ? "" : "paid"}">${x.free ? "مجاني" : "للمشتركين"}</span>`
-      + (open ? `<button type="button" class="nj-btn nj-btn-fill" data-open="${x.id}">${vid ? "شاهد" : "افتح الملف"}</button>` : `<a class="nj-btn nj-btn-line is-locked" href="store.html">🔒 اشترك</a>`)
+      + (open ? `<button type="button" class="nj-btn nj-btn-fill" data-open="${x.id}">${vid ? "شاهد" : "افتح الملف"}</button>` : `<a class="nj-btn nj-btn-line is-locked" href="store.html">${window.Najd.icon("lock")}اشترك</a>`)
       + `</div></article>`;
   }).join("") + "</div>").join("");
 }
@@ -139,12 +139,12 @@ $("ls-list").addEventListener("click", async (e) => {
     if (x.type !== "pdf" && ytId(url)) play(x.title, ytId(url));
     else if (/^https:\/\//i.test(url)) window.open(url, "_blank", "noopener");
     else window.Najd.toast("الرابط غير متوفر حاليًا");
-  } catch (er) { window.Najd.toast(access || x.free ? "ما قدرنا نفتح الشرح، جرب مرة ثانية" : "هذا الشرح للمشتركين 🔒"); }
+  } catch (er) { window.Najd.toast(access || x.free ? "ما قدرنا نفتح الشرح، جرب مرة ثانية" : "هذا الشرح للمشتركين"); }
   b.disabled = false;
 });
 
 try {
-  const A = await import("./assets/js/auth.js?v=20261112a");
+  const A = await import("./assets/js/auth.js?v=20261112b");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: A.db, doc: fs.doc, getDoc: fs.getDoc, sendEmailVerification: fa.sendEmailVerification };
@@ -170,7 +170,7 @@ try {
   });
 } catch (e) {
   console.warn("najd lessons", e);
-  $("ls-status").innerHTML = '<span class="ic">📡</span><div><h2>ما قدرنا نجيب الشروحات</h2><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>';
+  $("ls-status").innerHTML = '<span class="ic">'+window.Najd.icon('offline')+'</span><div><h2>ما قدرنا نجيب الشروحات</h2><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>';
 }
 </script>
 </body>

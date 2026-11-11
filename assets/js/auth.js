@@ -71,7 +71,7 @@ async function pull(uid) {
   }
   writeMeta(meta);
   if (needPush) await push();
-  N.setSync("تقدمك محفوظ في حسابك ☁️");
+  N.setSync("تقدمك محفوظ في حسابك");
   return changed;
 }
 
@@ -85,7 +85,7 @@ async function push() {
     await setDoc(doc(db, "users", current.uid), {
       name: current.displayName || "", email: current.email || "", phone: current.phoneNumber || "", data, t, updatedAt: serverTimestamp()
     }, { merge: true });
-    N.setSync("تقدمك محفوظ في حسابك ☁️");
+    N.setSync("تقدمك محفوظ في حسابك");
   } catch (e) {
     console.warn("najd sync", e);
     N.setSync("ما قدرنا نحفظ في السحابة، محفوظ في جهازك");
@@ -153,7 +153,7 @@ window.NajdAuth = {
   async logout() {
     if (pushTimer) await push();
     await signOut(auth);
-    N.toast("سجلت خروجك. نشوفك قريب 👋");
+    N.toast("سجلت خروجك. نشوفك قريب");
   },
   user: () => current,
   info() {

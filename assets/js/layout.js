@@ -10,8 +10,38 @@
   var TELEGRAM_URL='https://t.me/najdacdemy';
   var CONTACT_EMAIL='najdacdemy@gmail.com';
   /* القائمة العلوية: مجموعتين منسدلتين + رابطين مباشرين */
-  var ITEMS={plans:['📋','الخطط الدراسية','مقررات كل مستوى وتقدمك'],schedule:['🗓️','الجدول الدراسي','صمّم جدولك واختباراتك'],gpa:['🧮','حاسبة المعدل','الفصلي والتراكمي'],calendar:['📅','التقويم الأكاديمي','مواعيد التسجيل والاختبارات'],
-    lessons:['🎬','الشروحات','فيديو وملفات PDF'],quiz:['📝','اختبر نفسك','اختبارات تتصحح على طول'],ratings:['⭐','تجارب الطلاب','تقييمات المقررات والأعضاء'],coop:['💼','التدريب التعاوني'],store:['🛍️','المتجر']};
+  /* أيقونات مرسومة بألوان الهوية (بدل الإيموجي). الاستخدام: Najd.icon('lock') */
+  var IC={plans:'<path d="M8 4h8a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V6a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 13h6M9 17h3"/>',
+    schedule:'<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2"/>',
+    gpa:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7M8.5 12h1M12 12h1M15.5 12h.01M8.5 16h1M12 16h1M15.5 16h.01"/>',
+    calendar:'<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/>',
+    lessons:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 9.5v5l4.5-2.5z"/>',
+    quiz:'<path d="M9 4h6l4 4v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M8.5 12.5l2 2 4.5-4.5"/>',
+    ratings:'<path d="M12 4l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 16.4 7.2 18.9l.9-5.4L4.2 9.7l5.4-.8z"/>',
+    coop:'<rect x="3.5" y="8" width="17" height="11" rx="2.5"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3.5 13h17"/>',
+    store:'<path d="M5 8h14l-1 11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/>',
+    bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/>',
+    lock:'<rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+    pin:'<path d="M12 21s6-5.6 6-10.5a6 6 0 0 0-12 0C6 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>',
+    search:'<circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/>',
+    offline:'<path d="M4 9.5a12 12 0 0 1 16 0M7 13a7.5 7.5 0 0 1 10 0M10 16.5a3 3 0 0 1 4 0"/><path d="M4 4l16 16"/>',
+    book:'<path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"/><path d="M12 6.5v13"/>',
+    file:'<path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4M9 13h6M9 17h4"/>',
+    play:'<circle cx="12" cy="12" r="8.5"/><path d="M10.5 8.8v6.4l5-3.2z"/>',
+    mail:'<rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7.5l8 6 8-6"/>',
+    check:'<circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.2l2.5 2.5 4.5-5"/>',
+    bulb:'<path d="M9 17h6M10 20h4M8.5 14.5A6 6 0 1 1 15.5 14.5c-.6.5-.9 1.2-.9 2.500H9.400c0-1.3-.3-2-.9-2.500z"/>',
+    target:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/>',
+    bolt:'<path d="M13 3L5 13.5h6L10 21l8-10.500h-6z"/>',
+    cloud:'<path d="M7.5 18.500a4 4 0 0 1-.6-7.95 5.5 5.5 0 0 1 10.6 1.200A3.5 3.5 0 0 1 17 18.500z"/>',
+    user:'<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>',
+    compass:'<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-1.8 4.200L9 15l1.8-4.200z"/>',
+    coins:'<ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.65 3.1 3 7 3s7-1.35 7-3V7M5 12v5c0 1.65 3.1 3 7 3s7-1.35 7-3v-5"/>',
+    cart:'<path d="M3.5 5H6l2 10h9.500l2-7H7.2"/><circle cx="9.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/>',
+    ledger:'<rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 9.500h16M9.5 9.500V20M13 13.500h4M13 16.500h4"/>'};
+  function icon(n,cls){return IC[n]?'<svg class="nj-ic'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>':'';}
+  var ITEMS={plans:['plans','الخطط الدراسية','مقررات كل مستوى وتقدمك'],schedule:['schedule','الجدول الدراسي','صمّم جدولك واختباراتك'],gpa:['gpa','حاسبة المعدل','الفصلي والتراكمي'],calendar:['calendar','التقويم الأكاديمي','مواعيد التسجيل والاختبارات'],
+    lessons:['lessons','الشروحات','فيديو وملفات PDF'],quiz:['quiz','اختبر نفسك','اختبارات تتصحح على طول'],ratings:['ratings','تجارب الطلاب','تقييمات المقررات والأعضاء'],coop:['coop','التدريب التعاوني'],store:['store','المتجر']};
   var NAV=[{t:'أدواتك',items:['plans','schedule','gpa','calendar']},{t:'التعلّم',items:['lessons','quiz','ratings']},'coop','store'];
   var PAGE=root.getAttribute('data-page')||'';
 
@@ -40,8 +70,8 @@
       +n.items.map(function(k){return '<a href="'+LINKS[k]+'"'+cur(k)+'><i aria-hidden="true">'+ITEMS[k][0]+'</i><span><b>'+ITEMS[k][1]+'</b><small>'+ITEMS[k][2]+'</small></span></a>';}).join('')+'</div></div>';
   }).join('');}
   function drawerLinks(){return NAV.map(function(n){
-    if(typeof n==='string')return '<a href="'+LINKS[n]+'"'+cur(n)+'>'+ITEMS[n][0]+' '+ITEMS[n][1]+'</a>';
-    return '<p class="nj-dr-h">'+n.t+'</p>'+n.items.map(function(k){return '<a href="'+LINKS[k]+'"'+cur(k)+'>'+ITEMS[k][0]+' '+ITEMS[k][1]+'</a>';}).join('');
+    if(typeof n==='string')return '<a href="'+LINKS[n]+'"'+cur(n)+'>'+icon(ITEMS[n][0])+ITEMS[n][1]+'</a>';
+    return '<p class="nj-dr-h">'+n.t+'</p>'+n.items.map(function(k){return '<a href="'+LINKS[k]+'"'+cur(k)+'>'+icon(ITEMS[k][0])+ITEMS[k][1]+'</a>';}).join('');
   }).join('');}
   var userBox='<div class="nj-user nj-member"><a class="nj-av" href="account.html" data-u="init" aria-label="حسابي">ن</a><span><span class="nj-uname" data-u="name"></span><span class="nj-sync" data-u="sync">تقدمك محفوظ في حسابك</span></span><button type="button" class="nj-out" data-logout>خروج</button></div>';
 
@@ -50,7 +80,7 @@
   var MOON='<svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>';
   var PREFS='<button type="button" class="nj-ic" data-theme-toggle aria-label="تبديل الوضع الداكن" title="الوضع الداكن / الفاتح">'+MOON+SUN+'</button>';
   var PREFS_LBL='<button type="button" class="nj-ic" data-theme-toggle>'+MOON+SUN+'<span>الوضع الداكن / الفاتح</span></button>';
-  function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('najd_theme',t);}catch(e){}var mc=document.querySelector('meta[name=theme-color]');if(mc)mc.setAttribute('content',t==='dark'?'#0F1817':'#2F4F4E');}
+  function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('najd_theme',t);}catch(e){}var mc=document.querySelector('meta[name=theme-color]');if(mc)mc.setAttribute('content',t==='dark'?'#0F1817':'#2F4F4E');try{window.dispatchEvent(new CustomEvent('najd:theme',{detail:t}));}catch(e){}}
   if(!document.documentElement.getAttribute('data-theme')){var t0='light';try{if(localStorage.getItem('najd_theme')==='dark')t0='dark';}catch(e){}document.documentElement.setAttribute('data-theme',t0);}
   root.addEventListener('click',function(e){if(e.target.closest('[data-theme-toggle]'))setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
 
@@ -81,7 +111,7 @@
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav>'
       +'<h4 class="nj-foot-h2">تواصل معنا</h4><nav class="nj-foot-links nj-foot-social" aria-label="تواصل معنا"><a href="'+TELEGRAM_URL+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 3.2 2.9 10.5c-.9.4-.9 1.1 0 1.400l4.700 1.500 1.800 5.600c.2.600.800.700 1.200.300l2.600-2.500 4.700 3.500c.6.400 1.200.200 1.400-.600L22.800 4.400c.2-1-.4-1.500-1.200-1.200zM9.700 13.800l8.100-5.800-6.300 6.700-.3 3.100z"/></svg>تيليقرام</a>'+(CONTACT_EMAIL?'<a href="mailto:'+CONTACT_EMAIL+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.500l8 6 8-6"/></svg><span dir="ltr">'+CONTACT_EMAIL+'</span></a>':'')+'</nav></div>'
       +'</div>'
-      +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب 🤍 من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد طلابي مستقل، ولا يتبع للجامعة بأي صلة.</p></div>'
+      +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد طلابي مستقل، ولا يتبع للجامعة بأي صلة.</p></div>'
       +'<p class="nj-copy"><a href="'+LINKS.privacy+'">سياسة الخصوصية</a> · <a href="'+LINKS.terms+'">الشروط والأحكام</a><br>© <span>'+new Date().getFullYear()+'</span> أكاديمية نجد. جميع الحقوق محفوظة.</p></div>'
       +'</div></footer>';
   }
@@ -202,7 +232,7 @@
     root.insertBefore(bar,root.firstChild);
   }
 
-  window.Najd={LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,setSync:setSync,esc:esc,announce:announce};
+  window.Najd={LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,icon:icon,setSync:setSync,esc:esc,announce:announce};
 
   /* ظهور العناصر والعدادات */
   var rv=root.querySelectorAll('.nj-rv');
