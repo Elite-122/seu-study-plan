@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112b">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
 <style>
 #najd .qz-gh{font-size:21px;font-weight:800;margin:22px 0 12px}
 #najd .qz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
@@ -63,6 +63,8 @@
 html[data-theme="dark"] #najd .qz-opt.is-right{background:#16251A;border-color:#4F7A45}
 html[data-theme="dark"] #najd .qz-opt.is-wrong{background:#3A1F1C;border-color:#8A4A42}
 @media (max-width:860px){#najd .qz-top{top:66px}}
+#najd .qz-tag.mine{background:#E2ECDD;color:#3E5A33}
+html[data-theme="dark"] #najd .qz-tag.mine{background:#20331F;color:#C7E3BD}
 </style>
 </head>
 <body>
@@ -84,13 +86,16 @@ html[data-theme="dark"] #najd .qz-opt.is-wrong{background:#3A1F1C;border-color:#
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112b"></script>
-<script src="assets/js/i18n.js?v=20261112b"></script>
-<script type="module" src="assets/js/auth.js?v=20261112b"></script>
+<script src="assets/js/layout.js?v=20261112c"></script>
+<script src="assets/js/i18n.js?v=20261112c"></script>
+<script src="assets/js/courses-data.js?v=20261112c"></script>
+<script src="assets/js/access.js?v=20261112c"></script>
+<script type="module" src="assets/js/auth.js?v=20261112c"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KEY = "najd_quiz_v1";
-let F = null, quizzes = [], access = false;
+let F = null, quizzes = [], grants = [], verified = false;
+const NA = window.NajdAccess, canOpen = (x) => x.free || (verified && NA.has(grants, x.code, x.need === "video" ? "video" : "pdf"));
 const scores = () => { try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { return {}; } };
 const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
@@ -98,10 +103,10 @@ function home() {
   $("qz-run").hidden = true; const h = $("qz-home"); h.hidden = false;
   const list = quizzes.filter((x) => x.active !== false), sc = scores();
   if (!list.length) { h.innerHTML = '<div class="nj-card qz-empty"><span class="nj-ic-xl">'+window.Najd.icon('quiz')+'</span><b>ما فيه اختبارات منشورة حاليًا</b><p>نضيف الاختبارات أول بأول، ارجع لنا قريب.</p></div>'; return; }
-  const g = {}; list.forEach((x) => { const c = x.course || "عام"; (g[c] = g[c] || []).push(x); });
+  const g = {}; list.forEach((x) => { const c = x.code ? NA.label(x.code) : (x.course || "عام"); (g[c] = g[c] || []).push(x); });
   h.innerHTML = Object.keys(g).map((c) => `<h2 class="qz-gh">${esc(c)}</h2><div class="qz-grid">` + g[c].map((x) => {
-    const ok = x.free || access, s = sc[x.id];
-    return `<article class="qz-card"><h3>${esc(x.title)}</h3><p>${esc(x.desc || "")}</p><div class="qz-meta"><span class="qz-tag ${x.free ? "" : "paid"}">${x.free ? "مجاني" : "للمشتركين"}</span><span>${+x.count || 0} سؤال</span>${s ? `<span class="qz-best">أفضل نتيجة ${s.best}/${s.n}</span>` : ""}</div>`
+    const ok = canOpen(x), s = sc[x.id];
+    return `<article class="qz-card"><h3 data-no-i18n>${esc(x.title)}</h3><p data-no-i18n>${esc(x.desc || "")}</p><div class="qz-meta"><span class="qz-tag ${x.free ? "" : ok ? "mine" : "paid"}">${x.free ? "مجاني" : ok ? "مشترك" : x.need === "video" ? "لمشتركي الشروحات" : "لمشتركي الملخصات"}</span><span>${+x.count || 0} سؤال</span>${s ? `<span class="qz-best">أفضل نتيجة ${s.best}/${s.n}</span>` : ""}</div>`
       + (ok ? `<button type="button" class="nj-btn nj-btn-fill" data-start="${x.id}">${s ? "أعد الاختبار" : "ابدأ الاختبار"}</button>` : `<a class="nj-btn nj-btn-line is-locked" href="store.html">${window.Najd.icon("lock")}اشترك</a>`) + `</article>`;
   }).join("") + "</div>").join("");
 }
@@ -109,7 +114,7 @@ function home() {
 async function start(id) {
   const meta = quizzes.find((x) => x.id === id); let qs;
   try { const s = await F.fs.getDoc(F.fs.doc(F.db, "quizData", id)); qs = s.exists() ? s.data().questions || [] : []; }
-  catch (e) { toast(meta.free || access ? "ما قدرنا نفتح الاختبار، جرب مرة ثانية" : "هذا الاختبار للمشتركين"); return; }
+  catch (e) { toast(canOpen(meta) ? "ما قدرنا نفتح الاختبار، جرب مرة ثانية" : "هذا الاختبار للمشتركين"); return; }
   if (!qs.length) { toast("الاختبار ما فيه أسئلة حاليًا"); return; }
   /* نخلط ترتيب الأسئلة والخيارات كل مرة */
   const run = shuffle(qs).map((q) => { const o = shuffle(q.options.map((t, i) => ({ t, ok: i === q.answer }))); return { q: q.q, o, exp: q.explain || "", pick: -1 }; });
@@ -145,14 +150,14 @@ async function start(id) {
 $("qz-home").addEventListener("click", (e) => { const b = e.target.closest("[data-start]"); if (b) { b.disabled = true; start(b.dataset.start).finally(() => { b.disabled = false; }); } });
 
 try {
-  const M = await import("./assets/js/auth.js?v=20261112b");
+  const M = await import("./assets/js/auth.js?v=20261112c");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
   let loaded = false;
   fa.onAuthStateChanged(M.auth, async (u) => {
     if (!u || loaded) return; loaded = true;
-    try { if (u.email && u.emailVerified) { const a = await fs.getDoc(fs.doc(M.db, "access", u.email.toLowerCase())); if (a.exists()) { const d = a.data(); access = !d.until || d.until.toMillis() > Date.now(); } } } catch (e) {}
+    try { verified = !!u.emailVerified; if (u.email) { const a = await fs.getDoc(fs.doc(M.db, "access", u.email.toLowerCase())); grants = a.exists() ? NA.list(a.data()) : []; } } catch (e) {}
     try {
       const sn = await fs.getDocs(fs.collection(M.db, "quizzes")); quizzes = []; sn.forEach((d) => quizzes.push({ id: d.id, ...d.data() }));
       quizzes.sort((a, b) => (+a.order || 0) - (+b.order || 0) || String(a.title).localeCompare(String(b.title), "ar")); home();

@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112b">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
 <style>
 #najd .ad-tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
 #najd .ad-tab{flex:1 1 auto;height:44px;padding:0 14px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap}
@@ -43,6 +43,40 @@
 #najd .ad-steps li{list-style:decimal!important;margin:0 0 6px;font-size:15.5px}
 #najd .ad-prev{margin:12px 0 0;border-radius:12px;overflow:hidden}
 @media (max-width:640px){#najd .ad-grid{grid-template-columns:1fr}#najd .ad-row{flex-wrap:wrap}#najd .ad-tab{flex:1 1 40%}}
+#najd .sb-lbl{display:block;font-size:14px;font-weight:700;color:var(--muted);margin:0 0 6px}
+#najd .sb-add{display:flex;gap:8px}
+#najd .sb-add input{flex:1;min-width:0}
+#najd .sb-add button{flex-shrink:0;height:46px;border:0;border-radius:12px;background:var(--deep);color:#fff;font:inherit;font-weight:800;padding:0 16px;cursor:pointer}
+#najd .sb-quick{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0 0;font-size:13px;color:var(--slate)}
+#najd .sb-quick button{height:30px;border:1px dashed var(--teal);background:none;border-radius:999px;padding:0 10px;font:inherit;font-size:13px;font-weight:700;color:var(--dtext);cursor:pointer}
+#najd .sb-picked{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 0}
+#najd .sb-chip{display:inline-flex;align-items:center;gap:6px;background:var(--tint);color:var(--dtext);border-radius:999px;padding:4px 6px 4px 12px;font-size:14px;font-weight:700}
+#najd .sb-chip button,#najd .sb-g button{width:22px;height:22px;border:0;border-radius:50%;background:rgba(0,0,0,.08);color:inherit;font-size:15px;line-height:1;cursor:pointer;padding:0}
+#najd .sb-seg{display:flex;gap:6px;flex-wrap:wrap}
+#najd .sb-seg button{height:42px;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:0 14px;font:inherit;font-size:14.5px;font-weight:700;color:var(--ink);cursor:pointer}
+#najd .sb-seg button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+#najd .sb-term{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0 0}
+#najd .sb-term[hidden]{display:none}
+#najd .sb-term label{font-size:14px;font-weight:700;color:var(--muted)}
+#najd .sb-term input{max-width:200px}
+#najd .sb-term small{font-size:12.5px;color:var(--slate)}
+#najd .sb-prev{font-size:15px;background:var(--bg);border-radius:12px;padding:10px 14px;margin:14px 0 0}
+#najd .sb-prev:empty{display:none}
+#najd .sb-lh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 6px}
+#najd .sb-lh input{height:42px;border:1px solid var(--line);border-radius:12px;padding:0 12px;background:var(--bg);color:var(--ink);font:inherit;min-width:0;flex:0 1 260px}
+#najd .sb-row{padding:12px 0;border-bottom:1px solid var(--line)}
+#najd .sb-row:last-child{border-bottom:0}
+#najd .sb-rh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#najd .sb-rh b{font-size:15.5px;word-break:break-all}
+#najd .sb-rh small{font-size:13px;color:var(--slate)}
+#najd .sb-acts{margin-inline-start:auto;display:flex;gap:6px}
+#najd .sb-acts button{height:34px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 10px;font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--dtext)}
+#najd .sb-acts button.del{color:#8E3F37}
+#najd .sb-gs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 0}
+#najd .sb-g{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:4px 6px 4px 10px;font-size:13.5px}
+#najd .sb-g b{font-weight:800}
+#najd .sb-g small{color:var(--slate);font-size:12px}
+#najd .sb-g.is-end{opacity:.6;text-decoration:line-through}
 </style>
 </head>
 <body>
@@ -92,13 +126,15 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112b"></script>
-<script src="assets/js/i18n.js?v=20261112b"></script>
-<script src="assets/js/coop-data.js?v=20261112b"></script>
+<script src="assets/js/layout.js?v=20261112c"></script>
+<script src="assets/js/i18n.js?v=20261112c"></script>
+<script src="assets/js/coop-data.js?v=20261112c"></script>
+<script src="assets/js/courses-data.js?v=20261112c"></script>
+<script src="assets/js/access.js?v=20261112c"></script>
 <script type="module">
-import { auth, db } from "./assets/js/auth.js?v=20261112b";
+import { auth, db } from "./assets/js/auth.js?v=20261112c";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
-import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, writeBatch, query, where, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, deleteField, writeBatch, query, where, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 const C = window.NAJD_COOP, esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const today = () => new Date().toISOString().slice(0, 10);
@@ -128,15 +164,16 @@ const SECTIONS = {
     hint: "للفيديو: ارفعه على يوتيوب كـ «غير مدرج» (Unlisted) والصق الرابط. للـ PDF: ارفعه على قوقل درايف واجعل المشاركة «أي شخص لديه الرابط» والصق الرابط.",
     fields: [
       { k: "title", label: "عنوان الشرح *", type: "text", req: true, full: true, max: 120 },
-      { k: "course", label: "المقرر", type: "text", max: 80, hint: "مثل: مبادئ المحاسبة ACCT101", list: true },
-      { k: "type", label: "النوع", type: "select", options: [["video", "فيديو يوتيوب"], ["pdf", "ملف PDF"]] },
+      { k: "code", label: "المقرر", type: "select", options: [["", "عام (بدون مقرر)"]].concat((window.NAJD_COURSES || []).map((c) => [c[0], c[0] + " · " + c[1]])), hint: "يفتح للي مشترك في هذا المقرر." },
+      { k: "type", label: "النوع", type: "select", options: [["video", "شرح فيديو (يوتيوب)"], ["pdf", "ملخص PDF"]], hint: "الفيديو لمشتركي «شروحات»، والـ PDF لمشتركي «ملخصات»." },
       { k: "url", label: "الرابط *", type: "url", req: true, https: true, full: true, hint: "ما يظهر إلا للمشتركين (أو للكل لو الشرح مجاني)." },
       { k: "desc", label: "وصف قصير", type: "textarea", full: true, max: 300 },
       { k: "order", label: "الترتيب", type: "number" },
       { k: "free", label: "مجاني لكل المسجلين", type: "check", def: false },
       { k: "active", label: "منشور", type: "check", def: true }
     ],
-    line: (x) => `${esc(x.course || "عام")} · ${x.type === "pdf" ? "PDF" : "فيديو"} · ${x.free ? "مجاني" : "للمشتركين"}`
+    prep: (d) => { d.course = d.code ? window.NajdAccess.label(d.code) : ""; },
+    line: (x) => `${esc(x.code ? window.NajdAccess.label(x.code) : (x.course || "عام"))} · ${x.type === "pdf" ? "ملخص" : "شرح"} · ${x.free ? "مجاني" : "للمشتركين"}`
   },
   coop: {
     col: "coop", title: "فرصة", plural: "فرص التدريب",
@@ -267,6 +304,7 @@ async function crud(key) {
     e.preventDefault(); msg("");
     let data; try { data = readForm(S); } catch (er) { return msg(er); }
     const secret = S.secret ? data[S.secret] : null; if (S.secret) delete data[S.secret];
+    if (S.prep) S.prep(data);
     data.updatedAt = serverTimestamp();
     const btn = $("ad-save"); btn.disabled = true;
     try {
@@ -312,38 +350,113 @@ async function ann() {
 
 /* ===== المشتركين في الشروحات ===== */
 async function access() {
-  $("ad-body").innerHTML = `<div class="nj-card"><h2>تفعيل اشتراك طالب</h2><p class="nj-hint">بعد ما يشتري الطالب من المتجر، اكتب <b>بريد حسابه في أكاديمية نجد</b> (نفس البريد اللي يدخل فيه، Gmail أو غيره). الطالب لازم يكون بريده مؤكد. حسابات Gmail مؤكدة تلقائيًا.</p>
-  <form id="ad-form" novalidate><div class="ad-grid">
-  <div class="ad-f full"><label for="s-mail">بريد الطالب *</label><input id="s-mail" type="email" dir="ltr" placeholder="student@gmail.com"></div>
-  <div class="ad-f"><label for="s-until">ينتهي في</label><input id="s-until" type="date"><small>فاضي = بدون انتهاء.</small></div>
-  <div class="ad-f"><label for="s-note">ملاحظة</label><input id="s-note" type="text" maxlength="100" placeholder="مثلًا: رقم الطلب في زد"></div>
-  </div><div class="ad-acts"><button type="submit" class="nj-btn nj-btn-fill">تفعيل</button></div><p class="ad-msg" id="ad-msg" aria-live="polite"></p></form></div>
-  <div class="nj-card"><h2>المشتركين (<span id="ad-n">0</span>)</h2><div id="ad-list"><p class="nj-hint">جاري التحميل…</p></div></div>`;
-  let items = [];
-  const fmt = (t) => { try { return t.toDate().toISOString().slice(0, 10); } catch (e) { return ""; } };
+  const NA = window.NajdAccess, COURSES = window.NAJD_COURSES || [];
+  const LS = (k, d) => { try { return localStorage.getItem("najd_adm_" + k) || d; } catch (e) { return d; } };
+  const SS = (k, v) => { try { localStorage.setItem("najd_adm_" + k, v); } catch (e) {} };
+  let kind = LS("kind", "pdf"), dur = LS("dur", "term"), picked = [], items = [], lastMsg = "";
+  const DURS = [["m1", "شهر"], ["m3", "3 شهور"], ["term", "نهاية الفصل"], ["y1", "سنة"], ["none", "بدون انتهاء"], ["date", "تاريخ معيّن"]];
+  $("ad-body").innerHTML = `<div class="nj-card"><h2>تفعيل اشتراك</h2><p class="nj-hint">اكتب بريد حساب الطالب في أكاديمية نجد، اختر المقررات والنوع والمدة، واضغط تفعيل. لو الطالب عنده اشتراكات من قبل، تنضاف عليها.</p>
+  <form id="ad-form" novalidate>
+  <div class="ad-f full"><label for="s-mail">بريد الطالب *</label><input id="s-mail" type="email" dir="ltr" list="s-mail-l" placeholder="student@gmail.com" autocomplete="off"><datalist id="s-mail-l"></datalist></div>
+  <div class="ad-f full"><label for="s-course">المقررات *</label><div class="sb-add"><input id="s-course" type="text" list="s-course-l" autocomplete="off" placeholder="اكتب الرمز مثل ACCT101 واضغط Enter"><datalist id="s-course-l"><option value="all · كل المقررات">${COURSES.map((c) => `<option value="${esc(c[0])} · ${esc(c[1])}">`).join("")}</datalist><button type="button" id="s-course-add">أضف</button></div>
+  <div class="sb-quick" id="s-quick"></div><div class="sb-picked" id="s-picked"></div></div>
+  <div class="ad-f full"><span class="sb-lbl">النوع</span><div class="sb-seg" id="s-kind">${Object.keys(NA.KINDS).map((k) => `<button type="button" data-k="${k}" aria-pressed="${k === kind}">${NA.KINDS[k]}</button>`).join("")}</div></div>
+  <div class="ad-f full"><span class="sb-lbl">المدة</span><div class="sb-seg sb-dur" id="s-dur">${DURS.map((d) => `<button type="button" data-d="${d[0]}" aria-pressed="${d[0] === dur}">${d[1]}</button>`).join("")}</div>
+  <div class="sb-term" id="s-term-w"><label for="s-term">نهاية الفصل</label><input id="s-term" type="date"><small>تحفظ عندك وتستخدم لكل الطلاب لين تغيّرها.</small></div>
+  <div class="sb-term" id="s-date-w"><label for="s-date">ينتهي في</label><input id="s-date" type="date"></div></div>
+  <div class="ad-f full"><label for="s-note">ملاحظة (اختياري)</label><input id="s-note" type="text" maxlength="100" placeholder="مثلًا: رقم الطلب في زد"></div>
+  <p class="sb-prev" id="s-prev"></p>
+  <div class="ad-acts"><button type="submit" class="nj-btn nj-btn-fill" id="s-go">تفعيل</button><button type="button" class="nj-btn nj-btn-line" id="s-copy" hidden>انسخ رسالة للطالب</button></div><p class="ad-msg" id="ad-msg" aria-live="polite"></p></form></div>
+  <div class="nj-card"><div class="sb-lh"><h2>المشتركين (<span id="ad-n">0</span>)</h2><input id="s-find" type="search" dir="auto" placeholder="ابحث بالبريد أو المقرر…"></div><div id="ad-list"><p class="nj-hint">جاري التحميل…</p></div></div>`;
+  $("s-term").value = LS("term", ""); if (window.NajdFP) window.NajdFP.sync($("s-term"));
+  const fmt = (d) => NA.fmt(d);
+  function endDate() {
+    const now = new Date(), d = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+    if (dur === "none") return null;
+    if (dur === "m1") { d.setMonth(d.getMonth() + 1); return d; }
+    if (dur === "m3") { d.setMonth(d.getMonth() + 3); return d; }
+    if (dur === "y1") { d.setFullYear(d.getFullYear() + 1); return d; }
+    const v = dur === "term" ? $("s-term").value : $("s-date").value;
+    return /^\d{4}-\d{2}-\d{2}$/.test(v) ? new Date(v + "T23:59:59") : undefined;
+  }
+  function codeOf(v) { v = String(v || "").trim(); if (/^all\b/i.test(v) || v === "كل المقررات") return "all"; const m = v.toUpperCase().match(/[A-Z]{2,5}\s?\d{3}/); if (!m) return ""; const c = m[0].replace(/\s/, ""); return COURSES.some((x) => x[0] === c) ? c : ""; }
+  function addCourse(v) {
+    const parts = String(v).split(/[,،\n]+/).map(codeOf).filter(Boolean);
+    if (!parts.length) { if (String(v).trim()) msg("ما عرفنا المقرر. اكتب الرمز مثل ACCT101."); return; }
+    parts.forEach((c) => { if (c === "all") picked = ["all"]; else if (!picked.includes(c)) picked = picked.filter((x) => x !== "all").concat(c); });
+    $("s-course").value = ""; msg(""); draw();
+  }
+  function draw() {
+    $("s-picked").innerHTML = picked.map((c) => `<span class="sb-chip" dir="auto">${esc(NA.label(c))}<button type="button" data-rm="${c}" aria-label="شيل">×</button></span>`).join("");
+    root.querySelectorAll("#s-kind button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.k === kind));
+    root.querySelectorAll("#s-dur button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.d === dur));
+    $("s-term-w").hidden = dur !== "term"; $("s-date-w").hidden = dur !== "date";
+    const e = endDate();
+    $("s-prev").innerHTML = picked.length ? `بيتفعّل: <b>${picked.map((c) => esc(c === "all" ? "كل المقررات" : c)).join("، ")}</b> · ${NA.KINDS[kind]} · ${e === null ? "بدون انتهاء" : e ? "ينتهي " + fmt(e) : '<span class="is-off">حدد التاريخ</span>'}` : "";
+  }
+  const root = $("ad-body");
+  $("s-course").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); if ($("s-course").value.trim()) addCourse($("s-course").value); else if (picked.length) $("ad-form").requestSubmit(); } });
+  $("s-course").addEventListener("change", () => { if (codeOf($("s-course").value)) addCourse($("s-course").value); });
+  $("s-course-add").onclick = () => addCourse($("s-course").value);
+  $("s-picked").onclick = (e) => { const b = e.target.closest("[data-rm]"); if (b) { picked = picked.filter((x) => x !== b.dataset.rm); draw(); } };
+  $("s-quick").onclick = (e) => { const b = e.target.closest("[data-q]"); if (b) addCourse(b.dataset.q); };
+  $("s-kind").onclick = (e) => { const b = e.target.closest("[data-k]"); if (b) { kind = b.dataset.k; SS("kind", kind); draw(); } };
+  $("s-dur").onclick = (e) => { const b = e.target.closest("[data-d]"); if (b) { dur = b.dataset.d; SS("dur", dur); draw(); if (dur === "term" && !$("s-term").value) $("s-term").focus(); if (dur === "date") $("s-date").focus(); } };
+  $("s-term").addEventListener("change", () => { SS("term", $("s-term").value); draw(); });
+  $("s-date").addEventListener("change", draw);
+  $("s-copy").onclick = async () => { try { await navigator.clipboard.writeText(lastMsg); toast("انتسخت الرسالة"); } catch (e) { prompt("انسخ الرسالة:", lastMsg); } };
+  /* مقررات فيها محتوى مدفوع: اختصار بضغطة */
+  try {
+    const codes = new Set();
+    for (const col of ["lessons", "quizzes"]) { const s = await getDocs(collection(db, col)); s.forEach((d) => { const x = d.data(); if (x.code && !x.free) codes.add(x.code); }); }
+    $("s-quick").innerHTML = codes.size ? '<span>فيها محتوى:</span>' + [...codes].sort().map((c) => `<button type="button" data-q="${esc(c)}" dir="ltr">${esc(c)}</button>`).join("") : "";
+  } catch (e) {}
+  function rowHTML(x) {
+    const g = NA.list(x);
+    return `<div class="sb-row" data-mail="${esc(x.id)}"><div class="sb-rh"><b dir="ltr">${esc(x.id)}</b>${x.note ? `<small>${esc(x.note)}</small>` : ""}<span class="sb-acts"><button type="button" data-more="${esc(x.id)}">+ أضف له</button><button type="button" class="del" data-del="${esc(x.id)}">حذف</button></span></div>
+      <div class="sb-gs">${g.length ? g.map((r) => `<span class="sb-g${r.live ? "" : " is-end"}"><b dir="ltr">${esc(r.code === "all" ? "الكل" : r.code)}</b>${NA.KINDS[r.kind] || esc(r.kind)}<small>${r.until ? (r.live ? "لين " : "انتهى ") + fmt(r.until) : "بدون انتهاء"}</small><button type="button" data-ung="${esc(r.key)}" aria-label="شيل الاشتراك">×</button></span>`).join("") : '<small class="is-off">ما عنده اشتراكات</small>'}</div></div>`;
+  }
+  function render() {
+    const q = $("s-find").value.trim().toLowerCase();
+    const l = items.filter((x) => !q || x.id.includes(q) || Object.keys(x.grants || {}).some((k) => k.toLowerCase().includes(q)) || String(x.note || "").toLowerCase().includes(q));
+    $("ad-list").innerHTML = l.length ? l.map(rowHTML).join("") : '<p class="nj-hint">' + (items.length ? "ما لقينا نتيجة." : "ما فيه مشتركين بعد.") + "</p>";
+  }
   async function load() {
     const snap = await getDocs(collection(db, "access"));
     items = []; snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
-    items.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
-    $("ad-n").textContent = items.length;
-    const now = Date.now();
-    $("ad-list").innerHTML = items.length ? items.map((x) => `<div class="ad-row"><div><b dir="ltr" style="text-align:right">${esc(x.id)}</b><small>${x.until ? "ينتهي " + esc(fmt(x.until)) + (x.until.toMillis() < now ? ' · <span class="is-off">منتهي</span>' : "") : "بدون انتهاء"}${x.note ? " · " + esc(x.note) : ""}</small></div><button type="button" data-edit="${esc(x.id)}">تعديل</button><button type="button" class="del" data-del="${esc(x.id)}">إلغاء</button></div>`).join("") : '<p class="nj-hint">ما فيه مشتركين بعد.</p>';
+    items.sort((a, b) => (b.updatedAt?.seconds || b.createdAt?.seconds || 0) - (a.updatedAt?.seconds || a.createdAt?.seconds || 0));
+    $("ad-n").textContent = items.length; $("s-mail-l").innerHTML = items.map((x) => `<option value="${esc(x.id)}">`).join(""); render();
   }
+  $("s-find").addEventListener("input", render);
   $("ad-list").onclick = async (e) => {
-    const ed = e.target.closest("[data-edit]"), del = e.target.closest("[data-del]");
-    if (ed) { const x = items.find((i) => i.id === ed.dataset.edit); $("s-mail").value = x.id; $("s-until").value = x.until ? fmt(x.until) : ""; if (window.NajdFP) window.NajdFP.sync($("s-until")); $("s-note").value = x.note || ""; $("s-mail").focus(); }
-    if (del) { if (!confirm("تلغي اشتراك " + del.dataset.del + "؟")) return; try { await deleteDoc(doc(db, "access", del.dataset.del)); await load(); toast("انلغى الاشتراك"); } catch (er) { toast("ما قدرنا نلغيه"); } }
+    const more = e.target.closest("[data-more]"), del = e.target.closest("[data-del]"), ung = e.target.closest("[data-ung]");
+    if (more) { $("s-mail").value = more.dataset.more; picked = []; draw(); $("ad-form").scrollIntoView({ behavior: "smooth" }); $("s-course").focus(); }
+    if (ung) { const mail = ung.closest(".sb-row").dataset.mail; if (!confirm("تشيل هذا الاشتراك من " + mail + "؟")) return; try { await updateDoc(doc(db, "access", mail), { ["grants." + ung.dataset.ung]: deleteField(), updatedAt: serverTimestamp() }); await load(); toast("انشال الاشتراك"); } catch (er) { toast("ما قدرنا نشيله"); } }
+    if (del) { if (!confirm("تحذف كل اشتراكات " + del.dataset.del + "؟")) return; try { await deleteDoc(doc(db, "access", del.dataset.del)); await load(); toast("انحذف"); } catch (er) { toast("ما قدرنا نحذفه"); } }
   };
   $("ad-form").onsubmit = async (e) => {
-    e.preventDefault(); msg("");
-    const mail = $("s-mail").value.trim().toLowerCase(), u = $("s-until").value;
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return msg("اكتب بريد صحيح.");
-    const data = { note: $("s-note").value.trim(), createdAt: serverTimestamp() };
-    if (u) data.until = Timestamp.fromDate(new Date(u + "T23:59:59"));
-    try { await setDoc(doc(db, "access", mail), data); msg("تم تفعيل الاشتراك لـ " + mail + "", true); $("ad-form").reset(); await load(); }
-    catch (er) { msg("ما قدرنا نفعّل. تأكد من الصلاحية وقواعد Firestore."); }
+    e.preventDefault(); msg(""); $("s-copy").hidden = true;
+    const mail = $("s-mail").value.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { $("s-mail").focus(); return msg("اكتب بريد صحيح."); }
+    if ($("s-course").value.trim()) addCourse($("s-course").value);
+    if (!picked.length) { $("s-course").focus(); return msg("اختر مقرر واحد على الأقل."); }
+    const end = endDate(); if (end === undefined) return msg(dur === "term" ? "حدد تاريخ نهاية الفصل." : "حدد تاريخ الانتهاء.");
+    const val = end === null ? true : Timestamp.fromDate(end), grants = {};
+    picked.forEach((c) => { grants[c + "_" + kind] = val; });
+    const ex = items.find((x) => x.id === mail), data = { grants, updatedAt: serverTimestamp() };
+    if (!ex) data.createdAt = serverTimestamp();
+    const note = $("s-note").value.trim(); if (note) data.note = note;
+    const b = $("s-go"); b.disabled = true;
+    try {
+      await setDoc(doc(db, "access", mail), data, { merge: true });
+      const lines = picked.map((c) => "- " + (c === "all" ? "كل المقررات" : NA.label(c)) + ": " + NA.KINDS[kind]);
+      lastMsg = "هلا! تم تفعيل اشتراكك في أكاديمية نجد:\n" + lines.join("\n") + "\n" + (end ? "ينتهي " + fmt(end) : "بدون تاريخ انتهاء") + "\n\nادخل بنفس البريد: " + mail + "\nhttps://najdacdemy.com/lessons.html";
+      msg("تم التفعيل لـ " + mail + (ex ? " (انضاف على اشتراكاته)" : ""), true); $("s-copy").hidden = false;
+      $("s-mail").value = ""; $("s-note").value = ""; picked = []; draw(); await load(); $("s-mail").focus();
+    } catch (er) { console.warn(er); msg("ما قدرنا نفعّل. تأكد من الصلاحية وقواعد Firestore."); }
+    b.disabled = false;
   };
-  await load();
+  draw(); await load(); $("s-mail").focus();
 }
 
 /* ===== الاختبارات ===== */
@@ -379,11 +492,12 @@ async function quizzes() {
   $("ad-body").innerHTML = `<div class="nj-card"><h2 id="ad-ft">إضافة اختبار</h2><p class="nj-hint">اكتب الأسئلة في المربع: كل سؤال في سطر، وتحته الخيارات كل خيار في سطر، وحط <b>*</b> قبل الإجابة الصحيحة. واترك <b>سطر فاضي</b> بين كل سؤال والثاني. وتقدر تضيف سطر يبدأ بـ «شرح:» يطلع للطالب بعد التصحيح.</p>
   <form id="ad-form" novalidate><div class="ad-grid">
   <div class="ad-f full"><label for="z-title">عنوان الاختبار *</label><input id="z-title" type="text" maxlength="120"></div>
-  <div class="ad-f"><label for="z-course">المقرر</label><input id="z-course" type="text" maxlength="80" list="z-course-l" placeholder="مثل: مبادئ المحاسبة ACCT101"><datalist id="z-course-l"></datalist></div>
+  <div class="ad-f"><label for="z-course">المقرر</label><select id="z-course"><option value="">عام (بدون مقرر)</option>${(window.NAJD_COURSES || []).map((c) => `<option value="${esc(c[0])}">${esc(c[0] + " · " + c[1])}</option>`).join("")}</select></div>
+  <div class="ad-f"><label for="z-need">مين يقدر يحلّه؟</label><select id="z-need"><option value="free">عام للكل</option><option value="pdf">مشتركين ملخصات المقرر</option><option value="video">مشتركين شروحات المقرر</option></select></div>
   <div class="ad-f"><label for="z-order">الترتيب</label><input id="z-order" type="number" min="0" inputmode="numeric"></div>
   <div class="ad-f full"><label for="z-desc">وصف قصير</label><input id="z-desc" type="text" maxlength="200" placeholder="مثل: الفصول 1 إلى 4"></div>
   <div class="ad-f full"><label for="z-qs">الأسئلة *</label><textarea id="z-qs" style="height:320px;line-height:1.9" dir="auto" placeholder="${esc(Q_HELP)}"></textarea><small id="z-count">0 سؤال</small></div>
-  <div class="ad-f full"><div class="ad-checks"><label><input type="checkbox" id="z-free">مجاني لكل المسجلين</label><label><input type="checkbox" id="z-active" checked>منشور</label></div></div>
+  <div class="ad-f full"><div class="ad-checks"><label><input type="checkbox" id="z-active" checked>منشور</label></div></div>
   </div><div class="ad-acts"><button type="submit" class="nj-btn nj-btn-fill" id="ad-save">نشر</button><button type="button" class="nj-btn nj-btn-line" id="ad-cancel" hidden>إلغاء التعديل</button></div><p class="ad-msg" id="ad-msg" aria-live="polite"></p></form></div>
   <div class="nj-card"><h2>الاختبارات (<span id="ad-n">0</span>)</h2><div id="ad-list"><p class="nj-hint">جاري التحميل…</p></div></div>`;
   const reset = () => { editing = null; $("ad-form").reset(); $("z-active").checked = true; $("z-count").textContent = "0 سؤال"; $("ad-ft").textContent = "إضافة اختبار"; $("ad-save").textContent = "نشر"; $("ad-cancel").hidden = true; };
@@ -392,15 +506,14 @@ async function quizzes() {
     const snap = await getDocs(collection(db, "quizzes")); items = []; snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
     items.sort((a, b) => (+a.order || 0) - (+b.order || 0) || (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
     $("ad-n").textContent = items.length;
-    $("ad-list").innerHTML = items.length ? items.map((x) => `<div class="ad-row"><div><b>${esc(x.title)}</b><small>${esc(x.course || "عام")} · ${+x.count || 0} سؤال · ${x.free ? "مجاني" : "للمشتركين"}${x.active === false ? ' · <span class="is-off">مخفي</span>' : ""}</small></div><button type="button" data-edit="${x.id}">تعديل</button><button type="button" class="del" data-del="${x.id}">حذف</button></div>`).join("") : '<p class="nj-hint">ما فيه شي مضاف بعد.</p>';
-    $("z-course-l").innerHTML = [...new Set(items.map((x) => x.course).filter(Boolean))].map((c) => `<option value="${esc(c)}">`).join("");
+    $("ad-list").innerHTML = items.length ? items.map((x) => `<div class="ad-row"><div><b>${esc(x.title)}</b><small>${esc(x.code ? window.NajdAccess.label(x.code) : (x.course || "عام"))} · ${+x.count || 0} سؤال · ${x.free ? "عام للكل" : x.need === "video" ? "مشتركين الشروحات" : "مشتركين الملخصات"}${x.active === false ? ' · <span class="is-off">مخفي</span>' : ""}</small></div><button type="button" data-edit="${x.id}">تعديل</button><button type="button" class="del" data-del="${x.id}">حذف</button></div>`).join("") : '<p class="nj-hint">ما فيه شي مضاف بعد.</p>';
   }
   $("ad-list").onclick = async (e) => {
     const ed = e.target.closest("[data-edit]"), del = e.target.closest("[data-del]");
     if (ed) {
       const x = items.find((i) => i.id === ed.dataset.edit); let qs = [];
       try { const s = await getDoc(doc(db, "quizData", x.id)); qs = s.exists() ? s.data().questions || [] : []; } catch (er) {}
-      editing = x.id; $("z-title").value = x.title || ""; $("z-course").value = x.course || ""; $("z-order").value = x.order ?? ""; $("z-desc").value = x.desc || ""; $("z-qs").value = quizText(qs); $("z-free").checked = !!x.free; $("z-active").checked = x.active !== false;
+      editing = x.id; $("z-title").value = x.title || ""; $("z-course").value = x.code || ""; $("z-need").value = x.free ? "free" : x.need === "video" ? "video" : "pdf"; $("z-order").value = x.order ?? ""; $("z-desc").value = x.desc || ""; $("z-qs").value = quizText(qs); $("z-active").checked = x.active !== false;
       $("z-count").textContent = qs.length + " سؤال"; $("ad-ft").textContent = "تعديل: " + x.title; $("ad-save").textContent = "حفظ التعديل"; $("ad-cancel").hidden = false; msg(""); $("ad-form").scrollIntoView({ behavior: "smooth" });
     }
     if (del) {
@@ -416,7 +529,8 @@ async function quizzes() {
     if (r.errs.length) return msg(r.errs[0]);
     if (!r.out.length) return msg("أضف سؤال واحد على الأقل.");
     const ov = $("z-order").value.trim();
-    const meta = { title, course: $("z-course").value.trim(), desc: $("z-desc").value.trim(), order: ov === "" ? null : Math.max(0, +ov || 0), free: $("z-free").checked, active: $("z-active").checked, count: r.out.length, updatedAt: serverTimestamp() };
+    const zc = $("z-course").value, zn = $("z-need").value;
+    const meta = { title, code: zc, course: zc ? window.NajdAccess.label(zc) : "", need: zn === "video" ? "video" : "pdf", desc: $("z-desc").value.trim(), order: ov === "" ? null : Math.max(0, +ov || 0), free: zn === "free", active: $("z-active").checked, count: r.out.length, updatedAt: serverTimestamp() };
     const btn = $("ad-save"); btn.disabled = true;
     try {
       const ref = editing ? doc(db, "quizzes", editing) : doc(collection(db, "quizzes")); const b = writeBatch(db);
