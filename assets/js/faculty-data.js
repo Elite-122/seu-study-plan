@@ -1,7 +1,9 @@
-/* أعضاء هيئة التدريس في كلية العلوم الإدارية والمالية — من موقع الجامعة (الصفحة العربية والإنجليزية، نوفمبر 2026).
-   هذي القائمة تنضاف لقاعدة البيانات من لوحة الإدارة (زر «استيراد قائمة الجامعة»)، وبعدها التعديل يصير من اللوحة. */
-window.NAJD_DEPTS={acct:"المحاسبة",fin:"المالية",mgt:"إدارة الأعمال",ecom:"التجارة الإلكترونية",islm:"الثقافة الإسلامية",quant:"الإحصاء ونظم المعلومات"};
-window.NAJD_BRANCHES={"riyadh": "الرياض", "jeddah": "جدة", "dammam": "الدمام", "madinah": "المدينة المنورة", "ahsa": "الأحساء", "jazan": "جازان", "qassim": "القصيم"};
+/* أعضاء هيئة التدريس — من موقع الجامعة (صفحات أعضاء هيئة التدريس، نوفمبر 2026).
+   الأقسام الأربعة: كلية العلوم الإدارية والمالية. الثقافة الإسلامية والإحصاء: الدكاترة اللي يدرّسون ISLM101-104 و STAT101/201
+   في الفصل الأول 2026-2027 حسب نظام التسجيل، ومعلوماتهم من صفحة كلية العلوم والدراسات النظرية.
+   القائمة تنضاف لقاعدة البيانات من لوحة الإدارة (زر الإضافة)، وبعدها التعديل يصير من اللوحة. */
+window.NAJD_DEPTS={acct:"المحاسبة",fin:"المالية",mgt:"إدارة الأعمال",ecom:"التجارة الإلكترونية",islm:"الثقافة الإسلامية",quant:"الإحصاء والأساليب الكمية"};
+window.NAJD_BRANCHES={"riyadh": "الرياض", "jeddah": "جدة", "dammam": "الدمام", "madinah": "المدينة المنورة", "ahsa": "الأحساء", "jazan": "جازان", "qassim": "القصيم", "abha": "أبها", "hail": "حائل"};
 window.NAJD_FACULTY=[
 ["a-alkhoraif", "د. عبد الله عبدالعزيز الخريف", "Dr. Abdullah Alkhoraif", "mgt", "عضو هيئة تدريس", "", "a.alkhoraif@seu.edu.sa"],
 ["a-haizan", "د. اروى عبدالاله حيزان", "Dr. Arwa Haizan", "mgt", "عضو هيئة تدريس", "riyadh", "a.haizan@seu.edu.sa"],
@@ -169,5 +171,61 @@ window.NAJD_FACULTY=[
 ["m-alhumidan", "ماجد بن عبدالله الحميدان", "Magid Abdullah Alhumidan", "mgt", "معلم مستوى سادس", "riyadh", "m.alhumidan@seu.edu.sa"],
 ["a-alshangiti", "أ. أمل محمد الشنقيطي", "Amal Muhammad Al-Shanqeeti", "acct", "محاضر", "riyadh", "a.alshangiti@seu.edu.sa"],
 ["s-aldhawyan", "د. سليمان منيع الضويان", "Dr. Sulaiman Aldhawyan", "fin", "", "riyadh", "s.aldhawyan@seu.edu.sa"],
-["f-alhathal", "د. فيصل ثامر الهذال", "Dr. Faisal Alhathal", "mgt", "", "riyadh", "f.alhathal@seu.edu.sa"]
+["f-alhathal", "د. فيصل ثامر الهذال", "Dr. Faisal Alhathal", "mgt", "", "riyadh", "f.alhathal@seu.edu.sa"],
+["hs-alharbi", "د. هلالة بنت صالح الحربي", "Dr. Hilalah Salah H Alharbi", "islm", "أستاذ مساعد", "madinah", "hs.alharbi@seu.edu.sa"],
+["b-jaddoa", "د. بدر عبدالله بن جدوع", "Dr. Badr bn Jaddoa", "islm", "أستاذ مشارك", "riyadh", "b.jaddoa@seu.edu.sa"],
+["a-alfayz", "د. عبدالعزيز بن عبدالرحمن الفايز", "Dr. Abdulaziz A. Alfayz", "islm", "أستاذ مشارك", "riyadh", "a.alfayz@seu.edu.sa"],
+["t-alqasem", "أ. ثريا بنت سليمان القاسم", "Thuriah Suliman Alqasem", "islm", "أستاذ مساعد", "riyadh", "t.alqasem@seu.edu.sa"],
+["e-alfheed", "د. إبراهيم بن سليمان الفهيد", "Dr. Ebraheem Suliman Alfheed", "islm", "أستاذ مشارك", "dammam", "e.alfheed@seu.edu.sa"],
+["w-almarzouqi", "وليد المرزوقي", "Waleed Almarzouqi", "islm", "", "", "w.almarzouqi@seu.edu.sa"],
+["m-aldakheel", "د. محمد بن عبدالله الدخيل", "Dr. Mohammed Aldakheel", "islm", "أستاذ مساعد", "riyadh", "m.aldakheel@seu.edu.sa"],
+["e-alqarawi", "ابتسام القرعاوي", "Ebtssam Alqarawi", "islm", "", "", "e.alqarawi@seu.edu.sa"],
+["f-alatram", "د. فاطمة بنت صالح الأطرم", "Dr. Fatamh Alatram", "islm", "أستاذ مساعد", "riyadh", "f.alatram@seu.edu.sa"],
+["m-hamdi", "د. محمد بن حسن حمدي", "Dr. Mohamad Hassan Hamdi", "islm", "أستاذ مشارك", "jazan", "m.hamdi@seu.edu.sa"],
+["r-nazir", "أ. ريام بنت عبدالحي نذير", "Riyam Abdulhaiy Nazir", "islm", "محاضر", "dammam", "r.nazir@seu.edu.sa"],
+["aa-aldawish", "عبدالرحمن الدويش", "Abdulrahman Aldawish", "islm", "", "", "aa.aldawish@seu.edu.sa"],
+["m-alrwaili", "د. محمد بن دجون الرويلي", "Dr. Mohammed Dujun Alruwaili", "islm", "أستاذ مساعد", "hail", "m.alrwaili@seu.edu.sa"],
+["s-alshalhoob", "د. صلاح بن فهد الشلهوب", "Dr. Salah Fahad Alshalhoob", "islm", "أستاذ مساعد", "riyadh", "s.alshalhoob@seu.edu.sa"],
+["aalghamdi", "أ.د. عبد الحميد صالح الغامدي", "Dr. Abdulhamid Algamdi", "islm", "أستاذ", "jeddah", "aalghamdi@seu.edu.sa"],
+["malkudiri", "أ. ماريه بنت عبدالعزيز الخضيري", "Maria Abdulaziz Alkudiri", "islm", "محاضرة", "riyadh", "malkudiri@seu.edu.sa"],
+["s-aljuhani", "أ. سارة بنت بخيت الجهني", "Sarah Aljohani", "islm", "محاضرة", "madinah", "s.aljuhani@seu.edu.sa"],
+["m-alamri", "أ. منال بنت عبدالرحمن العمري", "Manal Abdulrhman Ali Alamri", "islm", "محاضرة", "riyadh", "m.alamri@seu.edu.sa"],
+["y-alrubay", "أ. يوسف بن محمد الربعي", "Yousef Mohammed Alrubay", "islm", "محاضر", "qassim", "y.alrubay@seu.edu.sa"],
+["w-alshreef", "أ. وفاء بنت عتيق الشريف", "Wafa Alshreef", "islm", "محاضر", "madinah", "w.alshreef@seu.edu.sa"],
+["saalqahtani", "د. سلطان علي القحطاني", "Dr. Sultan Ali Alqahtani", "islm", "أستاذ مساعد", "abha", "saalqahtani@seu.edu.sa"],
+["km-alanazi", "خلود العنزي", "Khlood Alanazi", "islm", "", "", "km.alanazi@seu.edu.sa"],
+["h-mobarki", "د. حسام بن غالب مباركي", "Dr. Hossam Mobarki", "islm", "أستاذ مساعد", "jeddah", "h.mobarki@seu.edu.sa"],
+["malshammari", "د. مستورة عبيد الشمري", "Dr. Mastourah Obaid Alshammari", "islm", "أستاذ مساعد", "riyadh", "malshammari@seu.edu.sa"],
+["h-alhajiyu", "حنان الحجي", "Hanan Alhajiyu", "islm", "", "", "h.alhajiyu@seu.edu.sa"],
+["s-alosimi", "د. سعود بن مقبل العصيمي", "Dr. Saud Moqbel A Alosaimi", "islm", "أستاذ مشارك", "ahsa", "s.alosimi@seu.edu.sa"],
+["alasiri-a", "د. أنور علي أحمد العسيري", "Dr. Anwar Ali A Alasiri", "islm", "أستاذ مساعد", "ahsa", "alasiri.a@seu.edu.sa"],
+["z-alkudhiri", "د. زينب بنت حمود الخضيري", "Dr. Zainab hamoud Alkhudhayri", "islm", "أستاذ مساعد", "riyadh", "z.alkudhiri@seu.edu.sa"],
+["a-mobarki", "د. أحمد بن عبدالله مباركي", "Dr. Ahmed Abdullah Hassan Mubaraki", "islm", "أستاذ مشارك", "jeddah", "a.mobarki@seu.edu.sa"],
+["yalhassan", "د. يحيى بن محمد الحسن", "DR. YAHYA MOHAMMAD ALAMIN ALHASSAN", "islm", "أستاذ", "madinah", "yalhassan@seu.edu.sa"],
+["k-saiari", "د. خالد بن محمد السياري", "Dr. Khalid Asaiari", "islm", "أستاذ مشارك", "riyadh", "k.saiari@seu.edu.sa"],
+["h-altayyar", "د. حسين بن سليمان الطيار", "Dr. Hussain Sulaiman Altayar", "islm", "أستاذ مشارك", "riyadh", "h.altayyar@seu.edu.sa"],
+["s-elloumi", "د. سندة توفيق اللومي الطرابلسي", "Dr. Sonda Ellumi", "quant", "أستاذ مساعد", "dammam", "s.elloumi@seu.edu.sa"],
+["a-najem", "د. عائشة محمد ناجم", "Dr. Aisha Mohammed Mohammed Najm", "quant", "أستاذ مساعد", "madinah", "a.najem@seu.edu.sa"],
+["a-alkhathami", "د. علياء علي أحمد الخثعمي", "Dr. Alia Ahmed Alkhathami", "quant", "أستاذ مساعد", "jeddah", "a.alkhathami@seu.edu.sa"],
+["c-swarup", "د. شيتان سواروب نيبال سينغ", "Dr. Chetan Swarup", "quant", "أستاذ مشارك", "riyadh", "c.swarup@seu.edu.sa"],
+["m-kamal", "د. مصطفى كمال", "Dr. Mustafa Kamal", "quant", "أستاذ مشارك", "dammam", "m.kamal@seu.edu.sa"],
+["n-alshammari", "د. نوى عواد الشمري", "Dr. Noa Awad Al-Shammari", "quant", "أستاذ مشارك", "jeddah", "n.alshammari@seu.edu.sa"],
+["t-alshenqeeti", "أ. تهاني محمد الشنقيطي", "Tahani Muhammed M Alshenqeeti", "quant", "محاضر", "madinah", "t.alshenqeeti@seu.edu.sa"],
+["s-rizvi", "د. شجاع حيدر ريزفي", "Dr. Shuja Haider Riziv", "quant", "أستاذ مشارك", "riyadh", "s.rizvi@seu.edu.sa"],
+["s-lone", "د. شوكت احمد لوني", "Dr. Shokat Lone", "quant", "أستاذ مشارك", "jeddah", "s.lone@seu.edu.sa"],
+["f-khan", "د. محمد فيصل خان", "Dr. Mohammed Faisal Khan", "quant", "أستاذ", "riyadh", "f.khan@seu.edu.sa"],
+["ngunaime", "د. نيفين محمد غنيم", "Dr. Nevine Muhamed Gunaime", "quant", "أستاذ مساعد", "jeddah", "ngunaime@seu.edu.sa"],
+["m-alruwaytie", "أ. محمد زايد الرويتعي", "Mohammed AlRuwaytie", "quant", "محاضر", "riyadh", "m.alruwaytie@seu.edu.sa"],
+["s-alsayigh", "د. سائد عبد العلي باقر الصائغ", "Dr. Saed Abdulail B Alsayigh", "quant", "أستاذ مساعد", "dammam", "s.alsayigh@seu.edu.sa"],
+["m-alali", "د. معصومة عبد الله صالح العلي", "Dr. Masoumah Saleh Alali", "quant", "أستاذ مساعد", "dammam", "m.alali@seu.edu.sa"],
+["asingh", "د. ابها سنقة", "Dr. Abha Sanqa", "quant", "أستاذ مشارك", "dammam", "asingh@seu.edu.sa"],
+["a-ganie", "د. عبدالحميد موحد عبدالغفار غاني", "Dr. Abdulhamid Ganie", "quant", "أستاذ مشارك", "abha", "a.ganie@seu.edu.sa"],
+["d-fathima", "د. دولت فاطمة أحمد باشا", "Dr. Dawlath Fathima", "quant", "أستاذ مشارك", "jeddah", "d.fathima@seu.edu.sa"],
+["m-alanazi", "أ. مشاعل محمد ثاني العنزي", "Mashael Mohammmad T ALANAZI", "quant", "محاضر", "dammam", "m.alanazi@seu.edu.sa"],
+["fm-alharbi", "أ. فردوس محمد الحربي", "Firdous Mohammed al-Harbi", "quant", "محاضرة", "madinah", "fm.alharbi@seu.edu.sa"],
+["n-alyabs", "د. نورة عبدالرحمن اليابس", "Dr. Noura Muhanna Al-Yabs", "quant", "أستاذ مساعد", "riyadh", "n.alyabs@seu.edu.sa"],
+["ae-alghamdi", "أ. أسماء بنت محمد علوان الغامدي", "Asma Mohammed Elwan Alghamdi", "quant", "محاضر", "riyadh", "ae.alghamdi@seu.edu.sa"],
+["alshammari-a", "أ. عبدالعزيز الشمري", "Abdulaziz AlShammari", "quant", "محاضر", "riyadh", "alshammari.a@seu.edu.sa"],
+["a-alsubie", "د. عبدالعزيز قاسي السبيعي", "Abdulaziz Qassi Al-Subai'i", "quant", "أستاذ مشارك", "riyadh", "a.alsubie@seu.edu.sa"],
+["f-alshammri", "د. فايد عودة الشمري", "Dr. Fayed Odeh Al-Shammari", "quant", "أستاذ مساعد", "dammam", "f.alshammri@seu.edu.sa"]
 ];
