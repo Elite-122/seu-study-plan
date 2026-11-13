@@ -1070,9 +1070,6 @@ window.NAJD_I18N={DICT:{
 "مقررات تخصص التجارة الإلكترونية": "E-Commerce major courses",
 "ما فيها تقييمات بعد": "No ratings yet",
 "مهارات اللغة الإنجليزية (الجزأين)": "English Language Skills (both parts)",
-"خلصت السنة الأولى؟ اللي بعدك يحتاجون رأيك": "Finished your first year? New students need your opinion",
-"مواد السنة الأولى تحتاج تقييمك": "First-year courses need your rating",
-"قليل اللي يرجع يقيّمها بعد ما يخلص. إذا اجتزت شي منها، قيّمه في أقل من دقيقة وساعد الطلاب الجدد.": "Few students come back to rate these. If you passed any of them, rate it in under a minute and help new students.",
 "القسم": "Section",
 },
 TPL:{
@@ -1085,7 +1082,6 @@ TPL:{
 "{n} لها تقييم": "{n} rated",
 "{n} ساعات · {n} تقييم": "{n} hours · {n} ratings",
 "{n} ساعة · {n} تقييم": "{n} hours · {n} ratings",
-"عندك {n} من مواد السنة الأولى مجتازة في خطتك وما قيّمتها. التقييم بنجمتين بس ويطلع على طول.": "You passed {n} first-year courses in your plan and haven't rated them. It's just two star ratings and it shows right away.",
 "{n} حضوري · {n} أونلاين": "{n} in person · {n} online",
 "{n} ميدتيرم · {n} فاينل": "{n} midterm · {n} final",
 "{n} فرص": "{n} opportunities",

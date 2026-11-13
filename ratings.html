@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261113a">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113b">
 <style>
 #najd .rt-rules{font-size:var(--fs-base);color:var(--muted);background:var(--tint);border-radius:var(--r-md);padding:10px 14px;margin:12px 0 0}
 #najd .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--sp-5)}
@@ -78,11 +78,6 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 #najd .rt-sc{flex-shrink:0;min-width:52px;text-align:center;font-size:var(--fs-xl);font-weight:800;color:var(--c);line-height:1.1}
 #najd .rt-sc small{display:block;font-size:var(--fs-xs);font-weight:500;color:var(--slate)}
 #najd .rt-sc.is-none{color:var(--slate);font-size:var(--fs-lg)}
-#najd .rt-ask{display:flex;gap:var(--sp-6);align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--warn-bg);color:var(--warn);border-radius:var(--r-lg);padding:16px 18px;margin:0 0 14px}
-#najd .rt-ask b{font-size:var(--fs-lg);font-weight:800}
-#najd .rt-ask p{font-size:var(--fs-base);margin:2px 0 0}
-#najd .rt-ask-l{display:flex;gap:var(--sp-2);flex-wrap:wrap}
-#najd .rt-ask-l button{height:38px;border:0;border-radius:var(--r-sm);background:var(--warn-solid);color:var(--on-warn-solid);font:inherit;font-weight:800;font-size:var(--fs-md);padding:0 12px;cursor:pointer}
 @media (max-width:560px){#najd .rt-cards{grid-template-columns:1fr}#najd .rt-code{min-width:74px;font-size:var(--fs-sm)}#najd .rt-shead{padding:16px 18px}#najd .rt-shead h2{font-size:var(--fs-2xl)}}
 #najd .rt-secs{margin:var(--sp-5) 0 0}
 </style>
@@ -105,7 +100,6 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 <div class="nj-card"><input class="nj-input rt-search" id="rt-q" type="search" placeholder="ابحث…" aria-label="بحث">
 <div class="nj-chips rt-secs" id="rt-secs" role="group" aria-label="القسم"></div>
 <p class="rt-rules">قيّم باحترام وعن تجربتك أنت. التقييم بدون اسمك، والتعليقات المكتوبة تراجعها الإدارة قبل النشر، وأي إساءة أو تجريح ينحذف.</p></div>
-<div id="rt-ask"></div>
 <div id="rt-grid" class="rt-grid"></div>
 </div>
 <div id="rt-detail-v" hidden></div>
@@ -113,11 +107,10 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261113a"></script>
-<script src="assets/js/i18n.js?v=20261113a"></script>
-<script type="module" src="assets/js/auth.js?v=20261113a"></script>
-<script src="assets/js/courses-data.js?v=20261113a"></script>
-<script src="assets/js/plans-data.js?v=20261113a"></script>
+<script src="assets/js/layout.js?v=20261113b"></script>
+<script src="assets/js/i18n.js?v=20261113b"></script>
+<script type="module" src="assets/js/auth.js?v=20261113b"></script>
+<script src="assets/js/courses-data.js?v=20261113b"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KIND = {
@@ -168,7 +161,7 @@ function byLevel(l) {
   return lv.map((v) => `<h3 class="rt-lv">${LVN[v] || ""}</h3><div class="rt-cards">${l.filter((x) => x.lv === v).map(card).join("")}</div>`).join("");
 }
 function list() {
-  $("rt-list-v").hidden = false; $("rt-detail-v").hidden = true; $("rt-q").placeholder = KIND[kind].ph; secs(); ask();
+  $("rt-list-v").hidden = false; $("rt-detail-v").hidden = true; $("rt-q").placeholder = KIND[kind].ph; secs();
   const qq = q.trim().toLowerCase(), g = $("rt-grid");
   let l = items[kind].filter((x) => !qq || (x.name + " " + x.sub + " " + (x.en || "")).toLowerCase().includes(qq));
   if (!l.length) { g.className = ""; g.innerHTML = `<div class="nj-card nj-empty">${kind === "inst" && !items.inst.length ? "ما فيه أعضاء مضافين حاليًا. نضيفهم قريب." : "ما لقينا نتيجة. جرّب كلمة ثانية."}</div>`; return; }
@@ -177,22 +170,6 @@ function list() {
   if (qq) { g.innerHTML = Object.keys(SEC).filter((k) => l.some((x) => x.sec === k)).map((k) => `<h3 class="rt-lv">${SEC[k].n}</h3><div class="rt-cards">${l.filter((x) => x.sec === k).sort((a, b) => a.lv - b.lv).map(card).join("")}</div>`).join(""); return; }
   const S = SEC[sec], mine2 = l.filter((x) => x.sec === sec), rated = mine2.filter((x) => agg("course", x.id)).length;
   g.innerHTML = `<div class="rt-shead" style="${secVars(sec)}"><div><h2>${S.n}</h2><p>${mine2.length} مقرر · ${S.p}</p></div><span>${rated ? rated + " لها تقييم" : "ما فيها تقييمات بعد"}</span></div>` + byLevel(mine2);
-}
-/* السنة الأولى قليل اللي يقيّمها: نذكّر اللي اجتازها حسب خطته، بضغطة يقيّم */
-const year1 = items.course.filter((x) => x.lv === 1).map((x) => x.id);
-let passedY1 = [];
-try { const ps = JSON.parse(localStorage.getItem("najd_plans_v1") || "null"), P = window.NAJD_PLANS; if (ps && ps.done && P && P[ps.major]) P[ps.major].levels[0].courses.forEach((c, ci) => { if (ps.done[ps.major + "|0|" + ci] && year1.includes(c[0]) && !passedY1.includes(c[0])) passedY1.push(c[0]); }); } catch (e) {}
-function ask() {
-  const box = $("rt-ask"); if (kind !== "course" || q.trim() || sec !== "common") { box.innerHTML = ""; return; }
-  const todo = passedY1.filter((id) => mine["course:" + id] === null);
-  if (passedY1.length && !todo.length && passedY1.every((id) => ("course:" + id) in mine)) { box.innerHTML = ""; return; }
-  const list2 = (todo.length ? todo : year1);
-  box.innerHTML = `<div class="rt-ask"><div><b>${todo.length ? "خلصت السنة الأولى؟ اللي بعدك يحتاجون رأيك" : "مواد السنة الأولى تحتاج تقييمك"}</b><p>${todo.length ? "عندك " + todo.length + " من مواد السنة الأولى مجتازة في خطتك وما قيّمتها. التقييم بنجمتين بس ويطلع على طول." : "قليل اللي يرجع يقيّمها بعد ما يخلص. إذا اجتزت شي منها، قيّمه في أقل من دقيقة وساعد الطلاب الجدد."}</p></div><div class="rt-ask-l">${list2.map((id) => `<button type="button" data-id="${id}" dir="ltr">${id}</button>`).join("")}</div></div>`;
-}
-async function checkMine() {
-  if (!passedY1.length) return;
-  await Promise.all(passedY1.map(async (id) => { const key = "course:" + id; if (key in mine) return; try { const s = await F.fs.getDoc(F.fs.doc(F.db, "courseReviews", id + "_" + user.uid)); mine[key] = s.exists() ? s.data() : null; } catch (e) {} }));
-  if (!$("rt-list-v").hidden) ask();
 }
 async function detail(id) {
   const x = items[kind].find((i) => i.id === id); if (!x) return list();
@@ -239,15 +216,13 @@ async function show(k, id) {
   try { await load(k); } catch (e) { console.warn(e); $("rt-grid").className = ""; $("rt-grid").innerHTML = '<div class="nj-card nj-empty">ما قدرنا نجيب التقييمات. تأكد من اتصالك وحدّث الصفحة.</div>'; return; }
   if (id && k === "course") { const it = items.course.find((x) => x.id === id); if (it) sec = it.sec; }
   id ? detail(id) : list();
-  if (k === "course") checkMine();
 }
 document.querySelector(".rt-tabs").addEventListener("click", (e) => { const b = e.target.closest(".rt-tab"); if (b) { q = ""; $("rt-q").value = ""; show(b.dataset.kind); } });
 $("rt-grid").addEventListener("click", (e) => { const b = e.target.closest(".rt-item,.rt-card"); if (b) detail(b.dataset.id); });
-$("rt-ask").addEventListener("click", (e) => { const b = e.target.closest("button[data-id]"); if (b) detail(b.dataset.id); });
 $("rt-secs").addEventListener("click", (e) => { const b = e.target.closest(".rt-sec"); if (!b) return; sec = b.dataset.sec; list(); });
 let qt; $("rt-q").addEventListener("input", function () { clearTimeout(qt); const v = this.value; qt = setTimeout(() => { q = v; list(); }, 150); });
 try {
-  const M = await import("./assets/js/auth.js?v=20261113a");
+  const M = await import("./assets/js/auth.js?v=20261113b");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
