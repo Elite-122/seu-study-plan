@@ -22,37 +22,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113a">
 <style>
 #najd .ac-wrap{max-width:760px}
-#najd .ac-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-#najd .ac-top .nj-av{width:64px;height:64px;font-size:26px}
-#najd .ac-top h2{font-size:22px}
-#najd .ac-top p{font-size:15px;color:var(--muted)}
-#najd .ac-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
+#najd .ac-top{display:flex;align-items:center;gap:var(--sp-6);flex-wrap:wrap}
+#najd .ac-top .nj-av{width:64px;height:64px;font-size:var(--fs-4xl)}
+#najd .ac-top h2{font-size:var(--fs-3xl)}
+#najd .ac-top p{font-size:var(--fs-base);color:var(--muted)}
+#najd .ac-row{display:flex;justify-content:space-between;align-items:center;gap:var(--sp-5);flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--line);font-size:var(--fs-lg)}
 #najd .ac-row:last-child{border-bottom:0}
-#najd .ac-row>span:first-child{color:var(--muted);font-size:15px}
+#najd .ac-row>span:first-child{color:var(--muted);font-size:var(--fs-base)}
 #najd .ac-row b{font-weight:700}
-#najd .ac-name{display:flex;gap:8px;flex:1 1 260px;max-width:420px}
-#najd .ac-name input{flex:1;min-width:0;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:0 12px;font-size:15.5px;color:var(--ink)}
-#najd .ac-name .nj-btn{height:44px;padding:0 16px;font-size:15px}
-#najd .ac-pill{font-size:13.5px;font-weight:800;border-radius:999px;padding:3px 12px;background:var(--tint);color:var(--dtext)}
-#najd .ac-pill.is-off{background:var(--bg);color:var(--slate);border:1px solid var(--line)}
-#najd .ac-link{border:0;background:none;color:var(--dtext);font-weight:700;font-size:14.5px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0}
-#najd .ac-acts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 0}
-#najd .ac-danger{border-color:#E8C7C1}
-#najd .ac-danger h2{color:#8E3F37}
-#najd .ac-check{display:flex;align-items:flex-start;gap:8px;font-size:15px;margin:10px 0;cursor:pointer}
-#najd .ac-check input{width:20px;height:20px;accent-color:#8E3F37;margin:3px 0 0;flex-shrink:0}
-#najd .ac-del{background:#8E3F37;color:#fff;box-shadow:none}
+#najd .ac-name{display:flex;gap:var(--sp-3);flex:1 1 260px;max-width:420px}
+#najd .ac-name input{flex:1}
+#najd .ac-name .nj-btn{height:44px;padding:0 16px;font-size:var(--fs-base)}
+#najd .ac-link{border:0;background:none;color:var(--dtext);font-weight:700;font-size:var(--fs-base);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0}
+#najd .ac-acts{display:flex;gap:var(--sp-4);flex-wrap:wrap;margin:14px 0 0}
+#najd .ac-danger{border-color:var(--err-line)}
+#najd .ac-danger h2{color:var(--err)}
+#najd .ac-check{display:flex;align-items:flex-start;gap:var(--sp-3);font-size:var(--fs-base);margin:10px 0;cursor:pointer}
+#najd .ac-check input{width:20px;height:20px;accent-color:var(--err);margin:3px 0 0;flex-shrink:0}
+#najd .ac-del{background:var(--err-solid);color:#fff;box-shadow:none}
 #najd .ac-del:hover{background:#A34A41}
-#najd .ac-msg{font-size:15px;margin:10px 0 0;color:#8E3F37;min-height:1.4em}
+#najd .ac-msg{font-size:var(--fs-base);margin:10px 0 0;color:var(--err);min-height:1.4em}
 html[data-theme="dark"] #najd .ac-danger{border-color:#5A2E29}
-html[data-theme="dark"] #najd .ac-danger h2,html[data-theme="dark"] #najd .ac-msg{color:#F2C7C1}
-#najd .ac-subs{display:flex;flex-direction:column;gap:6px;margin:4px 0 0}
-#najd .ac-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;font-size:14.5px;background:var(--bg);border-radius:10px;padding:6px 10px}
+#najd .ac-subs{display:flex;flex-direction:column;gap:var(--sp-2);margin:4px 0 0}
+#najd .ac-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--sp-1) var(--sp-3);font-size:var(--fs-base);background:var(--bg);border-radius:var(--r-sm);padding:6px 10px}
 #najd .ac-sub b{font-weight:800}
-#najd .ac-sub small{color:var(--slate);font-size:12.5px;margin-inline-start:auto}
+#najd .ac-sub small{color:var(--slate);font-size:var(--fs-sm);margin-inline-start:auto}
 #najd .ac-sub.is-end{opacity:.6}
 </style>
 </head>
@@ -74,14 +71,14 @@ html[data-theme="dark"] #najd .ac-danger h2,html[data-theme="dark"] #najd .ac-ms
 </div>
 <div class="nj-card">
 <h2>بياناتك</h2>
-<div class="ac-row"><span>الاسم</span><form class="ac-name" id="ac-name-f"><input id="ac-name" type="text" maxlength="40" autocomplete="name" aria-label="الاسم"><button type="submit" class="nj-btn nj-btn-line">حفظ</button></form></div>
+<div class="ac-row"><span>الاسم</span><form class="ac-name" id="ac-name-f"><input id="ac-name" class="nj-input is-sm" type="text" maxlength="40" autocomplete="name" aria-label="الاسم"><button type="submit" class="nj-btn nj-btn-line">حفظ</button></form></div>
 <div class="ac-row"><span>البريد الإلكتروني</span><b id="ac-email" dir="ltr">—</b></div>
 <div class="ac-row"><span>طريقة الدخول</span><b id="ac-prov">—</b></div>
 <div class="ac-row"><span>تأكيد البريد</span><span id="ac-ver">—</span></div>
 </div>
 <div class="nj-card">
 <h2>اشتراك الشروحات والاختبارات</h2>
-<div class="ac-row"><span>الحالة</span><span id="ac-sub"><span class="ac-pill is-off">جاري التحقق…</span></span></div>
+<div class="ac-row"><span>الحالة</span><span id="ac-sub"><span class="nj-tag is-md is-muted">جاري التحقق…</span></span></div>
 <div class="ac-acts"><a class="nj-btn nj-btn-line nj-btn-sm" href="lessons.html">الشروحات</a><a class="nj-btn nj-btn-line nj-btn-sm" href="quiz.html">اختبر نفسك</a><a class="nj-btn nj-btn-fill nj-btn-sm" href="store.html" id="ac-store" hidden>اشترك من المتجر</a></div>
 </div>
 <div class="nj-card">
@@ -100,16 +97,16 @@ html[data-theme="dark"] #najd .ac-danger h2,html[data-theme="dark"] #najd .ac-ms
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112c"></script>
-<script src="assets/js/i18n.js?v=20261112c"></script>
-<script src="assets/js/courses-data.js?v=20261112c"></script>
-<script src="assets/js/access.js?v=20261112c"></script>
-<script type="module" src="assets/js/auth.js?v=20261112c"></script>
+<script src="assets/js/layout.js?v=20261113a"></script>
+<script src="assets/js/i18n.js?v=20261113a"></script>
+<script src="assets/js/courses-data.js?v=20261113a"></script>
+<script src="assets/js/access.js?v=20261113a"></script>
+<script type="module" src="assets/js/auth.js?v=20261113a"></script>
 <script type="module">
 const $ = (id) => document.getElementById(id), toast = window.Najd.toast, T = (s) => (window.NajdT ? window.NajdT(s) : s);
 function ready() { return new Promise((r) => (window.NajdAuth ? r(window.NajdAuth) : window.addEventListener("najd:auth-ready", () => r(window.NajdAuth), { once: true }))); }
 try {
-  const M = await import("./assets/js/auth.js?v=20261112c");
+  const M = await import("./assets/js/auth.js?v=20261113a");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const A = await ready();
@@ -118,14 +115,14 @@ try {
     const i = A.info();
     $("ac-mail").textContent = i.email; $("ac-email").textContent = i.email || "—"; $("ac-name").value = i.name;
     $("ac-prov").textContent = i.google ? "حساب Gmail" : "البريد وكلمة المرور";
-    $("ac-ver").innerHTML = i.verified ? '<span class="ac-pill">مؤكد</span>' : '<span class="ac-pill is-off">غير مؤكد</span> <button type="button" class="ac-link" id="ac-resend">أرسل رابط التأكيد</button>';
+    $("ac-ver").innerHTML = i.verified ? '<span class="nj-tag is-md">مؤكد</span>' : '<span class="nj-tag is-md is-muted">غير مؤكد</span> <button type="button" class="ac-link" id="ac-resend">أرسل رابط التأكيد</button>';
     const rs = $("ac-resend"); if (rs) rs.onclick = async () => { try { await A.resendVerification(); toast("أرسلنا الرابط"); } catch (e) { toast("انتظر شوي وجرب مرة ثانية"); } };
-    let sub = '<span class="ac-pill is-off">غير مشترك</span>', on = false;
+    let sub = '<span class="nj-tag is-md is-muted">غير مشترك</span>', on = false;
     try {
       if (i.email) {
         const s = await fs.getDoc(fs.doc(M.db, "access", i.email.toLowerCase())), NA = window.NajdAccess;
         const g = s.exists() ? NA.list(s.data()) : [], live = g.filter((x) => x.live);
-        if (live.length && !i.verified) sub = '<span class="ac-pill is-off">بانتظار تأكيد بريدك</span>';
+        if (live.length && !i.verified) sub = '<span class="nj-tag is-md is-muted">بانتظار تأكيد بريدك</span>';
         else if (g.length) {
           on = live.length > 0;
           sub = '<div class="ac-subs">' + g.map((x) => '<span class="ac-sub' + (x.live ? "" : " is-end") + '"><b dir="auto">' + window.Najd.esc(x.code === "all" ? "كل المقررات" : NA.label(x.code)) + "</b>" + (NA.KINDS[x.kind] || "") + "<small>" + (x.until ? (x.live ? "لين " : "انتهى ") + "<span data-no-i18n>" + NA.fmt(x.until) + "</span>" : "بدون انتهاء") + "</small></span>").join("") + "</div>";

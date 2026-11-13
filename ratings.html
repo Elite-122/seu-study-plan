@@ -22,83 +22,69 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113a">
 <style>
-#najd .rt-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
-#najd .rt-tab{height:46px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15.5px;font-weight:700;cursor:pointer}
-#najd .rt-tab[aria-selected="true"]{background:var(--deep);color:#fff}
-#najd .rt-search{width:100%;height:50px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:0 14px;font-size:16px;color:var(--ink)}
-#najd .rt-rules{font-size:14.5px;color:var(--muted);background:var(--tint);border-radius:12px;padding:10px 14px;margin:12px 0 0}
-#najd .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-#najd .rt-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;cursor:pointer;text-align:start;box-shadow:var(--shadow);width:100%;color:var(--ink);transition:transform .15s,border-color .15s}
+#najd .rt-rules{font-size:var(--fs-base);color:var(--muted);background:var(--tint);border-radius:var(--r-md);padding:10px 14px;margin:12px 0 0}
+#najd .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--sp-5)}
+#najd .rt-item{display:flex;align-items:center;gap:var(--sp-5);background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px;cursor:pointer;text-align:start;box-shadow:var(--shadow);width:100%;color:var(--ink);transition:transform var(--t-fast),border-color var(--t-fast)}
 #najd .rt-item:hover{transform:translateY(-2px);border-color:var(--teal)}
 #najd .rt-item>div{flex:1;min-width:0}
-#najd .rt-item b{display:block;font-size:16px;font-weight:800}
-#najd .rt-item small{display:block;font-size:13.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#najd .rt-score{flex-shrink:0;text-align:center;min-width:54px;border-radius:12px;background:var(--tint);padding:6px 8px}
-#najd .rt-score b{font-size:18px;color:var(--dtext)}
-#najd .rt-score small{font-size:11.5px}
+#najd .rt-item b{display:block;font-size:var(--fs-lg);font-weight:800}
+#najd .rt-item small{display:block;font-size:var(--fs-md);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#najd .rt-score{flex-shrink:0;text-align:center;min-width:54px;border-radius:var(--r-md);background:var(--tint);padding:6px 8px}
+#najd .rt-score b{font-size:var(--fs-xl);color:var(--dtext)}
+#najd .rt-score small{font-size:var(--fs-xs)}
 #najd .rt-score.is-none{background:var(--bg)}
-#najd .rt-score.is-none b{color:var(--grey);font-size:15px}
-#najd .rt-back{border:0;background:none;color:var(--dtext);font-weight:700;font-size:15px;cursor:pointer;padding:0;margin:0 0 12px;text-decoration:underline;text-underline-offset:3px}
-#najd .rt-head h2{font-size:24px}
-#najd .rt-head p{color:var(--muted);font-size:15px}
-#najd .rt-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 0}
-#najd .rt-stat{background:var(--bg);border-radius:14px;padding:12px;text-align:center}
-#najd .rt-stat b{display:block;font-size:26px;font-weight:800;color:var(--dtext);line-height:1.2}
-#najd .rt-stat span{font-size:13.5px;color:var(--muted)}
-#najd .rt-meter{height:8px;border-radius:999px;background:var(--light);margin:8px 0 0;overflow:hidden}
+#najd .rt-score.is-none b{color:var(--slate);font-size:var(--fs-base)}
+#najd .rt-back{border:0;background:none;color:var(--dtext);font-weight:700;font-size:var(--fs-base);cursor:pointer;padding:0;margin:0 0 12px;text-decoration:underline;text-underline-offset:3px}
+#najd .rt-head h2{font-size:var(--fs-3xl)}
+#najd .rt-head p{color:var(--muted);font-size:var(--fs-base)}
+#najd .rt-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);margin:14px 0 0}
+#najd .rt-stat{background:var(--bg);border-radius:var(--r-lg);padding:12px;text-align:center}
+#najd .rt-stat b{display:block;font-size:var(--fs-4xl);font-weight:800;color:var(--dtext);line-height:1.2}
+#najd .rt-stat span{font-size:var(--fs-md);color:var(--muted)}
+#najd .rt-meter{height:8px;border-radius:var(--r-pill);background:var(--light);margin:8px 0 0;overflow:hidden}
 #najd .rt-meter i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),var(--soft))}
-#najd .rt-tip{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 8px;background:var(--bg)}
-#najd .rt-tip p{font-size:15.5px;line-height:1.8;white-space:pre-line}
-#najd .rt-tip small{font-size:13px;color:var(--slate)}
-#najd .rt-lbl{display:block;font-size:15px;font-weight:700;margin:14px 0 6px}
-#najd .rt-stars{display:flex;gap:6px;direction:ltr;justify-content:flex-end}
+#najd .rt-tip{border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 14px;margin:0 0 8px;background:var(--bg)}
+#najd .rt-tip p{font-size:var(--fs-lg);line-height:1.8;white-space:pre-line}
+#najd .rt-tip small{font-size:var(--fs-sm);color:var(--slate)}
+#najd .rt-lbl{display:block;font-size:var(--fs-base);font-weight:700;margin:14px 0 6px}
+#najd .rt-stars{display:flex;gap:var(--sp-2);direction:ltr;justify-content:flex-end}
 html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
-#najd .rt-stars button{width:46px;height:46px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:16px;font-weight:800;color:var(--muted);cursor:pointer}
+#najd .rt-stars button{width:46px;height:46px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);font-size:var(--fs-lg);font-weight:800;color:var(--muted);cursor:pointer}
 #najd .rt-stars button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
-#najd .rt-scale{display:flex;justify-content:space-between;direction:ltr;font-size:12.5px;color:var(--slate);max-width:254px;margin:4px 0 0}
-#najd .rt-form textarea{width:100%;height:96px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:10px 12px;font-size:15.5px;color:var(--ink);resize:vertical;font-family:inherit}
-#najd .rt-msg{font-size:15px;margin:10px 0 0;min-height:1.4em}
-#najd .rt-msg.is-err{color:#8E3F37}
-#najd .rt-msg.is-ok{color:#3E6A3A}
-#najd .rt-pending{font-size:14px;background:#F3E9CF;color:#6B5320;border-radius:10px;padding:8px 12px;margin:10px 0 0}
-#najd .rt-empty{text-align:center;padding:30px 16px;color:var(--muted)}
-html[data-theme="dark"] #najd .rt-pending{background:#3A321C;color:#F3E9CF}
-html[data-theme="dark"] #najd .rt-msg.is-err{color:#F2C7C1}
-html[data-theme="dark"] #najd .rt-msg.is-ok{color:#C7E3BD}
-@media (max-width:520px){#najd .rt-stats{grid-template-columns:1fr 1fr 1fr;gap:6px}#najd .rt-stat b{font-size:21px}#najd .rt-stars button{width:42px;height:42px}}
-#najd .rt-secs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
-#najd .rt-sec{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);font:inherit;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
-#najd .rt-sec i{width:10px;height:10px;border-radius:50%;background:var(--c)}
-#najd .rt-sec small{font-size:12.5px;font-weight:800;color:var(--slate);background:var(--bg);border-radius:999px;padding:1px 8px}
-#najd .rt-sec[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff}
+#najd .rt-scale{display:flex;justify-content:space-between;direction:ltr;font-size:var(--fs-sm);color:var(--slate);max-width:254px;margin:4px 0 0}
+#najd .rt-msg{font-size:var(--fs-base);margin:10px 0 0;min-height:1.4em}
+#najd .rt-msg.is-err{color:var(--err)}
+#najd .rt-msg.is-ok{color:var(--ok)}
+#najd .rt-pending{font-size:var(--fs-md);background:var(--warn-bg);color:var(--warn);border-radius:var(--r-sm);padding:8px 12px;margin:10px 0 0}
+@media (max-width:560px){#najd .rt-stats{grid-template-columns:1fr 1fr 1fr;gap:var(--sp-2)}#najd .rt-stat b{font-size:var(--fs-2xl)}#najd .rt-stars button{width:42px;height:42px}}
+#najd .rt-sec i{width:10px;height:10px;border-radius:50%;background:var(--cs)}
+#najd .rt-sec[aria-pressed="true"]{background:var(--cs);border-color:var(--cs);color:#fff}
 #najd .rt-sec[aria-pressed="true"] i{background:#fff}
-#najd .rt-sec[aria-pressed="true"] small{background:rgba(255,255,255,.2);color:#fff}
-#najd .rt-shead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:linear-gradient(135deg,var(--c),var(--k));color:#fff;border-radius:20px;padding:20px 24px;margin:0 0 6px}
-#najd .rt-shead h2{font-size:24px;font-weight:800;color:#fff}
-#najd .rt-shead p{color:rgba(255,255,255,.82);font-size:15px}
-#najd .rt-shead>span{background:rgba(255,255,255,.16);border-radius:999px;padding:5px 14px;font-size:14px;font-weight:700}
-#najd .rt-lv{display:flex;align-items:center;gap:12px;font-size:16px;font-weight:800;margin:20px 0 10px;color:var(--muted)}
+#najd .rt-shead{display:flex;justify-content:space-between;align-items:center;gap:var(--sp-5);flex-wrap:wrap;background:linear-gradient(135deg,var(--cs),var(--k));color:#fff;border-radius:var(--r);padding:20px 24px;margin:0 0 6px}
+#najd .rt-shead h2{font-size:var(--fs-3xl);font-weight:800;color:#fff}
+#najd .rt-shead p{color:rgba(255,255,255,.82);font-size:var(--fs-base)}
+#najd .rt-shead>span{background:rgba(255,255,255,.16);border-radius:var(--r-pill);padding:5px 14px;font-size:var(--fs-md);font-weight:700}
+#najd .rt-lv{display:flex;align-items:center;gap:var(--sp-5);font-size:var(--fs-lg);font-weight:800;margin:20px 0 10px;color:var(--muted)}
 #najd .rt-lv::after{content:"";flex:1;height:1px;background:var(--line)}
-#najd .rt-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-#najd .rt-card{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-inline-start:5px solid var(--c);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);font:inherit;text-align:start;color:var(--ink);cursor:pointer;width:100%;transition:transform .15s}
+#najd .rt-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--sp-5)}
+#najd .rt-card{display:flex;align-items:center;gap:var(--sp-5);background:var(--card);border:1px solid var(--line);border-inline-start:5px solid var(--c);border-radius:var(--r-lg);padding:12px 14px;box-shadow:var(--shadow);font:inherit;text-align:start;color:var(--ink);cursor:pointer;width:100%;transition:transform var(--t-fast)}
 #najd .rt-card:hover{transform:translateY(-2px)}
-#najd .rt-code{flex-shrink:0;min-width:86px;text-align:center;font-weight:800;font-size:14.5px;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);border-radius:10px;padding:7px 8px;letter-spacing:.3px}
+#najd .rt-code{flex-shrink:0;min-width:86px;text-align:center;font-weight:800;font-size:var(--fs-base);color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);border-radius:var(--r-sm);padding:7px 8px;letter-spacing:.3px}
 #najd .rt-body{flex:1;min-width:0}
-#najd .rt-body b{display:block;font-size:15.5px;line-height:1.5}
-#najd .rt-body small{font-size:13px;color:var(--slate)}
-#najd .rt-sc{flex-shrink:0;min-width:52px;text-align:center;font-size:19px;font-weight:800;color:var(--c);line-height:1.1}
-#najd .rt-sc small{display:block;font-size:11.5px;font-weight:500;color:var(--slate)}
-#najd .rt-sc.is-none{color:var(--grey);font-size:16px}
-#najd .rt-ask{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#F3E9CF;color:#5A4519;border-radius:18px;padding:16px 18px;margin:0 0 14px}
-#najd .rt-ask b{font-size:16.5px;font-weight:800}
-#najd .rt-ask p{font-size:14.5px;margin:2px 0 0}
-#najd .rt-ask-l{display:flex;gap:6px;flex-wrap:wrap}
-#najd .rt-ask-l button{height:38px;border:0;border-radius:10px;background:#5E4519;color:#fff;font:inherit;font-weight:800;font-size:14px;padding:0 12px;cursor:pointer}
-html[data-theme="dark"] #najd .rt-ask{background:#3A321C;color:#F3E9CF}
-html[data-theme="dark"] #najd .rt-ask-l button{background:#D9B48A;color:#2A2010}
-@media (max-width:520px){#najd .rt-cards{grid-template-columns:1fr}#najd .rt-code{min-width:74px;font-size:13px}#najd .rt-shead{padding:16px 18px}#najd .rt-shead h2{font-size:21px}}
+#najd .rt-body b{display:block;font-size:var(--fs-lg);line-height:1.5}
+#najd .rt-body small{font-size:var(--fs-sm);color:var(--slate)}
+#najd .rt-sc{flex-shrink:0;min-width:52px;text-align:center;font-size:var(--fs-xl);font-weight:800;color:var(--c);line-height:1.1}
+#najd .rt-sc small{display:block;font-size:var(--fs-xs);font-weight:500;color:var(--slate)}
+#najd .rt-sc.is-none{color:var(--slate);font-size:var(--fs-lg)}
+#najd .rt-ask{display:flex;gap:var(--sp-6);align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--warn-bg);color:var(--warn);border-radius:var(--r-lg);padding:16px 18px;margin:0 0 14px}
+#najd .rt-ask b{font-size:var(--fs-lg);font-weight:800}
+#najd .rt-ask p{font-size:var(--fs-base);margin:2px 0 0}
+#najd .rt-ask-l{display:flex;gap:var(--sp-2);flex-wrap:wrap}
+#najd .rt-ask-l button{height:38px;border:0;border-radius:var(--r-sm);background:var(--warn-solid);color:var(--on-warn-solid);font:inherit;font-weight:800;font-size:var(--fs-md);padding:0 12px;cursor:pointer}
+@media (max-width:560px){#najd .rt-cards{grid-template-columns:1fr}#najd .rt-code{min-width:74px;font-size:var(--fs-sm)}#najd .rt-shead{padding:16px 18px}#najd .rt-shead h2{font-size:var(--fs-2xl)}}
+#najd .rt-secs{margin:var(--sp-5) 0 0}
 </style>
 </head>
 <body>
@@ -114,10 +100,10 @@ html[data-theme="dark"] #najd .rt-ask-l button{background:#D9B48A;color:#2A2010}
 </section>
 <main class="nj-main">
 <div class="nj-in nj-narrow">
-<div class="rt-tabs" role="tablist"><button type="button" class="rt-tab" role="tab" data-kind="course" aria-selected="true"><svg class="nj-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"/><path d="M12 6.5v13"/></svg> المقررات</button><button type="button" class="rt-tab" role="tab" data-kind="inst" aria-selected="false"><svg class="nj-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg> أعضاء هيئة التدريس</button></div>
+<div class="nj-tabs rt-tabs" role="tablist"><button type="button" class="nj-tab rt-tab" role="tab" data-kind="course" aria-selected="true"><svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"/><path d="M12 6.5v13"/></svg> المقررات</button><button type="button" class="nj-tab rt-tab" role="tab" data-kind="inst" aria-selected="false"><svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg> أعضاء هيئة التدريس</button></div>
 <div id="rt-list-v">
-<div class="nj-card"><input class="rt-search" id="rt-q" type="search" placeholder="ابحث…" aria-label="بحث">
-<div class="rt-secs" id="rt-secs" role="group" aria-label="القسم"></div>
+<div class="nj-card"><input class="nj-input rt-search" id="rt-q" type="search" placeholder="ابحث…" aria-label="بحث">
+<div class="nj-chips rt-secs" id="rt-secs" role="group" aria-label="القسم"></div>
 <p class="rt-rules">قيّم باحترام وعن تجربتك أنت. التقييم بدون اسمك، والتعليقات المكتوبة تراجعها الإدارة قبل النشر، وأي إساءة أو تجريح ينحذف.</p></div>
 <div id="rt-ask"></div>
 <div id="rt-grid" class="rt-grid"></div>
@@ -127,11 +113,11 @@ html[data-theme="dark"] #najd .rt-ask-l button{background:#D9B48A;color:#2A2010}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112c"></script>
-<script src="assets/js/i18n.js?v=20261112c"></script>
-<script type="module" src="assets/js/auth.js?v=20261112c"></script>
-<script src="assets/js/courses-data.js?v=20261112c"></script>
-<script src="assets/js/plans-data.js?v=20261112c"></script>
+<script src="assets/js/layout.js?v=20261113a"></script>
+<script src="assets/js/i18n.js?v=20261113a"></script>
+<script type="module" src="assets/js/auth.js?v=20261113a"></script>
+<script src="assets/js/courses-data.js?v=20261113a"></script>
+<script src="assets/js/plans-data.js?v=20261113a"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KIND = {
@@ -143,15 +129,16 @@ const META = window.NAJD_COURSE_META || {};
 const items = { course: (window.NAJD_COURSES || []).map((c) => { const m = META[c[0]] || ["common", 9, 0]; return { id: c[0], name: c[0], sub: c[0] === "ENG001" ? "مهارات اللغة الإنجليزية (الجزأين)" : c[1], en: c[2], sec: m[0], lv: m[1], h: m[2] }; }), inst: [] };
 /* أقسام المقررات وألوانها حسب دليل الهوية */
 const SEC = {
-  common: { n: "المواد المشتركة", p: "مقررات مشتركة بين التخصصات الأربعة", c: "#3F6866", k: "#243E3D", d: "#8FB8B5" },
-  mgt: { n: "إدارة الأعمال", p: "مقررات تخصص الإدارة", c: "#45548A", k: "#2B3659", d: "#A9B6E0" },
-  fin: { n: "المالية", p: "مقررات تخصص المالية", c: "#447A59", k: "#284A36", d: "#9CCBAE" },
-  acct: { n: "المحاسبة", p: "مقررات تخصص المحاسبة", c: "#7E4359", k: "#4E2535", d: "#D7A0B5" },
-  ecom: { n: "التجارة الإلكترونية", p: "مقررات تخصص التجارة الإلكترونية", c: "#957234", k: "#5E4519", d: "#DDB97A" }
+  common: { n: "المواد المشتركة", p: "مقررات مشتركة بين التخصصات الأربعة" },
+  mgt: { n: "إدارة الأعمال", p: "مقررات تخصص الإدارة" },
+  fin: { n: "المالية", p: "مقررات تخصص المالية" },
+  acct: { n: "المحاسبة", p: "مقررات تخصص المحاسبة" },
+  ecom: { n: "التجارة الإلكترونية", p: "مقررات تخصص التجارة الإلكترونية" }
 };
+/* ألوان الأقسام من متغيرات الهوية في najd.css: --sec-{القسم} (يتبدل مع الوضع الغامق) و -solid و -deep */
+const secVars = (k) => `--c:var(--sec-${k});--cs:var(--sec-${k}-solid);--k:var(--sec-${k}-deep)`;
 const LVN = { 1: "السنة الأولى", 3: "المستوى الثالث", 4: "المستوى الرابع", 5: "المستوى الخامس", 6: "المستوى السادس", 7: "المستوى السابع", 8: "المستوى الثامن" };
 let sec = "common";
-const dk = () => document.documentElement.getAttribute("data-theme") === "dark";
 const hrs = (n) => n + " " + (n > 2 && n < 11 ? "ساعات" : "ساعة");
 const reviews = { course: null, inst: null }, mine = {};
 
@@ -170,12 +157,11 @@ async function load(k) {
 function card(x) {
   const a = agg(kind, x.id);
   if (kind !== "course") return `<button type="button" class="rt-item" data-id="${esc(x.id)}"><div><b>${esc(x.name)}</b><small>${esc(x.sub)}</small></div><span class="rt-score${a ? "" : " is-none"}"><b>${a ? a.rating.toFixed(1) : "—"}</b><small>${a ? a.n + " تقييم" : "بدون تقييم"}</small></span></button>`;
-  const S = SEC[x.sec] || SEC.common, c = dk() ? S.d : S.c;
-  return `<button type="button" class="rt-card" data-id="${esc(x.id)}" style="--c:${c}"><span class="rt-code" dir="ltr">${esc(x.id)}</span><span class="rt-body"><b>${esc(x.sub)}</b><small>${hrs(x.h)}${a ? " · " + a.n + " تقييم" : ""}</small></span><span class="rt-sc${a ? "" : " is-none"}">${a ? a.rating.toFixed(1) : "—"}<small>${a ? "من 5" : "قيّمه"}</small></span></button>`;
+  return `<button type="button" class="rt-card" data-id="${esc(x.id)}" style="${secVars(SEC[x.sec] ? x.sec : "common")}"><span class="rt-code" dir="ltr">${esc(x.id)}</span><span class="rt-body"><b>${esc(x.sub)}</b><small>${hrs(x.h)}${a ? " · " + a.n + " تقييم" : ""}</small></span><span class="rt-sc${a ? "" : " is-none"}">${a ? a.rating.toFixed(1) : "—"}<small>${a ? "من 5" : "قيّمه"}</small></span></button>`;
 }
 function secs() {
   const box = $("rt-secs"); box.hidden = kind !== "course"; if (kind !== "course") return;
-  box.innerHTML = Object.keys(SEC).map((k) => `<button type="button" class="rt-sec" data-sec="${k}" aria-pressed="${k === sec}" style="--c:${SEC[k].c}"><i></i>${SEC[k].n}<small>${items.course.filter((x) => x.sec === k).length}</small></button>`).join("");
+  box.innerHTML = Object.keys(SEC).map((k) => `<button type="button" class="nj-chip rt-sec" data-sec="${k}" aria-pressed="${k === sec}" style="${secVars(k)}"><i></i>${SEC[k].n}<small>${items.course.filter((x) => x.sec === k).length}</small></button>`).join("");
 }
 function byLevel(l) {
   const lv = [...new Set(l.map((x) => x.lv))].sort((a, b) => a - b);
@@ -185,12 +171,12 @@ function list() {
   $("rt-list-v").hidden = false; $("rt-detail-v").hidden = true; $("rt-q").placeholder = KIND[kind].ph; secs(); ask();
   const qq = q.trim().toLowerCase(), g = $("rt-grid");
   let l = items[kind].filter((x) => !qq || (x.name + " " + x.sub + " " + (x.en || "")).toLowerCase().includes(qq));
-  if (!l.length) { g.className = ""; g.innerHTML = `<div class="nj-card rt-empty">${kind === "inst" && !items.inst.length ? "ما فيه أعضاء مضافين حاليًا. نضيفهم قريب." : "ما لقينا نتيجة. جرّب كلمة ثانية."}</div>`; return; }
+  if (!l.length) { g.className = ""; g.innerHTML = `<div class="nj-card nj-empty">${kind === "inst" && !items.inst.length ? "ما فيه أعضاء مضافين حاليًا. نضيفهم قريب." : "ما لقينا نتيجة. جرّب كلمة ثانية."}</div>`; return; }
   if (kind !== "course") { g.className = "rt-grid"; g.innerHTML = l.map(card).join(""); return; }
   g.className = "";
   if (qq) { g.innerHTML = Object.keys(SEC).filter((k) => l.some((x) => x.sec === k)).map((k) => `<h3 class="rt-lv">${SEC[k].n}</h3><div class="rt-cards">${l.filter((x) => x.sec === k).sort((a, b) => a.lv - b.lv).map(card).join("")}</div>`).join(""); return; }
   const S = SEC[sec], mine2 = l.filter((x) => x.sec === sec), rated = mine2.filter((x) => agg("course", x.id)).length;
-  g.innerHTML = `<div class="rt-shead" style="--c:${S.c};--k:${S.k}"><div><h2>${S.n}</h2><p>${mine2.length} مقرر · ${S.p}</p></div><span>${rated ? rated + " لها تقييم" : "ما فيها تقييمات بعد"}</span></div>` + byLevel(mine2);
+  g.innerHTML = `<div class="rt-shead" style="${secVars(sec)}"><div><h2>${S.n}</h2><p>${mine2.length} مقرر · ${S.p}</p></div><span>${rated ? rated + " لها تقييم" : "ما فيها تقييمات بعد"}</span></div>` + byLevel(mine2);
 }
 /* السنة الأولى قليل اللي يقيّمها: نذكّر اللي اجتازها حسب خطته، بضغطة يقيّم */
 const year1 = items.course.filter((x) => x.lv === 1).map((x) => x.id);
@@ -216,14 +202,14 @@ async function detail(id) {
   $("rt-list-v").hidden = true; v.hidden = false;
   const stars = (name, val) => `<div class="rt-stars" data-name="${name}">${[1, 2, 3, 4, 5].map((n) => `<button type="button" data-v="${n}" aria-pressed="${val === n}">${n}</button>`).join("")}</div>`;
   v.innerHTML = `<button type="button" class="rt-back" id="rt-back">→ رجوع للقائمة</button>
-  <div class="nj-card rt-head"${kind === "course" ? ` style="border-top:5px solid ${(SEC[x.sec] || SEC.common).c}"` : ""}><h2${kind === "course" ? ' dir="ltr" style="text-align:start"' : ""}>${esc(x.name)}</h2><p>${esc(x.sub)}${kind === "course" ? " · " + (SEC[x.sec] || SEC.common).n + " · " + (LVN[x.lv] || "") : ""}</p>
-  ${a ? `<div class="rt-stats"><div class="rt-stat"><b>${a.rating.toFixed(1)}</b><span>التقييم العام</span><div class="rt-meter"><i style="width:${a.rating * 20}%"></i></div></div><div class="rt-stat"><b>${a.level.toFixed(1)}</b><span>${K.lvl}</span><div class="rt-meter"><i style="width:${a.level * 20}%"></i></div></div><div class="rt-stat"><b>${a.n}</b><span>عدد التقييمات</span></div></div>` : `<p class="rt-empty">ما فيه تقييمات بعد. كن أول من يقيّم</p>`}</div>
+  <div class="nj-card rt-head"${kind === "course" ? ` style="border-top:5px solid var(--sec-${SEC[x.sec] ? x.sec : "common"}-solid)"` : ""}><h2${kind === "course" ? ' dir="ltr" style="text-align:start"' : ""}>${esc(x.name)}</h2><p>${esc(x.sub)}${kind === "course" ? " · " + (SEC[x.sec] || SEC.common).n + " · " + (LVN[x.lv] || "") : ""}</p>
+  ${a ? `<div class="rt-stats"><div class="rt-stat"><b>${a.rating.toFixed(1)}</b><span>التقييم العام</span><div class="rt-meter"><i style="width:${a.rating * 20}%"></i></div></div><div class="rt-stat"><b>${a.level.toFixed(1)}</b><span>${K.lvl}</span><div class="rt-meter"><i style="width:${a.level * 20}%"></i></div></div><div class="rt-stat"><b>${a.n}</b><span>عدد التقييمات</span></div></div>` : `<p class="nj-empty">ما فيه تقييمات بعد. كن أول من يقيّم</p>`}</div>
   ${a && a.tips.length ? `<div class="nj-card"><h2>تجارب الطلاب (${a.tips.length})</h2><div style="margin-top:12px">${a.tips.map((r) => `<div class="rt-tip"><p>${esc(r.tip)}</p><small>التقييم ${r.rating}/5 · ${K.lvl} ${r.level}/5</small></div>`).join("")}</div></div>` : ""}
   <div class="nj-card rt-form"><h2>${m ? "تقييمك" : "أضف تقييمك"}</h2><p class="nj-hint">تقييمك بدون اسمك. وتقدر تعدله أو تحذفه بعدين.</p>
   ${m && m.status === "pending" ? '<p class="rt-pending">تعليقك بانتظار مراجعة الإدارة، وبيظهر بعد الموافقة.</p>' : ""}
   <span class="rt-lbl">التقييم العام</span>${stars("rating", m ? m.rating : 0)}<div class="rt-scale"><span>ضعيف</span><span>ممتاز</span></div>
   <span class="rt-lbl">${K.lvl}</span>${stars("level", m ? m.level : 0)}<div class="rt-scale"><span>${K.lo}</span><span>${K.hi}</span></div>
-  <label class="rt-lbl" for="rt-tip">${K.tipL}</label><textarea id="rt-tip" maxlength="400" placeholder="${K.tipP}">${esc(m ? m.tip : "")}</textarea>
+  <label class="rt-lbl" for="rt-tip">${K.tipL}</label><textarea id="rt-tip" class="nj-input" maxlength="400" placeholder="${K.tipP}">${esc(m ? m.tip : "")}</textarea>
   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button type="button" class="nj-btn nj-btn-fill" id="rt-save">${m ? "حدّث تقييمي" : "أرسل التقييم"}</button>${m ? '<button type="button" class="nj-btn nj-btn-line" id="rt-del">احذف تقييمي</button>' : ""}</div>
   <p class="rt-msg" id="rt-msg" aria-live="polite"></p></div>`;
   window.scrollTo({ top: v.getBoundingClientRect().top + scrollY - 90 });
@@ -249,8 +235,8 @@ async function detail(id) {
 }
 async function show(k, id) {
   kind = k; document.querySelectorAll(".rt-tab").forEach((b) => b.setAttribute("aria-selected", b.dataset.kind === k ? "true" : "false"));
-  $("rt-grid").innerHTML = '<div class="nj-card rt-empty">جاري التحميل…</div>'; $("rt-list-v").hidden = false; $("rt-detail-v").hidden = true;
-  try { await load(k); } catch (e) { console.warn(e); $("rt-grid").className = ""; $("rt-grid").innerHTML = '<div class="nj-card rt-empty">ما قدرنا نجيب التقييمات. تأكد من اتصالك وحدّث الصفحة.</div>'; return; }
+  $("rt-grid").innerHTML = '<div class="nj-card nj-empty">جاري التحميل…</div>'; $("rt-list-v").hidden = false; $("rt-detail-v").hidden = true;
+  try { await load(k); } catch (e) { console.warn(e); $("rt-grid").className = ""; $("rt-grid").innerHTML = '<div class="nj-card nj-empty">ما قدرنا نجيب التقييمات. تأكد من اتصالك وحدّث الصفحة.</div>'; return; }
   if (id && k === "course") { const it = items.course.find((x) => x.id === id); if (it) sec = it.sec; }
   id ? detail(id) : list();
   if (k === "course") checkMine();
@@ -259,10 +245,9 @@ document.querySelector(".rt-tabs").addEventListener("click", (e) => { const b = 
 $("rt-grid").addEventListener("click", (e) => { const b = e.target.closest(".rt-item,.rt-card"); if (b) detail(b.dataset.id); });
 $("rt-ask").addEventListener("click", (e) => { const b = e.target.closest("button[data-id]"); if (b) detail(b.dataset.id); });
 $("rt-secs").addEventListener("click", (e) => { const b = e.target.closest(".rt-sec"); if (!b) return; sec = b.dataset.sec; list(); });
-window.addEventListener("najd:theme", () => { if (!$("rt-list-v").hidden) list(); });
 let qt; $("rt-q").addEventListener("input", function () { clearTimeout(qt); const v = this.value; qt = setTimeout(() => { q = v; list(); }, 150); });
 try {
-  const M = await import("./assets/js/auth.js?v=20261112c");
+  const M = await import("./assets/js/auth.js?v=20261113a");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
@@ -271,7 +256,7 @@ try {
     const p = new URLSearchParams(location.search), c = (p.get("c") || "").toUpperCase();
     show(p.get("tab") === "inst" ? "inst" : "course", c && items.course.some((x) => x.id === c) ? c : null);
   });
-} catch (e) { console.warn("najd ratings", e); $("rt-grid").innerHTML = '<div class="nj-card rt-empty">تأكد من اتصالك بالإنترنت وحدّث الصفحة.</div>'; }
+} catch (e) { console.warn("najd ratings", e); $("rt-grid").innerHTML = '<div class="nj-card nj-empty">تأكد من اتصالك بالإنترنت وحدّث الصفحة.</div>'; }
 </script>
 </body>
 </html>

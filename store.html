@@ -22,34 +22,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113a">
 <style>
-#najd .st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
-#najd .st-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+#najd .st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--sp-7)}
+#najd .st-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform var(--t-base),box-shadow var(--t-base)}
 #najd .st-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 #najd .st-img{aspect-ratio:4/3;background:linear-gradient(150deg,var(--tint),var(--light));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 #najd .st-img img{width:100%;height:100%;object-fit:cover}
 #najd .st-img svg{width:72px;height:72px}
-#najd .st-badge{position:absolute;top:12px;right:12px;font-size:13px;font-weight:800;background:var(--deep);color:#fff;border-radius:999px;padding:3px 12px}
-#najd .st-body{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
-#najd .st-body h3{font-size:19px;font-weight:800;line-height:1.4}
-#najd .st-body p{font-size:15px;color:var(--muted);flex:1;white-space:pre-line}
-#najd .st-ft{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px solid var(--line);margin-top:4px}
-#najd .st-price{font-size:22px;font-weight:800;color:var(--dtext)}
-#najd .st-price small{font-size:14px;font-weight:700;color:var(--slate)}
-#najd .st-price del{font-size:14px;color:var(--grey);font-weight:500;margin-inline-start:6px}
-#najd .st-ft .nj-btn{height:44px;padding:0 18px;font-size:15px}
-#najd .st-plat{font-size:12.5px;color:var(--slate);text-align:center;margin-top:-2px}
+#najd .st-badge{position:absolute;top:12px;right:12px}
+#najd .st-body{padding:18px;display:flex;flex-direction:column;gap:var(--sp-3);flex:1}
+#najd .st-body h3{font-size:var(--fs-xl);font-weight:800;line-height:1.4}
+#najd .st-body p{font-size:var(--fs-base);color:var(--muted);flex:1;white-space:pre-line}
+#najd .st-ft{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);padding-top:12px;border-top:1px solid var(--line);margin-top:4px}
+#najd .st-price{font-size:var(--fs-3xl);font-weight:800;color:var(--dtext)}
+#najd .st-price small{font-size:var(--fs-md);font-weight:700;color:var(--slate)}
+#najd .st-price del{font-size:var(--fs-md);color:var(--slate);font-weight:500;margin-inline-start:6px}
+#najd .st-ft .nj-btn{height:44px;padding:0 18px;font-size:var(--fs-base)}
+#najd .st-plat{font-size:var(--fs-sm);color:var(--slate);text-align:center;margin-top:-2px}
 #najd .st-sk{height:380px;border-radius:var(--r);background:linear-gradient(90deg,#fff 0%,var(--light) 50%,#fff 100%);background-size:200% 100%;animation:stSk 1.3s infinite linear;border:1px solid var(--line)}
 @keyframes stSk{to{background-position:-200% 0}}
-#najd .st-empty{text-align:center;padding:44px 20px}
-#najd .st-empty b{display:block;font-size:20px;font-weight:800;margin:8px 0 4px}
-#najd .st-empty p{color:var(--muted)}
-#najd .st-how{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0 0}
-#najd .st-how div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
-#najd .st-how b{display:block;font-size:16px}
-#najd .st-how span{font-size:14.5px;color:var(--muted)}
-@media (max-width:760px){#najd .st-how{grid-template-columns:1fr}}
+#najd .st-how{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-6);margin:28px 0 0}
+#najd .st-how div{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px}
+#najd .st-how b{display:block;font-size:var(--fs-lg)}
+#najd .st-how span{font-size:var(--fs-base);color:var(--muted)}
+@media (max-width:860px){#najd .st-how{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -75,9 +72,9 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112c"></script>
-<script src="assets/js/i18n.js?v=20261112c"></script>
-<script type="module" src="assets/js/auth.js?v=20261112c"></script>
+<script src="assets/js/layout.js?v=20261113a"></script>
+<script src="assets/js/i18n.js?v=20261113a"></script>
+<script type="module" src="assets/js/auth.js?v=20261113a"></script>
 <script>
 (function(){
   var esc=window.Najd.esc,box=document.getElementById('st-list');
@@ -87,7 +84,7 @@
   function price(x){var n=+x.price;if(!x.price&&x.price!==0)return '';var o='<span class="st-price">'+(n===0?'مجاني':n.toLocaleString('en-US')+' <small>ريال</small>');if(+x.oldPrice>n)o+='<del>'+(+x.oldPrice).toLocaleString('en-US')+'</del>';return o+'</span>';}
   function card(x){
     var url=safe(x.link),img=safe(x.image);
-    return '<article class="st-card"><div class="st-img">'+(img?'<img src="'+esc(img)+'" alt="'+esc(x.name)+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">':'')+(img?'':ICON)+(x.badge?'<span class="st-badge">'+esc(x.badge)+'</span>':'')+'</div>'
+    return '<article class="st-card"><div class="st-img">'+(img?'<img src="'+esc(img)+'" alt="'+esc(x.name)+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">':'')+(img?'':ICON)+(x.badge?'<span class="nj-tag is-paid st-badge">'+esc(x.badge)+'</span>':'')+'</div>'
       +'<div class="st-body"><h3>'+esc(x.name)+'</h3>'+(x.desc?'<p>'+esc(x.desc)+'</p>':'<p></p>')
       +'<div class="st-ft">'+price(x)+(url?'<a class="nj-btn nj-btn-fill" href="'+esc(url)+'" target="_blank" rel="noopener">اطلب الحين ↗</a>':'')+'</div>'
       +(PLAT[x.platform]?'<p class="st-plat">الطلب يكمل في متجرنا على '+PLAT[x.platform]+'</p>':'')
@@ -99,15 +96,15 @@
       done=true;clearTimeout(failT);
       list=(list||[]).filter(function(x){return x&&x.name&&x.active!==false;}).sort(function(a,b){return (+a.order||0)-(+b.order||0)||(b.createdAt&&b.createdAt.seconds||0)-(a.createdAt&&a.createdAt.seconds||0);});
       box.className=list.length?'st-grid':'';
-      box.innerHTML=list.length?list.map(card).join(''):'<div class="nj-card st-empty"><span class="nj-ic-xl">'+window.Najd.icon('store')+'</span><b>ما فيه منتجات حاليًا</b><p>نضيف منتجاتنا قريب، ارجع لنا.</p></div>';
+      box.innerHTML=list.length?list.map(card).join(''):'<div class="nj-card nj-empty"><span class="nj-icon-xl">'+window.Najd.icon('store')+'</span><b>ما فيه منتجات حاليًا</b><p>نضيف منتجاتنا قريب، ارجع لنا.</p></div>';
     },
-    fail:function(){if(done)return;box.className='';box.innerHTML='<div class="nj-card st-empty"><span class="nj-ic-xl">'+window.Najd.icon('offline')+'</span><b>ما قدرنا نجيب المنتجات</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>';}
+    fail:function(){if(done)return;box.className='';box.innerHTML='<div class="nj-card nj-empty"><span class="nj-icon-xl">'+window.Najd.icon('offline')+'</span><b>ما قدرنا نجيب المنتجات</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>';}
   };
 })();
 </script>
 <script type="module">
 try {
-  const { db } = await import("./assets/js/auth.js?v=20261112c");
+  const { db } = await import("./assets/js/auth.js?v=20261113a");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const snap = await getDocs(collection(db, "products"));
   const list = []; snap.forEach((d) => list.push({ id: d.id, ...d.data() }));
