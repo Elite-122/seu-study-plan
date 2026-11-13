@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261113e">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113f">
 <style>
 #najd .rt-rules{font-size:var(--fs-base);color:var(--muted);background:var(--tint);border-radius:var(--r-md);padding:10px 14px;margin:12px 0 0}
 #najd .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--sp-5)}
@@ -119,11 +119,11 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261113e"></script>
-<script src="assets/js/i18n.js?v=20261113e"></script>
-<script type="module" src="assets/js/auth.js?v=20261113e"></script>
-<script src="assets/js/courses-data.js?v=20261113e"></script>
-<script src="assets/js/faculty-data.js?v=20261113e"></script>
+<script src="assets/js/layout.js?v=20261113f"></script>
+<script src="assets/js/i18n.js?v=20261113f"></script>
+<script type="module" src="assets/js/auth.js?v=20261113f"></script>
+<script src="assets/js/courses-data.js?v=20261113f"></script>
+<script src="assets/js/faculty-data.js?v=20261113f"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KIND = {
@@ -145,7 +145,7 @@ const SEC = {
 const secVars = (k) => `--c:var(--sec-${k});--cs:var(--sec-${k}-solid);--k:var(--sec-${k}-deep)`;
 const LVN = { 1: "السنة الأولى", 3: "المستوى الثالث", 4: "المستوى الرابع", 5: "المستوى الخامس", 6: "المستوى السادس", 7: "المستوى السابع", 8: "المستوى الثامن" };
 let sec = "common";
-/* أقسام أعضاء هيئة التدريس: الأربعة + الثقافة الإسلامية + الإحصاء ونظم المعلومات */
+/* أقسام أعضاء هيئة التدريس: الأربعة + الثقافة الإسلامية + الإحصاء والأساليب الكمية */
 const DN = window.NAJD_DEPTS || {}, BRN = window.NAJD_BRANCHES || {};
 const ISEC = { acct: DN.acct, fin: DN.fin, mgt: DN.mgt, ecom: DN.ecom, islm: DN.islm, quant: DN.quant, other: "أخرى" };
 let isec = "acct", ibr = "";
@@ -262,7 +262,7 @@ $("rt-br").addEventListener("change", (e) => { ibr = e.target.value; list(); });
 $("rt-secs").addEventListener("click", (e) => { const b = e.target.closest(".rt-sec"); if (!b) return; if (b.dataset.isec) isec = b.dataset.isec; else sec = b.dataset.sec; list(); });
 let qt; $("rt-q").addEventListener("input", function () { clearTimeout(qt); const v = this.value; qt = setTimeout(() => { q = v; list(); }, 150); });
 try {
-  const M = await import("./assets/js/auth.js?v=20261113e");
+  const M = await import("./assets/js/auth.js?v=20261113f");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
