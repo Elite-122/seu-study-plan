@@ -196,7 +196,7 @@ window.NAJD_FACULTY=[
 ["km-alanazi", "خلود العنزي", "Khlood Alanazi", "islm", "", "", "km.alanazi@seu.edu.sa"],
 ["h-mobarki", "د. حسام بن غالب مباركي", "Dr. Hossam Mobarki", "islm", "أستاذ مساعد", "jeddah", "h.mobarki@seu.edu.sa"],
 ["malshammari", "د. مستورة عبيد الشمري", "Dr. Mastourah Obaid Alshammari", "islm", "أستاذ مساعد", "riyadh", "malshammari@seu.edu.sa"],
-["h-alhajiyu", "حنان الحاجيو", "Hanan Alhajiyu", "islm", "", "", "h.alhajiyu@seu.edu.sa"],
+["h-alhajiyu", "حنان الحجي", "Hanan Alhajiyu", "islm", "", "", "h.alhajiyu@seu.edu.sa"],
 ["s-alosimi", "د. سعود بن مقبل العصيمي", "Dr. Saud Moqbel A Alosaimi", "islm", "أستاذ مشارك", "ahsa", "s.alosimi@seu.edu.sa"],
 ["alasiri-a", "د. أنور علي أحمد العسيري", "Dr. Anwar Ali A Alasiri", "islm", "أستاذ مساعد", "ahsa", "alasiri.a@seu.edu.sa"],
 ["z-alkudhiri", "د. زينب بنت حمود الخضيري", "Dr. Zainab hamoud Alkhudhayri", "islm", "أستاذ مساعد", "riyadh", "z.alkudhiri@seu.edu.sa"],
