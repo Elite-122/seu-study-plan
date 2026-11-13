@@ -22,49 +22,42 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113b">
 <style>
-#najd .qz-gh{font-size:21px;font-weight:800;margin:22px 0 12px}
-#najd .qz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
-#najd .qz-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
-#najd .qz-card h3{font-size:17.5px;font-weight:800;line-height:1.4}
-#najd .qz-card p{font-size:14.5px;color:var(--muted);flex:1}
-#najd .qz-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--slate)}
-#najd .qz-tag{font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:var(--tint);color:var(--dtext)}
-#najd .qz-tag.paid{background:var(--deep);color:#fff}
-#najd .qz-best{font-size:13px;font-weight:800;color:var(--dtext)}
-#najd .qz-card .nj-btn{height:42px;font-size:15px}
+#najd .qz-gh{font-size:var(--fs-2xl);font-weight:800;margin:22px 0 12px}
+#najd .qz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:var(--sp-6)}
+#najd .qz-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:var(--sp-3)}
+#najd .qz-card h3{font-size:var(--fs-body);font-weight:800;line-height:1.4}
+#najd .qz-card p{font-size:var(--fs-base);color:var(--muted);flex:1}
+#najd .qz-meta{display:flex;gap:var(--sp-3);flex-wrap:wrap;align-items:center;font-size:var(--fs-sm);color:var(--slate)}
+#najd .qz-best{font-size:var(--fs-sm);font-weight:800;color:var(--dtext)}
+#najd .qz-card .nj-btn{height:42px;font-size:var(--fs-base)}
 #najd .qz-card .is-locked{background:var(--bg);color:var(--slate);border-color:var(--line);box-shadow:none}
-#najd .qz-empty{text-align:center;padding:40px 20px}
-#najd .qz-empty b{display:block;font-size:20px;font-weight:800;margin:8px 0 4px}
-#najd .qz-empty p{color:var(--muted)}
 #najd .qz-run{max-width:780px;margin:0 auto}
-#najd .qz-top{position:sticky;top:74px;z-index:5;display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px;margin:0 0 14px;box-shadow:var(--shadow)}
-#najd .qz-top b{font-size:15.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#najd .qz-top span{font-size:14px;font-weight:800;color:var(--dtext);white-space:nowrap}
-#najd .qz-prog{position:absolute;inset:auto 0 0 0;height:4px;background:var(--light);border-radius:0 0 16px 16px;overflow:hidden}
-#najd .qz-prog i{display:block;height:100%;background:var(--teal);transition:width .2s}
-#najd .qz-q h3{font-size:17.5px;font-weight:800;line-height:1.6;white-space:pre-line}
-#najd .qz-q h3 small{display:block;font-size:13px;color:var(--slate);font-weight:700}
-#najd .qz-opts{display:grid;gap:8px;margin:12px 0 0}
-#najd .qz-opt{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font-size:16px;cursor:pointer;background:var(--surface);line-height:1.6}
+#najd .qz-top{position:sticky;top:74px;z-index:5;display:flex;align-items:center;gap:var(--sp-5);background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 16px;margin:0 0 14px;box-shadow:var(--shadow)}
+#najd .qz-top b{font-size:var(--fs-lg);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#najd .qz-top span{font-size:var(--fs-md);font-weight:800;color:var(--dtext);white-space:nowrap}
+#najd .qz-prog{position:absolute;inset:auto 0 0 0;height:4px;background:var(--light);border-radius:0 0 var(--r-lg) var(--r-lg);overflow:hidden}
+#najd .qz-prog i{display:block;height:100%;background:var(--teal);transition:width var(--t-base)}
+#najd .qz-q h3{font-size:var(--fs-body);font-weight:800;line-height:1.6;white-space:pre-line}
+#najd .qz-q h3 small{display:block;font-size:var(--fs-sm);color:var(--slate);font-weight:700}
+#najd .qz-opts{display:grid;gap:var(--sp-3);margin:12px 0 0}
+#najd .qz-opt{display:flex;align-items:center;gap:var(--sp-4);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:12px 14px;font-size:var(--fs-lg);cursor:pointer;background:var(--surface);line-height:1.6}
 #najd .qz-opt input{width:20px;height:20px;accent-color:var(--teal);margin:0;flex-shrink:0}
 #najd .qz-opt:has(input:checked){border-color:var(--teal);background:var(--tint)}
-#najd .qz-opt.is-right{border-color:#6E8F5E;background:#E2ECDD}
-#najd .qz-opt.is-wrong{border-color:#B0625A;background:#F6E4E1}
-#najd .qz-opt em{margin-inline-start:auto;font-style:normal;font-size:13px;font-weight:800;white-space:nowrap}
-#najd .qz-exp{font-size:15px;background:var(--bg);border-radius:12px;padding:10px 14px;margin:10px 0 0;line-height:1.8;white-space:pre-line}
+#najd .qz-opt.is-right{border-color:#6E8F5E;background:var(--ok-bg)}
+#najd .qz-opt.is-wrong{border-color:#B0625A;background:var(--err-bg)}
+#najd .qz-opt em{margin-inline-start:auto;font-style:normal;font-size:var(--fs-sm);font-weight:800;white-space:nowrap}
+#najd .qz-exp{font-size:var(--fs-base);background:var(--bg);border-radius:var(--r-md);padding:10px 14px;margin:10px 0 0;line-height:1.8;white-space:pre-line}
 #najd .qz-res{text-align:center}
 #najd .qz-res b{display:block;font-size:54px;font-weight:800;line-height:1.1;color:var(--dtext)}
-#najd .qz-res p{font-size:17px;color:var(--muted);margin:4px 0 0}
-#najd .qz-acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:16px 0 0}
-#najd .qz-filter{display:inline-flex;align-items:center;gap:8px;font-size:15px;cursor:pointer;margin:12px 0 0}
+#najd .qz-res p{font-size:var(--fs-body);color:var(--muted);margin:4px 0 0}
+#najd .qz-acts{display:flex;gap:var(--sp-4);flex-wrap:wrap;justify-content:center;margin:16px 0 0}
+#najd .qz-filter{display:inline-flex;align-items:center;gap:var(--sp-3);font-size:var(--fs-base);cursor:pointer;margin:12px 0 0}
 #najd .qz-filter input{width:20px;height:20px;accent-color:var(--teal);margin:0}
 html[data-theme="dark"] #najd .qz-opt.is-right{background:#16251A;border-color:#4F7A45}
 html[data-theme="dark"] #najd .qz-opt.is-wrong{background:#3A1F1C;border-color:#8A4A42}
 @media (max-width:860px){#najd .qz-top{top:66px}}
-#najd .qz-tag.mine{background:#E2ECDD;color:#3E5A33}
-html[data-theme="dark"] #najd .qz-tag.mine{background:#20331F;color:#C7E3BD}
 </style>
 </head>
 <body>
@@ -80,17 +73,17 @@ html[data-theme="dark"] #najd .qz-tag.mine{background:#20331F;color:#C7E3BD}
 </section>
 <main class="nj-main">
 <div class="nj-in">
-<div id="qz-home"><div class="nj-card qz-empty"><p>جاري التحميل…</p></div></div>
+<div id="qz-home"><div class="nj-card nj-empty"><p>جاري التحميل…</p></div></div>
 <div id="qz-run" class="qz-run" hidden></div>
 </div>
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112c"></script>
-<script src="assets/js/i18n.js?v=20261112c"></script>
-<script src="assets/js/courses-data.js?v=20261112c"></script>
-<script src="assets/js/access.js?v=20261112c"></script>
-<script type="module" src="assets/js/auth.js?v=20261112c"></script>
+<script src="assets/js/layout.js?v=20261113b"></script>
+<script src="assets/js/i18n.js?v=20261113b"></script>
+<script src="assets/js/courses-data.js?v=20261113b"></script>
+<script src="assets/js/access.js?v=20261113b"></script>
+<script type="module" src="assets/js/auth.js?v=20261113b"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KEY = "najd_quiz_v1";
@@ -102,11 +95,11 @@ const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) {
 function home() {
   $("qz-run").hidden = true; const h = $("qz-home"); h.hidden = false;
   const list = quizzes.filter((x) => x.active !== false), sc = scores();
-  if (!list.length) { h.innerHTML = '<div class="nj-card qz-empty"><span class="nj-ic-xl">'+window.Najd.icon('quiz')+'</span><b>ما فيه اختبارات منشورة حاليًا</b><p>نضيف الاختبارات أول بأول، ارجع لنا قريب.</p></div>'; return; }
+  if (!list.length) { h.innerHTML = '<div class="nj-card nj-empty"><span class="nj-icon-xl">'+window.Najd.icon('quiz')+'</span><b>ما فيه اختبارات منشورة حاليًا</b><p>نضيف الاختبارات أول بأول، ارجع لنا قريب.</p></div>'; return; }
   const g = {}; list.forEach((x) => { const c = x.code ? NA.label(x.code) : (x.course || "عام"); (g[c] = g[c] || []).push(x); });
   h.innerHTML = Object.keys(g).map((c) => `<h2 class="qz-gh">${esc(c)}</h2><div class="qz-grid">` + g[c].map((x) => {
     const ok = canOpen(x), s = sc[x.id];
-    return `<article class="qz-card"><h3 data-no-i18n>${esc(x.title)}</h3><p data-no-i18n>${esc(x.desc || "")}</p><div class="qz-meta"><span class="qz-tag ${x.free ? "" : ok ? "mine" : "paid"}">${x.free ? "مجاني" : ok ? "مشترك" : x.need === "video" ? "لمشتركي الشروحات" : "لمشتركي الملخصات"}</span><span>${+x.count || 0} سؤال</span>${s ? `<span class="qz-best">أفضل نتيجة ${s.best}/${s.n}</span>` : ""}</div>`
+    return `<article class="qz-card"><h3 data-no-i18n>${esc(x.title)}</h3><p data-no-i18n>${esc(x.desc || "")}</p><div class="qz-meta"><span class="nj-tag${x.free ? "" : ok ? " is-ok" : " is-paid"}">${x.free ? "مجاني" : ok ? "مشترك" : x.need === "video" ? "لمشتركي الشروحات" : "لمشتركي الملخصات"}</span><span>${+x.count || 0} سؤال</span>${s ? `<span class="qz-best">أفضل نتيجة ${s.best}/${s.n}</span>` : ""}</div>`
       + (ok ? `<button type="button" class="nj-btn nj-btn-fill" data-start="${x.id}">${s ? "أعد الاختبار" : "ابدأ الاختبار"}</button>` : `<a class="nj-btn nj-btn-line is-locked" href="store.html">${window.Najd.icon("lock")}اشترك</a>`) + `</article>`;
   }).join("") + "</div>").join("");
 }
@@ -150,7 +143,7 @@ async function start(id) {
 $("qz-home").addEventListener("click", (e) => { const b = e.target.closest("[data-start]"); if (b) { b.disabled = true; start(b.dataset.start).finally(() => { b.disabled = false; }); } });
 
 try {
-  const M = await import("./assets/js/auth.js?v=20261112c");
+  const M = await import("./assets/js/auth.js?v=20261113b");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
@@ -161,7 +154,7 @@ try {
     try {
       const sn = await fs.getDocs(fs.collection(M.db, "quizzes")); quizzes = []; sn.forEach((d) => quizzes.push({ id: d.id, ...d.data() }));
       quizzes.sort((a, b) => (+a.order || 0) - (+b.order || 0) || String(a.title).localeCompare(String(b.title), "ar")); home();
-    } catch (e) { console.warn(e); $("qz-home").innerHTML = '<div class="nj-card qz-empty"><span class="nj-ic-xl">'+window.Najd.icon('offline')+'</span><b>ما قدرنا نجيب الاختبارات</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>'; }
+    } catch (e) { console.warn(e); $("qz-home").innerHTML = '<div class="nj-card nj-empty"><span class="nj-icon-xl">'+window.Najd.icon('offline')+'</span><b>ما قدرنا نجيب الاختبارات</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>'; }
   });
 } catch (e) { console.warn("najd quiz", e); }
 </script>

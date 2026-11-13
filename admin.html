@@ -11,71 +11,61 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113b">
 <style>
-#najd .ad-tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin:0 0 16px;box-shadow:var(--shadow)}
-#najd .ad-tab{flex:1 1 auto;height:44px;padding:0 14px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap}
-#najd .ad-tab[aria-selected="true"]{background:var(--deep);color:#fff}
-#najd .ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#najd .ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5)}
 #najd .ad-f.full{grid-column:1/-1}
-#najd .ad-f label,#najd .ad-lbl{display:block;font-size:14.5px;font-weight:700;margin:0 0 6px}
-#najd .ad-f input[type=text],#najd .ad-f input[type=url],#najd .ad-f input[type=email],#najd .ad-f input[type=number],#najd .ad-f input[type=date],#najd .ad-f select,#najd .ad-f textarea{width:100%;height:48px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:0 12px;font-size:15.5px;color:var(--ink)}
-#najd .ad-f textarea{height:90px;padding:10px 12px;resize:vertical;font-family:inherit}
-#najd .ad-f input:focus,#najd .ad-f select:focus,#najd .ad-f textarea:focus{background:var(--surface);border-color:var(--teal)}
-#najd .ad-f small{display:block;font-size:13px;color:var(--slate);margin:4px 0 0}
-#najd .ad-checks{display:flex;flex-wrap:wrap;gap:8px}
-#najd .ad-checks label{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;margin:0}
+#najd .ad-lbl{display:block;font-size:var(--fs-base);font-weight:700;margin:0 0 6px}
+#najd .ad-checks{display:flex;flex-wrap:wrap;gap:var(--sp-3)}
+#najd .ad-checks label{display:inline-flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-base);font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-pill);padding:6px 14px;cursor:pointer;margin:0}
 #najd .ad-checks input{accent-color:var(--teal);width:18px;height:18px;margin:0}
-#najd .ad-acts{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0}
-#najd .ad-msg{font-size:15px;margin:10px 0 0;min-height:1.5em}
-#najd .ad-msg.is-err{color:#8E3F37}
-#najd .ad-msg.is-ok{color:#3E6A3A}
-#najd .ad-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+#najd .ad-acts{display:flex;gap:var(--sp-4);flex-wrap:wrap;margin:16px 0 0}
+#najd .ad-msg{font-size:var(--fs-base);margin:10px 0 0;min-height:1.5em}
+#najd .ad-msg.is-err{color:var(--err)}
+#najd .ad-msg.is-ok{color:var(--ok)}
+#najd .ad-row{display:flex;align-items:center;gap:var(--sp-4);padding:12px 0;border-bottom:1px solid var(--line)}
 #najd .ad-row:last-child{border-bottom:0}
 #najd .ad-row>div{flex:1;min-width:0}
-#najd .ad-row b{display:block;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#najd .ad-row small{color:var(--slate);font-size:13.5px}
-#najd .ad-row .is-off{color:#8E3F37;font-weight:700}
-#najd .ad-row button{height:38px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 12px;font-size:14px;font-weight:700;cursor:pointer;color:var(--dtext);flex-shrink:0}
-#najd .ad-row button.del{color:#8E3F37;border-color:#E8C7C1}
-#najd .ad-uid{direction:ltr;font-family:ui-monospace,Menlo,monospace;background:var(--bg);border:1px dashed var(--grey);border-radius:10px;padding:10px 12px;font-size:14px;word-break:break-all;margin:10px 0}
+#najd .ad-row b{display:block;font-size:var(--fs-lg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#najd .ad-row small{color:var(--slate);font-size:var(--fs-md)}
+#najd .ad-row .is-off{color:var(--err);font-weight:700}
+#najd .ad-row button{height:38px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-sm);padding:0 12px;font-size:var(--fs-md);font-weight:700;cursor:pointer;color:var(--dtext);flex-shrink:0}
+#najd .ad-row button.del{color:var(--err);border-color:var(--err-line)}
+#najd .ad-uid{direction:ltr;font-family:ui-monospace,Menlo,monospace;background:var(--bg);border:1px dashed var(--grey);border-radius:var(--r-sm);padding:10px 12px;font-size:var(--fs-md);word-break:break-all;margin:10px 0}
 #najd .ad-steps{margin:10px 0 0;padding-right:18px!important}
-#najd .ad-steps li{list-style:decimal!important;margin:0 0 6px;font-size:15.5px}
-#najd .ad-prev{margin:12px 0 0;border-radius:12px;overflow:hidden}
-@media (max-width:640px){#najd .ad-grid{grid-template-columns:1fr}#najd .ad-row{flex-wrap:wrap}#najd .ad-tab{flex:1 1 40%}}
-#najd .sb-lbl{display:block;font-size:14px;font-weight:700;color:var(--muted);margin:0 0 6px}
-#najd .sb-add{display:flex;gap:8px}
+#najd .ad-steps li{list-style:decimal!important;margin:0 0 6px;font-size:var(--fs-lg)}
+#najd .ad-prev{margin:12px 0 0;border-radius:var(--r-md);overflow:hidden}
+@media (max-width:560px){#najd .ad-grid{grid-template-columns:1fr}#najd .ad-row{flex-wrap:wrap}#najd .nj-tab{flex:1 1 40%}}
+#najd .sb-lbl{display:block;font-size:var(--fs-md);font-weight:700;color:var(--muted);margin:0 0 6px}
+#najd .sb-add{display:flex;gap:var(--sp-3)}
 #najd .sb-add input{flex:1;min-width:0}
-#najd .sb-add button{flex-shrink:0;height:46px;border:0;border-radius:12px;background:var(--deep);color:#fff;font:inherit;font-weight:800;padding:0 16px;cursor:pointer}
-#najd .sb-quick{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0 0;font-size:13px;color:var(--slate)}
-#najd .sb-quick button{height:30px;border:1px dashed var(--teal);background:none;border-radius:999px;padding:0 10px;font:inherit;font-size:13px;font-weight:700;color:var(--dtext);cursor:pointer}
-#najd .sb-picked{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 0}
-#najd .sb-chip{display:inline-flex;align-items:center;gap:6px;background:var(--tint);color:var(--dtext);border-radius:999px;padding:4px 6px 4px 12px;font-size:14px;font-weight:700}
-#najd .sb-chip button,#najd .sb-g button{width:22px;height:22px;border:0;border-radius:50%;background:rgba(0,0,0,.08);color:inherit;font-size:15px;line-height:1;cursor:pointer;padding:0}
-#najd .sb-seg{display:flex;gap:6px;flex-wrap:wrap}
-#najd .sb-seg button{height:42px;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:0 14px;font:inherit;font-size:14.5px;font-weight:700;color:var(--ink);cursor:pointer}
-#najd .sb-seg button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
-#najd .sb-term{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0 0}
+#najd .sb-add button{flex-shrink:0;height:46px;border:0;border-radius:var(--r-md);background:var(--deep);color:#fff;font:inherit;font-weight:800;padding:0 16px;cursor:pointer}
+#najd .sb-quick{display:flex;gap:var(--sp-2);flex-wrap:wrap;align-items:center;margin:8px 0 0;font-size:var(--fs-sm);color:var(--slate)}
+#najd .sb-quick button{height:30px;border:1px dashed var(--teal);background:none;border-radius:var(--r-pill);padding:0 10px;font:inherit;font-size:var(--fs-sm);font-weight:700;color:var(--dtext);cursor:pointer}
+#najd .sb-picked{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin:8px 0 0}
+#najd .sb-chip{display:inline-flex;align-items:center;gap:var(--sp-2);background:var(--tint);color:var(--dtext);border-radius:var(--r-pill);padding:4px 6px 4px 12px;font-size:var(--fs-md);font-weight:700}
+#najd .sb-chip button,#najd .sb-g button{width:22px;height:22px;border:0;border-radius:50%;background:rgba(0,0,0,.08);color:inherit;font-size:var(--fs-base);line-height:1;cursor:pointer;padding:0}
+#najd .sb-term{display:flex;gap:var(--sp-3);align-items:center;flex-wrap:wrap;margin:10px 0 0}
 #najd .sb-term[hidden]{display:none}
-#najd .sb-term label{font-size:14px;font-weight:700;color:var(--muted)}
+#najd .sb-term label{font-size:var(--fs-md);font-weight:700;color:var(--muted)}
 #najd .sb-term input{max-width:200px}
-#najd .sb-term small{font-size:12.5px;color:var(--slate)}
-#najd .sb-prev{font-size:15px;background:var(--bg);border-radius:12px;padding:10px 14px;margin:14px 0 0}
+#najd .sb-term small{font-size:var(--fs-sm);color:var(--slate)}
+#najd .sb-prev{font-size:var(--fs-base);background:var(--bg);border-radius:var(--r-md);padding:10px 14px;margin:14px 0 0}
 #najd .sb-prev:empty{display:none}
-#najd .sb-lh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 6px}
-#najd .sb-lh input{height:42px;border:1px solid var(--line);border-radius:12px;padding:0 12px;background:var(--bg);color:var(--ink);font:inherit;min-width:0;flex:0 1 260px}
+#najd .sb-lh{display:flex;justify-content:space-between;align-items:center;gap:var(--sp-4);flex-wrap:wrap;margin:0 0 6px}
+#najd .sb-lh input{flex:0 1 260px}
 #najd .sb-row{padding:12px 0;border-bottom:1px solid var(--line)}
 #najd .sb-row:last-child{border-bottom:0}
-#najd .sb-rh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-#najd .sb-rh b{font-size:15.5px;word-break:break-all}
-#najd .sb-rh small{font-size:13px;color:var(--slate)}
-#najd .sb-acts{margin-inline-start:auto;display:flex;gap:6px}
-#najd .sb-acts button{height:34px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 10px;font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--dtext)}
-#najd .sb-acts button.del{color:#8E3F37}
-#najd .sb-gs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 0}
-#najd .sb-g{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:4px 6px 4px 10px;font-size:13.5px}
+#najd .sb-rh{display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap}
+#najd .sb-rh b{font-size:var(--fs-lg);word-break:break-all}
+#najd .sb-rh small{font-size:var(--fs-sm);color:var(--slate)}
+#najd .sb-acts{margin-inline-start:auto;display:flex;gap:var(--sp-2)}
+#najd .sb-acts button{height:34px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-sm);padding:0 10px;font:inherit;font-size:var(--fs-md);font-weight:700;cursor:pointer;color:var(--dtext)}
+#najd .sb-acts button.del{color:var(--err)}
+#najd .sb-gs{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin:8px 0 0}
+#najd .sb-g{display:inline-flex;align-items:center;gap:var(--sp-2);border:1px solid var(--line);background:var(--bg);border-radius:var(--r-sm);padding:4px 6px 4px 10px;font-size:var(--fs-md)}
 #najd .sb-g b{font-weight:800}
-#najd .sb-g small{color:var(--slate);font-size:12px}
+#najd .sb-g small{color:var(--slate);font-size:var(--fs-xs)}
 #najd .sb-g.is-end{opacity:.6;text-decoration:line-through}
 </style>
 </head>
@@ -107,17 +97,17 @@
 </div>
 
 <div id="ad-panel" hidden>
-<div class="ad-tabs" role="tablist" id="ad-tabs">
-<button type="button" class="ad-tab" role="tab" data-tab="ann">الإعلان</button>
-<button type="button" class="ad-tab" role="tab" data-tab="products">المنتجات</button>
-<button type="button" class="ad-tab" role="tab" data-tab="lessons">الشروحات</button>
-<button type="button" class="ad-tab" role="tab" data-tab="quizzes">الاختبارات</button>
-<button type="button" class="ad-tab" role="tab" data-tab="access">المشتركين</button>
-<button type="button" class="ad-tab" role="tab" data-tab="coop">التدريب التعاوني</button>
-<button type="button" class="ad-tab" role="tab" data-tab="calendar">التقويم</button>
-<button type="button" class="ad-tab" role="tab" data-tab="reviews">التقييمات</button>
-<button type="button" class="ad-tab" role="tab" data-tab="instructors">الأعضاء</button>
-<button type="button" class="ad-tab" role="tab" data-tab="testimonials">آراء الطلاب</button>
+<div class="nj-tabs ad-tabs" role="tablist" id="ad-tabs">
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="ann">الإعلان</button>
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="products">المنتجات</button>
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="lessons">الشروحات</button>
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="quizzes">الاختبارات</button>
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="access">المشتركين</button>
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="coop">التدريب التعاوني</button>
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="calendar">التقويم</button>
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="reviews">التقييمات</button>
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="instructors">الأعضاء</button>
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="testimonials">آراء الطلاب</button>
 </div>
 <div id="ad-body" data-no-i18n dir="rtl" lang="ar"></div>
 </div>
@@ -126,13 +116,13 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112c"></script>
-<script src="assets/js/i18n.js?v=20261112c"></script>
-<script src="assets/js/coop-data.js?v=20261112c"></script>
-<script src="assets/js/courses-data.js?v=20261112c"></script>
-<script src="assets/js/access.js?v=20261112c"></script>
+<script src="assets/js/layout.js?v=20261113b"></script>
+<script src="assets/js/i18n.js?v=20261113b"></script>
+<script src="assets/js/coop-data.js?v=20261113b"></script>
+<script src="assets/js/courses-data.js?v=20261113b"></script>
+<script src="assets/js/access.js?v=20261113b"></script>
 <script type="module">
-import { auth, db } from "./assets/js/auth.js?v=20261112c";
+import { auth, db } from "./assets/js/auth.js?v=20261113b";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, deleteField, writeBatch, query, where, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
@@ -232,13 +222,13 @@ SECTIONS.testimonials = {
 /* ===== أدوات النماذج ===== */
 function fieldHTML(f) {
   const id = "f-" + f.k, h = f.hint ? `<small>${f.hint}</small>` : "";
-  if (f.type === "check") return `<div class="ad-f full"><div class="ad-checks"><label><input type="checkbox" id="${id}">${f.label}</label></div></div>`;
-  if (f.type === "checks") return `<div class="ad-f full"><span class="ad-lbl">${f.label}</span><div class="ad-checks" id="${id}">${f.options.map((o) => `<label><input type="checkbox" value="${o[0]}">${o[1]}</label>`).join("")}</div>${h}</div>`;
+  if (f.type === "check") return `<div class="nj-field ad-f full"><div class="ad-checks"><label><input type="checkbox" id="${id}">${f.label}</label></div></div>`;
+  if (f.type === "checks") return `<div class="nj-field ad-f full"><span class="ad-lbl">${f.label}</span><div class="ad-checks" id="${id}">${f.options.map((o) => `<label><input type="checkbox" value="${o[0]}">${o[1]}</label>`).join("")}</div>${h}</div>`;
   let input;
   if (f.type === "select") input = `<select id="${id}">${f.options.map((o) => `<option value="${esc(o[0])}">${esc(o[1])}</option>`).join("")}</select>`;
   else if (f.type === "textarea") input = `<textarea id="${id}" maxlength="${f.max || 500}"></textarea>`;
   else input = `<input id="${id}" type="${f.type}"${f.max ? ` maxlength="${f.max}"` : ""}${f.type === "url" ? ' dir="ltr" placeholder="https://"' : ""}${f.type === "number" ? ' min="0" step="any" inputmode="decimal"' : ""}${f.list ? ` list="${id}-l"` : ""}>${f.list ? `<datalist id="${id}-l"></datalist>` : ""}`;
-  return `<div class="ad-f${f.full ? " full" : ""}"><label for="${id}">${f.label}</label>${input}${h}</div>`;
+  return `<div class="nj-field ad-f${f.full ? " full" : ""}"><label for="${id}">${f.label}</label>${input}${h}</div>`;
 }
 function readForm(S) {
   const out = {};
@@ -325,11 +315,11 @@ async function crud(key) {
 async function ann() {
   $("ad-body").innerHTML = `<div class="nj-card"><h2>شريط الإعلان</h2><p class="nj-hint">يظهر أعلى كل صفحات الموقع، والزائر يقدر يقفله. لما تحفظ إعلان جديد، يرجع يظهر للكل.</p>
   <form id="ad-form" novalidate><div class="ad-grid">
-  <div class="ad-f full"><label for="a-text">نص الإعلان *</label><input id="a-text" type="text" maxlength="160" placeholder="مثلًا: خصم 20% على اشتراك الشروحات لين نهاية الأسبوع"></div>
-  <div class="ad-f"><label for="a-link">رابط (اختياري)</label><input id="a-link" type="text" dir="ltr" maxlength="300" placeholder="store.html أو https://…"><small>صفحة من الموقع مثل store.html، أو رابط يبدأ بـ https://</small></div>
-  <div class="ad-f"><label for="a-lt">نص الرابط</label><input id="a-lt" type="text" maxlength="30" placeholder="اطلب الحين"></div>
-  <div class="ad-f"><label for="a-tone">اللون</label><select id="a-tone"><option value="teal">تركوازي</option><option value="gold">ذهبي فاتح</option></select></div>
-  <div class="ad-f full"><div class="ad-checks"><label><input type="checkbox" id="a-on">الإعلان ظاهر</label></div></div>
+  <div class="nj-field ad-f full"><label for="a-text">نص الإعلان *</label><input id="a-text" type="text" maxlength="160" placeholder="مثلًا: خصم 20% على اشتراك الشروحات لين نهاية الأسبوع"></div>
+  <div class="nj-field ad-f"><label for="a-link">رابط (اختياري)</label><input id="a-link" type="text" dir="ltr" maxlength="300" placeholder="store.html أو https://…"><small>صفحة من الموقع مثل store.html، أو رابط يبدأ بـ https://</small></div>
+  <div class="nj-field ad-f"><label for="a-lt">نص الرابط</label><input id="a-lt" type="text" maxlength="30" placeholder="اطلب الحين"></div>
+  <div class="nj-field ad-f"><label for="a-tone">اللون</label><select id="a-tone"><option value="teal">تركوازي</option><option value="gold">ذهبي فاتح</option></select></div>
+  <div class="nj-field ad-f full"><div class="ad-checks"><label><input type="checkbox" id="a-on">الإعلان ظاهر</label></div></div>
   </div><div class="ad-acts"><button type="submit" class="nj-btn nj-btn-fill">حفظ الإعلان</button></div><p class="ad-msg" id="ad-msg" aria-live="polite"></p></form></div>`;
   try {
     const s = await getDoc(doc(db, "settings", "announcement"));
@@ -357,17 +347,17 @@ async function access() {
   const DURS = [["m1", "شهر"], ["m3", "3 شهور"], ["term", "نهاية الفصل"], ["y1", "سنة"], ["none", "بدون انتهاء"], ["date", "تاريخ معيّن"]];
   $("ad-body").innerHTML = `<div class="nj-card"><h2>تفعيل اشتراك</h2><p class="nj-hint">اكتب بريد حساب الطالب في أكاديمية نجد، اختر المقررات والنوع والمدة، واضغط تفعيل. لو الطالب عنده اشتراكات من قبل، تنضاف عليها.</p>
   <form id="ad-form" novalidate>
-  <div class="ad-f full"><label for="s-mail">بريد الطالب *</label><input id="s-mail" type="email" dir="ltr" list="s-mail-l" placeholder="student@gmail.com" autocomplete="off"><datalist id="s-mail-l"></datalist></div>
-  <div class="ad-f full"><label for="s-course">المقررات *</label><div class="sb-add"><input id="s-course" type="text" list="s-course-l" autocomplete="off" placeholder="اكتب الرمز مثل ACCT101 واضغط Enter"><datalist id="s-course-l"><option value="all · كل المقررات">${COURSES.map((c) => `<option value="${esc(c[0])} · ${esc(c[1])}">`).join("")}</datalist><button type="button" id="s-course-add">أضف</button></div>
+  <div class="nj-field ad-f full"><label for="s-mail">بريد الطالب *</label><input id="s-mail" type="email" dir="ltr" list="s-mail-l" placeholder="student@gmail.com" autocomplete="off"><datalist id="s-mail-l"></datalist></div>
+  <div class="nj-field ad-f full"><label for="s-course">المقررات *</label><div class="sb-add"><input id="s-course" type="text" list="s-course-l" autocomplete="off" placeholder="اكتب الرمز مثل ACCT101 واضغط Enter"><datalist id="s-course-l"><option value="all · كل المقررات">${COURSES.map((c) => `<option value="${esc(c[0])} · ${esc(c[1])}">`).join("")}</datalist><button type="button" id="s-course-add">أضف</button></div>
   <div class="sb-quick" id="s-quick"></div><div class="sb-picked" id="s-picked"></div></div>
-  <div class="ad-f full"><span class="sb-lbl">النوع</span><div class="sb-seg" id="s-kind">${Object.keys(NA.KINDS).map((k) => `<button type="button" data-k="${k}" aria-pressed="${k === kind}">${NA.KINDS[k]}</button>`).join("")}</div></div>
-  <div class="ad-f full"><span class="sb-lbl">المدة</span><div class="sb-seg sb-dur" id="s-dur">${DURS.map((d) => `<button type="button" data-d="${d[0]}" aria-pressed="${d[0] === dur}">${d[1]}</button>`).join("")}</div>
+  <div class="nj-field ad-f full"><span class="sb-lbl">النوع</span><div class="nj-seg" id="s-kind">${Object.keys(NA.KINDS).map((k) => `<button type="button" data-k="${k}" aria-pressed="${k === kind}">${NA.KINDS[k]}</button>`).join("")}</div></div>
+  <div class="nj-field ad-f full"><span class="sb-lbl">المدة</span><div class="nj-seg" id="s-dur">${DURS.map((d) => `<button type="button" data-d="${d[0]}" aria-pressed="${d[0] === dur}">${d[1]}</button>`).join("")}</div>
   <div class="sb-term" id="s-term-w"><label for="s-term">نهاية الفصل</label><input id="s-term" type="date"><small>تحفظ عندك وتستخدم لكل الطلاب لين تغيّرها.</small></div>
   <div class="sb-term" id="s-date-w"><label for="s-date">ينتهي في</label><input id="s-date" type="date"></div></div>
-  <div class="ad-f full"><label for="s-note">ملاحظة (اختياري)</label><input id="s-note" type="text" maxlength="100" placeholder="مثلًا: رقم الطلب في زد"></div>
+  <div class="nj-field ad-f full"><label for="s-note">ملاحظة (اختياري)</label><input id="s-note" type="text" maxlength="100" placeholder="مثلًا: رقم الطلب في زد"></div>
   <p class="sb-prev" id="s-prev"></p>
   <div class="ad-acts"><button type="submit" class="nj-btn nj-btn-fill" id="s-go">تفعيل</button><button type="button" class="nj-btn nj-btn-line" id="s-copy" hidden>انسخ رسالة للطالب</button></div><p class="ad-msg" id="ad-msg" aria-live="polite"></p></form></div>
-  <div class="nj-card"><div class="sb-lh"><h2>المشتركين (<span id="ad-n">0</span>)</h2><input id="s-find" type="search" dir="auto" placeholder="ابحث بالبريد أو المقرر…"></div><div id="ad-list"><p class="nj-hint">جاري التحميل…</p></div></div>`;
+  <div class="nj-card"><div class="sb-lh"><h2>المشتركين (<span id="ad-n">0</span>)</h2><input id="s-find" class="nj-input is-sm" type="search" dir="auto" placeholder="ابحث بالبريد أو المقرر…"></div><div id="ad-list"><p class="nj-hint">جاري التحميل…</p></div></div>`;
   $("s-term").value = LS("term", ""); if (window.NajdFP) window.NajdFP.sync($("s-term"));
   const fmt = (d) => NA.fmt(d);
   function endDate() {
@@ -491,13 +481,13 @@ async function quizzes() {
   let items = [], editing = null;
   $("ad-body").innerHTML = `<div class="nj-card"><h2 id="ad-ft">إضافة اختبار</h2><p class="nj-hint">اكتب الأسئلة في المربع: كل سؤال في سطر، وتحته الخيارات كل خيار في سطر، وحط <b>*</b> قبل الإجابة الصحيحة. واترك <b>سطر فاضي</b> بين كل سؤال والثاني. وتقدر تضيف سطر يبدأ بـ «شرح:» يطلع للطالب بعد التصحيح.</p>
   <form id="ad-form" novalidate><div class="ad-grid">
-  <div class="ad-f full"><label for="z-title">عنوان الاختبار *</label><input id="z-title" type="text" maxlength="120"></div>
-  <div class="ad-f"><label for="z-course">المقرر</label><select id="z-course"><option value="">عام (بدون مقرر)</option>${(window.NAJD_COURSES || []).map((c) => `<option value="${esc(c[0])}">${esc(c[0] + " · " + c[1])}</option>`).join("")}</select></div>
-  <div class="ad-f"><label for="z-need">مين يقدر يحلّه؟</label><select id="z-need"><option value="free">عام للكل</option><option value="pdf">مشتركين ملخصات المقرر</option><option value="video">مشتركين شروحات المقرر</option></select></div>
-  <div class="ad-f"><label for="z-order">الترتيب</label><input id="z-order" type="number" min="0" inputmode="numeric"></div>
-  <div class="ad-f full"><label for="z-desc">وصف قصير</label><input id="z-desc" type="text" maxlength="200" placeholder="مثل: الفصول 1 إلى 4"></div>
-  <div class="ad-f full"><label for="z-qs">الأسئلة *</label><textarea id="z-qs" style="height:320px;line-height:1.9" dir="auto" placeholder="${esc(Q_HELP)}"></textarea><small id="z-count">0 سؤال</small></div>
-  <div class="ad-f full"><div class="ad-checks"><label><input type="checkbox" id="z-active" checked>منشور</label></div></div>
+  <div class="nj-field ad-f full"><label for="z-title">عنوان الاختبار *</label><input id="z-title" type="text" maxlength="120"></div>
+  <div class="nj-field ad-f"><label for="z-course">المقرر</label><select id="z-course"><option value="">عام (بدون مقرر)</option>${(window.NAJD_COURSES || []).map((c) => `<option value="${esc(c[0])}">${esc(c[0] + " · " + c[1])}</option>`).join("")}</select></div>
+  <div class="nj-field ad-f"><label for="z-need">مين يقدر يحلّه؟</label><select id="z-need"><option value="free">عام للكل</option><option value="pdf">مشتركين ملخصات المقرر</option><option value="video">مشتركين شروحات المقرر</option></select></div>
+  <div class="nj-field ad-f"><label for="z-order">الترتيب</label><input id="z-order" type="number" min="0" inputmode="numeric"></div>
+  <div class="nj-field ad-f full"><label for="z-desc">وصف قصير</label><input id="z-desc" type="text" maxlength="200" placeholder="مثل: الفصول 1 إلى 4"></div>
+  <div class="nj-field ad-f full"><label for="z-qs">الأسئلة *</label><textarea id="z-qs" style="height:320px;line-height:1.9" dir="auto" placeholder="${esc(Q_HELP)}"></textarea><small id="z-count">0 سؤال</small></div>
+  <div class="nj-field ad-f full"><div class="ad-checks"><label><input type="checkbox" id="z-active" checked>منشور</label></div></div>
   </div><div class="ad-acts"><button type="submit" class="nj-btn nj-btn-fill" id="ad-save">نشر</button><button type="button" class="nj-btn nj-btn-line" id="ad-cancel" hidden>إلغاء التعديل</button></div><p class="ad-msg" id="ad-msg" aria-live="polite"></p></form></div>
   <div class="nj-card"><h2>الاختبارات (<span id="ad-n">0</span>)</h2><div id="ad-list"><p class="nj-hint">جاري التحميل…</p></div></div>`;
   const reset = () => { editing = null; $("ad-form").reset(); $("z-active").checked = true; $("z-count").textContent = "0 سؤال"; $("ad-ft").textContent = "إضافة اختبار"; $("ad-save").textContent = "نشر"; $("ad-cancel").hidden = true; };

@@ -22,95 +22,89 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
-<style>#najd .sc-title{width:100%;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-size:18px;font-weight:700;background:var(--bg);color:var(--ink);margin:0}
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113b">
+<style>#najd .sc-title{font-size:var(--fs-xl);font-weight:700}
 #najd .sc-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -6px}
 #najd .sc-grid{border-collapse:separate;border-spacing:6px;width:100%;min-width:540px;margin:0;border:0;table-layout:fixed;background:none}
 #najd .sc-grid th,#najd .sc-grid td{border:0;padding:0;background:none;vertical-align:middle}
-#najd .sc-grid th{font-size:15px;font-weight:700;text-align:center;padding:4px 0;color:var(--ink)}
+#najd .sc-grid th{font-size:var(--fs-base);font-weight:700;text-align:center;padding:4px 0;color:var(--ink)}
 #najd .sc-grid th.sc-tcol{width:62px;color:var(--slate);font-weight:500}
-#najd .sc-time{text-align:center;font-size:14px;line-height:1.25}
+#najd .sc-time{text-align:center;font-size:var(--fs-md);line-height:1.25}
 #najd .sc-time b{display:block;font-weight:800}
-#najd .sc-time span{color:var(--slate);font-size:12px}
-#najd .sc-cell{width:100%;height:52px;border:1px solid var(--line);border-radius:12px;padding:4px 6px;font-size:14px;font-weight:500;text-align:center;background:var(--bg);color:var(--ink);margin:0;box-shadow:none}
-#najd .sc-exam{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:14px;margin:0 0 8px;background:var(--bg)}
-#najd .sc-exam input,#najd .sc-exam select,#najd .sc-dev{height:46px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font-size:15px;background:var(--surface);color:var(--ink);margin:0;box-shadow:none;min-width:0}
+#najd .sc-time span{color:var(--slate);font-size:var(--fs-xs)}
+#najd .sc-cell{width:100%;height:52px;border:1px solid var(--line);border-radius:var(--r-md);padding:4px 6px;font-size:var(--fs-md);font-weight:500;text-align:center;background:var(--bg);color:var(--ink);margin:0;box-shadow:none}
+#najd .sc-exam{display:flex;flex-wrap:wrap;gap:var(--sp-3);align-items:center;padding:10px;border:1px solid var(--line);border-radius:var(--r-lg);margin:0 0 8px;background:var(--bg)}
+#najd .sc-exam .nj-input{width:auto}
 #najd .sc-exam .sc-subj{flex:2 1 180px}
 #najd .sc-exam select{flex:1 1 110px}
 #najd .sc-exam input[type=date]{flex:1 1 150px}
 #najd .sc-exam input[type=time]{flex:1 1 110px}
 #najd .sc-exam input.nj-fp-in.is-date{flex:1 1 170px}
 #najd .sc-exam input.nj-fp-in.is-time{flex:1 1 120px}
-#najd .sc-del{background:none;border:0;color:#8E3F37;font-size:14px;font-weight:700;padding:8px;cursor:pointer}
-#najd .sc-empty{font-size:15px;color:var(--slate);margin:0 0 10px}
-#najd .sc-add{width:100%;height:48px;border:1.5px dashed var(--grey);background:none;border-radius:12px;color:var(--dtext);font-size:16px;font-weight:700;cursor:pointer}
+#najd .sc-del{background:none;border:0;color:var(--err);font-size:var(--fs-md);font-weight:700;padding:8px;cursor:pointer}
+#najd .sc-add{width:100%;height:48px;border:1.5px dashed var(--grey);background:none;border-radius:var(--r-md);color:var(--dtext);font-size:var(--fs-lg);font-weight:700;cursor:pointer}
 #najd .sc-add:hover{border-color:var(--teal);background:var(--bg)}
-#najd .sc-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 14px}
-#najd .sc-mode{display:flex;flex-direction:column;align-items:center;gap:6px;border:2px solid var(--line);background:var(--card);border-radius:16px;padding:14px 8px;cursor:pointer;color:var(--ink);text-align:center}
+#najd .sc-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);margin:0 0 14px}
+#najd .sc-mode{display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);border:2px solid var(--line);background:var(--card);border-radius:var(--r-lg);padding:14px 8px;cursor:pointer;color:var(--ink);text-align:center}
 #najd .sc-mode svg{display:block}
-#najd .sc-mode b{font-size:16px;font-weight:800}
-#najd .sc-mode small{font-size:13px;color:var(--slate);line-height:1.4}
-#najd .sc-mode[aria-pressed="true"]{border-color:var(--teal);background:#EEF4F4}
-#najd .sc-lbl{display:block;font-size:14px;font-weight:700;color:var(--muted);margin:0 0 6px}
+#najd .sc-mode b{font-size:var(--fs-lg);font-weight:800}
+#najd .sc-mode small{font-size:var(--fs-sm);color:var(--slate);line-height:1.4}
+#najd .sc-mode[aria-pressed="true"]{border-color:var(--teal);background:var(--tint)}
+#najd .sc-lbl{display:block;font-size:var(--fs-md);font-weight:700;color:var(--muted);margin:0 0 6px}
 #najd .sc-dev{width:100%;margin:0 0 14px}
-#najd .sc-go{width:100%;height:56px;font-size:18px}
+#najd .sc-go{width:100%;height:56px;font-size:var(--fs-xl)}
 #najd .sc-go:disabled{opacity:.6;cursor:wait}
-#najd .sc-msg{font-size:14px;color:var(--muted);margin:10px 0 0;min-height:1.2em}
-#najd .sc-reset{background:none;border:0;color:var(--slate);font-size:14px;text-decoration:underline;cursor:pointer;padding:6px 0;margin:6px 0 0}
-@media (max-width:560px){#najd .sc-modes{gap:6px}#najd .sc-mode{padding:12px 4px}#najd .sc-mode small{display:none}}
-#najd .sc-pick{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px;margin:0 0 14px}
-#najd .sc-pick-t{font-size:16px;font-weight:800;margin:0 0 2px}
-#najd .sc-pick-h{font-size:14px;color:var(--muted);margin:0 0 10px}
-#najd .sc-pick-sel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
-#najd .sc-pick-sel select{height:44px;border:1px solid var(--line);border-radius:12px;padding:0 10px;font-size:15px;background:var(--surface);color:var(--ink);margin:0;min-width:0}
-#najd .sc-chips{display:flex;flex-wrap:wrap;gap:8px}
-#najd .sc-chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;line-height:1.5}
+#najd .sc-msg{font-size:var(--fs-md);color:var(--muted);margin:10px 0 0;min-height:1.2em}
+#najd .sc-reset{background:none;border:0;color:var(--slate);font-size:var(--fs-md);text-decoration:underline;cursor:pointer;padding:6px 0;margin:6px 0 0}
+@media (max-width:560px){#najd .sc-modes{gap:var(--sp-2)}#najd .sc-mode{padding:12px 4px}#najd .sc-mode small{display:none}}
+#najd .sc-pick{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px;margin:0 0 14px}
+#najd .sc-pick-t{font-size:var(--fs-lg);font-weight:800;margin:0 0 2px}
+#najd .sc-pick-h{font-size:var(--fs-md);color:var(--muted);margin:0 0 10px}
+#najd .sc-pick-sel{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin:0 0 10px}
+#najd .sc-chips{display:flex;flex-wrap:wrap;gap:var(--sp-3)}
+#najd .sc-chip{border:2px solid var(--line);background:var(--surface);border-radius:var(--r-pill);padding:6px 14px;font-size:var(--fs-md);font-weight:700;color:var(--ink);cursor:pointer;line-height:1.5}
 #najd .sc-chip b{font-weight:800;letter-spacing:.3px}
-#najd .sc-chip small{display:block;font-weight:500;color:var(--slate);font-size:12.5px;line-height:1.3}
-#najd .sc-chip{line-height:1.25!important;padding:6px 14px!important;border-radius:14px!important;text-align:center}
+#najd .sc-chip small{display:block;font-weight:500;color:var(--slate);font-size:var(--fs-sm);line-height:1.3}
+#najd .sc-chip{line-height:1.25!important;padding:6px 14px!important;border-radius:var(--r-lg)!important;text-align:center}
 #najd .sc-wrap{position:relative}
 #najd .sc-show{position:absolute;inset:2px;display:none;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;line-height:1.15;padding:2px 6px;overflow:hidden;text-align:center}
-#najd .sc-show b{font-size:15px;font-weight:800;letter-spacing:.3px;color:var(--ink)}
-#najd .sc-show small{font-size:11px;font-weight:500;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#najd .sc-show b{font-size:var(--fs-base);font-weight:800;letter-spacing:.3px;color:var(--ink)}
+#najd .sc-show small{font-size:var(--fs-2xs);font-weight:500;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 #najd .sc-wrap.has-c .sc-show{display:flex}
 #najd .sc-wrap.has-c .sc-cell{color:transparent}
 #najd .sc-wrap.has-c .sc-cell:focus{color:var(--ink)}
 #najd .sc-wrap.has-c .sc-cell:focus+.sc-show{display:none}
-#najd .sc-chip[aria-pressed="true"]{border-color:var(--dtext);box-shadow:0 0 0 3px rgba(86,138,136,.25)}
-#najd .sc-brush{display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--deep);color:#fff;border-radius:14px;padding:10px 14px;margin:0 0 10px;font-size:15px;position:sticky;top:8px;z-index:3}
+#najd .sc-chip[aria-pressed="true"]{border-color:var(--dtext);box-shadow:var(--ring)}
+#najd .sc-brush{display:none;align-items:center;justify-content:space-between;gap:var(--sp-4);background:var(--deep);color:#fff;border-radius:var(--r-lg);padding:10px 14px;margin:0 0 10px;font-size:var(--fs-base);position:sticky;top:8px;z-index:3}
 #najd .sc-brush.is-on{display:flex}
 #najd .sc-brush b{color:#F3E9CF}
-#najd .sc-brush button{flex-shrink:0;height:36px;border:0;border-radius:10px;background:var(--light);color:var(--dtext);font-size:14px;font-weight:800;padding:0 14px;cursor:pointer}
+#najd .sc-brush button{flex-shrink:0;height:36px;border:0;border-radius:var(--r-sm);background:var(--light);color:var(--dtext);font-size:var(--fs-md);font-weight:800;padding:0 14px;cursor:pointer}
 #najd .sc-grid.is-brush .sc-cell{cursor:copy}
 #najd .sc-grid.is-brush .sc-cell:hover{border-color:var(--dtext)}
-#najd .sc-cal{margin:14px 0 0;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px}
-#najd .sc-cal .nj-btn{width:100%;height:52px;font-size:17px}
-#najd .sc-cal-note{font-size:14px;color:var(--muted);margin:8px 0 0}
-#najd .sc-gcal{margin:10px 0 0;font-size:14px;color:var(--muted)}
-#najd .sc-gcal a{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;margin:6px 0 0 6px;color:var(--dtext);font-weight:700;font-size:13px}
+#najd .sc-cal{margin:14px 0 0;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px}
+#najd .sc-cal .nj-btn{width:100%;height:52px;font-size:var(--fs-body)}
+#najd .sc-cal-note{font-size:var(--fs-md);color:var(--muted);margin:8px 0 0}
+#najd .sc-gcal{margin:10px 0 0;font-size:var(--fs-md);color:var(--muted)}
+#najd .sc-gcal a{display:inline-flex;align-items:center;gap:var(--sp-2);border:1px solid var(--line);background:var(--surface);border-radius:var(--r-pill);padding:4px 12px;margin:6px 0 0 6px;color:var(--dtext);font-weight:700;font-size:var(--fs-sm)}
 #najd .sc-gcal a:hover{border-color:var(--teal)}
-#najd .sc-theme{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
-#najd .sc-th{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border:2px solid var(--line);border-radius:12px;background:var(--surface);font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
-#najd .sc-th i{width:22px;height:22px;border-radius:6px;border:1px solid var(--line)}
-#najd .sc-th[aria-pressed="true"]{border-color:var(--teal);background:#EEF4F4}#najd .sc-cell{height:66px}
+#najd .nj-seg .sc-th i{width:22px;height:22px;border-radius:var(--r-xs);border:1px solid var(--line)}
+#najd .sc-cell{height:66px}
 #najd .sc-wrap.has-v .sc-cell{padding-bottom:22px}
 #najd .sc-wrap.has-c .sc-show{justify-content:flex-start;padding-top:6px;bottom:22px}
 #najd .sc-wrap.is-on .sc-cell{border-style:dashed;border-width:1.5px;background:var(--surface)}
-#najd .sc-type{font-style:normal;font-size:11px;font-weight:800;border-radius:999px;padding:1px 9px;line-height:1.6;border:1.5px solid transparent;font-family:inherit;cursor:pointer}
+#najd .sc-type{font-style:normal;font-size:var(--fs-2xs);font-weight:800;border-radius:var(--r-pill);padding:1px 9px;line-height:1.6;border:1.5px solid transparent;font-family:inherit;cursor:pointer}
 #najd .sc-wrap .sc-type{position:absolute;inset:auto 0 5px 0;margin:0 auto;width:max-content;z-index:2}
 #najd .sc-type.p{background:var(--deep);color:#fff}
 #najd .sc-type.o{background:var(--surface);color:var(--dtext);border:1.5px dashed var(--teal)}
 #najd .sc-type[hidden]{display:none}
-#najd .sc-legend{display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--muted);margin:0 0 10px}
-#najd .sc-legend>span{display:inline-flex;align-items:center;gap:6px}
+#najd .sc-legend{display:flex;gap:var(--sp-3) var(--sp-6);flex-wrap:wrap;align-items:center;font-size:var(--fs-md);color:var(--muted);margin:0 0 10px}
+#najd .sc-legend>span{display:inline-flex;align-items:center;gap:var(--sp-2)}
 #najd .sc-legend i.sc-type{cursor:default}
-#najd .sc-legend-h{flex:1 1 100%;font-size:13px;color:var(--slate)}
-#najd .sc-count{display:inline-flex;gap:6px;flex-wrap:wrap}
-#najd .sc-count b{font-size:12.5px;background:var(--tint);color:var(--dtext);border-radius:999px;padding:2px 10px;direction:ltr}
-#najd .sc-count b.is-over{background:#F0DEDB;color:#8E3F37}
-#najd .sc-out{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px}
+#najd .sc-legend-h{flex:1 1 100%;font-size:var(--fs-sm);color:var(--slate)}
+#najd .sc-count{display:inline-flex;gap:var(--sp-2);flex-wrap:wrap}
+#najd .sc-count b{font-size:var(--fs-sm);background:var(--tint);color:var(--dtext);border-radius:var(--r-pill);padding:2px 10px;direction:ltr}
+#najd .sc-count b.is-over{background:var(--err-bg);color:var(--err)}
 @media (max-width:560px){#najd .sc-cell{height:70px}#najd .sc-show small{-webkit-line-clamp:1}}
-#najd .sc-out .sc-th{font-size:14.5px;padding:0 6px;text-align:center;line-height:1.25}
 html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 </style>
 </head>
@@ -131,15 +125,15 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 <div class="nj-card">
 <h2>عنوان الجدول</h2>
 <p class="nj-hint">يظهر أعلى الصورة، مثلًا اسمك أو الفصل الدراسي.</p>
-<input class="sc-title" id="sc-title" type="text" maxlength="40" placeholder="جدولي الدراسي" aria-label="عنوان الجدول">
+<input class="nj-input sc-title" id="sc-title" type="text" maxlength="40" placeholder="جدولي الدراسي" aria-label="عنوان الجدول">
 </div>
 <div class="nj-card">
 <h2>جدول المحاضرات</h2>
 <p class="nj-hint">اكتب اسم المادة في خانة المحاضرة، أو أضفها من خطتك بضغطة. كل مادة تاخذ لون خاص فيها تلقائيًا.</p>
 <div class="sc-pick">
-<p class="sc-pick-t"><svg class="nj-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13.5h6L10 21l8-10.500h-6z"/></svg> أضف موادك من الخطة</p>
+<p class="sc-pick-t"><svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13.5h6L10 21l8-10.500h-6z"/></svg> أضف موادك من الخطة</p>
 <p class="sc-pick-h">اختر تخصصك ومستواك، اضغط المادة، وبعدها اضغط خانات محاضراتها في الجدول.</p>
-<div class="sc-pick-sel"><select id="sc-major" aria-label="التخصص"></select><select id="sc-level" aria-label="المستوى"></select></div>
+<div class="sc-pick-sel"><select id="sc-major" class="nj-input is-sm is-raised" aria-label="التخصص"></select><select id="sc-level" class="nj-input is-sm is-raised" aria-label="المستوى"></select></div>
 <div class="sc-chips" id="sc-chips"></div>
 </div>
 <div class="sc-brush" id="sc-brush" role="status"><span>تضيف الحين: <b id="sc-brush-name"></b>. اضغط خانات محاضراتها.</span><button type="button" id="sc-brush-off">تم</button></div>
@@ -152,7 +146,7 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 <div id="sc-exams"></div>
 <button type="button" class="sc-add" id="sc-add">+ إضافة اختبار</button>
 <div class="sc-cal">
-<button type="button" class="nj-btn nj-btn-fill" id="sc-ics"><svg class="nj-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>أضف الاختبارات لتقويم جوالك</button>
+<button type="button" class="nj-btn nj-btn-fill" id="sc-ics"><svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>أضف الاختبارات لتقويم جوالك</button>
 <p class="sc-cal-note" id="sc-cal-note">تنضاف لتقويم الآيفون أو سامسونج أو أوتلوك، مع تنبيه قبل الاختبار بيوم وقبله بساعتين.</p>
 <div class="sc-gcal" id="sc-gcal"></div>
 </div>
@@ -166,21 +160,21 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 <button type="button" class="sc-mode" data-mode="print" aria-pressed="false"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect x="9" y="2" width="18" height="10" rx="2" fill="#B0B8BC"/><rect x="2" y="11" width="32" height="15" rx="4" fill="#758A8C"/><rect x="9" y="20" width="18" height="14" rx="2" fill="#E4E9EB"/><rect x="12" y="24" width="12" height="2" rx="1" fill="#758A8C"/><rect x="12" y="28" width="8" height="2" rx="1" fill="#758A8C"/></svg><b>طباعة</b><small>ورقة A4</small></button>
 </div>
 <span class="sc-lbl">وش تبي يطلع؟</span>
-<div class="sc-out" role="group" aria-label="محتوى الملف">
+<div class="nj-seg sc-out" role="group" aria-label="محتوى الملف">
 <button type="button" class="sc-th" data-out="sched" aria-pressed="false">الجدول الدراسي</button>
 <button type="button" class="sc-th" data-out="exams" aria-pressed="false">جدول الاختبارات</button>
 <button type="button" class="sc-th" data-out="both" aria-pressed="true">الاثنين مع بعض</button>
 </div>
 <div id="sc-theme-wrap">
 <span class="sc-lbl">لون الجدول</span>
-<div class="sc-theme" role="group" aria-label="لون الجدول">
+<div class="nj-seg sc-theme" role="group" aria-label="لون الجدول">
 <button type="button" class="sc-th" data-theme="light" aria-pressed="true"><i style="background:#F4F7F7"></i>فاتح</button>
 <button type="button" class="sc-th" data-theme="dark" aria-pressed="false"><i style="background:#1E3433"></i>غامق</button>
 </div>
 </div>
 <div id="sc-dev-wrap">
 <label class="sc-lbl" for="sc-dev">اختر جهازك</label>
-<select class="sc-dev" id="sc-dev">
+<select class="nj-input is-raised sc-dev" id="sc-dev">
 <option value="1080x1920">مقاس موحد يناسب أي جهاز</option>
 <optgroup label="آيفون">
 <option value="1179x2556">6.1 بوصة (آيفون 15، 15 برو، 16)</option>
@@ -210,10 +204,10 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112c"></script>
-<script src="assets/js/plans-data.js?v=20261112c"></script>
-<script src="assets/js/i18n.js?v=20261112c"></script>
-<script type="module" src="assets/js/auth.js?v=20261112c"></script>
+<script src="assets/js/layout.js?v=20261113b"></script>
+<script src="assets/js/plans-data.js?v=20261113b"></script>
+<script src="assets/js/i18n.js?v=20261113b"></script>
+<script type="module" src="assets/js/auth.js?v=20261113b"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('sc-grid'))return;
@@ -289,12 +283,12 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
   /* exams */
   var box=$('sc-exams');
   function renderExams(){
-    if(!st.exams.length){box.innerHTML='<p class="sc-empty">ما فيه اختبارات مضافة.</p>';renderGcal();return;}
+    if(!st.exams.length){box.innerHTML='<p class="nj-empty is-inline">ما فيه اختبارات مضافة.</p>';renderGcal();return;}
     var o='';
     st.exams.forEach(function(x,i){
-      o+='<div class="sc-exam" data-i="'+i+'"><input class="sc-subj" type="text" list="sc-subjects" maxlength="40" placeholder="اسم المادة" data-f="subject" value="'+esc(x.subject)+'" aria-label="اسم المادة">'
-        +'<select data-f="type" aria-label="نوع الاختبار"><option value="mid"'+(x.type==='mid'?' selected':'')+'>ميدتيرم</option><option value="final"'+(x.type==='final'?' selected':'')+'>فاينل</option></select>'
-        +'<input type="date" data-f="date" value="'+esc(x.date)+'" aria-label="التاريخ"><input type="time" data-f="time" value="'+esc(x.time)+'" aria-label="الوقت">'
+      o+='<div class="sc-exam" data-i="'+i+'"><input class="nj-input is-sm is-raised sc-subj" type="text" list="sc-subjects" maxlength="40" placeholder="اسم المادة" data-f="subject" value="'+esc(x.subject)+'" aria-label="اسم المادة">'
+        +'<select class="nj-input is-sm is-raised" data-f="type" aria-label="نوع الاختبار"><option value="mid"'+(x.type==='mid'?' selected':'')+'>ميدتيرم</option><option value="final"'+(x.type==='final'?' selected':'')+'>فاينل</option></select>'
+        +'<input class="nj-input is-sm is-raised" type="date" data-f="date" value="'+esc(x.date)+'" aria-label="التاريخ"><input class="nj-input is-sm is-raised" type="time" data-f="time" value="'+esc(x.time)+'" aria-label="الوقت">'
         +'<button type="button" class="sc-del" data-del="'+i+'">حذف</button></div>';
     });
     box.innerHTML=o;
@@ -738,8 +732,8 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
     note.textContent='تم تحميل ملف التقويم. افتحه وبينضاف '+list.length+' '+(list.length===1?'اختبار':'اختبارات')+' لتقويمك مع التنبيهات.';
   });
   /* theme */
-  function showTheme(){var bs=root.querySelectorAll('.sc-th');for(var i=0;i<bs.length;i++)bs[i].setAttribute('aria-pressed',bs[i].getAttribute('data-theme')===st.theme?'true':'false');}
-  root.querySelector('.sc-theme').addEventListener('click',function(e){var b=e.target.closest('.sc-th');if(!b)return;st.theme=b.getAttribute('data-theme');save();showTheme();});
+  function showTheme(){var bs=root.querySelectorAll('.sc-th[data-theme]');for(var i=0;i<bs.length;i++)bs[i].setAttribute('aria-pressed',bs[i].getAttribute('data-theme')===st.theme?'true':'false');}
+  root.querySelector('.sc-theme').addEventListener('click',function(e){var b=e.target.closest('.sc-th[data-theme]');if(!b)return;st.theme=b.getAttribute('data-theme');save();showTheme();});
   showTheme();
   function showOut(){var bs=root.querySelectorAll('[data-out]');for(var i=0;i<bs.length;i++)bs[i].setAttribute('aria-pressed',bs[i].getAttribute('data-out')===st.out?'true':'false');}
   root.querySelector('.sc-out').addEventListener('click',function(e){var b=e.target.closest('[data-out]');if(!b)return;st.out=b.getAttribute('data-out');save();showOut();});

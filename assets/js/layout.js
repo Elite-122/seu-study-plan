@@ -39,7 +39,7 @@
     coins:'<ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.65 3.1 3 7 3s7-1.35 7-3V7M5 12v5c0 1.65 3.1 3 7 3s7-1.35 7-3v-5"/>',
     cart:'<path d="M3.5 5H6l2 10h9.500l2-7H7.2"/><circle cx="9.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/>',
     ledger:'<rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 9.500h16M9.5 9.500V20M13 13.500h4M13 16.500h4"/>'};
-  function icon(n,cls){return IC[n]?'<svg class="nj-ic'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>':'';}
+  function icon(n,cls){return IC[n]?'<svg class="nj-icon'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>':'';}
   var ITEMS={plans:['plans','الخطط الدراسية','مقررات كل مستوى وتقدمك'],schedule:['schedule','الجدول الدراسي','صمّم جدولك واختباراتك'],gpa:['gpa','حاسبة المعدل','الفصلي والتراكمي'],calendar:['calendar','التقويم الأكاديمي','مواعيد التسجيل والاختبارات'],
     lessons:['lessons','الشروحات','فيديو وملفات PDF'],quiz:['quiz','اختبر نفسك','اختبارات تتصحح على طول'],ratings:['ratings','تجارب الطلاب','تقييمات المقررات والأعضاء'],coop:['coop','التدريب التعاوني'],store:['store','المتجر']};
   var NAV=[{t:'أدواتك',items:['plans','schedule','gpa','calendar']},{t:'التعلّم',items:['lessons','quiz','ratings']},'coop','store'];

@@ -22,81 +22,79 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261112c">
-<style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:10px;margin:20px 0 0}
-#najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px 8px;text-align:center}
-#najd .pl-stat b{display:block;font-size:26px;font-weight:800;color:var(--light);line-height:1.2}
-#najd .pl-stat span{font-size:13px;color:var(--grey)}
-#najd .pl-majors{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:2px 2px 12px;margin:0 -2px}
-#najd .pl-mj{flex:0 0 auto;border:2px solid var(--line);background:var(--card);border-radius:999px;padding:9px 16px;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
-#najd .pl-mj[aria-pressed="true"]{border-color:var(--teal)}
-#najd .pl-en{font-size:13px;color:var(--slate);direction:ltr;text-align:right;margin:2px 0 12px}
-#najd .pl-mission{font-size:16px;color:var(--muted);margin:0 0 14px}
-#najd .pl-note{font-size:14px;background:#F3E9CF;color:#6B5320;border-radius:12px;padding:10px 12px;margin:0 0 12px}
-#najd .pl-lbl{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 8px}
-#najd .pl-careers{display:flex;flex-wrap:wrap;gap:6px}
-#najd .pl-careers span{font-size:14px;font-weight:500;border-radius:999px;padding:4px 12px}
-#najd .pl-prog{display:flex;align-items:center;gap:14px}
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113b">
+<style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:var(--sp-4);margin:20px 0 0}
+#najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:10px 8px;text-align:center}
+#najd .pl-stat b{display:block;font-size:var(--fs-4xl);font-weight:800;color:var(--light);line-height:1.2}
+#najd .pl-stat span{font-size:var(--fs-sm);color:var(--grey)}
+#najd .pl-majors{display:flex;gap:var(--sp-3);overflow-x:auto;-webkit-overflow-scrolling:touch;padding:2px 2px 12px;margin:0 -2px}
+#najd .pl-mj{flex:0 0 auto;height:44px;border-width:2px}
+#najd .pl-en{font-size:var(--fs-sm);color:var(--slate);direction:ltr;text-align:right;margin:2px 0 12px}
+#najd .pl-mission{font-size:var(--fs-lg);color:var(--muted);margin:0 0 14px}
+#najd .pl-note{font-size:var(--fs-md);background:var(--warn-bg);color:var(--warn);border-radius:var(--r-md);padding:10px 12px;margin:0 0 12px}
+#najd .pl-lbl{font-size:var(--fs-md);font-weight:700;color:var(--muted);margin:0 0 8px}
+#najd .pl-careers{display:flex;flex-wrap:wrap;gap:var(--sp-2)}
+#najd .pl-careers span{font-size:var(--fs-md);font-weight:500;border-radius:var(--r-pill);padding:4px 12px}
+#najd .pl-prog{display:flex;align-items:center;gap:var(--sp-6)}
 #najd .pl-prog-t{flex:1;min-width:0}
-#najd .pl-prog-t b{font-size:17px;font-weight:800}
-#najd .pl-prog-t p{font-size:14px;color:var(--muted)}
+#najd .pl-prog-t b{font-size:var(--fs-body);font-weight:800}
+#najd .pl-prog-t p{font-size:var(--fs-md);color:var(--muted)}
 #najd .pl-prog svg{flex-shrink:0}
-#najd .pl-bar{height:12px;background:var(--light);border-radius:999px;overflow:hidden;margin:12px 0 0;position:relative}
-#najd .pl-bar i{position:absolute;right:0;top:0;bottom:0;background:linear-gradient(270deg,#7A9FA3,#568A88);border-radius:999px;transition:width .4s ease}
-#najd .pl-h{font-size:22px;font-weight:800;margin:26px 0 12px}
+#najd .pl-bar{height:12px;background:var(--light);border-radius:var(--r-pill);overflow:hidden;margin:12px 0 0;position:relative}
+#najd .pl-bar i{position:absolute;right:0;top:0;bottom:0;background:linear-gradient(270deg,#7A9FA3,#568A88);border-radius:var(--r-pill);transition:width var(--t-slow) ease}
+#najd .pl-h{font-size:var(--fs-3xl);font-weight:800;margin:26px 0 12px}
 #najd .pl-tl{position:relative;padding-right:32px}
 #najd .pl-tl::before{content:"";position:absolute;right:11px;top:16px;bottom:16px;width:3px;border-radius:3px;background:repeating-linear-gradient(to bottom,var(--mist) 0 8px,transparent 8px 14px)}
 #najd .pl-lv{position:relative;margin:0 0 10px}
-#najd .pl-dot{position:absolute;right:-31px;top:15px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:800}
+#najd .pl-dot{position:absolute;right:-31px;top:15px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:var(--fs-xs);color:#fff;font-weight:800}
 #najd .pl-dot svg{position:absolute;inset:0}
 #najd .pl-dot b{position:relative;margin-top:5px}
-#najd .pl-lvh{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 16px;text-align:right;color:var(--ink);cursor:pointer}
+#najd .pl-lvh{width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:13px 16px;text-align:right;color:var(--ink);cursor:pointer}
 #najd .pl-lv.is-open .pl-lvh{border-color:var(--teal)}
-#najd .pl-lvh b{display:block;font-size:16px;font-weight:800}
-#najd .pl-lvh small{display:block;font-size:13px;color:var(--slate)}
-#najd .pl-lvm{display:flex;align-items:center;gap:6px;flex-shrink:0}
-#najd .pl-cnt{font-size:13px;color:var(--muted);background:var(--bg);border-radius:999px;padding:2px 9px}
-#najd .pl-hrs{font-size:13px;font-weight:700;background:var(--deep);color:#fff;border-radius:999px;padding:2px 10px}
-#najd .pl-chev{width:9px;height:9px;border-left:2px solid var(--slate);border-bottom:2px solid var(--slate);transform:rotate(-45deg);margin:0 4px 4px;transition:transform .2s}
+#najd .pl-lvh b{display:block;font-size:var(--fs-lg);font-weight:800}
+#najd .pl-lvh small{display:block;font-size:var(--fs-sm);color:var(--slate)}
+#najd .pl-lvm{display:flex;align-items:center;gap:var(--sp-2);flex-shrink:0}
+#najd .pl-cnt{font-size:var(--fs-sm);color:var(--muted);background:var(--bg);border-radius:var(--r-pill);padding:2px 9px}
+#najd .pl-hrs{font-size:var(--fs-sm);font-weight:700;background:var(--deep);color:#fff;border-radius:var(--r-pill);padding:2px 10px}
+#najd .pl-chev{width:9px;height:9px;border-left:2px solid var(--slate);border-bottom:2px solid var(--slate);transform:rotate(-45deg);margin:0 4px 4px;transition:transform var(--t-base)}
 #najd .pl-lv.is-open .pl-chev{transform:rotate(135deg);margin:4px 4px 0}
-#najd .pl-rate{display:inline-block;font-size:13px;font-weight:700;color:var(--dtext);text-decoration:underline!important;text-underline-offset:3px;margin-top:2px}
-#najd .pl-courses{display:none;background:var(--card);border:1px solid var(--line);border-radius:16px;margin:6px 0 0;overflow:hidden}
+#najd .pl-rate{display:inline-block;font-size:var(--fs-sm);font-weight:700;color:var(--dtext);text-decoration:underline!important;text-underline-offset:3px;margin-top:2px}
+#najd .pl-courses{display:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);margin:6px 0 0;overflow:hidden}
 #najd .pl-lv.is-open .pl-courses{display:block}
-#najd .pl-c{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--light);cursor:pointer;margin:0;font-weight:400;position:relative}
+#najd .pl-c{display:flex;align-items:center;gap:var(--sp-4);padding:12px 14px;border-bottom:1px solid var(--light);cursor:pointer;margin:0;font-weight:400;position:relative}
 #najd .pl-c:last-child{border-bottom:0}
 #najd .pl-c input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
-#najd .pl-box{flex-shrink:0;width:26px;height:26px;border-radius:8px;border:2px solid var(--mist);background:var(--surface);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;transition:background .15s,border-color .15s}
+#najd .pl-box{flex-shrink:0;width:26px;height:26px;border-radius:var(--r-sm);border:2px solid var(--mist);background:var(--surface);display:flex;align-items:center;justify-content:center;color:#fff;font-size:var(--fs-md);font-weight:800;transition:background var(--t-fast),border-color var(--t-fast)}
 #najd .pl-c.is-done .pl-box{background:var(--teal);border-color:var(--teal)}
 #najd .pl-c input:focus-visible+.pl-box{outline:2px solid var(--soft);outline-offset:2px}
-#najd .pl-code{flex-shrink:0;font-size:12px;font-weight:800;border-radius:8px;padding:3px 6px;direction:ltr;min-width:66px;text-align:center;color:var(--dtext)}
+#najd .pl-code{flex-shrink:0;font-size:var(--fs-xs);font-weight:800;border-radius:var(--r-sm);padding:3px 6px;direction:ltr;min-width:66px;text-align:center;color:var(--dtext)}
 #najd .pl-cn{flex:1;min-width:0}
-#najd .pl-cn b{display:block;font-size:15px;font-weight:700;line-height:1.45}
-#najd .pl-cn small{display:block;font-size:13px;color:var(--slate);line-height:1.45}
+#najd .pl-cn b{display:block;font-size:var(--fs-base);font-weight:700;line-height:1.45}
+#najd .pl-cn small{display:block;font-size:var(--fs-sm);color:var(--slate);line-height:1.45}
 #najd .pl-c.is-done .pl-cn b{text-decoration:line-through;text-decoration-color:rgba(47,79,78,.35);color:var(--slate)}
-#najd .pl-ch{flex-shrink:0;font-size:15px;font-weight:800;color:var(--dtext);text-align:center;line-height:1.1}
-#najd .pl-ch small{display:block;font-size:11px;font-weight:500;color:var(--slate)}
-#najd .pl-gpa{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--deep);color:#fff;border-radius:20px;padding:22px;margin:24px 0 0}
-#najd .pl-gpa h2{color:#fff;font-size:20px}
-#najd .pl-gpa p{color:var(--mist);font-size:15px}
+#najd .pl-ch{flex-shrink:0;font-size:var(--fs-base);font-weight:800;color:var(--dtext);text-align:center;line-height:1.1}
+#najd .pl-ch small{display:block;font-size:var(--fs-2xs);font-weight:500;color:var(--slate)}
+#najd .pl-gpa{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-6);flex-wrap:wrap;background:var(--deep);color:#fff;border-radius:var(--r);padding:22px;margin:24px 0 0}
+#najd .pl-gpa h2{color:#fff;font-size:var(--fs-2xl)}
+#najd .pl-gpa p{color:var(--mist);font-size:var(--fs-base)}
 #najd .pl-gpa .nj-btn{background:var(--light);color:var(--dtext)}
-#najd .pl-src{font-size:13px;color:var(--slate);margin:18px 0 0;text-align:center}
-@media (max-width:560px){#najd .pl-stats{grid-template-columns:repeat(3,1fr)}#najd .pl-code{min-width:58px;font-size:11px}#najd .pl-c{padding:11px 10px;gap:8px}}
-#najd .pl-pdf-top{display:flex;gap:14px;align-items:center;margin:0 0 14px}
+#najd .pl-src{font-size:var(--fs-sm);color:var(--slate);margin:18px 0 0;text-align:center}
+@media (max-width:560px){#najd .pl-stats{grid-template-columns:repeat(3,1fr)}#najd .pl-code{min-width:58px;font-size:var(--fs-2xs)}#najd .pl-c{padding:11px 10px;gap:var(--sp-3)}}
+#najd .pl-pdf-top{display:flex;gap:var(--sp-6);align-items:center;margin:0 0 14px}
 #najd .pl-pdf-top svg{flex-shrink:0}
-#najd .pl-pdf-row{display:flex;gap:10px;flex-wrap:wrap}
-#najd .pl-pdf-row input{flex:1 1 220px;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-size:16px;background:var(--bg);color:var(--ink);margin:0;min-width:0}
+#najd .pl-pdf-row{display:flex;gap:var(--sp-4);flex-wrap:wrap}
+#najd .pl-pdf-row input{flex:1 1 220px;width:auto}
 #najd .pl-pdf-row .nj-btn{flex:0 0 auto;height:50px;padding:0 26px}
 #najd .pl-pdf-row .nj-btn:disabled{opacity:.6;cursor:wait}
-#najd .pl-pdf-msg{font-size:14px;color:var(--muted);margin:8px 0 0;min-height:1.2em}
+#najd .pl-pdf-msg{font-size:var(--fs-md);color:var(--muted);margin:8px 0 0;min-height:1.2em}
 @media (max-width:560px){#najd .pl-pdf-row .nj-btn{flex:1 1 100%}}#najd .pl-c.is-lock{cursor:not-allowed;background:var(--bg)}
 #najd .pl-c.is-lock .pl-box{background:var(--light);border-color:var(--mist);color:var(--slate)}
-#najd .pl-c.is-lock .pl-box .nj-ic{width:15px;height:15px}
+#najd .pl-c.is-lock .pl-box .nj-icon{width:15px;height:15px}
 #najd .pl-c.is-lock .pl-cn b{color:var(--slate)}
-#najd .pl-cn small.pl-need{color:#8E3F37;font-weight:700}
-html[data-theme="dark"] #najd .pl-cn small.pl-need{color:#E2A39B}
-#najd .pl-now{display:inline-flex;align-items:center;gap:8px;font-size:14px;margin:12px 0 0;background:var(--tint);border-radius:999px;padding:5px 14px;color:var(--muted)}
+#najd .pl-cn small.pl-need{color:var(--err);font-weight:700}
+#najd .pl-now{display:inline-flex;align-items:center;gap:var(--sp-3);font-size:var(--fs-md);margin:12px 0 0;background:var(--tint);border-radius:var(--r-pill);padding:5px 14px;color:var(--muted)}
 #najd .pl-now b{color:var(--dtext);font-weight:800}
-#najd .pl-rate .nj-ic{width:15px;height:15px;color:#B8943A}
+#najd .pl-rate .nj-icon{width:15px;height:15px;color:#B8943A}
 </style>
 </head>
 <body>
@@ -118,7 +116,7 @@ html[data-theme="dark"] #najd .pl-cn small.pl-need{color:#E2A39B}
 <div id="pl-major"></div>
 <div class="nj-card"><div class="pl-prog"><div class="pl-prog-t"><b id="pl-prog-title"></b><p id="pl-prog-msg"></p></div><svg width="54" height="44" viewBox="0 0 54 44" aria-hidden="true"><path id="pl-t1" d="M2 44L10 32L18 44Z" fill="#E4E9EB"/><path id="pl-t2" d="M16 44L27 20L38 44Z" fill="#E4E9EB"/><path id="pl-t3" d="M34 44L44 2L54 44Z" fill="#E4E9EB"/></svg></div><p class="pl-now" id="pl-now"></p><div class="pl-bar"><i id="pl-bar" style="width:0"></i></div></div>
 <div class="nj-card pl-pdf"><div class="pl-pdf-top"><svg width="44" height="52" viewBox="0 0 30 36" aria-hidden="true"><path d="M3 3a2 2 0 0 1 2-2h14l8 8v24a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" fill="#568A88"/><path d="M19 1v8h8" fill="#7A9FA3"/><path d="M8 26L11 21L14 26Z" fill="#E4E9EB"/><path d="M13 26L17 18L21 26Z" fill="#C8CFD2"/></svg><div><h2>احتفظ بتقدمك في ملف PDF</h2><p class="nj-hint" style="margin-bottom:0">ملف مرتب حسب المستويات، فيه المواد اللي اجتزتها واللي باقية لك.</p></div></div>
-<div class="pl-pdf-row"><input id="pl-name" type="text" maxlength="40" placeholder="اسمك (اختياري، يظهر في الملف)" aria-label="اسمك"><button type="button" class="nj-btn nj-btn-fill" id="pl-pdf-btn">تحميل PDF</button></div>
+<div class="pl-pdf-row"><input id="pl-name" class="nj-input" type="text" maxlength="40" placeholder="اسمك (اختياري، يظهر في الملف)" aria-label="اسمك"><button type="button" class="nj-btn nj-btn-fill" id="pl-pdf-btn">تحميل PDF</button></div>
 <p class="pl-pdf-msg" id="pl-pdf-msg" aria-live="polite"></p></div>
 <h2 class="pl-h">المقررات حسب المستوى</h2>
 <div class="pl-tl" id="pl-tl"></div>
@@ -128,10 +126,10 @@ html[data-theme="dark"] #najd .pl-cn small.pl-need{color:#E2A39B}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261112c"></script>
-<script src="assets/js/plans-data.js?v=20261112c"></script>
-<script src="assets/js/i18n.js?v=20261112c"></script>
-<script type="module" src="assets/js/auth.js?v=20261112c"></script>
+<script src="assets/js/layout.js?v=20261113b"></script>
+<script src="assets/js/plans-data.js?v=20261113b"></script>
+<script src="assets/js/i18n.js?v=20261113b"></script>
+<script type="module" src="assets/js/auth.js?v=20261113b"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('pl-tl'))return;
@@ -156,7 +154,7 @@ html[data-theme="dark"] #najd .pl-cn small.pl-need{color:#E2A39B}
   function doneHours(){return NP.hours(st.major,st.done);}
   function renderMajor(){
     var o='';
-    ORDER.forEach(function(k){var on=k===st.major,mt=META[k];o+='<button type="button" class="pl-mj" data-major="'+k+'" aria-pressed="'+on+'" style="'+(on?'background:'+mt.bg+';border-color:'+mt.ac:'')+'">'+window.Najd.icon(mt.e)+' '+esc(majors[k].label)+'</button>';});
+    ORDER.forEach(function(k){var on=k===st.major,mt=META[k];o+='<button type="button" class="nj-chip is-soft pl-mj" data-major="'+k+'" aria-pressed="'+on+'" style="'+(on?'background:'+mt.bg+';border-color:'+mt.ac:'')+'">'+window.Najd.icon(mt.e)+' '+esc(majors[k].label)+'</button>';});
     $('pl-majors').innerHTML=o;
     var m=majors[st.major],mt=META[st.major];
     var c='<div class="nj-card" style="border-top:5px solid '+mt.ac+'"><h2>'+window.Najd.icon(mt.e)+' '+esc(m.name)+'</h2><p class="pl-en">'+esc(m.en)+'</p>';
