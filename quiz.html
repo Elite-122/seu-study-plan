@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261113b">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113e">
 <style>
 #najd .qz-gh{font-size:var(--fs-2xl);font-weight:800;margin:22px 0 12px}
 #najd .qz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:var(--sp-6)}
@@ -79,11 +79,11 @@ html[data-theme="dark"] #najd .qz-opt.is-wrong{background:#3A1F1C;border-color:#
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261113b"></script>
-<script src="assets/js/i18n.js?v=20261113b"></script>
-<script src="assets/js/courses-data.js?v=20261113b"></script>
-<script src="assets/js/access.js?v=20261113b"></script>
-<script type="module" src="assets/js/auth.js?v=20261113b"></script>
+<script src="assets/js/layout.js?v=20261113e"></script>
+<script src="assets/js/i18n.js?v=20261113e"></script>
+<script src="assets/js/courses-data.js?v=20261113e"></script>
+<script src="assets/js/access.js?v=20261113e"></script>
+<script type="module" src="assets/js/auth.js?v=20261113e"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KEY = "najd_quiz_v1";
@@ -143,7 +143,7 @@ async function start(id) {
 $("qz-home").addEventListener("click", (e) => { const b = e.target.closest("[data-start]"); if (b) { b.disabled = true; start(b.dataset.start).finally(() => { b.disabled = false; }); } });
 
 try {
-  const M = await import("./assets/js/auth.js?v=20261113b");
+  const M = await import("./assets/js/auth.js?v=20261113e");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };

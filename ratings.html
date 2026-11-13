@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261113b">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261113e">
 <style>
 #najd .rt-rules{font-size:var(--fs-base);color:var(--muted);background:var(--tint);border-radius:var(--r-md);padding:10px 14px;margin:12px 0 0}
 #najd .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--sp-5)}
@@ -80,6 +80,17 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 #najd .rt-sc.is-none{color:var(--slate);font-size:var(--fs-lg)}
 @media (max-width:560px){#najd .rt-cards{grid-template-columns:1fr}#najd .rt-code{min-width:74px;font-size:var(--fs-sm)}#najd .rt-shead{padding:16px 18px}#najd .rt-shead h2{font-size:var(--fs-2xl)}}
 #najd .rt-secs{margin:var(--sp-5) 0 0}
+#najd .rt-br{margin:var(--sp-5) 0 0;max-width:240px}
+#najd .rt-inst{padding:0;flex-direction:column;align-items:stretch;gap:0;cursor:default}
+#najd .rt-inst:hover{transform:none}
+#najd .rt-open{display:flex;align-items:center;gap:var(--sp-5);width:100%;background:none;border:0;padding:12px 14px;font:inherit;text-align:start;color:inherit;cursor:pointer;border-radius:var(--r-lg) var(--r-lg) 0 0}
+#najd .rt-open:hover b{color:var(--c)}
+#najd .rt-copy{display:flex;align-items:center;justify-content:center;gap:var(--sp-2);border:0;border-top:1px solid var(--line);background:none;padding:8px 12px;font:inherit;font-size:var(--fs-sm);font-weight:700;color:var(--link);cursor:pointer;border-radius:0 0 var(--r-lg) var(--r-lg)}
+#najd .rt-copy:hover{background:var(--tint)}
+#najd .rt-head .rt-en{font-size:var(--fs-md);color:var(--slate);text-align:start}
+#najd .rt-mail{display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap;margin:var(--sp-3) 0 0}
+#najd .rt-mail .rt-copy{border:1px solid var(--line);border-radius:var(--r-pill);padding:4px 12px}
+@media (max-width:560px){#najd .rt-secs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:2px 2px 6px;margin-inline:-2px}#najd .rt-secs .nj-chip{flex:0 0 auto}#najd .rt-br{max-width:none}}
 </style>
 </head>
 <body>
@@ -99,6 +110,7 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 <div id="rt-list-v">
 <div class="nj-card"><input class="nj-input rt-search" id="rt-q" type="search" placeholder="ابحث…" aria-label="بحث">
 <div class="nj-chips rt-secs" id="rt-secs" role="group" aria-label="القسم"></div>
+<select id="rt-br" class="nj-input is-sm rt-br" aria-label="الفرع" hidden></select>
 <p class="rt-rules">قيّم باحترام وعن تجربتك أنت. التقييم بدون اسمك، والتعليقات المكتوبة تراجعها الإدارة قبل النشر، وأي إساءة أو تجريح ينحذف.</p></div>
 <div id="rt-grid" class="rt-grid"></div>
 </div>
@@ -107,10 +119,11 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261113b"></script>
-<script src="assets/js/i18n.js?v=20261113b"></script>
-<script type="module" src="assets/js/auth.js?v=20261113b"></script>
-<script src="assets/js/courses-data.js?v=20261113b"></script>
+<script src="assets/js/layout.js?v=20261113e"></script>
+<script src="assets/js/i18n.js?v=20261113e"></script>
+<script type="module" src="assets/js/auth.js?v=20261113e"></script>
+<script src="assets/js/courses-data.js?v=20261113e"></script>
+<script src="assets/js/faculty-data.js?v=20261113e"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KIND = {
@@ -132,6 +145,15 @@ const SEC = {
 const secVars = (k) => `--c:var(--sec-${k});--cs:var(--sec-${k}-solid);--k:var(--sec-${k}-deep)`;
 const LVN = { 1: "السنة الأولى", 3: "المستوى الثالث", 4: "المستوى الرابع", 5: "المستوى الخامس", 6: "المستوى السادس", 7: "المستوى السابع", 8: "المستوى الثامن" };
 let sec = "common";
+/* أقسام أعضاء هيئة التدريس: الأربعة + الثقافة الإسلامية + الإحصاء ونظم المعلومات */
+const DN = window.NAJD_DEPTS || {}, BRN = window.NAJD_BRANCHES || {};
+const ISEC = { acct: DN.acct, fin: DN.fin, mgt: DN.mgt, ecom: DN.ecom, islm: DN.islm, quant: DN.quant, other: "أخرى" };
+let isec = "acct", ibr = "";
+try { const ps = JSON.parse(localStorage.getItem("najd_plans_v1") || "null"); if (ps && ISEC[ps.major]) isec = ps.major; } catch (e) {}
+const iname = (x) => (window.NajdLang === "en" && x.en ? x.en : x.name);
+const imeta = (x) => [x.rank, BRN[x.branch] ? "فرع " + BRN[x.branch] : ""].filter(Boolean).join(" · ");
+async function copyMail(m) { try { await navigator.clipboard.writeText(m); toast("انسخ الإيميل: " + m); } catch (e) { prompt("انسخ الإيميل:", m); } }
+const mailBtn = (m) => m ? `<button type="button" class="rt-copy" data-mail="${esc(m)}">${window.Najd.icon("mail")}<span>انسخ الإيميل</span></button>` : "";
 const hrs = (n) => n + " " + (n > 2 && n < 11 ? "ساعات" : "ساعة");
 const reviews = { course: null, inst: null }, mine = {};
 
@@ -143,17 +165,25 @@ function agg(k, id) {
 async function load(k) {
   if (reviews[k]) return;
   const { collection, query, where, getDocs } = F.fs;
-  if (k === "inst") { const s = await getDocs(collection(F.db, "instructors")); items.inst = []; s.forEach((d) => { const x = d.data(); if (x.active !== false && x.name) items.inst.push({ id: d.id, name: x.name, sub: x.dept || "" }); }); items.inst.sort((a, b) => a.name.localeCompare(b.name, "ar")); }
+  if (k === "inst") { const s = await getDocs(collection(F.db, "instructors")); items.inst = []; s.forEach((d) => { const x = d.data(); if (x.active !== false && x.name) items.inst.push({ id: d.id, name: x.name, en: x.en || "", dept: ISEC[x.dept] ? x.dept : "other", deptText: x.dept || "", rank: x.rank || "", branch: x.branch || "", email: x.email || "", sub: x.rank || "" }); }); items.inst.sort((a, b) => a.name.localeCompare(b.name, "ar")); }
   const sn = await getDocs(query(collection(F.db, KIND[k].col), where("status", "==", "approved")));
   reviews[k] = []; sn.forEach((d) => reviews[k].push(d.data()));
 }
 function card(x) {
   const a = agg(kind, x.id);
-  if (kind !== "course") return `<button type="button" class="rt-item" data-id="${esc(x.id)}"><div><b>${esc(x.name)}</b><small>${esc(x.sub)}</small></div><span class="rt-score${a ? "" : " is-none"}"><b>${a ? a.rating.toFixed(1) : "—"}</b><small>${a ? a.n + " تقييم" : "بدون تقييم"}</small></span></button>`;
+  if (kind !== "course") return `<div class="rt-card rt-inst" style="${secVars(x.dept === "other" ? "common" : x.dept)}"><button type="button" class="rt-open" data-id="${esc(x.id)}"><span class="rt-body"><b data-no-i18n>${esc(iname(x))}</b><small>${esc(imeta(x)) || "&nbsp;"}${a ? " · " + a.n + " تقييم" : ""}</small></span><span class="rt-sc${a ? "" : " is-none"}">${a ? a.rating.toFixed(1) : "—"}<small>${a ? "من 5" : "قيّمه"}</small></span></button>${mailBtn(x.email)}</div>`;
   return `<button type="button" class="rt-card" data-id="${esc(x.id)}" style="${secVars(SEC[x.sec] ? x.sec : "common")}"><span class="rt-code" dir="ltr">${esc(x.id)}</span><span class="rt-body"><b>${esc(x.sub)}</b><small>${hrs(x.h)}${a ? " · " + a.n + " تقييم" : ""}</small></span><span class="rt-sc${a ? "" : " is-none"}">${a ? a.rating.toFixed(1) : "—"}<small>${a ? "من 5" : "قيّمه"}</small></span></button>`;
 }
 function secs() {
-  const box = $("rt-secs"); box.hidden = kind !== "course"; if (kind !== "course") return;
+  const box = $("rt-secs"), br = $("rt-br");
+  br.hidden = kind !== "inst";
+  if (kind === "inst") {
+    const ks = Object.keys(ISEC).filter((k) => k !== "other" || items.inst.some((x) => x.dept === "other"));
+    box.innerHTML = ks.map((k) => `<button type="button" class="nj-chip rt-sec" data-isec="${k}" aria-pressed="${k === isec}" style="${secVars(k === "other" ? "common" : k)}"><i></i>${esc(ISEC[k])}<small>${items.inst.filter((x) => x.dept === k && (!ibr || x.branch === ibr)).length}</small></button>`).join("");
+    const used = [...new Set(items.inst.map((x) => x.branch).filter(Boolean))];
+    br.innerHTML = '<option value="">كل الفروع</option>' + Object.keys(BRN).filter((b) => used.includes(b)).map((b) => `<option value="${b}"${b === ibr ? " selected" : ""}>فرع ${esc(BRN[b])}</option>`).join("");
+    return;
+  }
   box.innerHTML = Object.keys(SEC).map((k) => `<button type="button" class="nj-chip rt-sec" data-sec="${k}" aria-pressed="${k === sec}" style="${secVars(k)}"><i></i>${SEC[k].n}<small>${items.course.filter((x) => x.sec === k).length}</small></button>`).join("");
 }
 function byLevel(l) {
@@ -163,9 +193,17 @@ function byLevel(l) {
 function list() {
   $("rt-list-v").hidden = false; $("rt-detail-v").hidden = true; $("rt-q").placeholder = KIND[kind].ph; secs();
   const qq = q.trim().toLowerCase(), g = $("rt-grid");
-  let l = items[kind].filter((x) => !qq || (x.name + " " + x.sub + " " + (x.en || "")).toLowerCase().includes(qq));
-  if (!l.length) { g.className = ""; g.innerHTML = `<div class="nj-card nj-empty">${kind === "inst" && !items.inst.length ? "ما فيه أعضاء مضافين حاليًا. نضيفهم قريب." : "ما لقينا نتيجة. جرّب كلمة ثانية."}</div>`; return; }
-  if (kind !== "course") { g.className = "rt-grid"; g.innerHTML = l.map(card).join(""); return; }
+  let l = items[kind].filter((x) => !qq || (x.name + " " + x.sub + " " + (x.en || "") + " " + (x.email || "")).toLowerCase().includes(qq));
+  if (kind === "inst" && ibr) l = l.filter((x) => x.branch === ibr);
+  if (!l.length && (kind !== "inst" || qq || !items.inst.length)) { g.className = ""; g.innerHTML = `<div class="nj-card nj-empty">${kind === "inst" && !items.inst.length ? "ما فيه أعضاء مضافين حاليًا. نضيفهم قريب." : "ما لقينا نتيجة. جرّب كلمة ثانية."}</div>`; return; }
+  if (kind === "inst") {
+    g.className = "";
+    const groups = qq ? Object.keys(ISEC).filter((k) => l.some((x) => x.dept === k)) : [isec];
+    g.innerHTML = groups.map((k) => { const ll = l.filter((x) => x.dept === k).sort((a, b) => iname(a).localeCompare(iname(b), "ar"));
+      const head = qq ? `<h3 class="rt-lv">${esc(ISEC[k])}</h3>` : `<div class="rt-shead" style="${secVars(k === "other" ? "common" : k)}"><div><h2>${esc(ISEC[k])}</h2><p>${ll.length} عضو${ibr ? " · فرع " + esc(BRN[ibr]) : ""}</p></div></div>`;
+      return head + (ll.length ? `<div class="rt-cards">${ll.map(card).join("")}</div>` : `<div class="nj-card nj-empty"><b>ما فيه أعضاء في هذا القسم${ibr ? " بهذا الفرع" : ""} حاليًا</b><p>نضيفهم أول بأول.</p></div>`); }).join("");
+    return;
+  }
   g.className = "";
   if (qq) { g.innerHTML = Object.keys(SEC).filter((k) => l.some((x) => x.sec === k)).map((k) => `<h3 class="rt-lv">${SEC[k].n}</h3><div class="rt-cards">${l.filter((x) => x.sec === k).sort((a, b) => a.lv - b.lv).map(card).join("")}</div>`).join(""); return; }
   const S = SEC[sec], mine2 = l.filter((x) => x.sec === sec), rated = mine2.filter((x) => agg("course", x.id)).length;
@@ -179,7 +217,7 @@ async function detail(id) {
   $("rt-list-v").hidden = true; v.hidden = false;
   const stars = (name, val) => `<div class="rt-stars" data-name="${name}">${[1, 2, 3, 4, 5].map((n) => `<button type="button" data-v="${n}" aria-pressed="${val === n}">${n}</button>`).join("")}</div>`;
   v.innerHTML = `<button type="button" class="rt-back" id="rt-back">→ رجوع للقائمة</button>
-  <div class="nj-card rt-head"${kind === "course" ? ` style="border-top:5px solid var(--sec-${SEC[x.sec] ? x.sec : "common"}-solid)"` : ""}><h2${kind === "course" ? ' dir="ltr" style="text-align:start"' : ""}>${esc(x.name)}</h2><p>${esc(x.sub)}${kind === "course" ? " · " + (SEC[x.sec] || SEC.common).n + " · " + (LVN[x.lv] || "") : ""}</p>
+  <div class="nj-card rt-head" style="border-top:5px solid var(--sec-${kind === "course" ? (SEC[x.sec] ? x.sec : "common") : (x.dept === "other" ? "common" : x.dept)}-solid)">${kind === "course" ? `<h2 dir="ltr" style="text-align:start">${esc(x.name)}</h2><p>${esc(x.sub)} · ${(SEC[x.sec] || SEC.common).n} · ${LVN[x.lv] || ""}</p>` : `<h2 data-no-i18n>${esc(iname(x))}</h2>${x.en && window.NajdLang !== "en" ? `<p class="rt-en" dir="ltr" data-no-i18n>${esc(x.en)}</p>` : ""}<p>${esc([x.rank, x.dept === "other" ? x.deptText : ISEC[x.dept], BRN[x.branch] ? "فرع " + BRN[x.branch] : ""].filter(Boolean).join(" · "))}</p>${x.email ? `<p class="rt-mail"><span dir="ltr" data-no-i18n>${esc(x.email)}</span>${mailBtn(x.email)}</p>` : ""}`}
   ${a ? `<div class="rt-stats"><div class="rt-stat"><b>${a.rating.toFixed(1)}</b><span>التقييم العام</span><div class="rt-meter"><i style="width:${a.rating * 20}%"></i></div></div><div class="rt-stat"><b>${a.level.toFixed(1)}</b><span>${K.lvl}</span><div class="rt-meter"><i style="width:${a.level * 20}%"></i></div></div><div class="rt-stat"><b>${a.n}</b><span>عدد التقييمات</span></div></div>` : `<p class="nj-empty">ما فيه تقييمات بعد. كن أول من يقيّم</p>`}</div>
   ${a && a.tips.length ? `<div class="nj-card"><h2>تجارب الطلاب (${a.tips.length})</h2><div style="margin-top:12px">${a.tips.map((r) => `<div class="rt-tip"><p>${esc(r.tip)}</p><small>التقييم ${r.rating}/5 · ${K.lvl} ${r.level}/5</small></div>`).join("")}</div></div>` : ""}
   <div class="nj-card rt-form"><h2>${m ? "تقييمك" : "أضف تقييمك"}</h2><p class="nj-hint">تقييمك بدون اسمك. وتقدر تعدله أو تحذفه بعدين.</p>
@@ -218,11 +256,13 @@ async function show(k, id) {
   id ? detail(id) : list();
 }
 document.querySelector(".rt-tabs").addEventListener("click", (e) => { const b = e.target.closest(".rt-tab"); if (b) { q = ""; $("rt-q").value = ""; show(b.dataset.kind); } });
-$("rt-grid").addEventListener("click", (e) => { const b = e.target.closest(".rt-item,.rt-card"); if (b) detail(b.dataset.id); });
-$("rt-secs").addEventListener("click", (e) => { const b = e.target.closest(".rt-sec"); if (!b) return; sec = b.dataset.sec; list(); });
+$("rt-grid").addEventListener("click", (e) => { const c = e.target.closest(".rt-copy"); if (c) { copyMail(c.dataset.mail); return; } const b = e.target.closest("[data-id]"); if (b) detail(b.dataset.id); });
+$("rt-detail-v").addEventListener("click", (e) => { const c = e.target.closest(".rt-copy"); if (c) copyMail(c.dataset.mail); });
+$("rt-br").addEventListener("change", (e) => { ibr = e.target.value; list(); });
+$("rt-secs").addEventListener("click", (e) => { const b = e.target.closest(".rt-sec"); if (!b) return; if (b.dataset.isec) isec = b.dataset.isec; else sec = b.dataset.sec; list(); });
 let qt; $("rt-q").addEventListener("input", function () { clearTimeout(qt); const v = this.value; qt = setTimeout(() => { q = v; list(); }, 150); });
 try {
-  const M = await import("./assets/js/auth.js?v=20261113b");
+  const M = await import("./assets/js/auth.js?v=20261113e");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
