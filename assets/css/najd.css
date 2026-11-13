@@ -383,7 +383,7 @@ html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selecti
 #najd .nj-input:focus,#najd .nj-field :is(input,select,textarea):focus{background:var(--surface);border-color:var(--teal)}
 #najd .nj-input.is-sm{height:var(--control-h-sm);font-size:var(--fs-base);padding:0 12px}
 #najd .nj-input.is-raised{background:var(--surface)}
-#najd .nj-input[aria-invalid="true"],#najd .nj-field [aria-invalid="true"]{border-color:var(--err);box-shadow:0 0 0 3px var(--err-bg)}
+#najd .nj-input[aria-invalid="true"],#najd .nj-field :is(input,select,textarea)[aria-invalid="true"]{border-color:var(--err);box-shadow:0 0 0 3px var(--err-bg)}
 #najd .nj-input:disabled,#najd .nj-field :disabled{opacity:.6;cursor:not-allowed}
 /* غلاف الحقل: عنوان + الحقل + ملاحظة */
 #najd .nj-field label,#najd .nj-field .nj-label{display:block;font-size:var(--fs-base);font-weight:700;color:var(--ink);margin:0 0 6px}
