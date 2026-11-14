@@ -290,7 +290,7 @@ window.NAJD_I18N={DICT:{
 "أدوات مجانية": "Free tools",
 "بدون أي اشتراك": "No subscription needed",
 "كل اللي تحتاجه لفصل دراسي مرتب": "Everything you need for an organized semester",
-"سجّل بحساب Gmail أو بريدك مرة وحدة، وتفتح لك كل الأدوات ويتحفظ تقدمك في حسابك.": "Sign up once with Gmail or your email to unlock every tool and keep your progress in your account.",
+"الأدوات تشتغل على طول بدون حساب. وإذا سجّلت، يتحفظ تقدمك وتلقاه في أي جهاز.": "The tools work right away without an account. Sign up and your progress is saved on every device.",
 "مجاني": "Free",
 "الخطة الدراسية": "Study Plan",
 "مقررات كل مستوى، والمتطلبات السابقة، وتقدمك نحو التخرج، وتحمّلها PDF.": "Courses for every level, prerequisites, and your progress toward graduation, downloadable as PDF.",

@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261115b">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115d">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
@@ -76,14 +76,6 @@
 @media (max-width:860px){#najd .hm-tools{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){#najd .hm-tools{grid-template-columns:1fr}}
 /* عدّاد الاختبار القادم */
-#najd .hm-next{display:flex;align-items:center;gap:var(--sp-6);flex-wrap:wrap;background:linear-gradient(150deg,var(--deep),var(--deeper));color:#fff;border-radius:var(--r);padding:16px 20px;margin:16px 0 0;box-shadow:var(--shadow)}
-#najd .hm-next .n{flex-shrink:0;min-width:64px;text-align:center;background:rgba(255,255,255,.12);border-radius:var(--r-lg);padding:8px 10px}
-#najd .hm-next .n b{display:block;font-size:var(--fs-4xl);font-weight:800;line-height:1.1}
-#najd .hm-next .n small{font-size:var(--fs-sm);color:var(--mist)}
-#najd .hm-next .t{flex:1;min-width:200px}
-#najd .hm-next .t small{color:var(--mist);font-size:var(--fs-md)}
-#najd .hm-next .t b{display:block;font-size:var(--fs-xl);font-weight:800}
-#najd .hm-next .nj-btn{height:var(--control-h-sm);font-size:var(--fs-base)}
 /* آراء الطلاب */
 #najd .hm-says{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-6)}
 #najd .hm-say{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:var(--sp-6)}
@@ -158,12 +150,63 @@
 #najd .hm-win{inset:30px 0 50px 16px}
 #najd .hm-lap{width:200px}#najd .hm-lap-s{height:124px}#najd .hm-phone{width:92px;height:172px}
 }
+/* ===== لوحتي ===== */
+#najd.has-dash .hm-hero{display:none}
+#najd .hm-dash{padding:28px 0 8px}
+#najd .dsh-head{margin:0 0 18px}
+#najd .dsh-head small{display:block;color:var(--slate);font-size:var(--fs-base);font-weight:500}
+#najd .dsh-head h1{font-size:var(--fs-5xl);font-weight:800;line-height:1.3;margin:2px 0 0}
+#najd .dsh-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:var(--sp-6);align-items:start}
+#najd .dsh-side,#najd .dsh-two{display:grid;gap:var(--sp-6)}
+#najd .dsh-two{grid-template-columns:1fr 1fr}
+#najd .dsh-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);min-width:0}
+#najd .dsh-h{display:flex;align-items:center;gap:var(--sp-3);font-size:var(--fs-lg);font-weight:800;margin:0 0 12px}
+#najd .dsh-h .nj-icon{width:20px;height:20px}
+#najd .dsh-h small{margin-inline-start:auto;font-size:var(--fs-sm);font-weight:700;color:var(--slate)}
+#najd .dsh-list{list-style:none;margin:0;padding:0;display:grid;gap:var(--sp-3)}
+#najd .dsh-s{display:flex;align-items:center;gap:var(--sp-5);background:var(--bg);border-radius:var(--r-md);padding:10px 12px}
+#najd .dsh-s>i{flex-shrink:0;width:4px;align-self:stretch;border-radius:4px;background:var(--c,var(--teal))}
+#najd .dsh-s>div{flex:1;min-width:0}
+#najd .dsh-s b{display:block;font-size:var(--fs-base);font-weight:700;line-height:1.45}
+#najd .dsh-s small{font-size:var(--fs-sm);color:var(--slate)}
+#najd .hm-dash .t{direction:ltr;unicode-bidi:isolate}
+#najd .dsh-st{flex-shrink:0;font-size:var(--fs-sm);font-weight:800;border-radius:var(--r-pill);padding:2px 10px;background:var(--tint);color:var(--dtext);white-space:nowrap}
+#najd .dsh-s.is-now{background:var(--ok-bg)}
+#najd .dsh-s.is-now .dsh-st{background:var(--ok);color:var(--card)}
+#najd .dsh-s.is-now small{color:var(--ink)}
+#najd .dsh-big .dsh-num small{color:rgba(255,255,255,.78)}
+#najd .dsh-s.is-past{opacity:.55}
+#najd .dsh-note{margin:12px 0 0;font-size:var(--fs-base);color:var(--muted)}
+#najd .dsh-note b{color:var(--ink)}
+#najd .dsh-more{display:inline-flex;align-items:center;gap:var(--sp-2);min-height:44px;margin:6px 0 -8px;font-size:var(--fs-base);font-weight:700;color:var(--dtext)}
+#najd .dsh-empty{display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp-3)}
+#najd .dsh-empty .dsh-h{margin:0}
+#najd .dsh-empty p{margin:0 0 4px;font-size:var(--fs-base);color:var(--muted)}
+#najd .dsh-big{display:flex;align-items:center;gap:var(--sp-6)}
+#najd .dsh-num{flex-shrink:0;min-width:66px;text-align:center;background:var(--deep);color:#fff;border-radius:var(--r-lg);padding:8px 10px}
+#najd .dsh-num b{display:block;font-size:var(--fs-4xl);font-weight:800;line-height:1.1}
+#najd .dsh-num .nj-icon{display:block;width:28px;height:28px;color:#fff;margin:4px auto}
+#najd .dsh-num small{font-size:var(--fs-sm);color:var(--mist)}
+#najd .dsh-big b.s{display:block;font-size:var(--fs-xl);font-weight:800;line-height:1.4}
+#najd .dsh-big small{display:block;font-size:var(--fs-sm);color:var(--slate)}
+#najd .dsh-val{font-size:34px;font-weight:800;line-height:1.1;color:var(--dtext)}
+#najd .dsh-val small{font-size:var(--fs-base);font-weight:600;color:var(--slate)}
+#najd .dsh-bar{height:8px;border-radius:var(--r-pill);background:var(--light);overflow:hidden;margin:10px 0 6px}
+#najd .dsh-bar i{display:block;height:100%;border-radius:inherit;background:var(--teal)}
+#najd .dsh-sub{font-size:var(--fs-sm);color:var(--slate);margin:0}
+#najd .dsh-guest{display:flex;align-items:center;gap:var(--sp-5);flex-wrap:wrap;margin:var(--sp-6) 0 0;background:var(--tint);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 14px}
+#najd .dsh-guest p{flex:1 1 240px;margin:0;font-size:var(--fs-base);color:var(--muted)}
+#najd .dsh-guest p b{color:var(--ink)}
+@media (max-width:860px){#najd .dsh-grid{grid-template-columns:minmax(0,1fr)}#najd .dsh-head h1{font-size:var(--fs-4xl)}#najd .hm-dash{padding-top:20px}}
+@media (max-width:360px){#najd .dsh-two{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
 <div id="najd" dir="rtl" data-page="home">
 <div id="nj-header"></div>
 <main>
+<!-- لوحتي: تطلع للمسجّل أو للي استخدم الأدوات قبل، وتخفي الواجهة التسويقية -->
+<section class="hm-dash" id="hm-dash" hidden data-no-i18n></section>
 
 <!-- الواجهة -->
 <section class="hm-hero">
@@ -199,14 +242,13 @@
 </section>
 
 
-<div class="nj-in"><div class="hm-next" id="hm-next" hidden></div></div>
 
 <!-- الأدوات (بطاقات بأسلوب سطر) -->
 <section class="nj-sec" id="tools">
 <div class="nj-in">
 <div class="nj-sh">
 <div><h2 class="nj-tt"><span class="nj-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>كل اللي تحتاجه لفصل دراسي مرتب</h2>
-<p>سجّل بحساب Gmail أو بريدك مرة وحدة، وتفتح لك كل الأدوات ويتحفظ تقدمك في حسابك.</p></div>
+<p>الأدوات تشتغل على طول بدون حساب. وإذا سجّلت، يتحفظ تقدمك وتلقاه في أي جهاز.</p></div>
 </div>
 <div class="nj-grid hm-tools nj-rv">
 <article class="nj-tile">
@@ -342,8 +384,8 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261115b"></script>
-<script src="assets/js/plans-data.js?v=20261115b"></script>
+<script src="assets/js/layout.js?v=20261115d"></script>
+<script src="assets/js/plans-data.js?v=20261115d"></script>
 <script>
 /* بطاقة «تقدمك في الخطة»: تقرأ تقدم الطالب الفعلي وتتحدث مع أي تغيير أو مزامنة */
 (function(){
@@ -357,32 +399,140 @@
   setTimeout(draw,1500);setTimeout(draw,4000);
 })();
 </script>
-<script src="assets/js/i18n.js?v=20261115b"></script>
-<script type="module" src="assets/js/auth.js?v=20261115b"></script>
+<script src="assets/js/i18n.js?v=20261115d"></script>
+<script type="module" src="assets/js/auth.js?v=20261115d"></script>
 <script>
-/* عدّاد الاختبار القادم: من جدول الطالب المحفوظ */
+/* لوحتي: محاضرات اليوم، وأقرب اختبار، وتقدم الخطة، والمعدل. كلها من بيانات الطالب المحفوظة في جهازه (وتتزامن مع حسابه) */
 (function(){
-  var box=document.getElementById('hm-next'),esc=window.Najd.esc;
-  function show(){
-    var root=document.getElementById('najd');if(!root.classList.contains('is-in')){box.hidden=true;return;}
-    var st=null;try{st=JSON.parse(localStorage.getItem('stq_schedule_v1')||'null');}catch(e){}
-    var t=new Date();t.setHours(0,0,0,0);
-    var l=((st&&st.exams)||[]).filter(function(x){return /^\d{4}-\d{2}-\d{2}$/.test(x.date||'')&&new Date(x.date+'T00:00:00')>=t;}).sort(function(a,b){return (a.date+(a.time||'')).localeCompare(b.date+(b.time||''));});
-    if(!l.length){box.hidden=true;return;}
-    var x=l[0],n=Math.round((new Date(x.date+'T00:00:00')-t)/864e5),type=x.type==='final'?'فاينل':'ميدتيرم';
-    var when=new Date(x.date+'T00:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
-    box.innerHTML='<div class="n"><b>'+(n===0?window.Najd.icon('bell'):n)+'</b><small>'+(n===0?'اليوم':n===1?'يوم':n===2?'يومين':n<=10?'أيام':'يوم')+'</small></div>'
-      +'<div class="t"><small>اختبارك القادم</small><b>'+type+' <span dir="ltr">'+esc((x.subject||'').trim()||'—')+'</span></b><small dir="ltr">'+esc(when)+'</small></div>'
-      +(l.length===2?'<small>وبعده اختبار واحد</small>':l.length===3?'<small>وبعده اختبارين</small>':l.length>2?'<small>وبعده '+(l.length-1)+' اختبارات</small>':'')+'<a class="nj-btn nj-btn-white" href="schedule.html">جدولي</a>';
-    box.hidden=false;
+  var root=document.getElementById('najd'),box=document.getElementById('hm-dash');if(!root||!box||!window.Najd)return;
+  var EN=document.documentElement.lang==='en',esc=window.Najd.esc,ic=window.Najd.icon;
+  function L(a,e){return EN?e:a;}
+  var LOC=EN?'en-GB':'ar-SA-u-ca-gregory-nu-latn';
+  var DAYS=[L('الأحد','Sunday'),L('الاثنين','Monday'),L('الثلاثاء','Tuesday'),L('الأربعاء','Wednesday'),L('الخميس','Thursday')];
+  var ACC=['#568A88','#B08A4E','#4F7CA8','#B0625A','#6E8F5E','#7B6A9E','#B8943A','#758A8C'];
+  var GR={'A+':4,'A':3.75,'B+':3.5,'B':3,'C+':2.5,'C':2,'D+':1.5,'D':1,'F':0};
+  function get(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch(e){return null;}}
+  function num(v){var n=parseFloat(v);return isNaN(n)?0:n;}
+  /* جمع عربي بسيط: 1 / 2 / 3-10 / 11+ */
+  function pl(n,one,two,few,many){return n===1?one:n===2?two:(n>=3&&n<=10?n+' '+few:n+' '+many);}
+  /* الأرقام في عزل من اليسار لليمين، و«م/ص» برّاها عشان ما ينقلب الترتيب */
+  function hhmm(min){var h=Math.floor(min/60),m=min%60;return ((h%12)||12)+':'+(m<10?'0':'')+m;}
+  function sfx(min){var h=Math.floor(min/60);return EN?(h>=12?' PM':' AM'):(h>=12?' م':' ص');}
+  function clock(min){return '<span class="t">'+hhmm(min)+'</span>'+sfx(min);}
+  function range(a,b){return '<span class="t">'+hhmm(a)+' – '+hhmm(b)+'</span>'+sfx(b);}
+  function same(a,b){return String(a||'').trim().toLowerCase()===String(b||'').trim().toLowerCase();}
+
+  /* محاضرات يوم (0 = الأحد … 4 = الخميس): الخانات المتتالية لنفس المادة = محاضرة وحدة */
+  function sessions(st,d){
+    var out=[],cur=null,cells=st.cells||{},types=st.types||{};
+    for(var r=0;r<7;r++){
+      var v=String(cells[d+'-'+r]||'').trim();
+      if(v&&cur&&same(cur.name,v)&&cur.r1===r-1){cur.r1=r;continue;}
+      if(cur){out.push(cur);cur=null;}
+      if(v)cur={name:v,r0:r,r1:r,type:types[d+'-'+r]==='o'?'o':'p'};
+    }
+    if(cur)out.push(cur);
+    out.forEach(function(x){x.start=(15+x.r0)*60;x.end=(15+x.r1)*60+50;var c=(st.colors||{})[x.name];x.color=ACC[c>=0&&c<ACC.length?c:0];});
+    return out;
   }
-  show();window.addEventListener('najd:auth',show);
+  function row(x,state,tag){
+    return '<li class="dsh-s'+(state?' is-'+state:'')+'" style="--c:'+x.color+'"><i></i><div><b>'+esc(x.name)+'</b><small>'+range(x.start,x.end)+' · '+(x.type==='o'?L('أونلاين','Online'):L('حضوري','In person'))+'</small></div>'+(tag?'<span class="dsh-st">'+tag+'</span>':'')+'</li>';
+  }
+  function more(href,t){return '<a class="dsh-more" href="'+href+'">'+t+' <span class="nj-arrow">←</span></a>';}
+  function empty(icon,title,text,href,btn){
+    return '<div class="dsh-empty"><h2 class="dsh-h">'+ic(icon)+title+'</h2><p>'+text+'</p><a class="nj-btn nj-btn-line nj-btn-sm" href="'+href+'">'+btn+'</a></div>';
+  }
+
+  function todayCard(st,now){
+    var cells=(st&&st.cells)||{},has=Object.keys(cells).some(function(k){return String(cells[k]||'').trim();});
+    if(!has)return empty('schedule',L('محاضرات اليوم','Today\'s lectures'),L('ضيف محاضراتك مرة وحدة، وكل يوم تلقى هنا محاضرات يومك ووقتها.','Add your lectures once, and every day you\'ll see today\'s lectures here.'),'schedule.html',L('صمّم جدولك','Build your schedule'));
+    var jd=now.getDay(),mins=now.getHours()*60+now.getMinutes(),list=jd<=4?sessions(st,jd):[];
+    var o='<h2 class="dsh-h">'+ic('schedule')+L('محاضرات اليوم','Today\'s lectures')+'<small>'+(jd<=4?DAYS[jd]:L('إجازة نهاية الأسبوع','Weekend'))+'</small></h2>';
+    var left=list.filter(function(x){return x.end>=mins;});
+    if(list.length){
+      var nextDone=false;
+      o+='<ul class="dsh-list">'+list.map(function(x){
+        if(x.end<mins)return row(x,'past','');
+        if(x.start<=mins)return row(x,'now',L('الحين','Now'));
+        var tag='';if(!nextDone){nextDone=true;var d=x.start-mins;tag=d<60?L('بعد '+pl(d,'دقيقة','دقيقتين','دقائق','دقيقة'),'In '+d+' min'):L('التالية','Next');}
+        return row(x,'',tag);
+      }).join('')+'</ul>';
+    }
+    if(!left.length){
+      var nx=null;for(var k=1;k<=7&&!nx;k++){var d2=(jd+k)%7;if(d2<=4){var s2=sessions(st,d2);if(s2.length)nx={k:k,d:d2,x:s2[0]};}}
+      o+='<p class="dsh-note">'+(list.length?L('خلصت محاضرات اليوم.','You\'re done with today\'s lectures.'):L('ما عندك محاضرات اليوم.','No lectures today.'))
+        +(nx?' '+L('أقرب محاضرة','Next lecture')+': <b>'+(nx.k===1?L('بكرة','tomorrow'):DAYS[nx.d])+' '+clock(nx.x.start)+'</b> · '+esc(nx.x.name):'')+'</p>';
+    }
+    return o+more('schedule.html',L('جدولي كامل','My full schedule'));
+  }
+
+  function examCard(st,now){
+    var t=new Date(now);t.setHours(0,0,0,0);
+    var l=((st&&st.exams)||[]).filter(function(x){return /^\d{4}-\d{2}-\d{2}$/.test(x.date||'')&&new Date(x.date+'T00:00:00')>=t;}).sort(function(a,b){return (a.date+(a.time||'')).localeCompare(b.date+(b.time||''));});
+    if(!l.length)return empty('calendar',L('أقرب اختبار','Next exam'),L('أضف مواعيد الميدتيرم والفاينل، ونعد لك الأيام الباقية.','Add your midterm and final dates, and we\'ll count down the days.'),'schedule.html#ex',L('أضف اختباراتك','Add your exams'));
+    var x=l[0],n=Math.round((new Date(x.date+'T00:00:00')-t)/864e5),type=x.type==='final'?L('فاينل','Final'):L('ميدتيرم','Midterm');
+    var when=esc(new Date(x.date+'T00:00:00').toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long'}))+(/^\d{1,2}:\d{2}$/.test(x.time||'')?' · '+clock(+x.time.split(':')[0]*60+ +x.time.split(':')[1]):'');
+    var big=n===0?ic('bell')+'<small>'+L('اليوم','Today')+'</small>':n===1?ic('bell')+'<small>'+L('بكرة','Tomorrow')+'</small>':'<b>'+n+'</b><small>'+(EN?'days':(n<=10?'أيام':'يوم'))+'</small>';
+    var rest=l.length-1;
+    return '<h2 class="dsh-h">'+ic('calendar')+L('أقرب اختبار','Next exam')+(rest?'<small>'+(EN?'+'+rest+' more':'وبعده '+pl(rest,'اختبار','اختبارين','اختبارات','اختبار'))+'</small>':'')+'</h2>'
+      +'<div class="dsh-big"><div class="dsh-num">'+big+'</div><div><b class="s">'+type+' · '+esc((x.subject||'').trim()||'—')+'</b><small>'+when+'</small></div></div>'
+      +more('schedule.html#ex',L('كل اختباراتي','All my exams'));
+  }
+
+  function progCard(){
+    var s=get('najd_plans_v1'),h=0;
+    try{if(s&&s.done&&window.NAJD_PLANS&&window.NAJD_PLANS[s.major]&&window.NajdPlan){window.NajdPlan.cleanAll(s.done);h=window.NajdPlan.hours(s.major,s.done);}}catch(e){}
+    if(!h)return empty('plans',L('تقدمك في الخطة','Your plan progress'),L('علّم على المقررات اللي خلصتها وشوف كم باقي لك.','Tick the courses you finished and see what\'s left.'),'plans.html',L('ابدأ خطتك','Start your plan'));
+    var pct=Math.min(100,Math.round(h/130*100));
+    return '<h2 class="dsh-h">'+ic('plans')+L('تقدمك في الخطة','Your plan progress')+'</h2>'
+      +'<div class="dsh-val"><span dir="ltr">'+pct+'%</span></div><div class="dsh-bar"><i style="width:'+pct+'%"></i></div>'
+      +'<p class="dsh-sub">'+(EN?h+' of 130 hours · '+Math.max(0,130-h)+' left':h+' من 130 ساعة · باقي لك '+Math.max(0,130-h))+'</p>'
+      +more('plans.html',L('خطتي','My plan'));
+  }
+
+  function gpaCard(){
+    var g=get('najd_gpa_v1'),th=0,tp=0;
+    ((g&&g.rows)||[]).forEach(function(r){if(!r||!(r.grade in GR))return;var hh=num(r.hours);th+=hh;tp+=hh*GR[r.grade];});
+    if(!th)return empty('gpa',L('معدلك','Your GPA'),L('حط تقديراتك المتوقعة وشوف معدلك الفصلي والتراكمي.','Enter your expected grades to see your GPA.'),'gpa.html',L('احسب معدلك','Calculate your GPA'));
+    var sem=tp/th,ph=Math.max(0,num(g.ph)),pg=Math.min(4,Math.max(0,num(g.pg)));
+    var cum=ph>0?(ph*pg+tp)/(ph+th):null;
+    return '<h2 class="dsh-h">'+ic('gpa')+L('معدلك المتوقع','Expected GPA')+'</h2>'
+      +'<div class="dsh-val"><span dir="ltr">'+sem.toFixed(2)+' <small>/ 4.00</small></span></div>'
+      +'<p class="dsh-sub" style="margin-top:6px">'+(cum!==null?L('التراكمي: ','Cumulative: ')+'<b style="color:var(--ink)">'+cum.toFixed(2)+'</b>':L('الفصلي، من '+th+' ساعة','This semester, '+th+' hours'))+'</p>'
+      +more('gpa.html',L('الحاسبة','Calculator'));
+  }
+
+  function hasData(st){
+    var c=(st&&st.cells)||{};
+    if(Object.keys(c).some(function(k){return String(c[k]||'').trim();})||((st&&st.exams)||[]).length)return true;
+    var p=get('najd_plans_v1');if(p&&p.done&&Object.keys(p.done).length)return true;
+    var g=get('najd_gpa_v1');return !!(g&&(g.rows||[]).some(function(r){return r&&r.grade;}));
+  }
+
+  function draw(){
+    var st=get('stq_schedule_v1')||{},isIn=root.classList.contains('is-in'),on=isIn||hasData(st);
+    root.classList.toggle('has-dash',on);box.hidden=!on;if(!on){box.innerHTML='';return;}
+    var now=new Date(),u=get('najd_user'),name=isIn&&u&&u.name?String(u.name).trim().split(/\s+/)[0]:'';
+    var hi=now.getHours()<12?L('صباح الخير','Good morning'):L('مساء الخير','Good evening');
+    box.innerHTML='<div class="nj-in">'
+      +'<div class="dsh-head"><small>'+esc(now.toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long'}))+'</small><h1>'+hi+(name?(EN?', ':'، ')+esc(name):'')+'</h1></div>'
+      +'<div class="dsh-grid"><section class="dsh-card">'+todayCard(st,now)+'</section>'
+      +'<div class="dsh-side"><section class="dsh-card">'+examCard(st,now)+'</section>'
+      +'<div class="dsh-two"><section class="dsh-card">'+progCard()+'</section><section class="dsh-card">'+gpaCard()+'</section></div></div></div>'
+      +(isIn?'':'<div class="dsh-guest"><p><b>'+L('بياناتك محفوظة في هذا الجهاز بس.','Your data is saved on this device only.')+'</b> '+L('أنشئ حساب مجاني عشان تلقاها في جوالك واللابتوب.','Create a free account to get it on your phone and laptop.')+'</p><a class="nj-btn nj-btn-fill nj-btn-sm" href="register.html">'+L('أنشئ حسابك','Create your account')+'</a></div>')
+      +'</div>';
+  }
+  draw();
+  ['najd:dirty','najd:auth','najd:auth-ready','storage','pageshow'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(draw,60);});});
+  /* «الحين» و«بعد كذا دقيقة» يتحدثون كل دقيقة */
+  setInterval(function(){if(!box.hidden&&!document.hidden)draw();},60000);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)draw();});
 })();
 </script>
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=20261115b");
+  const { db } = await import("./assets/js/auth.js?v=20261115d");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
