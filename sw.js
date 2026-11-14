@@ -1,15 +1,15 @@
 /* أكاديمية نجد: يخلّي الموقع يتثبت كتطبيق، ويفتح الأدوات حتى لو النت مقطوع.
    أرقام النسخ (?v=) يحدّثها tools/set-version.py، واسم الكاش يتغير معها فينحذف القديم لحاله. */
 const CORE = [
-  "assets/css/najd.css?v=20261115a",
-  "assets/css/auth.css?v=20261115a",
-  "assets/js/layout.js?v=20261115a",
-  "assets/js/i18n.js?v=20261115a",
-  "assets/js/auth.js?v=20261115a",
-  "assets/js/plans-data.js?v=20261115a",
-  "assets/js/courses-data.js?v=20261115a",
-  "assets/js/faculty-data.js?v=20261115a",
-  "assets/js/access.js?v=20261115a"
+  "assets/css/najd.css?v=20261115b",
+  "assets/css/auth.css?v=20261115b",
+  "assets/js/layout.js?v=20261115b",
+  "assets/js/i18n.js?v=20261115b",
+  "assets/js/auth.js?v=20261115b",
+  "assets/js/plans-data.js?v=20261115b",
+  "assets/js/courses-data.js?v=20261115b",
+  "assets/js/faculty-data.js?v=20261115b",
+  "assets/js/access.js?v=20261115b"
 ];
 const PAGES = ["./", "index.html", "plans.html", "schedule.html", "gpa.html", "calendar.html", "ratings.html", "offline.html",
   "assets/img/logo.svg", "assets/img/logo-light.svg", "assets/img/icon-192.png", "manifest.webmanifest"];

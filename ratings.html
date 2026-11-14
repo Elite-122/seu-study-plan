@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261115a">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115b">
 <style>
 #najd .rt-rules{font-size:var(--fs-base);color:var(--muted);background:var(--tint);border-radius:var(--r-md);padding:10px 14px;margin:12px 0 0}
 #najd .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--sp-5)}
@@ -84,6 +84,8 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 #najd .rt-sc{flex-shrink:0;min-width:52px;text-align:center;font-size:var(--fs-xl);font-weight:800;color:var(--c);line-height:1.1}
 #najd .rt-sc small{display:block;font-size:var(--fs-xs);font-weight:500;color:var(--slate)}
 #najd .rt-sc.is-none{color:var(--slate);font-size:var(--fs-lg)}
+#najd .rt-sc.is-none .nj-icon{display:block;width:22px;height:22px;margin:0 auto 2px;color:var(--soft)}
+#najd .rt-sc.is-none small{color:var(--dtext);font-weight:700}
 @media (max-width:560px){#najd .rt-cards{grid-template-columns:1fr}#najd .rt-code{min-width:74px;font-size:var(--fs-sm)}#najd .rt-shead{padding:16px 18px}#najd .rt-shead h2{font-size:var(--fs-2xl)}}
 #najd .rt-secs{margin:var(--sp-5) 0 0}
 #najd .rt-br{margin:var(--sp-5) 0 0;max-width:240px}
@@ -125,11 +127,11 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261115a"></script>
-<script src="assets/js/i18n.js?v=20261115a"></script>
-<script type="module" src="assets/js/auth.js?v=20261115a"></script>
-<script src="assets/js/courses-data.js?v=20261115a"></script>
-<script src="assets/js/faculty-data.js?v=20261115a"></script>
+<script src="assets/js/layout.js?v=20261115b"></script>
+<script src="assets/js/i18n.js?v=20261115b"></script>
+<script type="module" src="assets/js/auth.js?v=20261115b"></script>
+<script src="assets/js/courses-data.js?v=20261115b"></script>
+<script src="assets/js/faculty-data.js?v=20261115b"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KIND = {
@@ -177,8 +179,8 @@ async function load(k) {
 }
 function card(x) {
   const a = agg(kind, x.id);
-  if (kind !== "course") return `<div class="rt-card rt-inst" style="${secVars(x.dept === "other" ? "common" : x.dept)}"><button type="button" class="rt-open" data-id="${esc(x.id)}"><span class="rt-body"><b data-no-i18n>${esc(iname(x))}</b><small>${esc(imeta(x)) || "&nbsp;"}${a ? " · " + a.n + " تقييم" : ""}</small></span><span class="rt-sc${a ? "" : " is-none"}">${a ? a.rating.toFixed(1) : "—"}<small>${a ? "من 5" : "قيّمه"}</small></span></button>${mailBtn(x.email)}</div>`;
-  return `<button type="button" class="rt-card" data-id="${esc(x.id)}" style="${secVars(SEC[x.sec] ? x.sec : "common")}"><span class="rt-code" dir="ltr">${esc(x.id)}</span><span class="rt-body"><b>${esc(x.sub)}</b><small>${hrs(x.h)}${a ? " · " + a.n + " تقييم" : ""}</small></span><span class="rt-sc${a ? "" : " is-none"}">${a ? a.rating.toFixed(1) : "—"}<small>${a ? "من 5" : "قيّمه"}</small></span></button>`;
+  if (kind !== "course") return `<div class="rt-card rt-inst" style="${secVars(x.dept === "other" ? "common" : x.dept)}"><button type="button" class="rt-open" data-id="${esc(x.id)}"><span class="rt-body"><b data-no-i18n>${esc(iname(x))}</b><small>${esc(imeta(x)) || "&nbsp;"}${a ? " · " + a.n + " تقييم" : ""}</small></span><span class="rt-sc${a ? "" : " is-none"}">${a ? a.rating.toFixed(1) : window.Najd.icon("ratings")}<small>${a ? "من 5" : "قيّمه"}</small></span></button>${mailBtn(x.email)}</div>`;
+  return `<button type="button" class="rt-card" data-id="${esc(x.id)}" style="${secVars(SEC[x.sec] ? x.sec : "common")}"><span class="rt-code" dir="ltr">${esc(x.id)}</span><span class="rt-body"><b>${esc(x.sub)}</b><small>${hrs(x.h)}${a ? " · " + a.n + " تقييم" : ""}</small></span><span class="rt-sc${a ? "" : " is-none"}">${a ? a.rating.toFixed(1) : window.Najd.icon("ratings")}<small>${a ? "من 5" : "قيّمه"}</small></span></button>`;
 }
 function secs() {
   const box = $("rt-secs"), br = $("rt-br");
@@ -194,7 +196,8 @@ function secs() {
 }
 function byLevel(l) {
   const lv = [...new Set(l.map((x) => x.lv))].sort((a, b) => a - b);
-  return lv.map((v) => `<h3 class="rt-lv">${LVN[v] || ""}</h3><div class="rt-cards">${l.filter((x) => x.lv === v).map(card).join("")}</div>`).join("");
+  const n = (x) => (agg(kind, x.id) || {}).n || 0; /* اللي لها تقييمات تطلع أول في كل مستوى */
+  return lv.map((v) => `<h3 class="rt-lv">${LVN[v] || ""}</h3><div class="rt-cards">${l.filter((x) => x.lv === v).sort((a, b) => n(b) - n(a)).map(card).join("")}</div>`).join("");
 }
 function list() {
   $("rt-list-v").hidden = false; $("rt-detail-v").hidden = true; $("rt-q").placeholder = KIND[kind].ph; secs();
@@ -271,7 +274,7 @@ $("rt-br").addEventListener("change", (e) => { ibr = e.target.value; list(); });
 $("rt-secs").addEventListener("click", (e) => { const b = e.target.closest(".rt-sec"); if (!b) return; if (b.dataset.isec) isec = b.dataset.isec; else sec = b.dataset.sec; list(); });
 let qt; $("rt-q").addEventListener("input", function () { clearTimeout(qt); const v = this.value; qt = setTimeout(() => { q = v; list(); }, 150); });
 try {
-  const M = await import("./assets/js/auth.js?v=20261115a");
+  const M = await import("./assets/js/auth.js?v=20261115b");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };

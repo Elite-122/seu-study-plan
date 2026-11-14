@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261115a">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115b">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
@@ -68,12 +68,6 @@
 @keyframes hmFloat{50%{transform:translateY(-8px)}}
 
 /* شريط الأرقام (بأسلوب فرونت إيدوس) */
-#najd .hm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-6);margin-top:-44px;position:relative;z-index:2}
-#najd .hm-stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
-#najd .hm-stat b{display:block;font-size:40px;font-weight:800;line-height:1.1;color:var(--dtext)}
-#najd .hm-stat b sup{font-size:var(--fs-2xl);color:var(--teal);margin-inline-start:2px}
-#najd .hm-stat>span{display:block;font-size:var(--fs-lg);font-weight:700;margin:6px 0 0}
-#najd .hm-stat small{display:block;font-size:var(--fs-md);color:var(--slate)}
 
 #najd .hm-tools{grid-template-columns:repeat(3,1fr);gap:var(--sp-6)}
 #najd .hm-tools .nj-tile{padding:16px}
@@ -89,7 +83,7 @@
 #najd .hm-next .t{flex:1;min-width:200px}
 #najd .hm-next .t small{color:var(--mist);font-size:var(--fs-md)}
 #najd .hm-next .t b{display:block;font-size:var(--fs-xl);font-weight:800}
-#najd .hm-next .nj-btn{height:42px;font-size:var(--fs-base)}
+#najd .hm-next .nj-btn{height:var(--control-h-sm);font-size:var(--fs-base)}
 /* آراء الطلاب */
 #najd .hm-says{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-6)}
 #najd .hm-say{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:var(--sp-6)}
@@ -110,15 +104,6 @@
 #najd .hm-share-ok{background:var(--tint);border-radius:var(--r);padding:20px;font-size:var(--fs-body);font-weight:700;color:var(--dtext)}
 @media (max-width:560px){#najd .hm-share-g{grid-template-columns:1fr}}
 /* القصة والرؤية */
-#najd .hm-story{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-10);align-items:start}
-#najd .hm-story h2{font-size:34px;font-weight:800;line-height:1.35}
-#najd .hm-story-t p{font-size:var(--fs-body);color:var(--muted);margin:16px 0 0}
-#najd .hm-story-t p b{color:var(--dtext)}
-#najd .hm-vals{display:grid;gap:var(--sp-5)}
-#najd .hm-val{display:flex;gap:var(--sp-6);align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow)}
-#najd .hm-val svg{flex-shrink:0;width:48px;height:48px}
-#najd .hm-val h3{font-size:var(--fs-xl);font-weight:800}
-#najd .hm-val p{font-size:var(--fs-lg);color:var(--muted)}
 
 /* التدريب التعاوني */
 #najd .hm-coop{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--sp-9);align-items:center}
@@ -130,13 +115,6 @@
 @media (max-width:1080px){#najd .hm-coop{grid-template-columns:1fr}}
 @media (max-width:860px){#najd .hm-coop h2{font-size:var(--fs-4xl)}}
 /* الخطوات */
-#najd .hm-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-7);counter-reset:st}
-#najd .hm-step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);position:relative}
-#najd .hm-step::before{counter-increment:st;content:counter(st);display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:var(--r-lg);background:var(--deep);color:#fff;font-weight:800;font-size:var(--fs-2xl);margin:0 0 14px}
-#najd .hm-step:nth-child(2)::before{background:var(--teal)}
-#najd .hm-step:nth-child(3)::before{background:var(--soft)}
-#najd .hm-step h3{font-size:var(--fs-xl);font-weight:800}
-#najd .hm-step p{font-size:var(--fs-lg);color:var(--muted);margin:4px 0 0}
 
 /* الحساب والمزامنة */
 #najd .hm-acc{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--sp-9);align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r-xl);padding:36px;box-shadow:var(--shadow)}
@@ -157,6 +135,7 @@
 
 /* الدعوة الأخيرة */
 #najd .hm-cta{position:relative;overflow:hidden;border-radius:var(--r-xl);padding:44px;background:radial-gradient(500px 260px at 10% 0%,#4C7A78 0%,rgba(76,122,120,0) 70%),linear-gradient(150deg,var(--deep),var(--deeper));color:#fff;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-8);flex-wrap:wrap}
+#najd .hm-cta-k{display:inline-block;font-size:var(--fs-md);font-weight:700;color:var(--mist);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:var(--r-pill);padding:4px 14px;margin:0 0 10px}
 #najd .hm-cta h2{font-size:var(--fs-5xl);font-weight:800;line-height:1.35}
 #najd .hm-cta p{color:var(--mist);font-size:var(--fs-body);margin:6px 0 0}
 #najd .hm-cta .hm-ctas{margin:0}
@@ -165,23 +144,20 @@
 @media (max-width:1080px){
 #najd .hm-hero .nj-in{grid-template-columns:1fr}
 #najd .hm-vis{min-height:380px;max-width:520px;width:100%;margin:0 auto}
-#najd .hm-stats{grid-template-columns:repeat(2,1fr)}
-#najd .hm-story,#najd .hm-acc{grid-template-columns:minmax(0,1fr)}
+#najd .hm-acc{grid-template-columns:minmax(0,1fr)}
 #najd .hm-dev{overflow:hidden}
 }
 @media (max-width:860px){
 #najd .hm-hero{padding:40px 0 72px}
 #najd .hm-hero h1{font-size:34px}
 #najd .hm-lead{font-size:var(--fs-body)}
-#najd .hm-steps{grid-template-columns:1fr}
-#najd .hm-story h2,#najd .hm-acc h2,#najd .hm-cta h2{font-size:var(--fs-4xl)}
+#najd .hm-acc h2,#najd .hm-cta h2{font-size:var(--fs-4xl)}
 #najd .hm-acc,#najd .hm-cta{padding:24px}
 #najd .hm-ctas .nj-btn{flex:1 1 200px}
 #najd .hm-vis{min-height:340px}
 #najd .hm-win{inset:30px 0 50px 16px}
 #najd .hm-lap{width:200px}#najd .hm-lap-s{height:124px}#najd .hm-phone{width:92px;height:172px}
 }
-@media (max-width:420px){#najd .hm-stat b{font-size:var(--fs-5xl)}#najd .hm-stats{gap:var(--sp-4)}#najd .hm-stat{padding:16px}}
 </style>
 </head>
 <body>
@@ -222,15 +198,6 @@
 </div>
 </section>
 
-<!-- الأرقام -->
-<div class="nj-in">
-<div class="hm-stats nj-rv">
-<div class="hm-stat"><b><span data-count="4">4</span></b><span>تخصصات</span><small>بخططها الكاملة</small></div>
-<div class="hm-stat"><b><span data-count="130">130</span></b><span>ساعة معتمدة</span><small>مرتبة حسب المستوى</small></div>
-<div class="hm-stat"><b><span data-count="11">11</span></b><span>مقاس لجدولك</span><small>جوال، آيباد، وA4</small></div>
-<div class="hm-stat"><b><span data-count="3">3</span><sup>+</sup></b><span>أدوات مجانية</span><small>بدون أي اشتراك</small></div>
-</div>
-</div>
 
 <div class="nj-in"><div class="hm-next" id="hm-next" hidden></div></div>
 
@@ -294,23 +261,6 @@
 </div>
 </section>
 
-<!-- القصة والرؤية (بأسلوب فرونت إيدوس) -->
-<section class="nj-sec nj-sec-white" id="about">
-<div class="nj-in hm-story">
-<div class="hm-story-t nj-rv">
-<span class="nj-pill">من نحن</span>
-<h2>القصة والرؤية</h2>
-<p>أكاديمية نجد مبادرة تعليمية هدفها <b>تسهيل التعلم على الطلاب</b>. جمعنا في مكان واحد كل اللي يحتاجه الطالب في فصله الدراسي.</p>
-<p>خطة واضحة يتابعها، وجدول يرتبه بنفسه، وحاسبة تعطيه صورة واضحة عن معدله، وشروحات تساعده يتقدم في المقررات اللي يحتاج فيها دعم.</p>
-<p>رؤيتنا: <b>كل طالب يبدأ فصله وهو عارف طريقه.</b></p>
-</div>
-<div class="hm-vals nj-rv">
-<div class="hm-val"><svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="14" fill="#E4E9EB"/><path d="M12 34L24 12L36 34Z" fill="#568A88"/></svg><div><h3>تعليم بهدف واضح</h3><p>كل أداة هنا مصممة عشان توفر وقتك وتخليك تركز على دراستك.</p></div></div>
-<div class="hm-val"><svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="14" fill="#E4E9EB"/><path d="M23 37L9 33V15L23 19Z" fill="#758A8C"/><path d="M25 37L39 33V15L25 19Z" fill="#568A88"/></svg><div><h3>سهولة بدون تعقيد</h3><p>واجهات بسيطة تشتغل من الجوال والكمبيوتر بنفس السلاسة.</p></div></div>
-<div class="hm-val"><svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="14" fill="#E4E9EB"/><path d="M8 34L14 26L20 34Z" fill="#B0B8BC"/><path d="M18 34L25 21L32 34Z" fill="#7A9FA3"/><path d="M29 34L35 15L41 34Z" fill="#568A88"/></svg><div><h3>من طلاب لطلاب</h3><p>نعرف تحديات الفصل الدراسي لأننا عشناها، وبنينا الحلول على هذا الأساس.</p></div></div>
-</div>
-</div>
-</section>
 
 <!-- التدريب التعاوني -->
 <section class="nj-sec" id="coop">
@@ -377,37 +327,23 @@
 </div>
 </section>
 
-<!-- الخطوات -->
-<section class="nj-sec nj-sec-white">
-<div class="nj-in">
-<div class="nj-sh nj-sh-c">
-<h2 class="nj-tt"><span class="nj-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>كيف تبدأ مع أكاديمية نجد؟</h2>
-<p>ثلاث خطوات، وكل خطوة تقربك من القمة.</p>
-</div>
-<div class="hm-steps nj-rv">
-<div class="hm-step"><h3>أنشئ حسابك</h3><p>دقيقة وحدة ويصير عندك حساب، بـ Gmail أو بريدك.</p></div>
-<div class="hm-step"><h3>رتّب فصلك</h3><p>علّم على خطتك، وصمّم جدولك، واحسب معدلك، وكل شي يتحفظ في حسابك.</p></div>
-<div class="hm-step"><h3>ابدأ التعلم</h3><p>سجّل دخولك من أي جهاز وكمّل من حيث وقفت.</p></div>
-</div>
-</div>
-</section>
 
-<!-- الدعوة -->
-<section class="nj-sec" style="padding-bottom:0">
+
+<!-- من نحن والدعوة -->
+<section class="nj-sec" id="about" style="padding-bottom:0">
 <div class="nj-in">
 <div class="hm-cta nj-rv">
 <svg class="hm-cta-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#fff"/><path d="M50 48 L60 30 L70 48 Z" fill="#fff"/><path d="M74 48 L84 24 L94 48 Z" fill="#fff"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#fff"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#fff"/></svg>
-<div><h2>جاهز تبدأ فصلك صح؟</h2><p>سجّل بحساب Gmail وتفتح لك كل الأدوات، وتصفح فرص التدريب التعاوني بدون تسجيل.</p></div>
-<div class="hm-ctas"><a class="nj-btn nj-btn-white nj-guest" href="register.html">أنشئ حسابك</a><a class="nj-btn nj-btn-ghost" href="coop.html">فرص التدريب التعاوني</a></div>
+<div><span class="hm-cta-k">من نحن</span><h2>من طلاب لطلاب</h2><p>أكاديمية نجد مبادرة هدفها إن كل طالب يبدأ فصله وهو عارف طريقه. الأدوات مجانية وتشتغل بدون حساب، والحساب يحفظ تقدمك في كل أجهزتك.</p></div>
+<div class="hm-ctas"><a class="nj-btn nj-btn-white nj-guest" href="register.html">أنشئ حسابك</a><a class="nj-btn nj-btn-white nj-member" href="plans.html">افتح خطتك</a><a class="nj-btn nj-btn-ghost" href="coop.html">فرص التدريب التعاوني</a></div>
 </div>
 </div>
 </section>
-
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261115a"></script>
-<script src="assets/js/plans-data.js?v=20261115a"></script>
+<script src="assets/js/layout.js?v=20261115b"></script>
+<script src="assets/js/plans-data.js?v=20261115b"></script>
 <script>
 /* بطاقة «تقدمك في الخطة»: تقرأ تقدم الطالب الفعلي وتتحدث مع أي تغيير أو مزامنة */
 (function(){
@@ -421,8 +357,8 @@
   setTimeout(draw,1500);setTimeout(draw,4000);
 })();
 </script>
-<script src="assets/js/i18n.js?v=20261115a"></script>
-<script type="module" src="assets/js/auth.js?v=20261115a"></script>
+<script src="assets/js/i18n.js?v=20261115b"></script>
+<script type="module" src="assets/js/auth.js?v=20261115b"></script>
 <script>
 /* عدّاد الاختبار القادم: من جدول الطالب المحفوظ */
 (function(){
@@ -446,7 +382,7 @@
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=20261115a");
+  const { db } = await import("./assets/js/auth.js?v=20261115b");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
