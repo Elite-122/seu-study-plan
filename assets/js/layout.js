@@ -11,7 +11,7 @@
   var CONTACT_EMAIL='najdacdemy@gmail.com';
   /* القائمة العلوية: مجموعتين منسدلتين + رابطين مباشرين */
   /* أيقونات مرسومة بألوان الهوية (بدل الإيموجي). الاستخدام: Najd.icon('lock') */
-  var IC={plans:'<path d="M8 4h8a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V6a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 13h6M9 17h3"/>',
+  var IC={home:'<path d="M4 11l8-7 8 7"/><path d="M6 10v9a1 1 0 0 0 1 1h4v-5h2v5h4a1 1 0 0 0 1-1v-9"/>',more:'<rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/>',plans:'<path d="M8 4h8a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V6a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 13h6M9 17h3"/>',
     schedule:'<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2"/>',
     gpa:'<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7M8.5 12h1M12 12h1M15.5 12h.01M8.5 16h1M12 16h1M15.5 16h.01"/>',
     calendar:'<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/>',
@@ -119,6 +119,14 @@
       +'<p class="nj-copy"><a href="'+LINKS.privacy+'">سياسة الخصوصية</a> · <a href="'+LINKS.terms+'">الشروط والأحكام</a><br>© <span>'+new Date().getFullYear()+'</span> أكاديمية نجد. جميع الحقوق محفوظة.</p></div>'
       +'</div></footer>';
   }
+  /* الشريط السفلي: يظهر بس داخل التطبيق المثبّت على الجوال (التنسيق في najd.css) */
+  if(head!==null&&PAGE!=='admin'){
+    var TABS=[['home','الرئيسية'],['plans','خطتي'],['schedule','جدولي'],['gpa','المعدل']];
+    var tb=document.createElement('nav');tb.className='nj-tabbar';tb.setAttribute('aria-label','التنقل السريع');
+    tb.innerHTML=TABS.map(function(x){return '<a href="'+LINKS[x[0]]+'"'+cur(x[0])+'><i>'+icon(x[0])+'</i>'+x[1]+'</a>';}).join('')
+      +'<button type="button" data-tab-more aria-expanded="false" aria-controls="nj-drawer"><i>'+icon('more')+'</i>المزيد</button>';
+    root.appendChild(tb);
+  }
   var t=document.createElement('div');t.className='nj-toast';t.setAttribute('role','status');t.setAttribute('aria-live','polite');root.appendChild(t);
 
   /* حقول التاريخ والوقت والأرقام: نخليها بالإنجليزي */
@@ -174,8 +182,11 @@
   /* القائمة في الجوال */
   var hd=document.getElementById('nj-head'),btn=document.getElementById('nj-menu');
   if(hd&&btn){
-    btn.addEventListener('click',function(){var o=hd.classList.toggle('is-open');btn.setAttribute('aria-expanded',o?'true':'false');btn.setAttribute('aria-label',o?'إغلاق القائمة':'فتح القائمة');});
-    document.getElementById('nj-drawer').addEventListener('click',function(e){if(e.target.closest('a'))hd.classList.remove('is-open');});
+    var more=root.querySelector('[data-tab-more]');
+    function menuSet(o){hd.classList.toggle('is-open',o);btn.setAttribute('aria-expanded',o?'true':'false');btn.setAttribute('aria-label',o?'إغلاق القائمة':'فتح القائمة');if(more)more.setAttribute('aria-expanded',o?'true':'false');}
+    btn.addEventListener('click',function(){menuSet(!hd.classList.contains('is-open'));});
+    if(more)more.addEventListener('click',function(){menuSet(!hd.classList.contains('is-open'));});
+    document.getElementById('nj-drawer').addEventListener('click',function(e){if(e.target.closest('a'))menuSet(false);});
   }
 
   /* روابط data-link داخل محتوى الصفحات */

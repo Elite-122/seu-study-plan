@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>تجارب الطلاب | أكاديمية نجد</title>
 <meta name="description" content="تجارب الطلاب مع المقررات وأعضاء هيئة التدريس: التقييم، والصعوبة، والنصايح.">
 <meta property="og:type" content="website">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261114b">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115a">
 <style>
 #najd .rt-rules{font-size:var(--fs-base);color:var(--muted);background:var(--tint);border-radius:var(--r-md);padding:10px 14px;margin:12px 0 0}
 #najd .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--sp-5)}
@@ -42,7 +42,7 @@
 #najd .rt-score small{font-size:var(--fs-xs)}
 #najd .rt-score.is-none{background:var(--bg)}
 #najd .rt-score.is-none b{color:var(--slate);font-size:var(--fs-base)}
-#najd .rt-back{border:0;background:none;color:var(--dtext);font-weight:700;font-size:var(--fs-base);cursor:pointer;padding:0;margin:0 0 12px;text-decoration:underline;text-underline-offset:3px}
+#najd .rt-back{border:0;background:none;color:var(--dtext);font-weight:700;font-size:var(--fs-base);cursor:pointer;padding:0;margin:-6px 0 6px;min-height:44px;text-decoration:underline;text-underline-offset:3px}
 #najd .rt-head h2{font-size:var(--fs-3xl)}
 #najd .rt-head p{color:var(--muted);font-size:var(--fs-base)}
 #najd .rt-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);margin:14px 0 0}
@@ -64,7 +64,7 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 #najd .rt-msg.is-err{color:var(--err)}
 #najd .rt-msg.is-ok{color:var(--ok)}
 #najd .rt-pending{font-size:var(--fs-md);background:var(--warn-bg);color:var(--warn);border-radius:var(--r-sm);padding:8px 12px;margin:10px 0 0}
-@media (max-width:560px){#najd .rt-stats{grid-template-columns:1fr 1fr 1fr;gap:var(--sp-2)}#najd .rt-stat b{font-size:var(--fs-2xl)}#najd .rt-stars button{width:42px;height:42px}}
+@media (max-width:560px){#najd .rt-stats{grid-template-columns:1fr 1fr 1fr;gap:var(--sp-2)}#najd .rt-stat b{font-size:var(--fs-2xl)}#najd .rt-stars button{width:44px;height:44px}}
 #najd .rt-sec i{width:10px;height:10px;border-radius:50%;background:var(--cs)}
 #najd .rt-sec[aria-pressed="true"]{background:var(--cs);border-color:var(--cs);color:#fff}
 #najd .rt-sec[aria-pressed="true"] i{background:#fff}
@@ -125,11 +125,11 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261114b"></script>
-<script src="assets/js/i18n.js?v=20261114b"></script>
-<script type="module" src="assets/js/auth.js?v=20261114b"></script>
-<script src="assets/js/courses-data.js?v=20261114b"></script>
-<script src="assets/js/faculty-data.js?v=20261114b"></script>
+<script src="assets/js/layout.js?v=20261115a"></script>
+<script src="assets/js/i18n.js?v=20261115a"></script>
+<script type="module" src="assets/js/auth.js?v=20261115a"></script>
+<script src="assets/js/courses-data.js?v=20261115a"></script>
+<script src="assets/js/faculty-data.js?v=20261115a"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KIND = {
@@ -271,7 +271,7 @@ $("rt-br").addEventListener("change", (e) => { ibr = e.target.value; list(); });
 $("rt-secs").addEventListener("click", (e) => { const b = e.target.closest(".rt-sec"); if (!b) return; if (b.dataset.isec) isec = b.dataset.isec; else sec = b.dataset.sec; list(); });
 let qt; $("rt-q").addEventListener("input", function () { clearTimeout(qt); const v = this.value; qt = setTimeout(() => { q = v; list(); }, 150); });
 try {
-  const M = await import("./assets/js/auth.js?v=20261114b");
+  const M = await import("./assets/js/auth.js?v=20261115a");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
