@@ -254,6 +254,8 @@ window.NAJD_I18N={DICT:{
 "ابدأ مجانًا": "Start for free",
 "كمّل خطتك": "Continue your plan",
 "ابدأ خطتك": "Start your plan",
+"تصفّح بدون حساب": "Browse without an account",
+"بدون حساب": "No account needed",
 "اختر تقديراتك": "Pick your grades",
 "اختر تخصصك": "Pick your major",
 "استكشف الأدوات": "Explore the tools",

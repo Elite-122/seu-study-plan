@@ -103,6 +103,8 @@ body{margin:0;background:#F4F7F7}
 #najd .nj-paid{background:var(--deep);color:#fff}
 #najd .nj-tile .nj-btn{margin-top:4px}
 #najd .nj-lock{display:inline-flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-md);font-weight:700;color:var(--slate)}
+#najd .nj-open{display:inline-flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-md);font-weight:700;color:var(--ok)}
+#najd .nj-open svg{width:14px;height:14px}
 
 /* ===== الفوتر ===== */
 #najd .nj-foot{background:linear-gradient(170deg,var(--deeper),#1C302F);color:var(--light);padding:56px 0 28px;margin-top:72px}
