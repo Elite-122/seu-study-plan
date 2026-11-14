@@ -1,0 +1,183 @@
+<!doctype html><html lang="ar" dir="rtl" data-theme="light"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>عيّنة: خطة المذاكرة</title><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../assets/css/najd.css">
+<style>
+#najd .sp-top{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5);margin:0 0 var(--sp-6)}
+#najd .sp-stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:var(--sp-5)}
+#najd .sp-stat b{display:block;font-size:var(--fs-2xl);font-weight:800;line-height:1.2}
+#najd .sp-stat small{color:var(--slate);font-size:var(--fs-sm)}
+#najd .sp-ring{flex-shrink:0;width:52px;height:52px;border-radius:50%;background:conic-gradient(var(--teal) calc(var(--p)*1%),var(--light) 0);display:grid;place-items:center}
+#najd .sp-ring i{width:40px;height:40px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-style:normal;font-weight:800;font-size:var(--fs-md)}
+#najd .sp-ic{flex-shrink:0;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--teal)}
+#najd .sp-ic .nj-icon{width:24px;height:24px}
+#najd .sp-ic.warn{background:var(--warn-bg);color:var(--warn)}
+#najd .sp-h{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);margin:0 0 var(--sp-4)}
+#najd .sp-h h2{font-size:var(--fs-3xl)}
+#najd .sp-list{display:flex;flex-direction:column;gap:var(--sp-4)}
+#najd .sp-s{display:flex;align-items:center;gap:var(--sp-5);background:var(--card);border:1px solid var(--line);border-inline-start:5px solid var(--ac);border-radius:var(--r-lg);padding:12px 14px}
+#najd .sp-s.done{opacity:.6}
+#najd .sp-s.done .sp-t b{text-decoration:line-through}
+#najd .sp-time{flex-shrink:0;width:64px;text-align:center;direction:ltr;font-weight:800;font-size:var(--fs-base);line-height:1.2}
+#najd .sp-time small{display:block;font-weight:500;color:var(--slate);font-size:var(--fs-xs)}
+#najd .sp-t{flex:1;min-width:0}
+#najd .sp-t b{display:block;font-size:var(--fs-lg)}
+#najd .sp-t .row{display:flex;gap:var(--sp-2);flex-wrap:wrap;align-items:center;margin-top:4px}
+#najd .sp-code{font-weight:800;font-size:var(--fs-sm);border-radius:8px;padding:2px 8px;background:var(--bg-c);color:var(--ac);direction:ltr}
+#najd .sp-act{display:flex;gap:var(--sp-2);flex-shrink:0}
+#najd .sp-box{flex-shrink:0;width:30px;height:30px;border-radius:9px;border:2px solid var(--mist);display:grid;place-items:center;color:#fff;font-weight:800}
+#najd .sp-s.done .sp-box{background:var(--teal);border-color:var(--teal)}
+#najd .sp-moved{font-size:var(--fs-sm);color:var(--warn);background:var(--warn-bg);border-radius:var(--r-sm);padding:2px 10px}
+#najd .sp-dl{display:flex;flex-direction:column;gap:var(--sp-3)}
+#najd .sp-dl div{display:flex;align-items:center;gap:var(--sp-4);padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--bg)}
+#najd .sp-dl b{flex:1;font-size:var(--fs-base)}
+#najd .sp-dl small{color:var(--slate);font-size:var(--fs-sm)}
+#najd .nj-seg.sp-col>button{flex-direction:column;gap:2px;padding:8px}
+#najd .nj-seg.sp-col small{font-size:var(--fs-xs);font-weight:500;opacity:.8}
+#najd .sp-grid2>*{min-width:0}
+#najd .wk-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+#najd .sp-grid2{display:grid;grid-template-columns:1.6fr 1fr;gap:var(--sp-6);align-items:start}
+/* week */
+#najd .wk{display:grid;grid-template-columns:56px repeat(7,1fr);gap:4px}
+#najd .wk .dh{text-align:center;font-weight:800;font-size:var(--fs-sm);padding:6px 0;border-radius:8px;background:var(--deep);color:#fff}
+#najd .wk .dh.today{background:var(--teal)}
+#najd .wk .th{direction:ltr;text-align:center;font-size:var(--fs-xs);color:var(--slate);font-weight:700;padding-top:6px}
+#najd .wk .c{min-height:46px;border-radius:8px;background:var(--bg);border:1px dashed var(--line);padding:3px 5px;font-size:11px;line-height:1.3}
+#najd .wk .c.s{background:var(--bg-c);border:0;border-inline-start:4px solid var(--ac)}
+#najd .wk .c.l{background:repeating-linear-gradient(135deg,var(--light) 0 6px,var(--bg) 6px 12px);border:0}
+#najd .wk .c b{display:block;direction:ltr;text-align:right;font-weight:800;font-size:11.5px;color:var(--ink)}
+#najd .wk .c small{color:var(--muted)}
+#najd .lg{display:flex;gap:var(--sp-6);flex-wrap:wrap;font-size:var(--fs-sm);color:var(--muted);margin:var(--sp-4) 0 0}
+#najd .lg span{display:flex;align-items:center;gap:6px}
+#najd .lg i{width:16px;height:12px;border-radius:3px;display:inline-block}
+#najd .hrs{display:flex;flex-direction:column;gap:var(--sp-4)}
+#najd .hr{display:grid;grid-template-columns:86px 1fr 92px;align-items:center;gap:var(--sp-4);font-size:var(--fs-sm)}
+#najd .hr .bar{height:10px;border-radius:999px;background:var(--light);overflow:hidden}
+#najd .hr .bar i{display:block;height:100%;border-radius:inherit;background:var(--ac)}
+#najd .hr b{direction:ltr;text-align:right}
+#najd .diff{font-size:11px;color:var(--slate)}
+/* exam */
+#najd .ex-hero{display:flex;align-items:center;gap:var(--sp-7);background:linear-gradient(135deg,var(--deep),var(--deeper));color:#fff;border-radius:var(--r);padding:20px 24px;margin:0 0 var(--sp-6)}
+#najd .ex-n{flex-shrink:0;width:92px;height:92px;border-radius:24px;background:rgba(255,255,255,.12);display:grid;place-items:center;text-align:center;line-height:1}
+#najd .ex-n b{font-size:40px;font-weight:800;display:block}
+#najd .ex-n small{font-size:var(--fs-sm);color:#C8CFD2}
+#najd .ex-hero h2{color:#fff;font-size:var(--fs-3xl)}
+#najd .ex-hero p{color:#C8CFD2}
+#najd .ex-hero .pb{height:10px;border-radius:999px;background:rgba(255,255,255,.15);margin-top:10px;overflow:hidden;max-width:360px}
+#najd .ex-hero .pb i{display:block;height:100%;width:40%;background:var(--sand);border-radius:inherit}
+#najd .tl{display:flex;flex-direction:column;gap:0;position:relative;padding-inline-start:28px}
+#najd .tl::before{content:"";position:absolute;inset-inline-start:9px;top:8px;bottom:8px;width:2px;background:var(--line)}
+#najd .tl>div{position:relative;padding:8px 0 12px}
+#najd .tl>div::before{content:"";position:absolute;inset-inline-start:-25px;top:13px;width:14px;height:14px;border-radius:50%;background:var(--card);border:3px solid var(--mist)}
+#najd .tl>div.ok::before{background:var(--teal);border-color:var(--teal)}
+#najd .tl>div.now::before{border-color:var(--teal);box-shadow:var(--ring)}
+#najd .tl b{font-size:var(--fs-base)}
+#najd .tl small{display:block;color:var(--slate);font-size:var(--fs-sm)}
+#najd .tl .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
+#najd .ch{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3)}
+#najd .ch div{border:1px solid var(--line);border-radius:var(--r-md);padding:10px 12px;font-size:var(--fs-sm);display:flex;gap:8px;align-items:center;background:var(--card)}
+#najd .ch div.ok{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok)}
+/* setup */
+#najd .days{display:flex;flex-direction:column;gap:var(--sp-3)}
+#najd .day{display:grid;grid-template-columns:80px 1fr;align-items:center;gap:var(--sp-4)}
+#najd .day b{font-size:var(--fs-base)}
+#najd .slots{display:flex;gap:6px;flex-wrap:wrap}
+#najd .slots span{font-size:var(--fs-sm);border-radius:999px;padding:4px 12px;border:1.5px solid var(--line);direction:ltr}
+#najd .slots span.on{background:var(--deep);border-color:var(--deep);color:#fff}
+#najd .slots span.lec{background:repeating-linear-gradient(135deg,var(--light) 0 6px,var(--bg) 6px 12px);color:var(--slate);border-style:dashed}
+@media (max-width:560px){#najd .sp-top{grid-template-columns:1fr;gap:var(--sp-3)}#najd .sp-stat{padding:10px 14px}#najd .sp-stat b{font-size:var(--fs-xl)}#najd .wk{min-width:560px;grid-template-columns:44px repeat(7,1fr)}#najd .wk .c small{display:none}#najd .hr{grid-template-columns:70px 1fr 80px}#najd .nj-seg.sp-col>button{flex-direction:column;gap:2px;padding:8px}
+#najd .nj-seg.sp-col small{font-size:var(--fs-xs);font-weight:500;opacity:.8}
+#najd .sp-grid2{grid-template-columns:1fr}#najd .sp-s{flex-wrap:wrap}#najd .sp-act{width:100%;padding-inline-start:94px}#najd .ex-hero{flex-direction:column;align-items:flex-start}#najd .ch{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<div id="najd" dir="rtl" data-page="study">
+<div id="nj-header"></div>
+<section class="nj-band"><div class="nj-in"><p class="nj-crumb"><a href="#">الرئيسية</a><span>/</span>خطة المذاكرة</p><h1>خطة المذاكرة</h1><p class="nj-band-sub">خطة أسبوعية تتسوى لحالها من جدولك واختباراتك، وتتعدل إذا فاتتك جلسة.</p></div></section>
+<main class="nj-main"><div class="nj-in">
+<div class="nj-tabs" role="tablist" id="tabs"><button class="nj-tab" data-v="today" aria-selected="true">اليوم</button><button class="nj-tab" data-v="week" aria-selected="false">الأسبوع</button><button class="nj-tab" data-v="exam" aria-selected="false">قبل الاختبار</button><button class="nj-tab" data-v="setup" aria-selected="false">الإعدادات</button></div>
+
+<section data-p="today">
+<div class="sp-top">
+<div class="sp-stat"><span class="sp-ring" style="--p:50"><i>2/4</i></span><div><b>2 من 4 جلسات</b><small>باقي ساعة و20 دقيقة</small></div></div>
+<div class="sp-stat"><span class="sp-ic" id="ic-streak"></span><div><b>5 أيام</b><small>على التوالي ملتزم بخطتك</small></div></div>
+<div class="sp-stat"><span class="sp-ic warn" id="ic-exam"></span><div><b>بعد 8 أيام</b><small>ميدتيرم ACCT201 · الأحد 22 نوفمبر</small></div></div>
+</div>
+<div class="sp-grid2">
+<div class="nj-card" style="margin:0"><div class="sp-h"><h2>الأحد 15 نوفمبر</h2><span class="nj-tag">4 جلسات</span></div>
+<div class="sp-list" id="today"></div></div>
+<div class="nj-card" style="margin:0"><div class="sp-h"><h2>مواعيد قريبة</h2><button class="nj-btn nj-btn-line nj-btn-sm">+ واجب أو كويز</button></div>
+<div class="sp-dl">
+<div><span class="nj-tag is-err">بعد يومين</span><b>واجب 2 · FIN201</b><small>الثلاثاء 11:59م</small></div>
+<div><span class="nj-tag is-warn">بعد 4 أيام</span><b>كويز 1 · MGT311</b><small>الخميس 10:00م</small></div>
+<div><span class="nj-tag">بعد 6 أيام</span><b>نقاش أسبوعي · LAW101</b><small>السبت</small></div>
+<div><span class="nj-tag is-paid">بعد 8 أيام</span><b>ميدتيرم · ACCT201</b><small>الأحد 4:00م</small></div>
+</div>
+<p class="nj-hint" style="margin:12px 0 0">كل موعد تضيفه، الخطة تحط له جلسة قبله.</p></div>
+</div>
+</section>
+
+<section data-p="week" hidden>
+<div class="sp-grid2">
+<div class="nj-card" style="margin:0"><div class="sp-h"><h2>أسبوع 15 – 21 نوفمبر</h2><span class="nj-tag">13 ساعة مذاكرة</span></div>
+<div class="wk-scroll"><div class="wk" id="wk"></div></div>
+<div class="lg"><span><i style="background:repeating-linear-gradient(135deg,#E4E9EB 0 4px,#F4F7F7 4px 8px)"></i>محاضرة (من جدولك)</span><span><i style="background:#DCEBEA;border-inline-start:3px solid #568A88"></i>جلسة مذاكرة</span><span><i style="border:1px dashed #DCE3E5"></i>فاضي</span></div></div>
+<div class="nj-card" style="margin:0"><div class="sp-h"><h2>ساعات كل مادة</h2></div>
+<div class="hrs" id="hrs"></div>
+<p class="nj-hint" style="margin:14px 0 0">الساعات محسوبة من ساعات المادة وصعوبتها حسب تقييمات الطلاب، وتزيد قبل الاختبار.</p></div>
+</div>
+</section>
+
+<section data-p="exam" hidden>
+<div class="ex-hero"><div class="ex-n"><div><b>8</b><small>أيام</small></div></div><div style="flex:1"><h2>ميدتيرم ACCT201 · المحاسبة المالية</h2><p>الأحد 22 نوفمبر · 4:00م · الفصول 1 إلى 6</p><div class="pb"><i></i></div><p style="font-size:13px;margin-top:6px">خلّصت فصلين من 6</p></div><button class="nj-btn nj-btn-white nj-btn-sm">اختبر نفسك</button></div>
+<div class="sp-grid2">
+<div class="nj-card" style="margin:0"><div class="sp-h"><h2>خطة المراجعة</h2></div>
+<div class="tl">
+<div class="ok"><b>الأحد – الاثنين</b><small>الفصل 1 و 2</small><div class="tags"><span class="nj-tag is-ok">تم</span></div></div>
+<div class="now"><b>الثلاثاء – الأربعاء</b><small>الفصل 3 و 4 · ساعة ونص كل يوم</small><div class="tags"><span class="nj-tag">الملخص</span><span class="nj-tag">اختبار قصير</span></div></div>
+<div><b>الخميس – الجمعة</b><small>الفصل 5 و 6</small></div>
+<div><b>السبت</b><small>مراجعة شاملة لكل الفصول + حل اختبار تجريبي</small><div class="tags"><span class="nj-tag is-warn">اختبر نفسك</span></div></div>
+<div><b>الأحد (يوم الاختبار)</b><small>مراجعة خفيفة لأخطائك بس، ونوم كافي قبلها</small></div>
+</div></div>
+<div class="nj-card" style="margin:0"><div class="sp-h"><h2>الفصول</h2></div>
+<div class="ch"><div class="ok">✓ الفصل 1</div><div class="ok">✓ الفصل 2</div><div>الفصل 3</div><div>الفصل 4</div><div>الفصل 5</div><div>الفصل 6</div></div>
+<p class="nj-hint" style="margin:14px 0 0">تعلّم على الفصل لما تخلصه. الخطة توزع الباقي على الأيام المتبقية.</p></div>
+</div>
+</section>
+
+<section data-p="setup" hidden>
+<div class="sp-grid2">
+<div class="nj-card" style="margin:0"><div class="sp-h"><h2>متى تقدر تذاكر؟</h2></div>
+<p class="nj-hint">اضغط الأوقات اللي تناسبك. أوقات محاضراتك مأخوذة من جدولك ومقفلة.</p>
+<div class="days" id="days"></div></div>
+<div class="nj-card" style="margin:0"><div class="sp-h"><h2>طريقتك</h2></div>
+<span class="sb-lbl" style="display:block;font-weight:700;margin:0 0 6px">مستوى الجهد</span>
+<div class="nj-seg sp-col"><button aria-pressed="false">خفيف<small>8 ساعات بالأسبوع</small></button><button aria-pressed="true">متوسط<small>13 ساعة بالأسبوع</small></button><button aria-pressed="false">مكثف<small>18 ساعة بالأسبوع</small></button></div>
+<span style="display:block;font-weight:700;margin:0 0 6px">طول الجلسة</span>
+<div class="nj-seg"><button aria-pressed="false">25 دقيقة</button><button aria-pressed="true">45 دقيقة</button><button aria-pressed="false">60 دقيقة</button></div>
+<span style="display:block;font-weight:700;margin:0 0 6px">موادك هذا الفصل</span>
+<div class="nj-chips" style="margin:0 0 16px"><span class="nj-tag">ACCT201</span><span class="nj-tag">FIN201</span><span class="nj-tag">MGT311</span><span class="nj-tag">ECON201</span><span class="nj-tag">LAW101</span><span class="nj-tag">ISLM103</span></div>
+<p class="nj-hint">مأخوذة من جدولك الدراسي.</p>
+<button class="nj-btn nj-btn-fill" style="width:100%">ولّد خطتي</button></div>
+</div>
+</section>
+</div></main>
+</div>
+<script src="../../assets/js/layout.js"></script>
+<script>
+var I=window.Najd.icon;
+document.getElementById('ic-streak').innerHTML=I('bolt');document.getElementById('ic-exam').innerHTML=I('calendar');
+var C={ACCT201:['#DCEBEA','#568A88','المحاسبة المالية'],FIN201:['#E2ECDD','#6E8F5E','تمويل الشركات'],MGT311:['#DDE8F2','#4F7CA8','مقدمة في إدارة العمليات'],ECON201:['#EFE6D6','#B08A4E','الاقتصاد الكلي'],LAW101:['#E5E0EE','#7B6A9E','البيئة القانونية للأعمال'],ISLM103:['#F0DEDB','#B0625A','النظام الاقتصادي في الإسلام']};
+function v(c){return '--bg-c:'+C[c][0]+';--ac:'+C[c][1];}
+var S=[['5:00','PM','45 د','ACCT201','مراجعة محاضرة اليوم','is-ok','بعد المحاضرة',1,0],['9:00','PM','45 د','FIN201','حل واجب 2','is-err','واجب',1,0],['9:50','PM','45 د','ACCT201','الفصل 3: القيود المحاسبية','','مذاكرة',0,1],['10:40','PM','35 د','MGT311','اختبار قصير على الفصل 2','is-warn','اختبر نفسك',0,0]];
+document.getElementById('today').innerHTML=S.map(function(s){return '<div class="sp-s'+(s[7]?' done':'')+'" style="'+v(s[3])+'"><span class="sp-box">'+(s[7]?'✓':'')+'</span><span class="sp-time">'+s[0]+'<small>'+s[1]+' · '+s[2]+'</small></span><span class="sp-t"><b>'+s[4]+'</b><span class="row"><span class="sp-code">'+s[3]+'</span><span class="nj-tag '+s[5]+'">'+s[6]+'</span>'+(s[8]?'<span class="sp-moved">فاتتك أمس، انتقلت لليوم</span>':'')+'</span></span>'+(s[7]?'':'<span class="sp-act"><button class="nj-btn nj-btn-line nj-btn-sm">'+(s[6]==='اختبر نفسك'?I('quiz')+'اختبر نفسك':I('file')+'الملخص')+'</button></span>')+'</div>';}).join('');
+var D=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],H=['3 PM','4 PM','5 PM','6 PM','7 PM','8 PM','9 PM','10 PM'];
+var L={'0-1':'ACCT201','1-0':'MGT311','2-1':'ACCT201','1-2':'ISLM103','0-3':'ECON201','2-3':'ECON201','1-4':'FIN201','4-1':'FIN201','3-0':'LAW101','4-4':'LAW101','3-5':'ISLM103','3-2':'MGT311'};
+var St={'0-2':'ACCT201','0-6':'FIN201','0-7':'ACCT201','1-6':'ECON201','1-7':'MGT311','2-6':'ACCT201','2-7':'LAW101','3-6':'FIN201','4-6':'ACCT201','4-7':'ISLM103','5-1':'ACCT201','5-2':'MGT311','5-3':'ECON201','6-1':'ACCT201','6-2':'FIN201','6-3':'LAW101'};
+var w='<div></div>'+D.map(function(d,i){return '<div class="dh'+(i===0?' today':'')+'">'+d+'</div>';}).join('');
+H.forEach(function(h,r){w+='<div class="th">'+h+'</div>';D.forEach(function(d,c){var k=c+'-'+r;if(L[k])w+='<div class="c l"><b>'+L[k]+'</b><small>محاضرة</small></div>';else if(St[k])w+='<div class="c s" style="'+v(St[k])+'"><b>'+St[k]+'</b><small>مذاكرة</small></div>';else w+='<div class="c"></div>';});});
+document.getElementById('wk').innerHTML=w;
+var HR=[['ACCT201',4,'صعبة · 4.2 من 5','4 ساعات'],['FIN201',2.5,'متوسطة · 3.1','ساعتين ونص'],['MGT311',2,'متوسطة · 3.4','ساعتين'],['ECON201',2,'متوسطة · 2.9','ساعتين'],['LAW101',1.5,'سهلة · 2.2','ساعة ونص'],['ISLM103',1,'سهلة · 1.8','ساعة']];
+document.getElementById('hrs').innerHTML=HR.map(function(h){return '<div class="hr" style="'+v(h[0])+'"><b>'+h[0]+'</b><span><span class="bar"><i style="width:'+(h[1]/4*100)+'%"></i></span><span class="diff">'+h[2]+'</span></span><span style="font-weight:800">'+h[3]+'</span></div>';}).join('');
+var DY=[['الأحد',['9 PM','10 PM'],['4 PM']],['الاثنين',['9 PM','10 PM'],['3 PM','5 PM','7 PM']],['الثلاثاء',['9 PM','10 PM'],['4 PM','6 PM']],['الأربعاء',['9 PM'],['3 PM','5 PM','8 PM']],['الخميس',['9 PM','10 PM'],['4 PM','7 PM']],['الجمعة',['4 PM','5 PM','6 PM'],[]],['السبت',['4 PM','5 PM','6 PM'],[]]];
+var all=['3 PM','4 PM','5 PM','6 PM','7 PM','8 PM','9 PM','10 PM'];
+document.getElementById('days').innerHTML=DY.map(function(d){return '<div class="day"><b>'+d[0]+'</b><span class="slots">'+all.map(function(t){return '<span class="'+(d[2].indexOf(t)>=0?'lec':d[1].indexOf(t)>=0?'on':'')+'">'+t+'</span>';}).join('')+'</span></div>';}).join('');
+window.show=function(p){document.querySelectorAll('[data-p]').forEach(function(s){s.hidden=s.dataset.p!==p});document.querySelectorAll('#tabs .nj-tab').forEach(function(b){b.setAttribute('aria-selected',b.dataset.v===p)});};
+show(new URLSearchParams(location.search).get('v')||'today');
+</script></body></html>
