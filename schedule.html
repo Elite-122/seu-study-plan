@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>الجدول الدراسي | أكاديمية نجد</title>
 <meta name="description" content="صمّم جدولك الدراسي، أضف اختباراتك لتقويم جوالك، وحمّله خلفية أو PDF.">
 <meta property="og:type" content="website">
@@ -19,11 +19,25 @@
 <link rel="canonical" href="https://najdacdemy.com/schedule.html">
 <meta name="theme-color" content="#2F4F4E">
 <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="نجد">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261113g">
-<style>#najd .sc-title{font-size:var(--fs-xl);font-weight:700}
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115d">
+<style>#najd .sc-tabs{position:sticky;top:74px;z-index:20;flex-wrap:nowrap}
+#najd .sc-tabs .nj-tab{flex:1 1 0;min-width:0;padding:0 8px;white-space:nowrap}
+#najd .sc-tabs .nj-icon{width:18px;height:18px;color:inherit}
+#najd .sc-tab-n{font-size:var(--fs-xs);font-weight:800;background:var(--tint);color:var(--dtext);border-radius:var(--r-pill);padding:0 8px;line-height:20px}
+#najd .nj-tab[aria-selected="true"] .sc-tab-n{background:rgba(0,0,0,.24);color:#fff}
+#najd .sc-next{width:100%;margin:0 0 var(--sp-6)}
+@media (max-width:860px){#najd .sc-tabs{top:66px}}
+@media (max-width:400px){#najd .sc-tabs .nj-icon{display:none}#najd .sc-tabs .nj-tab{gap:var(--sp-2);padding:0 4px}}
+#najd .sc-title{font-size:var(--fs-xl);font-weight:700}
 #najd .sc-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -6px}
 #najd .sc-grid{border-collapse:separate;border-spacing:6px;width:100%;min-width:540px;margin:0;border:0;table-layout:fixed;background:none}
 #najd .sc-grid th,#najd .sc-grid td{border:0;padding:0;background:none;vertical-align:middle}
@@ -55,7 +69,7 @@
 #najd .sc-go{width:100%;height:56px;font-size:var(--fs-xl)}
 #najd .sc-go:disabled{opacity:.6;cursor:wait}
 #najd .sc-msg{font-size:var(--fs-md);color:var(--muted);margin:10px 0 0;min-height:1.2em}
-#najd .sc-reset{background:none;border:0;color:var(--slate);font-size:var(--fs-md);text-decoration:underline;cursor:pointer;padding:6px 0;margin:6px 0 0}
+#najd .sc-reset{background:none;border:0;color:var(--slate);font-size:var(--fs-md);text-decoration:underline;cursor:pointer;padding:0;margin:6px 0 0;min-height:44px}
 @media (max-width:560px){#najd .sc-modes{gap:var(--sp-2)}#najd .sc-mode{padding:12px 4px}#najd .sc-mode small{display:none}}
 #najd .sc-pick{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px;margin:0 0 14px}
 #najd .sc-pick-t{font-size:var(--fs-lg);font-weight:800;margin:0 0 2px}
@@ -109,7 +123,7 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 </style>
 </head>
 <body>
-<div id="najd" dir="rtl" data-auth="required" data-page="schedule" data-sync>
+<div id="najd" dir="rtl" data-auth="guest" data-page="schedule" data-sync>
 <div id="nj-header"></div>
 <section class="nj-band">
 <svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
@@ -122,6 +136,8 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 </section>
 <main class="nj-main">
 <div class="nj-in nj-narrow">
+<div class="nj-tabs sc-tabs" role="tablist" aria-label="أقسام الجدول" id="sc-tabs"><button type="button" class="nj-tab" role="tab" id="sc-t-lec" data-ic="schedule" aria-controls="sc-p-lec" aria-selected="true">محاضراتي</button><button type="button" class="nj-tab" role="tab" id="sc-t-ex" data-ic="calendar" aria-controls="sc-p-ex" aria-selected="false" tabindex="-1">اختباراتي<small class="sc-tab-n" id="sc-ex-n" hidden></small></button><button type="button" class="nj-tab" role="tab" id="sc-t-save" data-ic="file" aria-controls="sc-p-save" aria-selected="false" tabindex="-1">احفظ</button></div>
+<div class="sc-panel" id="sc-p-lec" role="tabpanel" aria-labelledby="sc-t-lec">
 <div class="nj-card">
 <h2>عنوان الجدول</h2>
 <p class="nj-hint">يظهر أعلى الصورة، مثلًا اسمك أو الفصل الدراسي.</p>
@@ -140,6 +156,9 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 <div class="sc-legend"><span><i class="sc-type p">حضوري</i>محاضرة في القاعة</span><span><i class="sc-type o">أونلاين</i>محاضرة عن بُعد</span><span class="sc-legend-h">اضغط على النوع عشان تبدّله. كل مادة لها محاضرتين بس.</span><span class="sc-count" id="sc-count"></span></div>
 <div class="sc-scroll"><table class="sc-grid" id="sc-grid"></table></div>
 </div>
+<button type="button" class="nj-btn nj-btn-line sc-next" data-go="sc-t-ex">التالي: مواعيد الاختبارات <span class="nj-arrow">←</span></button>
+</div>
+<div class="sc-panel" id="sc-p-ex" role="tabpanel" aria-labelledby="sc-t-ex" hidden>
 <div class="nj-card">
 <h2>مواعيد الاختبارات</h2>
 <p class="nj-hint">أضف اختبارات الميدتيرم والفاينل عشان تظهر تحت الجدول، مرتبة من الأقرب.</p>
@@ -151,6 +170,9 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 <div class="sc-gcal" id="sc-gcal"></div>
 </div>
 </div>
+<button type="button" class="nj-btn nj-btn-line sc-next" data-go="sc-t-save">التالي: احفظ جدولك <span class="nj-arrow">←</span></button>
+</div>
+<div class="sc-panel" id="sc-p-save" role="tabpanel" aria-labelledby="sc-t-save" hidden>
 <div class="nj-card" id="sc-save">
 <h2>احفظ جدولك</h2>
 <p class="nj-hint">اختر الطريقة اللي تناسبك.</p>
@@ -201,13 +223,14 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 <button type="button" class="sc-reset" id="sc-reset">مسح الجدول والبدء من جديد</button>
 </div>
 </div>
+</div>
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261113g"></script>
-<script src="assets/js/plans-data.js?v=20261113g"></script>
-<script src="assets/js/i18n.js?v=20261113g"></script>
-<script type="module" src="assets/js/auth.js?v=20261113g"></script>
+<script src="assets/js/layout.js?v=20261115d"></script>
+<script src="assets/js/plans-data.js?v=20261115d"></script>
+<script src="assets/js/i18n.js?v=20261115d"></script>
+<script type="module" src="assets/js/auth.js?v=20261115d"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('sc-grid'))return;
@@ -739,6 +762,31 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
   root.querySelector('.sc-out').addEventListener('click',function(e){var b=e.target.closest('[data-out]');if(!b)return;st.out=b.getAttribute('data-out');save();showOut();});
   showOut();
   showMode();
+})();
+</script>
+<script>
+/* تبويبات الصفحة: محاضراتي / اختباراتي / احفظ */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('#sc-tabs .nj-tab'));if(!tabs.length)return;
+  tabs.forEach(function(t){var ic=t.getAttribute('data-ic');if(ic&&window.Najd&&window.Najd.icon)t.insertAdjacentHTML('afterbegin',window.Najd.icon(ic));});
+  var bar=document.getElementById('sc-tabs');
+  function show(id,focus){
+    tabs.forEach(function(t){var on=t.id===id;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!on;if(on&&focus)t.focus();});
+    var stick=parseFloat(getComputedStyle(bar).top)||0;
+    if(bar.getBoundingClientRect().top<=stick+1)window.scrollTo({top:window.scrollY+document.getElementById(id.replace('-t-','-p-')).getBoundingClientRect().top-stick-bar.offsetHeight-12});
+    try{history.replaceState(null,'',id==='sc-t-lec'?location.pathname+location.search:'#'+id.replace('sc-t-',''));}catch(e){}
+  }
+  var ltr=document.documentElement.dir==='ltr';
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t.id);});
+    t.addEventListener('keydown',function(e){var k=e.key,n=null;if(k==='ArrowLeft')n=ltr?i-1:i+1;else if(k==='ArrowRight')n=ltr?i+1:i-1;else if(k==='Home')n=0;else if(k==='End')n=tabs.length-1;if(n===null)return;e.preventDefault();n=(n+tabs.length)%tabs.length;show(tabs[n].id,true);});
+  });
+  [].forEach.call(document.querySelectorAll('.sc-next'),function(b){b.addEventListener('click',function(){show(b.getAttribute('data-go'));});});
+  var h=(location.hash||'').slice(1);if(h==='ex'||h==='save')show('sc-t-'+h);
+  /* عدد الاختبارات على التبويب */
+  var box=document.getElementById('sc-exams'),n=document.getElementById('sc-ex-n');
+  function count(){var c=box.querySelectorAll('.sc-exam').length;n.hidden=!c;n.textContent=c;}
+  if(box&&n){count();new MutationObserver(count).observe(box,{childList:true});}
 })();
 </script>
 </body>

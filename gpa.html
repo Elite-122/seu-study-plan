@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>حاسبة المعدل | أكاديمية نجد</title>
 <meta name="description" content="احسب معدلك الفصلي والتراكمي على سلم 4.00 واعرف وش تحتاج توصل هدفك.">
 <meta property="og:type" content="website">
@@ -19,17 +19,23 @@
 <link rel="canonical" href="https://najdacdemy.com/gpa.html">
 <meta name="theme-color" content="#2F4F4E">
 <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="نجد">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261113g">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115d">
 <style>#najd .gp-rows{display:flex;flex-direction:column;gap:var(--sp-3)}
 #najd .gp-row{display:flex;gap:var(--sp-3);align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:8px}
 #najd .gp-row .nj-input{width:auto}
 #najd .gp-rn{flex:1 1 auto}
 #najd .gp-rh{flex:0 0 70px;text-align:center}
 #najd .gp-rg{flex:0 0 110px}
-#najd .gp-del{flex:0 0 40px;height:40px;border:0;border-radius:var(--r-md);background:var(--err-bg);color:var(--err);font-size:var(--fs-2xl);line-height:1;cursor:pointer}
+#najd .gp-del{flex:0 0 44px;height:44px;border:0;border-radius:var(--r-md);background:var(--err-bg);color:var(--err);font-size:var(--fs-2xl);line-height:1;cursor:pointer}
 #najd .gp-head{display:flex;gap:var(--sp-3);padding:0 8px 6px;font-size:var(--fs-sm);font-weight:700;color:var(--slate)}
 #najd .gp-head span:first-child{flex:1}
 #najd .gp-head span:nth-child(2){flex:0 0 70px;text-align:center}
@@ -41,7 +47,8 @@
 #najd .gp-res{background:var(--deep);color:#fff;border-radius:var(--r);padding:24px 20px 0;text-align:center;position:sticky;top:16px;overflow:hidden}
 #najd .gp-res h2{color:var(--mist);font-size:var(--fs-lg);font-weight:700}
 #najd .gp-big{font-size:60px;font-weight:800;line-height:1.1;color:#fff;margin:6px 0 0}
-#najd .gp-big small{font-size:var(--fs-2xl);color:var(--grey);font-weight:500}
+#najd .gp-big .is-empty{opacity:.45}
+#najd .gp-big small{font-size:var(--fs-2xl);color:rgba(255,255,255,.72);font-weight:500}
 #najd .gp-rate{display:inline-block;font-size:var(--fs-lg);font-weight:700;background:rgba(255,255,255,.12);border-radius:var(--r-pill);padding:4px 16px;margin:8px 0 0}
 #najd .gp-mini{display:flex;justify-content:center;gap:var(--sp-7);font-size:var(--fs-md);color:var(--mist);margin:14px 0 0}
 #najd .gp-mini b{color:#fff;font-size:var(--fs-xl)}
@@ -56,6 +63,15 @@
 #najd .gp-scale span{font-size:var(--fs-sm);font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:3px 9px;color:var(--muted)}
 #najd .gp-link{display:inline-flex;margin-top:14px}
 @media (max-width:860px){#najd .gp-layout{grid-template-columns:1fr}#najd .gp-res{position:relative;top:0;order:-1}}
+/* شريط المعدل الصغير: يطلع في الجوال لما تنزل تحت بطاقة النتيجة */
+#najd .gp-mini{display:none}
+@media (max-width:860px){#najd .gp-mini{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:45;display:flex;align-items:center;gap:var(--sp-4);background:var(--deep);color:#fff;border-radius:var(--r-lg);padding:10px 16px;box-shadow:var(--shadow-lg);transform:translateY(160%);opacity:0;transition:transform var(--t-base),opacity var(--t-base);pointer-events:none}
+#najd .gp-mini.is-on{transform:none;opacity:1}
+#najd .gp-mini span{font-size:var(--fs-md);color:var(--mist)}
+#najd .gp-mini b{font-size:var(--fs-4xl);font-weight:800;line-height:1;margin-inline-start:auto;direction:ltr}
+#najd .gp-mini b.is-empty{opacity:.45}
+#najd .gp-mini small{font-size:var(--fs-sm);font-weight:700;background:rgba(255,255,255,.14);border-radius:var(--r-pill);padding:2px 10px}
+html.is-app #najd .gp-mini{bottom:calc(84px + env(safe-area-inset-bottom))}}
 @media (max-width:560px){#najd .gp-row{flex-wrap:wrap}#najd .gp-rn{flex:1 1 100%}#najd .gp-rh{flex:1 1 70px}#najd .gp-rg{flex:2 1 110px}#najd .gp-head{display:none}}
 #najd .gp-need-in label{display:block;font-size:var(--fs-md);font-weight:700;color:var(--muted);margin:0 0 6px}
 #najd .gp-need-in input{max-width:260px;font-size:var(--fs-xl);font-weight:700}
@@ -73,7 +89,7 @@
 #najd .gp-apply{margin:12px 0 0;width:100%}</style>
 </head>
 <body>
-<div id="najd" dir="rtl" data-auth="required" data-page="gpa" data-sync>
+<div id="najd" dir="rtl" data-auth="guest" data-page="gpa" data-sync>
 <div id="nj-header"></div>
 <section class="nj-band">
 <svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
@@ -116,6 +132,7 @@
 <div class="gp-scale" id="gp-scale"></div>
 </div>
 </div>
+<div class="gp-mini" id="gp-mini" aria-hidden="true"><span>معدلك الفصلي</span><b id="gp-mv">0.00</b><small id="gp-mr"></small></div>
 <aside class="gp-res" aria-live="polite">
 <h2>معدلك الفصلي</h2>
 <div class="gp-big"><span id="gp-v">0.00</span> <small>/ 4.00</small></div>
@@ -129,15 +146,15 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261113g"></script>
-<script src="assets/js/i18n.js?v=20261113g"></script>
-<script type="module" src="assets/js/auth.js?v=20261113g"></script>
+<script src="assets/js/layout.js?v=20261115d"></script>
+<script src="assets/js/i18n.js?v=20261115d"></script>
+<script type="module" src="assets/js/auth.js?v=20261115d"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('gp-rows'))return;
   var GRADES=[['A+',4],['A',3.75],['B+',3.5],['B',3],['C+',2.5],['C',2],['D+',1.5],['D',1],['F',0]];
   var KEY='najd_gpa_v1';
-  var st={rows:[{name:'',hours:3,grade:'A'},{name:'',hours:3,grade:'B+'},{name:'',hours:3,grade:'A+'}],ph:'',pg:'',target:''};
+  var st={rows:[{name:'',hours:3,grade:''},{name:'',hours:3,grade:''},{name:'',hours:3,grade:''}],ph:'',pg:'',target:''};
   try{var sv=JSON.parse(localStorage.getItem(KEY)||'null')||JSON.parse(localStorage.getItem('seu_plans_v1')||'null');if(sv){if(sv.rows)st.rows=sv.rows;if(sv.ph!==undefined)st.ph=sv.ph;if(sv.pg!==undefined)st.pg=sv.pg;if(sv.target!==undefined)st.target=sv.target;}}catch(e){}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -148,18 +165,18 @@
     var o='';
     st.rows.forEach(function(r,i){
       var hs='';for(var h=1;h<=8;h++){hs+='<option value="'+h+'"'+(+r.hours===h?' selected':'')+'>'+h+'</option>';}
-      var gs='';GRADES.forEach(function(g){gs+='<option value="'+g[0]+'"'+(r.grade===g[0]?' selected':'')+'>'+g[0]+' ('+g[1].toFixed(2)+')</option>';});
+      var gs='<option value="" disabled'+(r.grade?'':' selected')+'>التقدير</option>';GRADES.forEach(function(g){gs+='<option value="'+g[0]+'"'+(r.grade===g[0]?' selected':'')+'>'+g[0]+' ('+g[1].toFixed(2)+')</option>';});
       o+='<div class="gp-row" data-i="'+i+'"><input class="nj-input is-sm is-raised gp-rn" type="text" maxlength="40" placeholder="اسم المقرر (اختياري)" data-f="name" value="'+esc(r.name)+'" aria-label="اسم المقرر">'
         +'<select class="nj-input is-sm is-raised gp-rh" data-f="hours" aria-label="الساعات">'+hs+'</select><select class="nj-input is-sm is-raised gp-rg" data-f="grade" aria-label="التقدير">'+gs+'</select>'
         +'<button type="button" class="gp-del" data-del="'+i+'" aria-label="حذف المقرر">×</button></div>';
     });
     $('gp-rows').innerHTML=o||'<p class="nj-hint" style="margin:0">ما فيه مقررات. أضف أول مقرر.</p>';
   }
-  function rate(g,h){if(!h)return 'أضف مقرراتك';if(g>=3.5)return 'ممتاز';if(g>=2.75)return 'جيد جدًا';if(g>=1.75)return 'جيد';if(g>=1)return 'مقبول';return 'يبي له شدّة حيل';}
+  function rate(g,h){if(!h)return st.rows.length?'اختر تقديراتك':'أضف مقرراتك';if(g>=3.5)return 'ممتاز';if(g>=2.75)return 'جيد جدًا';if(g>=1.75)return 'جيد';if(g>=1)return 'مقبول';return 'يبي له شدّة حيل';}
   function calc(){
-    var th=0,tp=0;st.rows.forEach(function(r){var h=num(r.hours);th+=h;tp+=h*gp(r.grade);});
+    var th=0,tp=0;st.rows.forEach(function(r){if(!r.grade)return;var h=num(r.hours);th+=h;tp+=h*gp(r.grade);});
     var g=th?tp/th:0;
-    $('gp-v').textContent=g.toFixed(2);$('gp-h').textContent=th;$('gp-p').textContent=tp.toFixed(2);$('gp-r').textContent=rate(g,th);
+    $('gp-v').textContent=g.toFixed(2);$('gp-v').classList.toggle('is-empty',!th);$('gp-mv').textContent=g.toFixed(2);$('gp-mv').classList.toggle('is-empty',!th);$('gp-mr').textContent=window.NajdT?window.NajdT(rate(g,th)):rate(g,th);$('gp-h').textContent=th;$('gp-p').textContent=tp.toFixed(2);$('gp-r').textContent=rate(g,th);
     $('gp-k1').setAttribute('fill',th&&g>=1.75?'#B0B8BC':'#35595A');$('gp-k2').setAttribute('fill',th&&g>=2.75?'#7A9FA3':'#35595A');$('gp-k3').setAttribute('fill',th&&g>=3.5?'#C8CFD2':'#35595A');
     var ph=Math.max(0,num(st.ph)),pg=Math.min(4,Math.max(0,num(st.pg))),out=$('gp-out');
     if(ph>0){var ch=ph+th,cg=ch?(ph*pg+tp)/ch:0;out.innerHTML='معدلك التراكمي الجديد: <b>'+cg.toFixed(2)+'</b> من 4.00، بإجمالي '+ch+' ساعة. '+rate(cg,ch);}
@@ -197,7 +214,7 @@
   $('gp-rows').addEventListener('change',onRow);
   $('gp-rows').addEventListener('input',function(e){if(e.target.getAttribute('data-f')==='name')onRow(e);});
   $('gp-rows').addEventListener('click',function(e){var d=e.target.getAttribute('data-del');if(d===null)return;st.rows.splice(+d,1);renderRows();calc();save();});
-  $('gp-add').addEventListener('click',function(){st.rows.push({name:'',hours:3,grade:'A'});renderRows();calc();save();var ins=$('gp-rows').querySelectorAll('.gp-rn');if(ins.length)ins[ins.length-1].focus();});
+  $('gp-add').addEventListener('click',function(){st.rows.push({name:'',hours:3,grade:''});renderRows();calc();save();var ins=$('gp-rows').querySelectorAll('.gp-rn');if(ins.length)ins[ins.length-1].focus();});
   $('gp-target').value=st.target;
   $('gp-target').addEventListener('input',function(){st.target=this.value;need();save();});
   $('gp-plan').addEventListener('click',function(e){if(e.target.id!=='gp-apply'||!plan)return;plan.forEach(function(g,i){st.rows[i].grade=g;});renderRows();calc();save();$('gp-rows').scrollIntoView({behavior:'smooth',block:'center'});});
@@ -206,6 +223,13 @@
   $('gp-pg').addEventListener('input',function(){st.pg=this.value;calc();save();});
   var sc='';GRADES.forEach(function(g){sc+='<span>'+g[0]+' = '+g[1].toFixed(2)+'</span>';});$('gp-scale').innerHTML=sc;
   renderRows();calc();
+  /* الشريط الصغير يطلع بس لما رقم المعدل يطلع فوق الشاشة، ويختفي عند الفوتر */
+  var mini=$('gp-mini'),res=root.querySelector('.gp-big'),ft=root.querySelector('.nj-foot'),above=false,footIn=false;
+  function mset(){mini.classList.toggle('is-on',above&&!footIn);}
+  if('IntersectionObserver' in window&&res){
+    new IntersectionObserver(function(es){es.forEach(function(e){above=!e.isIntersecting&&e.boundingClientRect.top<0;});mset();}).observe(res);
+    if(ft)new IntersectionObserver(function(es){es.forEach(function(e){footIn=e.isIntersecting;});mset();}).observe(ft);
+  }
 })();
 </script>
 </body>

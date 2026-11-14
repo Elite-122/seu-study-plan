@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>الخطط الدراسية | أكاديمية نجد</title>
 <meta name="description" content="خطط كلية العلوم الإدارية والمالية: علّم على مقرراتك وتابع تقدمك نحو التخرج.">
 <meta property="og:type" content="website">
@@ -19,22 +19,31 @@
 <link rel="canonical" href="https://najdacdemy.com/plans.html">
 <meta name="theme-color" content="#2F4F4E">
 <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="نجد">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261113g">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115d">
 <style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:var(--sp-4);margin:20px 0 0}
 #najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:10px 8px;text-align:center}
 #najd .pl-stat b{display:block;font-size:var(--fs-4xl);font-weight:800;color:var(--light);line-height:1.2}
 #najd .pl-stat span{font-size:var(--fs-sm);color:var(--grey)}
 #najd .pl-majors{display:flex;gap:var(--sp-3);overflow-x:auto;-webkit-overflow-scrolling:touch;padding:2px 2px 12px;margin:0 -2px}
 #najd .pl-mj{flex:0 0 auto;height:44px;border-width:2px}
+#najd .pl-mj[aria-pressed="true"]{background:var(--cb);border-color:var(--ca)}
+html[data-theme="dark"] #najd .pl-mj[aria-pressed="true"]{background:var(--tint);background:color-mix(in srgb,var(--ca) 28%,var(--card))}
 #najd .pl-en{font-size:var(--fs-sm);color:var(--slate);direction:ltr;text-align:right;margin:2px 0 12px}
 #najd .pl-mission{font-size:var(--fs-lg);color:var(--muted);margin:0 0 14px}
 #najd .pl-note{font-size:var(--fs-md);background:var(--warn-bg);color:var(--warn);border-radius:var(--r-md);padding:10px 12px;margin:0 0 12px}
 #najd .pl-lbl{font-size:var(--fs-md);font-weight:700;color:var(--muted);margin:0 0 8px}
 #najd .pl-careers{display:flex;flex-wrap:wrap;gap:var(--sp-2)}
-#najd .pl-careers span{font-size:var(--fs-md);font-weight:500;border-radius:var(--r-pill);padding:4px 12px}
+#najd .pl-careers span{font-size:var(--fs-md);font-weight:500;border-radius:var(--r-pill);padding:4px 12px;background:var(--cb)}
+html[data-theme="dark"] #najd .pl-careers span{background:var(--tint);background:color-mix(in srgb,var(--ca) 22%,var(--card));color:var(--ink)}
 #najd .pl-prog{display:flex;align-items:center;gap:var(--sp-6)}
 #najd .pl-prog-t{flex:1;min-width:0}
 #najd .pl-prog-t b{font-size:var(--fs-body);font-weight:800}
@@ -58,7 +67,14 @@
 #najd .pl-hrs{font-size:var(--fs-sm);font-weight:700;background:var(--deep);color:#fff;border-radius:var(--r-pill);padding:2px 10px}
 #najd .pl-chev{width:9px;height:9px;border-left:2px solid var(--slate);border-bottom:2px solid var(--slate);transform:rotate(-45deg);margin:0 4px 4px;transition:transform var(--t-base)}
 #najd .pl-lv.is-open .pl-chev{transform:rotate(135deg);margin:4px 4px 0}
-#najd .pl-rate{display:inline-block;font-size:var(--fs-sm);font-weight:700;color:var(--dtext);text-decoration:underline!important;text-underline-offset:3px;margin-top:2px}
+#najd .pl-rate{flex-shrink:0;display:grid;place-items:center;width:44px;height:44px;margin:-8px -6px -8px -8px;border-radius:var(--r-md);color:var(--slate)}
+#najd .pl-rate:hover,#najd .pl-rate:active{background:var(--tint)}
+#najd .pl-about{margin:4px 0 0}
+#najd .pl-about summary{display:flex;align-items:center;gap:var(--sp-3);min-height:44px;font-size:var(--fs-base);font-weight:700;color:var(--dtext);cursor:pointer;list-style:none}
+#najd .pl-about summary::-webkit-details-marker{display:none}
+#najd .pl-about summary::after{content:"";width:8px;height:8px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);margin:0 4px 4px;transition:transform var(--t-base)}
+#najd .pl-about[open] summary::after{transform:rotate(135deg);margin-bottom:-2px}
+#najd .pl-about[open] summary{margin-bottom:8px}
 #najd .pl-courses{display:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);margin:6px 0 0;overflow:hidden}
 #najd .pl-lv.is-open .pl-courses{display:block}
 #najd .pl-c{display:flex;align-items:center;gap:var(--sp-4);padding:12px 14px;border-bottom:1px solid var(--light);cursor:pointer;margin:0;font-weight:400;position:relative}
@@ -67,7 +83,8 @@
 #najd .pl-box{flex-shrink:0;width:26px;height:26px;border-radius:var(--r-sm);border:2px solid var(--mist);background:var(--surface);display:flex;align-items:center;justify-content:center;color:#fff;font-size:var(--fs-md);font-weight:800;transition:background var(--t-fast),border-color var(--t-fast)}
 #najd .pl-c.is-done .pl-box{background:var(--teal);border-color:var(--teal)}
 #najd .pl-c input:focus-visible+.pl-box{outline:2px solid var(--soft);outline-offset:2px}
-#najd .pl-code{flex-shrink:0;font-size:var(--fs-xs);font-weight:800;border-radius:var(--r-sm);padding:3px 6px;direction:ltr;min-width:66px;text-align:center;color:var(--dtext)}
+#najd .pl-code{flex-shrink:0;font-size:var(--fs-xs);font-weight:800;border-radius:var(--r-sm);padding:3px 6px;direction:ltr;min-width:66px;text-align:center;color:var(--dtext);background:var(--cb)}
+html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-mix(in srgb,var(--cb) 16%,var(--light))}
 #najd .pl-cn{flex:1;min-width:0}
 #najd .pl-cn b{display:block;font-size:var(--fs-base);font-weight:700;line-height:1.45}
 #najd .pl-cn small{display:block;font-size:var(--fs-sm);color:var(--slate);line-height:1.45}
@@ -94,11 +111,11 @@
 #najd .pl-cn small.pl-need{color:var(--err);font-weight:700}
 #najd .pl-now{display:inline-flex;align-items:center;gap:var(--sp-3);font-size:var(--fs-md);margin:12px 0 0;background:var(--tint);border-radius:var(--r-pill);padding:5px 14px;color:var(--muted)}
 #najd .pl-now b{color:var(--dtext);font-weight:800}
-#najd .pl-rate .nj-icon{width:15px;height:15px;color:#B8943A}
+#najd .pl-rate .nj-icon{width:20px;height:20px;color:#B8943A}
 </style>
 </head>
 <body>
-<div id="najd" dir="rtl" data-auth="required" data-page="plans" data-sync>
+<div id="najd" dir="rtl" data-auth="guest" data-page="plans" data-sync>
 <div id="nj-header"></div>
 <section class="nj-band">
 <svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
@@ -112,13 +129,15 @@
 </section>
 <main class="nj-main">
 <div class="nj-in nj-narrow">
-<div class="pl-majors" id="pl-majors" role="group" aria-label="اختر التخصص"></div>
+<p class="pl-lbl" id="pl-pick">اختر تخصصك</p>
+<div class="pl-majors" id="pl-majors" role="group" aria-labelledby="pl-pick"></div>
 <div id="pl-major"></div>
 <div class="nj-card"><div class="pl-prog"><div class="pl-prog-t"><b id="pl-prog-title"></b><p id="pl-prog-msg"></p></div><svg width="54" height="44" viewBox="0 0 54 44" aria-hidden="true"><path id="pl-t1" d="M2 44L10 32L18 44Z" fill="#E4E9EB"/><path id="pl-t2" d="M16 44L27 20L38 44Z" fill="#E4E9EB"/><path id="pl-t3" d="M34 44L44 2L54 44Z" fill="#E4E9EB"/></svg></div><p class="pl-now" id="pl-now"></p><div class="pl-bar"><i id="pl-bar" style="width:0"></i></div></div>
 <div class="nj-card pl-pdf"><div class="pl-pdf-top"><svg width="44" height="52" viewBox="0 0 30 36" aria-hidden="true"><path d="M3 3a2 2 0 0 1 2-2h14l8 8v24a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" fill="#568A88"/><path d="M19 1v8h8" fill="#7A9FA3"/><path d="M8 26L11 21L14 26Z" fill="#E4E9EB"/><path d="M13 26L17 18L21 26Z" fill="#C8CFD2"/></svg><div><h2>احتفظ بتقدمك في ملف PDF</h2><p class="nj-hint" style="margin-bottom:0">ملف مرتب حسب المستويات، فيه المواد اللي اجتزتها واللي باقية لك.</p></div></div>
 <div class="pl-pdf-row"><input id="pl-name" class="nj-input" type="text" maxlength="40" placeholder="اسمك (اختياري، يظهر في الملف)" aria-label="اسمك"><button type="button" class="nj-btn nj-btn-fill" id="pl-pdf-btn">تحميل PDF</button></div>
 <p class="pl-pdf-msg" id="pl-pdf-msg" aria-live="polite"></p></div>
 <h2 class="pl-h">المقررات حسب المستوى</h2>
+<p class="nj-hint pl-tip">علّم على المقرر اللي خلصته. والنجمة جنب كل مقرر تفتح لك تجارب الطلاب فيه.</p>
 <div class="pl-tl" id="pl-tl"></div>
 <div class="pl-gpa"><div><h2>تبي تعرف معدلك؟</h2><p>احسب معدلك الفصلي والتراكمي بالتقديرات في ثواني.</p></div><a class="nj-btn" href="#" data-link="gpa">افتح حاسبة المعدل</a></div>
 <p class="pl-src">المصادر: خطة الإدارة (ديسمبر 2025)، المالية والتجارة الإلكترونية (سبتمبر 2023)، دليل المحاسبة (يونيو 2026). ارجع دائمًا للخطة الرسمية ودليل الطالب.</p>
@@ -126,10 +145,10 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261113g"></script>
-<script src="assets/js/plans-data.js?v=20261113g"></script>
-<script src="assets/js/i18n.js?v=20261113g"></script>
-<script type="module" src="assets/js/auth.js?v=20261113g"></script>
+<script src="assets/js/layout.js?v=20261115d"></script>
+<script src="assets/js/plans-data.js?v=20261115d"></script>
+<script src="assets/js/i18n.js?v=20261115d"></script>
+<script type="module" src="assets/js/auth.js?v=20261115d"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('pl-tl'))return;
@@ -154,14 +173,14 @@
   function doneHours(){return NP.hours(st.major,st.done);}
   function renderMajor(){
     var o='';
-    ORDER.forEach(function(k){var on=k===st.major,mt=META[k];o+='<button type="button" class="nj-chip is-soft pl-mj" data-major="'+k+'" aria-pressed="'+on+'" style="'+(on?'background:'+mt.bg+';border-color:'+mt.ac:'')+'">'+window.Najd.icon(mt.e)+' '+esc(majors[k].label)+'</button>';});
+    ORDER.forEach(function(k){var on=k===st.major,mt=META[k];o+='<button type="button" class="nj-chip is-soft pl-mj" data-major="'+k+'" aria-pressed="'+on+'" style="--cb:'+mt.bg+';--ca:'+mt.ac+'">'+window.Najd.icon(mt.e)+' '+esc(majors[k].label)+'</button>';});
     $('pl-majors').innerHTML=o;
     var m=majors[st.major],mt=META[st.major];
     var c='<div class="nj-card" style="border-top:5px solid '+mt.ac+'"><h2>'+window.Najd.icon(mt.e)+' '+esc(m.name)+'</h2><p class="pl-en">'+esc(m.en)+'</p>';
     if(m.note)c+='<p class="pl-note">'+esc(m.note)+'</p>';
-    c+='<p class="pl-mission">'+esc(m.mission)+'</p><p class="pl-lbl">وين تشتغل بعد التخرج؟</p><div class="pl-careers">';
-    m.careers.forEach(function(x){c+='<span style="background:'+mt.bg+'">'+esc(x)+'</span>';});
-    $('pl-major').innerHTML=c+'</div></div>';
+    c+='<details class="pl-about"><summary>عن التخصص ووين تشتغل بعد التخرج</summary><p class="pl-mission">'+esc(m.mission)+'</p><p class="pl-lbl">وين تشتغل بعد التخرج؟</p><div class="pl-careers">';
+    m.careers.forEach(function(x){c+='<span style="--cb:'+mt.bg+';--ca:'+mt.ac+'">'+esc(x)+'</span>';});
+    $('pl-major').innerHTML=c+'</div></details></div>';
   }
   function renderProgress(){
     var h=doneHours(),pct=Math.min(100,Math.round(h/130*100)),msg;
@@ -189,11 +208,12 @@
       lv.courses.forEach(function(c,ci){
         var d=!!st.done[dkey(li,ci)],pf=c[0].replace(/[0-9]/g,''),ms=d?[]:NP.missing(st.major,st.done,li,ci),lk=ms.length>0;
         o+='<label class="pl-c'+(d?' is-done':'')+(lk?' is-lock':'')+'"><input type="checkbox" data-done="'+li+'|'+ci+'"'+(d?' checked':'')+(lk?' aria-disabled="true"':'')+'><span class="pl-box" aria-hidden="true">'+(d?'✓':lk?window.Najd.icon('lock','is-in'):'')+'</span>'
-          +'<span class="pl-code" style="background:'+(PFX[pf]||'#E4E9EB')+'">'+esc(c[0])+'</span>'
+          +'<span class="pl-code" style="--cb:'+(PFX[pf]||'#E4E9EB')+'">'+esc(c[0])+'</span>'
           +'<span class="pl-cn"><b>'+esc(c[2])+'</b><small dir="ltr" style="text-align:right">'+esc(c[1])+'</small>'
           +(lk?'<small class="pl-need">'+T('مقفلة، باقي عليك:')+' <span data-no-i18n>'+esc(needText(ms))+'</span></small>':'<small>المتطلب السابق: '+esc(NP.prereqText(st.major,li,ci))+'</small>')
-          +'<a class="pl-rate" href="ratings.html?c='+esc(c[0])+'">'+window.Najd.icon('ratings')+' تجارب الطلاب ونصايحهم</a></span>'
-          +'<span class="pl-ch">'+c[3]+'<small>ساعات</small></span></label>';
+          +'</span>'
+          +'<span class="pl-ch">'+c[3]+'<small>ساعات</small></span>'
+          +'<a class="pl-rate" href="ratings.html?c='+esc(c[0])+'" aria-label="'+T('تجارب الطلاب في')+' '+esc(c[0])+'" title="'+T('تجارب الطلاب ونصايحهم')+'">'+window.Najd.icon('ratings')+'</a></label>';
       });
       o+='</div></div>';
     });

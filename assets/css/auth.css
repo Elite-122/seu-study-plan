@@ -5,11 +5,12 @@
 #najd .au-field small{margin:6px 0 0}
 #najd .au-pass{position:relative}
 #najd .au-pass input{padding-left:64px!important}
-#najd .au-eye{position:absolute;left:8px;top:50%;transform:translateY(-50%);height:36px;border:0;background:none;color:var(--teal);font-size:var(--fs-md);font-weight:700;padding:0 8px;cursor:pointer}
+#najd .au-eye{position:absolute;left:8px;top:50%;transform:translateY(-50%);height:44px;border:0;background:none;color:var(--dtext);font-size:var(--fs-md);font-weight:700;padding:0 8px;cursor:pointer}
+#najd .au-row .au-link{display:inline-flex;align-items:center;min-height:44px}
 #najd .au-row{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);flex-wrap:wrap;margin:0 0 18px;font-size:var(--fs-base)}
-#najd .au-check{display:flex;align-items:center;gap:var(--sp-3);cursor:pointer;margin:0;font-weight:500}
+#najd .au-check{display:flex;align-items:center;gap:var(--sp-3);cursor:pointer;margin:0;font-weight:500;min-height:44px}
 #najd .au-check input{width:20px;height:20px;accent-color:var(--teal);margin:0}
-#najd .au-link{color:var(--teal);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+#najd .au-link{color:var(--dtext);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 #najd .au-submit{width:100%;height:54px;font-size:var(--fs-body)}
 #najd .au-alt{text-align:center;font-size:var(--fs-base);color:var(--muted);margin:18px 0 0}
 #najd .au-flash{background:var(--ok-bg);border:1px solid var(--ok-line);color:var(--ok);border-radius:var(--r-lg);padding:12px 14px;font-size:var(--fs-base);margin:0 0 18px}

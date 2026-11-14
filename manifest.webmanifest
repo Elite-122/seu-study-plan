@@ -1,0 +1,23 @@
+{
+  "name": "أكاديمية نجد",
+  "short_name": "نجد",
+  "description": "خطتك الدراسية وجدولك ومعدلك وشروحاتك في مكان واحد، لطلاب جامعة الأمير مساعد بن عبدالرحمن.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html?app=1",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F4F7F7",
+  "theme_color": "#2F4F4E",
+  "icons": [
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "الجدول الدراسي", "url": "./schedule.html", "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x192" }] },
+    { "name": "الخطط الدراسية", "url": "./plans.html", "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x192" }] },
+    { "name": "حاسبة المعدل", "url": "./gpa.html", "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
