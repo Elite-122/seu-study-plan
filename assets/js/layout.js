@@ -38,6 +38,10 @@
     compass:'<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-1.8 4.200L9 15l1.8-4.200z"/>',
     coins:'<ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.65 3.1 3 7 3s7-1.35 7-3V7M5 12v5c0 1.65 3.1 3 7 3s7-1.35 7-3v-5"/>',
     cart:'<path d="M3.5 5H6l2 10h9.500l2-7H7.2"/><circle cx="9.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/>',
+    share:'<path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-8"/>',
+    addbox:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/>',
+    phone:'<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
+    close:'<path d="M6 6l12 12M18 6L6 18"/>',
     ledger:'<rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 9.500h16M9.5 9.500V20M13 13.500h4M13 16.500h4"/>'};
   function icon(n,cls){return IC[n]?'<svg class="nj-icon'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>':'';}
   var ITEMS={plans:['plans','الخطط الدراسية','مقررات كل مستوى وتقدمك'],schedule:['schedule','الجدول الدراسي','صمّم جدولك واختباراتك'],gpa:['gpa','حاسبة المعدل','الفصلي والتراكمي'],calendar:['calendar','التقويم الأكاديمي','مواعيد التسجيل والاختبارات'],
@@ -89,7 +93,7 @@
     head.outerHTML='<header class="nj-head" id="nj-head"><div class="nj-in nj-bar">'
       +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg" alt="أكاديمية نجد" width="184" height="45"></a>'
       +'<nav class="nj-nav" aria-label="القائمة الرئيسية">'+navLinks()+'</nav>'
-      +'<div class="nj-acts">'+PREFS
+      +'<div class="nj-acts"><button type="button" class="nj-ic" data-search aria-label="بحث في الموقع" title="بحث">'+icon('search')+'</button>'+PREFS
       +'<a class="nj-btn nj-btn-line nj-btn-sm nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
       +'<a class="nj-btn nj-btn-fill nj-btn-sm nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a>'
       +userBox
@@ -108,7 +112,7 @@
       +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
       +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.quiz+'">اختبر نفسك</a><a href="'+LINKS.ratings+'">تجارب الطلاب</a><a href="'+LINKS.calendar+'">التقويم الأكاديمي</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.store+'">المتجر</a><a href="'+LINKS.college+'">خطط كلية العلوم الإدارية والمالية</a></nav></div>'
-      +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a></nav>'
+      +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a><a href="#" data-install>ثبّت التطبيق على جوالك</a></nav>'
       +'<h4 class="nj-foot-h2">تواصل معنا</h4><nav class="nj-foot-links nj-foot-social" aria-label="تواصل معنا"><a href="'+TELEGRAM_URL+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 3.2 2.9 10.5c-.9.4-.9 1.1 0 1.400l4.700 1.500 1.800 5.600c.2.600.800.700 1.200.300l2.600-2.500 4.700 3.500c.6.400 1.200.200 1.400-.600L22.800 4.400c.2-1-.4-1.500-1.200-1.200zM9.700 13.800l8.100-5.800-6.300 6.700-.3 3.100z"/></svg>تيليقرام</a>'+(CONTACT_EMAIL?'<a href="mailto:'+CONTACT_EMAIL+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.500l8 6 8-6"/></svg><span dir="ltr">'+CONTACT_EMAIL+'</span></a>':'')+'</nav></div>'
       +'</div>'
       +'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد طلابي مستقل، ولا يتبع للجامعة بأي صلة.</p></div>'
@@ -232,7 +236,133 @@
     root.insertBefore(bar,root.firstChild);
   }
 
-  window.Najd={LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,icon:icon,setSync:setSync,esc:esc,announce:announce};
+  /* ===== التطبيق: تثبيت الموقع في الجوال ويفتح بدون نت ===== */
+  var ASSET_V=((document.currentScript&&document.currentScript.src)||'').split('v=')[1]||'';
+  var UA=navigator.userAgent||'';
+  var STANDALONE=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+  var IOS=/iPad|iPhone|iPod/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var MOBILE=IOS||/Android/i.test(UA);
+  if(STANDALONE)document.documentElement.classList.add('is-app');
+  if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
+    window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
+  }
+  var bip=null,offered=false;
+  function pwaSeen(){try{return localStorage.getItem('najd_pwa');}catch(e){return '1';}}
+  function pwaMark(v){try{localStorage.setItem('najd_pwa',v);}catch(e){}}
+  function closeBanner(){var b=document.getElementById('nj-pwa');if(b)b.remove();}
+  function howTo(){
+    closeBanner();
+    var old=document.getElementById('nj-sheet');if(old)old.remove();
+    var steps=IOS
+      ?[[icon('share'),'اضغط زر المشاركة','أسفل الشاشة في سفاري (أو أعلاها في الآيباد).'],[icon('addbox'),'اختر «إضافة إلى الشاشة الرئيسية»','انزل شوي في القائمة إذا ما شفته.'],[icon('check'),'اضغط «إضافة»','وتطلع أيقونة «نجد» في جوالك.']]
+      :MOBILE?[[icon('phone'),'افتح قائمة المتصفح ⋮','أعلى الشاشة في كروم.'],[icon('addbox'),'اختر «تثبيت التطبيق»','أو «إضافة إلى الشاشة الرئيسية».'],[icon('check'),'اضغط «تثبيت»','وتطلع أيقونة «نجد» في جوالك.']]
+      :[[icon('addbox'),'افتح الموقع في كروم أو إيدج',''],[icon('phone'),'اضغط أيقونة التثبيت','في آخر شريط العنوان، أو من القائمة ⋮ ← «تثبيت».'],[icon('check'),'اضغط «تثبيت»','ويفتح الموقع في نافذة لحاله.']];
+    var s=document.createElement('div');s.className='nj-sheet';s.id='nj-sheet';s.setAttribute('role','dialog');s.setAttribute('aria-modal','true');s.setAttribute('aria-label','ثبّت التطبيق');
+    s.innerHTML='<div class="nj-sheet-box"><button type="button" class="nj-sheet-x" data-sheet-x aria-label="إغلاق">'+icon('close')+'</button>'
+      +'<div class="nj-sheet-h"><img src="assets/img/icon-192.png" alt="" width="52" height="52"><div><b>ثبّت «نجد» على جوالك</b><small>ويفتح بضغطة مثل أي تطبيق، حتى بدون نت للجدول والخطة والمعدل.</small></div></div>'
+      +'<ol class="nj-steps">'+steps.map(function(x){return '<li><span class="nj-step-ic">'+x[0]+'</span><span><b>'+x[1]+'</b>'+(x[2]?'<small>'+x[2]+'</small>':'')+'</span></li>';}).join('')+'</ol>'
+      +'<button type="button" class="nj-btn nj-btn-fill" data-sheet-x style="width:100%">تمام</button></div>';
+    root.appendChild(s);s.querySelector('.nj-sheet-x').focus();
+  }
+  function install(){
+    if(STANDALONE){toast('التطبيق مثبّت عندك');return;}
+    if(!pwaSeen())pwaMark('asked');
+    if(bip){bip.prompt();bip.userChoice.then(function(r){pwaMark(r&&r.outcome==='accepted'?'installed':'dismissed');bip=null;closeBanner();}).catch(function(){});return;}
+    howTo();
+  }
+  function offer(){
+    if(offered||STANDALONE||pwaSeen()||PAGE==='admin'||!MOBILE||(!bip&&!IOS))return;
+    offered=true;
+    setTimeout(function(){
+      if(document.getElementById('nj-pwa'))return;
+      var b=document.createElement('div');b.className='nj-pwa';b.id='nj-pwa';b.setAttribute('role','region');b.setAttribute('aria-label','ثبّت التطبيق');
+      b.innerHTML='<img src="assets/img/icon-192.png" alt="" width="48" height="48"><div><b>ثبّت أكاديمية نجد</b><small>افتحه من شاشة جوالك مثل أي تطبيق</small></div>'
+        +'<button type="button" class="nj-btn nj-btn-fill nj-btn-sm" data-install>'+(bip?'ثبّت':'كيف؟')+'</button><button type="button" class="nj-pwa-x" data-pwa-x aria-label="لا شكرًا">'+icon('close')+'</button>';
+      root.appendChild(b);
+    },3500);
+  }
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();bip=e;offer();});
+  window.addEventListener('appinstalled',function(){pwaMark('installed');closeBanner();});
+  if(IOS)offer();
+  root.addEventListener('click',function(e){
+    if(e.target.closest('[data-install]')){e.preventDefault();install();return;}
+    if(e.target.closest('[data-pwa-x]')){pwaMark('dismissed');closeBanner();return;}
+    var sx=e.target.closest('[data-sheet-x]');if(sx||e.target.id==='nj-sheet'){var sh=document.getElementById('nj-sheet');if(sh)sh.remove();}
+  });
+
+  /* ===== البحث في الموقع: المقررات وأعضاء هيئة التدريس والأدوات ===== */
+  var sxData=null;
+  function loadScript(src){return new Promise(function(res){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=res;document.head.appendChild(s);});}
+  function sxLoad(){
+    if(sxData)return sxData;
+    var need=[];
+    if(!window.NAJD_COURSES)need.push(loadScript('assets/js/courses-data.js?v='+ASSET_V));
+    if(!window.NAJD_FACULTY)need.push(loadScript('assets/js/faculty-data.js?v='+ASSET_V));
+    sxData=Promise.all(need);return sxData;
+  }
+  function norm(s){return String(s||'').toLowerCase().replace(/[ً-ٰٟـ]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/ؤ/g,'و').replace(/ئ/g,'ي').replace(/\s+/g,' ').trim();}
+  /* -1 = ما يطابق. وكل ما صغر الرقم كان أقرب: كلمة مطابقة تمامًا، ثم كلمة تبدأ بالبحث، ثم يحتويه */
+  function hit(q,hay){var h=norm(hay),toks=h.split(/[\s·.،-]+/),w=q.split(' '),sc=0;
+    for(var i=0;i<w.length;i++){if(!w[i])continue;if(h.indexOf(w[i])<0)return -1;
+      sc+=toks.indexOf(w[i])>-1?0:toks.some(function(x){return x.indexOf(w[i])===0;})?1:2;}
+    return sc;}
+  var EN=function(){return document.documentElement.lang==='en';};
+  var TT=function(s){return window.NajdT?window.NajdT(s):s;};
+  var PAGES_SX=['plans','schedule','gpa','calendar','lessons','quiz','ratings','coop','store'];
+  function sxItem(href,lead,title,sub,ltr){return '<a class="nj-sx-it" role="option" href="'+href+'"><span class="nj-sx-lead"'+(ltr?' dir="ltr"':'')+'>'+lead+'</span><span class="nj-sx-tx"><b data-no-i18n>'+esc(title)+'</b>'+(sub?'<small data-no-i18n>'+esc(sub)+'</small>':'')+'</span></a>';}
+  function sxRender(raw){
+    var box=document.getElementById('nj-sx-res'),q=norm(raw),qc=String(raw||'').replace(/\s+/g,'').toUpperCase(),o='';
+    var tools=PAGES_SX.filter(function(k){return !q||hit(q,ITEMS[k][1]+' '+ITEMS[k][2]+' '+TT(ITEMS[k][1]))>-1;}).slice(0,q?4:9);
+    if(tools.length)o+='<p class="nj-sx-h">'+TT('الأدوات')+'</p>'+tools.map(function(k){return sxItem(LINKS[k],icon(ITEMS[k][0]),TT(ITEMS[k][1]),TT(ITEMS[k][2]));}).join('');
+    if(q){
+      var cs=(window.NAJD_COURSES||[]).map(function(c){var r=c[0].indexOf(qc)===0?0:hit(q,c[0]+' '+c[1]+' '+c[2]);return [r,c];}).filter(function(x){return x[0]>-1;}).sort(function(a,b){return a[0]-b[0];}).slice(0,8);
+      if(cs.length)o+='<p class="nj-sx-h">'+TT('المقررات')+'</p>'+cs.map(function(x){var c=x[1];return sxItem('ratings.html?c='+encodeURIComponent(c[0]),'<span class="nj-sx-code">'+esc(c[0])+'</span>',EN()?c[2]:c[1],TT('التفاصيل وتجارب الطلاب'));}).join('');
+      var D=window.NAJD_DEPTS||{},B=window.NAJD_BRANCHES||{};
+      var fs=(window.NAJD_FACULTY||[]).map(function(f){return [hit(q,f[1]+' '+f[2]+' '+f[6]),f];}).filter(function(x){return x[0]>-1;}).sort(function(a,b){return a[0]-b[0];}).slice(0,8);
+      if(fs.length)o+='<p class="nj-sx-h">'+TT('أعضاء هيئة التدريس')+'</p>'+fs.map(function(x){var f=x[1];return sxItem('ratings.html?tab=inst&i='+encodeURIComponent(f[0]),icon('user'),EN()&&f[2]?f[2]:f[1],[TT(D[f[3]]||''),B[f[5]]?TT('فرع '+B[f[5]]):''].filter(Boolean).join(' · '));}).join('');
+      if(!cs.length&&!fs.length&&!tools.length)o='<div class="nj-sx-none"><b>'+TT('ما لقينا نتيجة')+'</b><small>'+TT('جرّب رمز المقرر مثل ACCT201، أو جزء من اسم الدكتور.')+'</small></div>';
+    }
+    box.innerHTML=o;sxActive=-1;
+  }
+  var sxActive=-1,sxLast=null;
+  function sxOpen(){
+    var w=document.getElementById('nj-sx');
+    if(!w){
+      w=document.createElement('div');w.className='nj-sx';w.id='nj-sx';w.setAttribute('role','dialog');w.setAttribute('aria-modal','true');w.setAttribute('aria-label','بحث في الموقع');
+      w.innerHTML='<div class="nj-sx-box"><div class="nj-sx-top">'+icon('search')+'<input id="nj-sx-q" class="nj-sx-in" type="search" autocomplete="off" enterkeyhint="search" placeholder="ابحث برمز المقرر، اسمه، أو اسم الدكتور…" aria-label="بحث" aria-controls="nj-sx-res"><button type="button" class="nj-sx-x" data-sx-x aria-label="إغلاق">'+icon('close')+'</button></div><div class="nj-sx-res" id="nj-sx-res" role="listbox"></div><p class="nj-sx-tip">'+TT('اضغط / من الكيبورد عشان تفتح البحث بسرعة')+'</p></div>';
+      root.appendChild(w);
+      var inp=w.querySelector('#nj-sx-q'),tm;
+      inp.addEventListener('input',function(){clearTimeout(tm);tm=setTimeout(function(){sxLoad().then(function(){sxRender(inp.value);});},90);});
+      inp.addEventListener('keydown',function(e){
+        var its=w.querySelectorAll('.nj-sx-it');
+        if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!its.length)return;sxActive=(sxActive+(e.key==='ArrowDown'?1:-1)+its.length)%its.length;for(var i=0;i<its.length;i++)its[i].classList.toggle('is-on',i===sxActive);its[sxActive].scrollIntoView({block:'nearest'});}
+        if(e.key==='Enter'){var it=its[sxActive>-1?sxActive:0];if(it){e.preventDefault();location.href=it.getAttribute('href');}}
+      });
+      w.addEventListener('click',function(e){if(e.target===w||e.target.closest('[data-sx-x]'))sxClose();});
+    }
+    sxLast=document.activeElement;w.hidden=false;document.documentElement.classList.add('nj-noscroll');
+    var q=w.querySelector('#nj-sx-q');q.value='';sxRender('');sxLoad();setTimeout(function(){q.focus();},30);
+  }
+  function sxClose(){var w=document.getElementById('nj-sx');if(!w||w.hidden)return;w.hidden=true;document.documentElement.classList.remove('nj-noscroll');if(sxLast&&sxLast.focus)sxLast.focus();}
+  root.addEventListener('click',function(e){if(e.target.closest('[data-search]')){e.preventDefault();sxOpen();}});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){sxClose();var sh=document.getElementById('nj-sheet');if(sh)sh.remove();}
+    var tag=(e.target&&e.target.tagName)||'';
+    if((e.key==='/'&&!/INPUT|TEXTAREA|SELECT/.test(tag)&&!(e.target&&e.target.isContentEditable))||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k')){e.preventDefault();sxOpen();}
+  });
+
+  /* ===== جرّب بدون تسجيل: الأدوات تشتغل للزائر وتنحفظ في جهازه ===== */
+  if(root.getAttribute('data-auth')==='guest'){
+    var mainEl=root.querySelector('main');
+    if(mainEl){
+      var gb=document.createElement('div');gb.className='nj-guest nj-guestbar';
+      var nx2=encodeURIComponent(location.pathname.split('/').pop()||'index.html');
+      gb.innerHTML='<div class="nj-guestbar-in"><span class="nj-guestbar-ic">'+icon('cloud')+'</span><p><b>تستخدم الأداة بدون حساب.</b> بياناتك محفوظة في هذا الجهاز بس. سجّل دخول عشان تنحفظ في حسابك وتفتحها من أي جهاز.</p><a class="nj-btn nj-btn-fill nj-btn-sm" href="'+LINKS.register+'?next='+nx2+'">أنشئ حساب مجاني</a><a class="nj-btn nj-btn-line nj-btn-sm" href="'+LINKS.login+'?next='+nx2+'">دخول</a></div>';
+      var host=mainEl.querySelector('.nj-in')||mainEl;host.insertBefore(gb,host.firstChild);
+    }
+  }
+
+  window.Najd={search:function(){sxOpen();},install:install,LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,icon:icon,setSync:setSync,esc:esc,announce:announce};
 
   /* ظهور العناصر والعدادات */
   var rv=root.querySelectorAll('.nj-rv');
