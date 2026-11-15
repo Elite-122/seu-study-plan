@@ -327,7 +327,7 @@
     if(tools.length)o+='<p class="nj-sx-h">'+TT('الأدوات')+'</p>'+tools.map(function(k){return sxItem(LINKS[k],icon(ITEMS[k][0]),TT(ITEMS[k][1]),TT(ITEMS[k][2]));}).join('');
     if(q){
       var cs=(window.NAJD_COURSES||[]).map(function(c){var r=c[0].indexOf(qc)===0?0:hit(q,c[0]+' '+c[1]+' '+c[2]);return [r,c];}).filter(function(x){return x[0]>-1;}).sort(function(a,b){return a[0]-b[0];}).slice(0,8);
-      if(cs.length)o+='<p class="nj-sx-h">'+TT('المقررات')+'</p>'+cs.map(function(x){var c=x[1];return sxItem('ratings.html?c='+encodeURIComponent(c[0]),'<span class="nj-sx-code">'+esc(c[0])+'</span>',EN()?c[2]:c[1],TT('التفاصيل وتجارب الطلاب'));}).join('');
+      if(cs.length)o+='<p class="nj-sx-h">'+TT('المقررات')+'</p>'+cs.map(function(x){var c=x[1];return sxItem('c/'+encodeURIComponent(c[0])+'.html','<span class="nj-sx-code">'+esc(c[0])+'</span>',EN()?c[2]:c[1],TT('التفاصيل وتجارب الطلاب'));}).join('');
       var D=window.NAJD_DEPTS||{},B=window.NAJD_BRANCHES||{};
       var fs=(window.NAJD_FACULTY||[]).map(function(f){return [hit(q,f[1]+' '+f[2]+' '+f[6]),f];}).filter(function(x){return x[0]>-1;}).sort(function(a,b){return a[0]-b[0];}).slice(0,8);
       if(fs.length)o+='<p class="nj-sx-h">'+TT('أعضاء هيئة التدريس')+'</p>'+fs.map(function(x){var f=x[1];return sxItem('ratings.html?tab=inst&i='+encodeURIComponent(f[0]),icon('user'),EN()&&f[2]?f[2]:f[1],[TT(D[f[3]]||''),B[f[5]]?TT('فرع '+B[f[5]]):''].filter(Boolean).join(' · '));}).join('');

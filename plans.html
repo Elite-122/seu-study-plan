@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261115d">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115e">
 <style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:var(--sp-4);margin:20px 0 0}
 #najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:10px 8px;text-align:center}
 #najd .pl-stat b{display:block;font-size:var(--fs-4xl);font-weight:800;color:var(--light);line-height:1.2}
@@ -145,10 +145,10 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261115d"></script>
-<script src="assets/js/plans-data.js?v=20261115d"></script>
-<script src="assets/js/i18n.js?v=20261115d"></script>
-<script type="module" src="assets/js/auth.js?v=20261115d"></script>
+<script src="assets/js/layout.js?v=20261115e"></script>
+<script src="assets/js/plans-data.js?v=20261115e"></script>
+<script src="assets/js/i18n.js?v=20261115e"></script>
+<script type="module" src="assets/js/auth.js?v=20261115e"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('pl-tl'))return;
@@ -213,7 +213,7 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
           +(lk?'<small class="pl-need">'+T('مقفلة، باقي عليك:')+' <span data-no-i18n>'+esc(needText(ms))+'</span></small>':'<small>المتطلب السابق: '+esc(NP.prereqText(st.major,li,ci))+'</small>')
           +'</span>'
           +'<span class="pl-ch">'+c[3]+'<small>ساعات</small></span>'
-          +'<a class="pl-rate" href="ratings.html?c='+esc(c[0])+'" aria-label="'+T('تجارب الطلاب في')+' '+esc(c[0])+'" title="'+T('تجارب الطلاب ونصايحهم')+'">'+window.Najd.icon('ratings')+'</a></label>';
+          +'<a class="pl-rate" href="c/'+esc(c[0])+'.html" aria-label="'+T('تجارب الطلاب في')+' '+esc(c[0])+'" title="'+T('تجارب الطلاب ونصايحهم')+'">'+window.Najd.icon('ratings')+'</a></label>';
       });
       o+='</div></div>';
     });

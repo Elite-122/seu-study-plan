@@ -1,0 +1,109 @@
+/* ===== صفحة المقرر (c/*.html) — تبنيها tools/build-courses.py ===== */
+#najd .co-code{display:inline-block;direction:ltr;font-size:var(--fs-md);font-weight:800;letter-spacing:.5px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:var(--r-sm);padding:2px 10px;margin:0 0 8px}
+#najd .co-en{color:var(--mist);font-size:var(--fs-lg);margin:2px 0 0;direction:ltr;text-align:right}
+#najd .co-meta{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin:14px 0 0}
+#najd .co-meta span{font-size:var(--fs-md);font-weight:700;color:#fff;background:rgba(255,255,255,.12);border-radius:var(--r-pill);padding:4px 12px}
+#najd .co-stats{display:grid;grid-template-columns:repeat(3,minmax(0,170px));gap:var(--sp-4);margin:20px 0 0}
+#najd .co-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:10px 14px}
+#najd .co-stat b{display:block;font-size:var(--fs-3xl);font-weight:800;line-height:1.2;color:#fff}
+#najd .co-stat b small{font-size:var(--fs-md);font-weight:600;color:var(--mist)}
+#najd .co-stat span{font-size:var(--fs-sm);color:var(--mist)}
+#najd .co-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:var(--sp-7);align-items:start}
+#najd .co-side{position:sticky;top:90px;display:grid;gap:var(--sp-6)}
+#najd .co-nav{position:sticky;top:74px;z-index:20;display:flex;gap:var(--sp-2);overflow-x:auto;scrollbar-width:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:6px;margin:0 0 var(--sp-6);box-shadow:var(--shadow)}
+#najd .co-nav::-webkit-scrollbar{display:none}
+#najd .co-nav a{flex:1 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);min-height:44px;padding:0 14px;border-radius:var(--r-sm);font-size:var(--fs-base);font-weight:700;color:var(--muted);white-space:nowrap}
+#najd .co-nav a.is-on{background:var(--deep);color:#fff}
+#najd .co-sec{scroll-margin-top:150px;margin:0 0 var(--sp-6)}
+#najd .co-sec>h2{display:flex;align-items:center;gap:var(--sp-3);font-size:var(--fs-2xl);font-weight:800;margin:0 0 var(--sp-5)}
+#najd .co-sec>h2 .nj-icon{width:22px;height:22px}
+#najd .co-sec>h2 small{margin-inline-start:auto;font-size:var(--fs-sm);font-weight:700;color:var(--slate)}
+#najd .co-desc{font-size:var(--fs-lg);line-height:1.9;color:var(--ink);margin:0 0 var(--sp-6)}
+#najd .co-kv{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:var(--fs-base);margin:0}
+#najd .co-kv dt{color:var(--slate);font-weight:700}
+#najd .co-kv dd{margin:0}
+#najd .co-chips{display:flex;flex-wrap:wrap;gap:var(--sp-2)}
+#najd .co-chips span{font-size:var(--fs-sm);font-weight:700;background:var(--tint);color:var(--dtext);border-radius:var(--r-pill);padding:3px 10px}
+/* سلسلة المتطلبات */
+#najd .co-chain{display:grid;grid-template-columns:1fr auto 1fr auto 1.3fr;align-items:center;gap:var(--sp-3);margin:var(--sp-7) 0 0}
+#najd .co-step small{display:block;font-size:var(--fs-xs);font-weight:800;color:var(--slate);margin:0 0 6px}
+#najd .co-node{display:block;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-md);padding:8px 12px;font-size:var(--fs-md);font-weight:700;color:var(--ink);margin:0 0 6px}
+#najd .co-node b{display:block;direction:ltr;text-align:right;font-size:var(--fs-sm);color:var(--dtext)}
+#najd .co-node.is-me{background:var(--deep);border-color:var(--deep);color:#fff}
+#najd .co-node.is-me b{color:var(--mist)}
+#najd .co-node em{display:block;font-style:normal;font-size:var(--fs-xs);font-weight:600;color:var(--slate)}
+#najd .co-arrow{color:var(--soft);font-size:var(--fs-2xl);font-weight:800}
+/* المحتوى */
+#najd .co-items{display:grid;gap:var(--sp-3)}
+#najd .co-item{display:flex;align-items:center;gap:var(--sp-5);background:var(--bg);border-radius:var(--r-md);padding:10px 12px;min-height:60px}
+#najd .co-item>i{flex-shrink:0;width:40px;height:40px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--card);border:1px solid var(--line)}
+#najd .co-item>i .nj-icon{width:20px;height:20px}
+#najd .co-item div{flex:1;min-width:0}
+#najd .co-item b{display:block;font-size:var(--fs-base);font-weight:700}
+#najd .co-item small{font-size:var(--fs-sm);color:var(--slate)}
+#najd .co-item.is-lock{opacity:.85}
+#najd .co-buy{display:flex;align-items:center;gap:var(--sp-5);flex-wrap:wrap;margin:var(--sp-5) 0 0;background:linear-gradient(150deg,var(--deep),var(--deeper));color:#fff;border-radius:var(--r-lg);padding:14px 16px}
+#najd .co-buy p{flex:1 1 220px;margin:0;font-size:var(--fs-base);color:var(--mist)}
+#najd .co-buy p b{display:block;color:#fff;font-size:var(--fs-lg)}
+/* التجارب */
+#najd .co-rate{display:grid;grid-template-columns:auto 1fr;gap:var(--sp-7);align-items:center;margin:0 0 var(--sp-6)}
+#najd .co-big{text-align:center}
+#najd .co-big b{display:block;font-size:48px;font-weight:800;line-height:1;color:var(--dtext)}
+#najd .co-big small{font-size:var(--fs-sm);color:var(--slate)}
+#najd .co-dist{display:grid;gap:6px}
+#najd .co-dist div{display:grid;grid-template-columns:18px 1fr 28px;align-items:center;gap:var(--sp-3);font-size:var(--fs-sm);color:var(--slate)}
+#najd .co-dist i{display:block;height:8px;border-radius:var(--r-pill);background:var(--light);overflow:hidden}
+#najd .co-dist i u{display:block;height:100%;background:var(--teal);border-radius:inherit}
+#najd .co-diff{display:flex;align-items:center;gap:var(--sp-4);background:var(--bg);border-radius:var(--r-md);padding:10px 12px;margin:0 0 var(--sp-6);font-size:var(--fs-base)}
+#najd .co-diff b{color:var(--ink)}
+#najd .co-dots{display:flex;gap:4px;margin-inline-start:auto;direction:ltr}
+#najd .co-dots i{width:22px;height:8px;border-radius:var(--r-pill);background:var(--light)}
+#najd .co-dots i.on{background:var(--warn-solid)}
+#najd .co-tip{border-inline-start:3px solid var(--teal);background:var(--bg);border-radius:var(--r-sm);padding:10px 12px;margin:0 0 var(--sp-3)}
+#najd .co-tip p{margin:0 0 4px;font-size:var(--fs-base);line-height:1.8}
+#najd .co-tip small{font-size:var(--fs-xs);color:var(--slate)}
+/* الدكاترة */
+#najd .co-brs{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin:0 0 var(--sp-5)}
+#najd .co-ins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-3)}
+#najd .co-in{display:flex;align-items:center;gap:var(--sp-4);background:var(--bg);border-radius:var(--r-md);padding:10px 12px;min-height:64px}
+#najd .co-in .nj-av{width:40px;height:40px;font-size:var(--fs-base);flex-shrink:0}
+#najd .co-in div{flex:1;min-width:0}
+#najd .co-in b{display:block;font-size:var(--fs-md);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#najd .co-in small{font-size:var(--fs-xs);color:var(--slate)}
+#najd .co-in em{flex-shrink:0;font-style:normal;font-size:var(--fs-xs);font-weight:800;color:var(--dtext);background:var(--tint);border-radius:var(--r-pill);padding:2px 8px}
+#najd .co-src{font-size:var(--fs-xs);color:var(--slate);margin:var(--sp-4) 0 0}
+/* الجانب */
+#najd .co-status{display:flex;align-items:flex-start;gap:var(--sp-4);background:var(--ok-bg);border-radius:var(--r-md);padding:12px;margin:0 0 var(--sp-5)}
+#najd .co-status .nj-icon{flex-shrink:0;width:22px;height:22px;color:var(--ok)}
+#najd .co-status b{display:block;color:var(--ok);font-size:var(--fs-base)}
+#najd .co-status small{font-size:var(--fs-sm);color:var(--ink)}
+#najd .co-acts{display:grid;gap:var(--sp-3)}
+#najd .co-acts .nj-btn{width:100%}
+#najd .co-rel{display:flex;flex-wrap:wrap;gap:var(--sp-2)}
+#najd .co-rel a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:var(--r-pill);font-size:var(--fs-sm);font-weight:700;color:var(--ink);background:var(--surface)}
+#najd .co-rel a b{direction:ltr;color:var(--dtext)}
+@media (max-width:980px){#najd .co-grid{grid-template-columns:minmax(0,1fr)}#najd .co-side{position:static;order:-1}#najd .co-side .co-relcard{display:none}}
+@media (max-width:860px){#najd .co-nav{top:66px}}
+@media (max-width:640px){#najd .co-stats{grid-template-columns:repeat(3,minmax(0,1fr))}#najd .co-stat{padding:8px 10px}#najd .co-stat b{font-size:var(--fs-2xl)}
+ #najd .co-chain{grid-template-columns:minmax(0,1fr)}#najd .co-arrow{transform:rotate(-90deg);justify-self:center;line-height:1}
+ #najd .co-ins{grid-template-columns:minmax(0,1fr)}#najd .co-rate{gap:var(--sp-5)}#najd .co-big b{font-size:40px}}
+#najd .co-en{display:block}
+#najd .co-side .nj-card>h2,#najd .co-relcard h2{font-size:var(--fs-lg);margin:0 0 12px}
+#najd .co-wait{color:var(--slate);margin:0}
+#najd .co-nodesc{color:var(--slate);font-size:var(--fs-base)}
+#najd .co-src{font-size:var(--fs-xs);color:var(--slate);margin:6px 0 var(--sp-5)}
+#najd #about .co-src{margin-top:-14px}
+#najd .co-status.is-lock{background:var(--warn-bg)}
+#najd .co-status.is-lock .nj-icon,#najd .co-status.is-lock b{color:var(--warn)}
+#najd .co-status.is-info{background:var(--tint)}
+#najd .co-status.is-info .nj-icon,#najd .co-status.is-info b{color:var(--dtext)}
+#najd .co-empty{display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp-3);color:var(--muted)}
+#najd .co-empty p{margin:0;font-size:var(--fs-base)}
+#najd .co-item a.co-go{flex-shrink:0;display:grid;place-items:center;width:44px;height:44px;border-radius:var(--r-sm);color:var(--dtext)}
+#najd a.co-item{color:inherit;text-decoration:none}
+#najd a.co-item:hover{background:var(--tint)}
+#najd .co-in:not(a){cursor:default}
+#najd a.co-in:hover{background:var(--tint)}
+#najd .co-mist{display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap;background:var(--err-bg);border-radius:var(--r-md);padding:12px 14px;margin:var(--sp-5) 0 0}
+#najd .co-mist p{flex:1 1 200px;margin:0;font-size:var(--fs-base);color:var(--err)}
+#najd .co-mist p b{display:block;font-size:var(--fs-lg)}
