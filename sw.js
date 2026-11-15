@@ -1,18 +1,18 @@
 /* أكاديمية نجد: يخلّي الموقع يتثبت كتطبيق، ويفتح الأدوات حتى لو النت مقطوع.
    أرقام النسخ (?v=) يحدّثها tools/set-version.py، واسم الكاش يتغير معها فينحذف القديم لحاله. */
 const CORE = [
-  "assets/css/najd.css?v=20261115i",
-  "assets/css/auth.css?v=20261115i",
-  "assets/js/layout.js?v=20261115i",
-  "assets/js/i18n.js?v=20261115i",
-  "assets/js/auth.js?v=20261115i",
-  "assets/js/plans-data.js?v=20261115i",
-  "assets/js/courses-data.js?v=20261115i",
-  "assets/js/faculty-data.js?v=20261115i",
-  "assets/js/access.js?v=20261115i",
-  "assets/js/study-core.js?v=20261115i",
-  "assets/js/mistakes.js?v=20261115i",
-  "assets/js/teaching-data.js?v=20261115i"
+  "assets/css/najd.css?v=20261115k",
+  "assets/css/auth.css?v=20261115k",
+  "assets/js/layout.js?v=20261115k",
+  "assets/js/i18n.js?v=20261115k",
+  "assets/js/auth.js?v=20261115k",
+  "assets/js/plans-data.js?v=20261115k",
+  "assets/js/courses-data.js?v=20261115k",
+  "assets/js/faculty-data.js?v=20261115k",
+  "assets/js/access.js?v=20261115k",
+  "assets/js/study-core.js?v=20261115k",
+  "assets/js/mistakes.js?v=20261115k",
+  "assets/js/teaching-data.js?v=20261115k"
 ];
 const PAGES = ["./", "index.html", "plans.html", "schedule.html", "study.html", "next-term.html", "gpa.html", "calendar.html", "ratings.html", "offline.html",
   "assets/img/logo.svg", "assets/img/logo-light.svg", "assets/img/icon-192.png", "manifest.webmanifest"];

@@ -418,5 +418,71 @@
   "en": "This course addresses the importance of applying quantitative methods and analysis to the solution of business problems using structured problem solving and specialized data analysis software tools. Some of the methodologies covered are linear programming, PERT/CPM analysis, time series, and decision tree analysis and data mining. The main focus of the course is on solutions to problems of inefficiency,",
   "title_en": "Quantitative Methods",
   "src": "BSBA Study Plan 2026"
+ },
+ "IT401": {
+  "ar": "مدخل للبرمجة لطلاب الأعمال: كيف تحوّل مشكلة عمل إلى خطوات منطقية (خوارزمية)، ثم تكتبها برنامجًا. يغطي المتغيرات وأنواع البيانات، والشروط والتكرار، والدوال، والقوائم والملفات، وبناء برامج صغيرة تعالج بيانات الأعمال مثل الحسابات والتقارير. وهو الأساس لمقرر قواعد البيانات بعده.",
+  "en": "An introduction to programming for business students: turning a business problem into logical steps (an algorithm) and writing it as a program. Covers variables and data types, conditions and loops, functions, lists and files, and small programs that process business data such as calculations and reports. It prepares for the databases course that follows.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "Tony Gaddis, Starting Out with Python",
+   "Charles Severance, Python for Everybody",
+   "Diane Zak, Programming with Microsoft Visual Basic"
+  ]
+ },
+ "IT402": {
+  "ar": "يشرح كيف تربط أنظمة المؤسسة المتكاملة (ERP) بين إدارات المنشأة في نظام واحد: المشتريات، والمبيعات، والمخزون، والإنتاج، والمالية، والموارد البشرية. يتناول نمذجة العمليات التجارية، والبيانات الرئيسية المشتركة، وعلاقة ERP بأنظمة إدارة العملاء وسلاسل الإمداد، وطريقة اختيار النظام وتطبيقه.",
+  "en": "How enterprise resource planning (ERP) systems connect a company's departments in one system: purchasing, sales, inventory, production, finance and HR. Covers business process modeling, shared master data, how ERP links to CRM and supply chain systems, and how a system is selected and implemented.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "Simha Magal & Jeffrey Word, Integrated Business Processes with ERP Systems",
+   "Ellen Monk & Bret Wagner, Concepts in Enterprise Resource Planning",
+   "Vivek Kale, Enterprise Process Management Systems"
+  ]
+ },
+ "IT403": {
+  "ar": "أساسيات قواعد البيانات: ليش نستخدم قاعدة بيانات بدل الملفات، ونظام إدارة قواعد البيانات. يغطي تصميم البيانات بمخطط الكيانات والعلاقات (ER)، والنموذج العلائقي والمفاتيح، والتطبيع لتقليل التكرار، ولغة SQL لإنشاء الجداول وإدخال البيانات والاستعلام عنها.",
+  "en": "Database fundamentals: why use a database instead of files, and what a database management system does. Covers data design with entity-relationship (ER) diagrams, the relational model and keys, normalization to reduce redundancy, and SQL for creating tables, entering data and querying it.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "Ramez Elmasri & Shamkant Navathe, Fundamentals of Database Systems",
+   "Carlos Coronel & Steven Morris, Database Systems: Design, Implementation, & Management",
+   "Jeffrey Hoffer et al., Modern Database Management"
+  ]
+ },
+ "IT405": {
+  "ar": "بناء مواقع وبوابات إلكترونية متغيرة المحتوى: كيف يتعامل المتصفح مع الخادم، والبرمجة من جهة الخادم بلغة PHP، واستقبال النماذج، وربط الموقع بقاعدة بيانات MySQL، وتسجيل دخول المستخدمين، وأساسيات حماية الموقع. وينتهي بمشروع بوابة فيها تسجيل ومحتوى يُدار من لوحة تحكم.",
+  "en": "Building dynamic websites and portals: how the browser talks to the server, server-side programming in PHP, handling forms, connecting a site to a MySQL database, user login, and basic web security. It ends with a portal project with registration and content managed from an admin panel.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "Larry Ullman, PHP and MySQL for Dynamic Web Sites",
+   "Robin Nixon, Learning PHP, MySQL & JavaScript",
+   "Luke Welling & Laura Thomson, PHP and MySQL Web Development"
+  ]
+ },
+ "LAW401": {
+  "ar": "يشرح نظام الشركات السعودي ولائحته التنفيذية: مفهوم الشركة وأركانها وشخصيتها الاعتبارية، وأنواعها (التضامن، والتوصية البسيطة، والمساهمة، والمساهمة المبسطة، وذات المسؤولية المحدودة)، وتأسيسها وإدارتها وجمعياتها، ورأس المال والحصص والأسهم، وحقوق الشركاء، والتحول والاندماج، والانقضاء والتصفية، والعقوبات.",
+  "en": "Explains the Saudi Companies Law and its implementing regulations: what a company is, its elements and legal personality, its types (general partnership, limited partnership, joint stock, simplified joint stock, limited liability), formation, management and assemblies, capital, shares and partners' rights, conversion and merger, dissolution and liquidation, and penalties.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "نظام الشركات السعودي (1443هـ) ولائحته التنفيذية",
+   "الجمعية العلمية القضائية السعودية، أهم المهمات في نظام الشركات",
+   "توصيفات مقرر قانون الشركات في الجامعات السعودية"
+  ]
+ },
+ "LAW402": {
+  "ar": "يشرح الأنظمة اللي تحكم البيع والشراء عبر الإنترنت في المملكة: نظام التجارة الإلكترونية ولائحته، ونظام التعاملات الإلكترونية. يتناول إبرام العقد الإلكتروني وإثباته، والتوقيع والسجلات الإلكترونية، والتزامات المتجر الإلكتروني تجاه المستهلك (الإفصاح، والإعلان، والإلغاء والاسترجاع)، والدفع الإلكتروني، وحماية البيانات الشخصية، وحل النزاعات.",
+  "en": "Explains the laws that govern buying and selling online in Saudi Arabia: the E-Commerce Law and its regulations, and the Electronic Transactions Law. Covers forming and proving an electronic contract, electronic signatures and records, an online store's duties to consumers (disclosure, advertising, cancellation and returns), electronic payment, personal data protection, and dispute resolution.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "نظام التجارة الإلكترونية (1440هـ) ولائحته التنفيذية",
+   "نظام التعاملات الإلكترونية (1428هـ) ونظام حماية البيانات الشخصية (1443هـ)",
+   "Ian Lloyd, Information Technology Law"
+  ]
  }
 }

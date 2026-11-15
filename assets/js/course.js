@@ -9,8 +9,8 @@ document.querySelectorAll("[data-ic]").forEach((e) => { e.insertAdjacentHTML("af
 if (EN) {
   const h = $("co-name"); if (h) h.textContent = h.getAttribute("data-en");
   document.querySelectorAll(".co-en").forEach((e) => { e.hidden = true; });
-  document.querySelectorAll('.co-desc[data-lang="ar"]').forEach((e) => { e.hidden = true; });
-  document.querySelectorAll('.co-desc[data-lang="en"]').forEach((e) => { e.hidden = false; });
+  document.querySelectorAll('#about [data-lang="ar"]').forEach((e) => { e.hidden = true; });
+  document.querySelectorAll('#about [data-lang="en"]').forEach((e) => { e.hidden = false; });
 }
 
 /* شريط الأقسام يعلّم القسم اللي تقرأه */
@@ -124,7 +124,7 @@ function contentHtml(user, lessons, quizzes, grants, verified) {
 }
 
 try {
-  const A = await import("./auth.js?v=20261115i");
+  const A = await import("./auth.js?v=20261115k");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   /* التقييمات: للكل */

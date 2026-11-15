@@ -120,10 +120,19 @@ def page(c):
         hours_txt = "8 ساعات في كل فصل (فصلين)"
     desc_ar = d["ar"] if d else ""
     meta_desc = (desc_ar or f"{ar} ({code}): المتطلبات، والصعوبة، وتجارب الطلاب، ومين يدرّسه.")[:155]
-    if d:
+    if d and d.get("src") == "najd":
+        # ما لها وصف رسمي: كتبناه من الكتب المعتمدة في المادة، ونقول هذا بوضوح
+        books = "، ".join(f"<bdi>{e(b)}</bdi>" for b in d["books"])
+        books_en = ", ".join(f"<bdi>{e(b)}</bdi>" for b in d["books"])
         about = (f'<p class="co-desc" data-lang="ar">{e(d["ar"])}</p>'
                  f'<p class="co-desc" data-lang="en" dir="ltr" hidden>{e(d["en"])}</p>'
-                 f'<p class="co-src">المصدر: {e(d["src"])} (الخطة الرسمية للجامعة)</p>')
+                 f'<p class="co-src" data-lang="ar">ما لقينا وصف رسمي لهذا المقرر في ملفات الجامعة، فكتبناه من الكتب والمراجع المعتمدة في المادة: {books}</p>'
+                 f'<p class="co-src" data-lang="en" dir="ltr" hidden>No official description in the university files, so we wrote it from the standard references for the subject: {books_en}.</p>')
+    elif d:
+        about = (f'<p class="co-desc" data-lang="ar">{e(d["ar"])}</p>'
+                 f'<p class="co-desc" data-lang="en" dir="ltr" hidden>{e(d["en"])}</p>'
+                 f'<p class="co-src" data-lang="ar">المصدر: {e(d["src"])} (الخطة الرسمية للجامعة)</p>'
+                 f'<p class="co-src" data-lang="en" dir="ltr" hidden>Source: {e(d["src"])} (official university plan)</p>')
     else:
         about = '<p class="co-desc co-nodesc">ما لقينا وصف هذا المقرر في ملفات الخطط الرسمية للجامعة.</p>'
     chips = "".join(f"<span>{e(x)}</span>" for x in mlabels) or "<span>—</span>"
