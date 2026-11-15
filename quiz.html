@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/quiz.html">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611160105" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611161800" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611160105">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611161800">
 <style>
 #najd .qz-nbnote{font-size:var(--fs-base);color:var(--err);background:var(--err-bg);border-radius:var(--r-md);padding:8px 12px;margin:10px auto 0;max-width:420px}
 #najd .qz-nb{margin:0 0 var(--sp-6);border-inline-start:5px solid var(--err-solid)}
@@ -63,6 +63,21 @@
 #najd .qz-opt.is-wrong{border-color:#B0625A;background:var(--err-bg)}
 #najd .qz-opt em{margin-inline-start:auto;font-style:normal;font-size:var(--fs-sm);font-weight:800;white-space:nowrap}
 #najd .qz-exp{font-size:var(--fs-base);background:var(--bg);border-radius:var(--r-md);padding:10px 14px;margin:10px 0 0;line-height:1.8;white-space:pre-line}
+/* نص السؤال بلغة المقرر: الإنجليزي من اليسار، ومواد ISLM بالعربي */
+#najd .qz-qt{display:block;margin-top:2px}
+#najd [dir="ltr"].qz-qt,#najd .qz-opts[dir="ltr"],#najd .qz-exp[dir="ltr"]{text-align:left}
+/* تحدي اليوم: سؤال سؤال مع الرد على طول */
+#najd button.qz-opt{width:100%;font:inherit;font-size:var(--fs-lg);color:inherit;text-align:start;line-height:1.6}
+#najd button.qz-opt:disabled{cursor:default;opacity:1}
+#najd button.qz-opt:not(:disabled):hover{border-color:var(--teal)}
+#najd button.qz-opt:not(:disabled):active{transform:scale(.99)}
+#najd .qz-fb{font-size:var(--fs-body);font-weight:800;margin:12px 0 0;min-height:1em}
+#najd .qz-fb.ok{color:var(--ok)}#najd .qz-fb.no{color:var(--err)}
+#najd .qz-sk{font-weight:700;color:var(--ink)!important;margin-top:14px!important}
+#najd .qz-week{display:flex;gap:10px;justify-content:center;margin:10px 0 4px}
+#najd .qz-week i{width:14px;height:14px;border-radius:50%;background:var(--light)}
+#najd .qz-week i.on{background:#D9B48A}
+#najd .qz-week i.today{box-shadow:0 0 0 3px rgba(217,180,138,.45)}
 #najd .qz-res{text-align:center}
 #najd .qz-res b{display:block;font-size:54px;font-weight:800;line-height:1.1;color:var(--dtext)}
 #najd .qz-res p{font-size:var(--fs-body);color:var(--muted);margin:4px 0 0}
@@ -93,12 +108,12 @@ html[data-theme="dark"] #najd .qz-opt.is-wrong{background:#3A1F1C;border-color:#
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611160105"></script>
-<script src="assets/js/i18n.js?v=202611160105"></script>
-<script src="assets/js/courses-data.js?v=202611160105"></script>
-<script src="assets/js/access.js?v=202611160105"></script>
-<script src="assets/js/mistakes.js?v=202611160105"></script>
-<script type="module" src="assets/js/auth.js?v=202611160105"></script>
+<script src="assets/js/layout.js?v=202611161800"></script>
+<script src="assets/js/i18n.js?v=202611161800"></script>
+<script src="assets/js/courses-data.js?v=202611161800"></script>
+<script src="assets/js/access.js?v=202611161800"></script>
+<script src="assets/js/mistakes.js?v=202611161800"></script>
+<script type="module" src="assets/js/auth.js?v=202611161800"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KEY = "najd_quiz_v1";
@@ -107,6 +122,10 @@ const NA = window.NajdAccess, canOpen = (x) => x.free || (verified && NA.has(gra
 const scores = () => { try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { return {}; } };
 const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
+/* لغة السؤال من رمز المقرر: مواد ISLM بالعربي، والباقي بالإنجليزي (من اليسار). ولو النص كله عربي (أسئلة قديمة) نخليه عربي */
+const AR = /[\u0600-\u06FF]/, LAT = /[A-Za-z]/;
+const qDir = (code, text) => { if (/^ISLM/i.test(code || "")) return "rtl"; const t = String(text || ""); return AR.test(t) && !LAT.test(t) ? "rtl" : "ltr"; };
+const qa = (code, text) => { const d = qDir(code, text); return ` dir="${d}" lang="${d === "ltr" ? "en" : "ar"}"`; };
 const qn = (n) => (n === 1 ? "سؤال واحد" : n === 2 ? "سؤالين" : n <= 10 ? n + " أسئلة" : n + " سؤال");
 /* دفتر أخطائي: الأسئلة اللي غلطت فيها ترجع لك على أيام متباعدة */
 function notebook() {
@@ -155,7 +174,7 @@ async function start(id, pre) {
   const r = $("qz-run"); $("qz-home").hidden = true; r.hidden = false;
   const draw = () => {
     r.innerHTML = `<div class="qz-top"><b>${esc(meta.title)}</b><span id="qz-cnt">0/${run.length}</span><div class="qz-prog"><i id="qz-bar" style="width:0"></i></div></div>`
-      + run.map((q, i) => `<div class="nj-card qz-q" data-i="${i}"><h3><small>السؤال ${i + 1} من ${run.length}</small>${esc(q.q)}</h3><div class="qz-opts">${q.o.map((o, j) => `<label class="qz-opt"><input type="radio" name="q${i}" value="${j}">${esc(o.t)}</label>`).join("")}</div></div>`).join("")
+      + run.map((q, i) => `<div class="nj-card qz-q" data-i="${i}"><h3><small>السؤال ${i + 1} من ${run.length}</small><span class="qz-qt" data-no-i18n${qa(q.code, q.q)}>${esc(q.q)}</span></h3><div class="qz-opts"${qa(q.code, q.q)}>${q.o.map((o, j) => `<label class="qz-opt"><input type="radio" name="q${i}" value="${j}"><span data-no-i18n>${esc(o.t)}</span></label>`).join("")}</div></div>`).join("")
       + `<div class="qz-acts"><button type="button" class="nj-btn nj-btn-fill" id="qz-submit">سلّم الاختبار</button><button type="button" class="nj-btn nj-btn-line" id="qz-exit">خروج</button></div>`;
     window.scrollTo({ top: r.getBoundingClientRect().top + scrollY - 90 });
     r.onchange = (e) => { const inp = e.target; if (inp.type !== "radio") return; run[+inp.name.slice(1)].pick = +inp.value; const n = run.filter((q) => q.pick > -1).length; $("qz-cnt").textContent = n + "/" + run.length; $("qz-bar").style.width = (n / run.length * 100) + "%"; };
@@ -172,22 +191,110 @@ async function start(id, pre) {
     try { localStorage.setItem(KEY, JSON.stringify(sc)); } catch (e) {} }
     /* دفتر الأخطاء: الغلط يرجع بعد أيام، والصح يقربه من الإتقان */
     if (window.NajdMist) run.forEach((q) => window.NajdMist.record(q.qz, q.code, q.q, q.pick > -1 && q.o[q.pick].ok));
+    /* أي اختبار تخلصه ينحسب في أيامك المتتالية */
+    if (window.NajdAct && run.some((q) => q.pick > -1)) window.NajdAct.log("q", 1);
     const wrongN = run.filter((q) => !(q.pick > -1 && q.o[q.pick].ok)).length;
     const word = pct >= 90 ? "ممتاز" : pct >= 75 ? "جيد جدًا" : pct >= 60 ? "جيد" : "يبي له مراجعة";
     r.onchange = null;
     r.innerHTML = `<div class="nj-card qz-res"><p>${esc(meta.title)}</p><b>${right}/${run.length}</b><p>${pct}% · ${word}</p>${wrongN ? `<p class="qz-nbnote">${wrongN === 1 ? "انضاف سؤال واحد" : "انضافت " + qn(wrongN)} لدفتر أخطائك، وترجع لك بكرة عشان تثبّتها.</p>` : ""}<div class="qz-acts"><button type="button" class="nj-btn nj-btn-fill" id="qz-again">أعد الاختبار</button><button type="button" class="nj-btn nj-btn-line" id="qz-back">كل الاختبارات</button></div>${right < run.length ? '<label class="qz-filter"><input type="checkbox" id="qz-wrong">اعرض أخطائي فقط</label>' : ""}</div>`
       + run.map((q, i) => { const good = q.pick > -1 && q.o[q.pick].ok;
-        return `<div class="nj-card qz-q" data-good="${good}"><h3><small>السؤال ${i + 1} · ${good ? "صح" : q.pick < 0 ? "بدون إجابة" : "خطأ"}</small>${esc(q.q)}</h3><div class="qz-opts">${q.o.map((o, j) => `<div class="qz-opt${o.ok ? " is-right" : j === q.pick ? " is-wrong" : ""}">${esc(o.t)}${o.ok ? "<em>الإجابة الصحيحة</em>" : j === q.pick ? "<em>إجابتك</em>" : ""}</div>`).join("")}</div>${q.exp ? `<p class="qz-exp">${window.Najd.icon("bulb")} ${esc(q.exp)}</p>` : ""}</div>`; }).join("");
+        return `<div class="nj-card qz-q" data-good="${good}"><h3><small>السؤال ${i + 1} · ${good ? "صح" : q.pick < 0 ? "بدون إجابة" : "خطأ"}</small><span class="qz-qt" data-no-i18n${qa(q.code, q.q)}>${esc(q.q)}</span></h3><div class="qz-opts"${qa(q.code, q.q)}>${q.o.map((o, j) => `<div class="qz-opt${o.ok ? " is-right" : j === q.pick ? " is-wrong" : ""}"><span data-no-i18n>${esc(o.t)}</span>${o.ok ? '<em>الإجابة الصحيحة</em>' : j === q.pick ? '<em>إجابتك</em>' : ""}</div>`).join("")}</div>${q.exp ? `<p class="qz-exp" data-no-i18n${qa(q.code, q.exp)}>${window.Najd.icon("bulb")} ${esc(q.exp)}</p>` : ""}</div>`; }).join("");
     window.scrollTo({ top: r.getBoundingClientRect().top + scrollY - 90 });
     $("qz-again").onclick = () => (meta.review ? review(meta.code) : start(id)); $("qz-back").onclick = home;
     const w = $("qz-wrong"); if (w) w.onchange = () => r.querySelectorAll('.qz-q[data-good="true"]').forEach((el) => { el.hidden = w.checked; });
   };
   draw();
 }
+/* ===== تحدي اليوم: ٣ أسئلة، سؤال سؤال مع الرد على طول =====
+   أخطاءك أول (اللي جا وقتها ثم الباقي)، وإذا ما كفت نكمل من اختبارات موادك المفتوحة لك. */
+const qCache = {};
+async function qData(id) {
+  if (qCache[id]) return qCache[id];
+  try { const s = await F.fs.getDoc(F.fs.doc(F.db, "quizData", id)); qCache[id] = s.exists() ? s.data().questions || [] : []; } catch (e) { qCache[id] = []; }
+  return qCache[id];
+}
+function myCodes() {
+  const out = new Set();
+  try {
+    const s = JSON.parse(localStorage.getItem("stq_schedule_v1") || "null") || {}, C = window.NAJD_COURSES || [];
+    Object.values(s.cells || {}).concat((s.exams || []).map((x) => x.subject)).forEach((v) => {
+      const n = String(v || "").trim(); if (!n) return;
+      if (/^[A-Za-z]{2,5}\s?\d{3}$/.test(n)) { out.add(n.replace(/\s/g, "").toUpperCase()); return; }
+      const c = C.find((x) => x[1] === n || x[2] === n); if (c) out.add(c[0]);
+    });
+  } catch (e) {}
+  return out;
+}
+async function challenge() {
+  const M = window.NajdMist, out = [], seen = new Set();
+  $("qz-home").innerHTML = '<div class="nj-card nj-empty"><b>نجهّز تحدي اليوم…</b></div>';
+  const items = M ? M.list("").sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : a.box - b.box)) : [];
+  for (const it of items) {
+    if (out.length >= 3) break;
+    const k = it.quiz + "#" + it.h; if (seen.has(k)) continue;
+    const q = (await qData(it.quiz)).find((x) => M.hash(x.q) === it.h); if (!q || !Array.isArray(q.options)) continue;
+    const m = quizzes.find((x) => x.id === it.quiz) || {};
+    seen.add(k); out.push({ ...q, qz: it.quiz, code: it.code || m.code || "", mist: 1 });
+  }
+  if (out.length < 3) {
+    const mine = myCodes(), pool = shuffle(quizzes.filter((x) => x.active !== false && canOpen(x))).sort((a, b) => (mine.has(b.code) ? 1 : 0) - (mine.has(a.code) ? 1 : 0));
+    /* أول لفة: سؤالين بالكثير من كل اختبار عشان تتنوع، والثانية تكمّل لين ٣ لو الاختبارات قليلة */
+    for (const cap of [2, 3]) for (const z of pool) {
+      if (out.length >= 3) break;
+      let n = out.filter((o) => o.qz === z.id).length;
+      for (const q of shuffle(await qData(z.id))) {
+        if (out.length >= 3 || n >= cap) break;
+        const k = z.id + "#" + (M ? M.hash(q.q) : q.q); if (seen.has(k) || !Array.isArray(q.options)) continue;
+        seen.add(k); n++; out.push({ ...q, qz: z.id, code: z.code || "" });
+      }
+    }
+  }
+  if (!out.length) { home(); toast("ما فيه أسئلة للتحدي حاليًا. نضيف اختبارات أول بأول."); return; }
+  runChallenge(out.slice(0, 3));
+}
+function runChallenge(list) {
+  const r = $("qz-run"); $("qz-home").hidden = true; r.hidden = false; r.onchange = null;
+  const run = list.map((q) => ({ q: q.q, o: shuffle(q.options.map((t, i) => ({ t, ok: i === q.answer }))), exp: q.explain || "", qz: q.qz, code: q.code, mist: q.mist }));
+  let i = 0, right = 0;
+  const leave = () => { try { history.replaceState(null, "", "quiz.html"); } catch (e) {} };
+  const step = () => {
+    const q = run[i], a = qa(q.code, q.q);
+    r.innerHTML = `<div class="qz-top"><b>تحدي اليوم</b><span>${i + 1}/${run.length}</span><div class="qz-prog"><i style="width:${(i / run.length) * 100}%"></i></div></div>`
+      + `<div class="nj-card qz-q"><h3><small>${q.code ? `<span dir="ltr" data-no-i18n>${esc(q.code)}</span> · ` : ""}${q.mist ? "من دفتر أخطائك" : "سؤال من موادك"}</small><span class="qz-qt" data-no-i18n${a}>${esc(q.q)}</span></h3>`
+      + `<div class="qz-opts" role="group" aria-label="الخيارات"${a}>${q.o.map((o, j) => `<button type="button" class="qz-opt qz-pick" data-j="${j}"><span data-no-i18n>${esc(o.t)}</span></button>`).join("")}</div>`
+      + `<p class="qz-fb" id="qz-fb" role="status" aria-live="polite"></p><p class="qz-exp" id="qz-exp" data-no-i18n${qa(q.code, q.exp || q.q)} hidden></p>`
+      + `<div class="qz-acts"><button type="button" class="nj-btn nj-btn-fill" id="qz-next" hidden>${i + 1 < run.length ? "السؤال التالي" : "شوف النتيجة"}</button><button type="button" class="nj-btn nj-btn-line" id="qz-exit">خروج</button></div></div>`;
+    window.scrollTo({ top: r.getBoundingClientRect().top + scrollY - 90 });
+    r.querySelector(".qz-opts").onclick = (e) => {
+      const b = e.target.closest(".qz-pick"); if (!b || q.done) return; q.done = 1;
+      const j = +b.dataset.j, ok = q.o[j].ok; if (ok) right++;
+      r.querySelectorAll(".qz-pick").forEach((x, k) => { x.disabled = true; if (q.o[k].ok) { x.classList.add("is-right"); x.insertAdjacentHTML("beforeend", '<em>الإجابة الصحيحة</em>'); } else if (k === j) { x.classList.add("is-wrong"); x.insertAdjacentHTML("beforeend", '<em>إجابتك</em>'); } });
+      const fb = $("qz-fb"); fb.className = "qz-fb " + (ok ? "ok" : "no"); fb.textContent = ok ? "صح! كفو" : "خطأ، والصح موضّح فوق. يرجع لك في دفتر أخطائك.";
+      if (q.exp) { const ex = $("qz-exp"); ex.innerHTML = window.Najd.icon("bulb") + " " + esc(q.exp); ex.hidden = false; }
+      if (window.NajdMist) window.NajdMist.record(q.qz, q.code, q.q, ok);
+      try { if (navigator.vibrate) navigator.vibrate(ok ? 20 : [20, 40, 20]); } catch (x) {}
+      const nb = $("qz-next"); nb.hidden = false; nb.focus();
+    };
+    $("qz-next").onclick = () => { i++; if (i < run.length) step(); else end(); };
+    $("qz-exit").onclick = () => { leave(); home(); };
+  };
+  const end = () => {
+    leave();
+    const A = window.NajdAct; if (A) A.log("c", 1);
+    const sk = A ? A.streak() : { n: 0, week: [] }, c = window.NajdMist ? window.NajdMist.count() : { due: 0 };
+    r.innerHTML = `<div class="nj-card qz-res"><p>تحدي اليوم</p><b>${right}/${run.length}</b><p>${right === run.length ? "كلها صح. كفو!" : right ? "زين. اللي غلطت فيه يرجع لك عشان تثبّته." : "ولا يهمك، الأسئلة ترجع لك عشان تثبّتها."}</p>`
+      + (A ? `<p class="qz-sk">${sk.n <= 1 ? "بدأت أيامك المتتالية. ارجع بكرة وكمّلها." : document.documentElement.lang === "en" ? "Your streak is now " + A.daysTxt(sk.n) + "." : "صارت أيامك المتتالية " + A.daysTxt(sk.n) + "."}</p><div class="qz-week" aria-hidden="true">${sk.week.map((d) => `<i class="${d.on ? "on" : ""}${d.today ? " today" : ""}"></i>`).join("")}</div>` : "")
+      + `<div class="qz-acts"><a class="nj-btn nj-btn-fill" href="index.html">رجوع ليومك</a>${c.due ? `<button type="button" class="nj-btn nj-btn-line" id="qz-more">راجع باقي أخطائك (${c.due})</button>` : `<button type="button" class="nj-btn nj-btn-line" id="qz-back">كل الاختبارات</button>`}</div></div>`;
+    window.scrollTo({ top: r.getBoundingClientRect().top + scrollY - 90 });
+    const mo = $("qz-more"); if (mo) mo.onclick = () => review("");
+    const bk = $("qz-back"); if (bk) bk.onclick = home;
+  };
+  step();
+}
 $("qz-home").addEventListener("click", (e) => { const rv = e.target.closest("[data-review]"); if (rv) { rv.disabled = true; review(rv.dataset.review).finally(() => { rv.disabled = false; }); return; } const b = e.target.closest("[data-start]"); if (b) { b.disabled = true; start(b.dataset.start).finally(() => { b.disabled = false; }); } });
 
 try {
-  const M = await import("./assets/js/auth.js?v=202611160105");
+  const M = await import("./assets/js/auth.js?v=202611161800");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
@@ -198,7 +305,9 @@ try {
     try {
       const sn = await fs.getDocs(fs.collection(M.db, "quizzes")); quizzes = []; sn.forEach((d) => quizzes.push({ id: d.id, ...d.data() }));
       quizzes.sort((a, b) => (+a.order || 0) - (+b.order || 0) || String(a.title).localeCompare(String(b.title), "ar")); home();
-      { const rq = new URLSearchParams(location.search).get("review"); if (rq !== null) review(rq === "all" ? "" : rq); }
+      /* «لوحتي» تقترح تحدي اليوم بس إذا فيه اختبارات مفتوحة لك */
+      try { localStorage.setItem("najd_quiz_n", JSON.stringify({ n: quizzes.filter((x) => x.active !== false && canOpen(x)).length, at: Date.now() })); } catch (e) {}
+      { const sp = new URLSearchParams(location.search), rq = sp.get("review"); if (rq !== null) review(rq === "all" ? "" : rq); else if (sp.get("challenge") !== null) challenge(); }
     } catch (e) { console.warn(e); $("qz-home").innerHTML = '<div class="nj-card nj-empty"><span class="nj-icon-xl">'+window.Najd.icon('offline')+'</span><b>ما قدرنا نجيب الاختبارات</b><p>تأكد من اتصالك بالإنترنت وحدّث الصفحة.</p></div>'; }
   });
 } catch (e) { console.warn("najd quiz", e); }

@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611160105" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611161800" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611160105">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611161800">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-ctas{display:flex;gap:var(--sp-5);flex-wrap:wrap;margin:28px 0 0}
@@ -132,6 +132,46 @@
 #najd .dsh-val small{font-size:var(--fs-base);font-weight:600;color:var(--slate)}
 #najd .dsh-bar{height:8px;border-radius:var(--r-pill);background:var(--light);overflow:hidden;margin:10px 0 6px}
 #najd .dsh-bar i{display:block;height:100%;border-radius:inherit;background:var(--teal)}
+/* رأس «لوحتي»: التحية وأيام المذاكرة المتتالية */
+#najd .dsh-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--sp-5) var(--sp-6);margin:0 0 18px}
+#najd .dsh-top .dsh-head{margin:0}
+#najd .dsh-streak{display:flex;align-items:center;gap:var(--sp-5);padding:10px 14px 10px 16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);color:inherit}
+#najd .sk-num{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:62px;height:62px;padding:0 8px;border-radius:var(--r-lg);background:#F3E6D2;color:#6E4F22}
+#najd .sk-num b{font-size:30px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+#najd .sk-num small{font-size:var(--fs-xs);font-weight:700;margin-top:3px}
+#najd .dsh-streak.is-zero .sk-num{background:var(--light);color:var(--slate)}
+#najd .sk-side b{display:block;font-size:var(--fs-base);font-weight:800;line-height:1.4}
+#najd .sk-side small{display:block;font-size:var(--fs-sm);color:var(--slate);margin:1px 0 7px}
+#najd .sk-week{display:flex;gap:7px;list-style:none;margin:0;padding:0}
+#najd .sk-week li{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:700;line-height:1;color:var(--slate)}
+#najd .sk-week i{display:block;width:16px;height:16px;border-radius:50%;background:var(--light);border:2px solid transparent}
+#najd .sk-week li.on i{background:#D9B48A}
+#najd .sk-week li.today{color:var(--ink)}
+#najd .sk-week li.today i{border-color:#C9A06F}
+#najd .sk-week li.fut i{background:none;border:2px dashed var(--line)}
+html[data-theme="dark"] #najd .sk-num{background:#3A3122;color:#E7C79A}
+/* «الخطوة الجاية»: وش تسوي الحين */
+#najd .dsh-next{position:relative;overflow:hidden;background:linear-gradient(135deg,#2F4F4E 0%,#243D3C 100%);color:#fff;border-radius:var(--r);padding:20px 22px 22px;margin:0 0 var(--sp-6);box-shadow:var(--shadow)}
+#najd .dsh-next>*{position:relative}
+#najd .dsh-next .nx-mtn{position:absolute;inset:auto 0 0 auto;width:220px;height:auto;opacity:.18;pointer-events:none}
+html[dir="rtl"] #najd .dsh-next .nx-mtn{inset:auto auto 0 0}
+#najd .nx-k{font-size:var(--fs-sm);font-weight:700;color:#E2C9A6;margin:0}
+#najd .dsh-next h2{font-size:var(--fs-3xl);font-weight:800;line-height:1.4;margin:4px 0 2px;color:#fff;max-width:36em}
+#najd .nx-p{font-size:var(--fs-base);color:rgba(255,255,255,.86);margin:0;line-height:1.7;max-width:40em}
+#najd .nx-go{display:inline-flex;align-items:center;gap:8px;min-height:48px;margin-top:14px;padding:0 20px;border-radius:var(--r-md);background:#D9B48A;color:#1F3837;font-weight:800;font-size:var(--fs-lg);box-shadow:0 4px 0 #A7845A;transition:transform var(--t-fast)}
+#najd .nx-go:active{transform:translateY(3px);box-shadow:0 1px 0 #A7845A}
+#najd .nx-go .nj-icon{width:20px;height:20px}
+#najd .nx-alt{display:inline-flex;align-items:center;min-height:48px;margin:14px 6px 0;padding:0 10px;font-weight:700;color:#fff;text-decoration:underline;text-underline-offset:4px}
+#najd .dsh-next .t{direction:ltr;unicode-bidi:isolate}
+/* تحدي اليوم */
+#najd .dsh-ch{display:flex;align-items:center;gap:var(--sp-5)}
+#najd .dsh-ch .ch-ic{flex-shrink:0;display:grid;place-items:center;width:48px;height:48px;border-radius:var(--r-md);background:#F3E6D2;color:#8A6430}
+#najd .dsh-ch .ch-ic .nj-icon{width:24px;height:24px}
+#najd .dsh-ch>div{flex:1;min-width:0}
+#najd .dsh-ch b{display:block;font-size:var(--fs-lg);font-weight:800}
+#najd .dsh-ch small{display:block;font-size:var(--fs-sm);color:var(--slate);line-height:1.6}
+#najd .dsh-ch.is-done .ch-ic{background:var(--ok-bg);color:var(--ok)}
+html[data-theme="dark"] #najd .dsh-ch .ch-ic{background:#3A3122;color:#E7C79A}
 #najd .dsh-sub{font-size:var(--fs-sm);color:var(--slate);margin:0}
 #najd .dsh-guest{display:flex;align-items:center;gap:var(--sp-5);flex-wrap:wrap;margin:var(--sp-6) 0 0;background:var(--tint);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 14px}
 #najd .dsh-guest p{flex:1 1 240px;margin:0;font-size:var(--fs-base);color:var(--muted)}
@@ -272,7 +312,7 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
 <p>اختر وش تبي تسوي، ونفتح لك الأداة على طول. كلها مجانية وتشتغل بدون حساب.</p></div>
 </div>
 <div class="hp-tiles"><a class="hp-tile" href="schedule.html" style="--c:#2F4F4E"><span class="hp-pv" aria-hidden="true"><span class="pv-grid"><i style="--d:0.00s"></i><i style="--d:0.18s"></i><i style="--d:0.36s"></i><i style="--d:0.54s"></i><i style="--d:0.72s"></i><i style="--d:0.90s"></i><i style="--d:1.08s"></i><i style="--d:1.26s"></i><i style="--d:1.44s"></i></span></span><b>أرتّب جدولي</b><small>جدول بدون تعارض، وينزل لتقويم جوالك</small><i class="hp-ar" aria-hidden="true">←</i></a><a class="hp-tile" href="next-term.html" style="--c:#3F6866"><span class="hp-pv" aria-hidden="true"><span class="pv-list"><i><b style="--d:0.0s"></b></i><i><b style="--d:0.4s"></b></i><i><b style="--d:0.8s"></b></i><i><b style="--d:1.2s"></b></i></span></span><b>أعرف وش أسجل</b><small>المواد المفتوحة لك بجدول متوازن</small><i class="hp-ar" aria-hidden="true">←</i></a><a class="hp-tile" href="gpa.html" style="--c:#7E5F36"><span class="hp-pv" aria-hidden="true"><span class="pv-gpa">3.<span class="pv-tick"><span>4<br>5<br>6<br>7<br>4</span></span>2</span></span><b>أحسب معدلي</b><small>الفصلي والتراكمي، وكم أحتاج لهدفي</small><i class="hp-ar" aria-hidden="true">←</i></a><a class="hp-tile" href="study.html" style="--c:#55696B"><span class="hp-pv" aria-hidden="true"><span class="pv-ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/><circle cx="20" cy="20" r="16" class="f"/></svg></span></span><b>أذاكر لاختبار</b><small>خطة مذاكرة يوم بيوم لين الاختبار</small><i class="hp-ar" aria-hidden="true">←</i></a></div>
-<div class="hp-more"><span>وكمان:</span><a href="plans.html">الخطة الدراسية</a><a href="lessons.html">الشروحات</a><a href="quiz.html">اختبر نفسك</a><a href="ratings.html">تجارب الطلاب</a><a href="calendar.html">التقويم الأكاديمي</a></div>
+<div class="hp-more"><span>وفيه بعد:</span><a href="plans.html">الخطة الدراسية</a><a href="lessons.html">الشروحات</a><a href="quiz.html">اختبر نفسك</a><a href="ratings.html">تجارب الطلاب</a><a href="calendar.html">التقويم الأكاديمي</a></div>
 </div>
 </section>
 
@@ -341,13 +381,13 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611160105"></script>
-<script src="assets/js/plans-data.js?v=202611160105"></script>
-<script src="assets/js/courses-data.js?v=202611160105"></script>
-<script src="assets/js/study-core.js?v=202611160105"></script>
-<script src="assets/js/mistakes.js?v=202611160105"></script>
-<script src="assets/js/i18n.js?v=202611160105"></script>
-<script type="module" src="assets/js/auth.js?v=202611160105"></script>
+<script src="assets/js/layout.js?v=202611161800"></script>
+<script src="assets/js/plans-data.js?v=202611161800"></script>
+<script src="assets/js/courses-data.js?v=202611161800"></script>
+<script src="assets/js/study-core.js?v=202611161800"></script>
+<script src="assets/js/mistakes.js?v=202611161800"></script>
+<script src="assets/js/i18n.js?v=202611161800"></script>
+<script type="module" src="assets/js/auth.js?v=202611161800"></script>
 <script>
 /* لوحتي: محاضرات اليوم، وأقرب اختبار، وتقدم الخطة، والمعدل. كلها من بيانات الطالب المحفوظة في جهازه (وتتزامن مع حسابه) */
 (function(){
@@ -478,6 +518,67 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
     var M=window.NajdMist;if(!M)return '';var c=M.count();if(!c.due)return '';
     return '<section class="dsh-card"><h2 class="dsh-h">'+ic('target')+L('دفتر أخطائي','My mistakes')+'</h2><p class="dsh-note" style="margin:0">'+(EN?c.due+' questions are due for review today.':(c.due===1?'سؤال واحد':c.due===2?'سؤالين':c.due+' أسئلة')+' غلطت فيها قبل، جا وقت مراجعتها.')+'</p>'+more('quiz.html?review=all',L('راجعها الحين','Review now'))+'</section>';
   }
+  function ymd(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+  /* فيه أسئلة للتحدي؟ أخطاء في الدفتر، أو اختبارات مفتوحة (العدد محفوظ من آخر مرة) */
+  function chOK(){var M=window.NajdMist;if(M&&M.count().total)return true;try{var c=JSON.parse(localStorage.getItem('najd_quiz_n')||'null');return !!(c&&c.n>0);}catch(e){return false;}}
+  function actToday(k){try{var a=JSON.parse(localStorage.getItem('najd_act_v1')||'null'),x=a&&a.d&&a.d[ymd(new Date())];return !!(x&&x[k]);}catch(e){return false;}}
+  /* أيام المذاكرة المتتالية: رقم كبير ونقاط أيام الأسبوع (من الأحد) */
+  function streakCard(now){
+    var A=window.NajdAct;if(!A)return '';var sk=A.streak(now),n=sk.n;
+    var WD=EN?['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']:['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+    var SH=EN?['S','M','T','W','T','F','S']:['ح','ن','ث','ر','خ','ج','س'];
+    var msg=sk.today?L('ذاكرت اليوم. كفو!','You studied today. Nice!'):n?L('ذاكر اليوم عشان تكمل','Study today to keep it going'):L('أي جلسة أو تحدي يبدأ أيامك','Any session or challenge starts it');
+    return '<a class="dsh-streak'+(n?'':' is-zero')+'" href="study.html"><span class="sk-num"><b>'+n+'</b><small>'+(EN?(n===1?'day':'days'):(n>=3&&n<=10?'أيام':'يوم'))+'</small></span>'
+      +'<span class="sk-side"><b>'+(n===0?L('أيامك المتتالية','Your streak'):n===1?L('بدأت أيامك المتتالية','Your streak has started'):L('متتالية تذاكر فيها','in a row studying'))+'</b><small>'+msg+'</small><ul class="sk-week">'
+      +sk.week.map(function(d,i){var t=d.on?L('ذاكرت','studied'):d.future?L('جاي','ahead'):d.today?L('للحين ما ذاكرت','not yet'):L('ما ذاكرت','no study');
+        return '<li class="'+(d.on?'on':'')+(d.today?' today':'')+(d.future?' fut':'')+'"><i aria-hidden="true"></i><span aria-hidden="true">'+SH[i]+'</span><span class="nj-sr">'+WD[i]+': '+t+'</span></li>';}).join('')
+      +'</ul></span></a>';
+  }
+  /* «الخطوة الجاية»: شي واحد تسويه الحين، من الوقت والجدول وخطة المذاكرة والاختبارات */
+  var MTN='<svg class="nx-mtn" viewBox="0 0 220 110" aria-hidden="true"><path d="M0 110L60 50l26 24 34-46 60 82z" fill="#fff"/><path d="M70 110l56-74 56 74z" fill="#A9C6C4"/></svg>';
+  function nextStep(st,now){
+    var S=window.NajdStudy,M=window.NajdMist,isIn=root.classList.contains('is-in');
+    var mins=now.getHours()*60+now.getMinutes(),jd=now.getDay(),today=ymd(now),tom=new Date(now);tom.setDate(tom.getDate()+1);
+    var cells=(st&&st.cells)||{},hasSched=Object.keys(cells).some(function(k){return String(cells[k]||'').trim();});
+    var lec=jd<=4?sessions(st,jd):[],curL=lec.filter(function(x){return x.start<=mins&&mins<=x.end;})[0],nxL=lec.filter(function(x){return x.start>mins;})[0];
+    var ses=[],ex=[];
+    if(S){try{ex=S.exams(st,now);if(hasSched){var ss=S.state(),p=S.plan({sched:st,state:ss,now:now}),D=S.todayOf(p);ses=(D?D.ses:[]).filter(function(x){return !x.missed&&!ss.done[x.id]&&x.start+x.len>mins;});}}catch(e){}}
+    var sNow=ses.filter(function(x){return x.start<=mins;})[0],sSoon=ses.filter(function(x){return x.start>mins&&x.start-mins<=90;})[0],sLater=ses.filter(function(x){return x.start>mins;})[0];
+    /* اختبار اليوم: بس قبل وقته */
+    var exT=ex.filter(function(x){if(x.date!==today)return false;var m=/^(\d{1,2}):(\d{2})$/.exec(x.time||'');return !m||(+m[1]*60+ +m[2])>mins;})[0],exM=ex.filter(function(x){return x.date===ymd(tom);})[0];
+    var due=M?M.count().due:0,chDone=actToday('c'),K={review:L('مراجعة المحاضرة','Lecture review'),study:L('مذاكرة','Study'),hw:L('تحضير','Prep'),final:L('مراجعة شاملة قبل الاختبار','Full review before the exam')};
+    var nowK=clock(mins)+' · ';
+    function exHint(name){var e=ex.filter(function(x){return same(x.subject,name);})[0];if(!e)return '';var d=Math.round((new Date(e.date+'T00:00:00')-new Date(today+'T00:00:00'))/864e5);
+      return d>=2&&d<=7?(EN?' · exam in '+d+' days':' · باقي على اختبارها '+pl(d,'يوم','يومين','أيام','يوم')):'';}
+    function sesStep(x,k){return {k:nowK+k,h:L('جلسة ','')+'<span data-no-i18n>'+esc(x.name)+'</span>'+(EN?' session':''),p:K[x.kind]+' · '+(EN?x.len+' min':x.len+' دقيقة')+exHint(x.name),go:[L('ابدأ الجلسة','Start session'),'study.html#focus='+encodeURIComponent(x.id),'play']};}
+    var chal={k:nowK+L('تحدي اليوم','Daily challenge'),h:due?(EN?due+' questions you got wrong are due':(due===1?'سؤال واحد':due===2?'سؤالين':due+' أسئلة')+' غلطت فيها قبل، جا وقت مراجعتها'):L('حل تحدي اليوم: ٣ أسئلة سريعة','Take today\'s challenge: 3 quick questions'),p:L('دقيقتين، وتنحسب في أيامك المتتالية.','Two minutes, and it counts toward your streak.'),go:[L('ابدأ التحدي','Start the challenge'),'quiz.html?challenge=1','bolt'],ch:1};
+    if(curL)return {k:nowK+L('محاضرة الحين','Lecture now'),h:L('انت في محاضرة ','You\'re in ')+'<span data-no-i18n>'+esc(curL.name)+'</span>',p:L('تخلص ','Ends at ')+clock(curL.end)+'.'+(sLater?' '+L('بعدها ','After it: ')+K[sLater.kind]+' '+clock(sLater.start)+'.':''),alt:['schedule.html',L('جدولي','My schedule')]};
+    if(exT)return {k:nowK+L('اختبار اليوم','Exam today'),h:L('اختبارك اليوم: ','Your exam today: ')+'<span data-no-i18n>'+esc(exT.subject||'')+'</span>'+(/^\d{1,2}:\d{2}$/.test(exT.time||'')?' '+clock(+exT.time.split(':')[0]*60+ +exT.time.split(':')[1]):''),p:L('راجع أهم النقاط بهدوء، ونم زين قبله.','Review the key points calmly.'),go:[L('ابدأ مراجعة','Start a review'),'study.html#focus=sub:'+encodeURIComponent(exT.subject||''),'play']};
+    if(sNow)return sesStep(sNow,L('وقت مذاكرتك','Study time'));
+    if(sSoon)return sesStep(sSoon,L('جلستك الجاية ','Next session ')+clock(sSoon.start));
+    if(isIn&&!chDone&&due)return chal;
+    if(exM)return {k:nowK+L('اختبار بكرة','Exam tomorrow'),h:L('اختبار ','')+'<span data-no-i18n>'+esc(exM.subject||'')+'</span>'+L(' بكرة',' is tomorrow'),p:L('جلسة مراجعة شاملة الحين تفرق معك.','A full review session now makes a difference.'),go:[L('ابدأ مراجعة','Start a review'),'study.html#focus=sub:'+encodeURIComponent(exM.subject||''),'play']};
+    if(nxL){var gap=nxL.start-mins;return {k:nowK+(EN?'In '+gap+' min':'بعد '+(gap<60?pl(gap,'دقيقة','دقيقتين','دقائق','دقيقة'):pl(Math.round(gap/60),'ساعة','ساعتين','ساعات','ساعة'))),h:L('أقرب محاضرة: ','Next lecture: ')+'<span data-no-i18n>'+esc(nxL.name)+'</span> '+clock(nxL.start),
+      p:gap>=30?L('قبلها عندك وقت لجلسة قصيرة.','You have time for a short session before it.'):L('جهّز نفسك لها.','Get ready for it.'),go:gap>=30?(sLater?[L('ابدأ جلسة بدري','Start a session early'),'study.html#focus='+encodeURIComponent(sLater.id),'play']:[L('ابدأ جلسة حرة','Start a free session'),'study.html#focus','play']):null};}
+    if(sLater)return sesStep(sLater,L('جلستك الجاية ','Next session ')+clock(sLater.start));
+    if(!hasSched)return {k:nowK+L('أول خطوة','First step'),h:L('ابدأ بجدولك','Start with your schedule'),p:L('ضيف محاضراتك مرة وحدة، ونرتب لك يومك ومذاكرتك.','Add your lectures once, and we\'ll plan your day and study.'),go:[L('صمّم جدولك','Build your schedule'),'schedule.html','schedule']};
+    if(isIn&&!chDone&&chOK())return chal;
+    var sk=window.NajdAct?window.NajdAct.streak(now):{today:false};
+    return {k:nowK+L('يومك','Your day'),h:sk.today?L('خلّصت يومك. كفو!','Your day is done. Nice!'):L('يومك فاضي الحين','Your day is free now'),p:sk.today?L('ارتاح، ونكمل بكرة.','Rest up. See you tomorrow.'):L('جلسة قصيرة الحين تحسب في أيامك المتتالية.','A short session now counts toward your streak.'),go:sk.today?null:[L('ابدأ جلسة حرة','Start a free session'),'study.html#focus','play']};
+  }
+  function nextCard(x){
+    if(!x)return '';
+    return '<section class="dsh-next" aria-labelledby="nx-h">'+MTN+'<p class="nx-k">'+x.k+'</p><h2 id="nx-h">'+x.h+'</h2><p class="nx-p">'+x.p+'</p>'
+      +(x.go?'<a class="nx-go" href="'+x.go[1]+'">'+ic(x.go[2])+x.go[0]+'</a>':'')+(x.alt?'<a class="nx-alt" href="'+x.alt[0]+'">'+x.alt[1]+'</a>':'')+'</section>';
+  }
+  /* تحدي اليوم: ٣ أسئلة (أخطاءك أول، وبعدها من موادك). للمسجلين لأن الأسئلة في حسابك */
+  function challengeCard(skip){
+    if(!root.classList.contains('is-in')||skip)return '';
+    var M=window.NajdMist,c=M?M.count():{due:0},done=actToday('c');
+    if(!done&&!chOK())return '';
+    if(done)return '<section class="dsh-card dsh-ch is-done"><span class="ch-ic">'+ic('check')+'</span><div><b>'+L('خلّصت تحدي اليوم','Today\'s challenge is done')+'</b><small>'+L('يرجع لك بكرة بأسئلة جديدة.','A new one comes tomorrow.')+(c.due?' '+(EN?c.due+' more mistakes are due.':(c.due===1?'باقي سؤال واحد':c.due===2?'باقي سؤالين':'باقي '+c.due+' أسئلة')+' في دفتر أخطائك.'):'')+'</small>'+(c.due?more('quiz.html?review=all',L('راجعها','Review them')):'')+'</div></section>';
+    return '<section class="dsh-card dsh-ch"><span class="ch-ic">'+ic('bolt')+'</span><div><b>'+L('تحدي اليوم','Daily challenge')+'</b><small>'+(c.due?(EN?'3 questions, starting with ones you got wrong. ':'٣ أسئلة، أولها اللي غلطت فيها قبل. '):L('٣ أسئلة سريعة من موادك. ','3 quick questions from your courses. '))+L('تنحسب في أيامك المتتالية.','Counts toward your streak.')+'</small></div><a class="nj-btn nj-btn-fill nj-btn-sm" href="quiz.html?challenge=1">'+L('ابدأ','Start')+'</a></section>';
+  }
   function hasData(st){
     var c=(st&&st.cells)||{};
     if(Object.keys(c).some(function(k){return String(c[k]||'').trim();})||((st&&st.exams)||[]).length)return true;
@@ -489,11 +590,12 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
     var st=get('stq_schedule_v1')||{},isIn=root.classList.contains('is-in'),on=isIn||hasData(st);
     root.classList.toggle('has-dash',on);box.hidden=!on;if(!on){box.innerHTML='';return;}
     var now=new Date(),u=get('najd_user'),name=isIn&&u&&u.name?String(u.name).trim().split(/\s+/)[0]:'';
-    var hi=now.getHours()<12?L('صباح الخير','Good morning'):L('مساء الخير','Good evening');
+    var hi=now.getHours()<12?L('صباح الخير','Good morning'):L('مساء الخير','Good evening'),nx=nextStep(st,now);
     box.innerHTML='<div class="nj-in">'
-      +'<div class="dsh-head"><small>'+esc(now.toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long'}))+'</small><h1>'+hi+(name?(EN?', ':'، ')+esc(name):'')+'</h1></div>'
+      +'<div class="dsh-top"><div class="dsh-head"><small>'+esc(now.toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long'}))+'</small><h1>'+hi+(name?(EN?', ':'، ')+esc(name):'')+'</h1></div>'+streakCard(now)+'</div>'
+      +nextCard(nx)
       +'<div class="dsh-grid"><div class="dsh-side"><section class="dsh-card">'+todayCard(st,now)+'</section>'+studyCard(st,now)+'</div>'
-      +'<div class="dsh-side">'+regCard(now)+'<section class="dsh-card">'+examCard(st,now)+'</section>'+mistCard()
+      +'<div class="dsh-side">'+regCard(now)+challengeCard(nx&&nx.ch)+'<section class="dsh-card">'+examCard(st,now)+'</section>'+(root.classList.contains('is-in')?'':mistCard())
       +'<div class="dsh-two"><section class="dsh-card">'+progCard()+'</section><section class="dsh-card">'+gpaCard()+'</section></div></div></div>'
       +(isIn?'':'<div class="dsh-guest"><p><b>'+L('بياناتك محفوظة في هذا الجهاز بس.','Your data is saved on this device only.')+'</b> '+L('أنشئ حساب مجاني عشان تلقاها في جوالك واللابتوب.','Create a free account to get it on your phone and laptop.')+'</p><a class="nj-btn nj-btn-fill nj-btn-sm" href="register.html">'+L('أنشئ حسابك','Create your account')+'</a></div>')
       +'</div>';
@@ -508,7 +610,7 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
 <script type="module">
 /* موعد التسجيل الجاي من التقويم الأكاديمي (لبطاقة «لوحتي») */
 try {
-  const A = await import("./assets/js/auth.js?v=202611160105");
+  const A = await import("./assets/js/auth.js?v=202611161800");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const t = new Date(), p2 = (n) => String(n).padStart(2, "0"), today = t.getFullYear() + "-" + p2(t.getMonth() + 1) + "-" + p2(t.getDate());
   const reg = []; (await fs.getDocs(fs.collection(A.db, "calendar"))).forEach((d) => { const x = d.data(); if (x.type === "reg" && (x.end || x.date) >= today) reg.push({ title: x.title || "", date: x.date, end: x.end || "" }); });
@@ -516,6 +618,19 @@ try {
   const old = localStorage.getItem("najd_reg_cache"), now = JSON.stringify({ reg: reg[0] || null });
   if (!old || JSON.stringify({ reg: JSON.parse(old).reg }) !== now) { localStorage.setItem("najd_reg_cache", JSON.stringify({ at: Date.now(), reg: reg[0] || null })); window.dispatchEvent(new Event("pageshow")); }
 } catch (e) { console.warn("najd reg", e); }
+/* تحدي اليوم يحتاج أسئلة: نعرف كم اختبار مفتوح للمسجل، مرة كل ١٢ ساعة (صفحة الاختبارات تحدّثه بالعدد الدقيق) */
+try {
+  const A = await import("./assets/js/auth.js?v=202611161800");
+  const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
+  const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
+  fa.onAuthStateChanged(A.auth, async (u) => {
+    if (!u) return;
+    let c = null; try { c = JSON.parse(localStorage.getItem("najd_quiz_n") || "null"); } catch (e) {}
+    if (c && Date.now() - c.at < 12 * 36e5) return;
+    try { let n = 0; (await fs.getDocs(fs.collection(A.db, "quizzes"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.free) n++; });
+      localStorage.setItem("najd_quiz_n", JSON.stringify({ n, at: Date.now() })); window.dispatchEvent(new Event("pageshow")); } catch (e) {}
+  });
+} catch (e) {}
 </script>
 <script>
 /* أول شاشة: «خطة فصلك في ٣٠ ثانية» + معاينة «لوحتي» للزائر. كلها من بيانات الخطط الحقيقية وبيانات الطالب في جهازه */
@@ -594,7 +709,7 @@ try {
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=202611160105");
+  const { db } = await import("./assets/js/auth.js?v=202611161800");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
