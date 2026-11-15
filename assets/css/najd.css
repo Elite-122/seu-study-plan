@@ -2,6 +2,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:#F4F7F7}
 #najd{--surface:#FFFFFF;--ok:#3E5A33;--ok-bg:#E2ECDD;--ok-line:#C9DBC0;--err:#8E3F37;--err-bg:#F0DEDB;--err-line:#E8C7C1;--err-solid:#8E3F37;--warn:#5A4519;--warn-bg:#F3E9CF;--warn-solid:#5E4519;--on-warn-solid:#FFFFFF;--sand:#D9B48A;--sec-common:#3F6866;--sec-common-solid:#3F6866;--sec-common-deep:#243E3D;--sec-mgt:#45548A;--sec-mgt-solid:#45548A;--sec-mgt-deep:#2B3659;--sec-fin:#447A59;--sec-fin-solid:#447A59;--sec-fin-deep:#284A36;--sec-acct:#7E4359;--sec-acct-solid:#7E4359;--sec-acct-deep:#4E2535;--sec-ecom:#957234;--sec-ecom-solid:#957234;--sec-ecom-deep:#5E4519;--sec-islm:#A65A3A;--sec-islm-solid:#A65A3A;--sec-islm-deep:#6A3420;--sec-quant:#5E4B8B;--sec-quant-solid:#5E4B8B;--sec-quant-deep:#33264F;--dtext:#2F4F4E;--hdr:rgba(255,255,255,.92);--deep:#2F4F4E;--deeper:#243D3C;--teal:#568A88;--slate:#5F7071;--link:#4F7F7D;--soft:#7A9FA3;--grey:#B0B8BC;--mist:#C8CFD2;--light:#E4E9EB;--ink:#2F4F4E;--muted:#55696B;--bg:#F4F7F7;--card:#FFFFFF;--line:#DCE3E5;--tint:#EAF2F1;--shadow:0 1px 2px rgba(36,61,60,.05),0 8px 24px rgba(36,61,60,.07);--shadow-lg:0 2px 4px rgba(36,61,60,.06),0 18px 44px rgba(36,61,60,.12);--r:20px;--fs-2xs:12px;--fs-xs:12px;--fs-sm:13px;--fs-md:14px;--fs-base:15px;--fs-lg:16px;--fs-body:17px;--fs-xl:18px;--fs-2xl:20px;--fs-3xl:22px;--fs-4xl:26px;--fs-5xl:32px;--r-xs:6px;--r-sm:10px;--r-md:12px;--r-lg:16px;--r-xl:28px;--r-pill:999px;--sp-1:4px;--sp-2:6px;--sp-3:8px;--sp-4:10px;--sp-5:12px;--sp-6:16px;--sp-7:20px;--sp-8:24px;--sp-9:32px;--sp-10:40px;--sp-11:48px;--t-fast:.15s;--t-base:.2s;--t-slow:.4s;--shadow-btn:0 6px 16px rgba(47,79,78,.22);--ring:0 0 0 3px rgba(86,138,136,.25);--control-h:48px;--control-h-sm:44px;font-family:'Tajawal','Geeza Pro',Tahoma,sans-serif;color:var(--ink);background:var(--bg);direction:rtl;text-align:right;line-height:1.7;font-size:17px;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+@supports (overflow-x:clip){#najd{overflow-x:clip}}
 #najd>main,#najd>.nj-page{flex:1 0 auto}
 #najd *{box-sizing:border-box;font-family:inherit}
 #najd h1,#najd h2,#najd h3,#najd p,#najd ul,#najd li{margin:0;padding:0;border:0;list-style:none;color:inherit;letter-spacing:0;text-transform:none}
@@ -53,10 +54,11 @@ body{margin:0;background:#F4F7F7}
 /* ===== قائمة الجوال ===== */
 #najd .nj-menu{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--card);cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:var(--sp-2);padding:0}
 #najd .nj-menu i{display:block;width:18px;height:2px;border-radius:2px;background:var(--ink);transition:transform var(--t-base),opacity var(--t-base)}
-#najd .nj-head.is-open .nj-menu i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#najd .nj-head.is-open .nj-menu i:nth-child(1){transform:translateY(8px) rotate(45deg)}
 #najd .nj-head.is-open .nj-menu i:nth-child(2){opacity:0}
-#najd .nj-head.is-open .nj-menu i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#najd .nj-head.is-open .nj-menu i:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
 #najd .nj-drawer{display:none}
+#najd .nj-scrim{display:none}
 
 /* ===== عناوين الأقسام (بأسلوب سطر) ===== */
 #najd .nj-sec{padding:72px 0}
@@ -134,7 +136,9 @@ body{margin:0;background:#F4F7F7}
 #najd .nj-nav,#najd .nj-acts .nj-btn,#najd .nj-acts .nj-user{display:none!important}
 #najd .nj-menu{display:inline-flex}
 #najd .nj-head.is-open .nj-drawer{display:block}
-#najd .nj-drawer{border-top:1px solid var(--line);padding:8px 20px 20px;max-height:calc(100vh - 74px);overflow:auto}
+#najd .nj-head.is-open{background:var(--card);-webkit-backdrop-filter:none;backdrop-filter:none}
+#najd .nj-head.is-open+.nj-scrim{display:block;position:fixed;inset:0;z-index:49;background:rgba(12,22,21,.42)}
+#najd .nj-drawer{border-top:1px solid var(--line);padding:8px 20px 20px;max-height:calc(100vh - 74px);overflow:auto;overscroll-behavior:contain}
 #najd .nj-drawer a:not(.nj-btn){display:block;padding:12px 4px;font-size:var(--fs-body);font-weight:500;border-bottom:1px solid var(--line)}
 #najd .nj-drawer a[aria-current="page"]{color:var(--link);font-weight:700}
 #najd .nj-drawer .nj-btn{width:100%;margin-top:12px;height:50px}

@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611160105" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611152035">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611160105">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-ctas{display:flex;gap:var(--sp-5);flex-wrap:wrap;margin:28px 0 0}
@@ -332,7 +332,7 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
 <section class="nj-sec" id="about" style="padding-bottom:0">
 <div class="nj-in">
 <div class="hm-cta nj-rv">
-<svg class="hm-cta-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#fff"/><path d="M50 48 L60 30 L70 48 Z" fill="#fff"/><path d="M74 48 L84 24 L94 48 Z" fill="#fff"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#fff"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#fff"/></svg>
+<svg class="hm-cta-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="86" cy="22" r="9" fill="#fff" opacity=".9"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L82 18L102 51Z" fill="#fff" opacity=".45"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#fff" opacity=".7"/><path d="M58 51L82 22L102 51Z" fill="#fff"/><path d="M57.5 100Q38 93 18 89V57Q38 60 57.5 68Z" fill="#fff" opacity=".8"/><path d="M62.5 100Q82 93 102 89V57Q82 60 62.5 68Z" fill="#fff"/></svg>
 <div><span class="hm-cta-k">من نحن</span><h2>من طلاب لطلاب</h2><p>أكاديمية نجد مبادرة هدفها إن كل طالب يبدأ فصله وهو عارف طريقه. الأدوات مجانية وتشتغل بدون حساب، والحساب يحفظ تقدمك في كل أجهزتك.</p></div>
 <div class="hm-ctas"><a class="nj-btn nj-btn-white nj-guest" href="register.html">أنشئ حسابك</a><a class="nj-btn nj-btn-white nj-member" href="plans.html">افتح خطتك</a><a class="nj-btn nj-btn-ghost" href="coop.html">فرص التدريب التعاوني</a></div>
 </div>
@@ -341,13 +341,13 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611152035"></script>
-<script src="assets/js/plans-data.js?v=202611152035"></script>
-<script src="assets/js/courses-data.js?v=202611152035"></script>
-<script src="assets/js/study-core.js?v=202611152035"></script>
-<script src="assets/js/mistakes.js?v=202611152035"></script>
-<script src="assets/js/i18n.js?v=202611152035"></script>
-<script type="module" src="assets/js/auth.js?v=202611152035"></script>
+<script src="assets/js/layout.js?v=202611160105"></script>
+<script src="assets/js/plans-data.js?v=202611160105"></script>
+<script src="assets/js/courses-data.js?v=202611160105"></script>
+<script src="assets/js/study-core.js?v=202611160105"></script>
+<script src="assets/js/mistakes.js?v=202611160105"></script>
+<script src="assets/js/i18n.js?v=202611160105"></script>
+<script type="module" src="assets/js/auth.js?v=202611160105"></script>
 <script>
 /* لوحتي: محاضرات اليوم، وأقرب اختبار، وتقدم الخطة، والمعدل. كلها من بيانات الطالب المحفوظة في جهازه (وتتزامن مع حسابه) */
 (function(){
@@ -508,7 +508,7 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
 <script type="module">
 /* موعد التسجيل الجاي من التقويم الأكاديمي (لبطاقة «لوحتي») */
 try {
-  const A = await import("./assets/js/auth.js?v=202611152035");
+  const A = await import("./assets/js/auth.js?v=202611160105");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const t = new Date(), p2 = (n) => String(n).padStart(2, "0"), today = t.getFullYear() + "-" + p2(t.getMonth() + 1) + "-" + p2(t.getDate());
   const reg = []; (await fs.getDocs(fs.collection(A.db, "calendar"))).forEach((d) => { const x = d.data(); if (x.type === "reg" && (x.end || x.date) >= today) reg.push({ title: x.title || "", date: x.date, end: x.end || "" }); });
@@ -594,7 +594,7 @@ try {
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=202611152035");
+  const { db } = await import("./assets/js/auth.js?v=202611160105");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });

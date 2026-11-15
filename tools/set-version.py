@@ -9,8 +9,8 @@ import glob, re, sys, time, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ver = sys.argv[1] if len(sys.argv) > 1 else time.strftime("%Y%m%d%H%M")
 SKIP = {"college-plans.html"}
-# روابط الملفات في الصفحات، وكذلك import داخل ملفات JS
-PAT = re.compile(r'((?:assets/(?:css|js)/|\./)[\w.-]+\.(?:css|js))(\?v=[\w.-]+)?(["\'])')
+# روابط الملفات في الصفحات، وكذلك import داخل ملفات JS، وصور الشعار (svg) عشان الشعار الجديد يوصل حتى لو القديم محفوظ
+PAT = re.compile(r'((?:assets/(?:css|js|img)/|\./)[\w.-]+\.(?:css|js|svg))(\?v=[\w.-]+)?(["\'])')
 
 files = [f for f in glob.glob(os.path.join(ROOT, "*.html")) if os.path.basename(f) not in SKIP]
 files += glob.glob(os.path.join(ROOT, "c/*.html"))  # صفحات المقررات
