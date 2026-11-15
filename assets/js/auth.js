@@ -118,7 +118,7 @@ onAuthStateChanged(auth, async (user) => {
     }
     sessionStorage.setItem(flag, "1");
     /* تنبيهات الدراسة: الموافقة أول مرة، وتجديد رمز الجهاز */
-    import("./notify.js?v=202611150558").then((m) => m.start(user, cloudNotify)).catch((e) => console.warn("najd notify", e));
+    import("./notify.js?v=202611150855").then((m) => m.start(user, cloudNotify)).catch((e) => console.warn("najd notify", e));
   } catch (e) {
     console.warn("najd pull", e);
     N.setSync("ما قدرنا نجيب تقدمك من السحابة");
@@ -187,4 +187,4 @@ window.dispatchEvent(new CustomEvent("najd:auth-ready"));
 getDoc(doc(db, "settings", "announcement")).then((s) => { if (s.exists() && N.announce) N.announce(s.data()); }).catch(() => {});
 
 export { app, auth, db };
-window.NajdNotify = { settings: async (box, u) => (await import("./notify.js?v=202611150558")).settings(box, u) };
+window.NajdNotify = { settings: async (box, u) => (await import("./notify.js?v=202611150855")).settings(box, u) };

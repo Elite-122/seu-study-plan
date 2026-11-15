@@ -1,0 +1,85 @@
+# يرسل تنبيهات الدراسة (reminders/run.js) في أوقاتها. بديل مجاني عن خادم Firebase، وما يحتاج خطة Blaze.
+# يحتاج سرّين في إعدادات المستودع (Settings ← Secrets and variables ← Actions):
+#   FIREBASE_SERVICE_ACCOUNT  ملف JSON من Firebase ← Project settings ← Service accounts ← Generate new private key
+#   GMAIL_APP_PASSWORD        كلمة مرور تطبيق لإيميل الموقع najdacdemy@gmail.com
+# إذا واحد منهم ناقص، التشغيل يتخطى بدون ما يفشل.
+# الأوقات بتوقيت UTC (الرياض = UTC+3). نبدأ قبل الساعة بخمس دقايق لأن GitHub أحيانًا يتأخر شوي.
+# ملاحظة: GitHub يوقف الجدولة لو المستودع ما تعدّل ٦٠ يوم، ويرسل إيميل تنبيه. ترجعها من Actions ← Study reminders ← Enable workflow.
+name: Study reminders
+
+on:
+  schedule:
+    - cron: "55 3 * * *"   # 6:55 ص ← تذكير الصبح
+    - cron: "55 15 * * *"  # 6:55 م ← اللي اختاروا 7 م
+    - cron: "55 16 * * *"  # 7:55 م ← 8 م
+    - cron: "55 17 * * *"  # 8:55 م ← 9 م
+    - cron: "25 * * * *"   # كل ساعة: التجارب اللي طلبها الطلاب من حسابهم
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "وش ترسل؟ tests = التجارب المطلوبة بس"
+        type: choice
+        options: ["tests", "7", "19", "20", "21"]
+        default: "tests"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reminders
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      GMAIL: ${{ secrets.GMAIL_APP_PASSWORD }}
+      SCHEDULE: ${{ github.event.schedule }}
+      INPUT_MODE: ${{ inputs.mode }}
+    steps:
+      - name: Pick what to send
+        id: pick
+        run: |
+          case "$SCHEDULE" in
+            "55 3 * * *")  m=7 ;;
+            "55 15 * * *") m=19 ;;
+            "55 16 * * *") m=20 ;;
+            "55 17 * * *") m=21 ;;
+            "")            m="${INPUT_MODE:-tests}" ;;
+            *)             m=tests ;;
+          esac
+          case "$m" in 7|19|20|21|tests) ;; *) echo "::error::bad mode"; exit 1 ;; esac
+          if [ -z "$SA" ] || [ -z "$GMAIL" ]; then
+            echo "::notice::Add FIREBASE_SERVICE_ACCOUNT and GMAIL_APP_PASSWORD to the repository secrets to send reminders. Skipping."
+            echo "go=0" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=1" >> "$GITHUB_OUTPUT"
+          fi
+          echo "mode=$m" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        if: steps.pick.outputs.go == '1'
+        with:
+          sparse-checkout: |
+            reminders
+            assets/js
+      - uses: actions/setup-node@v4
+        if: steps.pick.outputs.go == '1'
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: reminders/package-lock.json
+      - name: Install
+        if: steps.pick.outputs.go == '1'
+        run: npm ci --prefix reminders --no-audit --no-fund
+      - name: Check
+        if: steps.pick.outputs.go == '1' && steps.pick.outputs.mode != 'tests'
+        run: node reminders/test.js
+      - name: Send
+        if: steps.pick.outputs.go == '1'
+        env:
+          MODE: ${{ steps.pick.outputs.mode }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: node reminders/run.js

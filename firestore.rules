@@ -38,9 +38,22 @@ service cloud.firestore {
         || (q.get('need', 'pdf') != 'video' && granted(q.get('code', 'none'), 'pdf'));
     }
 
+    // رابط «إيقاف التنبيهات» في آخر كل إيميل (unsubscribe.html): يوقف الإيميل بدون دخول.
+    // يقبل بس لو المفتاح اللي في الرابط = المفتاح المحفوظ، وما يغيّر غير email و unsub.
+    function unsubscribeOnly() {
+      let before = resource.data.get('notify', {});
+      let after = request.resource.data.get('notify', {});
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['notify'])
+        && before.get('key', '') is string && before.get('key', '').size() >= 16
+        && after.diff(before).affectedKeys().hasOnly(['email', 'unsub'])
+        && after.get('unsub', '') == before.get('key', '')
+        && after.get('email', true) == false;
+    }
+
     // تقدم كل طالب (الخطة، الجدول، المعدل): هو بس يقرأ ويكتب ملفه
     match /users/{uid} {
       allow read, write: if signedIn() && request.auth.uid == uid;
+      allow update: if unsubscribeOnly();
     }
 
     // إعلانات التدريب التعاوني: القراءة للكل، والكتابة للمشرفين

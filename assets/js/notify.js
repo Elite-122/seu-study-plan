@@ -1,7 +1,8 @@
 /* تنبيهات الدراسة: الموافقة بعد التسجيل، وإعداداتها في «حسابي»، وتسجيل الجوال للإشعارات.
-   الإعدادات تنحفظ في users/{uid}.notify، والخادم (functions/) يقراها كل يوم ويرسل.
-   notify = {on, email, push, hour, types:{exam,hw,mist,study}, key, tokens:{رمز الجهاز: وقت}, asked, skipped, reasked, last} */
-import { app, auth, db } from "./auth.js?v=202611150558";
+   الإعدادات تنحفظ في users/{uid}.notify، و reminders/run.js (يشغّله GitHub Actions) يقراها ويرسل.
+   notify = {on, email, push, hour, types:{exam,hw,mist,study}, key, tokens:{رمز الجهاز: وقت}, asked, skipped, reasked,
+             test (طلب تجربة), last و unsub (يكتبها الخادم وصفحة إيقاف الإيميل)} */
+import { app, auth, db } from "./auth.js?v=202611150855";
 import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 const N = window.Najd, esc = N.esc, I = N.icon;
@@ -23,12 +24,17 @@ function pushState() {
   if (Notification.permission === "denied") return "denied";
   return "ok";
 }
+const SERVER = ["test", "last", "unsub"]; // حقول ما نكتبها إلا إذا قصدناها، عشان نسخة قديمة عندنا ما تمسح شغل الخادم
 async function save(patch) {
   prefs = { ...(prefs || DEF), ...patch };
   prefs.types = { ...DEF.types, ...(prefs.types || {}) };
   prefs.on = !!(prefs.email || prefs.push);
-  if (!prefs.key) prefs.key = rand();
-  await setDoc(doc(db, "users", user.uid), { notify: prefs }, { merge: true });
+  /* مفتاح رابط «إيقاف التنبيهات». لو انستخدم قبل، نغيّره عشان الرابط القديم ما يشتغل مرة ثانية */
+  if (!prefs.key || prefs.key === prefs.unsub) prefs.key = rand();
+  const out = { ...prefs };
+  SERVER.forEach((k) => { if (!(k in patch)) delete out[k]; });
+  /* mergeFields: كل حقل ينكتب كامل (عشان رمز جهاز انشال ما يرجع)، والباقي في المستند ما يتغير */
+  await setDoc(doc(db, "users", user.uid), { notify: out }, { mergeFields: Object.keys(out).map((k) => "notify." + k) });
   return prefs;
 }
 /* يطلب إذن الجوال ويسجل رمز الجهاز. لازم يجي من ضغطة الطالب */
@@ -131,14 +137,15 @@ export async function settings(box, u) {
     } catch (err) { console.warn(err); e.target.checked = !on; msg(L("ما قدرنا نحفظ، جرب مرة ثانية", "Couldn't save")); }
   };
   box.querySelector("#ntf-hour").onclick = async (e) => { const b = e.target.closest("[data-h]"); if (!b) return; try { await save({ hour: +b.dataset.h }); settings(box, user); msg(L("انحفظ", "Saved")); } catch (err) { msg(L("ما قدرنا نحفظ", "Couldn't save")); } };
-  box.querySelector("#ntf-test").onclick = async (e) => {
-    const b = e.currentTarget; b.disabled = true; msg(L("نرسل…", "Sending…"));
-    try {
-      const { getFunctions, httpsCallable } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-functions.js");
-      const r = (await httpsCallable(getFunctions(app, "us-central1"), "notifyTest")({})).data || {};
-      msg(r.push || r.email ? L(`أرسلنا: ${[r.push ? "إشعار" : "", r.email ? "إيميل" : ""].filter(Boolean).join(" و")}. شيك عليه.`, `Sent: ${[r.push ? "notification" : "", r.email ? "email" : ""].filter(Boolean).join(" and ")}.`) : L("ما فيه قناة مفعّلة.", "No channel is on."));
-    } catch (err) { console.warn(err); msg(L("الخادم مو جاهز للحين. جرب بعدين.", "The reminder server isn't ready yet.")); }
-    b.disabled = false;
+  /* التجربة: نسجّل الطلب، والإرسال يمر عليه خلال ساعة */
+  const what = () => [p.email && user.email ? L("إيميل", "an email") : "", here ? L("إشعار", "a notification") : ""].filter(Boolean).join(L(" و", " and "));
+  const pending = () => L(`طلبت تجربة. بيوصلك ${what()} خلال ساعة تقريبًا. لو ما لقيت الإيميل، شيك على مجلد الرسائل غير المرغوب فيها.`, `Test requested. You'll get ${what()} within about an hour. If the email isn't there, check your spam folder.`);
+  const testBtn = box.querySelector("#ntf-test");
+  if (p.test && Date.now() - p.test < 36e5) { testBtn.disabled = true; msg(pending()); }
+  testBtn.onclick = async (e) => {
+    const b = e.currentTarget; b.disabled = true;
+    try { await save({ test: Date.now() }); p.test = prefs.test; msg(pending()); }
+    catch (err) { console.warn(err); b.disabled = false; msg(L("ما قدرنا نسجّل الطلب، جرب مرة ثانية", "Couldn't send the request, try again")); }
   };
 }
 
@@ -146,7 +153,7 @@ export async function settings(box, u) {
 export function start(u, notify) {
   user = u; prefs = notify || null;
   const page = document.getElementById("najd")?.getAttribute("data-page") || "";
-  if (["admin", "login", "register"].includes(page)) return;
+  if (["admin", "login", "register", "unsubscribe"].includes(page)) return;
   if (!prefs || !prefs.asked) { setTimeout(ask, 900); return; }
   if (prefs.skipped && !prefs.reasked) {
     const check = () => { if (hasExam()) { window.removeEventListener("najd:dirty", onDirty); reask(); } };

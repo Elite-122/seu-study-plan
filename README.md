@@ -59,23 +59,36 @@
 ## تنبيهات الدراسة (الإيميل وإشعار الجوال)
 بعد ما يسجل الطالب، تطلع له نافذة «خطوة أخيرة: خلّنا نذكّرك». يفعّلها بضغطة، أو يكمل بدونها ونسأله مرة ثانية لما يضيف أول اختبار. يعدّلها متى ما يبي من «حسابي ← تنبيهاتي».
 
-**كيف يعرف الخادم إن عند الطالب اختبار بكرة؟** الجدول وخطة المذاكرة ودفتر الأخطاء محفوظة في حسابه (`users/{uid}.data`). الدالة `reminders` تشتغل الساعة 7 الصبح و7 و8 و9 مساءً بتوقيت الرياض، تقرأ بيانات كل طالب مفعّل التنبيهات، وترسل له في الساعة اللي اختارها:
+**كيف يعرف إن عند الطالب اختبار بكرة؟** الجدول وخطة المذاكرة ودفتر الأخطاء محفوظة في حسابه (`users/{uid}.data`). GitHub Actions يشغّل `reminders/run.js` الساعة 7 الصبح و7 و8 و9 مساءً بتوقيت الرياض. يقرأ بيانات كل طالب مفعّل التنبيهات ويرسل له في الساعة اللي اختارها:
 - **المساء:** اختبار بكرة (مع الفصول اللي باقية عليه)، وواجب بكرة أو بعد يومين، وأسئلة جا وقت مراجعتها.
 - **الصبح:** اختبار اليوم، وموعد اليوم، وجلسات مذاكرة اليوم.
 - إذا ما عنده شيء، ما يوصله شيء.
 
-الملفات: `assets/js/notify.js` (النافذة والإعدادات)، و`functions/` (الخادم)، و`sw.js` (يعرض إشعار الجوال). اختبار محلي بدون إرسال:
-```
-cd functions && mkdir -p shared && cp ../assets/js/study-core.js ../assets/js/courses-data.js shared/ && npm ci && npm test
-```
+ما يحتاج خطة Blaze ولا بطاقة: قراءة القاعدة والإيميل وإشعار الجوال كلها مجانية، وGitHub Actions مجاني للمستودع العام.
+
+**الملفات:**
+- `assets/js/notify.js`: النافذة والإعدادات.
+- `reminders/`: الإرسال. `build.js` يجهّز التذكير، و`run.js` يقرأ ويرسل.
+- `.github/workflows/reminders.yml`: الأوقات.
+- `unsubscribe.html`: رابط «إيقاف التنبيهات» في آخر كل إيميل. يشتغل بدون دخول، بشرط المفتاح اللي في الرابط (القاعدة في `firestore.rules`).
+- `sw.js`: يعرض إشعار الجوال.
+
+اختبار محلي بدون إرسال: `npm ci --prefix reminders && node reminders/test.js`
+
+**زر «جرّب تنبيه الحين»:** يسجّل طلب في حساب الطالب، والتشغيل اللي كل ساعة يرسل له إيميل وإشعار تجريبي.
 
 **التشغيل (مرة وحدة):**
-1. فعّل خطة **Blaze** في مشروع `najd-141`، وحط تنبيه ميزانية (مثلاً 5 دولار). الاستخدام المتوقع داخل الحد المجاني.
-2. **مفتاح إشعارات الجوال:** Project settings ← Cloud Messaging ← Web Push certificates ← Generate key pair. انسخ المفتاح العام وحطه في `window.NAJD_PUSH_KEY` في `assets/js/layout.js`. قبل هذي الخطوة، الإيميل يشتغل والجوال يكتب «قريبًا».
-3. **كلمة مرور تطبيق** لإيميل الموقع (myaccount.google.com ← الأمان ← التحقق بخطوتين ← كلمات مرور التطبيقات)، وحطها في GitHub ← Settings ← Secrets ← Actions باسم `GMAIL_APP_PASSWORD`.
-4. **حساب خدمة للنشر:** Google Cloud ← IAM ← Service accounts ← حساب جديد بهذي الصلاحيات: Cloud Functions Admin، Cloud Run Admin، Cloud Scheduler Admin، Secret Manager Admin، Service Account User، Artifact Registry Administrator، Service Usage Admin، Firebase Admin. نزّل مفتاح JSON وحطه كله في سر باسم `FIREBASE_SERVICE_ACCOUNT`.
+1. **قواعد القاعدة:** Firestore ← Rules، الصق محتوى `firestore.rules` الجديد واضغط Publish. (فيها قاعدة رابط إيقاف الإيميل).
+2. **مفتاح حساب الخدمة:** Firebase ← Project settings ← Service accounts ← Generate new private key. ينزل ملف JSON، حط محتواه كامل في GitHub ← Settings ← Secrets and variables ← Actions ← New repository secret باسم `FIREBASE_SERVICE_ACCOUNT`. وبعدها احذف الملف من جهازك.
+3. **كلمة مرور تطبيق** لإيميل الموقع najdacdemy@gmail.com: myaccount.google.com ← الأمان ← التحقق بخطوتين (لازم يكون مفعّل) ← كلمات مرور التطبيقات. حطها في سر باسم `GMAIL_APP_PASSWORD`.
+4. **مفتاح إشعارات الجوال:** Firebase ← Project settings ← Cloud Messaging ← Web Push certificates ← Generate key pair. المفتاح العام يتحط في `window.NAJD_PUSH_KEY` في `assets/js/layout.js`. قبل هذي الخطوة، الإيميل يشتغل والجوال يكتب «قريبًا».
 
-بعدها أي تعديل على `functions/` يندمج في `main` ينشر الخادم لحاله (`.github/workflows/functions.yml`)، أو شغّله يدويًا من Actions ← Deploy reminders server ← Run workflow. وجرّبه من زر «جرّب تنبيه الحين» في حسابي.
+**التجربة:** من حسابي اضغط «جرّب تنبيه الحين»، وبعدها GitHub ← Actions ← Study reminders ← Run workflow (اختر `tests`). يوصلك الإيميل خلال دقيقة.
+
+**ملاحظات:**
+- GitHub أحيانًا يتأخر دقايق عن الوقت، عشان كذا نبدأ قبل الساعة بخمس دقايق.
+- GitHub يوقف الجدولة لو المستودع ما تعدّل 60 يوم، ويرسل إيميل تنبيه. ترجعها من Actions ← Study reminders ← Enable workflow.
+- Gmail يسمح بحوالي 500 إيميل باليوم. لو زاد عدد الطلاب عن كذا، نحتاج خدمة إرسال إيميلات.
 
 ## تجربة الموقع على جهازك
 ```
