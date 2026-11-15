@@ -44,6 +44,9 @@
     addbox:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/>',
     phone:'<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
     close:'<path d="M6 6l12 12M18 6L6 18"/>',
+    peak:'<path d="M3 19l6.5-10.500 4 6 2.500-3.500L21 19z"/>',
+    focus:'<circle cx="12" cy="13" r="7.500"/><path d="M12 9.500V13l2.500 1.500M10 3h4"/>',
+    pause:'<path d="M9 6.500v11M15 6.500v11"/>',
     ledger:'<rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 9.500h16M9.5 9.500V20M13 13.500h4M13 16.500h4"/>'};
   function icon(n,cls){return IC[n]?'<svg class="nj-icon'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>':'';}
   var ITEMS={plans:['plans','الخطط الدراسية','مقررات كل مستوى وتقدمك'],schedule:['schedule','الجدول الدراسي','صمّم جدولك واختباراتك'],gpa:['gpa','حاسبة المعدل','الفصلي والتراكمي'],calendar:['calendar','التقويم الأكاديمي','مواعيد التسجيل والاختبارات'],study:['target','خطة المذاكرة','جلسات يومية تتسوى لحالها'],nextterm:['compass','وش أسجل الفصل الجاي؟','المواد المفتوحة لك'],
@@ -52,7 +55,7 @@
   var PAGE=root.getAttribute('data-page')||'';
 
   /* المفاتيح اللي تنحفظ في حسابك وتتزامن بين أجهزتك */
-  var SYNC_KEYS=['najd_plans_v1','najd_gpa_v1','stq_schedule_v1','najd_quiz_v1','najd_study_v1','najd_mist_v1','najd_next_v1'];
+  var SYNC_KEYS=['najd_plans_v1','najd_gpa_v1','stq_schedule_v1','najd_quiz_v1','najd_study_v1','najd_mist_v1','najd_next_v1','najd_act_v1'];
   var META='najd_sync_meta';
   function readMeta(){try{return JSON.parse(localStorage.getItem(META)||'{}')||{};}catch(e){return {};}}
   try{
@@ -93,9 +96,9 @@
   var head=document.getElementById('nj-header');
   if(head){
     head.outerHTML='<header class="nj-head" id="nj-head"><div class="nj-in nj-bar">'
-      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611160105" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg?v=202611160105" alt="أكاديمية نجد" width="184" height="45"></a>'
+      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611161800" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg?v=202611161800" alt="أكاديمية نجد" width="184" height="45"></a>'
       +'<nav class="nj-nav" aria-label="القائمة الرئيسية">'+navLinks()+'</nav>'
-      +'<div class="nj-acts"><button type="button" class="nj-ic" data-search aria-label="بحث في الموقع" title="بحث">'+icon('search')+'</button>'+PREFS
+      +'<div class="nj-acts"><a class="nj-streak" id="nj-streak" href="'+LINKS.study+'" hidden>'+icon('peak')+'<b></b></a><button type="button" class="nj-ic" data-search aria-label="بحث وأوامر" title="بحث وأوامر">'+icon('search')+'</button>'+PREFS
       +'<a class="nj-btn nj-btn-line nj-btn-sm nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
       +'<a class="nj-btn nj-btn-fill nj-btn-sm nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a>'
       +userBox
@@ -111,7 +114,7 @@
   if(foot){
     foot.outerHTML='<footer class="nj-foot"><div class="nj-in">'
       +'<div class="nj-foot-g">'
-      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611160105" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
+      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611161800" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
       +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.quiz+'">اختبر نفسك</a><a href="'+LINKS.ratings+'">تجارب الطلاب</a><a href="'+LINKS.calendar+'">التقويم الأكاديمي</a><a href="'+LINKS.study+'">خطة المذاكرة</a><a href="'+LINKS.nextterm+'">وش أسجل الفصل الجاي؟</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.store+'">المتجر</a><a href="'+LINKS.college+'">خطط كلية العلوم الإدارية والمالية</a></nav></div>'
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a><a href="#" data-install>ثبّت التطبيق على جوالك</a></nav>'
@@ -123,9 +126,12 @@
   }
   /* الشريط السفلي: يظهر بس داخل التطبيق المثبّت على الجوال (التنسيق في najd.css) */
   if(head!==null&&PAGE!=='admin'){
-    var TABS=[['home','الرئيسية'],['plans','خطتي'],['schedule','جدولي'],['gpa','المعدل']];
+    /* «ذاكر» في النص يفتح جلسة تركيز، و«المعدل» صار داخل «المزيد» */
+    var tab=function(k,t){return '<a href="'+LINKS[k]+'"'+cur(k)+'><i>'+icon(k)+'</i>'+t+'</a>';};
     var tb=document.createElement('nav');tb.className='nj-tabbar';tb.setAttribute('aria-label','التنقل السريع');
-    tb.innerHTML=TABS.map(function(x){return '<a href="'+LINKS[x[0]]+'"'+cur(x[0])+'><i>'+icon(x[0])+'</i>'+x[1]+'</a>';}).join('')
+    tb.innerHTML=tab('home','الرئيسية')+tab('plans','خطتي')
+      +'<a class="nj-tab-go" href="'+LINKS.study+'#focus"'+cur('study')+'><i>'+icon('focus')+'</i>ذاكر</a>'
+      +tab('schedule','جدولي')
       +'<button type="button" data-tab-more aria-expanded="false" aria-controls="nj-drawer"><i>'+icon('more')+'</i>المزيد</button>';
     root.appendChild(tb);
   }
@@ -234,7 +240,13 @@
   try{var cached=JSON.parse(localStorage.getItem('najd_user')||'null');if(cached)setUser(cached);}catch(e){}
   root.addEventListener('click',function(e){var b=e.target.closest('[data-logout]');if(!b)return;e.preventDefault();if(window.NajdAuth)window.NajdAuth.logout();});
 
-  var tt;function toast(m){t.textContent=m;t.classList.add('is-on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('is-on');},3200);}
+  /* رسالة قصيرة تحت. o.undo = زر «تراجع» بدل نافذة «متأكد؟» */
+  var tt;function toast(m,o){
+    t.textContent='';var sp=document.createElement('span');sp.textContent=m;t.appendChild(sp);
+    var undo=o&&typeof o.undo==='function';t.classList.toggle('has-act',undo);
+    if(undo){var b=document.createElement('button');b.type='button';b.className='nj-toast-act';b.textContent=(window.NajdT?window.NajdT('تراجع'):'تراجع');
+      b.addEventListener('click',function(){clearTimeout(tt);t.classList.remove('is-on');o.undo();});t.appendChild(b);}
+    t.classList.add('is-on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('is-on');},undo?5000:3200);}
   try{var fl=sessionStorage.getItem('najd_flash');if(fl){sessionStorage.removeItem('najd_flash');setTimeout(function(){toast(fl);},300);}}catch(e){}
   function setSync(txt){var els=root.querySelectorAll('[data-u="sync"]');for(var j=0;j<els.length;j++)els[j].textContent=txt;}
 
@@ -305,6 +317,48 @@
     var sx=e.target.closest('[data-sheet-x]');if(sx||e.target.id==='nj-sheet'){var sh=document.getElementById('nj-sheet');if(sh)sh.remove();}
   });
 
+  /* ===== أيام المذاكرة المتتالية =====
+     أي نشاط دراسي في اليوم يحسبه: جلسة من خطة المذاكرة تخلصها، أو جلسة تركيز، أو تحدي اليوم، أو اختبار. فتح الموقع لحاله ما يحسب.
+     najd_act_v1 = {d:{"YYYY-MM-DD":{f:دقائق التركيز, c:تحدي اليوم, q:عدد الاختبارات}}} (يتزامن مع الحساب)
+     وجلسات الخطة من najd_study_v1.done: القيمة وقت ما خلصت (والقديم 1 = نحسبه بتاريخ الجلسة نفسها) */
+  var ACT='najd_act_v1';
+  function ymdL(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+  function actGet(){var a=null;try{a=JSON.parse(localStorage.getItem(ACT)||'null');}catch(e){}if(!a||typeof a!=='object')a={};if(!a.d||typeof a.d!=='object')a.d={};return a;}
+  function actLog(kind,n){
+    var a=actGet(),k=ymdL(new Date()),x=a.d[k]=(a.d[k]&&typeof a.d[k]==='object')?a.d[k]:{};x[kind]=(+x[kind]||0)+(+n||1);
+    var ks=Object.keys(a.d).sort();while(ks.length>120)delete a.d[ks.shift()];
+    try{localStorage.setItem(ACT,JSON.stringify(a));}catch(e){}
+    streakBadge();
+  }
+  function actDays(){
+    var have={},a=actGet();Object.keys(a.d).forEach(function(k){if(/^\d{4}-\d{2}-\d{2}$/.test(k))have[k]=1;});
+    var s=null;try{s=JSON.parse(localStorage.getItem('najd_study_v1')||'null');}catch(e){}
+    var done=(s&&s.done)||{};
+    Object.keys(done).forEach(function(id){var v=done[id],k=(typeof v==='number'&&v>1e12)?ymdL(new Date(v)):String(id).replace(/^m\|/,'').slice(0,10);if(/^\d{4}-\d{2}-\d{2}$/.test(k))have[k]=1;});
+    return have;
+  }
+  /* n = الأيام المتتالية لين اليوم (ولو اليوم للحين ما ذاكر، لين أمس عشان ما تنقطع قبل يخلص يومه)، week = أيام هذا الأسبوع من الأحد */
+  function streak(now){
+    now=now||new Date();var have=actDays(),d=new Date(now);d.setHours(12,0,0,0);
+    var today=ymdL(d),on=!!have[today],n=0;if(!on)d.setDate(d.getDate()-1);
+    while(have[ymdL(d)]){n++;d.setDate(d.getDate()-1);}
+    var ws=new Date(now);ws.setHours(12,0,0,0);ws.setDate(ws.getDate()-ws.getDay());var week=[];
+    for(var i=0;i<7;i++){var w=new Date(ws);w.setDate(ws.getDate()+i);var k=ymdL(w);week.push({date:k,on:!!have[k],today:k===today,future:k>today});}
+    return {n:n,today:on,week:week};
+  }
+  function daysTxt(n){var en=document.documentElement.lang==='en';return en?(n===1?'1 day':n+' days'):(n===1?'يوم':n===2?'يومين':n<=10?n+' أيام':n+' يوم');}
+  function streakBadge(){
+    var b=document.getElementById('nj-streak');if(!b)return;var sk=streak(),en=document.documentElement.lang==='en';
+    b.hidden=!sk.n;root.classList.toggle('has-streak',!!sk.n);if(!sk.n)return;
+    b.querySelector('b').textContent=sk.n;b.classList.toggle('is-today',sk.today);
+    var lbl=en?daysTxt(sk.n)+' in a row'+(sk.today?'':'. Study today to keep it going'):(sk.n===1?'يوم واحد ذاكرت فيه':daysTxt(sk.n)+' متتالية تذاكر فيها')+(sk.today?'':'. ذاكر اليوم عشان تكمل');
+    b.setAttribute('aria-label',lbl);b.title=lbl;
+  }
+  streakBadge();
+  ['najd:dirty','storage','pageshow','najd:auth-ready'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(streakBadge,30);});});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)streakBadge();});
+  window.NajdAct={KEY:ACT,log:actLog,streak:streak,days:actDays,ymd:ymdL,daysTxt:daysTxt};
+
   /* ===== البحث في الموقع: المقررات وأعضاء هيئة التدريس والأدوات ===== */
   var sxData=null;
   function loadScript(src){return new Promise(function(res){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=res;document.head.appendChild(s);});}
@@ -324,9 +378,18 @@
   var EN=function(){return document.documentElement.lang==='en';};
   var TT=function(s){return window.NajdT?window.NajdT(s):s;};
   var PAGES_SX=['plans','schedule','study','gpa','nextterm','calendar','lessons','quiz','ratings','coop','store'];
+  /* أوامر سريعة (شريط «/»): [الأيقونة، الأمر، الوصف، الرابط، كلمات البحث] */
+  var CMDS=[['focus','ابدأ مذاكرة','جلسة تركيز بعدّاد',LINKS.study+'#focus','ذاكر مذاكره ركز تركيز جلسه study focus'],
+    ['bolt','تحدي اليوم','٣ أسئلة سريعة تكمّل أيامك',LINKS.quiz+'?challenge=1','تحدي اسئله سوال challenge'],
+    ['calendar','أضف اختبار','ميدتيرم أو فاينل في جدولك',LINKS.schedule+'#ex','اختبار امتحان ميد فاينل exam'],
+    ['plans','علّم مقرر خلصته','في خطتك الدراسية',LINKS.plans,'علم خلصت مقرر ماده خطه plan'],
+    ['gpa','احسب معدلي','الفصلي والتراكمي',LINKS.gpa,'معدل gpa احسب'],
+    ['target','راجع أخطائي','الأسئلة اللي غلطت فيها',LINKS.quiz+'?review=all','اخطاء غلط مراجعه دفتر mistakes']];
   function sxItem(href,lead,title,sub,ltr){return '<a class="nj-sx-it" role="option" href="'+href+'"><span class="nj-sx-lead"'+(ltr?' dir="ltr"':'')+'>'+lead+'</span><span class="nj-sx-tx"><b data-no-i18n>'+esc(title)+'</b>'+(sub?'<small data-no-i18n>'+esc(sub)+'</small>':'')+'</span></a>';}
   function sxRender(raw){
     var box=document.getElementById('nj-sx-res'),q=norm(raw),qc=String(raw||'').replace(/\s+/g,'').toUpperCase(),o='';
+    var cmds=CMDS.filter(function(c){return !q||hit(q,c[1]+' '+c[2]+' '+c[4]+' '+TT(c[1]))>-1;}).slice(0,q?3:6);
+    if(cmds.length)o+='<p class="nj-sx-h">'+TT('أوامر سريعة')+'</p>'+cmds.map(function(c){return sxItem(c[3],icon(c[0]),TT(c[1]),TT(c[2]));}).join('');
     var tools=PAGES_SX.filter(function(k){return !q||hit(q,ITEMS[k][1]+' '+ITEMS[k][2]+' '+TT(ITEMS[k][1]))>-1;}).slice(0,q?4:9);
     if(tools.length)o+='<p class="nj-sx-h">'+TT('الأدوات')+'</p>'+tools.map(function(k){return sxItem(LINKS[k],icon(ITEMS[k][0]),TT(ITEMS[k][1]),TT(ITEMS[k][2]));}).join('');
     if(q){
@@ -335,7 +398,7 @@
       var D=window.NAJD_DEPTS||{},B=window.NAJD_BRANCHES||{};
       var fs=(window.NAJD_FACULTY||[]).map(function(f){return [hit(q,f[1]+' '+f[2]+' '+f[6]),f];}).filter(function(x){return x[0]>-1;}).sort(function(a,b){return a[0]-b[0];}).slice(0,8);
       if(fs.length)o+='<p class="nj-sx-h">'+TT('أعضاء هيئة التدريس')+'</p>'+fs.map(function(x){var f=x[1];return sxItem('ratings.html?tab=inst&i='+encodeURIComponent(f[0]),icon('user'),EN()&&f[2]?f[2]:f[1],[TT(D[f[3]]||''),B[f[5]]?TT('فرع '+B[f[5]]):''].filter(Boolean).join(' · '));}).join('');
-      if(!cs.length&&!fs.length&&!tools.length)o='<div class="nj-sx-none"><b>'+TT('ما لقينا نتيجة')+'</b><small>'+TT('جرّب رمز المقرر مثل ACCT201، أو جزء من اسم الدكتور.')+'</small></div>';
+      if(!cs.length&&!fs.length&&!tools.length&&!cmds.length)o='<div class="nj-sx-none"><b>'+TT('ما لقينا نتيجة')+'</b><small>'+TT('جرّب رمز المقرر مثل ACCT201، أو جزء من اسم الدكتور.')+'</small></div>';
     }
     box.innerHTML=o;sxActive=-1;
   }
@@ -343,8 +406,8 @@
   function sxOpen(){
     var w=document.getElementById('nj-sx');
     if(!w){
-      w=document.createElement('div');w.className='nj-sx';w.id='nj-sx';w.setAttribute('role','dialog');w.setAttribute('aria-modal','true');w.setAttribute('aria-label','بحث في الموقع');
-      w.innerHTML='<div class="nj-sx-box"><div class="nj-sx-top">'+icon('search')+'<input id="nj-sx-q" class="nj-sx-in" type="search" autocomplete="off" enterkeyhint="search" placeholder="ابحث برمز المقرر، اسمه، أو اسم الدكتور…" aria-label="بحث" aria-controls="nj-sx-res"><button type="button" class="nj-sx-x" data-sx-x aria-label="إغلاق">'+icon('close')+'</button></div><div class="nj-sx-res" id="nj-sx-res" role="listbox"></div><p class="nj-sx-tip">'+TT('اضغط / من الكيبورد عشان تفتح البحث بسرعة')+'</p></div>';
+      w=document.createElement('div');w.className='nj-sx';w.id='nj-sx';w.setAttribute('role','dialog');w.setAttribute('aria-modal','true');w.setAttribute('aria-label','بحث وأوامر');
+      w.innerHTML='<div class="nj-sx-box"><div class="nj-sx-top">'+icon('search')+'<input id="nj-sx-q" class="nj-sx-in" type="search" autocomplete="off" enterkeyhint="search" placeholder="ابحث أو اكتب أمر: ذاكر، معدل، STAT…" aria-label="بحث" aria-controls="nj-sx-res"><button type="button" class="nj-sx-x" data-sx-x aria-label="إغلاق">'+icon('close')+'</button></div><div class="nj-sx-res" id="nj-sx-res" role="listbox"></div><p class="nj-sx-tip">'+TT('اضغط / من الكيبورد عشان تفتح البحث بسرعة')+'</p></div>';
       root.appendChild(w);
       var inp=w.querySelector('#nj-sx-q'),tm;
       inp.addEventListener('input',function(){clearTimeout(tm);tm=setTimeout(function(){sxLoad().then(function(){sxRender(inp.value);});},90);});

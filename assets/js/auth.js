@@ -57,6 +57,17 @@ const MSG = {
 const errText = (e) => MSG[e && e.code] || "صار خطأ غير متوقع. جرب مرة ثانية.";
 
 /* ===== المزامنة ===== */
+const ACT_KEY = "najd_act_v1";
+const actObj = (v) => { try { const o = JSON.parse(v); return o && typeof o.d === "object" && o.d ? o.d : {}; } catch (e) { return {}; } };
+/* نفس الترتيب دايم عشان نقارن النص */
+function canonAct(v) { const d = actObj(v), out = {}; Object.keys(d).sort().forEach((k) => { const x = d[k] || {}, y = {}; Object.keys(x).sort().forEach((f) => { y[f] = +x[f] || 0; }); out[k] = y; }); return JSON.stringify({ d: out }); }
+function mergeAct(a, b) {
+  const A = actObj(a), B = actObj(b), d = {};
+  for (const src of [A, B]) for (const k of Object.keys(src)) { const x = src[k] || {}; d[k] = d[k] || {}; for (const f of Object.keys(x)) d[k][f] = Math.max(+d[k][f] || 0, +x[f] || 0); }
+  const keys = Object.keys(d).sort(); while (keys.length > 120) delete d[keys.shift()];
+  return canonAct(JSON.stringify({ d }));
+}
+
 async function pull(uid) {
   N.setSync("جاري مزامنة تقدمك…");
   const snap = await getDoc(doc(db, "users", uid));
@@ -68,6 +79,14 @@ async function pull(uid) {
   for (const k of KEYS) {
     const lv = localStorage.getItem(k), lt = meta[k] || 0;
     const cv = cData[k], ct = cT[k] || 0;
+    /* أيام المذاكرة: نجمع أيام الجهازين بدل ما واحد يمسح الثاني */
+    if (k === ACT_KEY && cv != null && lv != null && cv !== lv) {
+      const m = mergeAct(lv, cv);
+      if (m !== canonAct(lv)) { setLocal(k, m); changed = true; }
+      if (m !== canonAct(cv)) needPush = true;
+      meta[k] = Math.max(lt, ct) || Date.now();
+      continue;
+    }
     if (cv != null && ct >= lt && cv !== lv) { setLocal(k, cv); meta[k] = ct; changed = true; }
     else if (lv != null && (cv == null || lt > ct)) { needPush = true; if (!lt) meta[k] = Date.now(); }
   }
@@ -118,9 +137,9 @@ onAuthStateChanged(auth, async (user) => {
     }
     sessionStorage.setItem(flag, "1");
     /* تنبيهات الدراسة: الموافقة أول مرة، وتجديد رمز الجهاز */
-    import("./notify.js?v=202611160105").then((m) => m.start(user, cloudNotify)).catch((e) => console.warn("najd notify", e));
+    import("./notify.js?v=202611161800").then((m) => m.start(user, cloudNotify)).catch((e) => console.warn("najd notify", e));
     /* ملف الحساب للوحة الإدارة (الاسم والإيميل وتاريخ التسجيل) */
-    import("./stats.js?v=202611160105").then((m) => m.saveProfile(user)).catch(() => {});
+    import("./stats.js?v=202611161800").then((m) => m.saveProfile(user)).catch(() => {});
   } catch (e) {
     console.warn("najd pull", e);
     N.setSync("ما قدرنا نجيب تقدمك من السحابة");
@@ -190,5 +209,5 @@ getDoc(doc(db, "settings", "announcement")).then((s) => { if (s.exists() && N.an
 
 export { app, auth, db };
 /* عدّاد الزوار: مرة وحدة لكل جهاز في اليوم */
-setTimeout(() => { import("./stats.js?v=202611160105").then((m) => m.countVisit()).catch(() => {}); }, 1200);
-window.NajdNotify = { settings: async (box, u) => (await import("./notify.js?v=202611160105")).settings(box, u) };
+setTimeout(() => { import("./stats.js?v=202611161800").then((m) => m.countVisit()).catch(() => {}); }, 1200);
+window.NajdNotify = { settings: async (box, u) => (await import("./notify.js?v=202611161800")).settings(box, u) };
