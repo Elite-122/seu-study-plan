@@ -1,4 +1,4 @@
-/* نماذج الدخول والتسجيل (Gmail + البريد) — تعتمد على window.NajdAuth من auth.js */
+/* نماذج الدخول والتسجيل (قوقل + البريد) — تعتمد على window.NajdAuth من auth.js */
 (function(){
   var form=document.getElementById('au-form');if(!form)return;
   var MODE=form.getAttribute('data-mode');
@@ -27,12 +27,12 @@
     if(u)showErr('');
   });
 
-  /* Gmail */
+  /* الدخول بحساب قوقل */
   var g=document.getElementById('au-google');
   g.addEventListener('click',function(){
     showErr('');acting=true;g.disabled=true;
     ready(function(A){
-      A.google().then(function(){done('أهلًا فيك، دخلت بحساب Gmail.');})
+      A.google().then(function(){done('أهلًا فيك، دخلت بحساب قوقل.');})
         .catch(function(x){acting=false;g.disabled=false;showErr(A.errText(x));});
     });
   });
