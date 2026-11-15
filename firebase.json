@@ -1,0 +1,14 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "runtime": "nodejs20",
+      "ignore": ["node_modules", ".git", "test.js", "*.log"],
+      "predeploy": [
+        "mkdir -p \"$RESOURCE_DIR/shared\"",
+        "cp assets/js/study-core.js assets/js/courses-data.js \"$RESOURCE_DIR/shared/\""
+      ]
+    }
+  ]
+}

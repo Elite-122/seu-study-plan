@@ -481,3 +481,34 @@ html.is-app #najd .nj-toast{bottom:calc(84px + env(safe-area-inset-bottom))}
 /* جوالات ضيقة: الشعار أصغر، وزر اللغة ينتقل للقائمة (موجود فيها) */
 @media (max-width:400px){#najd .nj-bar{gap:var(--sp-3)}#najd .nj-logo img{height:31px}}
 @media (max-width:349px){#najd .nj-acts .nj-lang{display:none}}
+
+/* ===== تنبيهات الدراسة (notify.js) ===== */
+#najd .nj-ntf{max-width:440px}
+#najd .nj-ntf h2{font-size:var(--fs-2xl);margin:0 0 4px}
+#najd .nj-ntf-ic{display:grid;place-items:center;width:56px;height:56px;border-radius:16px;background:var(--tint);margin:0 0 10px}
+#najd .nj-ntf-ic .nj-icon{width:30px;height:30px}
+#najd .nj-ntf-lead{color:var(--muted);font-size:var(--fs-base);margin:0 0 12px}
+#najd .nj-ntf-why{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:var(--sp-3)}
+#najd .nj-ntf-why li{display:flex;gap:var(--sp-4);align-items:center;font-size:var(--fs-base);background:var(--bg);border-radius:var(--r-md);padding:8px 10px}
+#najd .nj-ntf-why li b{display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;border-radius:8px;background:var(--card);color:var(--teal)}
+#najd .nj-ntf-opt{display:flex;align-items:center;gap:var(--sp-4);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:10px 12px;margin:0 0 var(--sp-3);cursor:pointer}
+#najd .nj-ntf-opt span:first-child{flex:1;min-width:0}
+#najd .nj-ntf-opt b,#najd .nj-ntf-row b{display:block;font-size:var(--fs-base)}
+#najd .nj-ntf-opt small,#najd .nj-ntf-row small{display:block;font-size:var(--fs-sm);color:var(--slate)}
+#najd .nj-ntf-opt.is-off,#najd .nj-ntf-row.is-off{opacity:.6;cursor:default}
+#najd .nj-ntf .nj-btn{width:100%;margin-top:var(--sp-4)}
+#najd .nj-ntf-skip{display:block;width:100%;min-height:44px;border:0;background:none;font:inherit;font-size:var(--fs-md);color:var(--slate);text-decoration:underline;cursor:pointer;margin-top:var(--sp-2)}
+#najd .nj-ntf-note{font-size:var(--fs-sm);color:var(--slate);margin:4px 0 0;text-align:center}
+#najd .nj-ntf-lbl{font-size:var(--fs-sm);font-weight:800;color:var(--slate);margin:var(--sp-6) 0 var(--sp-2)}
+#najd .nj-ntf-row{display:flex;align-items:center;gap:var(--sp-4);min-height:56px;padding:6px 0;border-bottom:1px solid var(--light);cursor:pointer}
+#najd .nj-ntf-row span{flex:1;min-width:0}
+/* مفتاح تشغيل/إيقاف */
+#najd .nj-switch{appearance:none;-webkit-appearance:none;flex-shrink:0;width:50px;height:30px;border-radius:var(--r-pill);background:var(--mist);position:relative;cursor:pointer;margin:7px 0;transition:background var(--t-fast)}
+#najd .nj-switch::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:inset-inline-start var(--t-fast)}
+#najd .nj-switch:checked{background:var(--teal)}
+#najd .nj-switch:checked::after{inset-inline-start:23px}
+#najd .nj-switch:disabled{opacity:.5;cursor:default}
+#najd .nj-switch:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+#najd .ac-ntf{scroll-margin-top:90px}
+#najd #ntf-hour{grid-template-columns:repeat(3,1fr)}
+html:not([data-theme="dark"]) #najd .nj-ntf-why li b{color:var(--deep)}

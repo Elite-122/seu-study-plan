@@ -9,6 +9,8 @@
   /* حساب تيليقرام */
   var TELEGRAM_URL='https://t.me/najdacdemy';
   var CONTACT_EMAIL='najdacdemy@gmail.com';
+  /* مفتاح إشعارات الجوال العام (Firebase ← إعدادات المشروع ← Cloud Messaging ← Web Push certificates). فاضي = الإشعارات «قريبًا» */
+  window.NAJD_PUSH_KEY=window.NAJD_PUSH_KEY||'';
   /* القائمة العلوية: مجموعتين منسدلتين + رابطين مباشرين */
   /* أيقونات مرسومة بألوان الهوية (بدل الإيموجي). الاستخدام: Najd.icon('lock') */
   var IC={home:'<path d="M4 11l8-7 8 7"/><path d="M6 10v9a1 1 0 0 0 1 1h4v-5h2v5h4a1 1 0 0 0 1-1v-9"/>',more:'<rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/>',plans:'<path d="M8 4h8a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V6a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 13h6M9 17h3"/>',

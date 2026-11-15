@@ -254,6 +254,8 @@ window.NAJD_I18N={DICT:{
 "ابدأ مجانًا": "Start for free",
 "كمّل خطتك": "Continue your plan",
 "ابدأ خطتك": "Start your plan",
+"تنبيهاتي": "My reminders",
+"نجيب إعداداتك…": "Loading your settings…",
 "المواد المفتوحة لك حسب خطتك، واقتراح جدول متوازن بالساعات والصعوبة.": "Courses open to you in your plan, with a balanced suggestion by hours and difficulty.",
 "علّم خطتك أول": "Tick your plan first",
 "اختر تخصصك في الخطط وعلّم على المقررات اللي خلصتها، ونقولك وش المفتوح لك.": "Pick your major in Plans and tick what you finished, and we'll show what's open.",
