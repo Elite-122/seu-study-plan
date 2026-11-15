@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261115d">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611150558">
 <style>#najd .sc-tabs{position:sticky;top:74px;z-index:20;flex-wrap:nowrap}
 #najd .sc-tabs .nj-tab{flex:1 1 0;min-width:0;padding:0 8px;white-space:nowrap}
 #najd .sc-tabs .nj-icon{width:18px;height:18px;color:inherit}
@@ -92,7 +92,7 @@
 #najd .sc-brush{display:none;align-items:center;justify-content:space-between;gap:var(--sp-4);background:var(--deep);color:#fff;border-radius:var(--r-lg);padding:10px 14px;margin:0 0 10px;font-size:var(--fs-base);position:sticky;top:8px;z-index:3}
 #najd .sc-brush.is-on{display:flex}
 #najd .sc-brush b{color:#F3E9CF}
-#najd .sc-brush button{flex-shrink:0;height:36px;border:0;border-radius:var(--r-sm);background:var(--light);color:var(--dtext);font-size:var(--fs-md);font-weight:800;padding:0 14px;cursor:pointer}
+#najd .sc-brush button{flex-shrink:0;height:44px;border:0;border-radius:var(--r-sm);background:var(--light);color:var(--dtext);font-size:var(--fs-md);font-weight:800;padding:0 14px;cursor:pointer}
 #najd .sc-grid.is-brush .sc-cell{cursor:copy}
 #najd .sc-grid.is-brush .sc-cell:hover{border-color:var(--dtext)}
 #najd .sc-cal{margin:14px 0 0;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px}
@@ -106,8 +106,9 @@
 #najd .sc-wrap.has-v .sc-cell{padding-bottom:22px}
 #najd .sc-wrap.has-c .sc-show{justify-content:flex-start;padding-top:6px;bottom:22px}
 #najd .sc-wrap.is-on .sc-cell{border-style:dashed;border-width:1.5px;background:var(--surface)}
-#najd .sc-type{font-style:normal;font-size:var(--fs-2xs);font-weight:800;border-radius:var(--r-pill);padding:1px 9px;line-height:1.6;border:1.5px solid transparent;font-family:inherit;cursor:pointer}
+#najd .sc-type{position:relative;font-style:normal;font-size:var(--fs-2xs);font-weight:800;border-radius:var(--r-pill);padding:1px 9px;line-height:1.6;border:1.5px solid transparent;font-family:inherit;cursor:pointer}
 #najd .sc-wrap .sc-type{position:absolute;inset:auto 0 5px 0;margin:0 auto;width:max-content;z-index:2}
+#najd .sc-type::after{content:"";position:absolute;inset:-12px -6px}
 #najd .sc-type.p{background:var(--deep);color:#fff}
 #najd .sc-type.o{background:var(--surface);color:var(--dtext);border:1.5px dashed var(--teal)}
 #najd .sc-type[hidden]{display:none}
@@ -227,10 +228,10 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261115d"></script>
-<script src="assets/js/plans-data.js?v=20261115d"></script>
-<script src="assets/js/i18n.js?v=20261115d"></script>
-<script type="module" src="assets/js/auth.js?v=20261115d"></script>
+<script src="assets/js/layout.js?v=202611150558"></script>
+<script src="assets/js/plans-data.js?v=202611150558"></script>
+<script src="assets/js/i18n.js?v=202611150558"></script>
+<script type="module" src="assets/js/auth.js?v=202611150558"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('sc-grid'))return;
@@ -697,6 +698,11 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
   }
   buildCourses();paintAll();
   mSel.value=st.pick.major;fillLevels();renderChips();
+  /* جاي من صفحة مقرر (?add=STAT101): نجهّز المادة للإضافة ونوديه للجدول */
+  (function(){var m=/[?&]add=([A-Z]+\d+)/.exec(location.search);if(!m)return;var code=m[1],hit=null;
+    [st.pick.major].concat(MORDER).some(function(k){return majors[k].levels.some(function(lv,li){return lv.courses.some(function(c){if(c[0]===code){hit={k:k,li:li,n:c[2]};return true;}return false;});});});
+    if(!hit)return;st.pick.major=hit.k;st.pick.level=hit.li;mSel.value=hit.k;fillLevels();brush=null;setBrush(hit.n);
+    setTimeout(function(){$('sc-brush').scrollIntoView({block:'center'});},400);})();
   mSel.addEventListener('change',function(){st.pick.major=mSel.value;st.pick.level=0;fillLevels();setBrush(null);save();});
   lSel.addEventListener('change',function(){st.pick.level=+lSel.value;setBrush(null);save();});
   chipsBox.addEventListener('click',function(e){var b=e.target.closest('.sc-chip');if(!b)return;setBrush(b.getAttribute('data-sub'));});

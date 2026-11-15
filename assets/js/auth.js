@@ -28,6 +28,7 @@ const N = window.Najd || { SYNC_KEYS: [], META: "najd_sync_meta", setUser() {}, 
 const KEYS = N.SYNC_KEYS;
 let current = null;
 let pushTimer = null;
+let cloudNotify; /* إعدادات التنبيهات من الحساب (notify.js) */
 
 const readMeta = () => { try { return JSON.parse(localStorage.getItem(N.META) || "{}") || {}; } catch (e) { return {}; } };
 const writeMeta = (m) => { try { window.__najdSilent = true; localStorage.setItem(N.META, JSON.stringify(m)); } finally { window.__najdSilent = false; } };
@@ -60,6 +61,7 @@ async function pull(uid) {
   N.setSync("جاري مزامنة تقدمك…");
   const snap = await getDoc(doc(db, "users", uid));
   const cloud = snap.exists() ? snap.data() : {};
+  cloudNotify = cloud.notify || null;
   const cData = cloud.data || {}, cT = cloud.t || {};
   const meta = readMeta();
   let changed = false, needPush = false;
@@ -115,6 +117,8 @@ onAuthStateChanged(auth, async (user) => {
       return;
     }
     sessionStorage.setItem(flag, "1");
+    /* تنبيهات الدراسة: الموافقة أول مرة، وتجديد رمز الجهاز */
+    import("./notify.js?v=202611150558").then((m) => m.start(user, cloudNotify)).catch((e) => console.warn("najd notify", e));
   } catch (e) {
     console.warn("najd pull", e);
     N.setSync("ما قدرنا نجيب تقدمك من السحابة");
@@ -183,3 +187,4 @@ window.dispatchEvent(new CustomEvent("najd:auth-ready"));
 getDoc(doc(db, "settings", "announcement")).then((s) => { if (s.exists() && N.announce) N.announce(s.data()); }).catch(() => {});
 
 export { app, auth, db };
+window.NajdNotify = { settings: async (box, u) => (await import("./notify.js?v=202611150558")).settings(box, u) };

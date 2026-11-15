@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /docs/
+Disallow: /admin.html
+Disallow: /admin-coop.html
+
+Sitemap: https://najdacdemy.com/sitemap.xml

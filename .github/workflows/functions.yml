@@ -1,0 +1,67 @@
+# ينشر خادم تنبيهات الدراسة (functions/) على Firebase بعد كل دمج يغيّره.
+# يحتاج سرّين في إعدادات المستودع (Settings ← Secrets and variables ← Actions):
+#   FIREBASE_SERVICE_ACCOUNT  ملف JSON لحساب خدمة عنده صلاحية النشر على مشروع najd-141
+#   GMAIL_APP_PASSWORD        كلمة مرور تطبيق لإيميل الموقع najdacdemy@gmail.com
+# إذا واحد منهم ناقص، النشر يتخطى بدون ما يفشل.
+name: Deploy reminders server
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "functions/**"
+      - "firebase.json"
+      - "assets/js/study-core.js"
+      - "assets/js/courses-data.js"
+      - ".github/workflows/functions.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: functions-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      GMAIL: ${{ secrets.GMAIL_APP_PASSWORD }}
+    steps:
+      - name: Check secrets
+        id: check
+        run: |
+          if [ -z "$SA" ] || [ -z "$GMAIL" ]; then
+            echo "::notice::Add FIREBASE_SERVICE_ACCOUNT and GMAIL_APP_PASSWORD to the repository secrets to deploy the reminders server. Skipping."
+            echo "go=0" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=1" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.check.outputs.go == '1'
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.go == '1'
+        with:
+          node-version: 20
+      - name: Install
+        if: steps.check.outputs.go == '1'
+        run: npm ci --prefix functions
+      - name: Test reminders
+        if: steps.check.outputs.go == '1'
+        run: |
+          mkdir -p functions/shared
+          cp assets/js/study-core.js assets/js/courses-data.js functions/shared/
+          node functions/test.js
+      - name: Credentials
+        if: steps.check.outputs.go == '1'
+        run: |
+          printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/sa.json" >> "$GITHUB_ENV"
+      - name: Email secret
+        if: steps.check.outputs.go == '1'
+        run: printf '%s' "$GMAIL" | npx --yes firebase-tools@13 functions:secrets:set GMAIL_APP_PASSWORD --data-file=- --project najd-141 --non-interactive --force
+      - name: Deploy
+        if: steps.check.outputs.go == '1'
+        run: npx --yes firebase-tools@13 deploy --only functions --project najd-141 --non-interactive --force

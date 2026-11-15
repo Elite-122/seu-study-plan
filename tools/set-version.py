@@ -13,6 +13,8 @@ SKIP = {"college-plans.html"}
 PAT = re.compile(r'((?:assets/(?:css|js)/|\./)[\w.-]+\.(?:css|js))(\?v=[\w.-]+)?(["\'])')
 
 files = [f for f in glob.glob(os.path.join(ROOT, "*.html")) if os.path.basename(f) not in SKIP]
+files += glob.glob(os.path.join(ROOT, "c/*.html"))  # صفحات المقررات
+files.append(os.path.join(ROOT, "tools/course-template.html"))
 files += glob.glob(os.path.join(ROOT, "assets/js/*.js"))
 files.append(os.path.join(ROOT, "sw.js"))  # قائمة الملفات المحفوظة للتطبيق
 for f in files:

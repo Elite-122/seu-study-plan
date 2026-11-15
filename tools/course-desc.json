@@ -1,0 +1,488 @@
+{
+ "ACCT101": {
+  "ar": "مدخل للمحاسبة يوضح كيف تنقل القوائم المالية العامة معلومات عن أداء الشركة ومركزها لمستخدميها من خارج الإدارة، ويتضمن تسجيل العمليات وتسوية الأرصدة وإعداد القوائم المالية.",
+  "en": "This course is an introduction to accounting, emphasizing how general-purpose financial statements communicate information about the business corporation's performance and position for users external to management. Approximately one-third of the course emphasizes how the accountant processes and presents the information and includes exposure to recording transactions, adjusting balances, and preparing financial statements for service and merchandise firms according to established rules and procedures. Additionally, the course examines major elements of financial statements such as cash, receivables, inventory, long-lived assets, depreciation, payroll, bonds, and other liabilities and stocks.",
+  "title_en": "Principles of Accounting",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ACCT201": {
+  "ar": "المحاسبة المالية وسيلة تسجيل المعلومات المالية والإفصاح عنها: كيف تدعم المحاسبة القرارات الاقتصادية، واستخدامات القوائم المالية وحدودها، وتطبيق أدوات التحليل في قرارات الأعمال.",
+  "en": "Financial accounting is the basic means of recording and reporting financial information in a business. After reviewing how accounting functions as an information development and communication system that supports economic decision-making and provides value to entities and society, students will discover the uses and limitations of financial statements and related information and apply analytical tools in making both business and financial decisions. Topics examined include those related to corporate financial position, operating results, cash flows, and financial strength. Students will study the basic accounting system and will be shown how the various accounting alternatives for recording financial transactions impact on the usefulness of the information provided for decision-making. During coverage of relevant topics, reference will be made to recent lapses in ethical reporting and the resulting impact on the financial markets and society.",
+  "title_en": "Financial Accounting",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ACCT301": {
+  "ar": "يقدم إجراءات محاسبة التكاليف عمليًا، مع التركيز على تكاليف الأوامر والمراحل، والتكاليف المعيارية، وتخطيط الأرباح بما فيها التكاليف التفاضلية، وسياسات التسعير الداخلي، والموازنة الرأسمالية.",
+  "en": "This course introduces students to the fundamental concepts and techniques of cost accounting, with an emphasis on cost behavior, cost accumulation, and cost analysis for informed managerial decision-making. The course covers job order costing, process costing, standard costing, cost–volume–profit analysis, relevant costing, and performance evaluation. Students learn how cost information is used for planning, control, pricing, and managerial decision-making in contemporary business environments.",
+  "title_en": "Cost Accounting",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "ACCT302": {
+  "ar": "دراسة شاملة لموضوعات المحاسبة المالية المتقدمة: اندماج الأعمال، والقوائم المالية الموحدة، والعمليات متعددة الجنسيات، واستبعاد العمليات بين الشركات، والعملات الأجنبية، والأدوات المالية، ومحاسبة شركات الأشخاص.",
+  "en": "This course provides a comprehensive study of advanced financial accounting topics, including business combinations, consolidated financial statements, and multinational operations. It examines the recognition, measurement, and elimination of intercompany transactions involving inventories, services, and non-current assets. The course also addresses accounting issues arising from foreign currency transactions, financial instruments, translation of foreign entity financial statements, and partnership accounting. Emphasis is placed on the application of consolidation techniques, analytical problem-solving, and collaborative work in complex financial reporting contexts.",
+  "title_en": "Advanced Financial Accounting",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "ACCT321": {
+  "ar": "دراسة تفصيلية للمحاسبة والتقارير المالية في الجهات الحكومية والمنظمات غير الربحية: خصائص بيئتها، ومحاسبة الصناديق، والموازنات، والدورة المحاسبية لأنواع الصناديق المختلفة.",
+  "en": "This course provides a detailed study of accounting and financial reporting for governmental and Not-for-Profit organizations. Students will explore the characteristics and environment of public and nonprofit entities, fund accounting principles, budgetary processes, and the full accounting cycles for various fund types, including general, special revenue, capital projects, debt service, permanent, proprietary, and fiduciary funds. The course also covers the preparation of fund-based and government-wide financial statements, financial statement analysis, and an introduction to accounting for not-for-profit organizations and International Public Sector Accounting Standards (IPSAS). Emphasis is placed on understanding how accounting systems support transparency, accountability, and informed decision-making in the public sector.",
+  "title_en": "Governmental and Not-for-Profit Accounting",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "ACCT322": {
+  "ar": "يعرّف بمبادئ المحاسبة الإدارية لدعم قرارات المنظمة: سلوك التكاليف، ونظم التكاليف، وتحليل التكلفة والحجم والربح، والموازنات، والتكاليف المعيارية وتحليل الانحرافات، وتقييم أداء القطاعات.",
+  "en": "This course introduces students to the principles and practices of managerial accounting to support organizational decision-making. It covers key concepts such as cost behavior, costing systems, and cost–volume–profit analysis, as well as planning and control tools including budgets, standard costs, and variance analysis. Students will learn to interpret financial information, apply costing methods, evaluate segment performance, and analyze investment and financial decisions using capital budgeting and financial statements. The course emphasizes practical skills, analytical thinking, and professional values, including effective communication and teamwork, preparing students to make informed managerial decisions and present solutions confidently.",
+  "title_en": "Managerial Accounting",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "ACCT401": {
+  "ar": "يعرّف بأصول المراجعة وإجراءاتها: تخطيط المراجعة، وتقييم المخاطر والرقابة الداخلية، وجمع الأدلة، والعينات، وتطبيق الإجراءات على حسابات القوائم المالية، ومعايير المراجعة ومسؤوليات المراجع وأخلاقيات المهنة.",
+  "en": "This course introduces the principles and procedures of auditing, with emphasis on audit planning, risk assessment, internal control evaluation, evidence gathering, sampling, and the application of audit procedures to financial statement accounts. The course covers auditing standards, auditors’ professional responsibilities, ethics, and regulatory requirements. Learning activities are designed to develop students’ analytical thinking, professional judgment, ethical awareness, and collaboration.",
+  "title_en": "Auditing Principles & Procedures",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "ACCT402": {
+  "ar": "يعرّف بمفاهيم نظم المعلومات المحاسبية وهيكلها بدمج المعرفة المحاسبية مع نظم وتقنية المعلومات: جمع البيانات المحاسبية ومعالجتها وتخزينها والتقرير عنها، وتوثيق النظم، وقواعد البيانات، والرقابة الداخلية.",
+  "en": "This course introduces the fundamental concepts and structure of Accounting Information Systems (AIS) by integrating accounting knowledge with information systems and information technology. The course examines how accounting data are collected, processed, stored, and reported to support managerial decision-making. Students explore system documentation techniques, database concepts, internal controls, and enterprise systems, including the REA data model. Emphasis is placed on the role of accountants in designing, evaluating, and managing technologies to enhance organizational performance and ensure data reliability and integrity.",
+  "title_en": "Introduction to Accounting Information Systems",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "ACCT403": {
+  "ar": "يعرّف بأساسيات البحث في المحاسبة: تكوين فكرة البحث، ومراجعة الأدبيات، وجمع البيانات، وأساليب البحث الكمي والنوعي، وأخلاقيات البحث، وعرض النتائج بوضوح.",
+  "en": "This course introduces students to the fundamentals of research in accounting, including developing research ideas, reviewing literature, and collecting data. Students learn basic quantitative and qualitative research methods, such as surveys, experiments, and field research, and gain an understanding of research ethics. The course also helps students present research findings clearly and understand how research can be developed into academic publications.",
+  "title_en": "Accounting Research and Practice",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "ACCT405": {
+  "ar": "يدرس المبادئ والممارسات المحاسبية في المؤسسات المالية، خصوصًا البنوك: طبيعتها وتنظيمها وعملياتها، والمعالجة المحاسبية للأدوات المالية والتأجير، ومخاطر سعر الفائدة والائتمان.",
+  "en": "This course examines the accounting principles and practices applied to financial institutions, with emphasis on banks and other specialized financial intermediaries. It covers the nature, regulation, and operations of depository institutions, thrifts, mortgage banks, and commercial banks, alongside the accounting treatment of financial instruments and leasing activities. Key topics include interest rate risk, credit risk, net interest earnings, fair value accounting, market risk disclosure, and loss recognition. The course also explores securitization and structured finance transactions, highlighting their accounting and reporting implications. Students will develop an understanding of how financial institutions measure, manage, and report financial risks in compliance with relevant accounting standards and regulatory requirements.",
+  "title_en": "Accounting of Financial Institutions",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "ACCT422": {
+  "ar": "يقدم الأسس النظرية للمحاسبة الضريبية ومحاسبة الزكاة وتطبيقاتها: قياس الدخل الخاضع للضريبة والوعاء الزكوي، وإعداد إقرارات الضريبة والزكاة، ونظام الضرائب السعودي، ومهارات الفحص الضريبي.",
+  "en": "This course introduces the theoretical foundations and applications of accounting in tax systems and the Zakat system. Particular emphasis is placed upon the measurement of taxable income and funds subject to Zakat, and the preparation of Tax and Zakat reports. Saudi Taxes Law is presented in a way to assist students in understanding factors affecting doing Business environment in Saudi Arabia. Moreover, Tax inspection skills and techniques are presented in addition to Accounting for Zakat within different legal entities and enterprises.",
+  "title_en": "Tax and Zakat Accounting",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ACCT424": {
+  "ar": "يعرّف بالإجراءات والمبادئ المحاسبية في شركات التأمين، والفروق بينها وبين محاسبة المنشآت الأخرى، ومفاهيم التقييم والتوظيف المالي والمخصصات الفنية.",
+  "en": "This course aims to introduce students to the fundamental accounting procedures and principles applied in the field of insurance accounting. It emphasizes the key differences between insurance accounting and the accounting practices of other business firms. Students are introduced to essential concepts related to valuation, financial placement, and technical reserves, with a focus on accounting issues specific to commercial insurance companies. The course is delivered in compliance with Saudi Arabian regulatory requirements and incorporates alternative accounting treatments for insurance and reinsurance companies in accordance with International Accounting Standards. 1.Understand the fundamental accounting procedures and principles applied in insurance accounting. 2.Distinguish between insurance accounting practices and accounting methods used in other business firms. 3.Explain key concepts related to valuation, financial placement, and",
+  "title_en": "Insurance Accounting",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "ACCT430": {
+  "ar": "تدريب عملي بإشراف في جهات حكومية أو خاصة معتمدة، يطبّق فيه الطالب معارفه المحاسبية في التقارير المالية والمراجعة والضرائب ونظم المعلومات المحاسبية، ويطوّر مهاراته المهنية والأخلاقية.",
+  "en": "The Internship course provides students with supervised practical training in approved public or private sector organizations. It enables students to apply accounting knowledge and professional skills in real workplace settings, including financial reporting, auditing, taxation, and accounting information systems. Through hands-on experience, students enhance their technical competencies, ethical awareness, communication skills, and professional conduct. The course is assessed through employer evaluation, student reports, and faculty supervision to ensure alignment with the program learning outcomes.",
+  "title_en": "Internship",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "CI001": {
+  "ar": "يساعد الطالب على إدارة نفسه وتنظيم قدراته للنجاح في سنوات الجامعة وفي حياته المهنية، ويركّز على ثلاث مهارات: عملية التعلم والتعليم، والبحث العلمي ومناهجه، ومهارات التفكير.",
+  "en": "The course aims to enable students develop their own self-management and organize their competence and abilities to achieve successful in both academic university years and professional life in the future. The course focus in three main skills and knowledge : learning teaching process, research and methods of research and thinking skills Students should be able to apply content learnt in the academic skills",
+  "title_en": "Academic Skills",
+  "src": "BSBA Study Plan 2026"
+ },
+ "COMM001": {
+  "ar": "يتناول مهارات الاتصال كأداة للتكيّف النفسي والاجتماعي: طبيعة الاتصال وعناصره وأنواعه، والاتصال اللفظي وغير اللفظي، ومفهوم الذات، ومهارة الإقناع، والمقابلات الشخصية، وكتابة السيرة الذاتية، والإلقاء والعرض الفعّال.",
+  "en": "This course deals with communication skills as a tool for achieving personal psychological and social adaptability. It is one of the key skills in the self-development department. Moreover, it focuses on the methodology that enables students to be aware of conscious communication and positive interaction with the society, to find a balance and integration in the student's personality aspects (Mentally, Physically and emotionally) in order to accomplish this the course learn the following: The definition of the nature of communication and its elements, types and characteristics, objectives and efficient communication and tools, the relationship between verbal and non-verbal communication, and self-concept, and disclosure of the self, the skill of persuasion, personal interviews, personal abilities sought by sectors, the skill of writing a resume, skill diction and effective presentation.",
+  "title_en": "Communication Skills",
+  "src": "BSBA Study Plan 2026"
+ },
+ "CS001": {
+  "ar": "مقرر يعرّف الطالب بمفاهيم الذكاء الاصطناعي وأساليبه وتطبيقاته في الواقع بطريقة مبسطة، بدون حاجة لرياضيات متقدمة أو برمجة. يستكشف كيف تتخذ أنظمة الذكاء الاصطناعي القرارات وتحل المشكلات، مع أمثلة ودراسات حالة وتطبيق عملي.",
+  "en": "This multidisciplinary course introduces university students to the foundational concepts, techniques, and real-world applications of Artificial Intelligence (AI). Designed for learners from all academic backgrounds, the course presents AI in a clear, accessible manner—without requiring advanced mathematics or programming skills. Through engaging examples and practical case studies, students will explore how AI systems make decisions, solve problems, and adapt to various environments. The course also includes hands-on experience with modern AI tools and cloud-based platforms, enabling students to apply AI concepts in realistic scenarios. Ethical and societal implications of AI are also discussed to foster responsible and informed use of intelligent technologies. This course aims to provide students with foundational knowledge and practical skills in the field of Artificial Intelligence (AI), including: - Understanding the basic structure and function of computer systems and their role in enabling AI technologies - Exploring key AI concepts such as intelligent agents, decision-making, and learning from data - Gaining familiarity with major AI methodologies and their applications across various domains",
+  "title_en": "Introduction to Artificial Intelligent and Computing",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ECOM101": {
+  "ar": "نظرة عامة على التجارة الإلكترونية في الأعمال والتقنية: مفاهيمها، وأسس إنشاء أعمال إلكترونية، واستخدام التقنية في تسهيل عملياتها، والتهديدات الأمنية وحلولها، والفروق بين وسائل الدفع الإلكتروني.",
+  "en": "This course provides an overview of electronic commerce in business and technology. It is designed to familiarize students with electronic commerce concepts, the foundation for understanding how to create electronic commerce business, the use of technology to ease the electronic commerce processes, looking at the security threats and solutions with the electronic commerce environment, and the differences between e- payment methods used in electronic commerce businesses. The course will provide, also, students with information related to basic concepts of consumer behavior and purchasing decisions. Students take advantages in learning digital marketing and targeting specific audiences with the campaigns. Learning activities include group projects, and application exercises. Face to Face (F2F) and Virtual (online) classes will each be held once per week. The course is designed to provide students with comprehensive knowledge and technical skills needed to successfully participate in and support the increasingly applied role of electronic commerce in business",
+  "title_en": "E-Commerce",
+  "src": "E-Commerce Study Plan 2026-2027"
+ },
+ "ECOM201": {
+  "ar": "يعرّف بالإدارة الإلكترونية وأثر تقنيات المعلومات والاتصالات على العملية الإدارية، ومهام المدير الافتراضي في إدارة الفرق عن بعد وحل النزاعات والقيادة من مسافة، والاتصال الافتراضي، وإدارة الفرق في الأزمات والكوارث.",
+  "en": "This course aims to introduce students to electronic management and the effects of Information Communication Technologies (ICT) on the management process. The functions of virtual managers will be highlighted in the context of managing virtual teams, resolving conflicts, and leading from a distance. Students will also be introduced to virtual communication tools and best practices, how to increase the team's IQ and performance, and the best practices for building a highly functional virtual team. Face to Face (F2F) and Virtual (online) classes will each be held once per week. Please refer to your class schedule for the days and times of these classes. Your professor will provide instructions on how to attend the virtual class. Participation in these classes is mandatory, and to do well in this course, you are expected to attend all sessions. If there is some reason you cannot attend a class, please notify your professor.",
+  "title_en": "Introduction to E-Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ECOM301": {
+  "ar": "يتناول استراتيجيات تسويق السلع والخدمات عبر الإنترنت، من العلاقات العامة والاتصال المؤسسي إلى الإعلان والتجارة الإلكترونية، مع تقييم الاستراتيجيات والأساليب، وتخطيط المواقع وتصميمها.",
+  "en": "Common strategies for the marketing of goods and services via the Internet range from public relations and corporate communications to advertising and electronic commerce. Students investigate and evaluate various marketing and communication strategies and tactics for the World Wide Web. An emphasis is placed on critical evaluation skills as well as website planning, development, design, and other factors which contribute to a website's success.",
+  "title_en": "E-Marketing",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ECOM322": {
+  "ar": "أساس عملي لاستخدام وسائل التواصل الاجتماعي في التسويق عبر منصات مثل لينكدإن ويوتيوب والمدونات وغيرها، وكيف يكون التسويق في الوقت والمكان المناسب بالرسالة المناسبة.",
+  "en": "This course gives a foundation to the practical business applications of social media in a marketing world. Through Facebook, LinkedIn, blogs, YouTube, Pinterest, and other platforms, students discover that social media is far more than just making friends and that there are now only a few degrees of separation globally. Students learn that social media is about marketing at the right time, place, and with the right message for existing as well as a prospective customer with both legal and ethical behaviors.",
+  "title_en": "Social Media Marketing",
+  "src": "E-Commerce Study Plan 2026-2027"
+ },
+ "ECOM402": {
+  "ar": "يجمع بين إدارة سلسلة الإمداد وتقنيات المعلومات والاتصالات والتجارة الإلكترونية: النقل والتخزين والمخزون والخدمات اللوجستية، وتحسين التدفق والجودة، والتعاون بين الشركاء عبر الإنترنت.",
+  "en": "E-Supply Chain Management is fascinating in the world of today’s business that includes Supply Chain Management (SCM), information and communication technologies (ICT), and E-commerce. The Supply Chain Logistics course will cover transportation, warehousing and inventory, and logistics services. The Supply Chain Operations course covers techniques used to optimize flow and focuses specifically on quality management and Lean practices. This course explores the impact of ICT and E-Commerce on supply chain management. As E- supply chain management is concerned largely with the management of Internet-enabled collaborative channel partnerships, the course examines challenges and issues in inter-organizational collaboration and partnership from both technology and people management perspectives.",
+  "title_en": "E-Supply Chain Management",
+  "src": "E-Commerce Study Plan 2026-2027"
+ },
+ "ECOM421": {
+  "ar": "يعرض الفكر الإداري المعاصر والأساليب والاستراتيجيات اللازمة لبناء أنظمة الأعمال الإلكترونية وإدارتها: صياغة الاستراتيجيات وتنفيذها في بيئة الأعمال الإلكترونية، وتحويلها إلى نموذج أعمال تشغيلي.",
+  "en": "This course exposes students to contemporary management thinking, methods, and strategies necessary to effectively build and manage e-business systems. Based on the strategic management methodology, students will apprehend the process of formulating and implementing strategies in an e-Business environment. In addition, the course introduces students to the process of translating business strategies to an operational business model. Students will learn how company generates sales and achieves profitability and the development of an innovative business model helps entrepreneurs create a sustainable competitive advantage.",
+  "title_en": "E-Business Strategies & Business Models",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ECOM425": {
+  "ar": "يتناول مشكلات وتحديات إدارة المنظمات في بيئة افتراضية أو موزعة: نموذج المنشأة الافتراضية الناتج عن تقنيات المعلومات والاتصالات، ومصادر ميزتها التنافسية، وأساليب تقييم الفرص.",
+  "en": "This course focuses upon the problems and challenges of managing organizations in a virtual or distributed environment. Virtual organizations are a new model of companies produced by the development of ICT and its uses in the business. The student will examine the model of virtual enterprise and its sources of competitive advantage techniques for evaluating opportunities. In this context, the student will also investigate the ways in which virtual organizations differ from conventional organizations and how to create strategic resources and deal with markets. Face to Face (F2F) and Virtual (online) classes will each be held once per week. Please refer to your class schedule for the days and times of these classes. Your professor will provide instructions on how to attend the virtual class. Participation in these classes is mandatory, and to do well in this course, it is expected that you attend all sessions. If there is some reason you cannot attend a class, please notify your professor.",
+  "title_en": "Virtual Organization Management",
+  "src": "E-Commerce Study Plan 2026-2027"
+ },
+ "ECOM430": {
+  "ar": "تدريب عملي لمدة 280 ساعة (عشرة أسابيع عمل على الأقل) في مجال التخصص في جهة حكومية أو خاصة، ويثبت الطالب في نهايته فهمه للممارسات المهنية في تخصصه.",
+  "en": "Practical training as a course makes students from the college of Administration and Finance responsible for having to spend a 280 hour of training (equivalent to minimum ten working weeks) in their fields of specialization either in private or public organization. At the completion of training, student will have to show their grasp of most relevant and state of the professional practices in their relevant specialization.",
+  "title_en": "Internship",
+  "src": "E-Commerce Study Plan 2026-2027"
+ },
+ "ECON101": {
+  "ar": "مدخل للنظرية الاقتصادية الجزئية: كيف تتشكل قرارات الأفراد والمنشآت بالقوى الاقتصادية، مع التركيز على العرض والطلب وتوازن السوق ونماذج هياكل السوق الأساسية، و«اليد الخفية» والآثار الخارجية للسوق.",
+  "en": "Introduction to Microeconomics is an introduction to the economic theory involving the examination of how decision making by firms and individuals is shaped by economic forces. Emphasis is placed on demand, supply, market equilibrium analysis, and basic market structure models. The invisible hand as the driving force for economic decisions as well as market externalities are discussed. The class concentrates on providing a balanced approach to studying economic agents’ behavior and its impact on the global economic settings.",
+  "title_en": "Microeconomics",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ECON201": {
+  "ar": "يعلّم أدوات الاقتصاد الكلي الأساسية ويطبقها على السياسات الاقتصادية الواقعية: التضخم، والبطالة، ودور السياسة المالية والنقدية في استقرار الاقتصاد، ودور الحكومة في دعم النمو طويل المدى، في سياق الاقتصاد العالمي.",
+  "en": "This course will teach students the basic tools of macroeconomics and apply them to real world economic policy. Emphasis is placed on studying the economy as a whole. Issues of inflation, unemployment, the role of fiscal and monetary policies in stabilizing the economy, the role of government policy in promoting long-term economic growth and growth are discussed in the context of the global economic system. The course will be structured around the tools (models) of macroeconomics, using primarily graphs, and occasionally equations. However, motivation for these tools, and examples of their use will always be taken from current and recent real-world macroeconomics events and conditions.",
+  "title_en": "Macroeconomics",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ENG001": {
+  "ar": "مقرر مكثف في أساسيات اللغة الإنجليزية بنظام التعليم المدمج: محاضرات حضورية مع متحدثين أصليين باللغة، يكملها الطالب بأنشطة تفاعلية عبر الإنترنت وفصول افتراضية يمارس فيها اللغة.",
+  "en": "English 001 is an intensive course of study in the fundamentals of the English language. It is delivered using a blended model of learning where students are exposed to face to face classes with native English speakers, after which they compound their learning by studying online where they perform a number of interactive activities. Students are also given the opportunity to use their language in online virtual classes every week. The course aims to develop a competent use of English in the four skills: reading, writing, listening, and speaking, as well as communication in order to prepare them for their chosen Degree. The passing of the course requires passing the STEP exam with a minimum of 83 points.",
+  "title_en": "English Language Skills",
+  "src": "BSBA Study Plan 2026"
+ },
+ "FIN101": {
+  "ar": "مسح عام لمجال المالية وأساس للمقررات المالية المتقدمة: مصادر المعلومات المالية، والأداء المالي للشركات، والقيمة الزمنية للنقود، وطبيعة المخاطر وقياسها، والمؤسسات المالية، والاستثمار، وتمويل الشركات.",
+  "en": "This course is designed to survey the field of finance and provide the foundation for more advanced finance coursework. Topics include sources of business and financial information, financial statement analysis, the time-value-of-money, the nature and measurement of risk, financial institutions, investments, and corporate finance. The course objective is to introduce students to the main elements, methods, and principles of finance. It will provide basic knowledge and skills applicable to personal and managerial finance. The course starts with a general overview of finance, introduces financial concepts,",
+  "title_en": "Principles of Finance",
+  "src": "BSBA Study Plan 2026"
+ },
+ "FIN201": {
+  "ar": "استكمال لمبادئ المالية، يدرس قضايا تمويل الشركات من منظور المدير المالي: مفهوم صافي القيمة الحالية، وكيف تتفاعل قرارات الاستثمار والتمويل وتؤثر في قيمة المنشأة، والموازنة الرأسمالية.",
+  "en": "This course is a completion of the principles of finance. It examines important issues in corporate finance from the perspective of financial managers. The course focuses on the concept of net present value used to analyse how investment and financing decisions interact to affect the value of the firm. The course covers also capital budgeting, under uncertainty, leasing and leveraged buyouts, treatment of dividend policy and capital market efficiency, as they relate to the value-maximization objective of the firm. While the course is not designed to dwell on abstraction, the basic theoretical underpinnings of the various topics are a prerequisite to competent analysis and intellectual discussion. The course emphasizes the development of problem-solving skills based on a good understanding of the business environment as opposed to pure theorizing or mindless numbers exercises.",
+  "title_en": "Corporate Finance",
+  "src": "BSBA Finance Study Plan"
+ },
+ "FIN301": {
+  "ar": "يدرس الأساليب الحديثة في إدارة المخاطر المالية: مخاطر السوق، ومخاطر الائتمان، ومخاطر السيولة، والمخاطر التشغيلية، وطرق قياسها والتحوط منها.",
+  "en": "This course examines modern techniques for managing financial risks. Financial risks are generally classified into market risks, due to movement in financial prices or volatilities, credit risks, due to fact that counterparties are unwilling or unable to fulfill their contractual obligations, liquidity risks, when transactions cannot be conducted at prevailing market prices, perhaps due to cash flow constraints, and operational risks, which arise from human or technical problems. The course will cover measurement techniques for different types of financial risks (equity, fixed income, currency, commodity) and instruments. It will cover tools such as duration, portfolio beta, factor sensitivities, portfolio distribution analysis, and value at risk (VAR). It will also discuss how risk measurement tools can be used for active management of the risk/return profile of financial institutions.",
+  "title_en": "Risk Management",
+  "src": "BSBA Finance Study Plan"
+ },
+ "FIN401": {
+  "ar": "يقدم أساسيات العمل المصرفي (هيكل البنوك وبيئتها) وجوانب تطبيقية من اقتصاديات البنك الحديث، وأفضل ممارسات الإدارة في البنوك، وإدارة التغيير في القطاع المصرفي.",
+  "en": "The aim of this course is to provide a good grasp of both the basics (the structure and environment of banking) and selected aspects of the applied economics of the modern banking firm. It aims to develop a deeper understanding of best management practices in the modern banking lines, and to enable students to envisage change and change management in the banking sector. The course highlight topics such as financial institution performance evaluation, risk management, portfolios, and liquidity sources of funds.",
+  "title_en": "Banks management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "FIN402": {
+  "ar": "نظرة عامة على النظام المالي: دور الوسطاء الماليين والأسواق والمؤسسات المالية والبنوك المركزية في الاقتصاد العالمي، وهيكل الأسواق المالية، والنظام المالي الدولي، والمنافسة في الصناعة المالية.",
+  "en": "This course provides an overview of the financial system. The roles of financial intermediaries, financial markets, financial institutions, and central banks are discussed in the context of global economy. In addition, Student will study the structure of financial markets and examine the international financial system, discussion the completion issues among the financial industry.",
+  "title_en": "Financial Institutions and Markets",
+  "src": "BSBA Study Plan 2026"
+ },
+ "FIN403": {
+  "ar": "يدرس أسواق الاستثمار وعملياته وتخطيطه: قياس العائد والمخاطرة، وأدوات الدين والملكية، وأساليب التقييم، والأوراق المالية الهجينة والمشتقة، وصناديق الاستثمار، والاستثمار العقاري، وإدارة المحافظ.",
+  "en": "This course in an examination of investment markets, transactions, planning and information. Topics include investment risk and return measures, debt and equity instruments, evaluation techniques, hybrid and derivative securities, mutual funds, real estate investments, tax planning and the investment process, and portfolio management.",
+  "title_en": "Investments",
+  "src": "BSBA Finance Study Plan"
+ },
+ "FIN405": {
+  "ar": "يشرح المشتقات المالية: العقود الآجلة والمستقبلية، والخيارات، والمبادلات، والتزامات الدين المضمونة، ومبادلات مخاطر الائتمان، وأساسيات تسعيرها وتداولها، واستخدامها في المضاربة وإدارة المخاطر.",
+  "en": "The course is designed to foster an understanding of derivatives primarily forwards, futures, options, swaps, collateralized debt obligations and credit default swaps. This is achieved through an introduction of the basic techniques of pricing and trading. The course also focuses on the usage of these instruments for speculation and risk management.",
+  "title_en": "Financial Derivatives",
+  "src": "BSBA Finance Study Plan"
+ },
+ "FIN406": {
+  "ar": "مدخل شامل للتمويل الدولي: الجوانب الدولية لإدارة الشركات متعددة الجنسيات، وعمليات البنوك والمؤسسات المالية الدولية، وكل من يعمل في بيئة الأعمال والمال العالمية.",
+  "en": "This course provides a comprehensive introduction and overview of the field of international finance. It covers the knowledge needed to manage the international aspects of multinational firms, the operations of international and foreign bank and financial institutions, and the operations of all firms, organizations, and individuals active in the current and future global business and financial environments.",
+  "title_en": "International Finance",
+  "src": "BSBA Finance Study Plan"
+ },
+ "FIN408": {
+  "ar": "تدريب مهني بإشراف في بيئة عمل حقيقية للطلاب المؤهلين، بالتنسيق بين الطالب وعضو هيئة التدريس ومشرف جهة العمل، ويشمل طلب التدريب واتفاقية التعلم واجتماعات دورية.",
+  "en": "This course provides qualified students with an opportunity to receive academic credit for supervised professional training and experience in an actual work environment. This Internship is an ongoing seminar between the student, the faculty member and the employment supervisor. It involves an Internship Application and Learning Agreement, periodic meetings with the faculty representative, professional experience at a level equivalent to other senior-level courses and submission of material as established in the Internship Application and Learning Agreement. Participation cannot be guaranteed for all applicants.",
+  "title_en": "Internship",
+  "src": "BSBA Finance Study Plan"
+ },
+ "FIN414": {
+  "ar": "نظرة عامة على أسواق العقار والتحليل اللي يدعم القرار المالي: أساسيات العقار ومنتجات التمويل العقاري، والديون السكنية المورّقة، مع حالات واقعية في التمويل والاستثمار العقاري.",
+  "en": "This course provides an overview of real estate markets and the analysis used to support financial decision-making. The initial portion of the course will cover basics of real estate and mortgage products, including securitized residential debt. The course will expose students to current “real world” real estate finance and investment situations and people who shape them.",
+  "title_en": "Real Estate Finance",
+  "src": "BSBA Finance Study Plan"
+ },
+ "FIN416": {
+  "ar": "مدخل شامل للتمويل الإسلامي: خلفية نموه وأهميته، وتحريم الربا كأساس لفهم المصرفية الإسلامية، وأهم العقود المالية الإسلامية وتطبيقاتها.",
+  "en": "This course provides a wide-ranging introduction to the subject of Islamic finance, beginning with an introduction which provides a background to the growth in recent years and the reasons why this is important. The prohibition of Riba (interest) is examined in some details as this is fundamental to understand the subject of Islamic Banking and Finance. The course focuses mainly upon the main Islamic financial contract such as Murabaha, Musharaka, Mudharab, Ijara, Altakaful… in order to give a clear image about the difference between the Islamic finance and Interest-based finance.",
+  "title_en": "Islamic Finance",
+  "src": "BSBA Finance Study Plan"
+ },
+ "FIN421": {
+  "ar": "يغطي قرارات الاستثمار والتمويل في المنشآت الصغيرة: قرار إطلاق مشروع صغير أو الاستثمار فيه، والمفاضلة بين مصادر التمويل، والسيولة، ورأس المال الجريء، وهيكل التمويل.",
+  "en": "This course on small business finance covers both the investment and the financing decisions the decision to launch or invest in a small business and how a small firm may be financed. It examines issues such as choosing between sources of financing small business, getting liquidity, venture capital, structure of financing. The major objective of this course is to acquaint students with the financing sources of a small business, and the ways of optimizing the outcome of those sources.",
+  "title_en": "Small Business Financing",
+  "src": "BSBA Finance Study Plan"
+ },
+ "FIN424": {
+  "ar": "يناقش عملية إدارة المحافظ الاستثمارية: إجراءات تقييم المشاريع واختيارها، ومعايير اختيار النماذج، ونماذج اختيار المحفظة، وقياس المخاطر والتنبؤ بها وإدارتها، والتعامل مع عدم التأكد.",
+  "en": "The course discusses the portfolio management process by describing procedures for evaluating and selecting projects. The course contents are primary model selection criterion, steps in using a model, portfolio selection model, measurement of risk, forecasting and risk management. Handling uncertainty, projects proposals, and history of portfolio management.",
+  "title_en": "Portfolio management",
+  "src": "BSBA Finance Study Plan"
+ },
+ "ISLM101": {
+  "ar": "مقرر من متطلبات الجامعة لكل الطلاب والطالبات، يُدرّس في أحد مستويات الطالب حسب خطة كليته، ويقدمه أعضاء قسم الدراسات الإسلامية.",
+  "en": "The Islamic Culture course is one of the university requirements for all male and female students at the Prince Musaid bin Abdulrahman University. It is studied at one of the student’s academic levels according to the vision of the college to which the student is affiliated, and it is taught by a member of the Islamic Studies Department Faculty.",
+  "title_en": "Introduction to Islamic Culture",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ISLM102": {
+  "ar": "مقرر من متطلبات الجامعة لكل الطلاب والطالبات في السلوك المهني والأخلاق في الإسلام، يُدرّس في أحد مستويات الطالب حسب خطة كليته، ويقدمه أعضاء قسم الدراسات الإسلامية.",
+  "en": "The Professional Conduct & Ethics in Islam course is one of the university requirements for all male and female students at the Prince Musaid bin Abdulrahman University. It is studied at one of the student’s academic levels according to the vision of the college to which the student is affiliated, and it is taught by a member of the Islamic Studies Department Faculty.",
+  "title_en": "Professional Conduct & Ethics in Islam",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ISLM103": {
+  "ar": "يعرّف بقضايا اقتصادية مهمة من منظور إسلامي: التأمين وأركانه وخصائصه، والبورصة وأقسامها ودورها وأحكامها الشرعية، وغسل الأموال ومفهومه وآثاره وصوره وضوابط مكافحته، والعولمة الاقتصادية.",
+  "en": "This course aims to introduce students to crucial economic issues and the significance of studying them. Throughout the course, students will learn about insurance, its pillars, and characteristics, the stock exchange, its divisions, role, and legal rulings, as well as money laundering and its concept, effects, characteristics, forms, objectives, and controls. The course also delves into economic globalization, its meaning, objectives, tools, and effects, as well as electronic banking transactions, their benefits and risks. Lastly, the course covers inflation and its economic impact. By the end of the course, students will have a strong command of these essential economic concepts.",
+  "title_en": "Islamic Economic System",
+  "src": "BSBA Study Plan 2026"
+ },
+ "ISLM104": {
+  "ar": "مقرر من متطلبات الجامعة لكل الطلاب والطالبات عن النظام الاجتماعي وحقوق الإنسان، يُدرّس في أحد مستويات الطالب حسب خطة كليته، ويقدمه أعضاء قسم الدراسات الإسلامية.",
+  "en": "The Social System and Human Rights course is one of the university requirements for all male and female students at the Prince Musaid bin Abdulrahman University. It is studied at one of the student’s academic levels according to the vision of the college to which the student is affiliated, and it is taught by a member of the Islamic Studies Department Faculty.",
+  "title_en": "Social System and Human Rights",
+  "src": "BSBA Study Plan 2026"
+ },
+ "IT404": {
+  "ar": "يعرّف بمفاهيم تصميم المواقع وتطويرها ونشرها: HTML وCSS وأساسيات JavaScript، وإنشاء المواقع يدويًا وباستخدام برامج تطوير المواقع.",
+  "en": "This course presents introductions to many of the basic concepts, issues, and techniques related to designing, developing, and deploying websites. During the course, students will learn about Web design, HTML, XHTML, basic JavaScript, Dynamic HTML, and Cascading Style Sheets (CSS). Students will learn how to create sites both manually and through the use of website development software. Note This is a technology course in a technology program, and it requires the purchase of software that may be used in subsequent courses as well as being suitable for commercial work beyond completion of degree studies.",
+  "title_en": "Web Design",
+  "src": "BSBA Study Plan 2026"
+ },
+ "LAW101": {
+  "ar": "مقرر عام يعالج المشكلات القانونية اليومية في الأعمال، مع التركيز على العقود، والوكالة، والتوظيف، والملكية، وأشكال منظمات الأعمال، والقضايا المرتبطة بها.",
+  "en": "This is a survey course to address everyday legal problems encountered in business with an emphasis on the areas of contracts, agency, employment, property, business organizations, and cases relating to these and other areas Upon successful completion of this course, students will be able to: Define common law and statutory legal principles in substantive law areas. Apply legal principles to fact patterns that emerge on a regular basis in the",
+  "title_en": "Legal Environment of Business",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MATH001": {
+  "ar": "يغطي الجبر التمهيدي والمتوسط: خصائص العمليات الجبرية، وتبسيط كثيرات الحدود وتحليلها، وحل المعادلات والمتباينات الخطية ورسمها، وأنظمة المعادلات، والدوال، والمعادلات التربيعية والكسرية، والقيمة المطلقة.",
+  "en": "This course will address the outcomes of introductory and intermediate algebra. Topics include: basic algebraic properties, integers, simplifying and factoring polynomials, solving and graphing linear equations and inequalities, solving systems of equations in two and three variables, functions, rational expressions, quadratic and rational equations and inequalities, absolute value, graphing systems of equations and inequalities, and other selected topics. Applications will be emphasized, and numeric, algebraic, and graphical modes will be used Upon successful completion of this course, students will be able to: 1. Perform intermediate-level algebraic operations. 2. Apply intermediate-",
+  "title_en": "Fundamentals of Math",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT101": {
+  "ar": "يجمع بين نظريات الإدارة وتطبيقاتها، ويركّز على تطوير مهارات القيادة الفعّالة: التخطيط، والتحفيز، والرقابة التنظيمية، وإدارة التغيير، واتخاذ القرار، في سياق قضايا الأعمال المحلية والعالمية، مع تدريب على حل النزاعات والوساطة.",
+  "en": "This course combines management theory and practices, placing emphasis on the development and application of competencies required for effective leadership, including planning, motivating, organizational control, change management, and decision-making, using current domestic and global business issues in the context of ethical, team- centered organizations. The course includes practice in conflict resolution and mediation, fostering the improvement of working relationships, through the use of activities that integrate emotional intelligence and communication skills that help created a productive work environment. 1.Define management by examining the functions, roles, and skills of a manager. 2.Examine the functions of planning, organizing, leading, and controlling and how they interrelate. 3.Examine management issues and practices in motivation, organizational culture, structure, and behavior; team dynamics; and",
+  "title_en": "Principles of Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT201": {
+  "ar": "يتناول إدارة وظيفة التسويق داخل المنظمة: تحليل السوق، واستهداف الشرائح، وبناء العلامة التجارية، والإعلان، والبحوث التسويقية، وإعداد خطة تسويقية تصل للجمهور المستهدف بفاعلية.",
+  "en": "Marketing is about creating customer value and building profitable customer relationships. This course guides students through the process of understanding customer needs and wants, deciding which target markets the organization can serve best, and developing a compelling value proposition by which the organization can win. Marketing planning and decision making are examined from firms' and consumers' points of view. Students will also explore how to manage the marketing function within an organization, including market analysis, target marketing, branding, advertising, and marketing mix manipulation Upon successful completion of this course, students will be able to:  Analyze marketing opportunities using environmental scanning market data, measurement, and analysis.  Formulate overall marketing goals, objectives, strategies and tactics within the context of an organization's business, mission, and goals.  Develop a marketing plan for an organization.",
+  "title_en": "Marketing Management",
+  "src": "BSBA Accounting Handbook 2026"
+ },
+ "MGT211": {
+  "ar": "يعرّف بوظيفة الموارد البشرية وأنشطتها، وأدوار إدارة الموارد البشرية ومهامها، وكيف يشارك المديرون من خارجها في أنشطتها، مع تطور إدارة الموارد البشرية وأهميتها في الوقت الحاضر.",
+  "en": "This course introduces the human resource function and related elements and activities. The course outlines the roles and functions of members of the human resources (HR) department as well as educating others outside HR in how their roles include HR-related activities. The student will learn about the evolution in human resources management (HRM). Emphasis is placed on the modern-day importance of HRM and the new corporate view of the function. Additionally, the student will be exposed to the view of HRM from the perception of both management and subordinate employees. The importance of maintaining fair and equitable compensation and benefit programs will be discussed. The student will be exposed to practical situations and problem-solving regarding areas of employee counseling, discipline, and termination. Equal Employment Opportunity will be discussed for the student to understand its need, importance, and the legal issues surrounding it. Other critical areas of training and development, staffing, and strategy will also be explored.",
+  "title_en": "H.R Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT301": {
+  "ar": "يحلل سلوك الإنسان في العمل على مستوى الفرد والعلاقات والفريق والمنظمة، ويطوّر مهارات التعامل مع الآخرين للعمل بفاعلية في بيئة متغيرة ومتنوعة ثقافيًا ومعتمدة على التقنية، مع أدوار القادة والتابعين.",
+  "en": "This course focuses on the analysis of human work behavior at the individual, interpersonal, team and organizational levels. Emphasis is on the development of interpersonal competencies to allow individuals to effectively work as managers or professionals in the rapidly changing, team-oriented, culturally diverse, and technologically integrated global climate facing modern organizations. The roles of leaders, followers, and teams, and their influence on the culture and performance of an organization are addressed through the analysis of key organizational behavior concepts and related cases. Face to Face (F2F) and Virtual (online) classes will each be held once per week. Please refer to your class schedule for the days and times of these classes. Your professor will provide instructions on how to attend the virtual class. Participation in these classes is mandatory, and to do well in this course, it is expected that you attend all sessions. If there is some reason you cannot attend a class, please notify your professor.",
+  "title_en": "Organizational Behavior",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT311": {
+  "ar": "مدخل لإدارة العمليات، إحدى وظائف الأعمال الثلاث الرئيسية مع التسويق والمالية: كيف تُنتج السلع والخدمات وتصل للعميل، ومفاهيم إدارة العمليات وتطبيقاتها في قطاعات أعمال مختلفة.",
+  "en": "Operations Management is one of the three major functions of business, including Marketing, Operations, and Finance/Accounting. This introductory course introduces the student to Operations Management; how products and services are created and delivered to the customer. Concepts and applications of operations management will be explored in a variety of business sectors. The course aims to familiarize students with the issues and problems confronting the company, especially the operations managers. It will also provide the concepts, insights, and tools to deal with these issues for gaining competitive advantages through managing and improving the operational capabilities of the organization Utilize the business process flow concept to represent and analyze the economic activities of service or manufacturing organizations. Identify appropriate performance measures for the business processes in different organizations. Analyze and evaluate the performance of the different",
+  "title_en": "Introduction to Operations Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT312": {
+  "ar": "يطوّر مهارات اتخاذ القرار وحل المشكلات على مستوى الفرد والفريق، بتحليل قضايا محلية وعالمية حقيقية وتشخيصها وتقييمها بأدوات كمية ونوعية للوصول لقرارات وحلول فعّالة.",
+  "en": "This course focuses on the development of individual and team decision-making and problem-solving skills. Real world domestic and global issues will be analyzed, diagnosed, and evaluated through the application of a variety of quantitative and qualitative tools and techniques used to arrive at effective decisions and solutions.",
+  "title_en": "Decision Making and Problem Solving",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT321": {
+  "ar": "يتناول العوامل المؤثرة في الأعمال الدولية والتوسع الخارجي: السكانية، والاقتصادية، والسياسية، والموارد الطبيعية، والتقنية، والثقافية، ودورها في نمو الشركات متعددة الجنسيات، مع قضايا أعمال وقانون في مناطق مختلفة من العالم.",
+  "en": "This course addresses the factors that affect international business and business expansion. Discussion topics include demographic, economic, political, natural resource, technology, and cultural characteristics and the role they play in the advancement of multinational enterprises. Challenging business and legal issues in Asia, South and Central America, Europe, the Middle East, and North America including the United States shall be covered in the content presented to students. Face to Face (F2F) and Virtual (online) classes will each be held once per week. Please refer to your class schedule for the days and times of these classes. Your professor will provide instructions on how to attend the virtual class. Participation in these classes is mandatory, and to do well in this course, it is expected that you attend all sessions. If there is some reason you cannot attend a class, please notify your professor Identify and evaluate the significant trade agreements affecting global commerce. Discuss the reasons and methods of governments' intervention in trade. Explain the forces driving and evaluating the impact of globalization. Analyze the effects of culture, politics and economic",
+  "title_en": "Introduction to International Business",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT322": {
+  "ar": "يستكشف مفاهيم النقل والخدمات اللوجستية ضمن سلاسل الإمداد: أدوات وأساليب تصميم أنظمة النقل واللوجستيات وتشغيلها، والقضايا العالمية فيها، وسيناريوهات الاستجابة السريعة في الكوارث الطبيعية وغير الطبيعية.",
+  "en": "This course explores the transportation and logistics concepts within supply chains. Topics covered will include tools and techniques used in the design and operation of transportation and logistics systems and global issues in transportation and logistics management. In addition, “Quick Response” scenarios used to handle transportation and logistics issues, in the event of natural and non- natural disasters  Develop a framework for analyzing the logistics function of the firm  Make decisions related to managing the logistics effort of the firm.  Know the component parts of the logistics system and provide the understanding of how to combine these components into an effective system within the supply chain.  Provide an appreciation of logistics activities and their relationship to",
+  "title_en": "Logistics Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT323": {
+  "ar": "يعرض نظرية إدارة المشاريع وتطبيقها في ظل القيود الفنية والبشرية: تطبيق المعارف والأدوات والأساليب لتحقيق متطلبات المشروع، واستخدام البرامج في إعداد خطط المشاريع وتنفيذها عبر مراحل دورة حياة المشروع.",
+  "en": "This course surveys the theory and practice of project management in the context of technical and human resource constraints. Students learn to apply the knowledge, skills, tools, and techniques for project activities necessary to meet project requirements. Software is used for the development and execution of project plans. Taking a systematic approach, the course follows the main process areas in a project's life cycle, including approaches prescribed by PMI's Project Management Body of Knowledge.",
+  "title_en": "Project Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT324": {
+  "ar": "يعرّف بمبادئ الإدارة وممارساتها مع التركيز على إدارة الجهات العامة: طبيعة الإدارة العامة، ونظرية التنظيم وأثر الهيكل على السلوك الإداري، والجانب البشري في المنظمات الحكومية، والإدارة والقيادة فيها.",
+  "en": "This course introduces students to management principles and practices, with a focus on public agency administration. We begin with a discussion on the nature of public administration and move to organization theory and the effect of structure on administrative behavior. We will also examine the people side of government organizations as well as management and leadership within organizations.",
+  "title_en": "Public Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT325": {
+  "ar": "يتناول دور نظم المعلومات والتقنية في منظمات الأعمال وتطبيقاتها والقضايا الحالية التي تواجه المديرين والمستخدمين، وأهميتها الاستراتيجية وأثرها على الناس والمنظمات وتحسين طرق العمل.",
+  "en": "This course provides in-depth coverage of the role of information systems in business organizations, with a focus on their applications and current issues facing managers and users. Lectures, discussions, presentations, and student project work will promote an understanding of the strategic importance of information systems, their impact on people and organizations, the many ways they can improve work practices, and the ways they can improve products and services.",
+  "title_en": "Management of Technology",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT401": {
+  "ar": "يدرس عمليات صياغة الاستراتيجيات وتنفيذها، والتفكير النقدي وراء دور المنظمات في بيئات الأعمال المعقدة، مع قضايا الاستراتيجية في منظمات تجارية وعامة، من الشركات الناشئة إلى الشركات متعددة الجنسيات.",
+  "en": "The course examines the processes of formulating and implementing strategies, and the critical thinking behind the multifaceted role of organizations in complex business environments. Focuses on strategy issues in and between a range of commercial and public organizations, from entrepreneurial firms to multinational corporations. Upon successful completion of this course, students will be able to:  Understand the basic concepts and terminology used in Strategic Management  Identify opportunities and threats as well as strengths and weakness in the operating environment of hypothetical and real-world organizations  Distinguish between different types and levels of strategy and strategy implementation.",
+  "title_en": "Strategic Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT402": {
+  "ar": "يطوّر المهارات اللازمة لبدء مشروع وتشغيله: فرص امتلاك الأعمال، والتخطيط لبدء المشروع ونموه، وسمات رواد الأعمال الناجحين، ومهارات البحث والتخطيط والتشغيل والأنظمة المؤثرة في الأعمال.",
+  "en": "This course helps students develop skills necessary to start and operate a business. Students will develop an awareness of the opportunities for business ownership and develop the planning skills needed to start and grow a business. Students will explore the traits and characteristics of successful entrepreneurs and develop necessary skills in research, planning, operations, and regulations affecting business. The capstone event for this course is the development and presentation of a formal business plan suitable for submission to potential backers.",
+  "title_en": "Entrepreneurship",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT403": {
+  "ar": "يوضح أهمية المعرفة في الأعمال والإدارة: المفاهيم والعمليات الأساسية لإدارة المعرفة، وكيف تُحفظ المعرفة وتُطوّر وتُشارك بين العاملين، ونماذجها وتطبيقاتها في بناء الميزة التنافسية، مع دراسات حالة.",
+  "en": "This course introduces student to understand the importance of Knowledge for business and management. It presents key concepts and processes of knowledge management and demonstrates them on case studies to understand how knowledge could be maintained, developed, and shared among company personnel. Focus will be on models, processes and application of Knowledge Management and its use to create the competitive advantage.",
+  "title_en": "Knowledge Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT404": {
+  "ar": "يسلط الضوء على عملية التصميم التنظيمي وتطويره: أساسيات التصميم ومبادئه لإدارة التغيير، ومواءمة التصميم مع احتياجات المنشأة، وأشكال الهياكل التنظيمية، ومناظير التطوير التنظيمي المختلفة.",
+  "en": "This course aims to highlight the organization design process and its development. First, it focuses on developing an understanding about the basics of organizational design, the organizational design principles to manage change, keeping the design aligned with the needs of the firm and the different forms of organizational structure. Second, the course presents the different perspectives of an Organization Development at the individual, group, and organizational levels of analysis. Theoretical models will be considered, along with real-world examples of organizations that have or have not benefited in the past, or that might or might not benefit in the future, from Organization Development interventions. Students will learn how to use theoretical models to evaluate, and will learn, also, how to evaluate theoretical models in terms of their research and work experience.",
+  "title_en": "Organization Design and Development",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT421": {
+  "ar": "يغطي نظرية الاتصال وعملياته في المنظمات المعتمدة على المعرفة والمعلومات، ويطوّر مهارات الاتصال الشفهي والكتابي والعروض المهنية، مع دور الاتصال الشخصي واتصال الفريق في بناء علاقات عمل أنجح.",
+  "en": "Employers are demanding business school students with strong communication skills. Covers the theory and process of communication in today’s knowledge and information-intensive organizations. Develops oral and written communication skills, including professional presentations. Focuses on the role of interpersonal and team-based communication in building more effective business relationships.",
+  "title_en": "Communication Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT422": {
+  "ar": "يطبّق نموذجًا لاتخاذ القرار الأخلاقي على مقالات علمية ودراسات حالة ومعضلات أخلاقية واقعية: القيم الشخصية، والقضايا الأخلاقية على مستوى الفرد والقيادة والمنظمة والمجتمع، والمسؤولية الاجتماعية للمنظمات العالمية.",
+  "en": "This course focuses on the application and evaluation of scholarly articles, case studies, and real-life ethical dilemmas using an ethical decision-making model. Students will evaluate personal value systems; individual, leadership-driven, organizational, and community ethical issues; and the social responsibilities of global organizations. The course will culminate in an in-depth analysis of a real-life ethical dilemma based on an authentic organization.",
+  "title_en": "Business Ethics and Organization Social Responsibility",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT424": {
+  "ar": "يعرّف بفلسفات وأساليب تحسين كفاءة العمليات وفاعليتها: مفاهيم الجودة عند جوران وديمنج، والمفاهيم الحديثة مثل ستة سيجما وإدارة الجودة الشاملة، وتطبيق الجودة في الشركات العالمية.",
+  "en": "This course provides students with understanding and knowledge of the philosophies and methods used to improve effectiveness and efficiency of organizational processes. Quality concepts from Juran and Deming will be discussed along with more current quality concepts such as six-sigma, black-belt quality associates, and total quality management (TQM). In addition, issues applying quality concepts to global companies will be explained.",
+  "title_en": "Quality Management",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT425": {
+  "ar": "مدخل لأساليب كمية تساعد في اتخاذ القرارات المعقدة في الأعمال، بتطبيقات في قطاعات ومستويات مختلفة، وتنفيذها باستخدام الجداول الإلكترونية لحل المشكلات بطريقة عملية.",
+  "en": "This course provides an introduction to several quantitative methods used to facilitate complex decision-making in business, with applications in many different industries, at different levels in the organization, and with different scopes of decisions. The power of the methods covered in this class is further enhanced by implementing them in spreadsheet software, which allows complex problems to be approached and solved in a straightforward and understandable manner.",
+  "title_en": "Spreadsheet Decision Modeling",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MGT430": {
+  "ar": "تدريب مهني في بيئة عمل حقيقية للطلاب المؤهلين، بإشراف مشترك بين الطالب وعضو هيئة التدريس ومشرف جهة العمل، ويشمل طلب التدريب واتفاقية التعلم واجتماعات دورية وخبرة مهنية بمستوى مقررات السنة الأخيرة.",
+  "en": "The internship provides qualified students with an opportunity to receive professional training and experience in an actual work environment. This Internship is an ongoing seminar between the student, the faculty member and the employment supervisor. It involves an Internship Application and Learning Agreement, periodic meetings with the faculty representative, professional experience at a level equivalent to other senior-level courses and submission of material as established in the Internship Application.",
+  "title_en": "Internship",
+  "src": "BSBA Study Plan 2026"
+ },
+ "MIS201": {
+  "ar": "مدخل لنظم المعلومات في الأعمال والإدارة: الأسس التنظيمية والإدارية والتقنية لنظم المعلومات، ودورها في تحسين العمليات ودعم القرار في المنظمة، وطريقة بناء هذه النظم وإدارتها.",
+  "en": "This course provides an introduction to information systems for business and management. It is designed to familiarize students with organizational and managerial foundations of systems, the technical foundation for understanding information systems, the role of information systems in enhancing business processes and management decision making across the enterprise, and the process of building and managing systems in organizations. The course will provide, also, students with information systems knowledge that is essential for creating successful and competitive firms. Learning activities include hands-on projects, application software exercises, and a running case study. Face to Face (F2F) and Virtual (online) classes will each be held once per week. Please refer to your class schedule for the days and times of these classes. Your professor will provide instructions on how to attend the virtual class. Participation in these classes is mandatory, and to do well in this course, it is expected that you attend all sessions. If there is some reason you cannot attend a class, please notify your professor.",
+  "title_en": "Management of Information Systems",
+  "src": "BSBA Study Plan 2026"
+ },
+ "STAT101": {
+  "ar": "مدخل للإحصاء مع تطبيقات في الأعمال، يشمل الإحصاء الوصفي والاستدلالي: مقاييس النزعة المركزية والتشتت، وعرض البيانات بالرسوم، والانحدار الخطي، ومبادئ الاحتمالات، والتوزيع الثنائي والطبيعي، وفترات الثقة، واختبار الفرضيات للمتوسط والنسبة.",
+  "en": "This course introduces the student to statistics with business applications. The course covers both descriptive and inferential statistics. Topics included are measures of central tendency; measures of dispersion; graphical displays of data; linear regression; basic probability concepts; binomial and normal probability distributions; confidence intervals; and hypothesis testing of mean, proportion for one or two populations. The course also covers ANOVA and hypothesis tests for Goodness of Fit. These topics will be covered using a basic knowledge of algebra and Microsoft Excel. The purpose of this course is to introduce the basic statistical methods used in Business and IT applications. Students will learn how to select and apply appropriate statistical methods to analyze data from clinical trials, and how to present, interpret and discuss the analyses clearly and concisely. By the end of this module, students should be able to apply the",
+  "title_en": "Statistics",
+  "src": "BSBA Study Plan 2026"
+ },
+ "STAT201": {
+  "ar": "يوضح أهمية تطبيق الأساليب الكمية والتحليل في حل مشكلات الأعمال باستخدام منهجيات منظمة وبرامج تحليل البيانات، ومنها البرمجة الخطية، وتحليل PERT/CPM، والسلاسل الزمنية، وشجرة القرار، والتنقيب في البيانات.",
+  "en": "This course addresses the importance of applying quantitative methods and analysis to the solution of business problems using structured problem solving and specialized data analysis software tools. Some of the methodologies covered are linear programming, PERT/CPM analysis, time series, and decision tree analysis and data mining. The main focus of the course is on solutions to problems of inefficiency,",
+  "title_en": "Quantitative Methods",
+  "src": "BSBA Study Plan 2026"
+ },
+ "IT401": {
+  "ar": "مدخل للبرمجة لطلاب الأعمال: كيف تحوّل مشكلة عمل إلى خطوات منطقية (خوارزمية)، ثم تكتبها برنامجًا. يغطي المتغيرات وأنواع البيانات، والشروط والتكرار، والدوال، والقوائم والملفات، وبناء برامج صغيرة تعالج بيانات الأعمال مثل الحسابات والتقارير. وهو الأساس لمقرر قواعد البيانات بعده.",
+  "en": "An introduction to programming for business students: turning a business problem into logical steps (an algorithm) and writing it as a program. Covers variables and data types, conditions and loops, functions, lists and files, and small programs that process business data such as calculations and reports. It prepares for the databases course that follows.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "Tony Gaddis, Starting Out with Python",
+   "Charles Severance, Python for Everybody",
+   "Diane Zak, Programming with Microsoft Visual Basic"
+  ]
+ },
+ "IT402": {
+  "ar": "يشرح كيف تربط أنظمة المؤسسة المتكاملة (ERP) بين إدارات المنشأة في نظام واحد: المشتريات، والمبيعات، والمخزون، والإنتاج، والمالية، والموارد البشرية. يتناول نمذجة العمليات التجارية، والبيانات الرئيسية المشتركة، وعلاقة ERP بأنظمة إدارة العملاء وسلاسل الإمداد، وطريقة اختيار النظام وتطبيقه.",
+  "en": "How enterprise resource planning (ERP) systems connect a company's departments in one system: purchasing, sales, inventory, production, finance and HR. Covers business process modeling, shared master data, how ERP links to CRM and supply chain systems, and how a system is selected and implemented.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "Simha Magal & Jeffrey Word, Integrated Business Processes with ERP Systems",
+   "Ellen Monk & Bret Wagner, Concepts in Enterprise Resource Planning",
+   "Vivek Kale, Enterprise Process Management Systems"
+  ]
+ },
+ "IT403": {
+  "ar": "أساسيات قواعد البيانات: ليش نستخدم قاعدة بيانات بدل الملفات، ونظام إدارة قواعد البيانات. يغطي تصميم البيانات بمخطط الكيانات والعلاقات (ER)، والنموذج العلائقي والمفاتيح، والتطبيع لتقليل التكرار، ولغة SQL لإنشاء الجداول وإدخال البيانات والاستعلام عنها.",
+  "en": "Database fundamentals: why use a database instead of files, and what a database management system does. Covers data design with entity-relationship (ER) diagrams, the relational model and keys, normalization to reduce redundancy, and SQL for creating tables, entering data and querying it.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "Ramez Elmasri & Shamkant Navathe, Fundamentals of Database Systems",
+   "Carlos Coronel & Steven Morris, Database Systems: Design, Implementation, & Management",
+   "Jeffrey Hoffer et al., Modern Database Management"
+  ]
+ },
+ "IT405": {
+  "ar": "بناء مواقع وبوابات إلكترونية متغيرة المحتوى: كيف يتعامل المتصفح مع الخادم، والبرمجة من جهة الخادم بلغة PHP، واستقبال النماذج، وربط الموقع بقاعدة بيانات MySQL، وتسجيل دخول المستخدمين، وأساسيات حماية الموقع. وينتهي بمشروع بوابة فيها تسجيل ومحتوى يُدار من لوحة تحكم.",
+  "en": "Building dynamic websites and portals: how the browser talks to the server, server-side programming in PHP, handling forms, connecting a site to a MySQL database, user login, and basic web security. It ends with a portal project with registration and content managed from an admin panel.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "Larry Ullman, PHP and MySQL for Dynamic Web Sites",
+   "Robin Nixon, Learning PHP, MySQL & JavaScript",
+   "Luke Welling & Laura Thomson, PHP and MySQL Web Development"
+  ]
+ },
+ "LAW401": {
+  "ar": "يشرح نظام الشركات السعودي ولائحته التنفيذية: مفهوم الشركة وأركانها وشخصيتها الاعتبارية، وأنواعها (التضامن، والتوصية البسيطة، والمساهمة، والمساهمة المبسطة، وذات المسؤولية المحدودة)، وتأسيسها وإدارتها وجمعياتها، ورأس المال والحصص والأسهم، وحقوق الشركاء، والتحول والاندماج، والانقضاء والتصفية، والعقوبات.",
+  "en": "Explains the Saudi Companies Law and its implementing regulations: what a company is, its elements and legal personality, its types (general partnership, limited partnership, joint stock, simplified joint stock, limited liability), formation, management and assemblies, capital, shares and partners' rights, conversion and merger, dissolution and liquidation, and penalties.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "نظام الشركات السعودي (1443هـ) ولائحته التنفيذية",
+   "الجمعية العلمية القضائية السعودية، أهم المهمات في نظام الشركات",
+   "توصيفات مقرر قانون الشركات في الجامعات السعودية"
+  ]
+ },
+ "LAW402": {
+  "ar": "يشرح الأنظمة اللي تحكم البيع والشراء عبر الإنترنت في المملكة: نظام التجارة الإلكترونية ولائحته، ونظام التعاملات الإلكترونية. يتناول إبرام العقد الإلكتروني وإثباته، والتوقيع والسجلات الإلكترونية، والتزامات المتجر الإلكتروني تجاه المستهلك (الإفصاح، والإعلان، والإلغاء والاسترجاع)، والدفع الإلكتروني، وحماية البيانات الشخصية، وحل النزاعات.",
+  "en": "Explains the laws that govern buying and selling online in Saudi Arabia: the E-Commerce Law and its regulations, and the Electronic Transactions Law. Covers forming and proving an electronic contract, electronic signatures and records, an online store's duties to consumers (disclosure, advertising, cancellation and returns), electronic payment, personal data protection, and dispute resolution.",
+  "title_en": "",
+  "src": "najd",
+  "books": [
+   "نظام التجارة الإلكترونية (1440هـ) ولائحته التنفيذية",
+   "نظام التعاملات الإلكترونية (1428هـ) ونظام حماية البيانات الشخصية (1443هـ)",
+   "Ian Lloyd, Information Technology Law"
+  ]
+ }
+}
