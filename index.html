@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611152033">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611152035">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-ctas{display:flex;gap:var(--sp-5);flex-wrap:wrap;margin:28px 0 0}
@@ -193,6 +193,7 @@ html[data-theme="dark"] #najd .hp-card{border:1px solid rgba(255,255,255,.1)}
 #najd .hp-tile small{font-size:var(--fs-md);color:rgba(255,255,255,.88);line-height:1.6;margin-top:2px}
 #najd .hp-ar{position:absolute;top:16px;left:16px;font-style:normal;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-weight:800;transition:transform var(--t-fast)}
 #najd .hp-tile:hover .hp-ar{transform:translateX(-4px)}
+html[lang="en"] #najd .hp-ar{transform:scaleX(-1)}html[lang="en"] #najd .hp-tile:hover .hp-ar{transform:scaleX(-1) translateX(-4px)}
 #najd .hp-pv{position:absolute;top:18px;right:18px;width:100px;height:80px}
 #najd .pv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:90px}
 #najd .pv-grid i{height:22px;border-radius:6px;background:rgba(255,255,255,.12);animation:pvFill 3.2s infinite;animation-delay:var(--d)}
@@ -230,6 +231,8 @@ html[data-theme="dark"] #najd .hp-card{border:1px solid rgba(255,255,255,.1)}
 #najd .pv-k{border:1px solid var(--line);border-radius:16px;padding:10px 12px}
 #najd .pv-k small{display:block;font-size:var(--fs-sm);color:var(--slate)}#najd .pv-k b{display:block;font-size:30px;font-weight:800;line-height:1.2}
 #najd .pv-k .hp-pbar{height:8px}
+#najd .pv-k a{color:var(--link);font-weight:800;text-decoration:underline;text-underline-offset:3px;display:inline-flex;min-height:44px;align-items:center}
+#najd a.pv-ex{text-decoration:none}#najd a.pv-ex strong{text-decoration:underline;text-underline-offset:3px}
 html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;color:#F3E2C6}html[data-theme="dark"] #najd .pv-ex small{color:#D9C7A8}html[data-theme="dark"] #najd .pv-ex b.n{color:#E9C99E}
 @media (max-width:960px){#najd .hp-pre{grid-template-columns:1fr;padding:24px}#najd .hp-pre h2{font-size:var(--fs-4xl)}}
 @media (prefers-reduced-motion:reduce){#najd .pv-grid i,#najd .pv-list b,#najd .pv-tick span,#najd .pv-ring .f,#najd .hp-done{animation:none}#najd .pv-list b{width:70%}#najd .pv-ring .f{stroke-dashoffset:30}}</style>
@@ -294,7 +297,7 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
 <div><span class="hp-k">حسابك في نجد</span><h2>لوحتك جاهزة.<br>سجّل عشان تنحفظ.</h2>
 <p id="pv-note">كل اللي تسويه في الأدوات يطلع لك هنا: أقرب اختبار، وجدولك، وتقدمك في الخطة. لما تسجّل، تلقاها في جوالك واللابتوب.</p>
 <div class="hp-acts"><a class="nj-btn nj-btn-fill" href="register.html">سجّل بحساب قوقل أو بإيميلك</a><a class="hp-alt" href="login.html">عندي حساب</a></div></div>
-<div class="hp-frame" role="img" aria-label="معاينة لوحتي" id="pv-frame"><div class="hp-fbar" aria-hidden="true"><i></i><i></i><i></i><span>لوحتي</span><em id="pv-tag">مثال</em></div><div class="hp-fbody" id="pv"></div></div>
+<div class="hp-frame" role="group" aria-label="معاينة لوحتي" id="pv-frame"><div class="hp-fbar" aria-hidden="true"><i></i><i></i><i></i><span>لوحتي</span><em id="pv-tag">مثال</em></div><div class="hp-fbody" id="pv"></div></div>
 </div>
 </div>
 </section>
@@ -338,26 +341,13 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611152033"></script>
-<script src="assets/js/plans-data.js?v=202611152033"></script>
-<script src="assets/js/courses-data.js?v=202611152033"></script>
-<script src="assets/js/study-core.js?v=202611152033"></script>
-<script src="assets/js/mistakes.js?v=202611152033"></script>
-<script>
-/* بطاقة «تقدمك في الخطة»: تقرأ تقدم الطالب الفعلي وتتحدث مع أي تغيير أو مزامنة */
-(function(){
-  function draw(){
-    var h=0;try{var s=JSON.parse(localStorage.getItem('najd_plans_v1')||'null');if(s&&s.done&&window.NAJD_PLANS[s.major]){var d=s.done;window.NajdPlan.cleanAll(d);h=window.NajdPlan.hours(s.major,d);}}catch(e){}
-    var a=document.getElementById('hm-ph'),b=document.getElementById('hm-pb');if(!a||!b)return;
-    var txt=h+' من 130 ساعة';a.textContent=window.NajdT?window.NajdT(txt):txt;var c=document.getElementById('hm-cta'),ct=h?'كمّل خطتك':'ابدأ خطتك';if(c)c.textContent=window.NajdT?window.NajdT(ct):ct;b.style.width=Math.min(100,Math.round(h/130*100))+'%';
-  }
-  draw();
-  ['najd:dirty','najd:auth','najd:auth-ready','storage','pageshow','najd:lang'].forEach(function(ev){window.addEventListener(ev,function(){setTimeout(draw,50);});});
-  setTimeout(draw,1500);setTimeout(draw,4000);
-})();
-</script>
-<script src="assets/js/i18n.js?v=202611152033"></script>
-<script type="module" src="assets/js/auth.js?v=202611152033"></script>
+<script src="assets/js/layout.js?v=202611152035"></script>
+<script src="assets/js/plans-data.js?v=202611152035"></script>
+<script src="assets/js/courses-data.js?v=202611152035"></script>
+<script src="assets/js/study-core.js?v=202611152035"></script>
+<script src="assets/js/mistakes.js?v=202611152035"></script>
+<script src="assets/js/i18n.js?v=202611152035"></script>
+<script type="module" src="assets/js/auth.js?v=202611152035"></script>
 <script>
 /* لوحتي: محاضرات اليوم، وأقرب اختبار، وتقدم الخطة، والمعدل. كلها من بيانات الطالب المحفوظة في جهازه (وتتزامن مع حسابه) */
 (function(){
@@ -518,7 +508,7 @@ html[data-theme="dark"] #najd .pv-ex{background:#2A2418;border-color:#6B5532;col
 <script type="module">
 /* موعد التسجيل الجاي من التقويم الأكاديمي (لبطاقة «لوحتي») */
 try {
-  const A = await import("./assets/js/auth.js?v=202611152033");
+  const A = await import("./assets/js/auth.js?v=202611152035");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const t = new Date(), p2 = (n) => String(n).padStart(2, "0"), today = t.getFullYear() + "-" + p2(t.getMonth() + 1) + "-" + p2(t.getDate());
   const reg = []; (await fs.getDocs(fs.collection(A.db, "calendar"))).forEach((d) => { const x = d.data(); if (x.type === "reg" && (x.end || x.date) >= today) reg.push({ title: x.title || "", date: x.date, end: x.end || "" }); });
@@ -551,12 +541,12 @@ try {
       var pick=[],tot=0;open.forEach(function(x){if(tot+x.h<=15){pick.push(x);tot+=x.h;}});
       var h=NP.hours(m,done);return {open:open,pick:pick,tot:tot,left:Math.max(0,NP.TOTAL-h),pct:Math.round(h/NP.TOTAL*100),own:own,done:done};
     }
-    function sel(group,attr,val){box.querySelectorAll(group+' button').forEach(function(b){b.setAttribute('aria-checked',String(b.getAttribute(attr)===String(val)));});}
+    function sel(group,attr,val){box.querySelectorAll(group+' button').forEach(function(b){var on=b.getAttribute(attr)===String(val);b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1;});}
     function render(){
       if(!M){res.innerHTML='<div class="hp-wait"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 40L14 26L22 34L32 16L44 40Z" fill="#7A9FA3"/><circle cx="36" cy="10" r="5" fill="#E9C99E"/></svg><span>'+L('اختر تخصصك فوق، وتطلع لك خطة فصلك هنا على طول.','Pick your major above and your semester plan shows up here right away.')+'</span></div>';return;}
       var r=compute(M,LVL),more=r.open.length-r.pick.length;
       res.innerHTML='<div class="hp-done"><p class="hp-rk">'+(r.own?L('من خطتك المحفوظة','From your saved plan'):L('خطتك جاهزة','Your plan is ready'))+'</p>'
-        +'<div class="hp-row"><b>'+r.open.length+'</b><span>'+(EN?'courses open to you this semester':pl(r.open.length,'مادة مفتوحة لك هذا الفصل','مادتين مفتوحة لك هذا الفصل','مواد مفتوحة لك هذا الفصل','مادة مفتوحة لك هذا الفصل').replace(/^\d+ /,''))+'</span></div>'
+        +'<div class="hp-row"><b>'+r.open.length+'</b><span>'+(EN?(r.open.length===1?'course open to you this semester':'courses open to you this semester'):(r.open.length>=3&&r.open.length<=10?'مواد مفتوحة لك هذا الفصل':'مادة مفتوحة لك هذا الفصل'))+'</span></div>'
         +'<p class="hp-note">'+L('نقترح تبدأ بهذي ('+r.tot+' ساعة):','We suggest these ('+r.tot+' hours):')+'</p>'
         +'<div class="hp-chips">'+r.pick.map(function(x){return '<a href="c/'+x.code+'.html">'+esc(x.name)+'</a>';}).join('')+(more>0?'<span>'+L('و'+more+' غيرها','+'+more+' more')+'</span>':'')+'</div>'
         +'<div class="hp-row"><b>'+r.left+'</b><span>'+L('ساعة باقية على تخرجك','hours left to graduate')+'</span></div>'
@@ -575,8 +565,7 @@ try {
     box.addEventListener('keydown',function(e){var b=e.target.closest('[role=radio]');if(!b||['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].indexOf(e.key)<0)return;
       var list=[].slice.call(b.parentNode.querySelectorAll('[role=radio]')),i=list.indexOf(b),dir=(e.key==='ArrowLeft'||e.key==='ArrowDown')?1:-1;if(document.documentElement.dir==='ltr')dir=-dir;
       var n=list[(i+dir+list.length)%list.length];n.focus();n.click();e.preventDefault();});
-    box.querySelectorAll('[role=radiogroup]').forEach(function(g){var bs=g.querySelectorAll('[role=radio]');bs.forEach(function(x){x.tabIndex=-1;});(g.querySelector('[aria-checked=true]')||bs[0]).tabIndex=0;
-      g.addEventListener('click',function(){bs.forEach(function(x){x.tabIndex=x.getAttribute('aria-checked')==='true'?0:-1;});});});
+    box.querySelectorAll('[role=radiogroup]').forEach(function(g){var bs=g.querySelectorAll('[role=radio]');bs.forEach(function(x){x.tabIndex=-1;});(g.querySelector('[aria-checked=true]')||bs[0]).tabIndex=0;});
     if(M){sel('.hp-mj','data-m',M);sel('.hp-lv','data-l',LVL);}
     render();
   }
@@ -587,13 +576,16 @@ try {
     var ex=(sc.exams||[]).filter(function(x){return /^\d{4}-\d{2}-\d{2}$/.test(x.date||'')&&new Date(x.date+'T00:00:00')>=today;}).sort(function(a,b){return a.date<b.date?-1:1;})[0];
     var subs={};Object.keys(sc.cells||{}).forEach(function(k){var v=sc.cells[k];if(v)subs[String(v).trim()]=1;});var ns=Object.keys(subs).length;
     var pct=pp&&P[pp.major]?Math.round(NP.hours(pp.major,pp.done||{})/NP.TOTAL*100):null;
-    var mine=!!(ex||ns||pct);
+    var mine=!!(ex||ns||pct!=null);
     var days=ex?Math.round((new Date(ex.date+'T00:00:00')-today)/864e5):7;
     var exName=ex?String(ex.subject||'').trim():L('ميدتيرم الإحصاء','Statistics midterm');
     if(ex)exName=(ex.type==='final'?L('فاينل ','Final: '):L('ميدتيرم ','Midterm: '))+exName;
-    pv.innerHTML='<div class="pv-ex"><b class="n">'+days+'</b><div><small>'+(days===0?L('اختبارك اليوم','Your exam is today'):L('أيام على أقرب اختبار','days to your next exam'))+'</small><strong>'+esc(exName)+'</strong></div></div>'
-      +'<div class="pv-two"><div class="pv-k"><small>'+L('جدولك','Your schedule')+'</small><b>'+(ns||5)+'</b><small>'+L('مواد','courses')+'</small></div>'
-      +'<div class="pv-k"><small>'+L('تقدمك في الخطة','Plan progress')+'</small><b>'+(pct==null?48:pct)+'٪</b><div class="hp-pbar"><i style="width:'+(pct==null?48:pct)+'%"></i></div></div></div>';
+    /* لو عنده بيانات، كل خانة تعرض بياناته هو أو تقول له وش يضيف، وما نخلط أرقام المثال */
+    var exHTML=(ex||!mine)?'<div class="pv-ex"><b class="n">'+days+'</b><div><small>'+(days===0?L('اختبارك اليوم','Your exam is today'):L('أيام على أقرب اختبار','days to your next exam'))+'</small><strong>'+esc(exName)+'</strong></div></div>'
+      :'<a class="pv-ex" href="schedule.html"><div><small>'+L('أقرب اختبار','Next exam')+'</small><strong>'+L('أضف مواعيد اختباراتك في الجدول','Add your exam dates in the schedule')+'</strong></div></a>';
+    var schHTML=(ns||!mine)?'<b>'+(ns||5)+'</b><small>'+L('مواد','courses')+'</small>':'<small><a href="schedule.html">'+L('صمّم جدولك','Build your schedule')+'</a></small>';
+    var pctHTML=(pct!=null||!mine)?'<b>'+(pct==null?48:pct)+'٪</b><div class="hp-pbar"><i style="width:'+(pct==null?48:pct)+'%"></i></div>':'<small><a href="plans.html">'+L('علّم مقرراتك في الخطة','Mark your courses in the plan')+'</a></small>';
+    pv.innerHTML=exHTML+'<div class="pv-two"><div class="pv-k"><small>'+L('جدولك','Your schedule')+'</small>'+schHTML+'</div><div class="pv-k"><small>'+L('تقدمك في الخطة','Plan progress')+'</small>'+pctHTML+'</div></div>';
     var tag=document.getElementById('pv-tag');if(tag)tag.textContent=mine?L('من بياناتك','Your data'):L('مثال','Example');
     if(mine){var note=document.getElementById('pv-note');if(note)note.textContent=L('هذي من الأدوات اللي استخدمتها في جهازك. سجّل عشان ما تضيع، وتلقاها في جوالك واللابتوب.','This comes from the tools you used on this device. Sign up so it is not lost and follows you to every device.');}
   }
@@ -602,7 +594,7 @@ try {
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=202611152033");
+  const { db } = await import("./assets/js/auth.js?v=202611152035");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
