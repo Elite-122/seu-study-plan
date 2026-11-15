@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex">
 <title>لوحة الإدارة | أكاديمية نجد</title>
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611161800" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611162030" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611161800">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611162030">
 <style>
 #najd .ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5)}
 #najd .ad-f.full{grid-column:1/-1}
@@ -62,7 +62,8 @@
 #najd .sb-quick button{height:30px;border:1px dashed var(--teal);background:none;border-radius:var(--r-pill);padding:0 10px;font:inherit;font-size:var(--fs-sm);font-weight:700;color:var(--dtext);cursor:pointer}
 #najd .sb-picked{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin:8px 0 0}
 #najd .sb-chip{display:inline-flex;align-items:center;gap:var(--sp-2);background:var(--tint);color:var(--dtext);border-radius:var(--r-pill);padding:4px 6px 4px 12px;font-size:var(--fs-md);font-weight:700}
-#najd .sb-chip button,#najd .sb-g button{width:22px;height:22px;border:0;border-radius:50%;background:rgba(0,0,0,.08);color:inherit;font-size:var(--fs-base);line-height:1;cursor:pointer;padding:0}
+#najd .sb-chip button .nj-icon,#najd .sb-g button .nj-icon{width:14px;height:14px;color:inherit;vertical-align:0;stroke-width:2.2}
+#najd .sb-chip button,#najd .sb-g button{display:grid;place-items:center;width:22px;height:22px;border:0;border-radius:50%;background:rgba(0,0,0,.08);color:inherit;font-size:var(--fs-base);line-height:1;cursor:pointer;padding:0}
 #najd .sb-term{display:flex;gap:var(--sp-3);align-items:center;flex-wrap:wrap;margin:10px 0 0}
 #najd .sb-term[hidden]{display:none}
 #najd .sb-term label{font-size:var(--fs-md);font-weight:700;color:var(--muted)}
@@ -135,14 +136,14 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611161800"></script>
-<script src="assets/js/i18n.js?v=202611161800"></script>
-<script src="assets/js/coop-data.js?v=202611161800"></script>
-<script src="assets/js/courses-data.js?v=202611161800"></script>
-<script src="assets/js/access.js?v=202611161800"></script>
-<script src="assets/js/faculty-data.js?v=202611161800"></script>
+<script src="assets/js/layout.js?v=202611162030"></script>
+<script src="assets/js/i18n.js?v=202611162030"></script>
+<script src="assets/js/coop-data.js?v=202611162030"></script>
+<script src="assets/js/courses-data.js?v=202611162030"></script>
+<script src="assets/js/access.js?v=202611162030"></script>
+<script src="assets/js/faculty-data.js?v=202611162030"></script>
 <script type="module">
-import { auth, db } from "./assets/js/auth.js?v=202611161800";
+import { auth, db } from "./assets/js/auth.js?v=202611162030";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, deleteField, writeBatch, query, where, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
@@ -421,7 +422,7 @@ async function access() {
     $("s-course").value = ""; msg(""); draw();
   }
   function draw() {
-    $("s-picked").innerHTML = picked.map((c) => `<span class="sb-chip" dir="auto">${esc(NA.label(c))}<button type="button" data-rm="${c}" aria-label="شيل">×</button></span>`).join("");
+    $("s-picked").innerHTML = picked.map((c) => `<span class="sb-chip" dir="auto">${esc(NA.label(c))}<button type="button" data-rm="${c}" aria-label="شيل">${window.Najd.icon("close")}</button></span>`).join("");
     root.querySelectorAll("#s-kind button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.k === kind));
     root.querySelectorAll("#s-dur button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.d === dur));
     $("s-term-w").hidden = dur !== "term"; $("s-date-w").hidden = dur !== "date";
@@ -448,7 +449,7 @@ async function access() {
   function rowHTML(x) {
     const g = NA.list(x);
     return `<div class="sb-row" data-mail="${esc(x.id)}"><div class="sb-rh"><b dir="ltr">${esc(x.id)}</b>${x.note ? `<small>${esc(x.note)}</small>` : ""}<span class="sb-acts"><button type="button" data-more="${esc(x.id)}">+ أضف له</button><button type="button" class="del" data-del="${esc(x.id)}">حذف</button></span></div>
-      <div class="sb-gs">${g.length ? g.map((r) => `<span class="sb-g${r.live ? "" : " is-end"}"><b dir="ltr">${esc(r.code === "all" ? "الكل" : r.code)}</b>${NA.KINDS[r.kind] || esc(r.kind)}<small>${r.until ? (r.live ? "لين " : "انتهى ") + fmt(r.until) : "بدون انتهاء"}</small><button type="button" data-ung="${esc(r.key)}" aria-label="شيل الاشتراك">×</button></span>`).join("") : '<small class="is-off">ما عنده اشتراكات</small>'}</div></div>`;
+      <div class="sb-gs">${g.length ? g.map((r) => `<span class="sb-g${r.live ? "" : " is-end"}"><b dir="ltr">${esc(r.code === "all" ? "الكل" : r.code)}</b>${NA.KINDS[r.kind] || esc(r.kind)}<small>${r.until ? (r.live ? "لين " : "انتهى ") + fmt(r.until) : "بدون انتهاء"}</small><button type="button" data-ung="${esc(r.key)}" aria-label="شيل الاشتراك">${window.Najd.icon("close")}</button></span>`).join("") : '<small class="is-off">ما عنده اشتراكات</small>'}</div></div>`;
   }
   function render() {
     const q = $("s-find").value.trim().toLowerCase();

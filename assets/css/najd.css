@@ -48,7 +48,10 @@ body{margin:0;background:#F4F7F7}
 #najd .nj-btn-ghost:hover{background:rgba(255,255,255,.12)}
 #najd .nj-btn-sm{height:var(--control-h-sm);padding:0 16px;font-size:var(--fs-base)}
 #najd .nj-btn[disabled]{opacity:.6;cursor:wait;transform:none}
-#najd .nj-arrow{display:inline-block;transition:transform var(--t-fast)}
+#najd .nj-arrow{display:inline-flex;align-items:center;vertical-align:middle;line-height:0;transition:transform var(--t-fast)}
+#najd .nj-arrow .nj-icon,#najd .nj-ext .nj-icon{width:1.1em;height:1.1em;color:inherit;vertical-align:0;stroke-width:2}
+#najd .nj-arrow.is-back{transform:scaleX(-1)}
+#najd .nj-ext{display:inline-flex;align-items:center;vertical-align:middle;line-height:0}
 #najd .nj-btn:hover .nj-arrow{transform:translateX(-3px)}
 
 /* ===== قائمة الجوال ===== */
@@ -193,14 +196,15 @@ html[data-theme="dark"] #najd .nj-streak.is-today{background:#3A3122;border-colo
 #najd .nj-ann .nj-in{display:flex;align-items:center;justify-content:center;gap:var(--sp-5);min-height:44px;padding-top:6px;padding-bottom:6px}
 #najd .nj-ann p{flex:1;text-align:center;line-height:1.5}
 #najd .nj-ann a{font-weight:800;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
-#najd .nj-ann button{flex-shrink:0;width:30px;height:30px;border:0;border-radius:var(--r-sm);background:rgba(255,255,255,.16);color:inherit;font-size:var(--fs-2xl);line-height:1;cursor:pointer}
+#najd .nj-ann button{flex-shrink:0;display:grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:var(--r-sm);background:rgba(255,255,255,.16);color:inherit;line-height:1;cursor:pointer}
+#najd .nj-ann button .nj-icon{width:18px;height:18px;color:inherit;vertical-align:0}
 #najd .nj-ann-gold button{background:rgba(0,0,0,.06)}
 
 /* ===== نافذة منبثقة عامة ===== */
 #najd .nj-modal{position:fixed;inset:0;z-index:70;background:rgba(20,34,33,.72);display:flex;align-items:center;justify-content:center;padding:16px}
 #najd .nj-modal-box{background:#000;border-radius:var(--r-lg);overflow:hidden;width:min(960px,100%);position:relative;box-shadow:var(--shadow-lg)}
 #najd .nj-modal-box iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
-#najd .nj-modal-x{position:absolute;top:10px;left:10px;width:44px;height:44px;border:0;border-radius:var(--r-sm);background:rgba(255,255,255,.9);color:var(--dtext);font-size:var(--fs-3xl);cursor:pointer;z-index:2}
+#najd .nj-modal-x{position:absolute;top:10px;left:10px;display:grid;place-items:center;padding:0;width:44px;height:44px;border:0;border-radius:var(--r-sm);background:rgba(255,255,255,.9);color:var(--dtext);font-size:var(--fs-3xl);cursor:pointer;z-index:2}
 #najd .nj-modal-t{background:var(--deeper);color:#fff;font-weight:700;padding:12px 16px 12px 56px;font-size:var(--fs-lg)}
 
 /* الهيدر مع 7 روابط: زر «أنشئ حسابك» يظهر في قائمة الجوال وصفحة الدخول بدل الهيدر */
@@ -254,6 +258,7 @@ html[dir="ltr"] #najd .nj-badge{right:auto;left:30px}
 html[dir="ltr"] #najd .hm-tools .nj-badge{right:auto;left:26px}
 html[dir="ltr"] #najd .st-badge{right:auto;left:12px}
 html[dir="ltr"] #najd .nj-modal-x{left:auto;right:10px}
+#najd .nj-modal-x .nj-icon{width:22px;height:22px;color:inherit;vertical-align:0}
 html[dir="ltr"] #najd .nj-modal-t{padding:12px 56px 12px 16px}
 html[dir="ltr"] #najd .au-pass input{padding-left:14px!important;padding-right:64px!important}
 html[dir="ltr"] #najd .au-eye{left:auto;right:8px}
@@ -270,7 +275,7 @@ html[dir="ltr"] #najd .pl-bar i{right:auto;left:0}
 html[dir="ltr"] #najd .pl-tl{padding-right:0;padding-left:32px}
 html[dir="ltr"] #najd .pl-tl::before{right:auto;left:11px}
 html[dir="ltr"] #najd .pl-dot{right:auto;left:-31px}
-html[dir="ltr"] #najd .nj-arrow{transform:scaleX(-1)}
+html[dir="ltr"] #najd .nj-arrow{transform:scaleX(-1)}html[dir="ltr"] #najd .nj-arrow.is-back{transform:none}
 html[dir="ltr"] #najd .nj-btn:hover .nj-arrow{transform:scaleX(-1) translateX(-3px)}
 html[dir="ltr"] #najd .nj-crumb span{display:inline-block}
 html[dir="ltr"] #najd .nj-ann a{white-space:nowrap}
@@ -360,6 +365,10 @@ html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selecti
 #najd .nj-icon{width:1.25em;height:1.25em;flex-shrink:0;display:inline-block;vertical-align:-.25em;color:var(--teal)}
 #najd .nj-btn .nj-icon,#najd .nj-icon.is-in{color:inherit}
 #najd .nj-btn .nj-icon{margin-inline-end:6px}
+/* الأيقونة جنب كلام عربي في صف (flex): نرفعها شوي لأن جسم الحروف العربية أعلى من نص السطر */
+#najd .nj-btn>.nj-icon,#najd .nj-tab>.nj-icon,#najd .nj-dd-btn>svg,#najd .dsh-h>.nj-icon,#najd .au-google>svg{position:relative;top:-.1em}
+/* وفي العناوين (داخل السطر) ننزلها شوي */
+#najd h2>.nj-icon,#najd h3>.nj-icon{vertical-align:-.32em}
 #najd .nj-dd-menu i .nj-icon{width:22px;height:22px}
 #najd .nj-drawer a .nj-icon{margin-inline-end:8px}
 #najd .nj-icon-xl{display:inline-flex;width:64px;height:64px;border-radius:var(--r);background:var(--tint);align-items:center;justify-content:center}

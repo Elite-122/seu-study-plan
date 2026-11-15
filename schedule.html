@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/schedule.html">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611161800" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611162030" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611161800">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611162030">
 <style>#najd .sc-tabs{position:sticky;top:74px;z-index:20;flex-wrap:nowrap}
 #najd .sc-tabs .nj-tab{flex:1 1 0;min-width:0;padding:0 8px;white-space:nowrap}
 #najd .sc-tabs .nj-icon{width:18px;height:18px;color:inherit}
@@ -157,7 +157,7 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 <div class="sc-legend"><span><i class="sc-type p">حضوري</i>محاضرة في القاعة</span><span><i class="sc-type o">أونلاين</i>محاضرة عن بُعد</span><span class="sc-legend-h">اضغط على النوع عشان تبدّله. كل مادة لها محاضرتين بس.</span><span class="sc-count" id="sc-count"></span></div>
 <div class="sc-scroll"><table class="sc-grid" id="sc-grid"></table></div>
 </div>
-<button type="button" class="nj-btn nj-btn-line sc-next" data-go="sc-t-ex">التالي: مواعيد الاختبارات <span class="nj-arrow">←</span></button>
+<button type="button" class="nj-btn nj-btn-line sc-next" data-go="sc-t-ex">التالي: مواعيد الاختبارات <span class="nj-arrow"></span></button>
 </div>
 <div class="sc-panel" id="sc-p-ex" role="tabpanel" aria-labelledby="sc-t-ex" hidden>
 <div class="nj-card">
@@ -166,12 +166,12 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 <div id="sc-exams"></div>
 <button type="button" class="sc-add" id="sc-add">+ إضافة اختبار</button>
 <div class="sc-cal">
-<button type="button" class="nj-btn nj-btn-fill" id="sc-ics"><svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>أضف الاختبارات لتقويم جوالك</button>
+<button type="button" class="nj-btn nj-btn-fill" id="sc-ics"><svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(0 -1.5)"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></g></svg>أضف الاختبارات لتقويم جوالك</button>
 <p class="sc-cal-note" id="sc-cal-note">تنضاف لتقويم الآيفون أو سامسونج أو أوتلوك، مع تنبيه قبل الاختبار بيوم وقبله بساعتين.</p>
 <div class="sc-gcal" id="sc-gcal"></div>
 </div>
 </div>
-<button type="button" class="nj-btn nj-btn-line sc-next" data-go="sc-t-save">التالي: احفظ جدولك <span class="nj-arrow">←</span></button>
+<button type="button" class="nj-btn nj-btn-line sc-next" data-go="sc-t-save">التالي: احفظ جدولك <span class="nj-arrow"></span></button>
 </div>
 <div class="sc-panel" id="sc-p-save" role="tabpanel" aria-labelledby="sc-t-save" hidden>
 <div class="nj-card" id="sc-save">
@@ -228,10 +228,10 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611161800"></script>
-<script src="assets/js/plans-data.js?v=202611161800"></script>
-<script src="assets/js/i18n.js?v=202611161800"></script>
-<script type="module" src="assets/js/auth.js?v=202611161800"></script>
+<script src="assets/js/layout.js?v=202611162030"></script>
+<script src="assets/js/plans-data.js?v=202611162030"></script>
+<script src="assets/js/i18n.js?v=202611162030"></script>
+<script type="module" src="assets/js/auth.js?v=202611162030"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('sc-grid'))return;
@@ -568,8 +568,8 @@ html[data-theme="dark"] #najd .sc-type.p{background:#E4E9EB;color:#1E3433}
   }
   /* ===== صفحات A4 (PDF والطباعة): الجدول لحاله، الاختبارات لحالها، أو الاثنين في ورقة ===== */
   var A4W=794,A4H=1123,INK='#2F4F4E',LINE='#DCE3E5',MUT='#758A8C',TXT2='#55696B';
-  var logoImg=new Image();logoImg.src='assets/img/logo-light.svg?v=202611161800';
-  var logoInk=new Image();logoInk.src='assets/img/logo.svg?v=202611161800';
+  var logoImg=new Image();logoImg.src='assets/img/logo-light.svg?v=202611162030';
+  var logoInk=new Image();logoInk.src='assets/img/logo.svg?v=202611162030';
   var BYH={};
   function tx(ctx,s,x,y,size,weight,color,align,ltr){ctx.font=weight+' '+size+'px '+FONT;ctx.fillStyle=color;ctx.textAlign=align||'right';ctx.direction=(ltr||window.NajdLang==='en')?'ltr':'rtl';ctx.textBaseline='middle';ctx.fillText(s,x,y);}
   function dashRect(ctx,x,y,w,h,r,col,dash){rr(ctx,x+.5,y+.5,w-1,h-1,r);ctx.setLineDash(dash||[]);ctx.lineWidth=1;ctx.strokeStyle=col;ctx.stroke();ctx.setLineDash([]);}

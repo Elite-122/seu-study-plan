@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/gpa.html">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611161800" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611162030" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,14 +28,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611161800">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611162030">
 <style>#najd .gp-rows{display:flex;flex-direction:column;gap:var(--sp-3)}
 #najd .gp-row{display:flex;gap:var(--sp-3);align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:8px}
 #najd .gp-row .nj-input{width:auto}
 #najd .gp-rn{flex:1 1 auto}
 #najd .gp-rh{flex:0 0 70px;text-align:center}
 #najd .gp-rg{flex:0 0 110px}
-#najd .gp-del{flex:0 0 44px;height:44px;border:0;border-radius:var(--r-md);background:var(--err-bg);color:var(--err);font-size:var(--fs-2xl);line-height:1;cursor:pointer}
+#najd .gp-del .nj-icon{width:20px;height:20px;color:inherit;vertical-align:0;stroke-width:2}
+#najd .gp-del{flex:0 0 44px;display:grid;place-items:center;padding:0;height:44px;border:0;border-radius:var(--r-md);background:var(--err-bg);color:var(--err);font-size:var(--fs-2xl);line-height:1;cursor:pointer}
 #najd .gp-head{display:flex;gap:var(--sp-3);padding:0 8px 6px;font-size:var(--fs-sm);font-weight:700;color:var(--slate)}
 #najd .gp-head span:first-child{flex:1}
 #najd .gp-head span:nth-child(2){flex:0 0 70px;text-align:center}
@@ -146,9 +147,9 @@ html.is-app #najd .gp-mini{bottom:calc(84px + env(safe-area-inset-bottom))}}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611161800"></script>
-<script src="assets/js/i18n.js?v=202611161800"></script>
-<script type="module" src="assets/js/auth.js?v=202611161800"></script>
+<script src="assets/js/layout.js?v=202611162030"></script>
+<script src="assets/js/i18n.js?v=202611162030"></script>
+<script type="module" src="assets/js/auth.js?v=202611162030"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('gp-rows'))return;
@@ -168,7 +169,7 @@ html.is-app #najd .gp-mini{bottom:calc(84px + env(safe-area-inset-bottom))}}
       var gs='<option value="" disabled'+(r.grade?'':' selected')+'>التقدير</option>';GRADES.forEach(function(g){gs+='<option value="'+g[0]+'"'+(r.grade===g[0]?' selected':'')+'>'+g[0]+' ('+g[1].toFixed(2)+')</option>';});
       o+='<div class="gp-row" data-i="'+i+'"><input class="nj-input is-sm is-raised gp-rn" type="text" maxlength="40" placeholder="اسم المقرر (اختياري)" data-f="name" value="'+esc(r.name)+'" aria-label="اسم المقرر">'
         +'<select class="nj-input is-sm is-raised gp-rh" data-f="hours" aria-label="الساعات">'+hs+'</select><select class="nj-input is-sm is-raised gp-rg" data-f="grade" aria-label="التقدير">'+gs+'</select>'
-        +'<button type="button" class="gp-del" data-del="'+i+'" aria-label="حذف المقرر">×</button></div>';
+        +'<button type="button" class="gp-del" data-del="'+i+'" aria-label="حذف المقرر">'+window.Najd.icon('close')+'</button></div>';
     });
     $('gp-rows').innerHTML=o||'<p class="nj-hint" style="margin:0">ما فيه مقررات. أضف أول مقرر.</p>';
   }
