@@ -54,6 +54,31 @@ service cloud.firestore {
     match /users/{uid} {
       allow read, write: if signedIn() && request.auth.uid == uid;
       allow update: if unsubscribeOnly();
+      // المشرف يقرأ (لزر «جيب الحسابات القديمة» في لوحة الإدارة)
+      allow read: if isAdmin();
+    }
+
+    // ملف الحساب: الاسم والإيميل وتاريخ التسجيل. صاحبه يكتبه، والمشرف بس يقرأ
+    match /profiles/{uid} {
+      allow read: if isAdmin();
+      allow write: if isAdmin()
+        || (signedIn() && request.auth.uid == uid
+            && request.resource.data.keys().hasOnly(['name', 'email', 'provider', 'created', 'lastSeen']));
+    }
+
+    // عدّاد الزوار: أي زائر يزيد عدّاد يومه بواحد بس، والمشرف بس يقرأ
+    function statStep(k) {
+      return request.resource.data.get(k, 0) == resource.data.get(k, 0)
+        || request.resource.data.get(k, 0) == resource.data.get(k, 0) + 1;
+    }
+    match /stats/{d} {
+      allow read: if isAdmin();
+      allow create: if d.matches('^20[0-9]{2}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.keys().hasOnly(['web', 'app', 'new_web', 'new_app'])
+        && request.resource.data.get('web', 1) == 1 && request.resource.data.get('app', 1) == 1
+        && request.resource.data.get('new_web', 1) == 1 && request.resource.data.get('new_app', 1) == 1;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['web', 'app', 'new_web', 'new_app'])
+        && statStep('web') && statStep('app') && statStep('new_web') && statStep('new_app');
     }
 
     // إعلانات التدريب التعاوني: القراءة للكل، والكتابة للمشرفين

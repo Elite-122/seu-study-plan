@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611150855">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611151943">
 <style>
 #najd .ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5)}
 #najd .ad-f.full{grid-column:1/-1}
@@ -42,6 +42,18 @@
 #najd .ad-steps li{list-style:decimal!important;margin:0 0 6px;font-size:var(--fs-lg)}
 #najd .ad-prev{margin:12px 0 0;border-radius:var(--r-md);overflow:hidden}
 @media (max-width:560px){#najd .ad-grid{grid-template-columns:1fr}#najd .ad-row{flex-wrap:wrap}#najd .nj-tab{flex:1 1 40%}}
+#najd .st-k{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-4);margin:14px 0 0}
+#najd .st-k div{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 14px}
+#najd .st-k small{display:block;font-size:var(--fs-sm);color:var(--slate);font-weight:700}
+#najd .st-k b{display:block;font-size:var(--fs-5xl);font-weight:800;line-height:1.2;color:var(--dtext)}
+#najd .st-k span{font-size:var(--fs-sm);color:var(--muted)}
+#najd .st-t{width:100%;border-collapse:collapse;margin:14px 0 0;font-size:var(--fs-base)}
+#najd .st-t th{font-size:var(--fs-sm);color:var(--slate);text-align:start;font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line)}
+#najd .st-t td{padding:8px;border-bottom:1px solid var(--line)}#najd .st-t td.n{font-variant-numeric:tabular-nums;font-weight:700}
+#najd .st-wrap{overflow-x:auto}
+#najd .st-bar{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin:12px 0 0}#najd .st-bar .nj-input{flex:1;min-width:200px}
+#najd .st-mail{direction:ltr;unicode-bidi:isolate}
+@media (max-width:760px){#najd .st-k{grid-template-columns:1fr 1fr}}
 #najd .sb-lbl{display:block;font-size:var(--fs-md);font-weight:700;color:var(--muted);margin:0 0 6px}
 #najd .sb-add{display:flex;gap:var(--sp-3)}
 #najd .sb-add input{flex:1;min-width:0}
@@ -104,6 +116,7 @@
 
 <div id="ad-panel" hidden>
 <div class="nj-tabs ad-tabs" role="tablist" id="ad-tabs">
+<button type="button" class="nj-tab ad-tab" role="tab" data-tab="stats">الإحصائيات</button>
 <button type="button" class="nj-tab ad-tab" role="tab" data-tab="ann">الإعلان</button>
 <button type="button" class="nj-tab ad-tab" role="tab" data-tab="products">المنتجات</button>
 <button type="button" class="nj-tab ad-tab" role="tab" data-tab="lessons">الشروحات</button>
@@ -122,14 +135,14 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611150855"></script>
-<script src="assets/js/i18n.js?v=202611150855"></script>
-<script src="assets/js/coop-data.js?v=202611150855"></script>
-<script src="assets/js/courses-data.js?v=202611150855"></script>
-<script src="assets/js/access.js?v=202611150855"></script>
-<script src="assets/js/faculty-data.js?v=202611150855"></script>
+<script src="assets/js/layout.js?v=202611151943"></script>
+<script src="assets/js/i18n.js?v=202611151943"></script>
+<script src="assets/js/coop-data.js?v=202611151943"></script>
+<script src="assets/js/courses-data.js?v=202611151943"></script>
+<script src="assets/js/access.js?v=202611151943"></script>
+<script src="assets/js/faculty-data.js?v=202611151943"></script>
 <script type="module">
-import { auth, db } from "./assets/js/auth.js?v=202611150855";
+import { auth, db } from "./assets/js/auth.js?v=202611151943";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, deleteField, writeBatch, query, where, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
@@ -610,10 +623,65 @@ async function testimonials() {
   await load();
 }
 
+
+/* ===== الإحصائيات: الزوار والحسابات المسجلة ===== */
+async function stats() {
+  $("ad-body").innerHTML = `<div class="nj-card"><h2>الزوار</h2><p class="nj-hint">كل جهاز ينحسب مرة وحدة في اليوم بتوقيت الرياض. «التطبيق» يعني اللي مثبّتين الموقع على جوالهم. ما نخزن أي شي يعرّف الزائر.</p><div class="st-k" id="st-k"><p class="nj-hint">نحمّل…</p></div><div class="st-wrap"><table class="st-t" id="st-days"></table></div></div>
+  <div class="nj-card"><h2>الحسابات المسجلة (<span id="st-n">…</span>)</h2><p class="nj-hint">الأسماء والإيميلات تظهر للمشرفين بس. أي حساب يدخل بعد هذا التحديث يظهر هنا لحاله. وللحسابات القديمة اضغط «جيب الحسابات القديمة» مرة وحدة.</p>
+  <div class="st-bar"><input class="nj-input" id="st-q" type="search" placeholder="ابحث بالاسم أو الإيميل" aria-label="ابحث في الحسابات"><button type="button" class="nj-btn nj-btn-line" id="st-csv">نزّل الجدول (CSV)</button><button type="button" class="nj-btn nj-btn-line" id="st-old">جيب الحسابات القديمة</button></div>
+  <p class="ad-msg" id="st-msg" aria-live="polite"></p><div id="st-list"></div></div>`;
+  const ymd = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Riyadh" }).format(d);
+  const fmt = (n) => Number(n || 0).toLocaleString("en-US");
+  const days = {}; (await getDocs(collection(db, "stats"))).forEach((d) => { days[d.id] = d.data(); });
+  const back = (n) => { const out = []; for (let i = 0; i < n; i++) out.push(ymd(new Date(Date.now() - i * 864e5))); return out; };
+  const sum = (list, k) => list.reduce((a, d) => a + ((days[d] || {})[k] || 0), 0);
+  const d1 = back(1), d7 = back(7), d30 = back(30), all = Object.keys(days);
+  const tile = (t, list) => `<div><small>${t}</small><b>${fmt(sum(list, "web") + sum(list, "app"))}</b><span>الموقع ${fmt(sum(list, "web"))} · التطبيق ${fmt(sum(list, "app"))}</span></div>`;
+  $("st-k").innerHTML = tile("اليوم", d1) + tile("آخر ٧ أيام", d7) + tile("آخر ٣٠ يوم", d30) + `<div><small>كل الأجهزة من البداية</small><b>${fmt(sum(all, "new_web") + sum(all, "new_app"))}</b><span>الموقع ${fmt(sum(all, "new_web"))} · التطبيق ${fmt(sum(all, "new_app"))}</span></div>`;
+  $("st-days").innerHTML = `<thead><tr><th>اليوم</th><th>الموقع</th><th>التطبيق</th><th>المجموع</th><th>أجهزة جديدة</th></tr></thead><tbody>${back(14).map((d) => { const x = days[d] || {}; return `<tr><td><bdi dir="ltr">${d}</bdi></td><td class="n">${fmt(x.web)}</td><td class="n">${fmt(x.app)}</td><td class="n">${fmt((x.web || 0) + (x.app || 0))}</td><td class="n">${fmt((x.new_web || 0) + (x.new_app || 0))}</td></tr>`; }).join("")}</tbody>`;
+
+  let people = [];
+  const when = (t) => { const d = t && t.toDate ? t.toDate() : null; return d ? ymd(d) : "—"; };
+  const nice = (t) => { const d = t && t.toDate ? t.toDate() : null; return d ? new Intl.DateTimeFormat("ar-SA-u-ca-gregory-nu-latn", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Riyadh" }).format(d) : "—"; };
+  async function loadPeople() {
+    people = []; (await getDocs(collection(db, "profiles"))).forEach((d) => people.push({ id: d.id, ...d.data() }));
+    people.sort((a, b) => (b.created?.seconds || 0) - (a.created?.seconds || 0));
+    $("st-n").textContent = fmt(people.length); draw();
+  }
+  function draw() {
+    const q = $("st-q").value.trim().toLowerCase();
+    const list = people.filter((p) => !q || String(p.name || "").toLowerCase().includes(q) || String(p.email || "").toLowerCase().includes(q));
+    $("st-list").innerHTML = list.length ? list.slice(0, 300).map((p) => `<div class="ad-row"><div><b>${esc(p.name || "بدون اسم")}</b><small><span class="st-mail">${esc(p.email || "")}</span> · ${p.provider === "google" ? "قوقل" : p.provider === "email" ? "إيميل" : "قديم"} · سجّل ${nice(p.created)} · آخر دخول ${nice(p.lastSeen)}</small></div></div>`).join("") + (list.length > 300 ? `<p class="nj-hint">يعرض أول ٣٠٠. استخدم البحث أو نزّل الجدول.</p>` : "") : '<p class="nj-hint" style="margin:0">ما فيه حسابات تطابق البحث.</p>';
+  }
+  $("st-q").oninput = draw;
+  $("st-csv").onclick = () => {
+    const cell = (v) => '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"';
+    const rows = [["الاسم", "الإيميل", "طريقة الدخول", "تاريخ التسجيل", "آخر دخول"], ...people.map((p) => [p.name, p.email, p.provider || "", when(p.created), when(p.lastSeen)])];
+    const blob = new Blob(["﻿" + rows.map((r) => r.map(cell).join(",")).join("\n")], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "najd-accounts-" + ymd(new Date()) + ".csv"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  };
+  $("st-old").onclick = async (e) => {
+    const b = e.currentTarget; b.disabled = true; $("st-msg").className = "ad-msg"; $("st-msg").textContent = "نجيب الحسابات القديمة…";
+    try {
+      const have = new Set(people.map((p) => p.id)), users = await getDocs(collection(db, "users")); let n = 0, batch = writeBatch(db), inBatch = 0;
+      for (const d of users.docs) {
+        if (have.has(d.id)) continue; const u = d.data();
+        batch.set(doc(db, "profiles", d.id), { name: u.name || "", email: u.email || "", provider: "", created: null, lastSeen: u.updatedAt || null }, { merge: true });
+        n++; inBatch++; if (inBatch === 400) { await batch.commit(); batch = writeBatch(db); inBatch = 0; }
+      }
+      if (inBatch) await batch.commit();
+      $("st-msg").className = "ad-msg is-ok"; $("st-msg").textContent = n ? `أضفنا ${fmt(n)} حساب قديم.` : "كل الحسابات موجودة.";
+      await loadPeople();
+    } catch (er) { console.warn(er); $("st-msg").className = "ad-msg is-err"; $("st-msg").textContent = "ما قدرنا نجيبها. تأكد إنك نشرت قواعد Firestore الجديدة."; }
+    b.disabled = false;
+  };
+  await loadPeople();
+}
+
 /* ===== التبويبات ===== */
-const VIEWS = { ann, products: () => crud("products"), lessons: () => crud("lessons"), quizzes, access, coop: () => crud("coop"), calendar: () => crud("calendar"), reviews, instructors: () => crud("instructors"), testimonials };
+const VIEWS = { stats, ann, products: () => crud("products"), lessons: () => crud("lessons"), quizzes, access, coop: () => crud("coop"), calendar: () => crud("calendar"), reviews, instructors: () => crud("instructors"), testimonials };
 function openTab(t) {
-  if (!VIEWS[t]) t = "ann";
+  if (!VIEWS[t]) t = "stats";
   document.querySelectorAll(".ad-tab").forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === t ? "true" : "false"));
   history.replaceState(null, "", "#" + t);
   VIEWS[t]().catch((e) => { console.warn(e); $("ad-body").innerHTML = '<div class="nj-card"><p class="nj-hint" style="margin:0">ما قدرنا نحمّل القسم. تأكد إنك نشرت قواعد Firestore الجديدة.</p></div>'; });

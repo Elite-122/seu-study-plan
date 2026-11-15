@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611150855">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611151943">
 <style>
 #najd .rt-rules{font-size:var(--fs-base);color:var(--muted);background:var(--tint);border-radius:var(--r-md);padding:10px 14px;margin:12px 0 0}
 #najd .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--sp-5)}
@@ -61,6 +61,7 @@
 #najd .rt-tip{border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 14px;margin:0 0 8px;background:var(--bg)}
 #najd .rt-tip p{font-size:var(--fs-lg);line-height:1.8;white-space:pre-line}
 #najd .rt-tip small{font-size:var(--fs-sm);color:var(--slate)}
+#najd .rt-rules{font-size:var(--fs-sm);color:var(--slate);line-height:1.7;margin:6px 0 0}#najd .rt-rules a{color:var(--link);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 #najd .rt-lbl{display:block;font-size:var(--fs-base);font-weight:700;margin:14px 0 6px}
 #najd .rt-stars{display:flex;gap:var(--sp-2);direction:ltr;justify-content:flex-end}
 html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
@@ -134,12 +135,12 @@ html[dir="ltr"] #najd .rt-stars{justify-content:flex-start}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611150855"></script>
-<script src="assets/js/i18n.js?v=202611150855"></script>
-<script type="module" src="assets/js/auth.js?v=202611150855"></script>
-<script src="assets/js/courses-data.js?v=202611150855"></script>
-<script src="assets/js/faculty-data.js?v=202611150855"></script>
-<script src="assets/js/teaching-data.js?v=202611150855"></script>
+<script src="assets/js/layout.js?v=202611151943"></script>
+<script src="assets/js/i18n.js?v=202611151943"></script>
+<script type="module" src="assets/js/auth.js?v=202611151943"></script>
+<script src="assets/js/courses-data.js?v=202611151943"></script>
+<script src="assets/js/faculty-data.js?v=202611151943"></script>
+<script src="assets/js/teaching-data.js?v=202611151943"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KIND = {
@@ -251,6 +252,7 @@ async function detail(id) {
   <span class="rt-lbl">التقييم العام</span>${stars("rating", m ? m.rating : 0)}<div class="rt-scale"><span>ضعيف</span><span>ممتاز</span></div>
   <span class="rt-lbl">${K.lvl}</span>${stars("level", m ? m.level : 0)}<div class="rt-scale"><span>${K.lo}</span><span>${K.hi}</span></div>
   <label class="rt-lbl" for="rt-tip">${K.tipL}</label><textarea id="rt-tip" class="nj-input" maxlength="400" placeholder="${K.tipP}">${esc(m ? m.tip : "")}</textarea>
+  <p class="rt-rules">اكتب عن طريقة التدريس والمادة، مو عن الدكتور كشخص. ممنوع السب والاتهامات والمعلومات الشخصية، والتعليق ما ينشر إلا بعد المراجعة. <a href="terms.html#t11">قواعد التقييم</a></p>
   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button type="button" class="nj-btn nj-btn-fill" id="rt-save">${m ? "حدّث تقييمي" : "أرسل التقييم"}</button>${m ? '<button type="button" class="nj-btn nj-btn-line" id="rt-del">احذف تقييمي</button>' : ""}</div>
   <p class="rt-msg" id="rt-msg" aria-live="polite"></p></div>` : `<div class="nj-card rt-form rt-guest"><h2>شاركهم تجربتك</h2><p class="nj-hint">التقييم يحتاج حساب عشان كل طالب يقيّم مرة وحدة. حسابك مجاني، وتقييمك يطلع بدون اسمك.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><a class="nj-btn nj-btn-fill" href="register.html?next=${encodeURIComponent(location.pathname.split("/").pop() + location.search)}">أنشئ حساب وقيّم</a><a class="nj-btn nj-btn-line" href="login.html?next=${encodeURIComponent(location.pathname.split("/").pop() + location.search)}">عندي حساب</a></div></div>`}`;
   window.scrollTo({ top: v.getBoundingClientRect().top + scrollY - 90 });
@@ -291,7 +293,7 @@ $("rt-br").addEventListener("change", (e) => { ibr = e.target.value; list(); });
 $("rt-secs").addEventListener("click", (e) => { const b = e.target.closest(".rt-sec"); if (!b) return; if (b.dataset.isec) isec = b.dataset.isec; else sec = b.dataset.sec; list(); });
 let qt; $("rt-q").addEventListener("input", function () { clearTimeout(qt); const v = this.value; qt = setTimeout(() => { q = v; list(); }, 150); });
 try {
-  const M = await import("./assets/js/auth.js?v=202611150855");
+  const M = await import("./assets/js/auth.js?v=202611151943");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };
