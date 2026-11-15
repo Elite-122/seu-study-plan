@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/plans.html">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611160105" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611152035">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611160105">
 <style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:var(--sp-4);margin:20px 0 0}
 #najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:10px 8px;text-align:center}
 #najd .pl-stat b{display:block;font-size:var(--fs-4xl);font-weight:800;color:var(--light);line-height:1.2}
@@ -118,7 +118,7 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
 <div id="najd" dir="rtl" data-auth="guest" data-page="plans" data-sync>
 <div id="nj-header"></div>
 <section class="nj-band">
-<svg class="nj-band-mark" viewBox="14 20 92 84" aria-hidden="true"><path d="M26 48 L36 36 L46 48 Z" fill="#758A8C"/><path d="M50 48 L60 30 L70 48 Z" fill="#7A9FA3"/><path d="M74 48 L84 24 L94 48 Z" fill="#C8CFD2"/><path d="M58 100 L18 88 V56 L58 68 Z" fill="#C8CFD2"/><path d="M62 100 L102 88 V56 L62 68 Z" fill="#E4E9EB"/></svg>
+<svg class="nj-band-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="86" cy="22" r="9" fill="#D9B48A"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L82 18L102 51Z" fill="#4E7472"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#A9C6C4"/><path d="M58 51L82 22L102 51Z" fill="#E4E9EB"/><path d="M82 22L76 29.5L80 28L82 31L84.5 27.5L88 29Z" fill="#fff" opacity=".85"/><path d="M57.5 100 Q38 93 18 89 V57 Q38 60 57.5 68Z" fill="#C8CFD2"/><path d="M62.5 100 Q82 93 102 89 V57 Q82 60 62.5 68Z" fill="#E4E9EB"/></svg>
 <div class="nj-in">
 <p class="nj-crumb"><a href="#" data-link="home">الرئيسية</a><span>/</span>الخطط الدراسية</p>
 <h1>الخطط الدراسية</h1>
@@ -145,10 +145,10 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611152035"></script>
-<script src="assets/js/plans-data.js?v=202611152035"></script>
-<script src="assets/js/i18n.js?v=202611152035"></script>
-<script type="module" src="assets/js/auth.js?v=202611152035"></script>
+<script src="assets/js/layout.js?v=202611160105"></script>
+<script src="assets/js/plans-data.js?v=202611160105"></script>
+<script src="assets/js/i18n.js?v=202611160105"></script>
+<script type="module" src="assets/js/auth.js?v=202611160105"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('pl-tl'))return;
@@ -248,9 +248,29 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
     var fs=size;for(;fs>min;fs--){ctx.font=weight+' '+fs+'px '+FONT;if(ctx.measureText(text).width<=maxW)return text;}
     ctx.font=weight+' '+min+'px '+FONT;var t=text;while(t.length>1&&ctx.measureText(t+'…').width>maxW)t=t.slice(0,-1);return t===text?t:t+'…';
   }
-  function drawMark(ctx,x,y,h){var s=h/76;ctx.save();ctx.translate(x-18*s,y-24*s);ctx.scale(s,s);
-    poly(ctx,[26,48,36,36,46,48],'#758A8C');poly(ctx,[50,48,60,30,70,48],'#7A9FA3');poly(ctx,[74,48,84,24,94,48],'#C8CFD2');
-    poly(ctx,[58,100,18,88,18,56,58,68],'#C8CFD2');poly(ctx,[62,100,102,88,102,56,62,68],'#E4E9EB');ctx.restore();}
+  /* شعار «طويق»: صورة الشعار الفاتحة، وإذا ما تحمّلت نرسم العلامة بنفس مسارات assets/img/logo.svg */
+  var logoImg=new Image();logoImg.src='assets/img/logo-light.svg?v=202611160105';
+  var MARK=[['#4E7472','M18 51L33 36L41 42L52 30L62 40L70 33L82 18L102 51Z'],['#A9C6C4','M30 51L46 33L58 45L70 31L86 51Z'],['#E4E9EB','M58 51L82 22L102 51Z'],['rgba(255,255,255,.85)','M82 22L76 29.5L80 28L82 31L84.5 27.5L88 29Z'],['#C8CFD2','M57.5 100Q38 93 18 89V57Q38 60 57.5 68Z'],['#E4E9EB','M62.5 100Q82 93 102 89V57Q82 60 62.5 68Z']];
+  function drawLogo(ctx,x,y,h){
+    if(logoImg.complete&&logoImg.naturalWidth){ctx.drawImage(logoImg,x,y,h*768/188,h);return;}
+    if(!window.Path2D)return;var s=h/87;ctx.save();ctx.translate(x-18*s,y-13*s);ctx.scale(s,s);
+    ctx.beginPath();ctx.arc(86,22,9,0,Math.PI*2);ctx.fillStyle='#D9B48A';ctx.fill();
+    for(var i=0;i<MARK.length;i++){ctx.fillStyle=MARK[i][0];ctx.fill(new Path2D(MARK[i][1]));}ctx.restore();
+  }
+  /* جبال طويق تحت الترويسة (نفس رسمة الجدول الدراسي)، والقمم تصغر يمين عشان ما تغطي العنوان */
+  var RIDGES=[[0,.46,.06,.62,.12,.5,.2,.78,.27,.58,.35,.69,.42,.53,.5,.74,.56,.64,.62,1,.7,.69,.76,.78,.84,.57,.9,.72,.95,.56,1,.64],
+    [0,.27,.08,.41,.15,.29,.23,.49,.3,.33,.38,.44,.45,.31,.53,.53,.6,.37,.68,.47,.75,.32,.83,.48,.9,.35,1,.43],
+    [0,.12,.1,.21,.18,.13,.27,.25,.36,.15,.45,.23,.55,.12,.64,.24,.73,.15,.82,.27,.91,.16,1,.2]];
+  function mountains(ctx,base,H){
+    function sh(t){return t<.5?1:Math.max(.28,1-(t-.5)*1.9);}function at(t,h){return [t*PW,base-h*H*sh(t)];}
+    function layer(r,col){var p=[0,base+1];for(var i=0;i<r.length;i+=2){var q=at(r[i],r[i+1]);p.push(q[0],q[1]);}p.push(PW,base+1);poly(ctx,p,col);}
+    var sp=at(.3,1.02),sr=H*.17,g=ctx.createRadialGradient(sp[0],sp[1],0,sp[0],sp[1],sr*6);g.addColorStop(0,'rgba(217,180,138,.34)');g.addColorStop(1,'rgba(217,180,138,0)');
+    ctx.fillStyle=g;ctx.fillRect(sp[0]-sr*6,sp[1]-sr*6,sr*12,sr*12);ctx.beginPath();ctx.arc(sp[0],sp[1],sr,0,Math.PI*2);ctx.fillStyle='#D9B48A';ctx.fill();
+    layer(RIDGES[0],'#4E7472');
+    var pk=at(.62,1),pl=at(.56,.64),pr=at(.7,.69);function lp(a,b,f){return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];}
+    var a=lp(pk,pl,.32),b=lp(pk,pr,.26),m1=lp(a,b,.35),m2=lp(a,b,.7);poly(ctx,[pk[0],pk[1],a[0],a[1],m1[0],m1[1]-H*.05,m2[0],m2[1]+H*.03,b[0],b[1]],'rgba(255,255,255,.85)');
+    layer(RIDGES[1],'#A9C6C4');layer(RIDGES[2],'#FFFFFF');
+  }
   function layout(){
     var m=majors[st.major],pages=[],cur,y;
     var S={tot:0,done:0,n:0,d:0};
@@ -275,21 +295,19 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
     var ops=L.pages[pi],S=L.S,m=L.m,total=L.pages.length,name=(st.name||'').trim();
     ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,PW,PH);ctx.direction='rtl';
     if(pi===0){
-      ctx.fillStyle='#2F4F4E';ctx.fillRect(0,0,PW,HEAD1-20);
-      poly(ctx,[0,HEAD1-20,0,HEAD1-46,90,HEAD1-62,170,HEAD1-44,260,HEAD1-70,350,HEAD1-46,440,HEAD1-64,530,HEAD1-40,620,HEAD1-66,710,HEAD1-46,800,HEAD1-62,900,HEAD1-42,1000,HEAD1-58,1000,HEAD1-20],'#35595A');
-      poly(ctx,[0,HEAD1-10,0,HEAD1-32,100,HEAD1-44,190,HEAD1-30,290,HEAD1-48,380,HEAD1-32,480,HEAD1-46,570,HEAD1-30,670,HEAD1-48,760,HEAD1-32,860,HEAD1-46,1000,HEAD1-30,1000,HEAD1-10],'#FFFFFF');
-      ctx.fillStyle='#FFFFFF';ctx.fillRect(0,HEAD1-12,PW,12);
-      drawMark(ctx,M,58,96);
+      var bg=ctx.createLinearGradient(PW,0,0,HEAD1);bg.addColorStop(0,'#2F4F4E');bg.addColorStop(1,'#243D3C');ctx.fillStyle=bg;ctx.fillRect(0,0,PW,HEAD1-10);
+      mountains(ctx,HEAD1-10,80);
+      drawLogo(ctx,M,46,56);
       ctx.textAlign='right';ctx.textBaseline='alphabetic';
       ctx.font='800 44px '+FONT;ctx.fillStyle='#FFFFFF';ctx.fillText('تقرير الخطة الدراسية',PW-M,92);
-      ctx.fillStyle='#C8CFD2';ctx.fillText(fit1(ctx,m.name,PW-2*M-170,24,16,'500'),PW-M,132);
+      ctx.fillStyle='#C8CFD2';ctx.fillText(fit1(ctx,m.name,PW-2*M-270,24,16,'500'),PW-M,132);
       var line=(name?name+'   |   ':'')+(dateFmt?dateFmt.format(new Date()):'');
       ctx.font='500 20px '+FONT;ctx.fillStyle='#B0B8BC';ctx.fillText(line,PW-M,166);
     }else{
       ctx.fillStyle='#2F4F4E';ctx.fillRect(0,0,PW,78);
-      drawMark(ctx,M,16,46);
+      drawLogo(ctx,M,20,38);
       ctx.textAlign='right';ctx.textBaseline='middle';ctx.font='700 22px '+FONT;ctx.fillStyle='#FFFFFF';
-      ctx.fillText(fit1(ctx,'تقرير الخطة الدراسية  |  '+m.label,PW-2*M-90,22,16,'700'),PW-M,40);
+      ctx.fillText(fit1(ctx,'تقرير الخطة الدراسية  |  '+m.label,PW-2*M-190,22,16,'700'),PW-M,40);
     }
     ops.forEach(function(o){
       if(o.t==='sum'){
