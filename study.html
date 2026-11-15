@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261115h">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115i">
 <style>
 #najd .sp-tabs{position:sticky;top:74px;z-index:20;flex-wrap:nowrap}
 #najd .sp-tabs .nj-tab{flex:1 1 0;min-width:0;padding:0 8px;white-space:nowrap}
@@ -87,14 +87,14 @@
 #najd .wk{display:grid;grid-template-columns:52px repeat(7,minmax(64px,1fr));gap:4px;min-width:560px}
 #najd .wk .dh{text-align:center;font-weight:800;font-size:var(--fs-sm);padding:6px 0;border-radius:8px;background:var(--deep);color:#fff;line-height:1.3}
 #najd .wk .dh small{display:block;font-weight:500;color:var(--mist);font-size:var(--fs-xs)}
-#najd .wk .dh.today{background:var(--teal)}
+#najd .wk .dh.today{box-shadow:inset 0 -4px 0 var(--sand)}
 #najd .wk .th{text-align:center;font-size:var(--fs-xs);color:var(--slate);font-weight:700;padding-top:6px}
 #najd .wk .c{min-height:46px;border-radius:8px;background:var(--bg);border:1px dashed var(--line);padding:3px 5px;font-size:var(--fs-xs);line-height:1.3;overflow:hidden}
-#najd .wk .c.s{background:var(--tint);background:color-mix(in srgb,var(--ac) 16%,var(--card));border:0;border-inline-start:4px solid var(--ac)}
+#najd .wk .c.s{background:var(--tint);border:0;border-inline-start:4px solid var(--ac)}
 #najd .wk .c.s.ok{opacity:.55}
 #najd .wk .c.l{background:repeating-linear-gradient(135deg,var(--light) 0 6px,var(--bg) 6px 12px);border:0}
 #najd .wk .c b{display:block;font-weight:800;font-size:var(--fs-xs);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#najd .wk .c small{color:var(--muted)}
+#najd .wk .c small{color:var(--muted);font-size:var(--fs-xs)}
 #najd .lg{display:flex;gap:var(--sp-6);flex-wrap:wrap;font-size:var(--fs-sm);color:var(--muted);margin:var(--sp-4) 0 0}
 #najd .lg span{display:flex;align-items:center;gap:6px}
 #najd .lg i{width:16px;height:12px;border-radius:3px;display:inline-block}
@@ -210,11 +210,11 @@
 </div></main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261115h"></script>
-<script src="assets/js/i18n.js?v=20261115h"></script>
-<script type="module" src="assets/js/auth.js?v=20261115h"></script>
-<script src="assets/js/courses-data.js?v=20261115h"></script>
-<script src="assets/js/study-core.js?v=20261115h"></script>
+<script src="assets/js/layout.js?v=20261115i"></script>
+<script src="assets/js/i18n.js?v=20261115i"></script>
+<script type="module" src="assets/js/auth.js?v=20261115i"></script>
+<script src="assets/js/courses-data.js?v=20261115i"></script>
+<script src="assets/js/study-core.js?v=20261115i"></script>
 <script>
 (function(){
   var S=window.NajdStudy,N=window.Najd,esc=N.esc,I=N.icon,$=function(id){return document.getElementById(id);};
@@ -366,7 +366,7 @@
 <script type="module">
 /* الصعوبة من تقييمات الطلاب: نحفظ نسخة في الخطة عشان «لوحتي» تطلع نفس الجلسات */
 try {
-  const A = await import("./assets/js/auth.js?v=20261115h");
+  const A = await import("./assets/js/auth.js?v=20261115i");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const sn = await fs.getDocs(fs.query(fs.collection(A.db, "courseReviews"), fs.where("status", "==", "approved")));
   const sum = {}; sn.forEach((d) => { const x = d.data(); if (!x.target) return; (sum[x.target] = sum[x.target] || []).push(+x.level || 3); });

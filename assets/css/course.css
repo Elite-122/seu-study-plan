@@ -107,3 +107,4 @@
 #najd .co-mist{display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap;background:var(--err-bg);border-radius:var(--r-md);padding:12px 14px;margin:var(--sp-5) 0 0}
 #najd .co-mist p{flex:1 1 200px;margin:0;font-size:var(--fs-base);color:var(--err)}
 #najd .co-mist p b{display:block;font-size:var(--fs-lg)}
+@media (max-width:400px){#najd .co-nav a{padding:0 6px;font-size:var(--fs-md)}}
