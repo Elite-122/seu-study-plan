@@ -50,7 +50,7 @@
   var PAGE=root.getAttribute('data-page')||'';
 
   /* المفاتيح اللي تنحفظ في حسابك وتتزامن بين أجهزتك */
-  var SYNC_KEYS=['najd_plans_v1','najd_gpa_v1','stq_schedule_v1','najd_quiz_v1','najd_study_v1','najd_mist_v1'];
+  var SYNC_KEYS=['najd_plans_v1','najd_gpa_v1','stq_schedule_v1','najd_quiz_v1','najd_study_v1','najd_mist_v1','najd_next_v1'];
   var META='najd_sync_meta';
   function readMeta(){try{return JSON.parse(localStorage.getItem(META)||'{}')||{};}catch(e){return {};}}
   try{
