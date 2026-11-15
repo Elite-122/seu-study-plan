@@ -17,12 +17,12 @@ const typeName = (x) => (x.type === "final" ? "فاينل" : "ميدتيرم");
 const qn = (n) => (n === 1 ? "سؤال واحد" : n === 2 ? "سؤالين" : n <= 10 ? n + " أسئلة" : n + " سؤال");
 const sn = (n) => (n === 1 ? "جلسة وحدة" : n === 2 ? "جلستين" : n <= 10 ? n + " جلسات" : n + " جلسة");
 
-/* محرك خطة المذاكرة نفسه اللي في الموقع (ينسخ لـ shared/ وقت النشر) */
+/* محرك خطة المذاكرة نفسه اللي في الموقع (يقراه من assets/js) */
 let STUDY = null;
 function studyEngine() {
   if (STUDY !== null) return STUDY;
   try {
-    const dir = path.join(__dirname, "shared");
+    const dir = path.join(__dirname, "..", "assets", "js");
     const code = fs.readFileSync(path.join(dir, "courses-data.js"), "utf8") + "\n" + fs.readFileSync(path.join(dir, "study-core.js"), "utf8");
     const store = {};
     const ctx = { window: {}, localStorage: { getItem: (k) => (k in store ? store[k] : null), setItem: (k, v) => { store[k] = String(v); } }, console };

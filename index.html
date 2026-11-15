@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611150558">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611150855">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
@@ -384,11 +384,11 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611150558"></script>
-<script src="assets/js/plans-data.js?v=202611150558"></script>
-<script src="assets/js/courses-data.js?v=202611150558"></script>
-<script src="assets/js/study-core.js?v=202611150558"></script>
-<script src="assets/js/mistakes.js?v=202611150558"></script>
+<script src="assets/js/layout.js?v=202611150855"></script>
+<script src="assets/js/plans-data.js?v=202611150855"></script>
+<script src="assets/js/courses-data.js?v=202611150855"></script>
+<script src="assets/js/study-core.js?v=202611150855"></script>
+<script src="assets/js/mistakes.js?v=202611150855"></script>
 <script>
 /* بطاقة «تقدمك في الخطة»: تقرأ تقدم الطالب الفعلي وتتحدث مع أي تغيير أو مزامنة */
 (function(){
@@ -402,8 +402,8 @@
   setTimeout(draw,1500);setTimeout(draw,4000);
 })();
 </script>
-<script src="assets/js/i18n.js?v=202611150558"></script>
-<script type="module" src="assets/js/auth.js?v=202611150558"></script>
+<script src="assets/js/i18n.js?v=202611150855"></script>
+<script type="module" src="assets/js/auth.js?v=202611150855"></script>
 <script>
 /* لوحتي: محاضرات اليوم، وأقرب اختبار، وتقدم الخطة، والمعدل. كلها من بيانات الطالب المحفوظة في جهازه (وتتزامن مع حسابه) */
 (function(){
@@ -564,7 +564,7 @@
 <script type="module">
 /* موعد التسجيل الجاي من التقويم الأكاديمي (لبطاقة «لوحتي») */
 try {
-  const A = await import("./assets/js/auth.js?v=202611150558");
+  const A = await import("./assets/js/auth.js?v=202611150855");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const t = new Date(), p2 = (n) => String(n).padStart(2, "0"), today = t.getFullYear() + "-" + p2(t.getMonth() + 1) + "-" + p2(t.getDate());
   const reg = []; (await fs.getDocs(fs.collection(A.db, "calendar"))).forEach((d) => { const x = d.data(); if (x.type === "reg" && (x.end || x.date) >= today) reg.push({ title: x.title || "", date: x.date, end: x.end || "" }); });
@@ -576,7 +576,7 @@ try {
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=202611150558");
+  const { db } = await import("./assets/js/auth.js?v=202611150855");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
