@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261115e">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115f">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
@@ -384,8 +384,10 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261115e"></script>
-<script src="assets/js/plans-data.js?v=20261115e"></script>
+<script src="assets/js/layout.js?v=20261115f"></script>
+<script src="assets/js/plans-data.js?v=20261115f"></script>
+<script src="assets/js/courses-data.js?v=20261115f"></script>
+<script src="assets/js/study-core.js?v=20261115f"></script>
 <script>
 /* بطاقة «تقدمك في الخطة»: تقرأ تقدم الطالب الفعلي وتتحدث مع أي تغيير أو مزامنة */
 (function(){
@@ -399,8 +401,8 @@
   setTimeout(draw,1500);setTimeout(draw,4000);
 })();
 </script>
-<script src="assets/js/i18n.js?v=20261115e"></script>
-<script type="module" src="assets/js/auth.js?v=20261115e"></script>
+<script src="assets/js/i18n.js?v=20261115f"></script>
+<script type="module" src="assets/js/auth.js?v=20261115f"></script>
 <script>
 /* لوحتي: محاضرات اليوم، وأقرب اختبار، وتقدم الخطة، والمعدل. كلها من بيانات الطالب المحفوظة في جهازه (وتتزامن مع حسابه) */
 (function(){
@@ -502,6 +504,22 @@
       +more('gpa.html',L('الحاسبة','Calculator'));
   }
 
+  /* مذاكرة اليوم: من خطة المذاكرة (study-core.js) */
+  function studyCard(sc,now){
+    var S=window.NajdStudy,cells=(sc&&sc.cells)||{};
+    if(!S||!Object.keys(cells).some(function(k){return String(cells[k]||'').trim();}))return '';
+    var started=!!localStorage.getItem(S.KEY);
+    if(!started)return '<section class="dsh-card"><div class="dsh-empty"><h2 class="dsh-h">'+ic('target')+L('خطة المذاكرة','Study plan')+'</h2><p>'+L('من جدولك سوينا لك خطة مذاكرة: مراجعة بعد كل محاضرة، وجلسات تزيد قبل الاختبار.','We built a study plan from your schedule: a review after each lecture, more sessions before exams.')+'</p><a class="nj-btn nj-btn-fill nj-btn-sm" href="study.html">'+L('شوف خطتي','See my plan')+'</a></div></section>';
+    var st=S.state(),p=S.plan({sched:sc,state:st,now:now}),D=S.todayOf(p),list=D?D.ses.filter(function(x){return !x.missed;}):[];
+    var done=list.filter(function(x){return st.done[x.id];}).length,mins=now.getHours()*60+now.getMinutes(),next=list.filter(function(x){return !st.done[x.id]&&x.start+x.len>mins;})[0];
+    var K={review:L('مراجعة المحاضرة','Lecture review'),study:L('مذاكرة','Study'),hw:L('تحضير','Prep'),final:L('مراجعة شاملة','Full review')};
+    var o='<section class="dsh-card"><h2 class="dsh-h">'+ic('target')+L('مذاكرة اليوم','Today\'s study')+'<small>'+(EN?done+' of '+list.length:done+' من '+list.length)+'</small></h2>';
+    if(!list.length)o+='<p class="dsh-note">'+L('ما عندك جلسات مذاكرة اليوم.','No study sessions today.')+'</p>';
+    else{o+='<div class="dsh-bar"><i style="width:'+Math.round(done/list.length*100)+'%"></i></div>';
+      if(next){var x=next,c=(sc.colors||{})[x.name];o+='<ul class="dsh-list" style="margin-top:10px"><li class="dsh-s'+(x.start<=mins?' is-now':'')+'" style="--c:'+ACC[c>=0&&c<ACC.length?c:0]+'"><i></i><div><b>'+esc(x.name)+'</b><small>'+clock(x.start)+' · '+K[x.kind]+(x.moved?L(' · من جلسة فاتتك',' · moved'):'')+'</small></div>'+(x.start<=mins?'<span class="dsh-st">'+L('الحين','Now')+'</span>':'<span class="dsh-st">'+L('التالية','Next')+'</span>')+'</li></ul>';}
+      else o+='<p class="dsh-note"><b>'+L('خلصت مذاكرة اليوم. كفو!','Done for today. Well done!')+'</b></p>';}
+    return o+more('study.html',L('خطة المذاكرة','Study plan'))+'</section>';
+  }
   function hasData(st){
     var c=(st&&st.cells)||{};
     if(Object.keys(c).some(function(k){return String(c[k]||'').trim();})||((st&&st.exams)||[]).length)return true;
@@ -516,7 +534,7 @@
     var hi=now.getHours()<12?L('صباح الخير','Good morning'):L('مساء الخير','Good evening');
     box.innerHTML='<div class="nj-in">'
       +'<div class="dsh-head"><small>'+esc(now.toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long'}))+'</small><h1>'+hi+(name?(EN?', ':'، ')+esc(name):'')+'</h1></div>'
-      +'<div class="dsh-grid"><section class="dsh-card">'+todayCard(st,now)+'</section>'
+      +'<div class="dsh-grid"><div class="dsh-side"><section class="dsh-card">'+todayCard(st,now)+'</section>'+studyCard(st,now)+'</div>'
       +'<div class="dsh-side"><section class="dsh-card">'+examCard(st,now)+'</section>'
       +'<div class="dsh-two"><section class="dsh-card">'+progCard()+'</section><section class="dsh-card">'+gpaCard()+'</section></div></div></div>'
       +(isIn?'':'<div class="dsh-guest"><p><b>'+L('بياناتك محفوظة في هذا الجهاز بس.','Your data is saved on this device only.')+'</b> '+L('أنشئ حساب مجاني عشان تلقاها في جوالك واللابتوب.','Create a free account to get it on your phone and laptop.')+'</p><a class="nj-btn nj-btn-fill nj-btn-sm" href="register.html">'+L('أنشئ حسابك','Create your account')+'</a></div>')
@@ -532,7 +550,7 @@
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=20261115e");
+  const { db } = await import("./assets/js/auth.js?v=20261115f");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });

@@ -154,7 +154,7 @@ for c in COURSES:
     open(os.path.join(ROOT, "c", c[0] + ".html"), "w", encoding="utf-8").write(page(c))
 
 # خريطة الموقع
-pages = ["", "plans.html", "schedule.html", "gpa.html", "calendar.html", "ratings.html", "coop.html", "store.html", "lessons.html", "quiz.html", "study.html", "register-next.html", "privacy.html", "terms.html"]
+pages = ["", "plans.html", "schedule.html", "gpa.html", "calendar.html", "ratings.html", "coop.html", "store.html", "lessons.html", "quiz.html", "study.html", "next-term.html", "privacy.html", "terms.html"]
 pages = [p for p in pages if p == "" or os.path.exists(os.path.join(ROOT, p))]
 urls = [SITE + p for p in pages] + [f"{SITE}c/{c[0]}.html" for c in COURSES]
 open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(
