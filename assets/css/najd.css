@@ -35,8 +35,10 @@ body{margin:0;background:#F4F7F7}
 
 /* ===== الأزرار ===== */
 #najd .nj-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-3);height:48px;padding:0 24px;border-radius:var(--r-md);font-size:var(--fs-lg);font-weight:700;border:2px solid transparent;cursor:pointer;transition:background var(--t-fast),color var(--t-fast),border-color var(--t-fast),transform var(--t-fast),box-shadow var(--t-fast);white-space:nowrap;text-decoration:none}
-#najd .nj-btn-fill{background:var(--deep);color:#fff;box-shadow:var(--shadow-btn)}
-#najd .nj-btn-fill:hover{background:var(--teal);transform:translateY(-1px)}
+/* الزر الرئيسي صلب: تحته حافة، ولما ينضغط ينزل عليها */
+#najd .nj-btn-fill{--edge:#16302F;background:var(--deep);color:#fff;box-shadow:0 4px 0 var(--edge)}
+#najd .nj-btn-fill:hover{background:var(--teal);transform:translateY(-1px);box-shadow:0 5px 0 var(--edge)}
+#najd .nj-btn-fill:active{transform:translateY(3px)!important;box-shadow:0 1px 0 var(--edge)!important}
 #najd .nj-btn-line{border-color:var(--teal);color:var(--dtext);background:transparent}
 #najd .nj-btn-line:hover{background:var(--teal);color:#fff}
 #najd .nj-btn-white{background:#fff;color:var(--deep)}
@@ -197,7 +199,7 @@ body{margin:0;background:#F4F7F7}
 html[data-theme="dark"],html[data-theme="dark"] body{background:#0F1817;color-scheme:dark}
 html[data-theme="dark"] #najd{--surface:#172322;--ok:#C7E3BD;--ok-bg:#1D3020;--ok-line:#2F4A2A;--err:#F2C7C1;--err-bg:#3A1F1C;--err-line:#5A2E29;--err-solid:#A3473E;--warn:#F3E9CF;--warn-bg:#3A321C;--warn-solid:#D9B48A;--on-warn-solid:#2A2010;--sec-common:#8FB8B5;--sec-mgt:#A9B6E0;--sec-fin:#9CCBAE;--sec-acct:#D7A0B5;--sec-ecom:#DDB97A;--sec-islm:#E3A58A;--sec-quant:#B9A8E0;--card:#172322;--dtext:#9CCBC7;--hdr:rgba(15,24,23,.9);--deep:#2E5D5B;--deeper:#142826;--teal:#6FA8A4;--soft:#7FB0AE;--slate:#8FA3A4;--link:#7FB4B0;--grey:#62757A;--mist:#C2CDCF;--light:#22302F;--ink:#E3ECEC;--muted:#A9BABB;--bg:#0F1817;--line:#2B3B3A;--tint:#1B3230;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);--shadow-lg:0 2px 4px rgba(0,0,0,.35),0 18px 44px rgba(0,0,0,.5)}
 html[data-theme="dark"] #najd .nj-btn-white{background:#E3ECEC;color:#142826}
-html[data-theme="dark"] #najd .nj-btn-fill{background:#3C7572}
+html[data-theme="dark"] #najd .nj-btn-fill{background:#3C7572;--edge:#1B3A38}
 html[data-theme="dark"] #najd .nj-btn-fill:hover{background:#4C8A86}
 html[data-theme="dark"] #najd .nj-free{border-color:#2B4A48}
 html[data-theme="dark"] #najd .nj-foot{background:linear-gradient(170deg,#142826,#0B1413)}

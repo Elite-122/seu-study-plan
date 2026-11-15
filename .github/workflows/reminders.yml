@@ -67,7 +67,7 @@ jobs:
       - uses: actions/setup-node@v4
         if: steps.pick.outputs.go == '1'
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: reminders/package-lock.json
       - name: Install
