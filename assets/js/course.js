@@ -117,12 +117,14 @@ function contentHtml(user, lessons, quizzes, grants, verified) {
   $("co-cn").textContent = items.length ? L(`${items.length} عنصر`, `${items.length} items`) : "";
   if (!items.length) return `<div class="co-empty"><p>${L("ما نزلت شروحات لهذا المقرر للحين. نضيف أول بأول، وتلقى اللي ينزل هنا.", "Nothing published for this course yet.")}</p><a class="nj-btn nj-btn-line nj-btn-sm" href="store.html">${L("شوف المتجر", "Visit the store")}</a></div>`;
   const locked = items.some((i) => !can(i.x, i.k));
-  return `<div class="co-items">${items.map((i) => { const ok = can(i.x, i.k); return `<a class="co-item${ok ? "" : " is-lock"}" href="${i.href}"><i>${I(i.ic)}</i><div><b data-no-i18n>${esc(i.t)}</b><small>${i.sub}</small></div><span class="nj-tag ${i.x.free ? "is-ok" : ok ? "is-ok" : "is-paid"}">${i.x.free ? L("مجاني", "Free") : ok ? L("مشترك", "Subscribed") : L("للمشتركين", "Subscribers")}</span></a>`; }).join("")}</div>`
+  const M = window.NajdMist, mc = M ? M.count(CODE) : { total: 0, due: 0 };
+  const mist = mc.total ? `<div class="co-mist"><p><b>${L((mc.total === 1 ? "سؤال واحد" : mc.total === 2 ? "سؤالين" : mc.total <= 10 ? mc.total + " أسئلة" : mc.total + " سؤال") + " غلطت فيها", `${mc.total} questions you got wrong`)}</b>${mc.due ? L(`جا وقت مراجعة ${mc.due === 1 ? "واحد منها" : mc.due === 2 ? "اثنين منها" : mc.due + " منها"}.`, `${mc.due} due today.`) : L("ترجع لك في وقتها.", "They come back on schedule.")}</p><a class="nj-btn nj-btn-fill nj-btn-sm" href="quiz.html?review=${CODE}">${L("راجع أخطائك", "Review mistakes")}</a></div>` : "";
+  return mist + `<div class="co-items">${items.map((i) => { const ok = can(i.x, i.k); return `<a class="co-item${ok ? "" : " is-lock"}" href="${i.href}"><i>${I(i.ic)}</i><div><b data-no-i18n>${esc(i.t)}</b><small>${i.sub}</small></div><span class="nj-tag ${i.x.free ? "is-ok" : ok ? "is-ok" : "is-paid"}">${i.x.free ? L("مجاني", "Free") : ok ? L("مشترك", "Subscribed") : L("للمشتركين", "Subscribers")}</span></a>`; }).join("")}</div>`
     + (locked ? `<div class="co-buy"><p><b>${L("اشترك في شروحات المقرر", "Subscribe to this course")}</b>${L("فيديو، أو ملخصات، أو الاثنين.", "Videos, summaries, or both.")}</p><a class="nj-btn nj-btn-white nj-btn-sm" href="store.html">${L("من المتجر", "From the store")}</a></div>` : "");
 }
 
 try {
-  const A = await import("./auth.js?v=20261115f");
+  const A = await import("./auth.js?v=20261115g");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   /* التقييمات: للكل */

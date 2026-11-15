@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=20261115f">
+<link rel="stylesheet" href="assets/css/najd.css?v=20261115g">
 <style>
 /* ===== الواجهة الرئيسية ===== */
 #najd .hm-hero{position:relative;overflow:hidden;padding:64px 0 80px;background:radial-gradient(700px 380px at 12% 20%,#E3EEED 0%,rgba(227,238,237,0) 70%),radial-gradient(600px 300px at 95% 90%,#E9EEF0 0%,rgba(233,238,240,0) 70%),var(--bg)}
@@ -384,10 +384,11 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=20261115f"></script>
-<script src="assets/js/plans-data.js?v=20261115f"></script>
-<script src="assets/js/courses-data.js?v=20261115f"></script>
-<script src="assets/js/study-core.js?v=20261115f"></script>
+<script src="assets/js/layout.js?v=20261115g"></script>
+<script src="assets/js/plans-data.js?v=20261115g"></script>
+<script src="assets/js/courses-data.js?v=20261115g"></script>
+<script src="assets/js/study-core.js?v=20261115g"></script>
+<script src="assets/js/mistakes.js?v=20261115g"></script>
 <script>
 /* بطاقة «تقدمك في الخطة»: تقرأ تقدم الطالب الفعلي وتتحدث مع أي تغيير أو مزامنة */
 (function(){
@@ -401,8 +402,8 @@
   setTimeout(draw,1500);setTimeout(draw,4000);
 })();
 </script>
-<script src="assets/js/i18n.js?v=20261115f"></script>
-<script type="module" src="assets/js/auth.js?v=20261115f"></script>
+<script src="assets/js/i18n.js?v=20261115g"></script>
+<script type="module" src="assets/js/auth.js?v=20261115g"></script>
 <script>
 /* لوحتي: محاضرات اليوم، وأقرب اختبار، وتقدم الخطة، والمعدل. كلها من بيانات الطالب المحفوظة في جهازه (وتتزامن مع حسابه) */
 (function(){
@@ -520,6 +521,11 @@
       else o+='<p class="dsh-note"><b>'+L('خلصت مذاكرة اليوم. كفو!','Done for today. Well done!')+'</b></p>';}
     return o+more('study.html',L('خطة المذاكرة','Study plan'))+'</section>';
   }
+  /* دفتر الأخطاء: يطلع بس لما فيه أسئلة جا وقت مراجعتها */
+  function mistCard(){
+    var M=window.NajdMist;if(!M)return '';var c=M.count();if(!c.due)return '';
+    return '<section class="dsh-card"><h2 class="dsh-h">'+ic('target')+L('دفتر أخطائي','My mistakes')+'</h2><p class="dsh-note" style="margin:0">'+(EN?c.due+' questions are due for review today.':(c.due===1?'سؤال واحد':c.due===2?'سؤالين':c.due+' أسئلة')+' غلطت فيها قبل، جا وقت مراجعتها.')+'</p>'+more('quiz.html?review=all',L('راجعها الحين','Review now'))+'</section>';
+  }
   function hasData(st){
     var c=(st&&st.cells)||{};
     if(Object.keys(c).some(function(k){return String(c[k]||'').trim();})||((st&&st.exams)||[]).length)return true;
@@ -535,7 +541,7 @@
     box.innerHTML='<div class="nj-in">'
       +'<div class="dsh-head"><small>'+esc(now.toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long'}))+'</small><h1>'+hi+(name?(EN?', ':'، ')+esc(name):'')+'</h1></div>'
       +'<div class="dsh-grid"><div class="dsh-side"><section class="dsh-card">'+todayCard(st,now)+'</section>'+studyCard(st,now)+'</div>'
-      +'<div class="dsh-side"><section class="dsh-card">'+examCard(st,now)+'</section>'
+      +'<div class="dsh-side"><section class="dsh-card">'+examCard(st,now)+'</section>'+mistCard()
       +'<div class="dsh-two"><section class="dsh-card">'+progCard()+'</section><section class="dsh-card">'+gpaCard()+'</section></div></div></div>'
       +(isIn?'':'<div class="dsh-guest"><p><b>'+L('بياناتك محفوظة في هذا الجهاز بس.','Your data is saved on this device only.')+'</b> '+L('أنشئ حساب مجاني عشان تلقاها في جوالك واللابتوب.','Create a free account to get it on your phone and laptop.')+'</p><a class="nj-btn nj-btn-fill nj-btn-sm" href="register.html">'+L('أنشئ حسابك','Create your account')+'</a></div>')
       +'</div>';
@@ -550,7 +556,7 @@
 <script type="module">
 /* آراء الطلاب من Firestore */
 try {
-  const { db } = await import("./assets/js/auth.js?v=20261115f");
+  const { db } = await import("./assets/js/auth.js?v=20261115g");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const esc = window.Najd.esc, l = [];
   (await getDocs(collection(db, "testimonials"))).forEach((d) => { const x = d.data(); if (x.active !== false && x.name && x.text) l.push(x); });
