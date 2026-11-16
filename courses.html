@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>المقررات | أكاديمية نجد</title>
+<meta name="description" content="كل مقررات كلية العلوم الإدارية والمالية: وصف كل مقرر، وتجارب الطلاب فيه، ومين يدرّسه. ابحث بالاسم أو الرمز، وشوف مقررات مستواك.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="أكاديمية نجد">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="المقررات | أكاديمية نجد">
+<meta property="og:description" content="كل مقررات كلية العلوم الإدارية والمالية: وصف كل مقرر، وتجارب الطلاب فيه، ومين يدرّسه. ابحث بالاسم أو الرمز، وشوف مقررات مستواك.">
+<meta property="og:url" content="https://najdacdemy.com/courses.html">
+<meta property="og:image" content="https://najdacdemy.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://najdacdemy.com/courses.html">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/mark.svg?v=202611161700" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="نجد">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611161700">
+<style>
+/* المقررات: بحث، «مقرراتك» من خطتك المحفوظة، و«كل المقررات» بالمستويات */
+#najd .cr-wrap{max-width:1000px}
+#najd .cr-top{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:14px}
+#najd .cr-q{position:relative}
+#najd .cr-q input{width:100%;box-sizing:border-box;min-height:52px;border-radius:var(--r-lg);border:1.5px solid var(--line);padding:0;padding-inline-start:46px;padding-inline-end:14px;font:inherit;font-size:var(--fs-base);background:var(--bg);color:var(--ink)}
+#najd .cr-q input:focus{outline:none;border-color:var(--teal);box-shadow:var(--ring)}
+#najd .cr-q svg{position:absolute;inset-inline-start:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--slate);pointer-events:none}
+#najd .cr-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px;background:var(--bg);border-radius:var(--r-lg);padding:5px}
+#najd .cr-seg button{min-height:44px;border:0;border-radius:var(--r-md);background:none;font:inherit;font-weight:800;font-size:var(--fs-base);color:var(--muted);cursor:pointer}
+#najd .cr-seg button[aria-pressed="true"]{background:var(--deep);color:#fff}
+#najd .cr-seg button:focus-visible,#najd .cr-mj button:focus-visible,#najd .cr-more:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+#najd .cr-mj{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:10px -2px 0;padding:2px}
+#najd .cr-mj::-webkit-scrollbar{display:none}
+@media (min-width:760px){#najd .cr-mj{flex-wrap:wrap;overflow:visible}}
+#najd .cr-mj button{flex-shrink:0;min-height:44px;padding:0 14px;border-radius:var(--r-pill);border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:var(--fs-sm);font-weight:800;color:var(--ink);cursor:pointer}
+#najd .cr-mj button[aria-pressed="true"]{border-color:var(--deep);background:var(--tint);color:var(--dtext)}
+#najd .cr-aside{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 2px 0;font-size:var(--fs-sm);font-weight:700;color:var(--slate)}
+#najd .cr-aside a{color:var(--dtext);text-decoration:underline;text-underline-offset:3px}
+#najd .cr-me{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:16px 0 6px;padding:14px;border-radius:var(--r);background:linear-gradient(160deg,#2F4F4E,#1F3837);color:#fff}
+#najd .cr-me>div:first-child{min-width:0}
+#najd .cr-me small{display:block;color:#E2C9A6;font-weight:700;font-size:var(--fs-sm)}
+#najd .cr-me b{display:block;font-size:var(--fs-2xl);font-weight:800;line-height:1.35}
+#najd .cr-me .bar{flex:1 1 120px;height:8px;border-radius:8px;background:rgba(255,255,255,.18);overflow:hidden}
+#najd .cr-me .bar i{display:block;height:100%;background:#D9B48A}
+#najd .cr-me .h{font-size:var(--fs-sm);font-weight:700;color:rgba(255,255,255,.85)}
+#najd .cr-me a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;color:#fff;font-weight:800;font-size:var(--fs-sm);text-decoration:underline;text-underline-offset:3px;margin-inline-start:auto}
+#najd .cr-me a:focus-visible{outline:3px solid #D9B48A;outline-offset:2px}
+#najd .cr-h{display:flex;align-items:center;gap:8px;margin:18px 0 8px;font-size:var(--fs-lg);font-weight:800;line-height:1.4}
+#najd .cr-h small{font-size:var(--fs-sm);color:var(--slate);font-weight:700}
+#najd .cr-h::after{content:"";flex:1;height:1px;background:var(--line)}
+#najd .cr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:760px){#najd .cr-grid{grid-template-columns:minmax(0,1fr)}}
+#najd .cc{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:var(--r-lg);background:var(--card);border:1px solid var(--line);border-inline-start:4px solid var(--c);box-shadow:var(--shadow);text-decoration:none;color:var(--ink)}
+#najd .cc:hover{border-color:var(--teal);border-inline-start-color:var(--c)}
+#najd .cc:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+#najd .cc-top{display:flex;align-items:flex-start;gap:10px}
+#najd .cc-code{flex-shrink:0;direction:ltr;font-size:12px;font-weight:800;padding:3px 7px;border-radius:var(--r-sm);background:var(--bg);color:var(--dtext);margin-top:3px}
+#najd .cc-t{flex:1;min-width:0}
+#najd .cc-t b{display:block;font-size:var(--fs-base);font-weight:800;line-height:1.45}
+#najd .cc-t small{display:block;font-size:var(--fs-sm);color:var(--slate);line-height:1.5}
+#najd .cc-tag{flex-shrink:0;font-size:12px;font-weight:800;border-radius:var(--r-pill);padding:2px 9px;white-space:nowrap}
+#najd .cc-tag.ok{color:var(--ok);background:var(--ok-bg)}
+#najd .cc-tag.late{color:#6E4F22;background:#F3E6D2}
+#najd .cc-d{font-size:var(--fs-md);color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0}
+#najd .cc-m{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:var(--fs-sm);font-weight:700;color:var(--slate)}
+#najd .cc-m .st{color:#7A5A1E}
+#najd .cc-m .st svg{width:14px;height:14px;vertical-align:-2px;color:#C99A3E}
+#najd .cc-m .go{margin-inline-start:auto;color:var(--dtext);display:inline-flex;align-items:center;gap:4px}
+#najd .cc-m .go .nj-arrow svg{width:16px;height:16px}
+#najd .cr-more{display:flex;justify-content:center;align-items:center;gap:6px;width:100%;min-height:44px;margin-top:12px;border:1.5px dashed var(--line);border-radius:var(--r-md);background:none;font:inherit;font-weight:800;color:var(--muted);cursor:pointer}
+#najd .cr-empty{text-align:center;color:var(--muted);padding:24px 10px;margin:0}
+#najd .cr-pick{margin-top:16px;padding:18px;border-radius:var(--r);background:var(--card);border:1px dashed var(--line);text-align:center}
+#najd .cr-pick b{display:block;font-size:var(--fs-lg);font-weight:800;margin-bottom:4px}
+#najd .cr-pick p{margin:0;color:var(--muted)}
+#najd mark{background:#F3E6D2;color:inherit;border-radius:3px;padding:0 1px}
+html[data-theme="dark"] #najd .cc-tag.late,html[data-theme="dark"] #najd mark{background:#3A3122;color:#E7C79A}
+html[data-theme="dark"] #najd .cc-m .st{color:#E7C79A}
+</style>
+</head>
+<body>
+<div id="najd" dir="rtl" data-page="courses">
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="86" cy="22" r="9" fill="#D9B48A"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L82 18L102 51Z" fill="#4E7472"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#A9C6C4"/><path d="M58 51L82 22L102 51Z" fill="#E4E9EB"/><path d="M82 22L76 29.5L80 28L82 31L84.5 27.5L88 29Z" fill="#fff" opacity=".85"/><path d="M57.5 100 Q38 93 18 89 V57 Q38 60 57.5 68Z" fill="#C8CFD2"/><path d="M62.5 100 Q82 93 102 89 V57 Q82 60 62.5 68Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="index.html">الرئيسية</a><span>/</span>المقررات</p>
+<h1>المقررات</h1>
+<p class="nj-band-sub">كل مقرر في خطتك: وصفه، وتجارب الطلاب فيه، ومين يدرّسه.</p>
+</div>
+</section>
+<main class="nj-main">
+<div class="nj-in cr-wrap" id="cr-app"><div class="nj-card nj-empty"><p>جاري التحميل…</p></div></div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js?v=202611161700"></script>
+<script src="assets/js/i18n.js?v=202611161700"></script>
+<script src="assets/js/plans-data.js?v=202611161700"></script>
+<script src="assets/js/courses-data.js?v=202611161700"></script>
+<script src="assets/js/course-desc.js?v=202611161700"></script>
+<script src="assets/js/teaching-data.js?v=202611161700"></script>
+<script type="module" src="assets/js/auth.js?v=202611161700"></script>
+<script>
+(function(){
+  var N=window.Najd,esc=N.esc,EN=document.documentElement.lang==='en',app=document.getElementById('cr-app');
+  function L(a,e){return EN?e:a;}
+  var P=window.NAJD_PLANS,NP=window.NajdPlan,META=window.NAJD_COURSE_META||{},DESC=window.NAJD_COURSE_DESC||{},TEACH=(window.NAJD_TEACH||{}).C||{};
+  if(!P||!NP){app.innerHTML='<div class="nj-card nj-empty"><b>'+L('ما قدرنا نحمّل المقررات','We couldn\'t load the courses')+'</b><p>'+L('حدّث الصفحة.','Refresh the page.')+'</p></div>';return;}
+  var MJ_EN={mgt:'Business Administration',fin:'Finance',ecom:'E-Commerce',acct:'Accounting'};
+  var KEY='najd_plans_v1',RATE={},view='mine',q='',showDone=false,major=null,browse=null,done={};
+  var SV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+  var IC={q:SV+'<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>',star:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 4l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 16.4 7.2 18.9l.9-5.4L4.2 9.7l5.4-.8z"/></svg>',down:SV+'<path d="M6 9l6 6 6-6"/></svg>'};
+  function load(){var s=null;try{s=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}
+    major=s&&P[s.major]?s.major:null;done=(s&&s.done)||{};}
+  function saveMajor(m){var s=null;try{s=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}s=s||{open:{},done:{}};s.major=m;try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function mjName(m){return EN?MJ_EN[m]:P[m].label;}
+  function lvName(m,li){var l=P[m].levels[li];return EN?l.en:l.label;}
+  function norm(s){return String(s).toLowerCase().replace(/[ً-ٰٟ]/g,'').replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي');}
+  function hl(s){s=esc(s);if(!q)return s;var n=norm(s);if(n.length!==s.length)return s;var i=n.indexOf(norm(q));return i<0?s:s.slice(0,i)+'<mark>'+s.slice(i,i+q.length)+'</mark>'+s.slice(i+q.length);}
+  function hrs(h){return EN?h+(h===1?' hour':' hours'):h+' '+(h>=3&&h<=10?'ساعات':'ساعة');}
+  function card(c,tag){
+    var m=META[c[0]]||['common'],t=TEACH[c[0]],d=(DESC[c[0]]||{})[EN?'en':'ar']||'',r=RATE[c[0]],pre=String(c[4]||'').trim(),ti=t?t[1].length:0;
+    return '<a class="cc" href="c/'+encodeURIComponent(c[0])+'.html" style="--c:var(--sec-'+m[0]+',var(--teal))">'
+      +'<div class="cc-top"><span class="cc-code">'+hl(c[0])+'</span><div class="cc-t"><b>'+hl(EN?c[1]:c[2])+'</b>'+(EN?'':'<small dir="ltr" style="text-align:right">'+hl(c[1])+'</small>')+'</div>'
+      +(tag==='done'?'<span class="cc-tag ok">'+L('خلّصته','Done')+'</span>':tag==='late'?'<span class="cc-tag late">'+L('متأخر عليك','Behind')+'</span>':'')+'</div>'
+      +(d?'<p class="cc-d">'+esc(d)+'</p>':'')
+      +'<div class="cc-m"><span>'+hrs(c[3])+'</span>'+(pre&&pre!=='—'?'<span>'+L('المتطلب: ','Prerequisite: ')+'<bdi dir="auto">'+esc(pre)+'</bdi></span>':'')
+      +(r?'<span class="st">'+IC.star+' '+r.a.toFixed(1)+' <span>('+(EN?r.n+(r.n===1?' review':' reviews'):r.n+' '+(r.n===1?'تجربة':r.n===2?'تجربتين':r.n<=10?'تجارب':'تجربة'))+')</span></span>':'')
+      +(ti?'<span>'+(EN?ti+(ti===1?' instructor':' instructors'):'يدرّسه '+(ti===1?'عضو واحد':ti===2?'عضوين':ti<=10?ti+' أعضاء':ti+' عضو'))+'</span>':'')
+      +'<span class="go">'+L('صفحة المقرر','Course page')+'<span class="nj-arrow">'+N.icon('arrow')+'</span></span></div></a>';}
+  function grid(l,tag){return '<div class="cr-grid">'+l.map(function(x){return card(x.c||x,typeof tag==='function'?tag(x):tag);}).join('')+'</div>';}
+  function head(t,n){return '<h2 class="cr-h">'+t+(n!==undefined?'<small>'+n+'</small>':'')+'</h2>';}
+  function mine(){
+    if(!major)return '<div class="cr-pick"><b>'+L('وش تخصصك؟','What\'s your major?')+'</b><p>'+L('اختر تخصصك فوق، ونطلع لك مقررات مستواك والفصل الجاي.','Pick your major above to see your level\'s courses and next semester.')+'</p></div>';
+    var lv=P[major].levels,h=NP.hours(major,done),cur=NP.level(h),tot=NP.TOTAL,o='';
+    function isDone(li,ci){return !!done[NP.key(major,li,ci)];}
+    o+='<div class="cr-me"><div><small>'+L('مستواك الحين','Your level now')+'</small><b>'+(cur>=lv.length?L('خريج','Graduated'):lvName(major,cur))+'</b></div><div class="bar" aria-hidden="true"><i style="width:'+Math.min(100,Math.round(h/tot*100))+'%"></i></div><span class="h">'+(EN?h+' of '+tot+' hours':h+' من '+tot+' ساعة')+'</span><a href="plans.html">'+L('حدّث خطتك','Update your plan')+'</a></div>';
+    if(cur>=lv.length)return o+'<p class="cr-empty">'+L('خلّصت كل مقررات خطتك. مبروك!','You\'ve finished every course in your plan. Congratulations!')+'</p>';
+    var late=[];lv.forEach(function(L2,li){if(li<cur)L2.courses.forEach(function(c,ci){if(!isDone(li,ci))late.push(c);});});
+    if(late.length)o+=head(L('متأخرة عليك من المستويات اللي قبل','Behind from earlier levels'),late.length)+grid(late,'late');
+    var left=lv[cur].courses.filter(function(c,ci){return !isDone(cur,ci);}).length;
+    if(left)o+=head(L('مقررات مستواك','Your level\'s courses'),EN?left+' left':'باقي '+left)+grid(lv[cur].courses.map(function(c,ci){return {c:c,d:isDone(cur,ci)};}),function(x){return x.d?'done':'';});
+    if(lv[cur+1])o+=head(L('الفصل الجاي: ','Next: ')+lvName(major,cur+1),lv[cur+1].courses.length)+grid(lv[cur+1].courses,'');
+    var dn=[];lv.forEach(function(L2,li){if(li!==cur)L2.courses.forEach(function(c,ci){if(isDone(li,ci))dn.push(c);});});
+    if(dn.length)o+=showDone?head(L('اللي خلّصتها','Completed'),dn.length)+grid(dn,'done'):'<button type="button" class="cr-more" data-more aria-expanded="false">'+IC.down+L('اللي خلّصتها','Completed')+' ('+dn.length+')</button>';
+    return o;}
+  function all(){var m=browse||major||'mgt',o='';P[m].levels.forEach(function(L2,li){o+=head(lvName(m,li),EN?L2.courses.length+' courses · '+L2.hours+' hours':L2.courses.length+' مقررات · '+L2.hours+' ساعة')+grid(L2.courses,'');});return o;}
+  function search(){var seen={},hits=[],t=norm(q),order=Object.keys(P).sort(function(a){return a===major?-1:1;});
+    order.forEach(function(m){P[m].levels.forEach(function(L2){L2.courses.forEach(function(c){if(seen[c[0]])return;if(norm(c[0]+' '+c[1]+' '+c[2]).indexOf(t)>=0){seen[c[0]]=1;hits.push(c);}});});});
+    return head(L('نتايج البحث','Search results'),hits.length)+(hits.length?grid(hits,''):'<p class="cr-empty">'+L('ما لقينا مقرر بهالاسم. جرّب الرمز، مثل ACCT201.','No course matches. Try a code like ACCT201.')+'</p>');}
+  function body(){return q?search():view==='mine'?mine():all();}
+  function draw(){
+    app.innerHTML='<div class="cr-top"><div class="cr-q">'+IC.q+'<input type="search" id="cr-q" autocomplete="off" placeholder="'+L('ابحث بالاسم أو الرمز','Search by name or code')+'" aria-label="'+L('ابحث عن مقرر','Search for a course')+'"></div>'
+      +'<div class="cr-seg" role="group" aria-label="'+L('العرض','View')+'"><button type="button" data-v="mine" aria-pressed="'+(view==='mine')+'">'+L('مقرراتك','Your courses')+'</button><button type="button" data-v="all" aria-pressed="'+(view==='all')+'">'+L('كل المقررات','All courses')+'</button></div>'
+      +'<div class="cr-mj" role="group" aria-label="'+L('التخصص','Major')+'">'+Object.keys(P).map(function(k){return '<button type="button" data-m="'+k+'" aria-pressed="'+(k===(view==='all'?(browse||major||'mgt'):major))+'">'+esc(mjName(k))+'</button>';}).join('')+'</div>'
+      +'<p class="cr-aside"><span>'+L('تبي تقيّم دكتور؟','Want to rate an instructor?')+' <a href="ratings.html">'+L('تقييم الأعضاء','Rate instructors')+'</a></span></p></div>'
+      +'<div id="cr-out">'+body()+'</div>';
+    var qi=document.getElementById('cr-q');qi.value=q;
+  }
+  function redraw(){document.getElementById('cr-out').innerHTML=body();}
+  app.addEventListener('input',function(e){if(e.target.id!=='cr-q')return;q=e.target.value.trim();redraw();});
+  app.addEventListener('click',function(e){var b=e.target.closest('[data-v],[data-m],[data-more]');if(!b)return;var f=null;
+    if(b.hasAttribute('data-v')){view=b.getAttribute('data-v');f='[data-v="'+view+'"]';}
+    if(b.hasAttribute('data-m')){var mk=b.getAttribute('data-m');f='[data-m="'+mk+'"]';
+      /* في «كل المقررات» نتصفح بس، وفي «مقرراتك» نحفظه تخصصك (نفس تخصص صفحة الخطة) */
+      if(view==='all'||q)browse=mk;else{major=mk;saveMajor(mk);load();}}
+    if(b.hasAttribute('data-more')){showDone=true;}
+    var keepQ=q;draw();q=keepQ;if(f){var el=app.querySelector(f);if(el)el.focus();}});
+  var Q=new URLSearchParams(location.search);if(Q.get('view')==='all')view='all';if(Q.get('q'))q=Q.get('q');
+  load();draw();
+  ['najd:dirty','storage'].forEach(function(ev){window.addEventListener(ev,function(){load();redraw();});});
+  window.NajdCourses={rates:function(map){RATE=map||{};redraw();}};
+})();
+</script>
+<script type="module">
+/* متوسط تقييم كل مقرر من التجارب المعتمدة */
+try {
+  const A = await import("./assets/js/auth.js?v=202611161700");
+  const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
+  const sn = await fs.getDocs(fs.query(fs.collection(A.db, "courseReviews"), fs.where("status", "==", "approved")));
+  const acc = {}; sn.forEach((d) => { const x = d.data(); const r = +x.rating; if (!x.target || !(r >= 1 && r <= 5)) return; const a = acc[x.target] || (acc[x.target] = { s: 0, n: 0 }); a.s += r; a.n++; });
+  const map = {}; for (const k in acc) map[k] = { a: acc[k].s / acc[k].n, n: acc[k].n };
+  if (window.NajdCourses) window.NajdCourses.rates(map);
+} catch (e) { console.warn("najd course ratings", e); }
+</script>
+</body>
+</html>

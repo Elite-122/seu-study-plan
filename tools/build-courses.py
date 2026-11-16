@@ -162,8 +162,19 @@ os.makedirs(os.path.join(ROOT, "c"), exist_ok=True)
 for c in COURSES:
     open(os.path.join(ROOT, "c", c[0] + ".html"), "w", encoding="utf-8").write(page(c))
 
+# أوصاف قصيرة لبطاقات صفحة «المقررات» (العربي كامل لأنه قصير، والإنجليزي أول جملة)
+def first_sentence(t, n=220):
+    t = re.sub(r"\s+", " ", t or "").strip()
+    m = re.match(r"(.{40,}?[.!?])(\s|$)", t)
+    t = m.group(1) if m else t
+    return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + "…"
+short = {c[0]: {"ar": (DESC.get(c[0]) or {}).get("ar", ""), "en": first_sentence((DESC.get(c[0]) or {}).get("en", ""))} for c in COURSES}
+open(os.path.join(ROOT, "assets", "js", "course-desc.js"), "w", encoding="utf-8").write(
+    "/* وصف قصير لكل مقرر لبطاقات صفحة «المقررات». لا تعدّله يدويًا: يتولد من tools/build-courses.py */\n"
+    "window.NAJD_COURSE_DESC=" + json.dumps(short, ensure_ascii=False, separators=(",", ":")) + ";\n")
+
 # خريطة الموقع
-pages = ["", "plans.html", "schedule.html", "gpa.html", "calendar.html", "ratings.html", "coop.html", "store.html", "lessons.html", "quiz.html", "study.html", "next-term.html", "privacy.html", "terms.html"]
+pages = ["", "plans.html", "schedule.html", "gpa.html", "calendar.html", "courses.html", "guide.html", "ratings.html", "coop.html", "store.html", "lessons.html", "quiz.html", "study.html", "next-term.html", "privacy.html", "terms.html"]
 pages = [p for p in pages if p == "" or os.path.exists(os.path.join(ROOT, p))]
 urls = [SITE + p for p in pages] + [f"{SITE}c/{c[0]}.html" for c in COURSES]
 open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(
