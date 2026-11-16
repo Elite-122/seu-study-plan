@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/plans.html">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611161800" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611161015" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611161800">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611161015">
 <style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:var(--sp-4);margin:20px 0 0}
 #najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:10px 8px;text-align:center}
 #najd .pl-stat b{display:block;font-size:var(--fs-4xl);font-weight:800;color:var(--light);line-height:1.2}
@@ -57,7 +57,9 @@ html[data-theme="dark"] #najd .pl-careers span{background:var(--tint);background
 #najd .pl-lv{position:relative;margin:0 0 10px}
 #najd .pl-dot{position:absolute;right:-31px;top:15px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:var(--fs-xs);color:#fff;font-weight:800}
 #najd .pl-dot svg{position:absolute;inset:0}
-#najd .pl-dot b{position:relative;margin-top:5px}
+#najd .pl-dot b{position:relative;display:grid;place-items:center}
+#najd .pl-dot b .nj-icon{width:14px;height:14px;color:#fff;vertical-align:0;stroke-width:2.6}
+#najd .pl-box .nj-icon:not(.is-in){width:18px;height:18px;color:#fff;vertical-align:0;stroke-width:2.6}
 #najd .pl-lvh{width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:13px 16px;text-align:right;color:var(--ink);cursor:pointer}
 #najd .pl-lv.is-open .pl-lvh{border-color:var(--teal)}
 #najd .pl-lvh b{display:block;font-size:var(--fs-lg);font-weight:800}
@@ -145,10 +147,10 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611161800"></script>
-<script src="assets/js/plans-data.js?v=202611161800"></script>
-<script src="assets/js/i18n.js?v=202611161800"></script>
-<script type="module" src="assets/js/auth.js?v=202611161800"></script>
+<script src="assets/js/layout.js?v=202611161015"></script>
+<script src="assets/js/plans-data.js?v=202611161015"></script>
+<script src="assets/js/i18n.js?v=202611161015"></script>
+<script type="module" src="assets/js/auth.js?v=202611161015"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('pl-tl'))return;
@@ -202,12 +204,12 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
     m.levels.forEach(function(lv,li){
       var n=0;lv.courses.forEach(function(c,ci){if(st.done[dkey(li,ci)])n++;});
       var full=n===lv.courses.length,isOpen=open===li;
-      o+='<div class="pl-lv'+(isOpen?' is-open':'')+'"><span class="pl-dot" aria-hidden="true">'+dotSvg(full?'full':isOpen?'open':'idle')+'<b>'+(full?'✓':'')+'</b></span>'
+      o+='<div class="pl-lv'+(isOpen?' is-open':'')+'"><span class="pl-dot" aria-hidden="true">'+dotSvg(full?'full':isOpen?'open':'idle')+'<b>'+(full?window.Najd.icon('tick'):'')+'</b></span>'
         +'<button type="button" class="pl-lvh" data-level="'+li+'" aria-expanded="'+isOpen+'"><span><b>'+esc(lv.label)+'</b><small>'+esc(lv.en)+'</small></span>'
         +'<span class="pl-lvm"><span class="pl-cnt">'+n+'/'+lv.courses.length+'</span><span class="pl-hrs">'+lv.hours+' ساعة</span><span class="pl-chev" aria-hidden="true"></span></span></button><div class="pl-courses">';
       lv.courses.forEach(function(c,ci){
         var d=!!st.done[dkey(li,ci)],pf=c[0].replace(/[0-9]/g,''),ms=d?[]:NP.missing(st.major,st.done,li,ci),lk=ms.length>0;
-        o+='<label class="pl-c'+(d?' is-done':'')+(lk?' is-lock':'')+'"><input type="checkbox" data-done="'+li+'|'+ci+'"'+(d?' checked':'')+(lk?' aria-disabled="true"':'')+'><span class="pl-box" aria-hidden="true">'+(d?'✓':lk?window.Najd.icon('lock','is-in'):'')+'</span>'
+        o+='<label class="pl-c'+(d?' is-done':'')+(lk?' is-lock':'')+'"><input type="checkbox" data-done="'+li+'|'+ci+'"'+(d?' checked':'')+(lk?' aria-disabled="true"':'')+'><span class="pl-box" aria-hidden="true">'+(d?window.Najd.icon('tick'):lk?window.Najd.icon('lock','is-in'):'')+'</span>'
           +'<span class="pl-code" style="--cb:'+(PFX[pf]||'#E4E9EB')+'">'+esc(c[0])+'</span>'
           +'<span class="pl-cn"><b>'+esc(c[2])+'</b><small dir="ltr" style="text-align:right">'+esc(c[1])+'</small>'
           +(lk?'<small class="pl-need">'+T('مقفلة، باقي عليك:')+' <span data-no-i18n>'+esc(needText(ms))+'</span></small>':'<small>المتطلب السابق: '+esc(NP.prereqText(st.major,li,ci))+'</small>')
@@ -249,7 +251,7 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
     ctx.font=weight+' '+min+'px '+FONT;var t=text;while(t.length>1&&ctx.measureText(t+'…').width>maxW)t=t.slice(0,-1);return t===text?t:t+'…';
   }
   /* شعار «طويق»: صورة الشعار الفاتحة، وإذا ما تحمّلت نرسم العلامة بنفس مسارات assets/img/logo.svg */
-  var logoImg=new Image();logoImg.src='assets/img/logo-light.svg?v=202611161800';
+  var logoImg=new Image();logoImg.src='assets/img/logo-light.svg?v=202611161015';
   var MARK=[['#4E7472','M18 51L33 36L41 42L52 30L62 40L70 33L82 18L102 51Z'],['#A9C6C4','M30 51L46 33L58 45L70 31L86 51Z'],['#E4E9EB','M58 51L82 22L102 51Z'],['rgba(255,255,255,.85)','M82 22L76 29.5L80 28L82 31L84.5 27.5L88 29Z'],['#C8CFD2','M57.5 100Q38 93 18 89V57Q38 60 57.5 68Z'],['#E4E9EB','M62.5 100Q82 93 102 89V57Q82 60 62.5 68Z']];
   function drawLogo(ctx,x,y,h){
     if(logoImg.complete&&logoImg.naturalWidth){ctx.drawImage(logoImg,x,y,h*768/188,h);return;}
@@ -329,7 +331,7 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
         var yy=o.y+LVH/2-4;ctx.textBaseline='middle';ctx.textAlign='right';
         ctx.font='800 28px '+FONT;ctx.fillStyle='#2F4F4E';var title=o.lv.label+(o.cont?' (تابع)':'');ctx.fillText(title,PW-M,yy);
         var tw=ctx.measureText(title).width;
-        if(o.dn===o.n){var cx=PW-M-tw-16-96;rr(ctx,cx,yy-17,96,34,17);ctx.fillStyle='#E2ECDD';ctx.fill();ctx.textAlign='center';ctx.font='700 17px '+FONT;ctx.fillStyle='#3E5A33';ctx.fillText('✓ مكتمل',cx+48,yy+1);}
+        if(o.dn===o.n){var cx=PW-M-tw-16-96;rr(ctx,cx,yy-17,96,34,17);ctx.fillStyle='#E2ECDD';ctx.fill();ctx.textAlign='center';ctx.font='700 17px '+FONT;ctx.fillStyle='#3E5A33';ctx.fillText('مكتمل',cx+48,yy+1);var tw=ctx.measureText('مكتمل').width,tx0=cx+48-tw-22;ctx.beginPath();ctx.moveTo(tx0,yy+1);ctx.lineTo(tx0+5,yy+6);ctx.lineTo(tx0+14,yy-4);ctx.strokeStyle='#3E5A33';ctx.lineWidth=2.6;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();}
         ctx.textAlign='left';ctx.font='500 19px '+FONT;ctx.fillStyle='#758A8C';ctx.fillText(o.dn+' من '+o.n+' مقررات  |  '+o.lv.hours+' ساعة',M,yy);
         ctx.fillStyle='#E4E9EB';ctx.fillRect(M,o.y+LVH-10,PW-2*M,2);
       }else{
