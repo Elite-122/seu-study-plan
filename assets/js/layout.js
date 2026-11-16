@@ -4,7 +4,7 @@
   var root=document.getElementById('najd');if(!root)return;
 
   /* روابط الصفحات — عدّلها هنا لو غيّرت أسماء الملفات */
-  var LINKS={home:'index.html',study:'study.html',nextterm:'next-term.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',privacy:'privacy.html',terms:'terms.html',quiz:'quiz.html',calendar:'calendar.html',ratings:'ratings.html',account:'account.html',courses:'courses.html',guide:'guide.html'};
+  var LINKS={home:'index.html',study:'study.html',nextterm:'next-term.html',plans:'plans.html',schedule:'schedule.html',gpa:'gpa.html',lessons:'lessons.html',login:'login.html',register:'register.html',coop:'coop.html',store:'store.html',admin:'admin.html',privacy:'privacy.html',terms:'terms.html',quiz:'quiz.html',calendar:'calendar.html',ratings:'ratings.html',account:'account.html',courses:'courses.html',guide:'guide.html',adminhome:'admin-home.html'};
   /* بريد التواصل (يظهر في سياسة الخصوصية والشروط) — اكتبه هنا */
   /* حساب تيليقرام */
   var TELEGRAM_URL='https://t.me/najdacdemy';
@@ -48,6 +48,7 @@
     focus:'<circle cx="12" cy="13" r="7.500"/><path d="M12 9.500V13l2.500 1.500M10 3h4"/>',
     pause:'<path d="M9 6.500v11M15 6.500v11"/>',
     /* سهم «كمّل» (يأشر لليسار بالعربي، وينقلب بالإنجليزي)، وصح، ورابط خارجي: كلها في نص المربع */
+    shield:'<path d="M12 3.500l7 3v5c0 4.300-2.900 7.700-7 9.500-4.100-1.800-7-5.200-7-9.500v-5z"/><path d="M9 12.200l2.100 2.100L15.200 10"/>',
     guide:'<path d="M12 3v18M9 21h6"/><path d="M5 6h10.5l2.5 2.5-2.5 2.5H5z"/><path d="M19 13H9.5L7 15.5 9.5 18H19z"/>',
     arrow:'<path d="M19 12H5M11 6l-6 6 6 6"/>',tick:'<path d="M5.500 12.500l4.200 4.200L18.500 8"/>',ext:'<path d="M8 16L16 8M9.500 8H16v6.500"/>',
     ledger:'<rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 9.500h16M9.5 9.500V20M13 13.500h4M13 16.500h4"/>'};
@@ -97,18 +98,21 @@
   if(!document.documentElement.getAttribute('data-theme')){var t0='light';try{if(localStorage.getItem('najd_theme')==='dark')t0='dark';}catch(e){}document.documentElement.setAttribute('data-theme',t0);}
   root.addEventListener('click',function(e){if(e.target.closest('[data-theme-toggle]'))setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
 
+  /* لوحة الإدارة: تطلع للمشرفين بس (auth.js يتأكد من admins/{uid} ويستدعي setAdmin). الحماية الحقيقية في قواعد Firestore */
+  var ADM_BTN='<a class="nj-ic nj-adm-btn" href="'+LINKS.adminhome+'" data-adm hidden aria-label="لوحة الإدارة" title="لوحة الإدارة">'+icon('shield')+'<span class="nj-adm-n" data-adm-n hidden></span></a>';
+  var ADM_CARD='<a class="nj-adm-card" href="'+LINKS.adminhome+'" data-adm hidden>'+icon('shield')+'<span><b>لوحة الإدارة</b><small data-adm-sub>الموافقات وأرقام اليوم</small></span><span class="nj-adm-n" data-adm-n hidden></span></a>';
   var head=document.getElementById('nj-header');
   if(head){
     head.outerHTML='<header class="nj-head" id="nj-head"><div class="nj-in nj-bar">'
-      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611162330" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg?v=202611162330" alt="أكاديمية نجد" width="184" height="45"></a>'
+      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611170030" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg?v=202611170030" alt="أكاديمية نجد" width="184" height="45"></a>'
       +'<nav class="nj-nav" aria-label="القائمة الرئيسية">'+navLinks()+'</nav>'
-      +'<div class="nj-acts"><a class="nj-streak" id="nj-streak" href="'+LINKS.study+'" hidden>'+icon('peak')+'<b></b></a><button type="button" class="nj-ic" data-search aria-label="بحث وأوامر" title="بحث وأوامر">'+icon('search')+'</button>'+PREFS
+      +'<div class="nj-acts"><a class="nj-streak" id="nj-streak" href="'+LINKS.study+'" hidden>'+icon('peak')+'<b></b></a><button type="button" class="nj-ic" data-search aria-label="بحث وأوامر" title="بحث وأوامر">'+icon('search')+'</button>'+ADM_BTN+PREFS
       +'<a class="nj-btn nj-btn-line nj-btn-sm nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
       +'<a class="nj-btn nj-btn-fill nj-btn-sm nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a>'
       +userBox
       +'<button type="button" class="nj-menu" id="nj-menu" aria-expanded="false" aria-controls="nj-drawer" aria-label="فتح القائمة"><i></i><i></i><i></i></button>'
       +'</div></div>'
-      +'<div class="nj-drawer" id="nj-drawer">'+drawerLinks()+'<div class="nj-prefs">'+PREFS_LBL+'</div>'
+      +'<div class="nj-drawer" id="nj-drawer">'+ADM_CARD+drawerLinks()+'<div class="nj-prefs">'+PREFS_LBL+'</div>'
       +userBox
       +'<a class="nj-btn nj-btn-fill nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a>'
       +'<a class="nj-btn nj-btn-line nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
@@ -118,7 +122,7 @@
   if(foot){
     foot.outerHTML='<footer class="nj-foot"><div class="nj-in">'
       +'<div class="nj-foot-g">'
-      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611162330" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
+      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611170030" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
       +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.quiz+'">اختبر نفسك</a><a href="'+LINKS.courses+'">المقررات</a><a href="'+LINKS.guide+'">دليل الطالب</a><a href="'+LINKS.ratings+'">تقييم الأعضاء</a><a href="'+LINKS.calendar+'">التقويم الأكاديمي</a><a href="'+LINKS.study+'">خطة المذاكرة</a><a href="'+LINKS.nextterm+'">وش أسجل الفصل الجاي؟</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.store+'">المتجر</a></nav></div>'
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a><a href="#" data-install>ثبّت التطبيق على جوالك</a></nav>'
@@ -239,8 +243,18 @@
   function lock(){if(REQUIRED)root.classList.toggle('nj-locked',!root.classList.contains('is-in'));}
   lock();
 
+  /* المشرف: نعرض الدخول السريع للوحة الإدارة، ومعه عدد اللي ينتظر الموافقة */
+  function setAdmin(on,n){
+    on=!!on;root.classList.toggle('is-admin',on);
+    var k=on&&n>0?n:0,el=root.querySelectorAll('[data-adm]'),ns=root.querySelectorAll('[data-adm-n]'),sb=root.querySelectorAll('[data-adm-sub]');
+    for(var i=0;i<el.length;i++){el[i].hidden=!on;if(el[i].tagName==='A'&&el[i].classList.contains('nj-adm-btn'))el[i].setAttribute('aria-label',k?'لوحة الإدارة، '+k+' تنتظر موافقتك':'لوحة الإدارة');}
+    for(var j=0;j<ns.length;j++){ns[j].hidden=!k;ns[j].textContent=k>99?'99+':String(k);}
+    for(var m=0;m<sb.length;m++)sb[m].textContent=k?(k===1?'شي واحد ينتظر موافقتك':k===2?'شيئين ينتظرون موافقتك':k+(k<=10?' أشياء تنتظر موافقتك':' شي ينتظر موافقتك')):'الموافقات وأرقام اليوم';
+    try{on?localStorage.setItem('najd_admin',JSON.stringify({n:k})):localStorage.removeItem('najd_admin');}catch(e){}
+  }
   /* حالة الدخول: نعرضها فورًا من آخر حالة محفوظة، وبعدين Firebase يأكدها */
   function setUser(u){
+    if(!u)setAdmin(false);
     root.classList.toggle('is-in',!!u);
     document.body.classList.toggle('logged-in',!!u);
     var name=u?(u.name||(u.email||'').split('@')[0]||phoneLocal(u.phone)||'طالب نجد'):'';
@@ -250,7 +264,7 @@
     lock();
     try{window.dispatchEvent(new CustomEvent('najd:auth',{detail:u||null}));}catch(e){}
   }
-  try{var cached=JSON.parse(localStorage.getItem('najd_user')||'null');if(cached)setUser(cached);}catch(e){}
+  try{var cached=JSON.parse(localStorage.getItem('najd_user')||'null');if(cached){setUser(cached);var ca=JSON.parse(localStorage.getItem('najd_admin')||'null');if(ca)setAdmin(true,+ca.n||0);}}catch(e){}
   root.addEventListener('click',function(e){var b=e.target.closest('[data-logout]');if(!b)return;e.preventDefault();if(window.NajdAuth)window.NajdAuth.logout();});
 
   /* رسالة قصيرة تحت. o.undo = زر «تراجع» بدل نافذة «متأكد؟» */
@@ -423,7 +437,7 @@
   function sxItem(href,lead,title,sub,ltr){return '<a class="nj-sx-it" role="option" href="'+href+'"><span class="nj-sx-lead"'+(ltr?' dir="ltr"':'')+'>'+lead+'</span><span class="nj-sx-tx"><b data-no-i18n>'+esc(title)+'</b>'+(sub?'<small data-no-i18n>'+esc(sub)+'</small>':'')+'</span></a>';}
   function sxRender(raw){
     var box=document.getElementById('nj-sx-res'),q=norm(raw),qc=String(raw||'').replace(/\s+/g,'').toUpperCase(),o='';
-    var cmds=CMDS.filter(function(c){return !q||hit(q,c[1]+' '+c[2]+' '+c[4]+' '+TT(c[1]))>-1;}).slice(0,q?3:6);
+    var cmds=(root.classList.contains('is-admin')?[['shield','لوحة الإدارة','للمشرفين: الموافقات وأرقام اليوم',LINKS.adminhome,'اداره لوحه مشرف ادمن admin']]:[]).concat(CMDS).filter(function(c){return !q||hit(q,c[1]+' '+c[2]+' '+c[4]+' '+TT(c[1]))>-1;}).slice(0,q?3:6);
     if(cmds.length)o+='<p class="nj-sx-h">'+TT('أوامر سريعة')+'</p>'+cmds.map(function(c){return sxItem(c[3],icon(c[0]),TT(c[1]),TT(c[2]));}).join('');
     var tools=PAGES_SX.filter(function(k){return !q||hit(q,ITEMS[k][1]+' '+ITEMS[k][2]+' '+TT(ITEMS[k][1]))>-1;}).slice(0,q?4:9);
     if(tools.length)o+='<p class="nj-sx-h">'+TT('الأدوات')+'</p>'+tools.map(function(k){return sxItem(LINKS[k],icon(ITEMS[k][0]),TT(ITEMS[k][1]),TT(ITEMS[k][2]));}).join('');
@@ -475,7 +489,7 @@
     }
   }
 
-  window.Najd={calendar:addToCalendar,search:function(){sxOpen();},install:install,LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,icon:icon,setSync:setSync,esc:esc,announce:announce};
+  window.Najd={setAdmin:setAdmin,calendar:addToCalendar,search:function(){sxOpen();},install:install,LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,icon:icon,setSync:setSync,esc:esc,announce:announce};
 
   /* ظهور العناصر والعدادات */
   var rv=root.querySelectorAll('.nj-rv');

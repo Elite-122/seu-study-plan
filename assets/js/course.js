@@ -124,7 +124,7 @@ function contentHtml(user, lessons, quizzes, grants, verified) {
 }
 
 try {
-  const A = await import("./auth.js?v=202611162330");
+  const A = await import("./auth.js?v=202611170030");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   /* التقييمات: للكل */

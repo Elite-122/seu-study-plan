@@ -126,6 +126,7 @@ onAuthStateChanged(auth, async (user) => {
   current = user;
   if (!user) { N.setUser(null); return; }
   N.setUser(userInfo(user));
+  checkAdmin(user);
   try {
     const changed = await pull(user.uid);
     const flag = "najd_pulled_" + user.uid;
@@ -137,14 +138,35 @@ onAuthStateChanged(auth, async (user) => {
     }
     sessionStorage.setItem(flag, "1");
     /* تنبيهات الدراسة: الموافقة أول مرة، وتجديد رمز الجهاز */
-    import("./notify.js?v=202611162330").then((m) => m.start(user, cloudNotify)).catch((e) => console.warn("najd notify", e));
+    import("./notify.js?v=202611170030").then((m) => m.start(user, cloudNotify)).catch((e) => console.warn("najd notify", e));
     /* ملف الحساب للوحة الإدارة (الاسم والإيميل وتاريخ التسجيل) */
-    import("./stats.js?v=202611162330").then((m) => m.saveProfile(user)).catch(() => {});
+    import("./stats.js?v=202611170030").then((m) => m.saveProfile(user)).catch(() => {});
   } catch (e) {
     console.warn("najd pull", e);
     N.setSync("ما قدرنا نجيب تقدمك من السحابة");
   }
 });
+
+/* المشرف: نتأكد من admins/{uid} مرة في الجلسة، ونحدّث عدد اللي ينتظر الموافقة كل ٥ دقايق بالكثير.
+   هذا للعرض بس (زر لوحة الإدارة)، والحماية الحقيقية في قواعد Firestore */
+const snapLen = (sn) => (typeof sn.size === "number" ? sn.size : sn.docs ? sn.docs.length : 0);
+async function pendingCount() {
+  let n = 0;
+  for (const col of ["courseReviews", "instructorReviews"]) n += snapLen(await getDocs(query(collection(db, col), where("status", "==", "pending"))));
+  return n + snapLen(await getDocs(collection(db, "testimonialInbox")));
+}
+async function checkAdmin(user) {
+  if (!N.setAdmin) return;
+  const key = "najd_adm_" + user.uid, ss = (k, v) => { try { return v === undefined ? sessionStorage.getItem(k) : sessionStorage.setItem(k, v); } catch (e) { return null; } };
+  try {
+    let flag = ss(key);
+    if (flag !== "1" && flag !== "0") { flag = (await getDoc(doc(db, "admins", user.uid))).exists() ? "1" : "0"; ss(key, flag); }
+    if (flag !== "1") { N.setAdmin(false); return; }
+    let cached = 0; try { cached = +(JSON.parse(localStorage.getItem("najd_admin") || "null") || {}).n || 0; } catch (e) {}
+    N.setAdmin(true, cached);
+    if (Date.now() - (+ss(key + "_t") || 0) > 3e5) { N.setAdmin(true, await pendingCount()); ss(key + "_t", String(Date.now())); }
+  } catch (e) { console.warn("najd admin", e); }
+}
 
 function userInfo(u) { return { name: u.displayName || "", email: u.email || "", phone: u.phoneNumber || "" }; }
 
@@ -209,5 +231,5 @@ getDoc(doc(db, "settings", "announcement")).then((s) => { if (s.exists() && N.an
 
 export { app, auth, db };
 /* عدّاد الزوار: مرة وحدة لكل جهاز في اليوم */
-setTimeout(() => { import("./stats.js?v=202611162330").then((m) => m.countVisit()).catch(() => {}); }, 1200);
-window.NajdNotify = { settings: async (box, u) => (await import("./notify.js?v=202611162330")).settings(box, u) };
+setTimeout(() => { import("./stats.js?v=202611170030").then((m) => m.countVisit()).catch(() => {}); }, 1200);
+window.NajdNotify = { settings: async (box, u) => (await import("./notify.js?v=202611170030")).settings(box, u) };
