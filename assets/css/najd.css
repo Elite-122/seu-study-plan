@@ -512,7 +512,7 @@ html.is-app #najd .nj-tabbar .nj-tab-go .nj-icon{width:26px;height:26px}
 html.is-app #najd .nj-tabbar .nj-tab-go:active i{transform:scale(.94)}
 html.is-app[data-theme="dark"] #najd .nj-tabbar .nj-tab-go i{background:#3C7572}
 html.is-app #najd .nj-foot{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
-html.is-app #najd .nj-drawer{max-height:calc(100vh - 74px - 70px - env(safe-area-inset-bottom))}
+html.is-app #najd .nj-drawer{max-height:calc(100vh - 74px - 98px - env(safe-area-inset-top) - env(safe-area-inset-bottom));padding-bottom:40px}
 html.is-app #najd .nj-toast{bottom:calc(84px + env(safe-area-inset-bottom))}
 }
 /* جوالات ضيقة: الشعار أصغر، وزر اللغة ينتقل للقائمة (موجود فيها) */

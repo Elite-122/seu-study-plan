@@ -100,7 +100,7 @@
   var head=document.getElementById('nj-header');
   if(head){
     head.outerHTML='<header class="nj-head" id="nj-head"><div class="nj-in nj-bar">'
-      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611162200" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg?v=202611162200" alt="أكاديمية نجد" width="184" height="45"></a>'
+      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611162300" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg?v=202611162300" alt="أكاديمية نجد" width="184" height="45"></a>'
       +'<nav class="nj-nav" aria-label="القائمة الرئيسية">'+navLinks()+'</nav>'
       +'<div class="nj-acts"><a class="nj-streak" id="nj-streak" href="'+LINKS.study+'" hidden>'+icon('peak')+'<b></b></a><button type="button" class="nj-ic" data-search aria-label="بحث وأوامر" title="بحث وأوامر">'+icon('search')+'</button>'+PREFS
       +'<a class="nj-btn nj-btn-line nj-btn-sm nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
@@ -118,7 +118,7 @@
   if(foot){
     foot.outerHTML='<footer class="nj-foot"><div class="nj-in">'
       +'<div class="nj-foot-g">'
-      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611162200" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
+      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611162300" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
       +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.quiz+'">اختبر نفسك</a><a href="'+LINKS.courses+'">المقررات</a><a href="'+LINKS.guide+'">دليل الطالب</a><a href="'+LINKS.ratings+'">تقييم الأعضاء</a><a href="'+LINKS.calendar+'">التقويم الأكاديمي</a><a href="'+LINKS.study+'">خطة المذاكرة</a><a href="'+LINKS.nextterm+'">وش أسجل الفصل الجاي؟</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.store+'">المتجر</a></nav></div>'
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a><a href="#" data-install>ثبّت التطبيق على جوالك</a></nav>'
@@ -197,7 +197,14 @@
   var hd=document.getElementById('nj-head'),btn=document.getElementById('nj-menu');
   if(hd&&btn){
     var more=root.querySelector('[data-tab-more]');
-    function menuSet(o){hd.classList.toggle('is-open',o);btn.setAttribute('aria-expanded',o?'true':'false');btn.setAttribute('aria-label',o?'إغلاق القائمة':'فتح القائمة');if(more)more.setAttribute('aria-expanded',o?'true':'false');}
+    /* طول القائمة = المساحة الفعلية من تحت الهيدر لين فوق الشريط السفلي (تختلف بين الجوالات: النوتش وشريط الآيفون) */
+    var drw=document.getElementById('nj-drawer');
+    function fitDrawer(){if(!drw||!hd.classList.contains('is-open'))return;var tb=root.querySelector('.nj-tabbar'),vh=window.visualViewport?window.visualViewport.height:window.innerHeight,
+      ts=tb&&getComputedStyle(tb),lim=ts&&ts.display!=='none'&&ts.position==='fixed'?tb.getBoundingClientRect().top:vh;
+      drw.style.maxHeight=Math.max(160,Math.floor(lim-drw.getBoundingClientRect().top))+'px';}
+    function menuSet(o){hd.classList.toggle('is-open',o);btn.setAttribute('aria-expanded',o?'true':'false');btn.setAttribute('aria-label',o?'إغلاق القائمة':'فتح القائمة');if(more)more.setAttribute('aria-expanded',o?'true':'false');
+      if(o){fitDrawer();requestAnimationFrame(fitDrawer);}else if(drw)drw.style.maxHeight='';}
+    window.addEventListener('resize',fitDrawer);if(window.visualViewport)window.visualViewport.addEventListener('resize',fitDrawer);
     btn.addEventListener('click',function(){menuSet(!hd.classList.contains('is-open'));});
     if(more)more.addEventListener('click',function(){menuSet(!hd.classList.contains('is-open'));});
     document.getElementById('nj-drawer').addEventListener('click',function(e){if(e.target.closest('a'))menuSet(false);});
