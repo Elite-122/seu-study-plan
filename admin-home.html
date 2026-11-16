@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>لوحة الإدارة | أكاديمية نجد</title>
+<meta name="description" content="لوحة الإدارة السريعة لأكاديمية نجد: للمشرفين بس.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="أكاديمية نجد">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="لوحة الإدارة | أكاديمية نجد">
+<meta property="og:description" content="لوحة الإدارة السريعة لأكاديمية نجد: للمشرفين بس.">
+<meta property="og:url" content="https://najdacdemy.com/admin-home.html">
+<meta property="og:image" content="https://najdacdemy.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://najdacdemy.com/admin-home.html">
+<meta name="theme-color" content="#2F4F4E">
+<link rel="icon" href="assets/img/mark.svg?v=202611170030" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="نجد">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611170030">
+<meta name="robots" content="noindex,nofollow">
+<style>
+/* لوحة الإدارة السريعة: للجوال أول. أرقام اليوم، واللي ينتظر الموافقة، وإضافة سريعة */
+#najd .ah-wrap{max-width:720px}
+#najd .ah-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 0 12px}
+#najd .ah-top small{display:block;color:var(--slate);font-weight:700;font-size:var(--fs-sm)}
+#najd .ah-top h2{font-size:var(--fs-3xl);font-weight:800;margin:2px 0 0;line-height:1.3}
+#najd .ah-ref{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:var(--r-md);border:1.5px solid var(--line);background:var(--card);font:inherit;font-weight:800;font-size:var(--fs-sm);color:var(--dtext);cursor:pointer}
+#najd .ah-ref .nj-icon{width:18px;height:18px}
+#najd .ah-kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#najd .ah-kpi>*{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 8px;text-align:center;box-shadow:var(--shadow);text-decoration:none;color:var(--ink)}
+#najd .ah-kpi b{display:block;font-size:26px;font-weight:800;line-height:1.1}
+#najd .ah-kpi small{display:block;font-size:12px;font-weight:700;color:var(--slate);line-height:1.5;margin-top:2px}
+#najd .ah-kpi .is-hot{background:#F6EEE2;border-color:#E2C9A6}
+#najd .ah-kpi .is-hot b{color:#7A5A1E}
+#najd .ah-sec{margin-top:18px}
+#najd .ah-sec>h3{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:var(--fs-lg);font-weight:800;margin:0 2px 8px}
+#najd .ah-sec>h3 a{display:inline-flex;align-items:center;min-height:44px;font-size:var(--fs-sm);color:var(--dtext);text-decoration:underline;text-underline-offset:3px;font-weight:700}
+#najd .ah-rv{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px;margin-bottom:8px;box-shadow:var(--shadow)}
+#najd .ah-rv .m{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:var(--fs-sm);font-weight:700;color:var(--slate)}
+#najd .ah-rv .code{direction:ltr;background:var(--bg);border-radius:8px;padding:2px 7px;color:var(--dtext)}
+#najd .ah-rv .st{color:#7A5A1E}
+#najd .ah-rv p{margin:6px 0 10px;font-size:var(--fs-base);line-height:1.8;white-space:pre-line;overflow-wrap:anywhere}
+#najd .ah-rv .btns{display:flex;gap:8px}
+#najd .ah-rv .btns .nj-btn{flex:1;min-height:44px;height:44px}
+#najd .ah-empty{background:var(--card);border:1px dashed var(--line);border-radius:var(--r-lg);padding:18px;text-align:center;color:var(--muted);margin:0}
+#najd .ah-qa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#najd .ah-qa a{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 4px;font-size:var(--fs-sm);font-weight:800;color:var(--ink);text-align:center;text-decoration:none;box-shadow:var(--shadow)}
+#najd .ah-qa a:hover{border-color:var(--teal)}
+#najd .ah-qa .nj-icon{width:24px;height:24px;color:var(--teal)}
+#najd .ah-all{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+#najd .ah-all a{display:flex;align-items:center;gap:10px;min-height:52px;padding:0 14px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:700}
+#najd .ah-all a:last-child{border-bottom:0}
+#najd .ah-all a .nj-icon{width:20px;height:20px;color:var(--teal)}
+#najd .ah-all a .nj-arrow{margin-inline-start:auto;color:var(--slate)}
+#najd .ah-msg{text-align:center}
+#najd .ah-msg b{display:block;font-size:var(--fs-xl);margin-bottom:6px}
+#najd .ah-msg p{color:var(--muted);margin:0 0 14px}
+#najd .ah-ref:focus-visible,#najd .ah-qa a:focus-visible,#najd .ah-all a:focus-visible,#najd .ah-kpi a:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+html[data-theme="dark"] #najd .ah-kpi .is-hot{background:#2B2518;border-color:#8A6A3A}
+html[data-theme="dark"] #najd .ah-kpi .is-hot b,html[data-theme="dark"] #najd .ah-rv .st{color:#E7C79A}
+</style>
+</head>
+<body>
+<div id="najd" dir="rtl" data-page="adminhome">
+<div id="nj-header"></div>
+<section class="nj-band">
+<svg class="nj-band-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="86" cy="22" r="9" fill="#D9B48A"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L82 18L102 51Z" fill="#4E7472"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#A9C6C4"/><path d="M58 51L82 22L102 51Z" fill="#E4E9EB"/><path d="M82 22L76 29.5L80 28L82 31L84.5 27.5L88 29Z" fill="#fff" opacity=".85"/><path d="M57.5 100 Q38 93 18 89 V57 Q38 60 57.5 68Z" fill="#C8CFD2"/><path d="M62.5 100 Q82 93 102 89 V57 Q82 60 62.5 68Z" fill="#E4E9EB"/></svg>
+<div class="nj-in">
+<p class="nj-crumb"><a href="index.html">الرئيسية</a><span>/</span>لوحة الإدارة</p>
+<h1>لوحة الإدارة</h1>
+<p class="nj-band-sub">الموافقات وأرقام اليوم والإضافة السريعة، من جوالك.</p>
+</div>
+</section>
+<main class="nj-main">
+<div class="nj-in ah-wrap" id="ah-app" data-no-i18n><div class="nj-card nj-empty"><p>جاري التحميل…</p></div></div>
+</main>
+<div id="nj-footer"></div>
+</div>
+<script src="assets/js/layout.js?v=202611170030"></script>
+<script src="assets/js/courses-data.js?v=202611170030"></script>
+<script src="assets/js/faculty-data.js?v=202611170030"></script>
+<script type="module">
+/* للمشرفين بس: نتأكد من admins/{uid}، وقواعد Firestore ترفض أي أحد غيرهم يقرأ أو يكتب هالبيانات */
+import { auth, db } from "./assets/js/auth.js?v=202611170030";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+import { collection, doc, getDoc, getDocs, query, where, updateDoc, deleteDoc, writeBatch, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+const N = window.Najd, esc = N.esc, ic = N.icon, app = document.getElementById("ah-app");
+const COURSE = {}; (window.NAJD_COURSES || []).forEach((c) => { COURSE[c[0]] = c[1]; });
+const FAC = {}; (window.NAJD_FACULTY || []).forEach((f) => { FAC[f[0]] = f[1]; });
+const ymd = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Riyadh" }).format(d);
+const fmt = (n) => Number(n || 0).toLocaleString("en-US");
+const len = (sn) => (typeof sn.size === "number" ? sn.size : sn.docs ? sn.docs.length : 0);
+const QUICK = [["bell", "إعلان", "ann"], ["calendar", "موعد", "calendar"], ["store", "منتج", "products"], ["lessons", "شرح", "lessons"], ["quiz", "اختبار", "quizzes"], ["user", "مشترك", "access"]];
+const ALL = [["ledger", "الإحصائيات والحسابات", "stats"], ["bell", "الإعلان", "ann"], ["store", "المنتجات", "products"], ["lessons", "الشروحات", "lessons"], ["quiz", "الاختبارات", "quizzes"], ["user", "المشتركين", "access"], ["coop", "التدريب التعاوني", "coop"], ["calendar", "التقويم", "calendar"], ["ratings", "التقييمات", "reviews"], ["book", "الأعضاء", "instructors"], ["bulb", "آراء الطلاب", "testimonials"]];
+let pending = [], kpi = { web: 0, app: 0, users: 0 };
+
+function msg(t, p, btn) { app.innerHTML = `<div class="nj-card ah-msg"><b>${t}</b><p>${p}</p>${btn || ""}</div>`; }
+async function load() {
+  const today = ymd(new Date()), start = Timestamp.fromDate(new Date(today + "T00:00:00+03:00"));
+  const [st, users, cr, ir, tb] = await Promise.all([
+    getDoc(doc(db, "stats", today)).catch(() => null),
+    getDocs(query(collection(db, "profiles"), where("created", ">=", start))).catch(() => null),
+    getDocs(query(collection(db, "courseReviews"), where("status", "==", "pending"))),
+    getDocs(query(collection(db, "instructorReviews"), where("status", "==", "pending"))),
+    getDocs(collection(db, "testimonialInbox"))
+  ]);
+  const s = st && st.exists() ? st.data() : {};
+  kpi = { web: +s.web || 0, app: +s.app || 0, users: users ? len(users) : null };
+  pending = [];
+  cr.forEach((d) => pending.push({ kind: "course", col: "courseReviews", id: d.id, ...d.data() }));
+  ir.forEach((d) => pending.push({ kind: "inst", col: "instructorReviews", id: d.id, ...d.data() }));
+  tb.forEach((d) => pending.push({ kind: "test", col: "testimonialInbox", id: d.id, ...d.data() }));
+  pending.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+}
+function card(x) {
+  const key = x.col + "|" + x.id;
+  if (x.kind === "test") return `<div class="ah-rv" data-k="${esc(key)}"><div class="m"><span>رأي طالب</span><span class="st">للصفحة الرئيسية</span><span>${esc(x.name || "")}${x.role ? " · " + esc(x.role) : ""}</span></div><p>${esc(x.text || "")}</p><div class="btns"><button type="button" class="nj-btn nj-btn-fill" data-ok="${esc(key)}">انشر</button><button type="button" class="nj-btn nj-btn-line" data-no="${esc(key)}">احذف</button></div></div>`;
+  const who = x.kind === "course" ? `<span class="code">${esc(x.target)}</span><span>${esc(COURSE[x.target] || "تقييم مقرر")}</span>` : `<span>تقييم عضو</span><span>${esc(FAC[x.target] || x.target || "")}</span>`;
+  return `<div class="ah-rv" data-k="${esc(key)}"><div class="m">${who}<span class="st">★ ${esc(x.rating)}/5</span></div><p>${esc(x.tip || "")}</p><div class="btns"><button type="button" class="nj-btn nj-btn-fill" data-ok="${esc(key)}">انشر</button><button type="button" class="nj-btn nj-btn-line" data-no="${esc(key)}">احذف</button></div></div>`;
+}
+function pendingHTML() {
+  return `<h3 id="ah-pend-h">تنتظر موافقتك (${pending.length})<a href="admin.html#reviews">كل التقييمات</a></h3>` + (pending.length ? pending.map(card).join("") : '<p class="ah-empty">كل شي تمام، ما فيه شي ينتظر موافقتك.</p>');
+}
+function draw() {
+  const now = new Date(), day = new Intl.DateTimeFormat("ar-SA-u-ca-gregory-nu-latn", { weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Riyadh" }).format(now);
+  app.innerHTML = `<div class="ah-top"><div><small>${esc(day)}</small><h2>أهلًا، هذي لوحتك</h2></div><button type="button" class="ah-ref" id="ah-ref">حدّث</button></div>
+  <div class="ah-kpi"><a href="admin.html#stats"><b>${fmt(kpi.web + kpi.app)}</b><small>زيارة اليوم<br>${fmt(kpi.web)} موقع · ${fmt(kpi.app)} تطبيق</small></a><a href="admin.html#stats"><b>${kpi.users === null ? "—" : fmt(kpi.users)}</b><small>حساب جديد<br>اليوم</small></a><a href="#ah-pend-h" class="${pending.length ? "is-hot" : ""}"><b>${fmt(pending.length)}</b><small>تنتظر<br>موافقتك</small></a></div>
+  <section class="ah-sec" id="ah-pend">${pendingHTML()}</section>
+  <section class="ah-sec"><h3>إضافة سريعة</h3><div class="ah-qa">${QUICK.map((q) => `<a href="admin.html#${q[2]}">${ic(q[0])}${q[1]}</a>`).join("")}</div></section>
+  <section class="ah-sec"><h3>كل الأقسام</h3><nav class="ah-all" aria-label="أقسام لوحة الإدارة">${ALL.map((q) => `<a href="admin.html#${q[2]}">${ic(q[0])}${q[1]}<span class="nj-arrow">${ic("arrow")}</span></a>`).join("")}</nav></section>`;
+  N.setAdmin && N.setAdmin(true, pending.length);
+}
+function redrawPending() {
+  document.getElementById("ah-pend").innerHTML = pendingHTML();
+  const hot = app.querySelector('.ah-kpi a[href="#ah-pend-h"]'); if (hot) { hot.classList.toggle("is-hot", !!pending.length); hot.querySelector("b").textContent = fmt(pending.length); }
+  N.setAdmin && N.setAdmin(true, pending.length);
+}
+app.addEventListener("click", async (e) => {
+  if (e.target.closest("#ah-ref")) { await boot(true); return; }
+  const b = e.target.closest("[data-ok],[data-no]"); if (!b) return;
+  const ok = b.hasAttribute("data-ok"), key = b.getAttribute(ok ? "data-ok" : "data-no"), [col, id] = key.split("|"), x = pending.find((p) => p.col === col && p.id === id);
+  if (!x) return;
+  if (!ok && !confirm(x.kind === "test" ? "تحذف هذا الرأي؟" : "تحذف هذا التعليق؟")) return;
+  const btns = b.parentNode.querySelectorAll("button"); btns.forEach((t) => { t.disabled = true; }); b.setAttribute("aria-busy", "true");
+  try {
+    if (x.kind === "test") {
+      if (ok) { const w = writeBatch(db); w.set(doc(collection(db, "testimonials")), { name: x.name || "", role: x.role || "", text: x.text || "", order: null, active: true, createdAt: serverTimestamp() }); w.delete(doc(db, "testimonialInbox", x.id)); await w.commit(); }
+      else await deleteDoc(doc(db, "testimonialInbox", x.id));
+    } else if (ok) await updateDoc(doc(db, col, id), { status: "approved" });
+    else await deleteDoc(doc(db, col, id));
+    pending = pending.filter((p) => p !== x); redrawPending();
+    N.toast(ok ? (x.kind === "test" ? "انتشر الرأي في الرئيسية" : "انتشر التعليق") : "انحذف");
+  } catch (er) { console.warn(er); btns.forEach((t) => { t.disabled = false; }); b.removeAttribute("aria-busy"); N.toast("ما قدرنا ننفذ. جرّب مرة ثانية."); }
+});
+async function boot(refresh) {
+  if (refresh) { const r = document.getElementById("ah-ref"); if (r) { r.disabled = true; r.setAttribute("aria-busy", "true"); } }
+  try { await load(); draw(); if (refresh) N.toast("تحدّثت اللوحة"); }
+  catch (e) { console.warn("najd admin home", e); msg("ما قدرنا نحمّل اللوحة", "تأكد من اتصالك وحدّث الصفحة.", '<a class="nj-btn nj-btn-line" href="admin.html">افتح اللوحة الكاملة</a>'); }
+}
+let started = false;
+onAuthStateChanged(auth, async (user) => {
+  if (!user) { started = false; msg("سجّل دخولك بحساب المشرف", "هذي الصفحة للمشرفين بس.", '<a class="nj-btn nj-btn-fill" href="login.html">تسجيل الدخول</a>'); return; }
+  if (started) return; started = true;
+  try {
+    const adm = await getDoc(doc(db, "admins", user.uid));
+    if (!adm.exists()) { N.setAdmin && N.setAdmin(false); msg("هذي الصفحة للمشرفين", "حسابك ما عنده صلاحية الإدارة.", '<a class="nj-btn nj-btn-line" href="index.html">الرئيسية</a>'); return; }
+    await boot(false);
+  } catch (e) { console.warn("najd admin home", e); msg("ما قدرنا نتأكد من حسابك", "تأكد من اتصالك وحدّث الصفحة.", ""); }
+});
+</script>
+</body>
+</html>
