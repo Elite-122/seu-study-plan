@@ -366,7 +366,7 @@ html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selecti
 #najd .nj-btn .nj-icon,#najd .nj-icon.is-in{color:inherit}
 #najd .nj-btn .nj-icon{margin-inline-end:6px}
 /* الأيقونة جنب كلام عربي في صف (flex): نرفعها شوي لأن جسم الحروف العربية أعلى من نص السطر */
-#najd .nj-btn>.nj-icon,#najd .nj-tab>.nj-icon,#najd .nj-dd-btn>svg,#najd .dsh-h>.nj-icon,#najd .au-google>svg{position:relative;top:-.1em}
+#najd .nj-btn>.nj-icon,#najd .nj-tab>.nj-icon,#najd .nj-dd-btn>svg,#najd .dsh-h>.nj-icon,#najd .au-google>svg,#najd .nx-go>.nj-icon,#najd .cl-b>.nj-icon,#najd .fx-go>.nj-icon,#najd .fx-b>.nj-icon{position:relative;top:-.1em}
 /* وفي العناوين (داخل السطر) ننزلها شوي */
 #najd h2>.nj-icon,#najd h3>.nj-icon{vertical-align:-.32em}
 #najd .nj-dd-menu i .nj-icon{width:22px;height:22px}
@@ -400,7 +400,7 @@ html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selecti
 #najd .nj-chip.is-soft[aria-pressed="true"]{background:var(--tint);border-color:var(--teal);color:var(--ink)}
 /* اختيار واحد من خيارات متساوية (مقطّع) */
 #najd .nj-seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:var(--sp-3);margin:0 0 var(--sp-5)}
-#najd .nj-seg>button{display:flex;align-items:center;justify-content:center;gap:var(--sp-3);min-height:var(--control-h-sm);padding:6px 12px;border:1.5px solid var(--line);border-radius:var(--r-md);background:var(--surface);font:inherit;font-size:var(--fs-base);font-weight:700;color:var(--ink);cursor:pointer;text-align:center;line-height:1.25;transition:border-color var(--t-fast),background var(--t-fast)}
+#najd .nj-seg>button{display:flex;align-items:center;justify-content:center;gap:var(--sp-3);min-height:var(--control-h-sm);padding:6px 12px;border:1.5px solid var(--line);border-radius:var(--r-md);background:var(--surface);font:inherit;font-size:var(--fs-base);font-weight:700;color:var(--ink);cursor:pointer;text-align:center;line-height:1.25;transition:border-color var(--t-fast)}
 #najd .nj-seg>button:hover{border-color:var(--teal)}
 #najd .nj-seg>button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
 /* تبويبات أعلى المحتوى. الحالة بـ aria-selected */
@@ -489,6 +489,8 @@ html.is-app #najd [data-install]{display:none}
 }
 /* إحساس الضغط: الزر يستجيب لحظة اللمس */
 #najd .nj-btn,#najd .nj-chip,#najd .nj-ic,#najd .nj-tab,#najd .nj-seg button,#najd .nj-tabbar a{-webkit-tap-highlight-color:transparent}
+/* بدون انتظار «اللمسة المزدوجة» للتكبير: الضغطة تنحسب على طول حتى لو ضغطت زرين ورا بعض بسرعة */
+#najd button,#najd a,#najd label,#najd input,#najd select,#najd textarea,#najd summary,#najd [role="button"],#najd [role="tab"],#najd [role="radio"]{touch-action:manipulation}
 #najd .nj-btn:active{transform:scale(.97);box-shadow:none}
 #najd .nj-chip:active,#najd .nj-ic:active,#najd .nj-seg button:active{transform:scale(.95)}
 #najd .nj-chip:active,#najd .nj-ic:active{background:var(--tint)}
@@ -600,3 +602,46 @@ html:not([data-theme="dark"]) #najd .nj-ntf-why li b{color:var(--deep)}
 @media (prefers-reduced-motion:reduce){#najd .fx-rf{transition:none}#najd .fx-dot,#najd .fx-trail{animation:none}}
 /* نص لقارئ الشاشة بس */
 #najd .nj-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ===== «همّتك»: بطاقة الجبل في «لوحتي» (climb.js) ===== */
+#najd .cl{position:relative;overflow:hidden;border-radius:var(--r);background:linear-gradient(160deg,#2F4F4E 0%,#1F3837 100%);color:#fff;box-shadow:var(--shadow);min-width:0}
+#najd .cl-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 18px 0}
+#najd .cl-k{font-size:var(--fs-sm);font-weight:700;color:#E2C9A6;margin:0}
+#najd .cl-top h2{font-size:var(--fs-3xl);font-weight:800;line-height:1.3;margin:2px 0 0;color:#fff}
+#najd .cl-top small{display:block;font-size:var(--fs-sm);color:rgba(255,255,255,.8);margin-top:2px;line-height:1.6}
+#najd .cl-pc{flex-shrink:0;text-align:center}
+#najd .cl-pc b{display:block;font-size:38px;font-weight:800;line-height:1;color:#D9B48A;font-variant-numeric:tabular-nums}
+#najd .cl-pc small{font-size:var(--fs-xs);font-weight:700;color:rgba(255,255,255,.72)}
+#najd .cl-mt{display:block;width:100%;height:auto;max-height:260px;margin:-4px auto 0}
+#najd .cl-ft{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 14px 14px;background:rgba(0,0,0,.16)}
+#najd .cl-ft p{flex:1 1 100%;margin:0 0 2px;font-size:var(--fs-md);color:rgba(255,255,255,.88)}#najd .cl-ft p b{color:#fff}
+#najd .cl-ft .cl-b{flex:1 1 0;justify-content:center}
+#najd .cl-b{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:var(--r-md);border:0;background:rgba(255,255,255,.12);color:#fff;font:inherit;font-size:var(--fs-md);font-weight:800;cursor:pointer;text-decoration:none}
+#najd .cl-b:hover{background:rgba(255,255,255,.2)}
+#najd .cl-b.sand{background:#D9B48A;color:#1F3837}
+#najd .cl-b.sand:hover{background:#E4C49D}
+#najd .cl-b>.nj-icon{width:18px;height:18px;color:inherit;vertical-align:0}
+#najd .cl-b:active{transform:scale(.97)}
+#najd .cl-walk.is-anim{stroke-dasharray:100;animation:clWalk 1.4s cubic-bezier(.3,.7,.3,1) .25s both}
+#najd .cl-here.is-anim{transform-box:fill-box;transform-origin:center;animation:clPop .5s cubic-bezier(.3,1.6,.5,1) 1.45s both}
+@keyframes clWalk{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes clPop{from{transform:scale(0)}to{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){#najd .cl-walk.is-anim,#najd .cl-here.is-anim{animation:none}}
+/* ورقة «مبروك» ومشاركة الصورة */
+#najd .nj-climb-sheet .cs-box{max-height:calc(100vh - 24px);overflow:auto;padding:18px 18px 14px;text-align:center}
+#najd .cs-cel{margin:-18px -18px 12px;border-radius:var(--r) var(--r) 0 0;background:linear-gradient(160deg,#2F4F4E,#1F3837);padding:14px 10px 0}
+#najd .cs-cel .cl-mt{max-height:150px}
+#najd .cs-h{font-size:var(--fs-3xl);font-weight:800;line-height:1.35;margin:6px 0 2px;color:var(--ink)}
+#najd .cs-sub{font-size:var(--fs-md);color:var(--slate);margin:0 0 12px}
+#najd .cs-pick{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}
+#najd .cs-pick button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;border-radius:var(--r-md);border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:800;cursor:pointer}
+#najd .cs-pick button[aria-checked="true"]{border-color:var(--teal);background:var(--tint)}
+#najd .cs-pick i{width:18px;height:18px;border-radius:50%;flex-shrink:0}
+#najd .cs-pick .sw-n{background:linear-gradient(180deg,#0F1D1C,#2F4F4E)}#najd .cs-pick .sw-d{background:linear-gradient(180deg,#F3E6D2,#A9C6C4);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+#najd .cs-prev{display:flex;justify-content:center;margin:0 0 12px}
+#najd .cs-prev canvas{width:min(200px,46vw);height:auto;aspect-ratio:9/16;border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.22)}
+#najd .cs-tg{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;border-radius:var(--r-md);background:var(--bg);font-size:var(--fs-md);font-weight:700;margin:0 0 12px;text-align:start;cursor:pointer}
+#najd .cs-acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:10px}
+#najd .cs-acts .nj-btn{width:100%}
+#najd .cs-later{display:block;margin:8px auto 0;min-height:44px;padding:0 16px;border:0;background:none;font:inherit;font-size:var(--fs-md);font-weight:700;color:var(--slate);cursor:pointer}
+@media (max-height:700px){#najd .cs-prev canvas{width:min(150px,40vw)}#najd .cs-cel .cl-mt{max-height:110px}}
