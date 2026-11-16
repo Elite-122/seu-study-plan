@@ -400,7 +400,7 @@ html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selecti
 #najd .nj-chip.is-soft[aria-pressed="true"]{background:var(--tint);border-color:var(--teal);color:var(--ink)}
 /* اختيار واحد من خيارات متساوية (مقطّع) */
 #najd .nj-seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:var(--sp-3);margin:0 0 var(--sp-5)}
-#najd .nj-seg>button{display:flex;align-items:center;justify-content:center;gap:var(--sp-3);min-height:var(--control-h-sm);padding:6px 12px;border:1.5px solid var(--line);border-radius:var(--r-md);background:var(--surface);font:inherit;font-size:var(--fs-base);font-weight:700;color:var(--ink);cursor:pointer;text-align:center;line-height:1.25;transition:border-color var(--t-fast),background var(--t-fast)}
+#najd .nj-seg>button{display:flex;align-items:center;justify-content:center;gap:var(--sp-3);min-height:var(--control-h-sm);padding:6px 12px;border:1.5px solid var(--line);border-radius:var(--r-md);background:var(--surface);font:inherit;font-size:var(--fs-base);font-weight:700;color:var(--ink);cursor:pointer;text-align:center;line-height:1.25;transition:border-color var(--t-fast)}
 #najd .nj-seg>button:hover{border-color:var(--teal)}
 #najd .nj-seg>button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
 /* تبويبات أعلى المحتوى. الحالة بـ aria-selected */
@@ -489,6 +489,8 @@ html.is-app #najd [data-install]{display:none}
 }
 /* إحساس الضغط: الزر يستجيب لحظة اللمس */
 #najd .nj-btn,#najd .nj-chip,#najd .nj-ic,#najd .nj-tab,#najd .nj-seg button,#najd .nj-tabbar a{-webkit-tap-highlight-color:transparent}
+/* بدون انتظار «اللمسة المزدوجة» للتكبير: الضغطة تنحسب على طول حتى لو ضغطت زرين ورا بعض بسرعة */
+#najd button,#najd a,#najd label,#najd input,#najd select,#najd textarea,#najd summary,#najd [role="button"],#najd [role="tab"],#najd [role="radio"]{touch-action:manipulation}
 #najd .nj-btn:active{transform:scale(.97);box-shadow:none}
 #najd .nj-chip:active,#najd .nj-ic:active,#najd .nj-seg button:active{transform:scale(.95)}
 #najd .nj-chip:active,#najd .nj-ic:active{background:var(--tint)}

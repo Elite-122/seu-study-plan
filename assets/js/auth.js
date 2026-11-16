@@ -137,9 +137,9 @@ onAuthStateChanged(auth, async (user) => {
     }
     sessionStorage.setItem(flag, "1");
     /* تنبيهات الدراسة: الموافقة أول مرة، وتجديد رمز الجهاز */
-    import("./notify.js?v=202611161340").then((m) => m.start(user, cloudNotify)).catch((e) => console.warn("najd notify", e));
+    import("./notify.js?v=202611161500").then((m) => m.start(user, cloudNotify)).catch((e) => console.warn("najd notify", e));
     /* ملف الحساب للوحة الإدارة (الاسم والإيميل وتاريخ التسجيل) */
-    import("./stats.js?v=202611161340").then((m) => m.saveProfile(user)).catch(() => {});
+    import("./stats.js?v=202611161500").then((m) => m.saveProfile(user)).catch(() => {});
   } catch (e) {
     console.warn("najd pull", e);
     N.setSync("ما قدرنا نجيب تقدمك من السحابة");
@@ -209,5 +209,5 @@ getDoc(doc(db, "settings", "announcement")).then((s) => { if (s.exists() && N.an
 
 export { app, auth, db };
 /* عدّاد الزوار: مرة وحدة لكل جهاز في اليوم */
-setTimeout(() => { import("./stats.js?v=202611161340").then((m) => m.countVisit()).catch(() => {}); }, 1200);
-window.NajdNotify = { settings: async (box, u) => (await import("./notify.js?v=202611161340")).settings(box, u) };
+setTimeout(() => { import("./stats.js?v=202611161500").then((m) => m.countVisit()).catch(() => {}); }, 1200);
+window.NajdNotify = { settings: async (box, u) => (await import("./notify.js?v=202611161500")).settings(box, u) };

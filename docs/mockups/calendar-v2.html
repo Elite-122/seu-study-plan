@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>عيّنة: التقويم الأكاديمي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/najd.css">
+<style>
+body{margin:0;background:var(--bg,#F4F7F7)}
+#najd{min-height:0}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 16px 40px}
+/* العنوان والتبويبات */
+#najd .ac-h{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 16px;margin:0 0 14px}
+#najd .ac-h h1{font-size:var(--fs-4xl);font-weight:800;margin:0;line-height:1.25}
+#najd .ac-h small{display:block;font-size:var(--fs-sm);color:var(--slate);margin-top:2px}
+#najd .ac-h small a{color:var(--dtext);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+#najd .ac-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:6px;margin:0 0 14px;box-shadow:var(--shadow)}
+#najd .ac-tabs button{position:relative;min-height:48px;border:0;border-radius:var(--r-md);background:none;font:inherit;font-weight:800;font-size:var(--fs-base);color:var(--muted);cursor:pointer;touch-action:manipulation}
+#najd .ac-tabs button[aria-selected="true"]{background:var(--deep);color:#fff}
+#najd .ac-tabs .now{display:inline-block;margin-inline-start:6px;padding:1px 7px;border-radius:var(--r-pill);background:#D9B48A;color:#1F3837;font-size:11px;font-weight:800;vertical-align:2px}
+#najd .ac-note{display:flex;align-items:center;gap:10px;background:var(--tint);border-radius:var(--r-md);padding:10px 12px;margin:0 0 14px;font-size:var(--fs-md);font-weight:700;color:var(--dtext)}
+#najd .ac-note .nj-icon{width:20px;height:20px;flex-shrink:0;color:inherit}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.col{display:grid;gap:16px;min-width:0}
+/* رحلة الفصل */
+#najd .ac-trip{border-radius:var(--r);background:linear-gradient(160deg,#2F4F4E 0%,#1F3837 100%);color:#fff;padding:16px 16px 12px;box-shadow:var(--shadow);overflow:hidden}
+#najd .ac-trip-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+#najd .ac-trip-h p{margin:0;font-size:var(--fs-sm);font-weight:700;color:#E2C9A6}
+#najd .ac-trip-h h2{margin:2px 0 0;font-size:var(--fs-3xl);font-weight:800;color:#fff;line-height:1.3}
+#najd .ac-trip-n{text-align:center;flex-shrink:0}#najd .ac-trip-n b{display:block;font-size:34px;font-weight:800;line-height:1;color:#D9B48A}#najd .ac-trip-n small{font-size:var(--fs-xs);font-weight:700;color:rgba(255,255,255,.75)}
+#najd .ac-trip svg{display:block;width:100%;height:auto;margin-top:6px}
+#najd .ac-trip-k{display:flex;flex-wrap:wrap;gap:6px 14px;margin:6px 0 0;font-size:12px;color:rgba(255,255,255,.8)}
+#najd .ac-trip-k i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:5px;vertical-align:-1px}
+/* أقسام */
+#najd .ac-sec{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)}
+#najd .ac-sec>h2{display:flex;align-items:center;gap:8px;font-size:var(--fs-lg);font-weight:800;margin:0 0 10px}
+#najd .ac-sec>h2 .nj-icon{width:20px;height:20px}
+#najd .ac-sec>h2 small{margin-inline-start:auto;font-size:var(--fs-sm);color:var(--slate);font-weight:700}
+/* مفتوح الحين */
+#najd .ac-open{display:grid;gap:8px}
+#najd .ao{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--r-md);background:var(--bg);border-inline-start:4px solid var(--c)}
+#najd .ao-n{flex-shrink:0;min-width:54px;text-align:center}
+#najd .ao-n b{display:block;font-size:26px;font-weight:800;line-height:1;color:var(--ink)}#najd .ao-n small{font-size:11px;font-weight:700;color:var(--slate)}
+#najd .ao.is-hot .ao-n b{color:var(--err)}
+#najd .ao>div{flex:1;min-width:0}
+#najd .ao b.t{display:block;font-size:var(--fs-base);font-weight:800;line-height:1.45}
+#najd .ao small.w{display:block;font-size:var(--fs-sm);color:var(--slate);margin-top:2px}
+#najd .ao-bar{height:5px;border-radius:5px;background:var(--light);margin-top:7px;overflow:hidden}#najd .ao-bar i{display:block;height:100%;background:var(--c);border-radius:inherit}
+/* القائمة الكاملة */
+#najd .ac-tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 10px}
+#najd .ac-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px;margin:-2px;flex:1 1 100%;min-width:0}
+#najd .ac-chips::-webkit-scrollbar{display:none}
+@media (min-width:900px){#najd .ac-chips{flex-wrap:wrap;overflow:visible}}
+#najd .ac-chips button{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:var(--r-pill);border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:var(--fs-sm);font-weight:800;color:var(--ink);cursor:pointer;touch-action:manipulation}
+#najd .ac-chips button i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+#najd .ac-chips button small{font-weight:700;color:var(--slate)}
+#najd .ac-chips button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}#najd .ac-chips button[aria-pressed="true"] small{color:rgba(255,255,255,.8)}
+#najd .ac-hj{display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-sm);font-weight:700;color:var(--muted);margin-inline-start:auto;cursor:pointer}
+#najd .ac-m{margin:14px 0 6px;font-size:var(--fs-sm);font-weight:800;color:var(--slate);display:flex;align-items:center;gap:8px}
+#najd .ac-m::after{content:"";flex:1;height:1px;background:var(--line)}
+#najd .ai{display:grid;grid-template-columns:52px 14px minmax(0,1fr) auto;gap:0 10px;align-items:start;padding:8px 0}
+#najd .ai-d{text-align:center;padding-top:2px}
+#najd .ai-d b{display:block;font-size:22px;font-weight:800;line-height:1;color:var(--ink)}
+#najd .ai-d small{font-size:11px;font-weight:700;color:var(--slate)}
+#najd .ai-l{position:relative;align-self:stretch;display:flex;justify-content:center}
+#najd .ai-l::before{content:"";position:absolute;top:0;bottom:-8px;width:2px;background:var(--line)}
+#najd .ai-l i{position:relative;margin-top:6px;width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 0 3px var(--card)}
+#najd .ai-t b{display:block;font-size:var(--fs-base);font-weight:700;line-height:1.55}
+#najd .ai-t small{display:block;font-size:var(--fs-sm);color:var(--slate);margin-top:1px}
+#najd .ai-s{justify-self:end;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+#najd .pill{white-space:nowrap;font-size:12px;font-weight:800;border-radius:var(--r-pill);padding:3px 9px}
+#najd .pill.open{background:var(--ok-bg);color:var(--ok)}#najd .pill.soon{background:#F3E6D2;color:#6E4F22}#najd .pill.done{background:var(--light);color:var(--slate)}#najd .pill.today{background:var(--deep);color:#fff}
+#najd .ai-add{display:grid;place-items:center;width:40px;height:40px;border-radius:var(--r-md);border:1.5px solid var(--line);background:var(--card);color:var(--dtext);cursor:pointer}
+#najd .ai-add .nj-icon{width:18px;height:18px;color:inherit;vertical-align:0}
+#najd .ai.is-done{opacity:.55}
+#najd .ac-past{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:44px;margin:4px 0 0;border:1.5px dashed var(--line);border-radius:var(--r-md);background:none;font:inherit;font-weight:800;color:var(--muted);cursor:pointer}
+#najd .ac-all{width:100%;margin-top:12px}
+html[data-theme="dark"] #najd .pill.soon{background:#3A3122;color:#E7C79A}
+</style>
+</head>
+<body>
+<div id="najd" dir="rtl"><div class="wrap" id="app"></div></div>
+<script>
+var DATA={"year": "1448", "src": "https://seu.edu.sa/ar/academic-calendar/1448/", "sem": {"first": {"name": "الفصل الأول", "items": [{"t": "الاختبارات البديلة", "c": "exam", "d": "2026-08-23", "e": "2026-08-29", "h": "10 ربيع الأول 1448", "he": "16 ربيع الأول 1448"}, {"t": "معادلة مقررات الكليات", "c": "req", "d": "2026-08-23", "e": "2026-08-29", "h": "10 ربيع الأول 1448", "he": "16 ربيع الأول 1448"}, {"t": "خدمة طلب تأجيل الدراسة لا تحتسب رسوم دراسية", "c": "req", "d": "2026-08-23", "e": "2026-09-02", "h": "10 ربيع الأول 1448", "he": "20 ربيع الأول 1448"}, {"t": "معادلة مقررات السنة الأولى المشتركة والفصل المشترك مع استرداد الرسوم", "c": "req", "d": "2026-08-23", "e": "2026-09-05", "h": "10 ربيع الأول 1448", "he": "23 ربيع الأول 1448"}, {"t": "تسجيل المقررات", "c": "reg", "d": "2026-08-23", "e": "2026-09-19", "h": "10 ربيع الأول 1448", "he": "8 ربيع الآخر 1448"}, {"t": "فترة سداد الرسوم الدراسية", "c": "reg", "d": "2026-08-23", "e": "2026-09-19", "h": "10 ربيع الأول 1448", "he": "8 ربيع الآخر 1448"}, {"t": "بداية الدراسة للفصل الدراسي الأول", "c": "key", "d": "2026-08-30", "h": "17 ربيع الأول 1448"}, {"t": "تقديم أعذار التغيب عن المحاضرات", "c": "req", "d": "2026-09-06", "e": "2026-11-12", "h": "24 ربيع الأول 1448", "he": "2 جمادى الآخرة 1448"}, {"t": "معادلة مقرر اللغة الإنجليزية دون استرداد الرسوم", "c": "req", "d": "2026-09-06", "e": "2026-11-26", "h": "24 ربيع الأول 1448", "he": "16 جمادى الآخرة 1448"}, {"t": "الاعتذار عن الدراسة للفصل الدراسي مع عدم أحقية استرداد الرسوم الدراسية", "c": "req", "d": "2026-09-06", "e": "2026-11-26", "h": "24 ربيع الأول 1448", "he": "16 جمادى الآخرة 1448"}, {"t": "الانسحاب من مقرر مع عدم أحقية استرداد الرسوم الدراسية", "c": "req", "d": "2026-09-06", "e": "2026-11-26", "h": "24 ربيع الأول 1448", "he": "16 جمادى الآخرة 1448"}, {"t": "إجازة اليوم الوطني", "c": "off", "d": "2026-09-23", "e": "2026-09-26", "h": "12 ربيع الآخر 1448", "he": "15 ربيع الآخر 1448"}, {"t": "الاختبارات الفصلية لطلبة السنة الأولى المشتركة و الفصل المشترك", "c": "exam", "d": "2026-10-11", "e": "2026-10-14", "h": "30 ربيع الآخر 1448", "he": "3 جمادى الأولى 1448"}, {"t": "تقديم أعذار التغيب عن الاختبارات الفصلية", "c": "req", "d": "2026-10-11", "e": "2026-11-02", "h": "30 ربيع الآخر 1448", "he": "22 جمادى الأولى 1448"}, {"t": "الاختبارات الفصلية لمرحلة البكالوريوس", "c": "exam", "d": "2026-10-18", "e": "2026-10-29", "h": "7 جمادى الأولى 1448", "he": "18 جمادى الأولى 1448"}, {"t": "تغيير التخصص، تغيير الفرع، تغيير التخصص والفرع معاً، إعادة القيد", "c": "req", "d": "2026-11-01", "e": "2026-11-26", "h": "21 جمادى الأولى 1448", "he": "16 جمادى الآخرة 1448"}, {"t": "الاختبارات النهائية لطلبة السنة الأولى المشتركة", "c": "exam", "d": "2026-12-13", "e": "2026-12-16", "h": "4 رجب 1448", "he": "7 رجب 1448"}, {"t": "الاختبارات النهائية", "c": "exam", "d": "2026-12-13", "e": "2026-12-31", "h": "4 رجب 1448", "he": "22 رجب 1448"}, {"t": "تقديم أعذار التغيب عن الاختبارات النهائية", "c": "req", "d": "2026-12-13", "e": "2027-01-05", "h": "4 رجب 1448", "he": "27 رجب 1448"}, {"t": "خدمة الاعتراض على نتيجة الاختبارات النهائية", "c": "req", "d": "2026-12-27", "e": "2027-01-05", "h": "18 رجب 1448", "he": "27 رجب 1448"}, {"t": "إغلاق الفصل الدراسي الأول بنهاية دوام", "c": "key", "d": "2027-01-07", "h": "29 رجب 1448"}]}, "second": {"name": "الفصل الثاني", "items": [{"t": "بدء تسجيل المقررات", "c": "reg", "d": "2027-01-10", "e": "2027-01-14", "h": "2 شعبان 1448", "he": "6 شعبان 1448"}, {"t": "الاختبارات البديلة", "c": "exam", "d": "2027-01-10", "e": "2027-01-14", "h": "2 شعبان 1448", "he": "6 شعبان 1448"}, {"t": "معادلة مقررات الكليات", "c": "req", "d": "2027-01-10", "e": "2027-01-21", "h": "2 شعبان 1448", "he": "13 شعبان 1448"}, {"t": "معادلة مقررات السنة الأولى المشتركة والفصل المشترك (مع استرداد الرسوم)", "c": "req", "d": "2027-01-10", "e": "2027-01-21", "h": "2 شعبان 1448", "he": "13 شعبان 1448"}, {"t": "خدمة طلب تأجيل الدراسة (لا تحتسب رسوم دراسية)", "c": "req", "d": "2027-01-10", "e": "2027-01-21", "h": "2 شعبان 1448", "he": "13 شعبان 1448"}, {"t": "فترة سداد الرسوم الدراسية", "c": "reg", "d": "2027-01-10", "e": "2027-02-02", "h": "2 شعبان 1448", "he": "25 شعبان 1448"}, {"t": "بداية الدراسة للفصل الدراسي الثاني", "c": "key", "d": "2027-01-17", "h": "9 شعبان 1448"}, {"t": "تقديم أعذار التغيب عن المحاضرات", "c": "req", "d": "2027-01-24", "e": "2027-04-15", "h": "16 شعبان 1448", "he": "8 ذو القعدة 1448"}, {"t": "الاعتذار عن الدراسة للفصل الدراسي (مع عدم أحقية استرداد الرسوم الدراسية)", "c": "req", "d": "2027-01-24", "e": "2027-05-20", "h": "16 شعبان 1448", "he": "14 ذو الحجة 1448"}, {"t": "الانسحاب من مقرر (مع عدم أحقية استرداد الرسوم الدراسية)", "c": "req", "d": "2027-01-24", "e": "2027-05-20", "h": "16 شعبان 1448", "he": "14 ذو الحجة 1448"}, {"t": "معادلة مقرر اللغة الانجليزية دون استرداد الرسوم", "c": "req", "d": "2027-01-24", "e": "2027-05-20", "h": "16 شعبان 1448", "he": "14 ذو الحجة 1448"}, {"t": "إجازة يوم التأسيس", "c": "off", "d": "2027-02-19", "e": "2027-02-22", "h": "12 رمضان 1448", "he": "15 رمضان 1448"}, {"t": "إجازة عيد الفطر المبارك", "c": "off", "d": "2027-02-26", "e": "2027-03-13", "h": "19 رمضان 1448", "he": "5 شوال 1448"}, {"t": "الاختبارات الفصلية لطلبة السنة الأولى المشتركة و الفصل المشترك", "c": "exam", "d": "2027-03-14", "e": "2027-03-17", "h": "6 شوال 1448", "he": "9 شوال 1448"}, {"t": "خدمة تقديم أعذار التغيب عن الاختبارات الفصلية", "c": "req", "d": "2027-03-14", "e": "2027-04-06", "h": "6 شوال 1448", "he": "29 شوال 1448"}, {"t": "الاختبارات الفصلية لمرحلة البكالوريوس", "c": "exam", "d": "2027-03-21", "e": "2027-04-01", "h": "13 شوال 1448", "he": "24 شوال 1448"}, {"t": "تغيير التخصص، تغيير الفرع، تغيير التخصص والفرع معاً، إعادة القيد", "c": "req", "d": "2027-03-21", "e": "2027-04-15", "h": "13 شوال 1448", "he": "8 ذو القعدة 1448"}, {"t": "إجازة عيد الأضحى المبارك", "c": "off", "d": "2027-05-07", "e": "2027-05-22", "h": "1 ذو الحجة 1448", "he": "16 ذو الحجة 1448"}, {"t": "الاختبارات النهائية لطلبة السنة الأولى المشتركة", "c": "exam", "d": "2027-05-30", "e": "2027-06-02", "h": "24 ذو الحجة 1448", "he": "27 ذو الحجة 1448"}, {"t": "فترة الاختبارات النهائية", "c": "exam", "d": "2027-05-30", "e": "2027-06-17", "h": "24 ذو الحجة 1448", "he": "12 محرم 1449"}, {"t": "خدمة تقديم أعذار التغيب عن الاختبارات النهائية", "c": "req", "d": "2027-05-30", "e": "2027-06-22", "h": "24 ذو الحجة 1448", "he": "17 محرم 1449"}, {"t": "خدمة الاعتراض على الدرجة النهائية", "c": "req", "d": "2027-06-13", "e": "2027-06-22", "h": "8 محرم 1449", "he": "17 محرم 1449"}, {"t": "إغلاق الفصل الدراسي الثاني وإجازة نهاية العام الدراسي", "c": "key", "d": "2027-06-24", "h": "19 محرم 1449"}]}, "summer": {"name": "الفصل الصيفي", "items": [{"t": "إتاحة فترة «تسجيل المقررات الدراسية» في النظام الطلابي Banner", "c": "reg", "d": "2026-06-24", "e": "2026-06-27", "h": "9 محرم 1448", "he": "12 محرم 1448"}, {"t": "بداية الدراسة للفصل الصيفي", "c": "key", "d": "2026-06-28", "h": "13 محرم 1448"}, {"t": "سداد الرسوم الدراسية للفصل الصيفي", "c": "reg", "d": "2026-06-28", "e": "2026-07-04", "h": "13 محرم 1448", "he": "19 محرم 1448"}, {"t": "إتاحة خدمة «طلب الاعتذار عن الفصل الصيفي» و «طلب الاعتذار عن مقرر دراسي» في الخدمات الطلابية دون استرداد الرسوم", "c": "req", "d": "2026-07-05", "e": "2026-07-23", "h": "20 محرم 1448", "he": "9 صفر 1448"}, {"t": "إتاحة خدمة «بيانات الخريج»", "c": "req", "d": "2026-07-05", "e": "2026-07-23", "h": "20 محرم 1448", "he": "9 صفر 1448"}, {"t": "إتاحة خدمة «أعذار التغيب عن الاختبارات الفصلية»", "c": "req", "d": "2026-07-19", "e": "2026-07-25", "h": "5 صفر 1448", "he": "11 صفر 1448"}, {"t": "الاختبارات الفصلية للكليات", "c": "exam", "d": "2026-07-21", "e": "2026-07-23", "h": "7 صفر 1448", "he": "9 صفر 1448"}, {"t": "الاختبارات النهائية للسنة الأولى المشتركة", "c": "exam", "d": "2026-08-12", "e": "2026-08-13", "h": "29 صفر 1448", "he": "30 صفر 1448"}, {"t": "فترة إغلاق خدمة الانسحاب من الجامعة (متاحة طوال العام تغلق فقط فترة الاختبارات)", "c": "req", "d": "2026-08-12", "e": "2026-08-22", "h": "29 صفر 1448", "he": "9 ربيع الأول 1448"}, {"t": "إتاحة خدمة أعذار التغيب عن الاختبارات النهائية", "c": "req", "d": "2026-08-12", "e": "2026-08-22", "h": "29 صفر 1448", "he": "9 ربيع الأول 1448"}, {"t": "الاختبارات النهائية للكليات", "c": "exam", "d": "2026-08-16", "e": "2026-08-20", "h": "3 ربيع الأول 1448"}, {"t": "نهاية الدراسة للفصل الصيفي", "c": "key", "d": "2026-08-19"}, {"t": "إتاحة خدمة الاعتراض على درجة الاختبار النهائي", "c": "req", "d": "2026-08-20", "e": "2026-08-27"}, {"t": "بداية العام الجامعي 1448هـ - 1449هـ", "c": "key", "d": "2026-08-23"}]}}};
+(function(){
+var EN=false;function L(a){return a;}
+var Q=new URLSearchParams(location.search),TODAY=Q.get('d')||new Date().toISOString().slice(0,10);
+var CAT={exam:['الاختبارات','#B0625A'],off:['الإجازات','#6E8F5E'],reg:['التسجيل والرسوم','#4F7CA8'],req:['الطلبات والخدمات','#B08A4E'],key:['البداية والنهاية','#2F4F4E']};
+var ORDER=['first','second','summer'];
+var IC={cal:'<svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M12 13v5M9.5 15.5h5"/></svg>',
+ clock:'<svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+ list:'<svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>',
+ info:'<svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg>',
+ down:'<svg class="nj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'};
+function D(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+function days(a,b){return Math.round((D(b)-D(a))/864e5);}
+var F={d:new Intl.DateTimeFormat('ar-SA-u-ca-gregory-nu-latn',{day:'numeric',month:'long'}),w:new Intl.DateTimeFormat('ar-SA-u-ca-gregory-nu-latn',{weekday:'long'}),ws:new Intl.DateTimeFormat('ar-SA-u-ca-gregory-nu-latn',{weekday:'short'}),m:new Intl.DateTimeFormat('ar-SA-u-ca-gregory-nu-latn',{month:'long',year:'numeric'}),mo:new Intl.DateTimeFormat('ar-SA-u-ca-gregory-nu-latn',{month:'short'})};
+function fd(s){return F.d.format(D(s));}
+function pl(n,one,two,few,many){return n===1?one:n===2?two:(n>=3&&n<=10?n+' '+few:n+' '+many);}
+function inDays(n){return n===0?'اليوم':n===1?'بكرة':'بعد '+pl(n,'يوم','يومين','أيام','يوم');}
+function left(n){return n===0?'آخر يوم اليوم':'باقي '+pl(n,'يوم','يومين','أيام','يوم');}
+function span(s){return {a:s.items.reduce(function(m,x){return x.d<m?x.d:m;},'9999'),b:s.items.reduce(function(m,x){var e=x.e||x.d;return e>m?e:m;},'0000')};}
+function status(x){var e=x.e||x.d;if(TODAY<x.d)return {k:'soon',n:days(TODAY,x.d)};if(TODAY>e)return {k:'done'};if(!x.e)return {k:'today'};return {k:'open',n:days(TODAY,x.e)};}
+/* الفصل الحالي: اللي اليوم داخله، وإلا أقرب فصل جاي، وإلا آخر فصل */
+function current(){var best=null,next=null,last=null;ORDER.forEach(function(k){var s=DATA.sem[k];if(!s)return;var r=span(s);if(TODAY>=r.a&&TODAY<=r.b)best=k;if(r.a>TODAY&&(!next||r.a<span(DATA.sem[next]).a))next=k;if(!last||r.b>span(DATA.sem[last]).b)last=k;});return best||next||last;}
+var cur=current(),sel=Q.get('sem')||cur,flt=Q.get('f')||'all',hij=Q.get('h')==='1',showPast=Q.get('past')==='1';
+function draw(){
+  var s=DATA.sem[sel],r=span(s),items=s.items.map(function(x){x.s=status(x);return x;});
+  var o='<div class="ac-h"><div><h1>التقويم الأكاديمي '+DATA.year+'هـ</h1><small>من التقويم الرسمي للجامعة · <a href="'+DATA.src+'" target="_blank" rel="noopener">المصدر</a></small></div></div>';
+  o+='<div class="ac-tabs" role="tablist" aria-label="الفصول">'+ORDER.map(function(k){var on=k===sel;return '<button type="button" role="tab" aria-selected="'+on+'" data-sem="'+k+'">'+DATA.sem[k].name.replace('الفصل ','')+(k===cur?'<span class="now">الحين</span>':'')+'</button>';}).join('')+'</div>';
+  if(Q.get('moved'))o+='<div class="ac-note">'+IC.info+'<span>خلص الفصل الأول، ونقلناك لتقويم الفصل الثاني.</span></div>';
+  if(TODAY>r.b)o+='<div class="ac-note">'+IC.info+'<span>هذا الفصل انتهى ('+fd(r.b)+'). نحدّث التقويم الجاي أول ما تنشره الجامعة.</span></div>';
+  /* رحلة الفصل */
+  var start=(items.filter(function(x){return /^بداية الدراسة/.test(x.t);})[0]||{d:r.a}).d,end=r.b,tot=Math.max(1,days(start,end)),pos=Math.max(0,Math.min(1,days(start,TODAY)/tot));
+  var wk=Math.floor(days(start,TODAY)/7)+1,wks=Math.ceil(tot/7),rem=days(TODAY,end);
+  var trip='<section class="ac-trip" aria-label="رحلة الفصل"><div class="ac-trip-h"><div><p>رحلة الفصل</p><h2>'+(TODAY<start?'يبدأ '+inDays(days(TODAY,start)):TODAY>end?'انتهى الفصل':'الأسبوع '+wk+' من '+wks)+'</h2></div>'
+    +(TODAY>=start&&TODAY<=end?'<div class="ac-trip-n"><b>'+rem+'</b><small>يوم على النهاية</small></div>':'')+'</div>'+tripSvg(items,start,end,pos)
+    +'<div class="ac-trip-k"><span><i style="background:#B0625A"></i>اختبارات</span><span><i style="background:#8FB98A"></i>إجازات</span><span><i style="background:#D9B48A"></i>اليوم</span></div></section>';
+  /* مفتوح الحين + الجاي */
+  var open=items.filter(function(x){return x.s.k==='open';}).sort(function(a,b){return a.s.n-b.s.n;});
+  var soon=items.filter(function(x){return x.s.k==='soon'||x.s.k==='today';}).sort(function(a,b){return a.d<b.d?-1:1;}).slice(0,3);
+  var openH='<section class="ac-sec"><h2>'+IC.clock+'مفتوح الحين'+(open.length?'<small>'+pl(open.length,'إجراء واحد','إجراءين','إجراءات','إجراء')+'</small>':'')+'</h2>'
+    +(open.length?'<div class="ac-open">'+open.map(function(x){var all=Math.max(1,days(x.d,x.e)),done=days(x.d,TODAY);return '<div class="ao'+(x.s.n<=3?' is-hot':'')+'" style="--c:'+CAT[x.c][1]+'"><div class="ao-n"><b>'+x.s.n+'</b><small>'+(x.s.n===0?'آخر يوم':x.s.n<=10&&x.s.n>2?'أيام':'يوم')+'</small></div><div><b class="t">'+x.t+'</b><small class="w">يقفل '+F.w.format(D(x.e))+' '+fd(x.e)+'</small><div class="ao-bar"><i style="width:'+Math.round(done/all*100)+'%"></i></div></div></div>';}).join('')+'</div>'
+      :'<p class="nj-hint" style="margin:0">ما فيه إجراء مفتوح الحين.</p>')+'</section>';
+  var soonH='<section class="ac-sec"><h2>'+IC.cal+'الجاي</h2>'+(soon.length?soon.map(row).join(''):'<p class="nj-hint" style="margin:0">ما فيه مواعيد جاية في هذا الفصل.</p>')+'</section>';
+  /* الكل */
+  var cnt={all:items.length};items.forEach(function(x){cnt[x.c]=(cnt[x.c]||0)+1;});
+  var list=items.filter(function(x){return flt==='all'||x.c===flt;}),past=list.filter(function(x){return x.s.k==='done';}),rest=list.filter(function(x){return x.s.k!=='done';});
+  var allH='<section class="ac-sec" id="ac-list"><h2>'+IC.list+'كل المواعيد<small>'+items.length+'</small></h2><div class="ac-tools"><div class="ac-chips" role="group" aria-label="تصفية">'
+    +['all','exam','off','reg','req','key'].filter(function(k){return k==='all'||cnt[k];}).map(function(k){return '<button type="button" data-f="'+k+'" aria-pressed="'+(flt===k)+'"'+(k!=='all'?' style="--c:'+CAT[k][1]+'"':'')+'>'+(k!=='all'?'<i></i>':'')+(k==='all'?'الكل':CAT[k][0])+' <small>'+cnt[k]+'</small></button>';}).join('')+'</div>'
+    +'<label class="ac-hj"><input type="checkbox" class="nj-switch" data-hj'+(hij?' checked':'')+'>التاريخ الهجري</label></div>'
+    +(past.length&&!showPast?'<button type="button" class="ac-past" data-past>'+IC.down+'اللي انتهى ('+past.length+')</button>':'')
+    +months((showPast?past:[]).concat(rest))
+    +'<button type="button" class="nj-btn nj-btn-line ac-all">'+IC.cal+'أضف المواعيد الجاية لتقويم جوالك</button></section>';
+  document.getElementById('app').innerHTML=o+'<div class="grid"><div class="col">'+trip+openH+soonH+'</div><div class="col">'+allH+'</div></div>';
+}
+function months(list){var o='',lm='';list.forEach(function(x){var m=F.m.format(D(x.d));if(m!==lm){o+='<p class="ac-m">'+m+'</p>';lm=m;}o+=row(x);});return o;}
+function row(x){
+  var st=x.s,p=st.k==='open'?'<span class="pill open">مفتوح · '+left(st.n)+'</span>':st.k==='soon'?'<span class="pill soon">'+inDays(st.n)+'</span>':st.k==='today'?'<span class="pill today">اليوم</span>':'<span class="pill done">انتهى</span>';
+  var when=hij&&x.h?(x.he?x.h+' – '+x.he+' هـ':x.h+' هـ'):(x.e?'من '+F.ws.format(D(x.d))+' '+fd(x.d)+' لين '+F.ws.format(D(x.e))+' '+fd(x.e):F.w.format(D(x.d))+' '+fd(x.d));
+  return '<div class="ai'+(st.k==='done'?' is-done':'')+'" style="--c:'+CAT[x.c][1]+'"><div class="ai-d"><b>'+D(x.d).getDate()+'</b><small>'+F.mo.format(D(x.d))+'</small></div><div class="ai-l"><i></i></div><div class="ai-t"><b>'+x.t+'</b><small>'+when+'</small></div><div class="ai-s">'+p+(st.k!=='done'?'<button type="button" class="ai-add" aria-label="أضف لتقويمك: '+x.t+'">'+IC.cal+'</button>':'')+'</div></div>';
+}
+/* شريط الفصل: من البداية (يمين) للنهاية (يسار)، والاختبارات مرتفعات، والإجازات أخضر، واليوم نقطة رمل */
+function tripSvg(items,start,end,pos){
+  var W=340,H=86,base=60,tot=Math.max(1,days(start,end));function X(d){return W-8-(W-16)*Math.max(0,Math.min(1,days(start,d)/tot));}
+  var o='<svg viewBox="0 0 '+W+' '+H+'" aria-hidden="true"><rect x="8" y="'+(base-3)+'" width="'+(W-16)+'" height="6" rx="3" fill="rgba(255,255,255,.18)"/>';
+  o+='<rect x="'+X(TODAY)+'" y="'+(base-3)+'" width="'+(W-8-X(TODAY))+'" height="6" rx="3" fill="#D9B48A"/>';
+  items.forEach(function(x){if(x.c==='off'&&x.e){o+='<rect x="'+X(x.e)+'" y="'+(base-3)+'" width="'+Math.max(4,X(x.d)-X(x.e))+'" height="6" rx="3" fill="#8FB98A"/>';}});
+  items.forEach(function(x){if(x.c==='exam'&&x.e&&!/السنة الأولى|البديلة/.test(x.t)&&x.d>=start&&x.e<=end){var a=X(x.e),b=X(x.d),m=(a+b)/2;o+='<path d="M'+b+' '+(base-3)+' L'+m+' '+(base-30)+' L'+a+' '+(base-3)+'Z" fill="#B0625A" opacity=".9"/><text x="'+m+'" y="'+(base-35)+'" text-anchor="middle" font-family="Tajawal" font-size="10.5" font-weight="800" fill="#fff">'+(/النهائية/.test(x.t)?'النهائية':/الفصلية/.test(x.t)?'الفصلية':'اختبارات')+'</text>';}});
+  var tx=X(TODAY);o+='<line x1="'+tx+'" y1="'+(base-14)+'" x2="'+tx+'" y2="'+(base+10)+'" stroke="#fff" stroke-width="2"/><circle cx="'+tx+'" cy="'+base+'" r="7" fill="#fff" stroke="#D9B48A" stroke-width="3"/>';
+  o+='<text x="'+(W-38)+'" y="'+(base+24)+'" text-anchor="middle" font-family="Tajawal" font-size="11" fill="rgba(255,255,255,.8)">'+fd(start)+'</text><text x="38" y="'+(base+24)+'" text-anchor="middle" font-family="Tajawal" font-size="11" fill="rgba(255,255,255,.8)">'+fd(end)+'</text>';
+  return o+'</svg>';
+}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-sem],[data-f],[data-past]');if(!b)return;if(b.hasAttribute('data-sem'))sel=b.getAttribute('data-sem');if(b.hasAttribute('data-f'))flt=b.getAttribute('data-f');if(b.hasAttribute('data-past'))showPast=true;draw();});
+document.addEventListener('change',function(e){if(e.target.hasAttribute('data-hj')){hij=e.target.checked;draw();}});
+if(Q.get('theme'))document.documentElement.setAttribute('data-theme',Q.get('theme'));
+draw();if(Q.get('scroll')){var el=document.getElementById('ac-list');if(el)el.scrollIntoView();}
+})();
+</script>
+</body>
+</html>

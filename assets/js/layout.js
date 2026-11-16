@@ -99,7 +99,7 @@
   var head=document.getElementById('nj-header');
   if(head){
     head.outerHTML='<header class="nj-head" id="nj-head"><div class="nj-in nj-bar">'
-      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611161340" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg?v=202611161340" alt="أكاديمية نجد" width="184" height="45"></a>'
+      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611161500" alt="أكاديمية نجد" width="184" height="45"><img class="lg-night" src="assets/img/logo-light.svg?v=202611161500" alt="أكاديمية نجد" width="184" height="45"></a>'
       +'<nav class="nj-nav" aria-label="القائمة الرئيسية">'+navLinks()+'</nav>'
       +'<div class="nj-acts"><a class="nj-streak" id="nj-streak" href="'+LINKS.study+'" hidden>'+icon('peak')+'<b></b></a><button type="button" class="nj-ic" data-search aria-label="بحث وأوامر" title="بحث وأوامر">'+icon('search')+'</button>'+PREFS
       +'<a class="nj-btn nj-btn-line nj-btn-sm nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
@@ -117,7 +117,7 @@
   if(foot){
     foot.outerHTML='<footer class="nj-foot"><div class="nj-in">'
       +'<div class="nj-foot-g">'
-      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611161340" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
+      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611161500" alt="أكاديمية نجد" width="204" height="50" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
       +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.quiz+'">اختبر نفسك</a><a href="'+LINKS.ratings+'">تجارب الطلاب</a><a href="'+LINKS.calendar+'">التقويم الأكاديمي</a><a href="'+LINKS.study+'">خطة المذاكرة</a><a href="'+LINKS.nextterm+'">وش أسجل الفصل الجاي؟</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.store+'">المتجر</a></nav></div>'
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a><a href="#" data-install>ثبّت التطبيق على جوالك</a></nav>'
@@ -364,6 +364,28 @@
   document.addEventListener('visibilitychange',function(){if(!document.hidden)streakBadge();});
   window.NajdAct={KEY:ACT,log:actLog,streak:streak,days:actDays,ymd:ymdL,daysTxt:daysTxt};
 
+  /* ===== «أضف لتقويم جوالك» (ملف ics) =====
+     آيفون في سفاري: نفتح الملف نفسه، وسفاري يعرض «إضافة الكل» (روابط data: صار سفاري يمنعها).
+     آيفون داخل التطبيق المثبّت: نافذة المشاركة بالملف. غير الآيفون: ينزل الملف ويفتحه التقويم.
+     يرجع 'open' أو 'share' أو 'file' عشان الصفحة تكتب التعليمات المناسبة. */
+  function addToCalendar(ics,name){
+    var blob=new Blob([ics],{type:'text/calendar;charset=utf-8'}),ios=/iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform));
+    if(ios){
+      if(STANDALONE){try{var f=new File([blob],name,{type:'text/calendar'});if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f]}).catch(function(){});return 'share';}}catch(e){}}
+      var u=URL.createObjectURL(blob);window.location.href=u;setTimeout(function(){URL.revokeObjectURL(u);},60000);return 'open';
+    }
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1500);return 'file';
+  }
+
+  /* الأزرار اللي تختار وحدة من مجموعة (nj-seg): التظليل ينتقل أول ما يلمس الإصبع، بدل ما ينتظر نهاية اللمسة */
+  root.addEventListener('pointerdown',function(e){
+    if(e.button>0)return;var b=e.target.closest('.nj-seg>button[aria-pressed]');if(!b||b.disabled)return;
+    var g=b.parentNode,on=g.querySelectorAll(':scope>button[aria-pressed="true"]');if(on.length!==1||on[0]===b)return;
+    var prev=on[0];prev.setAttribute('aria-pressed','false');b.setAttribute('aria-pressed','true');
+    var undo=function(){if(b.getAttribute('aria-pressed')==='true'&&prev.getAttribute('aria-pressed')==='false'){b.setAttribute('aria-pressed','false');prev.setAttribute('aria-pressed','true');}};
+    b.addEventListener('pointercancel',undo,{once:true});
+  });
+
   /* ===== البحث في الموقع: المقررات وأعضاء هيئة التدريس والأدوات ===== */
   var sxData=null;
   function loadScript(src){return new Promise(function(res){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=res;document.head.appendChild(s);});}
@@ -445,7 +467,7 @@
     }
   }
 
-  window.Najd={search:function(){sxOpen();},install:install,LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,icon:icon,setSync:setSync,esc:esc,announce:announce};
+  window.Najd={calendar:addToCalendar,search:function(){sxOpen();},install:install,LINKS:LINKS,SYNC_KEYS:SYNC_KEYS,META:META,setUser:setUser,toast:toast,icon:icon,setSync:setSync,esc:esc,announce:announce};
 
   /* ظهور العناصر والعدادات */
   var rv=root.querySelectorAll('.nj-rv');

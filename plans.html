@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/plans.html">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611161340" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611161500" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611161340">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611161500">
 <style>#najd .pl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:var(--sp-4);margin:20px 0 0}
 #najd .pl-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:10px 8px;text-align:center}
 #najd .pl-stat b{display:block;font-size:var(--fs-4xl);font-weight:800;color:var(--light);line-height:1.2}
@@ -147,11 +147,11 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611161340"></script>
-<script src="assets/js/plans-data.js?v=202611161340"></script>
-<script src="assets/js/climb.js?v=202611161340"></script>
-<script src="assets/js/i18n.js?v=202611161340"></script>
-<script type="module" src="assets/js/auth.js?v=202611161340"></script>
+<script src="assets/js/layout.js?v=202611161500"></script>
+<script src="assets/js/plans-data.js?v=202611161500"></script>
+<script src="assets/js/climb.js?v=202611161500"></script>
+<script src="assets/js/i18n.js?v=202611161500"></script>
+<script type="module" src="assets/js/auth.js?v=202611161500"></script>
 <script>
 (function(){
   var root=document.getElementById('najd');if(!root||!document.getElementById('pl-tl'))return;
@@ -254,7 +254,7 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
     ctx.font=weight+' '+min+'px '+FONT;var t=text;while(t.length>1&&ctx.measureText(t+'…').width>maxW)t=t.slice(0,-1);return t===text?t:t+'…';
   }
   /* شعار «طويق»: صورة الشعار الفاتحة، وإذا ما تحمّلت نرسم العلامة بنفس مسارات assets/img/logo.svg */
-  var logoImg=new Image();logoImg.src='assets/img/logo-light.svg?v=202611161340';
+  var logoImg=new Image();logoImg.src='assets/img/logo-light.svg?v=202611161500';
   var MARK=[['#4E7472','M18 51L33 36L41 42L52 30L62 40L70 33L82 18L102 51Z'],['#A9C6C4','M30 51L46 33L58 45L70 31L86 51Z'],['#E4E9EB','M58 51L82 22L102 51Z'],['rgba(255,255,255,.85)','M82 22L76 29.5L80 28L82 31L84.5 27.5L88 29Z'],['#C8CFD2','M57.5 100Q38 93 18 89V57Q38 60 57.5 68Z'],['#E4E9EB','M62.5 100Q82 93 102 89V57Q82 60 62.5 68Z']];
   function drawLogo(ctx,x,y,h){
     if(logoImg.complete&&logoImg.naturalWidth){ctx.drawImage(logoImg,x,y,h*768/188,h);return;}
