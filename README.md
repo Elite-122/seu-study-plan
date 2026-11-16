@@ -83,12 +83,16 @@
 1. **قواعد القاعدة:** Firestore ← Rules، الصق محتوى `firestore.rules` الجديد واضغط Publish. (فيها قاعدة رابط إيقاف الإيميل).
 2. **مفتاح حساب الخدمة:** Firebase ← Project settings ← Service accounts ← Generate new private key. ينزل ملف JSON، حط محتواه كامل في GitHub ← Settings ← Secrets and variables ← Actions ← New repository secret باسم `FIREBASE_SERVICE_ACCOUNT`. وبعدها احذف الملف من جهازك.
 3. **كلمة مرور تطبيق** لإيميل الموقع najdacdemy@gmail.com: myaccount.google.com ← الأمان ← التحقق بخطوتين (لازم يكون مفعّل) ← كلمات مرور التطبيقات. حطها في سر باسم `GMAIL_APP_PASSWORD`.
-4. **مفتاح إشعارات الجوال:** Firebase ← Project settings ← Cloud Messaging ← Web Push certificates ← Generate key pair. المفتاح العام يتحط في `window.NAJD_PUSH_KEY` في `assets/js/layout.js`. قبل هذي الخطوة، الإيميل يشتغل والجوال يكتب «قريبًا».
+4. **مفتاح إشعارات الجوال:** Firebase ← Project settings ← Cloud Messaging ← Web Push certificates ← Generate key pair. المفتاح العام في `window.NAJD_PUSH_KEY` في `assets/js/layout.js` (مضاف). في الآيفون الإشعار يشتغل بس من التطبيق المثبّت (iOS 16.4 وأحدث).
+5. **التوقيت بالضبط (cron-job.org):** جدولة GitHub تتأخر ساعات أحيانًا، فخدمة cron-job.org المجانية تشغّل التنبيهات كل نص ساعة:
+   - **مفتاح GitHub:** Settings ← Developer settings ← Personal access tokens ← Fine-grained tokens ← Generate new token. المستودع: هذا بس. الصلاحيات: Actions ← Read and write. ما يحتاج غيرها.
+   - **المهمة في cron-job.org:** الرابط `https://api.github.com/repos/Elite-122/seu-study-plan/actions/workflows/reminders.yml/dispatches`، كل 30 دقيقة، الطريقة POST، والهيدرز `Authorization: Bearer <المفتاح>` و`Accept: application/vnd.github+json` و`X-GitHub-Api-Version: 2022-11-28` و`Content-Type: application/json`، والمحتوى `{"ref":"main","inputs":{"mode":"auto"}}`.
+   - `auto` يختار التذكير حسب ساعة الرياض (7 ص، و7 و8 و9 م)، وباقي الأوقات يرسل التجارب المطلوبة بس. جدولة GitHub تبقى احتياط، والتذكير ما يتكرر (`notify.last`)، واللي يتأخر كثير ما ينرسل (`onTime` في `run.js`).
 
 **التجربة:** من حسابي اضغط «جرّب تنبيه الحين»، وبعدها GitHub ← Actions ← Study reminders ← Run workflow (اختر `tests`). يوصلك الإيميل خلال دقيقة.
 
 **ملاحظات:**
-- GitHub أحيانًا يتأخر دقايق عن الوقت، عشان كذا نبدأ قبل الساعة بخمس دقايق.
+- جدولة GitHub تتأخر أحيانًا ساعات أو تنتخطّى، عشان كذا التشغيل الأساسي من cron-job.org (الخطوة 5).
 - GitHub يوقف الجدولة لو المستودع ما تعدّل 60 يوم، ويرسل إيميل تنبيه. ترجعها من Actions ← Study reminders ← Enable workflow.
 - Gmail يسمح بحوالي 500 إيميل باليوم. لو زاد عدد الطلاب عن كذا، نحتاج خدمة إرسال إيميلات.
 

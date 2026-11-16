@@ -17,9 +17,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "وش ترسل؟ tests = التجارب المطلوبة بس"
+        description: "وش ترسل؟ auto = حسب الساعة (لـ cron-job.org)، tests = التجارب المطلوبة بس"
         type: choice
-        options: ["tests", "7", "19", "20", "21"]
+        options: ["tests", "auto", "7", "19", "20", "21"]
         default: "tests"
 
 permissions:
@@ -50,6 +50,12 @@ jobs:
             "")            m="${INPUT_MODE:-tests}" ;;
             *)             m=tests ;;
           esac
+          # auto: cron-job.org يشغّله كل نص ساعة، ونختار التذكير حسب ساعة الرياض (±14 دقيقة من 7 ص، و7 و8 و9 م)
+          if [ "$m" = "auto" ]; then
+            t=$(( 10#$(TZ=Asia/Riyadh date +%H) * 60 + 10#$(TZ=Asia/Riyadh date +%M) ))
+            m=tests
+            for p in "420:7" "1140:19" "1200:20" "1260:21"; do d=$(( t - ${p%%:*} )); [ "${d#-}" -le 14 ] && m="${p##*:}"; done
+          fi
           case "$m" in 7|19|20|21|tests) ;; *) echo "::error::bad mode"; exit 1 ;; esac
           if [ -z "$SA" ] || [ -z "$GMAIL" ]; then
             echo "::notice::Add FIREBASE_SERVICE_ACCOUNT and GMAIL_APP_PASSWORD to the repository secrets to send reminders. Skipping."

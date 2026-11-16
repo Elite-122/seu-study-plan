@@ -11,6 +11,14 @@ const SITE = "https://najdacdemy.com/";
 const BAD_TOKEN = ["messaging/registration-token-not-registered", "messaging/invalid-registration-token", "messaging/invalid-argument"];
 const TEST_MAX_AGE = 6 * 36e5; // طلب التجربة يسقط بعد ٦ ساعات
 
+/* تذكير متأخر ما نرسله: GitHub أحيانًا يأخر التشغيل ساعات.
+   الصبح (7) يطلع بين 6 و11 الصبح، والمساء (19/20/21) من الساعة اللي قبلها لين 12 الليل. بتوقيت الرياض */
+function onTime(mode, now) {
+  const h = now.getHours();
+  if (mode === 7) return h >= 6 && h < 11;
+  return h >= mode - 1 && h <= 23;
+}
+
 const unsubLink = (uid, key) => `${SITE}unsubscribe.html?u=${encodeURIComponent(uid)}&k=${encodeURIComponent(key || "")}`;
 
 /* يرسل لطالب واحد ويرجّع وش انرسل */
@@ -96,7 +104,7 @@ async function runTests({ db, now, mail, messaging }) {
   return { sent, size: snap.size };
 }
 
-module.exports = { runSlot, runTests, sendTo, unsubLink };
+module.exports = { runSlot, runTests, sendTo, unsubLink, onTime };
 
 async function main() {
   const mode = String(process.env.MODE || "").trim();
@@ -106,7 +114,10 @@ async function main() {
   admin.initializeApp({ credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)) });
   const transport = nodemailer.createTransport({ service: "gmail", auth: { user: FROM, pass: process.env.GMAIL_APP_PASSWORD } });
   const ctx = { db: admin.firestore(), now: new Date(), mail: (m) => transport.sendMail(m), messaging: admin.messaging() };
-  if (mode !== "tests") await runSlot({ ...ctx, hour: +mode });
+  if (mode !== "tests") {
+    if (onTime(+mode, ctx.now)) await runSlot({ ...ctx, hour: +mode });
+    else console.log(`reminders ${mode}: late run at ${ctx.now.toTimeString().slice(0, 5)} Riyadh, skipped`);
+  }
   await runTests(ctx);
 }
 
