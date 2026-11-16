@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>عيّنة: لوحة الإدارة في التطبيق</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/najd.css">
+<style>
+body{margin:0;background:#E9EEEE}
+#najd{min-height:0;background:transparent}
+.phones{display:flex;gap:28px;justify-content:center;align-items:flex-start;padding:24px 16px;flex-wrap:wrap}
+.ph{width:390px;height:844px;border-radius:44px;background:var(--bg);box-shadow:0 0 0 10px #1c2a29,0 30px 60px rgba(0,0,0,.25);overflow:hidden;position:relative;display:flex;flex-direction:column}
+.ph-cap{text-align:center;font-weight:800;color:#2F4F4E;margin:0 0 10px}
+.sb{height:47px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 28px;font-weight:700;font-size:15px;color:#111;background:var(--hdr)}
+.hd{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--card)}
+#najd .hd img{height:38px;width:auto;max-width:200px}
+.hd .x{width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);display:grid;place-items:center}
+.body{flex:1;overflow:hidden;padding:0 16px;position:relative}
+.tb{flex-shrink:0;height:84px;border-top:1px solid var(--line);background:var(--hdr);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 6px 26px;position:relative}
+.tb span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;font-weight:700;color:var(--muted)}
+.tb span i{width:52px;height:28px;border-radius:999px;display:grid;place-items:center}
+.tb span.on{color:var(--dtext)}.tb span.on i{background:var(--tint)}
+.tb .go i{width:52px;height:52px;margin-top:-26px;border-radius:50%;background:var(--deep);color:#fff;box-shadow:0 0 0 4px var(--bg)}
+.ic{width:22px;height:22px}
+/* القائمة */
+.dr a{display:flex;align-items:center;gap:10px;padding:13px 4px;border-bottom:1px solid var(--line);font-size:17px;color:var(--ink);text-decoration:none}
+.dr a svg{width:22px;height:22px;color:var(--teal)}
+.dr h4{margin:14px 4px 2px;font-size:14px;color:var(--link);font-weight:800}
+.dr .adm{margin:12px 0 4px;border:0;border-radius:14px;background:linear-gradient(160deg,#2F4F4E,#1F3837);color:#fff;padding:14px}
+.dr .adm svg{color:#D9B48A}
+.dr .adm b{display:block;font-size:17px;color:#fff}.dr .adm small{display:block;font-size:13px;color:#E2C9A6;font-weight:700}
+.dr .adm .cnt{margin-inline-start:auto;background:#D9B48A;color:#1F3837;font-weight:800;font-size:13px;border-radius:999px;padding:2px 10px}
+.hl{position:absolute;inset:auto 10px 0 10px;border:3px dashed #D9B48A;border-radius:16px;pointer-events:none}
+/* لوحة الإدارة */
+.ad-h{padding:14px 2px 8px}
+.ad-h small{color:var(--slate);font-weight:700;font-size:13px}
+.ad-h h1{font-size:24px;font-weight:800;margin:2px 0 0}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 8px;text-align:center}
+.kpi b{display:block;font-size:24px;font-weight:800;line-height:1.1}
+.kpi small{display:block;font-size:12px;font-weight:700;color:var(--slate);line-height:1.4}
+.kpi .hot{background:#F6EEE2;border-color:#E2C9A6}.kpi .hot b{color:#7A5A1E}
+.sec{margin-top:14px}
+.sec>p{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:16px;margin:0 2px 8px}
+.sec>p a{font-size:13px;color:var(--link);text-decoration:underline}
+.rv{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px}
+.rv .m{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:700;color:var(--slate)}
+.rv .m .code{direction:ltr;background:var(--bg);border-radius:8px;padding:2px 7px;color:var(--dtext)}
+.rv .m .st{color:#7A5A1E}
+.rv p{margin:6px 0 10px;font-size:15px;line-height:1.7}
+.rv .btns{display:flex;gap:8px}
+.rv .btns span{flex:1;display:grid;place-items:center;height:44px;border-radius:12px;font-weight:800;font-size:15px}
+.rv .ok{background:var(--deep);color:#fff}.rv .no{border:1.5px solid var(--line);color:var(--muted)}
+.qa{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.qa span{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 4px;font-size:13px;font-weight:800;color:var(--ink);text-align:center}
+.qa svg{width:24px;height:24px;color:var(--teal)}
+.smp{text-align:center;font-weight:700;color:#5A4519;background:#FFF7E6;padding:8px;border-radius:10px;max-width:820px;margin:0 auto}
+</style>
+</head>
+<body>
+<div id="najd" dir="rtl">
+<p class="smp" style="margin-top:16px">عيّنة للموافقة. الأرقام والتقييمات للتوضيح بس، والصفحة الحقيقية تقرأها من قاعدة البيانات.</p>
+<div class="phones">
+<div><p class="ph-cap">1. القائمة (للمشرف بس)</p>
+<div class="ph"><div class="sb"><span>11:11</span><span>67%</span></div>
+<div class="hd"><img src="../../assets/img/logo.svg" alt=""><span class="x"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+<div class="body dr" id="d1"></div>
+<div class="tb" id="t1"></div></div></div>
+<div><p class="ph-cap">2. لوحة الإدارة في الجوال</p>
+<div class="ph"><div class="sb"><span>11:11</span><span>67%</span></div>
+<div class="hd"><img src="../../assets/img/logo.svg" alt=""><span class="x"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></div>
+<div class="body" id="d2"></div>
+<div class="tb" id="t2"></div></div></div>
+</div>
+</div>
+<script>
+var SV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+var I={shield:'<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',lessons:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 9.5v5l4.5-2.5z"/>',quiz:'<path d="M9 4h6l4 4v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M8.5 12.5l2 2 4.5-4.5"/>',book:'<path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"/><path d="M12 6.5v13"/>',bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/>',cal:'<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',store:'<path d="M5 8h14l-1 11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/>',user:'<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>',home:'<path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/>',plan:'<path d="M8 4h8a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V6a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 13h6"/>',clock:'<circle cx="12" cy="13" r="7"/><path d="M12 9.5V13l2 1.5M10 3h4"/>',grid:'<rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/>',chart:'<path d="M4 20h16"/><path d="M7 16v-4M12 16V8M17 16v-6"/>',guide:'<path d="M12 3v18M9 21h6"/><path d="M5 6h10.5l2.5 2.5-2.5 2.5H5z"/><path d="M19 13H9.5L7 15.5 9.5 18H19z"/>'};
+function ic(k){return SV+I[k]+'</svg>';}
+function tb(on){return [['home','الرئيسية'],['plan','خطتي'],['clock','ذاكر','go'],['cal','جدولي'],['grid','المزيد']].map(function(t,i){return '<span class="'+(t[2]||'')+(i===on?' on':'')+'"><i>'+ic(t[0]).replace('<svg','<svg class="ic"')+'</i>'+t[1]+'</span>';}).join('');}
+document.getElementById('t1').innerHTML=tb(4);document.getElementById('t2').innerHTML=tb(4);
+document.getElementById('d1').innerHTML='<a class="adm">'+ic('shield')+'<span><b>لوحة الإدارة</b><small>تقييمين ينتظرون موافقتك</small></span><span class="cnt">2</span></a>'
+ +'<h4>أدواتك</h4><a>'+ic('plan')+'الخطط الدراسية</a><a>'+ic('cal')+'الجدول الدراسي</a><a>'+ic('cal')+'التقويم الأكاديمي</a>'
+ +'<h4>التعلّم</h4><a>'+ic('lessons')+'الشروحات</a><a>'+ic('quiz')+'اختبر نفسك</a><a>'+ic('book')+'المقررات</a><a>'+ic('guide')+'دليل الطالب</a>'
+ +'<div class="hl" style="top:8px;height:86px;bottom:auto"></div>';
+document.getElementById('d2').innerHTML='<div class="ad-h"><small>الاثنين 16 نوفمبر</small><h1>لوحة الإدارة</h1></div>'
+ +'<div class="kpi"><div><b>128</b><small>زيارة اليوم<br>96 موقع · 32 تطبيق</small></div><div><b>7</b><small>حساب جديد<br>اليوم</small></div><div class="hot"><b>2</b><small>تنتظر<br>موافقتك</small></div></div>'
+ +'<div class="sec"><p>تنتظر موافقتك <a>كل التقييمات</a></p>'
+ +'<div class="rv"><div class="m"><span class="code">MGT101</span><span>تقييم مقرر</span><span class="st">★ 4</span></div><p>المادة سهلة لو تابعت الشروحات أول بأول، والكويزات قريبة من الاختبار.</p><div class="btns"><span class="ok">انشر</span><span class="no">احذف</span></div></div>'
+ +'<div class="rv"><div class="m"><span>رأي طالب</span><span class="st">للصفحة الرئيسية</span></div><p>الجدول والتنبيهات فرقت معي هالفصل، شكرًا لكم.</p><div class="btns"><span class="ok">انشر</span><span class="no">احذف</span></div></div></div>'
+ +'<div class="sec"><p>إضافة سريعة</p><div class="qa"><span>'+ic('bell')+'إعلان</span><span>'+ic('cal')+'موعد</span><span>'+ic('store')+'منتج</span><span>'+ic('lessons')+'شرح</span><span>'+ic('quiz')+'اختبار</span><span>'+ic('user')+'مشترك</span></div></div>';
+</script>
+</body>
+</html>
