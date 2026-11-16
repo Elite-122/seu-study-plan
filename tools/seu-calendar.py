@@ -1,18 +1,25 @@
 #!/usr/bin/env python3
 """يسحب التقويم الأكاديمي الرسمي لمرحلة البكالوريوس من موقع الجامعة ويحفظه JSON.
 
-الاستخدام:  python3 tools/seu-calendar.py 1448
-يطلع:      tools/seu-calendar-1448.json  (الفصل الأول، والثاني، والصيفي)
+الاستخدام:  python3 tools/seu-calendar.py 1448           يسحب من الموقع ثم يبني ملف الموقع
+            python3 tools/seu-calendar.py 1448 --build   يبني ملف الموقع من JSON المحفوظ بدون سحب
+يطلع:      tools/seu-calendar-1448.json  (الفصل الأول، والثاني، والصيفي كما في موقع الجامعة)
+            assets/js/seu-calendar.js     (اللي تقراه صفحة التقويم ولوحتي)
+
+ملف الموقع = التقويم الرسمي + تعديلات إعلانات العمادة (tools/seu-calendar-overrides.json)
++ الترجمة الإنجليزية للعناوين (tools/seu-calendar-en.json). بعد البناء شغّل tools/set-version.py.
 
 كل موعد: t العنوان كما في الموقع، c التصنيف، d تاريخ البداية (ميلادي)، e تاريخ النهاية (لو فيه)،
 h و he التاريخ الهجري للبداية والنهاية كنص.
 التصنيف: exam اختبارات، off إجازات، reg تسجيل ورسوم، req طلبات وخدمات، key بداية ونهاية الفصل.
 """
-import html, json, os, re, sys, urllib.request
+import hashlib, html, json, os, re, sys, urllib.parse, urllib.request
 
-YEAR = sys.argv[1] if len(sys.argv) > 1 else "1448"
+YEAR = next((a for a in sys.argv[1:] if a.isdigit()), "1448")
 URL = "https://seu.edu.sa/ar/academic-calendar/%s/" % YEAR
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seu-calendar-%s.json" % YEAR)
+HERE = os.path.dirname(os.path.abspath(__file__))
+OUT = os.path.join(HERE, "seu-calendar-%s.json" % YEAR)
+SITE = os.path.join(HERE, "..", "assets", "js", "seu-calendar.js")
 
 MON = {"يناير": 1, "فبراير": 2, "مارس": 3, "أبريل": 4, "إبريل": 4, "مايو": 5, "يونيو": 6, "يوليو": 7,
        "أغسطس": 8, "سبتمبر": 9, "أكتوبر": 10, "نوفمبر": 11, "ديسمبر": 12}
@@ -103,5 +110,70 @@ def main():
     print("saved", OUT, {k: len(v["items"]) for k, v in out["sem"].items()})
 
 
+def iri(u):
+    return urllib.parse.quote(u, safe=":/?=&#%")
+
+
+def build():
+    """يدمج التقويم الرسمي مع إعلانات العمادة والترجمة ويكتب assets/js/seu-calendar.js.
+
+    كل موعد في الملف: id ثابت، t العنوان الرسمي، en ترجمته، c التصنيف، d و e و h و he،
+    z=1 لو الموعد فترة إغلاق (ما ينحسب «مفتوح»)،
+    a = {u رابط الإعلان، k: ext مدّدته العمادة | chg عدّلته العمادة | ok أعلنته العمادة، w مواعيد التقويم قبل الإعلان}.
+    """
+    with open(OUT, encoding="utf-8") as fh:
+        data = json.load(fh)
+    with open(os.path.join(HERE, "seu-calendar-overrides.json"), encoding="utf-8") as fh:
+        ov = json.load(fh).get(YEAR, {})
+    with open(os.path.join(HERE, "seu-calendar-en.json"), encoding="utf-8") as fh:
+        en = json.load(fh)
+    missing, used = [], set()
+    for key, sem in data["sem"].items():
+        for it in sem["items"]:
+            it["id"] = key[:2] + hashlib.md5(it["t"].encode("utf-8")).hexdigest()[:6]
+            if it["t"] in en:
+                it["en"] = en[it["t"]]
+            else:
+                missing.append(it["t"])
+            if "إغلاق خدمة" in it["t"]:
+                it["z"] = 1
+            for i, o in enumerate(ov.get("items", [])):
+                if o["sem"] != key or o["t"] != it["t"]:
+                    continue
+                used.add(i)
+                a = {"u": iri(o["url"]), "on": o.get("on", "")}
+                if o.get("d") or o.get("e"):
+                    was = {"d": it["d"]}
+                    if it.get("e"):
+                        was["e"] = it["e"]
+                    nd, ne = o.get("d", it["d"]), o.get("e", it.get("e"))
+                    a["k"] = "ext" if (ne or nd) > (it.get("e") or it["d"]) else "chg"
+                    a["w"] = was
+                    it["d"] = nd
+                    if ne:
+                        it["e"] = ne
+                    for hk in ("h", "he"):
+                        if o.get(hk):
+                            it[hk] = o[hk]
+                else:
+                    a["k"] = "ok"
+                it["a"] = a
+        sem["items"].sort(key=lambda x: (x["d"], x.get("e") or x["d"]))
+    for i, o in enumerate(ov.get("items", [])):
+        if i not in used:
+            print("تنبيه: إعلان ما لقينا موعده في التقويم:", o["sem"], o["t"])
+    for t in missing:
+        print("تنبيه: عنوان بدون ترجمة إنجليزية:", t)
+    data["ann"] = ov.get("ann", "")
+    out = ("/* التقويم الأكاديمي الرسمي لمرحلة البكالوريوس (%s هـ) مع تعديلات إعلانات العمادة.\n"
+           "   لا تعدّله يدويًا: يتولد من tools/seu-calendar.py */\n"
+           "window.NAJD_SEU_CAL=%s;\n") % (YEAR, json.dumps(data, ensure_ascii=False, separators=(",", ":")))
+    with open(SITE, "w", encoding="utf-8") as fh:
+        fh.write(out)
+    print("built", os.path.normpath(SITE), {k: len(v["items"]) for k, v in data["sem"].items()})
+
+
 if __name__ == "__main__":
-    main()
+    if "--build" not in sys.argv:
+        main()
+    build()

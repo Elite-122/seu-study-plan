@@ -1,0 +1,18 @@
+{
+ "_about": "تعديلات إعلانات عمادة القبول والتسجيل على التقويم الرسمي. الإعلان أحدث من التقويم، فتواريخه هي المعتمدة. t لازم يطابق عنوان الموعد في التقويم حرفيًا. d و e (والهجري h و he) اختيارية: لو ما تغيّرت المواعيد نكتفي برابط الإعلان. on تاريخ نشر الإعلان.",
+ "1448": {
+  "ann": "https://seu.edu.sa/ar/deanships/admission-and-registration-deanship/advertisements/",
+  "items": [
+   {"sem": "first", "t": "تقديم أعذار التغيب عن الاختبارات الفصلية", "d": "2026-10-29", "e": "2026-11-20", "h": "18 جمادى الأولى 1448", "he": "10 جمادى الآخرة 1448", "on": "2026-10-29",
+    "url": "https://seu.edu.sa/ar/deanships/admission-and-registration-deanship/advertisements/تقديم-أعذار-التغيب-عن-الاختبارات-الفصلية/"},
+   {"sem": "first", "t": "تقديم أعذار التغيب عن المحاضرات", "d": "2026-11-06", "e": "2026-11-12", "h": "26 جمادى الأولى 1448", "he": "2 جمادى الآخرة 1448", "on": "2026-11-06",
+    "url": "https://seu.edu.sa/ar/deanships/admission-and-registration-deanship/advertisements/تقديم-أعذار-التغيب-عن-المحاضرات/"},
+   {"sem": "first", "t": "الانسحاب من مقرر مع عدم أحقية استرداد الرسوم الدراسية", "on": "2026-09-06",
+    "url": "https://seu.edu.sa/ar/deanships/admission-and-registration-deanship/advertisements/الانسحاب-من-مقرر-أو-الانسحاب-من-الفصل-الدراسي-دون-استرداد-الرسوم/"},
+   {"sem": "first", "t": "الاعتذار عن الدراسة للفصل الدراسي مع عدم أحقية استرداد الرسوم الدراسية", "on": "2026-09-06",
+    "url": "https://seu.edu.sa/ar/deanships/admission-and-registration-deanship/advertisements/الانسحاب-من-مقرر-أو-الانسحاب-من-الفصل-الدراسي-دون-استرداد-الرسوم/"},
+   {"sem": "first", "t": "تغيير التخصص، تغيير الفرع، تغيير التخصص والفرع معاً، إعادة القيد", "on": "2026-11-01",
+    "url": "https://seu.edu.sa/ar/deanships/admission-and-registration-deanship/advertisements/تغيير-التخصص-تغيير-الفرع-تغيير-التخصص-والفرع-معا-إعادة-القيد/"}
+  ]
+ }
+}
