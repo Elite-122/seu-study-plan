@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex">
 <title>لوحة الإدارة | أكاديمية نجد</title>
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611170030" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611170130" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611170030">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611170130">
 <style>
 #najd .ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5)}
 #najd .ad-f.full{grid-column:1/-1}
@@ -136,14 +136,30 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611170030"></script>
-<script src="assets/js/i18n.js?v=202611170030"></script>
-<script src="assets/js/coop-data.js?v=202611170030"></script>
-<script src="assets/js/courses-data.js?v=202611170030"></script>
-<script src="assets/js/access.js?v=202611170030"></script>
-<script src="assets/js/faculty-data.js?v=202611170030"></script>
+<script src="assets/js/layout.js?v=202611170130"></script>
+<script src="assets/js/i18n.js?v=202611170130"></script>
+<script src="assets/js/coop-data.js?v=202611170130"></script>
+<script src="assets/js/courses-data.js?v=202611170130"></script>
+<script src="assets/js/access.js?v=202611170130"></script>
+<script src="assets/js/faculty-data.js?v=202611170130"></script>
+<script>
+/* حارس: لو اللوحة ما فتحت خلال ١٠ ثواني (خطأ أو نسخة قديمة محفوظة)، نقول السبب بدل صفحة فاضية */
+(function(){
+  var errs=[];window.addEventListener('error',function(e){errs.push(String(e.message||''));});
+  window.addEventListener('unhandledrejection',function(e){var r=e.reason;errs.push(String(r&&r.message||r||''));});
+  setTimeout(function(){
+    var $=function(i){return document.getElementById(i);},w=$('ad-wait'),d=$('ad-deny'),p=$('ad-panel'),b=$('ad-body');
+    var stuck=(w&&!w.hidden&&/جاري التحقق/.test(w.textContent))||(w&&w.hidden&&d&&d.hidden&&p&&p.hidden)||(p&&!p.hidden&&b&&!b.textContent.trim());
+    if(!stuck||!w)return;
+    var esc=function(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+    w.hidden=false;w.innerHTML='<p class="nj-hint" style="margin:0 0 10px"><b>ما قدرنا نفتح لوحة الإدارة.</b> حدّث الصفحة. ولو تكرر، افتحها من نافذة خاصة، أو امسح بيانات الموقع من إعدادات المتصفح.</p>'
+      +(errs.length?'<p class="nj-hint" dir="ltr" style="margin:0 0 10px;text-align:left;font-size:13px">'+esc(errs.slice(-2).join(' | ').slice(0,300))+'</p>':'')
+      +'<button type="button" class="nj-btn nj-btn-line" onclick="location.reload()">حدّث</button>';
+  },10000);
+})();
+</script>
 <script type="module">
-import { auth, db } from "./assets/js/auth.js?v=202611170030";
+import { auth, db } from "./assets/js/auth.js?v=202611170130";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, deleteField, writeBatch, query, where, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
