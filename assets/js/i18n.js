@@ -348,7 +348,9 @@ window.NAJD_I18N={DICT:{
 "{n} عضو · {n} شعبة": "{n} instructors · {n} sections",
 "عن التخصص ووين تشتغل بعد التخرج": "About the major and where you can work",
 "تجارب الطلاب في": "Student experiences in",
-"علّم على المقرر اللي خلصته. والنجمة جنب كل مقرر تفتح لك تجارب الطلاب فيه.": "Tick the courses you finished. The star next to each course opens what students say about it.",
+"علّم على المقرر اللي خلصته. وأيقونة الكتاب جنب كل مقرر تفتح صفحته: وصفه وتجارب الطلاب فيه.": "Tick the courses you finished. The book next to each course opens its page: the description and what students say about it.",
+"صفحة المقرر": "Course page",
+"صفحة المقرر: وصفه وتجارب الطلاب": "Course page: description and student experiences",
 "محاضراتي": "My lectures",
 "اختباراتي": "My exams",
 "احفظ": "Save",
@@ -1317,7 +1319,6 @@ window.NAJD_I18N={DICT:{
 "مقررات تخصص المحاسبة": "Accounting major courses",
 "مقررات تخصص التجارة الإلكترونية": "E-Commerce major courses",
 "ما فيها تقييمات بعد": "No ratings yet",
-"مهارات اللغة الإنجليزية (الجزأين)": "English Language Skills (both parts)",
 "القسم": "Section",
 },
 TPL:{

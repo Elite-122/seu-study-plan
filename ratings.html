@@ -149,7 +149,7 @@ const KIND = {
 };
 let kind = "course", F = null, user = null, q = "", open = null;
 const META = window.NAJD_COURSE_META || {};
-const items = { course: (window.NAJD_COURSES || []).map((c) => { const m = META[c[0]] || ["common", 9, 0]; return { id: c[0], name: c[0], sub: c[0] === "ENG001" ? "مهارات اللغة الإنجليزية (الجزأين)" : c[1], en: c[2], sec: m[0], lv: m[1], h: m[2] }; }), inst: [] };
+const items = { course: (window.NAJD_COURSES || []).map((c) => { const m = META[c[0]] || ["common", 9, 0]; return { id: c[0], name: c[0], sub: c[1], en: c[2], sec: m[0], lv: m[1], h: m[2] }; }), inst: [] };
 /* أقسام المقررات وألوانها حسب دليل الهوية */
 const SEC = {
   common: { n: "المواد المشتركة", p: "مقررات مشتركة بين التخصصات الأربعة" },

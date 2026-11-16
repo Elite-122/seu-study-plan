@@ -113,7 +113,7 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
 #najd .pl-cn small.pl-need{color:var(--err);font-weight:700}
 #najd .pl-now{display:inline-flex;align-items:center;gap:var(--sp-3);font-size:var(--fs-md);margin:12px 0 0;background:var(--tint);border-radius:var(--r-pill);padding:5px 14px;color:var(--muted)}
 #najd .pl-now b{color:var(--dtext);font-weight:800}
-#najd .pl-rate .nj-icon{width:20px;height:20px;color:#B8943A}
+#najd .pl-rate .nj-icon{width:22px;height:22px;color:var(--link)}
 </style>
 </head>
 <body>
@@ -139,7 +139,7 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
 <div class="pl-pdf-row"><input id="pl-name" class="nj-input" type="text" maxlength="40" placeholder="اسمك (اختياري، يظهر في الملف)" aria-label="اسمك"><button type="button" class="nj-btn nj-btn-fill" id="pl-pdf-btn">تحميل PDF</button></div>
 <p class="pl-pdf-msg" id="pl-pdf-msg" aria-live="polite"></p></div>
 <h2 class="pl-h">المقررات حسب المستوى</h2>
-<p class="nj-hint pl-tip">علّم على المقرر اللي خلصته. والنجمة جنب كل مقرر تفتح لك تجارب الطلاب فيه.</p>
+<p class="nj-hint pl-tip">علّم على المقرر اللي خلصته. وأيقونة الكتاب جنب كل مقرر تفتح صفحته: وصفه وتجارب الطلاب فيه.</p>
 <div class="pl-tl" id="pl-tl"></div>
 <div class="pl-gpa"><div><h2>تبي تعرف معدلك؟</h2><p>احسب معدلك الفصلي والتراكمي بالتقديرات في ثواني.</p></div><a class="nj-btn" href="#" data-link="gpa">افتح حاسبة المعدل</a></div>
 <p class="pl-src">المصادر: خطة الإدارة (ديسمبر 2025)، المالية والتجارة الإلكترونية (سبتمبر 2023)، دليل المحاسبة (يونيو 2026). ارجع دائمًا للخطة الرسمية ودليل الطالب.</p>
@@ -216,7 +216,7 @@ html[data-theme="dark"] #najd .pl-code{background:var(--light);background:color-
           +(lk?'<small class="pl-need">'+T('مقفلة، باقي عليك:')+' <span data-no-i18n>'+esc(needText(ms))+'</span></small>':'<small>المتطلب السابق: '+esc(NP.prereqText(st.major,li,ci))+'</small>')
           +'</span>'
           +'<span class="pl-ch">'+c[3]+'<small>ساعات</small></span>'
-          +'<a class="pl-rate" href="c/'+esc(c[0])+'.html" aria-label="'+T('تجارب الطلاب في')+' '+esc(c[0])+'" title="'+T('تجارب الطلاب ونصايحهم')+'">'+window.Najd.icon('ratings')+'</a></label>';
+          +'<a class="pl-rate" href="c/'+esc(c[0])+'.html" aria-label="'+T('صفحة المقرر')+' '+esc(c[0])+'" title="'+T('صفحة المقرر: وصفه وتجارب الطلاب')+'">'+window.Najd.icon('book')+'</a></label>';
       });
       o+='</div></div>';
     });
