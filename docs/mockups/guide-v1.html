@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>عيّنة: دليل الطالب</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/najd.css">
+<style>
+body{margin:0;background:var(--bg,#F4F7F7)}
+#najd{min-height:0}
+#najd .gd-band{background:linear-gradient(160deg,#2F4F4E,#1F3837);color:#fff;padding:26px 0 54px}
+#najd .gd-band h1{font-size:34px;font-weight:800;line-height:1.3;color:#fff;margin:0}
+#najd .gd-band p{color:var(--mist);font-size:var(--fs-lg);margin:6px 0 16px;max-width:38em}
+#najd .gd-q{position:relative;max-width:560px}
+#najd .gd-q input{width:100%;box-sizing:border-box;min-height:52px;border-radius:var(--r-lg);border:0;padding:0 46px 0 14px;font:inherit;font-size:var(--fs-base);background:#fff;color:#1F3837}
+#najd .gd-q svg{position:absolute;inset-inline-start:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:#5F7071}
+#najd .gd-fast{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#najd .gd-fast a{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:var(--r-pill);background:rgba(255,255,255,.12);color:#fff;font-size:var(--fs-sm);font-weight:700;text-decoration:none}
+#najd .gd-main{margin-top:-34px}
+/* الفهرس */
+#najd .gd-toc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:900px){#najd .gd-toc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#najd .gd-toc a{display:flex;flex-direction:column;gap:4px;min-height:96px;padding:12px;border-radius:var(--r-lg);background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);text-decoration:none;color:var(--ink)}
+#najd .gd-toc a b{font-size:var(--fs-base);font-weight:800;line-height:1.4}
+#najd .gd-toc a small{font-size:var(--fs-sm);color:var(--slate);line-height:1.5}
+#najd .gd-toc .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:9px;background:var(--tint);color:var(--dtext);font-weight:800;font-size:var(--fs-sm)}
+#najd .gd-toc a.is-soon{opacity:.75}
+#najd .gd-toc a.is-soon .n{background:var(--light);color:var(--muted)}
+/* القسم */
+#najd .gd-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;margin-top:16px;scroll-margin-top:16px}
+#najd .gd-sec>header{display:flex;align-items:flex-start;gap:12px}
+#najd .gd-sec>header .n{flex-shrink:0;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--deep);color:#fff;font-weight:800;font-size:var(--fs-lg)}
+#najd .gd-sec h2{font-size:var(--fs-2xl);font-weight:800;margin:0;line-height:1.35}
+#najd .gd-sec header small{display:block;font-size:var(--fs-sm);color:var(--slate);margin-top:2px}
+#najd .gd-sec header small a{color:var(--dtext);font-weight:700}
+#najd .gd-sum{margin:14px 0 4px;padding:12px 14px;border-radius:var(--r-md);background:#F6EEE2;border-inline-start:4px solid #D9B48A}
+#najd .gd-sum b.h{display:block;font-size:var(--fs-sm);font-weight:800;color:#6E4F22;margin-bottom:4px}
+#najd .gd-sum ul{margin:0;padding-inline-start:18px;list-style:disc}
+#najd .gd-sum li{font-size:var(--fs-base);line-height:1.8;color:#3B3121}
+#najd .gd-sum li b{color:#1F1A10}
+#najd .gd-live{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
+#najd .gd-live a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;border-radius:var(--r-md);background:var(--tint);color:var(--dtext);font-size:var(--fs-sm);font-weight:700;text-decoration:none}
+#najd .gd-live a i{font-style:normal;padding:2px 8px;border-radius:var(--r-pill);font-size:12px;font-weight:800}
+#najd .gd-live a i.open{background:var(--ok-bg);color:var(--ok)}#najd .gd-live a i.soon{background:#F3E6D2;color:#6E4F22}#najd .gd-live a i.done{background:var(--light);color:var(--muted)}
+#najd .gd-sec details{border-top:1px solid var(--line)}
+#najd .gd-sec details:first-of-type{margin-top:10px}
+#najd .gd-sec summary{display:flex;align-items:center;gap:10px;min-height:52px;padding:6px 0;cursor:pointer;list-style:none;font-size:var(--fs-lg);font-weight:800;line-height:1.5}
+#najd .gd-sec summary::-webkit-details-marker{display:none}
+#najd .gd-sec summary::after{content:"";margin-inline-start:auto;flex-shrink:0;width:9px;height:9px;border-right:2px solid var(--slate);border-bottom:2px solid var(--slate);transform:translateY(-3px) rotate(45deg);transition:transform .15s}
+#najd .gd-sec details[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+#najd .gd-a{padding:0 0 14px;font-size:var(--fs-base);line-height:1.9;color:var(--ink)}
+#najd .gd-a p{margin:0 0 8px}
+#najd .gd-a ul{margin:0 0 8px;padding-inline-start:20px;list-style:disc}
+#najd .gd-a .src{display:inline-block;font-size:12px;font-weight:700;color:var(--slate);background:var(--bg);border-radius:var(--r-pill);padding:2px 9px}
+#najd .gd-num{font-weight:800;color:var(--dtext);background:var(--tint);border-radius:6px;padding:0 5px}
+/* أداة كم أقدر أغيب */
+#najd .gd-tool{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:6px 0 10px;padding:12px;border-radius:var(--r-md);border:1.5px dashed var(--line)}
+#najd .gd-tool label{font-weight:800;font-size:var(--fs-base)}
+#najd .gd-tool input{width:84px;min-height:44px;border-radius:var(--r-md);border:1.5px solid var(--line);font:inherit;font-size:var(--fs-lg);text-align:center;background:var(--card);color:var(--ink)}
+#najd .gd-tool output{flex:1 1 220px;font-size:var(--fs-base);line-height:1.7}
+#najd .gd-tool output b{font-size:var(--fs-2xl);color:var(--dtext)}
+/* المقارنة */
+#najd .gd-cmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0 6px}
+@media (max-width:760px){#najd .gd-cmp{grid-template-columns:minmax(0,1fr)}}
+#najd .gd-cmp>div{border:1px solid var(--line);border-radius:var(--r-md);padding:12px;border-top:4px solid var(--c)}
+#najd .gd-cmp h3{font-size:var(--fs-lg);font-weight:800;margin:0 0 2px}
+#najd .gd-cmp p.w{margin:0 0 8px;font-size:var(--fs-sm);color:var(--slate)}
+#najd .gd-cmp dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 10px;font-size:var(--fs-md);line-height:1.6}
+#najd .gd-cmp dt{color:var(--slate);font-weight:700}
+#najd .gd-cmp dd{margin:0;font-weight:700}
+/* الإنذار */
+#najd .gd-meter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0}
+#najd .gd-meter div{border-radius:var(--r-md);padding:10px 8px;text-align:center;background:var(--bg)}
+#najd .gd-meter div b{display:block;font-size:var(--fs-xl);font-weight:800}
+#najd .gd-meter div small{font-size:12px;font-weight:700;color:var(--slate)}
+#najd .gd-meter .w1{background:#F3E6D2}#najd .gd-meter .w2{background:#EFD3C4}#najd .gd-meter .w3{background:#E8C7C1}#najd .gd-meter .out{background:#8E3F37;color:#fff}#najd .gd-meter .out small{color:#F6DCD7}
+#najd .gd-soon{color:var(--muted);font-size:var(--fs-md);margin:10px 0 0}
+#najd .gd-soon li{line-height:1.9}
+#najd .gd-foot{font-size:var(--fs-sm);color:var(--slate);text-align:center;margin:20px auto 30px;max-width:46em;line-height:1.8}
+#najd .gd-foot a{color:var(--dtext);font-weight:700}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+#najd .smp{background:#FFF7E6;color:#5A4519;font-size:13px;font-weight:700;text-align:center;padding:6px}
+</style>
+</head>
+<body>
+<div id="najd" dir="rtl">
+<div class="smp">عيّنة للموافقة: القسم ٣ و٥ و٧ مكتوبة كاملة، والباقي يتكتب بنفس الطريقة بعد موافقتك.</div>
+<section class="gd-band"><div class="wrap">
+<h1>دليل الطالب</h1>
+<p>الأنظمة واللوائح اللي تهمك، بكلام واضح ومن مصدرها الرسمي: لائحة الدراسة والاختبارات (القواعد التنفيذية، يناير 2026).</p>
+<div class="gd-q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><input type="search" id="gd-q" placeholder="ابحث: حرمان، انسحاب، إنذار…" aria-label="ابحث في الدليل"></div>
+<div class="gd-fast"><a href="#s3">كم مرة أقدر أغيب؟</a><a href="#s5">انسحاب ولا اعتذار؟</a><a href="#s7">متى ينعطى الإنذار؟</a><a href="#s4">فاتني الاختبار</a></div>
+</div></section>
+<main class="wrap gd-main">
+<nav class="gd-toc" aria-label="أقسام الدليل">
+<a href="#s1" class="is-soon"><span class="n">1</span><b>الأنظمة اللي بتستخدمها</b><small>البلاك بورد، الخدمات الطلابية، البريد</small></a>
+<a href="#s2" class="is-soon"><span class="n">2</span><b>التسجيل وجدولك</b><small>العبء، الحذف والإضافة، الرسوم</small></a>
+<a href="#s3"><span class="n">3</span><b>الحضور والغياب</b><small>الحرمان ورفعه، والأعذار</small></a>
+<a href="#s4" class="is-soon"><span class="n">4</span><b>الاختبارات</b><small>الأعذار، البديل، الاعتراض</small></a>
+<a href="#s5"><span class="n">5</span><b>الانسحاب والاعتذار والتأجيل</b><small>الفرق بينهم ومتى</small></a>
+<a href="#s6" class="is-soon"><span class="n">6</span><b>تغيير التخصص وإعادة القيد</b><small>الشروط والمواعيد</small></a>
+<a href="#s7"><span class="n">7</span><b>المعدل والإنذار</b><small>الإنذار، الفصل، مرتبة الشرف</small></a>
+<a href="#s8" class="is-soon"><span class="n">8</span><b>أسئلة شائعة</b><small>لغة الدراسة، المعادلة، التحويل</small></a>
+</nav>
+
+<!-- ٣ الحضور والغياب -->
+<section class="gd-sec" id="s3" aria-labelledby="s3h">
+<header><span class="n">3</span><div><h2 id="s3h">الحضور والغياب</h2><small>المصدر: <a href="https://seu.edu.sa/media/1118128/القواعد-التنفيذية-للائحة-الدراسة-والاختبارات-للمرحلة-الجامعية-معتمده-يناير-2026.pdf" target="_blank" rel="noopener">القواعد التنفيذية 2026</a>، المادة 14 و15</small></div></header>
+<div class="gd-sum"><b class="h">الخلاصة</b><ul>
+<li>إذا زاد غيابك عن <b>25%</b> من ساعات المقرر، تنحرم من الاختبار النهائي وينرصد لك <b>محروم (DN)</b>، ويُحسب راسب.</li>
+<li>الحضور الافتراضي يُحسب مثل الحضوري، حسب نمط المقرر.</li>
+<li>عندك عذر؟ يقدر مجلس الكلية يرفع الحرمان إذا حضورك ما قل عن <b>50%</b>.</li>
+</ul></div>
+<div class="gd-live" data-live="أعذار التغيب عن المحاضرات"></div>
+<div class="gd-tool"><label for="gd-n">كم محاضرة في المقرر هذا الفصل؟</label><input id="gd-n" type="number" inputmode="numeric" min="1" max="120" value="14"><output id="gd-out" for="gd-n" aria-live="polite"></output><small style="flex-basis:100%;color:var(--slate);font-size:var(--fs-sm)">الحساب على ساعات المقرر، فيصح لو محاضراتك كلها بنفس الطول.</small></div>
+<details><summary>وش يعني «محروم»؟</summary><div class="gd-a"><p>يعني ما يحق لك تدخل الاختبار النهائي للمقرر، وتنرصد لك درجة <b>محروم (ح) أو (DN)</b>، وتُعامل معاملة الراسب في المقرر.</p><span class="src">المادة 14</span></div></details>
+<details><summary>مين يرصد غيابي؟ ومتى أعرف إني محروم؟</summary><div class="gd-a"><p>أستاذ المقرر يرصد الغياب <b>إلكترونيًا</b> من أول يوم في الفصل لين آخر أسبوع فيه. وقوائم الحرمان تنعلن <b>قبل بداية الاختبارات النهائية</b>.</p><span class="src">القاعدة التنفيذية للمادة 14</span></div></details>
+<details><summary>أقدر أرفع الحرمان؟</summary><div class="gd-a"><p>إيه، بشرطين:</p><ul><li>تقدّم عذر مقبول حسب الضوابط المعلنة.</li><li>حضورك ما يقل عن <span class="gd-num">50%</span> من ساعات المقرر.</li></ul><p>اللي يقرر مجلس الكلية اللي تقدم المقرر (أو من يفوضه)، ولرئيس الجامعة الاستثناء.</p><span class="src">القاعدة التنفيذية للمادة 15</span></div></details>
+<details><summary>شفت في الأسئلة الشائعة إن النسبة 66%، أيهم الصح؟</summary><div class="gd-a"><p>المعتمد الحين <b>القواعد التنفيذية الصادرة يناير 2026</b>: الحرمان إذا تجاوز غيابك 25%. يعني لازم تحضر 75% على الأقل. لو شفت رقم ثاني في صفحة أقدم، المرجع هو اللائحة الأحدث.</p></div></details>
+</section>
+
+<!-- ٥ الانسحاب والاعتذار والتأجيل -->
+<section class="gd-sec" id="s5" aria-labelledby="s5h">
+<header><span class="n">5</span><div><h2 id="s5h">الانسحاب والاعتذار والتأجيل</h2><small>المصدر: القواعد التنفيذية 2026، المادة 16 و17 و18 و19، و<a href="https://seu.edu.sa/ar/about/faqs/" target="_blank" rel="noopener">الأسئلة الشائعة</a></small></div></header>
+<div class="gd-sum"><b class="h">الخلاصة</b><ul>
+<li><b>الانسحاب</b> من مقرر أو أكثر، و<b>الاعتذار</b> عن الفصل كامل، و<b>التأجيل</b> للفصل كامل في بدايته.</li>
+<li>الاعتذار ينحسب من مدة دراستك، والتأجيل ما ينحسب.</li>
+<li>ما فيه اعتذار ولا تأجيل في <b>السنة الأولى المشتركة</b>.</li>
+</ul></div>
+<div class="gd-live" data-live="الانسحاب من مقرر|الاعتذار عن الدراسة|تأجيل الدراسة"></div>
+<div class="gd-cmp">
+<div style="--c:#4F7CA8"><h3>الانسحاب من مقرر</h3><p class="w">تطلع من مادة وتكمل الباقي</p><dl><dt>متى</dt><dd>خلال الفصل، في الفترة المعلنة</dd><dt>ينرصد</dt><dd>(W) في المقرر</dd><dt>الشرط</dt><dd>يبقى معك 11 ساعة على الأقل</dd><dt>الرسوم</dt><dd>ما ترجع</dd></dl></div>
+<div style="--c:#B08A4E"><h3>الاعتذار عن الفصل</h3><p class="w">توقف الفصل كامل بعذر</p><dl><dt>متى</dt><dd>خلال الفصل، قبل نهاية الفترة المعلنة</dd><dt>ينرصد</dt><dd>(W) في كل مقرراتك</dd><dt>المدة</dt><dd>ينحسب من مدة دراستك</dd><dt>الرسوم</dt><dd>ما ترجع</dd></dl></div>
+<div style="--c:#6E8F5E"><h3>التأجيل</h3><p class="w">تأجل الفصل كامل</p><dl><dt>متى</dt><dd>أول الفصل، في الفترة المعلنة</dd><dt>ينرصد</dt><dd>ما ينرصد شي في المقررات</dd><dt>المدة</dt><dd>ما ينحسب من مدة دراستك</dd><dt>الرسوم</dt><dd>ما تنحسب رسوم دراسية</dd></dl></div>
+</div>
+<details><summary>شروط الانسحاب من مقرر</summary><div class="gd-a"><ul><li>تقدّم طلب إلكتروني في الفترة المعلنة في التقويم.</li><li>ما يقل اللي يبقى لك بعد الانسحاب عن <span class="gd-num">11 ساعة</span>، ولعميد الكلية النظر في الحالات اللي تقل.</li><li>ما عليك رسوم متأخرة.</li><li>ما ينقبل إذا كنت <b>محروم</b> في المقرر.</li></ul><span class="src">القاعدة التنفيذية للمادة 17</span></div></details>
+<details><summary>كم مرة أقدر أعتذر أو أأجل؟</summary><div class="gd-a"><ul><li><b>الاعتذار:</b> فصلين دراسيين متتاليين بحد أقصى، وما يتجاوز سنة دراسية. والاعتذار عن الصيفي ما ينحسب من المرات.</li><li><b>التأجيل:</b> فصلين دراسيين متتاليين بحد أقصى.</li></ul><p>وفي الحالتين لازم تسجل بعد ما تخلص المدة، وإلا تنحسب <b>منقطع</b>.</p><span class="src">القاعدة التنفيذية للمادة 16 و18</span></div></details>
+<details><summary>متى ما ينفع أعتذر عن الفصل؟</summary><div class="gd-a"><ul><li>بعد ما تحضر الاختبار النهائي لأي مقرر في الفصل.</li><li>إذا عليك رسوم متأخرة.</li><li>إذا ما عندك مقررات مسجلة في الفصل.</li></ul><span class="src">القاعدة التنفيذية للمادة 16</span></div></details>
+<details><summary>وش يصير لو ما سجلت ولا اعتذرت ولا أجلت؟</summary><div class="gd-a"><p>إذا انقطعت <b>فصل دراسي</b> بدون اعتذار أو تأجيل، <b>ينطوي قيدك</b>. وتقدر تطلب إعادة القيد إلكترونيًا مرة وحدة خلال <span class="gd-num">4 فصول</span> من طي القيد، بشروط منها: عذر يقبله مجلس الكلية، وما تكون مفصول أكاديميًا، ومعدلك التراكمي ما يقل عن <span class="gd-num">1 من 4</span>.</p><span class="src">القاعدة التنفيذية للمادة 19</span></div></details>
+</section>
+
+<!-- ٧ المعدل والإنذار -->
+<section class="gd-sec" id="s7" aria-labelledby="s7h">
+<header><span class="n">7</span><div><h2 id="s7h">المعدل والإنذار</h2><small>المصدر: القواعد التنفيذية 2026، المادة 1 و22 و39 و41 و42</small></div></header>
+<div class="gd-sum"><b class="h">الخلاصة</b><ul>
+<li>ينعطى الطالب <b>إنذار أكاديمي</b> إذا نزل معدله التراكمي عن <b>1.00 من 4</b> (<b>2.00 من 5</b>).</li>
+<li><b>ثلاث إنذارات متتالية</b> = فصل من الجامعة، ولمجلس الجامعة يعطي فرصة إضافية.</li>
+<li>مرتبة الشرف الأولى من <b>3.75</b>، والثانية من <b>3.25</b> (من 4)، بشرط ما ترسب في أي مقرر.</li>
+</ul></div>
+<div class="gd-live"><a href="../../gpa.html">احسب معدلك الحين<i class="soon">حاسبة المعدل</i></a></div>
+<div class="gd-meter" aria-label="الإنذارات المتتالية"><div class="w1"><b>1</b><small>إنذار أول</small></div><div class="w2"><b>2</b><small>إنذار ثاني</small></div><div class="w3"><b>3</b><small>إنذار ثالث</small></div><div class="out"><b>فصل</b><small>إلا لو انعطيت فرصة</small></div></div>
+<details><summary>متى ينعطى الإنذار بالضبط؟</summary><div class="gd-a"><p>الإنذار إشعار ينعطى للطالب إذا نزل معدله التراكمي عن الحد الأدنى المطلوب للتخرج. والحد الأدنى للتخرج تقدير <b>مقبول</b>: <span class="gd-num">1.00 من 4</span> (<span class="gd-num">2.00 من 5</span>). وبعض التخصصات يجوز تشترط معدل أعلى للتخرج بموافقة مجلس الجامعة.</p><span class="src">المادة 1 (الإنذار الأكاديمي) والقاعدة التنفيذية للمادة 41</span></div></details>
+<details><summary>متى أنفصل من الجامعة؟</summary><div class="gd-a"><ul><li>إذا جاك <b>ثلاث إنذارات متتالية</b>.</li><li>إذا ما خلصت متطلبات التخرج خلال <b>مدة البرنامج + نصفها</b>. مثلًا برنامج 4 سنوات حده الأقصى 6 سنوات.</li></ul><p>ويجوز لمجلس الجامعة يعطي فرصة استثنائية لا تتجاوز سنة دراسية، إذا كان ممكن حسابيًا ترفع معدلك وتخلص باقي مقرراتك.</p><span class="src">المادة 22 وقاعدتها التنفيذية</span></div></details>
+<details><summary>نجحت في كل المواد بس معدلي تحت حد التخرج، وش أسوي؟</summary><div class="gd-a"><p>مجلس الكلية يحدد لك مقررات تدرسها عشان ترفع معدلك:</p><ul><li>بحد أقصى <span class="gd-num">20%</span> من ساعات خطتك، وخلال فصلين بحد أقصى.</li><li>ينحسب لك التقدير الأعلى، والأقل يتحول (NP) وما يدخل في المعدل.</li><li>أعلى معدل توصله بهالطريقة هو الحد الأدنى للتخرج.</li></ul><span class="src">القاعدة التنفيذية للمادة 42</span></div></details>
+<details><summary>شروط مرتبة الشرف</summary><div class="gd-a"><ul><li><b>الأولى:</b> من 3.75 إلى 4.00. <b>الثانية:</b> من 3.25 إلى أقل من 3.75 (من 4).</li><li>ما رسبت في أي مقرر، في الجامعة أو في جامعة ثانية.</li><li>خلصت خلال متوسط المدة بين الحد الأدنى والحد الأقصى للبقاء في كليتك.</li><li>درست في الجامعة 60% على الأقل من متطلبات التخرج.</li></ul><span class="src">المادة 39 وقاعدتها التنفيذية</span></div></details>
+</section>
+
+<section class="gd-sec" id="s1"><header><span class="n">1</span><div><h2>الأنظمة اللي بتستخدمها</h2><small>بعد موافقتك</small></div></header>
+<ul class="gd-soon"><li>البلاك بورد: الدخول، وحضور المحاضرة المباشرة، والمسجلة، والواجبات والاختبارات والدرجات (دليل خاص، أنتظر صورك).</li><li>الخدمات الطلابية: وش تقدم منها، ووين تلقى كل طلب.</li><li>البريد الجامعي وتطبيق الجامعة، والدعم الفني.</li></ul></section>
+<p class="gd-foot">هذا الدليل يبسّط اللوائح الرسمية ولا يغني عنها. لو اختلف شي، المرجع <a href="https://seu.edu.sa/ar/deanships/admission-and-registration-deanship/rules-and-regulations/" target="_blank" rel="noopener">صفحة اللوائح في موقع الجامعة</a>.</p>
+</main>
+</div>
+<script src="../../assets/js/seu-calendar.js"></script>
+<script>
+(function(){
+  var Q=new URLSearchParams(location.search),T=Q.get('d')||new Date().toISOString().slice(0,10);
+  function D(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function days(a,b){return Math.round((D(b)-D(a))/864e5);}
+  var all=[];var C=window.NAJD_SEU_CAL;if(C)Object.keys(C.sem).forEach(function(k){all=all.concat(C.sem[k].items);});
+  function pl(n){return n===1?'يوم':n===2?'يومين':n<=10?n+' أيام':n+' يوم';}
+  [].forEach.call(document.querySelectorAll('[data-live]'),function(box){
+    var o='';box.getAttribute('data-live').split('|').forEach(function(rx){
+      var l=all.filter(function(x){return new RegExp(rx).test(x.t);}).sort(function(a,b){return a.d<b.d?-1:1;});
+      var x=l.filter(function(x){return (x.e||x.d)>=T;})[0]||l[l.length-1];if(!x)return;
+      var e=x.e||x.d,st=T<x.d?['soon','يفتح بعد '+pl(days(T,x.d))]:T>e?['done','قفل']:['open','مفتوح · باقي '+pl(days(T,e))];
+      o+='<a href="../../calendar.html">'+x.t.replace(/\s*\(.*\)|\s*مع عدم.*|\s*دون.*|\s*لا تحتسب.*/,'')+'<i class="'+st[0]+'">'+st[1]+'</i></a>';});
+    box.innerHTML=o;});
+  var n=document.getElementById('gd-n'),out=document.getElementById('gd-out');
+  function calc(){var v=Math.max(1,Math.min(120,parseInt(n.value,10)||0)),m=Math.floor(v*0.25+1e-9);
+    out.innerHTML='تقدر تغيب لين <b>'+m+'</b> '+(m===1?'محاضرة':m===2?'محاضرتين':m>=3&&m<=10?'محاضرات':'محاضرة')+' بالكثير. الغياب رقم '+(m+1)+' يتجاوز 25% ويحرمك.';}
+  n.addEventListener('input',calc);calc();
+  var q=document.getElementById('gd-q');q.addEventListener('input',function(){var t=q.value.trim();[].forEach.call(document.querySelectorAll('.gd-sec details'),function(d){var hit=t&&d.textContent.indexOf(t)>=0;d.open=!!hit;d.style.display=!t||hit?'':'none';});});
+  if(Q.get('theme'))document.documentElement.setAttribute('data-theme',Q.get('theme'));
+})();
+</script>
+</body>
+</html>
