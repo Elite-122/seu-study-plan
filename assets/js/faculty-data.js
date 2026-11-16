@@ -10,6 +10,7 @@ window.NAJD_FACULTY=[
 ["l-nasser", "د. ليلى خالد ناصر", "Dr. Layla Khaled Nasser", "mgt", "وكيلة الكلية للدراسات العليا والبحث العلمي والابتكار", "jeddah", "l.nasser@seu.edu.sa"],
 ["n-alnemer", "د. ندى النمر", "Dr.Nada Alnemer", "mgt", "عميدة كلية العلوم الإدارية والمالية", "madinah", "n.alnemer@seu.edu.sa"],
 ["s-alharthi", "د. صقر بن ساعد الحارثي", "Dr. Sager Alharthi", "mgt", "أستاذ مساعد", "riyadh", "s.alharthi@seu.edu.sa"],
+["m-helmi", "د. ماجد عبدالرؤف عثمان حلمي", "Dr. Majed Helmi", "mgt", "أستاذ مساعد", "", ""],
 ["nbinsaif", "د. ناصر حمد بن سيف", "Dr. Nasser Binsaif", "ecom", "عميد شؤون الطلاب", "riyadh", "nbinsaif@seu.edu.sa"],
 ["h-alhumoudi", "د. حمد يوسف عبدالله الحمودي", "Dr. Hamad Alhumoudi", "acct", "رئيس قسم المحاسبة", "riyadh", "h.alhumoudi@seu.edu.sa"],
 ["l-khoshaim", "د. لمى سمير حسن خشيم", "Dr. Lama Khoshaim", "ecom", "رئيسة قسم التجارة الإلكترونية", "jeddah", "l.khoshaim@seu.edu.sa"],
