@@ -2,7 +2,7 @@
 process.env.TZ = "Asia/Riyadh";
 const assert = require("assert");
 const { build, emailHtml } = require("./build");
-const { runSlot, runTests } = require("./run");
+const { runSlot, runTests, onTime } = require("./run");
 
 const data = {
   stq_schedule_v1: JSON.stringify({
@@ -109,6 +109,12 @@ function fakeDb(docs) {
   const db2 = fakeDb({ a: { email: "a@x.com", data, notify: { ...base, email: true, hour: 20 } } });
   await runSlot({ db: db2, hour: 20, now, mail: async () => { throw new Error("smtp down"); }, messaging });
   assert.strictEqual(db2.docs.a.notify.last, undefined);
+
+  // التذكير المتأخر ما ينرسل (GitHub ممكن يتأخر ساعات)
+  const at = (h, m) => new Date(2026, 10, 16, h, m || 0);
+  assert.ok(onTime(7, at(6, 55)) && onTime(7, at(10, 30)) && !onTime(7, at(15, 9)) && !onTime(7, at(5, 0)));
+  assert.ok(onTime(20, at(19, 55)) && onTime(20, at(23, 10)) && !onTime(20, at(2, 15)) && !onTime(20, at(15, 0)));
+  assert.ok(onTime(19, at(18, 55)) && onTime(21, at(20, 55)) && !onTime(21, at(19, 0)));
 
   console.log("ok: all reminder checks passed");
 })().catch((e) => { console.error(e); process.exit(1); });
