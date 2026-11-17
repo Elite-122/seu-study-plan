@@ -104,7 +104,7 @@
   var head=document.getElementById('nj-header');
   if(head){
     head.outerHTML='<header class="nj-head" id="nj-head"><div class="nj-in nj-bar">'
-      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611170900" alt="أكاديمية نجد" width="212" height="50"><img class="lg-night" src="assets/img/logo-light.svg?v=202611170900" alt="أكاديمية نجد" width="212" height="50"></a>'
+      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611171500" alt="أكاديمية نجد" width="212" height="50"><img class="lg-night" src="assets/img/logo-light.svg?v=202611171500" alt="أكاديمية نجد" width="212" height="50"></a>'
       +'<nav class="nj-nav" aria-label="القائمة الرئيسية">'+navLinks()+'</nav>'
       +'<div class="nj-acts"><a class="nj-streak" id="nj-streak" href="'+LINKS.study+'" hidden>'+icon('peak')+'<b></b></a><button type="button" class="nj-ic" data-search aria-label="بحث وأوامر" title="بحث وأوامر">'+icon('search')+'</button>'+ADM_BTN+PREFS
       +'<a class="nj-btn nj-btn-line nj-btn-sm nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
@@ -122,7 +122,7 @@
   if(foot){
     foot.outerHTML='<footer class="nj-foot"><div class="nj-in">'
       +'<div class="nj-foot-g">'
-      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611170900" alt="أكاديمية نجد" width="242" height="57" loading="lazy"></a>'
+      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611171500" alt="أكاديمية نجد" width="242" height="57" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
       +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.quiz+'">اختبر نفسك</a><a href="'+LINKS.courses+'">المقررات</a><a href="'+LINKS.guide+'">دليل الطالب</a><a href="'+LINKS.ratings+'">تقييم الأعضاء</a><a href="'+LINKS.calendar+'">التقويم الأكاديمي</a><a href="'+LINKS.study+'">خطة المذاكرة</a><a href="'+LINKS.nextterm+'">وش أسجل الفصل الجاي؟</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.store+'">المتجر</a></nav></div>'
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a><a href="#" data-install>ثبّت التطبيق على جوالك</a></nav>'
@@ -297,12 +297,21 @@
   var IOS=/iPad|iPhone|iPod/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
   var MOBILE=IOS||/Android/i.test(UA);
   if(STANDALONE)document.documentElement.classList.add('is-app');
+  if(!MOBILE){var fl=root.querySelectorAll('a[data-install]');for(var fi=0;fi<fl.length;fi++)fl[fi].textContent='ثبّت التطبيق على جهازك';}
   if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
     window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
   }
   var bip=null,offered=false;
-  function pwaSeen(){try{return localStorage.getItem('najd_pwa');}catch(e){return '1';}}
-  function pwaMark(v){try{localStorage.setItem('najd_pwa',v);}catch(e){}}
+  /* عرض «ثبّت التطبيق»: نحفظ آخر رد (dismissed/asked/installed) ووقته وكم مرة رد.
+     لو قفله نرجع نعرضه بعد ٣٠ يوم، وبحد أقصى ٣ مرات. ولو ثبّته ما نعرضه أبد. */
+  var PWA_WAIT=30*864e5,PWA_MAX=3;
+  function pwaSave(o){try{localStorage.setItem('najd_pwa',JSON.stringify(o));}catch(e){}}
+  function pwaState(){var v;try{v=localStorage.getItem('najd_pwa');}catch(e){return {s:'installed'};}
+    if(!v)return null;
+    if(v.charAt(0)!=='{'){var o={s:v,t:Date.now(),n:1};pwaSave(o);return o;}/* صيغة قديمة: نبدأ مدة الـ٣٠ يوم من الحين */
+    try{return JSON.parse(v)||null;}catch(e){return null;}}
+  function pwaMark(v){var o=pwaState()||{n:0};if(o.s==='installed')return;/* اللي ثبّته ما نرجع نسأله */pwaSave({s:v,t:Date.now(),n:v==='installed'?(o.n||0):(o.n||0)+1});}
+  function pwaDue(){var o=pwaState();if(!o)return true;if(o.s==='installed')return false;return (o.n||1)<PWA_MAX&&Date.now()-(+o.t||0)>=PWA_WAIT;}
   function closeBanner(){var b=document.getElementById('nj-pwa');if(b)b.remove();}
   function howTo(){
     closeBanner();
@@ -313,24 +322,24 @@
       :[[icon('addbox'),'افتح الموقع في كروم أو إيدج',''],[icon('phone'),'اضغط أيقونة التثبيت','في آخر شريط العنوان، أو من القائمة ⋮ ← «تثبيت».'],[icon('check'),'اضغط «تثبيت»','ويفتح الموقع في نافذة لحاله.']];
     var s=document.createElement('div');s.className='nj-sheet';s.id='nj-sheet';s.setAttribute('role','dialog');s.setAttribute('aria-modal','true');s.setAttribute('aria-label','ثبّت التطبيق');
     s.innerHTML='<div class="nj-sheet-box"><button type="button" class="nj-sheet-x" data-sheet-x aria-label="إغلاق">'+icon('close')+'</button>'
-      +'<div class="nj-sheet-h"><img src="assets/img/icon-192.png" alt="" width="52" height="52"><div><b>ثبّت «نجد» على جوالك</b><small>ويفتح بضغطة مثل أي تطبيق، حتى بدون نت للجدول والخطة والمعدل.</small></div></div>'
+      +'<div class="nj-sheet-h"><img src="assets/img/icon-192.png" alt="" width="52" height="52"><div><b>'+(MOBILE?'ثبّت «نجد» على جوالك':'ثبّت «نجد» على جهازك')+'</b><small>ويفتح بضغطة مثل أي تطبيق، حتى بدون نت للجدول والخطة والمعدل.</small></div></div>'
       +'<ol class="nj-steps">'+steps.map(function(x){return '<li><span class="nj-step-ic">'+x[0]+'</span><span><b>'+x[1]+'</b>'+(x[2]?'<small>'+x[2]+'</small>':'')+'</span></li>';}).join('')+'</ol>'
       +'<button type="button" class="nj-btn nj-btn-fill" data-sheet-x style="width:100%">تمام</button></div>';
     root.appendChild(s);s.querySelector('.nj-sheet-x').focus();
   }
   function install(){
     if(STANDALONE){toast('التطبيق مثبّت عندك');return;}
-    if(!pwaSeen())pwaMark('asked');
     if(bip){bip.prompt();bip.userChoice.then(function(r){pwaMark(r&&r.outcome==='accepted'?'installed':'dismissed');bip=null;closeBanner();}).catch(function(){});return;}
-    howTo();
+    pwaMark('asked');howTo();
   }
   function offer(){
-    if(offered||STANDALONE||pwaSeen()||PAGE==='admin'||!MOBILE||(!bip&&!IOS))return;
-    offered=true;
-    setTimeout(function(){
-      if(document.getElementById('nj-pwa'))return;
+    if(offered||STANDALONE||!pwaDue()||PAGE==='admin'||(!bip&&!IOS))return;
+    offered=true;var tries=0;
+    setTimeout(function show(){
+      if(document.getElementById('nj-pwa')||STANDALONE)return;
+      if(document.querySelector('.nj-sheet')){if(++tries<20)setTimeout(show,3000);return;}
       var b=document.createElement('div');b.className='nj-pwa';b.id='nj-pwa';b.setAttribute('role','region');b.setAttribute('aria-label','ثبّت التطبيق');
-      b.innerHTML='<img src="assets/img/icon-192.png" alt="" width="48" height="48"><div><b>ثبّت أكاديمية نجد</b><small>افتحه من شاشة جوالك مثل أي تطبيق</small></div>'
+      b.innerHTML='<img src="assets/img/icon-192.png" alt="" width="48" height="48"><div><b>'+(MOBILE?'ثبّت أكاديمية نجد':'ثبّت أكاديمية نجد على جهازك')+'</b><small>'+(MOBILE?'افتحه من شاشة جوالك مثل أي تطبيق':'يفتح في نافذة لحاله مثل أي برنامج')+'</small></div>'
         +'<button type="button" class="nj-btn nj-btn-fill nj-btn-sm" data-install>'+(bip?'ثبّت':'كيف؟')+'</button><button type="button" class="nj-pwa-x" data-pwa-x aria-label="لا شكرًا">'+icon('close')+'</button>';
       root.appendChild(b);
     },3500);
