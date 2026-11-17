@@ -24,3 +24,10 @@ for f in files:
         open(f, "w", encoding="utf-8").write(n)
         print("updated", os.path.relpath(f, ROOT))
 print("version =", ver)
+
+# بيانات بوت تيليقرام (دليل الطالب + التقويم) تتحدث مع كل نشر
+import shutil, subprocess
+if shutil.which("node"):
+    subprocess.run(["node", os.path.join(ROOT, "tools/build-bot-data.js")], check=False)
+else:
+    print("node غير موجود: شغّل tools/build-bot-data.js يدويًا لتحديث بيانات البوت")
