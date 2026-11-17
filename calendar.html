@@ -5,12 +5,12 @@
 <script>(function(){try{var d=document.documentElement,t=localStorage.getItem("najd_theme")==="dark"?"dark":"light";d.setAttribute("data-theme",t);if(localStorage.getItem("najd_lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>التقويم الأكاديمي | أكاديمية نجد</title>
-<meta name="description" content="التقويم الأكاديمي الرسمي للجامعة بكل مواعيده: التسجيل والاختبارات والإجازات والطلبات، مع آخر إعلانات العمادة. وتقدر تضيفها لتقويم جوالك.">
+<meta name="description" content="التقويم الأكاديمي الرسمي للجامعة بكل مواعيده: التسجيل والاختبارات والإجازات والطلبات، مع آخر إعلانات العمادة.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="أكاديمية نجد">
 <meta property="og:locale" content="ar_SA">
 <meta property="og:title" content="التقويم الأكاديمي | أكاديمية نجد">
-<meta property="og:description" content="التقويم الأكاديمي الرسمي للجامعة بكل مواعيده: التسجيل والاختبارات والإجازات والطلبات، مع آخر إعلانات العمادة. وتقدر تضيفها لتقويم جوالك.">
+<meta property="og:description" content="التقويم الأكاديمي الرسمي للجامعة بكل مواعيده: التسجيل والاختبارات والإجازات والطلبات، مع آخر إعلانات العمادة.">
 <meta property="og:url" content="https://najdacdemy.com/calendar.html">
 <meta property="og:image" content="https://najdacdemy.com/assets/img/og.png">
 <meta property="og:image:width" content="1200">
@@ -18,7 +18,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/calendar.html">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611170200" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/img/mark.svg?v=202611170900" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611170200">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611170900">
 <style>
 /* التقويم الأكاديمي: تبويبات الفصول، رحلة الفصل، مفتوح الحين، الجاي، كل المواعيد */
 #najd .ac-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:6px;margin:0 0 14px;box-shadow:var(--shadow)}
@@ -110,14 +111,11 @@
 #najd .pill.soon{background:#F3E6D2;color:#6E4F22}
 #najd .pill.done{background:var(--light);color:var(--muted)}
 #najd .pill.today{background:var(--deep);color:#fff}
-#najd .ai-add{display:grid;place-items:center;width:44px;height:44px;border-radius:var(--r-md);border:1.5px solid var(--line);background:var(--card);color:var(--dtext);cursor:pointer;padding:0}
-#najd .ai-add svg{width:18px;height:18px}
-#najd .ai-add:focus-visible,#najd .ac-chips button:focus-visible,#najd .ac-past:focus-visible,#najd .ac-ann:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+#najd .ac-chips button:focus-visible,#najd .ac-past:focus-visible,#najd .ac-ann:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
 #najd .ai.is-done .ai-t b,#najd .ai.is-done .ai-d b{color:var(--muted)}
 #najd .ai.is-done .ai-l i{opacity:.45}
 #najd .ac-past{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:44px;margin:4px 0 0;border:1.5px dashed var(--line);border-radius:var(--r-md);background:none;font:inherit;font-weight:800;color:var(--muted);cursor:pointer}
 #najd .ac-past svg{width:18px;height:18px}
-#najd .ac-all{width:100%;margin-top:12px}
 #najd .ac-src{font-size:var(--fs-sm);color:var(--slate);text-align:center;margin:18px auto 0;max-width:46em;line-height:1.8}
 #najd .ac-src a{color:var(--dtext);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 #najd .ac-list:focus{outline:none}
@@ -131,11 +129,11 @@ html[data-theme="dark"] #najd .ac-ann.is-ok{background:var(--tint);color:var(--d
 <div id="najd" dir="rtl" data-page="calendar">
 <div id="nj-header"></div>
 <section class="nj-band">
-<svg class="nj-band-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="86" cy="22" r="9" fill="#D9B48A"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L82 18L102 51Z" fill="#4E7472"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#A9C6C4"/><path d="M58 51L82 22L102 51Z" fill="#E4E9EB"/><path d="M82 22L76 29.5L80 28L82 31L84.5 27.5L88 29Z" fill="#fff" opacity=".85"/><path d="M57.5 100 Q38 93 18 89 V57 Q38 60 57.5 68Z" fill="#C8CFD2"/><path d="M62.5 100 Q82 93 102 89 V57 Q82 60 62.5 68Z" fill="#E4E9EB"/></svg>
+<svg class="nj-band-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="86" cy="22" r="9" fill="#D9B48A"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L74 37L102 51Z" fill="#4E7472"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#A9C6C4"/><path d="M58 51L82 22L102 51Z" fill="#E4E9EB"/><path d="M82 22L76.3 28.9L80 27.6L82 30.6L84.4 27.4L87.7 28.9Z" fill="#fff" opacity=".85"/><path d="M57.5 100 Q38 93 18 89 V57 Q38 60 57.5 68Z" fill="#C8CFD2"/><path d="M62.5 100 Q82 93 102 89 V57 Q82 60 62.5 68Z" fill="#E4E9EB"/></svg>
 <div class="nj-in">
 <p class="nj-crumb"><a href="index.html">الرئيسية</a><span>/</span>التقويم الأكاديمي</p>
 <h1>التقويم الأكاديمي</h1>
-<p class="nj-band-sub">التقويم الرسمي للجامعة بكل مواعيده، مع آخر إعلانات العمادة. وتقدر تضيف أي موعد لتقويم جوالك.</p>
+<p class="nj-band-sub">التقويم الرسمي للجامعة بكل مواعيده، مع آخر إعلانات العمادة.</p>
 </div>
 </section>
 <main class="nj-main">
@@ -143,10 +141,10 @@ html[data-theme="dark"] #najd .ac-ann.is-ok{background:var(--tint);color:var(--d
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611170200"></script>
-<script src="assets/js/i18n.js?v=202611170200"></script>
-<script src="assets/js/seu-calendar.js?v=202611170200"></script>
-<script type="module" src="assets/js/auth.js?v=202611170200"></script>
+<script src="assets/js/layout.js?v=202611170900"></script>
+<script src="assets/js/i18n.js?v=202611170900"></script>
+<script src="assets/js/seu-calendar.js?v=202611170900"></script>
+<script type="module" src="assets/js/auth.js?v=202611170900"></script>
 <script>
 /* التقويم الرسمي (assets/js/seu-calendar.js) هو الأساس، ومواعيد لوحة الإدارة تنضاف عليه بعلامة «من نجد».
    يفتح على الفصل اللي اليوم داخله، وإلا أقرب فصل جاي، وإلا آخر فصل. */
@@ -159,8 +157,7 @@ html[data-theme="dark"] #najd .ac-ann.is-ok{background:var(--tint);color:var(--d
   var CAT={exam:[L('الاختبارات','Exams'),'#B0625A'],off:[L('الإجازات','Holidays'),'#6E8F5E'],reg:[L('التسجيل والرسوم','Registration & fees'),'#4F7CA8'],req:[L('الطلبات والخدمات','Requests & services'),'#B08A4E'],key:[L('البداية والنهاية','Start & end'),'var(--teal)'],najd:[L('من نجد','From Najd'),'#7A5BA6']};
   var FORDER=['all','exam','off','reg','req','key','najd'];
   var SV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
-  var IC={add:SV+'<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>',
-    list:SV+'<path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>',
+  var IC={list:SV+'<path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>',
     info:SV+'<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg>',
     down:SV+'<path d="M6 9l6 6 6-6"/></svg>'};
   function p2(n){return (n<10?'0':'')+n;}
@@ -227,7 +224,7 @@ html[data-theme="dark"] #najd .ac-ann.is-ok{background:var(--tint);color:var(--d
     var d=D(x.d);
     return '<div class="ai'+(x.s.k==='done'?' is-done':'')+'" style="--c:'+CAT[x.c][1]+'"><div class="ai-d"><b>'+d.getDate()+'</b><small>'+F.mo.format(d)+'</small></div><div class="ai-l"><i></i></div>'
       +'<div class="ai-t"><b>'+esc(tt(x))+(x.x?'<span class="ac-x">'+L('من نجد','From Najd')+'</span>':'')+'</b><small>'+when(x)+'</small>'+(x.n?'<small>'+esc(x.n)+'</small>':'')+ann(x)+'</div>'
-      +'<div class="ai-s">'+pill(x)+(x.s.k!=='done'?'<button type="button" class="ai-add" data-add="'+esc(x.id)+'" aria-label="'+esc(L('أضف لتقويم جوالك: ','Add to your phone calendar: ')+tt(x))+'">'+IC.add+'</button>':'')+'</div></div>';
+      +'<div class="ai-s">'+pill(x)+'</div></div>';
   }
   function months(list){var o='',lm='';list.forEach(function(x){var m=F.m.format(D(x.d));if(m!==lm){o+='<p class="ac-m">'+m+'</p>';lm=m;}o+=row(x);});return o;}
 
@@ -274,50 +271,22 @@ html[data-theme="dark"] #najd .ac-ann.is-ok{background:var(--tint);color:var(--d
     /* كل المواعيد */
     var cnt={all:items.length};items.forEach(function(x){cnt[x.c]=(cnt[x.c]||0)+1;});if(!cnt[flt])flt='all';
     var list=items.filter(function(x){return flt==='all'||x.c===flt;}),past=list.filter(function(x){return x.s.k==='done';}),rest=list.filter(function(x){return x.s.k!=='done';});
-    var up=rest.length;
     var allH='<section class="ac-sec" aria-labelledby="ac-all-h"><h2 id="ac-all-h">'+IC.list+L('كل المواعيد','All dates')+'<small>'+items.length+'</small></h2><div class="ac-tools"><div class="ac-chips" role="group" aria-label="'+L('نوع الموعد','Type')+'">'
       +FORDER.filter(function(k){return k==='all'||cnt[k];}).map(function(k){return '<button type="button" data-f="'+k+'" aria-pressed="'+(flt===k)+'"'+(k!=='all'?' style="--c:'+CAT[k][1]+'"':'')+'>'+(k!=='all'?'<i></i>':'')+(k==='all'?L('الكل','All'):CAT[k][0])+' <small>'+cnt[k]+'</small></button>';}).join('')+'</div>'
       +'<label class="ac-hj"><input type="checkbox" class="nj-switch" data-hj'+(hij?' checked':'')+'>'+L('التاريخ الهجري','Hijri dates')+'</label></div>'
       +'<div class="ac-list" id="ac-list" tabindex="-1">'
       +(past.length&&!showPast?'<button type="button" class="ac-past" data-past aria-expanded="false">'+IC.down+L('اللي انتهى','Ended')+' ('+past.length+')</button>':'')
-      +months((showPast?past:[]).concat(rest))+'</div>'
-      +(up?'<button type="button" class="nj-btn nj-btn-line ac-all" data-all>'+IC.add+(EN?'Add '+(up===1?'the upcoming date':'the '+up+' upcoming dates')+' to your phone calendar':'أضف '+(up===1?'الموعد الجاي':pl(up,'','الموعدين الجايين','مواعيد جاية','موعد جاي'))+' لتقويم جوالك')+'</button>':'')+'</section>';
+      +months((showPast?past:[]).concat(rest))+'</div></section>';
     o+='<div class="ac-grid"><div class="ac-col">'+trip+openH+soonH+'</div><div class="ac-col">'+allH+'</div></div></div>';
     o+='<p class="ac-src">'+L('المصدر: ','Source: ')+'<a href="'+esc(DATA.src)+'" target="_blank" rel="noopener">'+L('التقويم الأكاديمي الرسمي','the official academic calendar')+' '+DATA.year+L('هـ',' AH')+'</a>'+(DATA.ann?L(' و',' and ')+'<a href="'+esc(DATA.ann)+'" target="_blank" rel="noopener">'+L('إعلانات عمادة القبول والتسجيل','Admission and Registration announcements')+'</a>':'')
       +L('. لو اختلف موعد، المعتمد هو موقع الجامعة.','. If a date differs, the university site is the reference.')+'</p>';
     root.innerHTML=o;
   }
-  function byId(id){var l=[];ORDER.forEach(function(k){if(SEM[k])l=l.concat(SEM[k].items);});for(var i=0;i<l.length;i++)if(l[i].id===id)return l[i];return null;}
-
-  /* ملف التقويم: حدث يوم كامل لكل موعد، وتنبيه قبله بيوم ٩ الصبح، والطلبات تنبيه ثاني قبل ما تقفل بيوم */
-  function ie(s){return String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');}
-  function ymd(d){return d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate());}
-  function fold(l){var out='',n=0;for(var i=0;i<l.length;i++){var ch=l[i],cp=l.charCodeAt(i);if(cp>=0xD800&&cp<=0xDBFF&&i+1<l.length){ch+=l[++i];}var c2=ch.codePointAt(0),b=c2<128?1:c2<2048?2:c2<65536?3:4;if(n+b>74){out+='\r\n ';n=1;}out+=ch;n+=b;}return out;}
-  function ics(list){
-    var t=new Date(),stamp=t.getUTCFullYear()+p2(t.getUTCMonth()+1)+p2(t.getUTCDate())+'T'+p2(t.getUTCHours())+p2(t.getUTCMinutes())+'00Z';
-    var o=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Najd Academy//Academic Calendar//AR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:'+ie(L('التقويم الأكاديمي','Academic calendar'))];
-    list.forEach(function(x){var e=D(x.e||x.d);e.setDate(e.getDate()+1);
-      var desc=(x.n?x.n+'\n':'')+(x.a?L('إعلان العمادة: ','Deanship notice: ')+x.a.u+'\n':'')+(x.x?L('من أكاديمية نجد','From Najd Academy'):L('من التقويم الأكاديمي الرسمي. أكاديمية نجد','From the official academic calendar. Najd Academy'));
-      o.push('BEGIN:VEVENT','UID:najd-'+DATA.year+'-'+x.id+'@najdacdemy.com','DTSTAMP:'+stamp,'DTSTART;VALUE=DATE:'+ymd(D(x.d)),'DTEND;VALUE=DATE:'+ymd(e),'SUMMARY:'+ie(tt(x)),'DESCRIPTION:'+ie(desc),'TRANSP:TRANSPARENT');
-      if(x.a)o.push('URL:'+x.a.u);
-      o.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+ie(tt(x)),'TRIGGER:-PT15H','END:VALARM');
-      if(x.e&&act(x)){var c=D(x.e);c.setDate(c.getDate()-1);if(ymd(c)>ymd(D(x.d)))o.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+ie(L('يقفل بكرة: ','Closes tomorrow: ')+tt(x)),'TRIGGER;VALUE=DATE-TIME:'+ymd(c)+'T060000Z','END:VALARM');}
-      o.push('END:VEVENT');});
-    o.push('END:VCALENDAR');return o.map(fold).join('\r\n')+'\r\n';
-  }
-  function save(list,name){
-    var how=N.calendar(ics(list),name),one=list.length===1;
-    N.toast(how==='open'?(one?L('بيطلع لك الموعد: اضغط «إضافة»، وينضاف مع التنبيه.','Your calendar opens next: tap Add to save it with a reminder.'):L('بيطلع لك التقويم: اضغط «إضافة الكل»، وتنضاف المواعيد مع التنبيهات.','Your calendar opens next: tap Add All to save the dates with reminders.'))
-      :how==='share'?L('اختر «التقويم» من نافذة المشاركة.','Choose Calendar in the share sheet.')
-      :L('تم تحميل ملف التقويم. افتحه وبتنضاف المواعيد لتقويمك.','Calendar file downloaded. Open it to add the dates to your calendar.'));
-  }
 
   /* التفاعل */
   function refocus(sel2){var el=sel2&&root.querySelector(sel2);if(el)el.focus();}
   root.addEventListener('click',function(e){
-    var b=e.target.closest('[data-sem],[data-f],[data-past],[data-add],[data-all]');if(!b)return;
-    if(b.hasAttribute('data-add')){var x=byId(b.getAttribute('data-add'));if(x)save([x],'najd-'+x.id+'.ics');return;}
-    if(b.hasAttribute('data-all')){var l=SEM[sel].items.filter(function(x){return x.s.k!=='done'&&(flt==='all'||x.c===flt);});if(l.length)save(l,'najd-calendar-'+sel+'.ics');return;}
+    var b=e.target.closest('[data-sem],[data-f],[data-past]');if(!b)return;
     var f=null;
     if(b.hasAttribute('data-sem')){var k=b.getAttribute('data-sem');if(k===sel)return;sel=k;flt='all';showPast=false;moved=null;f='#ac-tab-'+k;}
     else if(b.hasAttribute('data-f')){flt=b.getAttribute('data-f');f='[data-f="'+flt+'"]';}
@@ -347,7 +316,7 @@ html[data-theme="dark"] #najd .ac-ann.is-ok{background:var(--tint);color:var(--d
 </script>
 <script type="module">
 try {
-  const { db } = await import("./assets/js/auth.js?v=202611170200");
+  const { db } = await import("./assets/js/auth.js?v=202611170900");
   const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const snap = await getDocs(collection(db, "calendar"));
   const list = []; snap.forEach((d) => list.push({ id: d.id, ...d.data() }));

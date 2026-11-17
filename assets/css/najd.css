@@ -484,7 +484,7 @@ html.is-app #najd [data-install]{display:none}
 @media (pointer:coarse){
 #najd .nj-foot-links{gap:0}
 #najd .nj-foot-links a{display:flex;align-items:center;min-height:44px}
-#najd .nj-crumb a{display:inline-block;padding:12px 0;margin:-12px 0}
+#najd .nj-crumb a{display:inline-block;padding:12px 0;margin:-12px 0;min-width:44px;text-align:center}
 #najd .nj-copy a{display:inline-block;padding:10px 0;margin:-10px 0}
 }
 /* إحساس الضغط: الزر يستجيب لحظة اللمس */
@@ -516,7 +516,7 @@ html.is-app #najd .nj-drawer{max-height:calc(100vh - 74px - 98px - env(safe-area
 html.is-app #najd .nj-toast{bottom:calc(84px + env(safe-area-inset-bottom))}
 }
 /* جوالات ضيقة: الشعار أصغر، وزر اللغة ينتقل للقائمة (موجود فيها) */
-@media (max-width:400px){#najd .nj-bar{gap:var(--sp-3)}#najd .nj-logo img{height:35px}}
+@media (max-width:400px){#najd .nj-bar{gap:var(--sp-3)}#najd .nj-logo img{height:33px}}
 @media (max-width:349px){#najd .nj-acts .nj-lang{display:none}}
 
 /* ===== تنبيهات الدراسة (notify.js) ===== */
