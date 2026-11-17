@@ -108,6 +108,7 @@ window.NAJD_I18N={DICT:{
 "غير مشترك": "Not subscribed",
 "بياناتك المحفوظة": "Your saved data",
 "خطتك وجدولك ومعدلك ونتائج اختباراتك محفوظة في حسابك، وترجع لك من أي جهاز تسجل منه.": "Your plan, schedule, GPA and quiz results are saved to your account and available on any device you sign in from.",
+"خطتك وجدولك ومعدلك ونتائج اختباراتك وخطة مذاكرتك ودفتر أخطائك محفوظة في حسابك، وترجع لك من أي جهاز تسجل منه.": "Your plan, schedule, GPA, quiz results, study plan and mistakes notebook are saved to your account and available on any device you sign in from.",
 "حذف الحساب": "Delete account",
 "يحذف حسابك وكل بياناتك (الخطة، والجدول، والمعدل، ونتائج الاختبارات، وتقييماتك) نهائيًا، وما تقدر ترجعها. لو عندك اشتراك مدفوع، راسلنا قبل الحذف.": "Permanently deletes your account and all your data (plan, schedule, GPA, quiz results and ratings). This can't be undone. If you have a paid subscription, contact us before deleting.",
 "أفهم إن الحذف نهائي وما أقدر أرجع بياناتي.": "I understand deletion is permanent and my data can't be restored.",

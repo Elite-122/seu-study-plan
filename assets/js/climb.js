@@ -69,7 +69,7 @@
   }
 
   /* ===== الستوري (1080×1920) ===== */
-  var logoN=new Image(),logoD=new Image();logoN.src='assets/img/logo-light.svg?v=202611170230';logoD.src='assets/img/logo.svg?v=202611170230';
+  var logoN=new Image(),logoD=new Image();logoN.src='assets/img/logo-light.svg?v=202611170900';logoD.src='assets/img/logo.svg?v=202611170900';
   function ready(){
     var f=[];try{if(document.fonts&&document.fonts.load)f=['500','800'].map(function(w){return document.fonts.load(w+' 40px "Tajawal"');});}catch(e){}
     var im=[logoN,logoD].map(function(i){return i.complete?Promise.resolve():new Promise(function(r){i.onload=r;i.onerror=r;});});
@@ -82,7 +82,7 @@
     var g=c.createLinearGradient(0,0,0,H);if(dawn){g.addColorStop(0,'#F3E6D2');g.addColorStop(.55,'#E9EFEE');g.addColorStop(1,'#A9C6C4');}else{g.addColorStop(0,'#0F1D1C');g.addColorStop(.6,'#1F3837');g.addColorStop(1,'#2F4F4E');}
     c.fillStyle=g;c.fillRect(0,0,W,H);
     if(!dawn){c.fillStyle='rgba(255,255,255,.5)';for(var s=0;s<40;s++){c.beginPath();c.arc((s*197)%W,(s*131)%760+60,s%3?1.6:2.6,0,7);c.fill();}}
-    var lg=dawn?logoD:logoN;if(lg.complete&&lg.naturalWidth)c.drawImage(lg,W/2-230,120-460*26/768,460,460*214/768);
+    var lg=dawn?logoD:logoN;if(lg.complete&&lg.naturalWidth)c.drawImage(lg,W/2-230,168.7-460*104/883,460,460*208/883);
     c.textAlign='center';c.direction=EN?'ltr':'rtl';c.textBaseline='alphabetic';
     var k,l1,l2,l3;
     if(S.top){k=L('مبروك','Congratulations');l1=L('وصلت','I reached');l2=L('القمة','the top');l3=L('خلّصت خطتي في ','I finished my plan in ')+translate(S.label);}

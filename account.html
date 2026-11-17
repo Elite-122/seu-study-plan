@@ -18,7 +18,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://najdacdemy.com/account.html">
 <meta name="theme-color" content="#2F4F4E">
-<link rel="icon" href="assets/img/mark.svg?v=202611170230" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/img/mark.svg?v=202611170900" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611170230">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611170900">
 <style>
 #najd .ac-wrap{max-width:760px}
 #najd .ac-top{display:flex;align-items:center;gap:var(--sp-6);flex-wrap:wrap}
@@ -63,7 +64,7 @@ html[data-theme="dark"] #najd .ac-danger{border-color:#5A2E29}
 <div id="najd" dir="rtl" data-auth="required" data-page="account">
 <div id="nj-header"></div>
 <section class="nj-band">
-<svg class="nj-band-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="86" cy="22" r="9" fill="#D9B48A"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L82 18L102 51Z" fill="#4E7472"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#A9C6C4"/><path d="M58 51L82 22L102 51Z" fill="#E4E9EB"/><path d="M82 22L76 29.5L80 28L82 31L84.5 27.5L88 29Z" fill="#fff" opacity=".85"/><path d="M57.5 100 Q38 93 18 89 V57 Q38 60 57.5 68Z" fill="#C8CFD2"/><path d="M62.5 100 Q82 93 102 89 V57 Q82 60 62.5 68Z" fill="#E4E9EB"/></svg>
+<svg class="nj-band-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="86" cy="22" r="9" fill="#D9B48A"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L74 37L102 51Z" fill="#4E7472"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#A9C6C4"/><path d="M58 51L82 22L102 51Z" fill="#E4E9EB"/><path d="M82 22L76.3 28.9L80 27.6L82 30.6L84.4 27.4L87.7 28.9Z" fill="#fff" opacity=".85"/><path d="M57.5 100 Q38 93 18 89 V57 Q38 60 57.5 68Z" fill="#C8CFD2"/><path d="M62.5 100 Q82 93 102 89 V57 Q82 60 62.5 68Z" fill="#E4E9EB"/></svg>
 <div class="nj-in">
 <p class="nj-crumb"><a href="index.html">الرئيسية</a><span>/</span>حسابي</p>
 <h1>حسابي</h1>
@@ -104,16 +105,16 @@ html[data-theme="dark"] #najd .ac-danger{border-color:#5A2E29}
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611170230"></script>
-<script src="assets/js/i18n.js?v=202611170230"></script>
-<script src="assets/js/courses-data.js?v=202611170230"></script>
-<script src="assets/js/access.js?v=202611170230"></script>
-<script type="module" src="assets/js/auth.js?v=202611170230"></script>
+<script src="assets/js/layout.js?v=202611170900"></script>
+<script src="assets/js/i18n.js?v=202611170900"></script>
+<script src="assets/js/courses-data.js?v=202611170900"></script>
+<script src="assets/js/access.js?v=202611170900"></script>
+<script type="module" src="assets/js/auth.js?v=202611170900"></script>
 <script type="module">
 const $ = (id) => document.getElementById(id), toast = window.Najd.toast, T = (s) => (window.NajdT ? window.NajdT(s) : s);
 function ready() { return new Promise((r) => (window.NajdAuth ? r(window.NajdAuth) : window.addEventListener("najd:auth-ready", () => r(window.NajdAuth), { once: true }))); }
 try {
-  const M = await import("./assets/js/auth.js?v=202611170230");
+  const M = await import("./assets/js/auth.js?v=202611170900");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const A = await ready();
