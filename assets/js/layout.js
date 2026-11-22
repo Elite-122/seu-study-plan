@@ -66,7 +66,7 @@
   /* الأيقونات اللي رسمتها مو في نص المربع (الجرس، الدبوس، السحابة، السلة، الجبل) مزحوحة بـ<g> عشان تتوسط */
   function icon(n,cls){return IC[n]?'<svg class="nj-icon'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>':'';}
   var ITEMS={plans:['plans','الخطط الدراسية','مقررات كل مستوى وتقدمك'],schedule:['schedule','الجدول الدراسي','صمّم جدولك واختباراتك'],gpa:['gpa','حاسبة المعدل','الفصلي والتراكمي'],calendar:['calendar','التقويم الأكاديمي','مواعيد التسجيل والاختبارات'],study:['target','خطة المذاكرة','جلسات يومية تتسوى لحالها'],nextterm:['compass','وش أسجل الفصل الجاي؟','المواد المفتوحة لك'],
-    lessons:['lessons','الشروحات','فيديو وملفات PDF'],quiz:['quiz','اختبر نفسك','اختبارات تتصحح على طول'],courses:['book','المقررات','وصف كل مقرر وتجارب الطلاب'],guide:['guide','دليل الطالب','الأنظمة واللوائح بكلام واضح'],ratings:['ratings','تقييم الأعضاء','تجارب الطلاب مع أعضاء هيئة التدريس'],coop:['coop','التدريب التعاوني'],store:['store','المتجر']};
+    lessons:['lessons','الشروحات','فيديو وملفات PDF'],quiz:['quiz','اختبر نفسك','اختبارات تتصحح على طول'],courses:['book','المقررات','وصف كل مقرر وتجارب الطلاب'],guide:['guide','دليل الطالب','الأنظمة واللوائح بكلام واضح'],ratings:['ratings','تقييم الدكاترة','تجارب الطلاب مع أعضاء هيئة التدريس'],coop:['coop','التدريب التعاوني'],store:['store','المتجر']};
   var NAV=[{t:'أدواتك',items:['plans','schedule','study','gpa','nextterm','calendar']},{t:'التعلّم',items:['lessons','quiz','courses','guide']},'coop','store'];
   var PAGE=root.getAttribute('data-page')||'';
 
@@ -138,7 +138,7 @@
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
       +footCol('خطّط',[[LINKS.plans,'الخطط الدراسية'],[LINKS.schedule,'الجدول الدراسي'],[LINKS.nextterm,'وش أسجل الفصل الجاي؟'],[LINKS.calendar,'التقويم الأكاديمي']])
       +footCol('ذاكر',[[LINKS.study,'خطة المذاكرة'],[LINKS.quiz,'اختبر نفسك'],[LINKS.lessons,'الشروحات'],[LINKS.courses,'المقررات'],[LINKS.gpa,'حاسبة المعدل']])
-      +footCol('اعرف',[[LINKS.guide,'دليل الطالب'],[LINKS.ratings,'تقييم الأعضاء'],[LINKS.coop,'التدريب التعاوني'],[LINKS.store,'المتجر']])
+      +footCol('اعرف',[[LINKS.guide,'دليل الطالب'],[LINKS.ratings,'تقييم الدكاترة'],[LINKS.coop,'التدريب التعاوني'],[LINKS.store,'المتجر']])
       +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a><a href="#" data-install>ثبّت التطبيق على جوالك</a></nav>'
       +'</div>'
       +'</div>'
@@ -238,7 +238,7 @@
 
   /* صفحات تحتاج تسجيل دخول: نعرض بطاقة دخول بدل المحتوى */
   var REQUIRED=root.getAttribute('data-auth')==='required';
-  var PAGE_NAMES={plans:'الخطط الدراسية',schedule:'الجدول الدراسي',gpa:'حاسبة المعدل',lessons:'الشروحات',quiz:'الاختبارات',ratings:'تقييم الأعضاء',courses:'المقررات',guide:'دليل الطالب',calendar:'التقويم الأكاديمي',account:'حسابك',admin:'لوحة الإدارة',study:'خطة المذاكرة',nextterm:'وش أسجل الفصل الجاي؟'};
+  var PAGE_NAMES={plans:'الخطط الدراسية',schedule:'الجدول الدراسي',gpa:'حاسبة المعدل',lessons:'الشروحات',quiz:'الاختبارات',ratings:'تقييم الدكاترة',courses:'المقررات',guide:'دليل الطالب',calendar:'التقويم الأكاديمي',account:'حسابك',admin:'لوحة الإدارة',study:'خطة المذاكرة',nextterm:'وش أسجل الفصل الجاي؟'};
   if(REQUIRED){
     var main=root.querySelector('main');
     if(main){

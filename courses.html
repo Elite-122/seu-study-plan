@@ -167,7 +167,7 @@ html[data-theme="dark"] #najd .cc-m .st{color:#E7C79A}
     app.innerHTML='<div class="cr-top"><div class="cr-q">'+IC.q+'<input type="search" id="cr-q" autocomplete="off" placeholder="'+L('ابحث بالاسم أو الرمز','Search by name or code')+'" aria-label="'+L('ابحث عن مقرر','Search for a course')+'"></div>'
       +'<div class="cr-seg" role="group" aria-label="'+L('العرض','View')+'"><button type="button" data-v="mine" aria-pressed="'+(view==='mine')+'">'+L('مقرراتك','Your courses')+'</button><button type="button" data-v="all" aria-pressed="'+(view==='all')+'">'+L('كل المقررات','All courses')+'</button></div>'
       +'<div class="cr-mj" role="group" aria-label="'+L('التخصص','Major')+'">'+Object.keys(P).map(function(k){return '<button type="button" data-m="'+k+'" aria-pressed="'+(k===(view==='all'?(browse||major||'mgt'):major))+'">'+esc(mjName(k))+'</button>';}).join('')+'</div>'
-      +'<p class="cr-aside"><span>'+L('تبي تقيّم دكتور؟','Want to rate an instructor?')+' <a href="ratings.html">'+L('تقييم الأعضاء','Rate instructors')+'</a></span></p></div>'
+      +'<p class="cr-aside"><span>'+L('تبي تقيّم دكتور؟','Want to rate an instructor?')+' <a href="ratings.html">'+L('تقييم الدكاترة','Rate instructors')+'</a></span></p></div>'
       +'<div id="cr-out">'+body()+'</div>';
     var qi=document.getElementById('cr-q');qi.value=q;
   }
