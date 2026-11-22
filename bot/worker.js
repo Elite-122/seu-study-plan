@@ -382,7 +382,13 @@ async function onMessage(env, ctx, msg, edited) {
   if (c === 'admin' && admin) { await env.BOT_KV.delete(stateKey(msg.from.id)); return send(env, chat.id, MENU_TXT, MENU()); }
   if (c === 'guide') return send(env, chat.id, '<b>دليل الطالب</b>\nاختر القسم:', sectionsMenu(await data(env)));
   if (c === 'dates') { const D = await data(env); return send(env, chat.id, datesText(D), kb([[url('التقويم الأكاديمي كامل', D.calendar)]])); }
-  if (admin && !c) { const st = await kvJson(env, stateKey(msg.from.id), null); if (st) return adminState(env, msg, st); return startDraft(env, msg); }
+  if (admin && !c) {
+    const st = await kvJson(env, stateKey(msg.from.id), null); if (st) return adminState(env, msg, st);
+    // shortcut: رسالة قصيرة (٥ كلمات أو أقل) فيها كلمة رد = سؤال مو إعلان؛ الأطول تروح مسودة إعلان
+    const r = msg.text && norm(msg.text).split(' ').length <= 5 ? matchReply(await getReplies(env), msg.text) : null;
+    if (r) return sendBody(env, chat.id, r.b, null);
+    return startDraft(env, msg);
+  }
   // ردودك الخاصة: أي رسالة فيها الكلمة (خاص وقروبات)
   const rep = text && !c ? matchReply(await getReplies(env), text.replace(new RegExp('@' + name, 'ig'), '')) : null;
   if (rep) return sendBody(env, chat.id, rep.b, priv ? null : msg.message_id);
@@ -443,10 +449,13 @@ async function onUpdate(env, ctx, u) {
 /* ---------- تجهيز البوت مرة وحدة: افتح /setup?key=WEBHOOK_SECRET ---------- */
 async function setup(env, origin) {
   const hook = await tg(env, 'setWebhook', { url: origin + '/tg', secret_token: env.WEBHOOK_SECRET, allowed_updates: ['message', 'edited_message', 'callback_query', 'my_chat_member', 'channel_post'], drop_pending_updates: true });
-  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'myid', description: 'رقم حسابك' }, { command: 'admin', description: 'لوحة البوت (للمشرفين)' }] });
+  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }] });
+  // قائمة المشرفين فيها «لوحة البوت»، وتظهر بس للمشرف اللي أرسل /start للبوت قبل
+  const ADM = [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'admin', description: 'لوحة البوت' }, { command: 'myid', description: 'رقم حسابك' }];
+  let adminMenus = 0; for (const id of admins(env)) if ((await tg(env, 'setMyCommands', { commands: ADM, scope: { type: 'chat', chat_id: id } })).ok) adminMenus++;
   const desc = await tg(env, 'setMyDescription', { description: 'بوت أكاديمية نجد: اسألني عن لوائح الجامعة ومواعيد التقويم الأكاديمي، والجواب من دليل الطالب والتقويم الرسمي.' });
   const me = await tg(env, 'getMe', {});
-  return { webhook: !!hook.ok, commands: !!cmds.ok, description: !!desc.ok, bot: me.ok ? '@' + me.result.username : null, admins: admins(env).length, kv: !!env.BOT_KV };
+  return { webhook: !!hook.ok, commands: !!cmds.ok, description: !!desc.ok, bot: me.ok ? '@' + me.result.username : null, admins: admins(env).length, adminMenus, kv: !!env.BOT_KV };
 }
 
 export default {
