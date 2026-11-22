@@ -443,7 +443,7 @@ async function onUpdate(env, ctx, u) {
 /* ---------- تجهيز البوت مرة وحدة: افتح /setup?key=WEBHOOK_SECRET ---------- */
 async function setup(env, origin) {
   const hook = await tg(env, 'setWebhook', { url: origin + '/tg', secret_token: env.WEBHOOK_SECRET, allowed_updates: ['message', 'edited_message', 'callback_query', 'my_chat_member', 'channel_post'], drop_pending_updates: true });
-  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'myid', description: 'رقم حسابك' }, { command: 'admin', description: 'لوحة البوت (للمشرفين)' }] });
+  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'admin', description: 'لوحة البوت (للمشرفين)' }] });
   const desc = await tg(env, 'setMyDescription', { description: 'بوت أكاديمية نجد: اسألني عن لوائح الجامعة ومواعيد التقويم الأكاديمي، والجواب من دليل الطالب والتقويم الرسمي.' });
   const me = await tg(env, 'getMe', {});
   return { webhook: !!hook.ok, commands: !!cmds.ok, description: !!desc.ok, bot: me.ok ? '@' + me.result.username : null, admins: admins(env).length, kv: !!env.BOT_KV };
