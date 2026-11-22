@@ -1,0 +1,13 @@
+# للنشر بالأوامر (اختياري). الطريقة الأسهل من لوحة Cloudflare مشروحة في README.md
+name = "najd-bot"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+[[kv_namespaces]]
+binding = "BOT_KV"
+id = "ضع هنا رقم الـ KV namespace من Cloudflare"
+
+[vars]
+BOT_USERNAME = "NajdAcademyBot"
+ADMIN_IDS = ""
+# الأسرار (BOT_TOKEN و WEBHOOK_SECRET) لا تكتبها هنا: npx wrangler secret put BOT_TOKEN

@@ -1,26 +1,26 @@
 /* أكاديمية نجد: يخلّي الموقع يتثبت كتطبيق، ويفتح الأدوات حتى لو النت مقطوع.
    أرقام النسخ (?v=) يحدّثها tools/set-version.py، واسم الكاش يتغير معها فينحذف القديم لحاله. */
 const CORE = [
-  "assets/css/najd.css?v=202611171500",
-  "assets/css/auth.css?v=202611171500",
-  "assets/js/layout.js?v=202611171500",
-  "assets/js/i18n.js?v=202611171500",
-  "assets/js/auth.js?v=202611171500",
-  "assets/js/plans-data.js?v=202611171500",
-  "assets/js/courses-data.js?v=202611171500",
-  "assets/js/faculty-data.js?v=202611171500",
-  "assets/js/access.js?v=202611171500",
-  "assets/js/study-core.js?v=202611171500",
-  "assets/js/focus.js?v=202611171500",
-  "assets/js/seu-calendar.js?v=202611171500",
-  "assets/js/guide-data.js?v=202611171500",
-  "assets/js/course-desc.js?v=202611171500",
-  "assets/js/climb.js?v=202611171500",
-  "assets/js/mistakes.js?v=202611171500",
-  "assets/js/teaching-data.js?v=202611171500"
+  "assets/css/najd.css?v=202611221200",
+  "assets/css/auth.css?v=202611221200",
+  "assets/js/layout.js?v=202611221200",
+  "assets/js/i18n.js?v=202611221200",
+  "assets/js/auth.js?v=202611221200",
+  "assets/js/plans-data.js?v=202611221200",
+  "assets/js/courses-data.js?v=202611221200",
+  "assets/js/faculty-data.js?v=202611221200",
+  "assets/js/access.js?v=202611221200",
+  "assets/js/study-core.js?v=202611221200",
+  "assets/js/focus.js?v=202611221200",
+  "assets/js/seu-calendar.js?v=202611221200",
+  "assets/js/guide-data.js?v=202611221200",
+  "assets/js/course-desc.js?v=202611221200",
+  "assets/js/climb.js?v=202611221200",
+  "assets/js/mistakes.js?v=202611221200",
+  "assets/js/teaching-data.js?v=202611221200"
 ];
 const PAGES = ["./", "index.html", "plans.html", "schedule.html", "study.html", "next-term.html", "gpa.html", "calendar.html", "courses.html", "guide.html", "ratings.html", "offline.html",
-  "assets/img/logo.svg?v=202611171500", "assets/img/logo-light.svg?v=202611171500", "assets/img/icon-192.png", "assets/img/mark.svg?v=202611171500", "favicon.ico", "manifest.webmanifest"];
+  "assets/img/logo.svg?v=202611221200", "assets/img/logo-light.svg?v=202611221200", "assets/img/icon-192.png", "assets/img/mark.svg?v=202611221200", "favicon.ico", "manifest.webmanifest"];
 const CACHE = "najd-" + CORE[0].split("v=")[1];
 /* مكتبات خارجية ثابتة النسخة: نحفظها عشان الموقع يفتح بدون نت */
 const EXTERNAL = /^https:\/\/(www\.gstatic\.com\/firebasejs\/|fonts\.googleapis\.com\/|fonts\.gstatic\.com\/|cdnjs\.cloudflare\.com\/)/;
