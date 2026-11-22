@@ -35,12 +35,17 @@ ok('setup sets webhook + commands', sj.webhook && sj.commands && sj.bot === '@Na
 { const cm = calls.filter((c) => c.m === 'setMyCommands'); ok('public menu hides admin+myid; admin menu scoped', cm.length === 2 && !/admin|myid/.test(JSON.stringify(cm[0].b.commands)) && cm[1].b.scope.chat_id === ADMIN && /admin/.test(JSON.stringify(cm[1].b.commands)) && sj.adminMenus === 1); }
 
 // الطالب في الخاص
-await post(priv(STUDENT, '/start')); ok('start: welcome + 2 buttons, no admin button', /أكاديمية نجد/.test(txt()) && sent()[0].b.reply_markup.inline_keyboard.length === 1);
+await post(priv(STUDENT, '/start')); ok('start: welcome + guide/dates/tools, no admin button', /أكاديمية نجد/.test(txt()) && sent()[0].b.reply_markup.inline_keyboard.length === 2 && !/a:menu/.test(JSON.stringify(sent()[0].b.reply_markup)));
 await post(priv(STUDENT, 'وش شروط حذف مقرر؟')); ok('guide answer', /11 ساعة/.test(txt()) && /المصدر/.test(txt()), txt());
 await post(priv(STUDENT, 'متى يقفل الانسحاب من مقرر')); ok('calendar answer', /الانسحاب من مقرر/.test(txt()) && /التقويم الأكاديمي الرسمي/.test(txt()), txt());
 await post(priv(STUDENT, 'كم مرة اقدر اغيب؟')); ok('absence question answered', /<b>/.test(txt()) && !/ما لقيت/.test(txt()), txt().slice(0, 200));
 await post(priv(STUDENT, 'وش رايكم بالطقس اليوم')); ok('unknown → honest no-answer', /ما لقيت جواب أكيد/.test(txt()), txt());
 await post(priv(STUDENT, 'السلام عليكم')); ok('greeting → welcome', /أنا بوت/.test(txt()));
+await post(priv(STUDENT, '/tools')); ok('/tools → 14 site links', (JSON.stringify(sent()[0].b.reply_markup).match(/najdacdemy\.com\//g) || []).length === 14 && /coop\.html#guide/.test(JSON.stringify(sent()[0].b.reply_markup)));
+await post(cb(STUDENT, 't')); ok('tools button', /أدوات أكاديمية نجد/.test(txt()));
+await post(priv(STUDENT, 'وين نماذج التدريب التعاوني؟')); ok('coop forms → guide + SEUintern', /coop\.html#guide/.test(JSON.stringify(sent()[0].b.reply_markup)) && /t\.me\/SEUintern/.test(JSON.stringify(sent()[0].b.reply_markup)));
+await post(priv(STUDENT, 'ابي اختبار تجريبي')); ok('quiz → quiz link', JSON.stringify(sent()[0].b.reply_markup).includes('/quiz.html'));
+await post(priv(STUDENT, 'كم سعر الاشتراك')); ok('no tool on «اشتراك»', !JSON.stringify(sent().map((c) => c.b.reply_markup)).includes('/store.html'));
 await post(priv(STUDENT, 'كيف احسب معدلي')); ok('GPA → calculator link', JSON.stringify(sent()[0].b.reply_markup).includes('najdacdemy.com/gpa.html'));
 await post(priv(STUDENT, 'كم سعر الساعة')); ok('price per hour → fees answer', /265/.test(txt()), txt().slice(0, 200));
 await post(priv(STUDENT, 'متى تبدا الدراسه')); ok('study start → upcoming start date', /بداية الدراسة/.test(txt()) && !/الصيفي/.test(txt().split('المصدر')[0]), txt());

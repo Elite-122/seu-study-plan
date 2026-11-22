@@ -135,7 +135,7 @@ function datesText(D) {
 }
 
 /* ---------- رسائل الطالب ---------- */
-const HOME = (admin) => kb([[btn('دليل الطالب', 'g'), btn('المواعيد الجاية', 'd')]].concat(admin ? [[btn('لوحة البوت (للمشرفين)', 'a:menu')]] : []));
+const HOME = (admin) => kb([[btn('دليل الطالب', 'g'), btn('المواعيد الجاية', 'd')], [btn('أدوات الموقع', 't')]].concat(admin ? [[btn('لوحة البوت (للمشرفين)', 'a:menu')]] : []));
 const WELCOME = 'هلا! أنا بوت <b>أكاديمية نجد</b>.\nاسألني عن لوائح الجامعة ومواعيدها، مثل: «وش شروط حذف مقرر؟» أو «متى يقفل الانسحاب؟»، أو اختر من تحت.';
 function sectionsMenu(D) { const rows = []; D.sections.forEach((s, i) => { if (i % 2 === 0) rows.push([]); rows[rows.length - 1].push(btn(s.t, 's:' + i)); }); rows.push([btn('المواعيد الجاية', 'd')]); return kb(rows); }
 function questionsMenu(D, i) { const rows = D.sections[i].qa.map((x, j) => [btn(x.q, `q:${i}:${j}`)]); rows.push([btn('رجوع للأقسام', 'g')]); return kb(rows); }
@@ -146,14 +146,31 @@ function answerText(D, i, j) {
 }
 const answerKb = (D, i, j) => kb([[url('افتحه في دليل الطالب', D.sections[i].qa[j].link), btn('أسئلة قريبة', 's:' + i)]]);
 const GREET = /^(السلام عليكم|سلام عليكم|السلام|سلام|هلا|اهلا|هلا والله|مرحبا|هاي|صباح الخير|مساء الخير|الو)( .{0,20})?$/;
+const SEU_INTERN = 'https://t.me/SEUintern';
+const TOOL_GROUPS = [
+  ['خطّط', [['الخطط الدراسية', '/plans.html'], ['الجدول الدراسي', '/schedule.html'], ['وش أسجل الفصل الجاي؟', '/next-term.html'], ['التقويم الأكاديمي', '/calendar.html']]],
+  ['ذاكر', [['خطة المذاكرة', '/study.html'], ['اختبر نفسك', '/quiz.html'], ['الشروحات', '/lessons.html'], ['المقررات', '/courses.html'], ['حاسبة المعدل', '/gpa.html']]],
+  ['اعرف', [['دليل الطالب', '/guide.html'], ['تقييم الدكاترة', '/ratings.html'], ['فرص التدريب التعاوني', '/coop.html'], ['دليل التدريب التعاوني', '/coop.html#guide'], ['المتجر', '/store.html']]]
+];
+const TOOLS_TXT = '🧰 <b>أدوات أكاديمية نجد</b>\nاختر الأداة وتفتح لك في الموقع:\n\n' + TOOL_GROUPS.map(([g, l]) => '<b>' + g + ':</b> ' + l.map((x) => x[0]).join('، ')).join('\n');
+function toolsMenu(D) { const rows = []; for (const [, l] of TOOL_GROUPS) for (let i = 0; i < l.length; i += 2) rows.push(l.slice(i, i + 2).map(([t, path]) => url(t, D.site + path))); return kb(rows); }
+const COOP_KB = (D) => kb([[url('دليل التدريب التعاوني', D.site + '/coop.html#guide'), url('فرص التدريب', D.site + '/coop.html')], [url('قروب التدريب التعاوني (للأسئلة)', SEU_INTERN)]]);
 const TOOLS = [
   [/(احسب|حساب|اعرف|حاسبه).{0,12}معدل|معدل.{0,12}(احسب|حساب|حاسبه)/, 'حاسبة المعدل في موقعنا تحسب معدلك الفصلي والتراكمي، وتعرف كم تحتاج عشان توصل هدفك.', 'افتح حاسبة المعدل', '/gpa.html'],
   [/(اسوي|اصمم|ارتب|اسو|تصميم|ترتيب).{0,12}جدول/, 'تقدر تصمم جدولك الدراسي في موقعنا وتحمّله صورة أو PDF.', 'افتح الجدول الدراسي', '/schedule.html'],
-  [/(خطتي|الخطه الدراسيه|خطه التخصص|المقررات الباقيه|كم باقي لي)/, 'خطتك الدراسية كاملة في موقعنا: تعلّم على اللي خلصته، وتشوف كم باقي لك على التخرج.', 'افتح الخطط الدراسية', '/plans.html']
+  [/(خطتي|الخطه الدراسيه|خطه التخصص|المقررات الباقيه|كم باقي لي)/, 'خطتك الدراسية كاملة في موقعنا: تعلّم على اللي خلصته، وتشوف كم باقي لك على التخرج.', 'افتح الخطط الدراسية', '/plans.html'],
+  [/(اختبار تجريبي|اختبارات تجريبيه|كويز|اختبر نفسي|بنك اسئله)/, 'اختبر نفسك في موقعنا: اختبارات تتصحح على طول، ودفتر لأخطائك عشان تراجعها.', 'افتح اختبر نفسك', '/quiz.html'],
+  [/(الشروحات|شروحات|شرح ماده|شرح مقرر)/, 'الشروحات في موقعنا: فيديو وملفات PDF لكل مقرر.', 'افتح الشروحات', '/lessons.html'],
+  [/(وش اسجل|ايش اسجل|وش انزل|مواد الفصل الجاي|الفصل الجاي)/, 'أداة «وش أسجل الفصل الجاي؟» تقترح لك المقررات حسب خطتك والمتطلبات.', 'افتح وش أسجل الفصل الجاي؟', '/next-term.html'],
+  [/(خطه مذاكره|ارتب مذاكرتي|جدول مذاكره|تنظيم المذاكره)/, 'خطة المذاكرة في موقعنا ترتب لك مذاكرتك حسب اختباراتك.', 'افتح خطة المذاكرة', '/study.html'],
+  [/(اقيم دكتور|تقييم دكتور|تقييم الدكاتره|رايكم بالدكتور|رايكم في الدكتور|وش رايكم بدكتور)/, 'تقييم الدكاترة في موقعنا: تجارب الطلاب مع كل دكتور، وتقدر تضيف تجربتك.', 'افتح تقييم الدكاترة', '/ratings.html'],
+  [/(وصف مقرر|وصف الماده|وصف ماده)/, 'وصف كل مقرر وتجارب الطلاب فيه تلقاها في صفحة المقررات.', 'افتح المقررات', '/courses.html'],
+  [/(المتجر)/, 'متجر أكاديمية نجد:', 'افتح المتجر', '/store.html']
 ];
 async function answerQuestion(env, D, chat, text, rt) {
   const n = norm(text);
   if (GREET.test(n)) return send(env, chat, WELCOME, { ...replyTo(rt), ...HOME(false) });
+  if (/(تدريب|التعاوني)/.test(n) && /(نموذج|نماذج|فورم|form|تقرير|تقارير|خطوات|دليل|تسجيل|توقيع|فرص)/.test(n)) return send(env, chat, '<b>التدريب التعاوني</b>\nالدليل خطوة بخطوة مع كل النماذج (التسجيل، والتقارير الدورية، والتقرير النهائي، ونماذج التقييم)، وفرص التدريب، وقروب الأسئلة:', { ...replyTo(rt), ...COOP_KB(D) });
   for (const [re, msg, label, path] of TOOLS) if (re.test(n)) return send(env, chat, msg, { ...replyTo(rt), ...kb([[url(label, D.site + path)]]) });
   const r = search(D, text); const g = r.guide[0], c = r.cal[0];
   const strongG = g && g.qs >= 1 && g.s >= Math.max(3, r.q.length * 1.5);
@@ -381,6 +398,7 @@ async function onMessage(env, ctx, msg, edited) {
   if (c === 'myid' && priv) return send(env, chat.id, `رقم حسابك في تيليقرام: <code>${msg.from.id}</code>`);
   if (c === 'admin' && admin) { await env.BOT_KV.delete(stateKey(msg.from.id)); return send(env, chat.id, MENU_TXT, MENU()); }
   if (c === 'guide') return send(env, chat.id, '<b>دليل الطالب</b>\nاختر القسم:', sectionsMenu(await data(env)));
+  if (c === 'tools') return send(env, chat.id, TOOLS_TXT, toolsMenu(await data(env)));
   if (c === 'dates') { const D = await data(env); return send(env, chat.id, datesText(D), kb([[url('التقويم الأكاديمي كامل', D.calendar)]])); }
   if (admin && !c) {
     const st = await kvJson(env, stateKey(msg.from.id), null); if (st) return adminState(env, msg, st);
@@ -433,6 +451,7 @@ async function onCallback(env, cb) {
   }
   const D = await data(env); await done();
   if (p[0] === 'g') return edit(env, chat, mid, '<b>دليل الطالب</b>\nاختر القسم:', sectionsMenu(D));
+  if (p[0] === 't') return send(env, chat, TOOLS_TXT, toolsMenu(D));
   if (p[0] === 'd') return send(env, chat, datesText(D), kb([[url('التقويم الأكاديمي كامل', D.calendar)]]));
   if (p[0] === 's') { const i = +p[1]; const s = D.sections[i]; if (!s) return; return edit(env, chat, mid, `<b>${esc(s.t)}</b>${s.sub ? '\n' + esc(s.sub) : ''}\nاختر سؤالك:`, questionsMenu(D, i)); }
   if (p[0] === 'q') { const i = +p[1], j = +p[2]; if (!D.sections[i] || !D.sections[i].qa[j]) return; return send(env, chat, answerText(D, i, j), answerKb(D, i, j)); }
@@ -449,9 +468,9 @@ async function onUpdate(env, ctx, u) {
 /* ---------- تجهيز البوت مرة وحدة: افتح /setup?key=WEBHOOK_SECRET ---------- */
 async function setup(env, origin) {
   const hook = await tg(env, 'setWebhook', { url: origin + '/tg', secret_token: env.WEBHOOK_SECRET, allowed_updates: ['message', 'edited_message', 'callback_query', 'my_chat_member', 'channel_post'], drop_pending_updates: true });
-  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }] });
+  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات الموقع' }] });
   // قائمة المشرفين فيها «لوحة البوت»، وتظهر بس للمشرف اللي أرسل /start للبوت قبل
-  const ADM = [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'admin', description: 'لوحة البوت' }, { command: 'myid', description: 'رقم حسابك' }];
+  const ADM = [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات الموقع' }, { command: 'admin', description: 'لوحة البوت' }, { command: 'myid', description: 'رقم حسابك' }];
   let adminMenus = 0; for (const id of admins(env)) if ((await tg(env, 'setMyCommands', { commands: ADM, scope: { type: 'chat', chat_id: id } })).ok) adminMenus++;
   const desc = await tg(env, 'setMyDescription', { description: 'بوت أكاديمية نجد: اسألني عن لوائح الجامعة ومواعيد التقويم الأكاديمي، والجواب من دليل الطالب والتقويم الرسمي.' });
   const me = await tg(env, 'getMe', {});
