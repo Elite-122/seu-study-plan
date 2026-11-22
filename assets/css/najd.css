@@ -337,8 +337,14 @@ html[data-theme="dark"] .flatpickr-calendar.nj-fp .flatpickr-time input::selecti
 /* ===== إضافات: تواصل، حسابي ===== */
 #najd a.nj-av{text-decoration:none}
 #najd .nj-foot-h2{margin-top:18px!important}
-#najd .nj-foot-social a{display:inline-flex;align-items:center;gap:var(--sp-3)}
-#najd .nj-foot-social svg{width:18px;height:18px}
+#najd .nj-foot-soc{text-align:center;padding:24px 0 6px}
+#najd .nj-foot-soc h4{margin:0 0 12px}
+#najd .nj-social{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+#najd .nj-social a,#najd .nj-social span{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1.5px solid rgba(255,255,255,.28);color:#E4E9EB;transition:background .15s,color .15s,border-color .15s}
+#najd .nj-social a:hover,#najd .nj-social a:focus-visible{background:var(--sand);border-color:var(--sand);color:#1E3433}
+#najd .nj-social a:focus-visible{outline:3px solid var(--sand);outline-offset:2px}
+#najd .nj-social svg{width:20px;height:20px}
+#najd .nj-social .is-soon{opacity:.45;cursor:default}
 
 /* ===== القوائم المنسدلة في الهيدر ===== */
 #najd .nj-nav{gap:var(--sp-2)}
