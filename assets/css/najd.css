@@ -115,7 +115,7 @@ body{margin:0;background:#F4F7F7}
 
 /* ===== الفوتر ===== */
 #najd .nj-foot{background:linear-gradient(170deg,var(--deeper),#1C302F);color:var(--light);padding:56px 0 28px;margin-top:72px}
-#najd .nj-foot-g{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--sp-9);padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.12)}
+#najd .nj-foot-g{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:var(--sp-9);padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.12)}
 #najd .nj-foot .nj-logo img{height:57px;width:auto}
 #najd .nj-foot-about{font-size:var(--fs-base);color:var(--mist);margin:14px 0 0;max-width:26em}
 #najd .nj-foot h4{font-size:var(--fs-lg);font-weight:800;color:#fff;margin:0 0 12px}
@@ -171,7 +171,7 @@ html[data-theme="dark"] #najd .nj-streak.is-today{background:#3A3122;border-colo
 #najd .nj-band-sub{font-size:var(--fs-lg)}
 #najd .nj-band-mark{display:none}
 #najd .nj-card{padding:18px;border-radius:var(--r-lg)}
-#najd .nj-foot-g{grid-template-columns:1fr 1fr}
+#najd .nj-foot-g{grid-template-columns:1fr 1fr;gap:28px 20px}
 #najd .nj-foot-g>div:first-child{grid-column:1/-1}
 }
 @media (max-width:560px){#najd .nj-in{padding:0 16px}#najd .nj-logo img{height:39px}#najd .nj-tt{font-size:var(--fs-3xl)}}
@@ -490,6 +490,7 @@ html.is-app #najd [data-install]{display:none}
 @media (pointer:coarse){
 #najd .nj-foot-links{gap:0}
 #najd .nj-foot-links a{display:flex;align-items:center;min-height:44px}
+#najd .nj-foot-g h4{margin-bottom:4px}
 #najd .nj-crumb a{display:inline-block;padding:12px 0;margin:-12px 0;min-width:44px;text-align:center}
 #najd .nj-copy a{display:inline-block;padding:10px 0;margin:-10px 0}
 }

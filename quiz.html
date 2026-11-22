@@ -19,7 +19,7 @@
 <link rel="canonical" href="https://najdacdemy.com/quiz.html">
 <meta name="theme-color" content="#2F4F4E">
 <link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/img/mark.svg?v=202611221200" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611221124" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611221200">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611221124">
 <style>
 #najd .qz-nbnote{font-size:var(--fs-base);color:var(--err);background:var(--err-bg);border-radius:var(--r-md);padding:8px 12px;margin:10px auto 0;max-width:420px}
 #najd .qz-nb{margin:0 0 var(--sp-6);border-inline-start:5px solid var(--err-solid)}
@@ -109,12 +109,12 @@ html[data-theme="dark"] #najd .qz-opt.is-wrong{background:#3A1F1C;border-color:#
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611221200"></script>
-<script src="assets/js/i18n.js?v=202611221200"></script>
-<script src="assets/js/courses-data.js?v=202611221200"></script>
-<script src="assets/js/access.js?v=202611221200"></script>
-<script src="assets/js/mistakes.js?v=202611221200"></script>
-<script type="module" src="assets/js/auth.js?v=202611221200"></script>
+<script src="assets/js/layout.js?v=202611221124"></script>
+<script src="assets/js/i18n.js?v=202611221124"></script>
+<script src="assets/js/courses-data.js?v=202611221124"></script>
+<script src="assets/js/access.js?v=202611221124"></script>
+<script src="assets/js/mistakes.js?v=202611221124"></script>
+<script type="module" src="assets/js/auth.js?v=202611221124"></script>
 <script type="module">
 const esc = window.Najd.esc, toast = window.Najd.toast, $ = (id) => document.getElementById(id);
 const KEY = "najd_quiz_v1";
@@ -295,7 +295,7 @@ function runChallenge(list) {
 $("qz-home").addEventListener("click", (e) => { const rv = e.target.closest("[data-review]"); if (rv) { rv.disabled = true; review(rv.dataset.review).finally(() => { rv.disabled = false; }); return; } const b = e.target.closest("[data-start]"); if (b) { b.disabled = true; start(b.dataset.start).finally(() => { b.disabled = false; }); } });
 
 try {
-  const M = await import("./assets/js/auth.js?v=202611221200");
+  const M = await import("./assets/js/auth.js?v=202611221124");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: M.db, fs };

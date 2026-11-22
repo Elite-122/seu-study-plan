@@ -404,6 +404,8 @@ window.NAJD_I18N={DICT:{
 "قدّم الحين": "Apply now",
 "بحث وأوامر": "Search and commands",
 "ذاكر": "Study",
+"خطّط": "Plan",
+"اعرف": "Know",
 "تراجع": "Undo",
 "أوامر سريعة": "Quick commands",
 "ابدأ مذاكرة": "Start studying",
