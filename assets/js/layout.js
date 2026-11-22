@@ -66,7 +66,7 @@
   /* الأيقونات اللي رسمتها مو في نص المربع (الجرس، الدبوس، السحابة، السلة، الجبل) مزحوحة بـ<g> عشان تتوسط */
   function icon(n,cls){return IC[n]?'<svg class="nj-icon'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>':'';}
   var ITEMS={plans:['plans','الخطط الدراسية','مقررات كل مستوى وتقدمك'],schedule:['schedule','الجدول الدراسي','صمّم جدولك واختباراتك'],gpa:['gpa','حاسبة المعدل','الفصلي والتراكمي'],calendar:['calendar','التقويم الأكاديمي','مواعيد التسجيل والاختبارات'],study:['target','خطة المذاكرة','جلسات يومية تتسوى لحالها'],nextterm:['compass','وش أسجل الفصل الجاي؟','المواد المفتوحة لك'],
-    lessons:['lessons','الشروحات','فيديو وملفات PDF'],quiz:['quiz','اختبر نفسك','اختبارات تتصحح على طول'],courses:['book','المقررات','وصف كل مقرر وتجارب الطلاب'],guide:['guide','دليل الطالب','الأنظمة واللوائح بكلام واضح'],ratings:['ratings','تقييم الأعضاء','تجارب الطلاب مع أعضاء هيئة التدريس'],coop:['coop','التدريب التعاوني'],store:['store','المتجر']};
+    lessons:['lessons','الشروحات','فيديو وملفات PDF'],quiz:['quiz','اختبر نفسك','اختبارات تتصحح على طول'],courses:['book','المقررات','وصف كل مقرر وتجارب الطلاب'],guide:['guide','دليل الطالب','الأنظمة واللوائح بكلام واضح'],ratings:['ratings','تقييم الدكاترة','تجارب الطلاب مع أعضاء هيئة التدريس'],coop:['coop','التدريب التعاوني'],store:['store','المتجر']};
   var NAV=[{t:'أدواتك',items:['plans','schedule','study','gpa','nextterm','calendar']},{t:'التعلّم',items:['lessons','quiz','courses','guide']},'coop','store'];
   var PAGE=root.getAttribute('data-page')||'';
 
@@ -115,7 +115,7 @@
   var head=document.getElementById('nj-header');
   if(head){
     head.outerHTML='<header class="nj-head" id="nj-head"><div class="nj-in nj-bar">'
-      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611221200" alt="أكاديمية نجد" width="212" height="50"><img class="lg-night" src="assets/img/logo-light.svg?v=202611221200" alt="أكاديمية نجد" width="212" height="50"></a>'
+      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611221129" alt="أكاديمية نجد" width="212" height="50"><img class="lg-night" src="assets/img/logo-light.svg?v=202611221129" alt="أكاديمية نجد" width="212" height="50"></a>'
       +'<nav class="nj-nav" aria-label="القائمة الرئيسية">'+navLinks()+'</nav>'
       +'<div class="nj-acts"><a class="nj-streak" id="nj-streak" href="'+LINKS.study+'" hidden>'+icon('peak')+'<b></b></a><button type="button" class="nj-ic" data-search aria-label="بحث وأوامر" title="بحث وأوامر">'+icon('search')+'</button>'+ADM_BTN+PREFS
       +'<a class="nj-btn nj-btn-line nj-btn-sm nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
@@ -129,14 +129,17 @@
       +'<a class="nj-btn nj-btn-line nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
       +'</div></header><div class="nj-scrim" id="nj-scrim" aria-hidden="true"></div>';
   }
+  function footCol(t,L){return '<div><h4>'+t+'</h4><nav class="nj-foot-links" aria-label="'+t+'">'+L.map(function(x){return '<a href="'+x[0]+'">'+x[1]+'</a>'}).join('')+'</nav></div>'}
   var foot=document.getElementById('nj-footer');
   if(foot){
     foot.outerHTML='<footer class="nj-foot"><div class="nj-in">'
       +'<div class="nj-foot-g">'
-      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611221200" alt="أكاديمية نجد" width="242" height="57" loading="lazy"></a>'
+      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611221129" alt="أكاديمية نجد" width="242" height="57" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
-      +'<div><h4>الأدوات</h4><nav class="nj-foot-links" aria-label="الأدوات"><a href="'+LINKS.plans+'">الخطط الدراسية</a><a href="'+LINKS.schedule+'">الجدول الدراسي</a><a href="'+LINKS.gpa+'">حاسبة المعدل</a><a href="'+LINKS.quiz+'">اختبر نفسك</a><a href="'+LINKS.courses+'">المقررات</a><a href="'+LINKS.guide+'">دليل الطالب</a><a href="'+LINKS.ratings+'">تقييم الأعضاء</a><a href="'+LINKS.calendar+'">التقويم الأكاديمي</a><a href="'+LINKS.study+'">خطة المذاكرة</a><a href="'+LINKS.nextterm+'">وش أسجل الفصل الجاي؟</a><a href="'+LINKS.coop+'">التدريب التعاوني</a><a href="'+LINKS.store+'">المتجر</a></nav></div>'
-      +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a href="'+LINKS.lessons+'">الشروحات</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a><a href="#" data-install>ثبّت التطبيق على جوالك</a></nav>'
+      +footCol('خطّط',[[LINKS.plans,'الخطط الدراسية'],[LINKS.schedule,'الجدول الدراسي'],[LINKS.nextterm,'وش أسجل الفصل الجاي؟'],[LINKS.calendar,'التقويم الأكاديمي']])
+      +footCol('ذاكر',[[LINKS.study,'خطة المذاكرة'],[LINKS.quiz,'اختبر نفسك'],[LINKS.lessons,'الشروحات'],[LINKS.courses,'المقررات'],[LINKS.gpa,'حاسبة المعدل']])
+      +footCol('اعرف',[[LINKS.guide,'دليل الطالب'],[LINKS.ratings,'تقييم الدكاترة'],[LINKS.coop,'التدريب التعاوني'],[LINKS.store,'المتجر']])
+      +'<div><h4>حسابك</h4><nav class="nj-foot-links" aria-label="الحساب"><a class="nj-member" href="'+LINKS.account+'">حسابي</a><a class="nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a><a class="nj-guest" href="'+LINKS.register+'">أنشئ حسابك</a><a class="nj-member" href="#" data-logout>تسجيل الخروج</a><a href="#" data-install>ثبّت التطبيق على جوالك</a></nav>'
       +'</div>'
       +'</div>'
       +'<div class="nj-foot-soc"><h4>تواصل معنا</h4>'+socialRow()+'</div>'+'<div class="nj-foot-bot"><div><p class="nj-love">صُنع بحب من طلاب جامعة الأمير مساعد بن عبدالرحمن.</p><p class="nj-disc">هذا الموقع جهد طلابي مستقل، ولا يتبع للجامعة بأي صلة.</p></div>'
@@ -235,7 +238,7 @@
 
   /* صفحات تحتاج تسجيل دخول: نعرض بطاقة دخول بدل المحتوى */
   var REQUIRED=root.getAttribute('data-auth')==='required';
-  var PAGE_NAMES={plans:'الخطط الدراسية',schedule:'الجدول الدراسي',gpa:'حاسبة المعدل',lessons:'الشروحات',quiz:'الاختبارات',ratings:'تقييم الأعضاء',courses:'المقررات',guide:'دليل الطالب',calendar:'التقويم الأكاديمي',account:'حسابك',admin:'لوحة الإدارة',study:'خطة المذاكرة',nextterm:'وش أسجل الفصل الجاي؟'};
+  var PAGE_NAMES={plans:'الخطط الدراسية',schedule:'الجدول الدراسي',gpa:'حاسبة المعدل',lessons:'الشروحات',quiz:'الاختبارات',ratings:'تقييم الدكاترة',courses:'المقررات',guide:'دليل الطالب',calendar:'التقويم الأكاديمي',account:'حسابك',admin:'لوحة الإدارة',study:'خطة المذاكرة',nextterm:'وش أسجل الفصل الجاي؟'};
   if(REQUIRED){
     var main=root.querySelector('main');
     if(main){
@@ -466,7 +469,7 @@
       if(cs.length)o+='<p class="nj-sx-h">'+TT('المقررات')+'</p>'+cs.map(function(x){var c=x[1];return sxItem('c/'+encodeURIComponent(c[0])+'.html','<span class="nj-sx-code">'+esc(c[0])+'</span>',EN()?c[2]:c[1],TT('التفاصيل وتجارب الطلاب'));}).join('');
       var D=window.NAJD_DEPTS||{},B=window.NAJD_BRANCHES||{};
       var fs=(window.NAJD_FACULTY||[]).map(function(f){return [hit(q,f[1]+' '+f[2]+' '+f[6]),f];}).filter(function(x){return x[0]>-1;}).sort(function(a,b){return a[0]-b[0];}).slice(0,8);
-      if(fs.length)o+='<p class="nj-sx-h">'+TT('أعضاء هيئة التدريس')+'</p>'+fs.map(function(x){var f=x[1];return sxItem('ratings.html?tab=inst&i='+encodeURIComponent(f[0]),icon('user'),EN()&&f[2]?f[2]:f[1],[TT(D[f[3]]||''),B[f[5]]?TT('فرع '+B[f[5]]):''].filter(Boolean).join(' · '));}).join('');
+      if(fs.length)o+='<p class="nj-sx-h">'+TT('الدكاترة')+'</p>'+fs.map(function(x){var f=x[1];return sxItem('ratings.html?tab=inst&i='+encodeURIComponent(f[0]),icon('user'),EN()&&f[2]?f[2]:f[1],[TT(D[f[3]]||''),B[f[5]]?TT('فرع '+B[f[5]]):''].filter(Boolean).join(' · '));}).join('');
       if(!cs.length&&!fs.length&&!tools.length&&!cmds.length)o='<div class="nj-sx-none"><b>'+TT('ما لقينا نتيجة')+'</b><small>'+TT('جرّب رمز المقرر مثل ACCT201، أو جزء من اسم الدكتور.')+'</small></div>';
     }
     box.innerHTML=o;sxActive=-1;
