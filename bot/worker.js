@@ -135,7 +135,7 @@ function datesText(D) {
 }
 
 /* ---------- رسائل الطالب ---------- */
-const HOME = (admin) => kb([[btn('دليل الطالب', 'g'), btn('المواعيد الجاية', 'd')], [btn('أدوات الموقع', 't')]].concat(admin ? [[btn('لوحة البوت (للمشرفين)', 'a:menu')]] : []));
+const HOME = (admin) => kb([[btn('دليل الطالب', 'g'), btn('المواعيد الجاية', 'd')], [btn('أدوات نجد', 't')]].concat(admin ? [[btn('لوحة البوت (للمشرفين)', 'a:menu')]] : []));
 const WELCOME = 'هلا! أنا بوت <b>أكاديمية نجد</b>.\nاسألني عن لوائح الجامعة ومواعيدها، مثل: «وش شروط حذف مقرر؟» أو «متى يقفل الانسحاب؟»، أو اختر من تحت.';
 function sectionsMenu(D) { const rows = []; D.sections.forEach((s, i) => { if (i % 2 === 0) rows.push([]); rows[rows.length - 1].push(btn(s.t, 's:' + i)); }); rows.push([btn('المواعيد الجاية', 'd')]); return kb(rows); }
 function questionsMenu(D, i) { const rows = D.sections[i].qa.map((x, j) => [btn(x.q, `q:${i}:${j}`)]); rows.push([btn('رجوع للأقسام', 'g')]); return kb(rows); }
@@ -468,9 +468,9 @@ async function onUpdate(env, ctx, u) {
 /* ---------- تجهيز البوت مرة وحدة: افتح /setup?key=WEBHOOK_SECRET ---------- */
 async function setup(env, origin) {
   const hook = await tg(env, 'setWebhook', { url: origin + '/tg', secret_token: env.WEBHOOK_SECRET, allowed_updates: ['message', 'edited_message', 'callback_query', 'my_chat_member', 'channel_post'], drop_pending_updates: true });
-  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات الموقع' }] });
+  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }] });
   // قائمة المشرفين فيها «لوحة البوت»، وتظهر بس للمشرف اللي أرسل /start للبوت قبل
-  const ADM = [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات الموقع' }, { command: 'admin', description: 'لوحة البوت' }, { command: 'myid', description: 'رقم حسابك' }];
+  const ADM = [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }, { command: 'admin', description: 'لوحة البوت' }, { command: 'myid', description: 'رقم حسابك' }];
   let adminMenus = 0; for (const id of admins(env)) if ((await tg(env, 'setMyCommands', { commands: ADM, scope: { type: 'chat', chat_id: id } })).ok) adminMenus++;
   const desc = await tg(env, 'setMyDescription', { description: 'بوت أكاديمية نجد: اسألني عن لوائح الجامعة ومواعيد التقويم الأكاديمي، والجواب من دليل الطالب والتقويم الرسمي.' });
   const me = await tg(env, 'getMe', {});

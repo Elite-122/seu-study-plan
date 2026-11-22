@@ -3,7 +3,7 @@
      والجهاز اللي يزور أول مرة ينحسب بعد في new_web أو new_app. ما نخزن أي شي يعرّف الزائر.
      stats/{YYYY-MM-DD} = {web, app, new_web, new_app}
    - الحساب: profiles/{uid} = {name, email, provider, created, lastSeen} عشان المشرف يشوف الحسابات المسجلة. */
-import { db } from "./auth.js?v=202611222351";
+import { db } from "./auth.js?v=202611222358";
 import { doc, setDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 const day = () => new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Riyadh" }).format(new Date());
