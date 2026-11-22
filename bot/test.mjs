@@ -32,6 +32,7 @@ ok('webhook rejects wrong secret', (await post(priv(STUDENT, '/start'), 'bad')) 
 ok('setup needs key', (await W.fetch(new Request('https://bot.example/setup?key=no'), env, ctx)).status === 403);
 const su = await W.fetch(new Request('https://bot.example/setup?key=sec'), env, ctx); const sj = await su.json();
 ok('setup sets webhook + commands', sj.webhook && sj.commands && sj.bot === '@NajdAcademyBot' && calls.find((c) => c.m === 'setWebhook').b.url === 'https://bot.example/tg');
+{ const cm = calls.filter((c) => c.m === 'setMyCommands'); ok('public menu hides admin+myid; admin menu scoped', cm.length === 2 && !/admin|myid/.test(JSON.stringify(cm[0].b.commands)) && cm[1].b.scope.chat_id === ADMIN && /admin/.test(JSON.stringify(cm[1].b.commands)) && sj.adminMenus === 1); }
 
 // الطالب في الخاص
 await post(priv(STUDENT, '/start')); ok('start: welcome + 2 buttons, no admin button', /أكاديمية نجد/.test(txt()) && sent()[0].b.reply_markup.inline_keyboard.length === 1);
@@ -88,6 +89,8 @@ await post(priv(ADMIN, '/admin')); ok('admin panel', /لوحة البوت/.test(
 await post(cb(ADMIN, 'a:ra')); await post(priv(ADMIN, 'الاشتراك')); ok('reply step 2 asks body', /أرسل الرد/.test(txt()));
 await post(priv(ADMIN, 'الاشتراك من المتجر: najd.zid.store', { entities: [{ type: 'bold', offset: 0, length: 8 }] })); ok('reply step 3 asks mode', /متى يرد/.test(txt()));
 await post(cb(ADMIN, 'rm:c')); ok('reply saved', /انحفظ/.test(txt()) && JSON.parse(store.get('replies')).length === 1);
+await post(priv(ADMIN, 'وين الاشتراك؟')); ok('admin short question gets custom reply, not a draft', /najd.zid.store/.test(txt()) && !/انشر/.test(JSON.stringify(sent())));
+await post(priv(ADMIN, 'إعلان: الاشتراك متاح الحين في المتجر للجميع بخصم')); ok('admin long message still a draft', /انشر|القروبات/.test(JSON.stringify(sent())));
 await post(grp(STUDENT, 'كيف الاشتراك يا شباب؟')); ok('custom reply in group without mention', calls.some((c) => c.m === 'sendMessage' && /najd\.zid\.store/.test(c.b.text) && c.b.entities && c.b.reply_parameters));
 await post(priv(STUDENT, 'ابي الاشتراك')); ok('custom reply in private', /najd\.zid\.store/.test(txt()));
 await post(cb(ADMIN, 'a:ra')); await post(priv(ADMIN, 'السعر')); await post(priv(ADMIN, 'x', { text: undefined, photo: [{ file_id: 'small' }, { file_id: 'BIG' }], caption: 'الأسعار' })); await post(cb(ADMIN, 'rm:e'));
