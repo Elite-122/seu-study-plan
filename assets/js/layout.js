@@ -115,7 +115,7 @@
   var head=document.getElementById('nj-header');
   if(head){
     head.outerHTML='<header class="nj-head" id="nj-head"><div class="nj-in nj-bar">'
-      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611222358" alt="أكاديمية نجد" width="212" height="50"><img class="lg-night" src="assets/img/logo-light.svg?v=202611222358" alt="أكاديمية نجد" width="212" height="50"></a>'
+      +'<a class="nj-logo" href="'+LINKS.home+'"><img class="lg-day" src="assets/img/logo.svg?v=202611230028" alt="أكاديمية نجد" width="212" height="50"><img class="lg-night" src="assets/img/logo-light.svg?v=202611230028" alt="أكاديمية نجد" width="212" height="50"></a>'
       +'<nav class="nj-nav" aria-label="القائمة الرئيسية">'+navLinks()+'</nav>'
       +'<div class="nj-acts"><a class="nj-streak" id="nj-streak" href="'+LINKS.study+'" hidden>'+icon('peak')+'<b></b></a><button type="button" class="nj-ic" data-search aria-label="بحث وأوامر" title="بحث وأوامر">'+icon('search')+'</button>'+ADM_BTN+PREFS
       +'<a class="nj-btn nj-btn-line nj-btn-sm nj-guest" href="'+LINKS.login+'">تسجيل الدخول</a>'
@@ -134,7 +134,7 @@
   if(foot){
     foot.outerHTML='<footer class="nj-foot"><div class="nj-in">'
       +'<div class="nj-foot-g">'
-      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611222358" alt="أكاديمية نجد" width="242" height="57" loading="lazy"></a>'
+      +'<div><a class="nj-logo" href="'+LINKS.home+'"><img src="assets/img/logo-light.svg?v=202611230028" alt="أكاديمية نجد" width="242" height="57" loading="lazy"></a>'
       +'<p class="nj-foot-about">مبادرة تعليمية من طلاب لطلاب، تجمع لك في مكان واحد خطتك وجدولك ومعدلك وشروحات تساعدك تتقدم.</p></div>'
       +footCol('خطّط',[[LINKS.plans,'الخطط الدراسية'],[LINKS.schedule,'الجدول الدراسي'],[LINKS.nextterm,'وش أسجل الفصل الجاي؟'],[LINKS.calendar,'التقويم الأكاديمي']])
       +footCol('ذاكر',[[LINKS.study,'خطة المذاكرة'],[LINKS.quiz,'اختبر نفسك'],[LINKS.lessons,'الشروحات'],[LINKS.courses,'المقررات'],[LINKS.gpa,'حاسبة المعدل']])
@@ -248,7 +248,7 @@
         +'<span class="nj-gate-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><rect x="4" y="10" width="16" height="11" rx="3" fill="currentColor"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></span>'
         +'<h2>سجّل دخولك عشان تفتح '+(PAGE_NAMES[PAGE]||'هذي الصفحة')+'</h2>'
         +'<p>هذي الصفحة تحتاج حساب. سجّل بحساب قوقل أو بإيميلك خلال دقيقة، ويتحفظ تقدمك في حسابك وترجع له من أي جهاز.</p>'
-        +'<div class="nj-gate-ctas"><a class="nj-btn nj-btn-fill" href="'+LINKS.login+'?next='+nx+'">تسجيل الدخول</a><a class="nj-btn nj-btn-line" href="'+LINKS.coop+'">تصفح فرص التدريب التعاوني</a></div>'
+        +'<div class="nj-gate-ctas"><a class="nj-btn nj-btn-fill" href="'+LINKS.login+'?next='+nx+'">تسجيل الدخول</a><a class="nj-btn nj-btn-line" href="'+LINKS.coop+'#opp">تصفح فرص التدريب التعاوني</a></div>'
         +'<p class="nj-gate-note">التسجيل مجاني.</p>'
         +'</div></div>';
       main.parentNode.insertBefore(g,main);
