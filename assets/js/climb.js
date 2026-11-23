@@ -69,7 +69,7 @@
   }
 
   /* ===== الستوري (1080×1920) ===== */
-  var logoN=new Image(),logoD=new Image();logoN.src='assets/img/logo-light.svg?v=202611230901';logoD.src='assets/img/logo.svg?v=202611230901';
+  var logoN=new Image(),logoD=new Image();logoN.src='assets/img/logo-light.svg?v=202611230952';logoD.src='assets/img/logo.svg?v=202611230952';
   function ready(){
     var f=[];try{if(document.fonts&&document.fonts.load)f=['500','800'].map(function(w){return document.fonts.load(w+' 40px "Tajawal"');});}catch(e){}
     var im=[logoN,logoD].map(function(i){return i.complete?Promise.resolve():new Promise(function(r){i.onload=r;i.onerror=r;});});
