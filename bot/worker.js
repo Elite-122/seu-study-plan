@@ -214,7 +214,7 @@ async function sendTopic(env, D, chat, t, rt) {
   if (t.type === 'parts') return send(env, chat, t.text, { ...replyTo(rt), ...kb([t.parts.map((p, i) => btn(p[0], `mp:${t.id}:${i}`)), back]) });
   const calSrc = `\n\n<i>المصدر: التقويم الأكاديمي الرسمي ${esc(D.cal.year)}هـ.</i>`;
   if (t.type === 'video') return tg(env, 'sendVideo', { chat_id: chat, video: t.video, caption: t.cap, parse_mode: 'HTML', supports_streaming: true, ...replyTo(rt), ...kb([back]) });
-  if (t.type === 'photo') return tg(env, 'sendPhoto', { chat_id: chat, photo: t.img, caption: t.cap, parse_mode: 'HTML', ...replyTo(rt), ...kb([back]) });
+  if (t.type === 'photo') return tg(env, 'sendPhoto', { chat_id: chat, photo: t.img, caption: t.cap, parse_mode: 'HTML', ...replyTo(rt), ...kb(linkRows.concat([back])) });
   if (t.type === 'text') return send(env, chat, t.text, { ...replyTo(rt), ...kb(linkRows.concat([back])) });
   if (t.type === 'tool') return send(env, chat, esc(t.msg), { ...replyTo(rt), ...kb([[url(t.label, D.site + t.path)], back]) });
   if (t.type === 'dates') return send(env, chat, datesText(D), { ...replyTo(rt), ...kb([[url('التقويم الأكاديمي كامل', D.calendar)], back]) });

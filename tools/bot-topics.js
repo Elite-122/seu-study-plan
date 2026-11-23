@@ -144,7 +144,7 @@ const TOPICS = [
   T('09', 'req', 'الانسحاب من الجامعة', { type: 'guide', g: ['s1:3'], cal: 'الانسحاب من الجامعة' }),
   T('62', 'req', 'طي القيد', { type: 'guide', g: ['s6:4'], k: ['انطوى قيدي'] }),
   T('26', 'req', 'الفصل من الجامعة', { type: 'guide', g: ['s7:1'] }),
-  T('27', 'req', 'القبول والتقديم', { type: 'text', text: '🎓 <b>التقديم على البكالوريوس</b>\nمن 1448هـ، التقديم على الجامعة صار عن طريق <b>منصة قبول</b>.\n\n📧 الدعم: support_UAP@moe.gov.sa', btns: [['🌐 منصة قبول', 'https://www.uap.sa/'], ['🛟 المساعدة والدعم', 'https://www.uap.sa/support']], k: ['القبول', 'التقديم'] }),
+  T('27', 'req', 'القبول والتقديم', { type: 'text', text: '🎓 <b>التقديم على البكالوريوس</b>\nمن 1448هـ، التقديم على الجامعة صار عن طريق <b>منصة قبول</b>.\n\n☎️ الدعم: 19996\n📧 support_UAP@moe.gov.sa', btns: [['🌐 منصة قبول', 'https://www.uap.sa/'], ['🛟 المساعدة والدعم', 'https://www.uap.sa/support']], k: ['القبول', 'التقديم'] }),
   T('41', 'req', 'تغيير فرع الاختبار', { type: 'soon' }),
   T('38', 'req', 'تحديث البيانات', { type: 'soon' }),
 
@@ -165,7 +165,7 @@ const TOPICS = [
   T('59', 'help', 'الشروحات', { type: 'text', text: '🎥 <b>الشروحات</b>', btns: [['🎥 الشروحات في موقعنا', 'https://najdacdemy.com/lessons.html'], ['👥 قروب الشروحات', 'https://t.me/Lectures77'], ['📈 قروب شروحات المالية', 'https://t.me/lectures76']], k: ['شرح مواد الاداره', 'شروحات'] }),
   T('37', 'help', 'تجارب الطلاب', { type: 'tool', path: '/ratings.html', label: 'افتح تقييم الدكاترة', msg: 'تجارب الطلاب مع المقررات والدكاترة في موقعنا، وتقدر تضيف تجربتك.', k: ['تجارب'] }),
   T('69', 'help', 'الصياغة والتشابه والمراجع', { type: 'text', text: '✍️ <b>مواقع تساعدك في البحوث</b>\n\n<b>إعادة الصياغة</b>\n' + [L('Paraphraser', 'https://www.paraphraser.io/'), L('QuillBot', 'https://quillbot.com/'), L('Wordtune', 'https://www.wordtune.com/'), L('Paraphrasing Tool', 'https://paraphrasing-tool.com/')].join(' · ') + '\n\n<b>كشف التشابه</b>\n' + [L('Grammarly', 'https://www.grammarly.com/plagiarism-checker'), L('SmallSEOTools', 'https://smallseotools.com/plagiarism-checker/'), L('Quetext', 'https://www.quetext.com/'), L('Plagiarism Checker', 'https://www.plagiarismchecker.co/')].join(' · ') + '\n\n<b>توثيق المراجع APA</b>\n' + [L('BibMe', 'https://www.bibme.org/apa/book-citation'), L('Citation Machine', 'https://www.citationmachine.net/apa'), L('Cite This For Me', 'https://www.citethisforme.com/apa/source-type'), L('Scribbr', 'https://www.scribbr.com/citation/generator/apa/')].join(' · '), k: ['مراجع وصياغه وتشابه', 'الصياغه', 'التشابه', 'المراجع', 'apa'] }),
-  T('73', 'help', 'مكتبة الجامعة', { type: 'text', text: '📚 <b>مكتبة الجامعة</b>\nالكتب والمراجع الإلكترونية للطلاب:', btns: [['📚 إدارة المصادر المعرفية', 'https://seu.edu.sa/ar/administrations/knowledge-resource-administration/about/'], ['📖 المكتبة الرقمية السعودية', 'https://sdl.edu.sa/SDLPortal/ar/Publishers.aspx']], k: ['المكتبه', 'المكتبه الرقميه'] }),
+  T('73', 'help', 'مكتبة الجامعة', { type: 'photo', img: 'assets/img/bot/library.jpg', cap: '📚 <b>منصة المصادر المعرفية</b>: كتب ومراجع إلكترونية لطلاب الجامعة. طريقة الدخول في الصورة.', btns: [['📚 إدارة المصادر المعرفية', 'https://seu.edu.sa/ar/administrations/knowledge-resource-administration/about/'], ['📖 المكتبة الرقمية السعودية', 'https://sdl.edu.sa/SDLPortal/ar/Publishers.aspx']], k: ['المكتبه', 'المكتبه الرقميه', 'المصادر المعرفيه'] }),
   T('61', 'help', 'طريقة رفع الأسايمنت', { type: 'soon', k: ['رفع الاسايمنت', 'الاسايمنت'] }),
   T('63', 'help', 'عن الجامعة', { type: 'soon' })
 ];
