@@ -19,7 +19,7 @@
 <link rel="canonical" href="https://najdacdemy.com/admin-home.html">
 <meta name="theme-color" content="#2F4F4E">
 <link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/img/mark.svg?v=202611232030" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611232033" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611232030">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611232033">
 <meta name="robots" content="noindex,nofollow">
 <style>
 /* لوحة الإدارة السريعة: للجوال أول. أرقام اليوم، واللي ينتظر الموافقة، وإضافة سريعة */
@@ -89,9 +89,9 @@ html[data-theme="dark"] #najd .ah-kpi .is-hot b,html[data-theme="dark"] #najd .a
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611232030"></script>
-<script src="assets/js/courses-data.js?v=202611232030"></script>
-<script src="assets/js/faculty-data.js?v=202611232030"></script>
+<script src="assets/js/layout.js?v=202611232033"></script>
+<script src="assets/js/courses-data.js?v=202611232033"></script>
+<script src="assets/js/faculty-data.js?v=202611232033"></script>
 <script>
 /* حارس: لو اللوحة ما فتحت خلال ١٠ ثواني نقول السبب بدل «جاري التحميل» للأبد */
 (function(){var errs=[];window.addEventListener('error',function(e){errs.push(String(e.message||''));});window.addEventListener('unhandledrejection',function(e){var r=e.reason;errs.push(String(r&&r.message||r||''));});
@@ -101,7 +101,7 @@ html[data-theme="dark"] #najd .ah-kpi .is-hot b,html[data-theme="dark"] #najd .a
 </script>
 <script type="module">
 /* للمشرفين بس: نتأكد من admins/{uid}، وقواعد Firestore ترفض أي أحد غيرهم يقرأ أو يكتب هالبيانات */
-import { auth, db } from "./assets/js/auth.js?v=202611232030";
+import { auth, db } from "./assets/js/auth.js?v=202611232033";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, query, where, updateDoc, deleteDoc, writeBatch, serverTimestamp, Timestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 const N = window.Najd, esc = N.esc, ic = N.icon, app = document.getElementById("ah-app");

@@ -56,6 +56,7 @@ const topics = TOPICS.map((t) => {
   if (o.btns) o.btns = o.btns.map(([l, h]) => [l, abs(h)]);
   if (o.tool) o.tool = [o.tool[0], abs(o.tool[1])];
   delete o.site;
+  if (o.video) { if (!fs.existsSync(path.join(ROOT, o.video))) throw new Error('فيديو ناقص: ' + o.video); o.video = SITE + '/' + o.video; }
   if (o.img) { if (!fs.existsSync(path.join(ROOT, o.img))) throw new Error('صورة ناقصة: ' + o.img); o.img = SITE + '/' + o.img; }
   return o;
 });

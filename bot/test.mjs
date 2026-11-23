@@ -141,7 +141,9 @@ await post(cb(STUDENT, 'mt:41')); ok('soon topic', /قريبًا/.test(txt()));
 for (const w of ['يانجد', 'ي نجد', 'الردود']) { await post(priv(STUDENT, w)); ok('menu call: ' + w, /سمّ لبيه/.test(txt())); }
 await post(priv(STUDENT, 'خطة محاسبة')); ok('merged plans topic → major buttons', /plans\.html\?m=acct/.test(kbOf()));
 await post(priv(STUDENT, 'برامج مهمة')); ok('apps topic: correct outlook android link', /com\.microsoft\.office\.outlook/.test(kbOf()));
+ok('apps topic links to office video', /"mt:74"/.test(kbOf()));
+await post(cb(STUDENT, 'mt:74')); ok('office video topic', calls.some((c) => c.m === 'sendVideo' && /office-activation\.mp4$/.test(c.b.video)));
 await post(grp(STUDENT, 'وش رايكم نروح نجد بكره نذاكر مع بعض')); ok('long group chatter not hijacked', !sent().length);
-{ let bad = []; for (const t of BJ.menu.topics) { await post(cb(STUDENT, 'mt:' + t.id)); const m = sent()[0]; const body = m && (m.b.text || m.b.caption || ''); if (!m || !body || body.length > (m.m === 'sendPhoto' ? 1024 : 4096)) bad.push(t.id); } ok('all topics render within Telegram limits', !bad.length, bad); }
+{ let bad = []; for (const t of BJ.menu.topics) { await post(cb(STUDENT, 'mt:' + t.id)); const m = calls.find((c) => /^send/.test(c.m)); const body = m && (m.b.text || m.b.caption || ''); if (!m || !body || body.length > (/Photo|Video/.test(m.m) ? 1024 : 4096)) bad.push(t.id); } ok('all topics render within Telegram limits', !bad.length, bad); }
 
 const f = Object.values(res).filter((v) => v === 'FAIL').length; console.log('RESULT', Object.keys(res).length - f, '/', Object.keys(res).length);
