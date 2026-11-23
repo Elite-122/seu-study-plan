@@ -111,6 +111,8 @@ window.NAJD_I18N={DICT:{
 "شكل الإيميل: To لدكتور المقرر، Cc لـ caf.coop@seu.edu.sa، ومرفق النموذج PDF باسمك": "How the email looks: To the course instructor, Cc caf.coop@seu.edu.sa, with the form attached as a PDF named after you",
 "انسخ نص الإيميل": "Copy the email text",
 "تم النسخ": "Copied",
+"الملف جاهز": "Your file is ready",
+"احفظ أو افتح الملف": "Save or open the file",
 "بإنهاء هذي الخطوات تكون خلصت تقريبًا نص صعوبة المقرر": "Once these steps are done, you have finished roughly half of the course's hardest work",
 "انسخ النص:": "Copy the text:",
 "الرفع على البلاك بورد": "Upload to Blackboard",
