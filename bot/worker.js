@@ -150,11 +150,11 @@ const SEU_INTERN = 'https://t.me/SEUintern';
 const TOOL_GROUPS = [
   ['خطّط', [['الخطط الدراسية', '/plans.html'], ['الجدول الدراسي', '/schedule.html'], ['وش أسجل الفصل الجاي؟', '/next-term.html'], ['التقويم الأكاديمي', '/calendar.html']]],
   ['ذاكر', [['خطة المذاكرة', '/study.html'], ['اختبر نفسك', '/quiz.html'], ['الشروحات', '/lessons.html'], ['المقررات', '/courses.html'], ['حاسبة المعدل', '/gpa.html']]],
-  ['اعرف', [['دليل الطالب', '/guide.html'], ['تقييم الدكاترة', '/ratings.html'], ['فرص التدريب التعاوني', '/coop.html'], ['دليل التدريب التعاوني', '/coop.html#guide'], ['المتجر', '/store.html']]]
+  ['اعرف', [['دليل الطالب', '/guide.html'], ['تقييم الدكاترة', '/ratings.html'], ['فرص التدريب التعاوني', '/coop.html#opp'], ['دليل التدريب التعاوني', '/coop.html#guide'], ['المتجر', '/store.html']]]
 ];
 const TOOLS_TXT = '🧰 <b>أدوات أكاديمية نجد</b>\nاختر الأداة وتفتح لك في الموقع:\n\n' + TOOL_GROUPS.map(([g, l]) => '<b>' + g + ':</b> ' + l.map((x) => x[0]).join('، ')).join('\n');
 function toolsMenu(D) { const rows = []; for (const [, l] of TOOL_GROUPS) for (let i = 0; i < l.length; i += 2) rows.push(l.slice(i, i + 2).map(([t, path]) => url(t, D.site + path))); return kb(rows); }
-const COOP_KB = (D) => kb([[url('دليل التدريب التعاوني', D.site + '/coop.html#guide'), url('فرص التدريب', D.site + '/coop.html')], [url('قروب التدريب التعاوني (للأسئلة)', SEU_INTERN)]]);
+const COOP_KB = (D) => kb([[url('دليل التدريب التعاوني', D.site + '/coop.html#guide'), url('فرص التدريب', D.site + '/coop.html#opp')], [url('قروب التدريب التعاوني (للأسئلة)', SEU_INTERN)]]);
 const TOOLS = [
   [/(احسب|حساب|اعرف|حاسبه).{0,12}معدل|معدل.{0,12}(احسب|حساب|حاسبه)/, 'حاسبة المعدل في موقعنا تحسب معدلك الفصلي والتراكمي، وتعرف كم تحتاج عشان توصل هدفك.', 'افتح حاسبة المعدل', '/gpa.html'],
   [/(اسوي|اصمم|ارتب|اسو|تصميم|ترتيب).{0,12}جدول/, 'تقدر تصمم جدولك الدراسي في موقعنا وتحمّله صورة أو PDF.', 'افتح الجدول الدراسي', '/schedule.html'],
