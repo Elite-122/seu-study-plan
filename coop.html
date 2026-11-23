@@ -19,7 +19,7 @@
 <link rel="canonical" href="https://najdacdemy.com/coop.html">
 <meta name="theme-color" content="#2F4F4E">
 <link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/img/mark.svg?v=202611230028" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611230034" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611230028">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611230034">
 <style>
 #najd .cp-stats{display:flex;gap:var(--sp-5);flex-wrap:wrap;margin:22px 0 0}
 #najd .cp-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:10px 18px;min-width:120px}
@@ -163,6 +163,9 @@
 #najd .cg-ask .nj-btn svg{width:18px;height:18px}
 @media (max-width:640px){#najd .cg-step{padding:16px;gap:var(--sp-5)}#najd .cg-grades{grid-template-columns:1fr 1fr}#najd .cg-shots{grid-template-columns:repeat(3,1fr)}}
 html[data-theme="dark"] #najd .cg-file,html[data-theme="dark"] #najd .cg-mail{background:rgba(255,255,255,.04)}
+#najd .cg-sheet{position:fixed;inset:0;z-index:300;background:rgba(20,40,38,.45);display:flex;align-items:flex-end;justify-content:center;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+#najd .cg-sheet>div{background:var(--card);border-radius:var(--r);padding:20px;width:100%;max-width:420px;display:flex;flex-direction:column;gap:10px;text-align:center}
+#najd .cg-sheet p{font-weight:800;font-size:var(--fs-xl);margin:0}
 </style>
 </head>
 <body>
@@ -228,10 +231,10 @@ Kindly review the attached registration form.</p><button type="button" class="nj
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611230028"></script>
-<script src="assets/js/i18n.js?v=202611230028"></script>
-<script type="module" src="assets/js/auth.js?v=202611230028"></script>
-<script src="assets/js/coop-data.js?v=202611230028"></script>
+<script src="assets/js/layout.js?v=202611230034"></script>
+<script src="assets/js/i18n.js?v=202611230034"></script>
+<script type="module" src="assets/js/auth.js?v=202611230034"></script>
+<script src="assets/js/coop-data.js?v=202611230034"></script>
 <script>
 (function(){
   var D=window.NAJD_COOP,esc=window.Najd.esc,$=function(id){return document.getElementById(id);};
@@ -369,10 +372,23 @@ Kindly review the attached registration form.</p><button type="button" class="nj
   $('cg-copy').onclick=function(){var t=$('cg-mail-body').innerText,btn=this,old=btn.textContent;
     function ok(){btn.textContent='تم النسخ ✓';setTimeout(function(){btn.textContent=old;},2000);}
     if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,function(){prompt('انسخ النص:',t);});else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}a.remove();}};
+  // التطبيق المثبت (آيفون): الملف يفتح مكان الصفحة وما فيه رجوع، فنفتح قائمة المشاركة بدل كذا
+  if(document.documentElement.classList.contains('is-app')&&navigator.canShare){
+    var MIME={docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',pptx:'application/vnd.openxmlformats-officedocument.presentationml.presentation',pdf:'application/pdf'};
+    var got={};
+    function load(a){var u=a.getAttribute('href');if(!got[u])got[u]=fetch(u).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){var n=u.split('/').pop();return new File([b],n,{type:MIME[n.split('.').pop()]||b.type});});return got[u];}
+    var links=document.querySelectorAll('a.cg-file[download]');
+    links.forEach(function(a){load(a).catch(function(){});
+      a.addEventListener('click',function(e){e.preventDefault();var u=a.getAttribute('href');
+        function share(f){if(navigator.canShare({files:[f]}))return navigator.share({files:[f]}).catch(function(err){if(err&&err.name==='NotAllowedError')sheet(f);});location.href=u;}
+        got[u].then(share,function(){location.href=u;});});});
+    function sheet(f){var d=document.createElement('div');d.className='cg-sheet';d.innerHTML='<div><p>الملف جاهز</p><button type="button" class="nj-btn nj-btn-fill">احفظ أو افتح الملف</button><button type="button" class="nj-btn">إلغاء</button></div>';
+      document.getElementById('najd').appendChild(d);var b=d.querySelectorAll('button');b[0].onclick=function(){d.remove();navigator.share({files:[f]}).catch(function(){});};b[1].onclick=function(){d.remove();};}
+  }
   // صور خطوات التوقيع: تفتح بحجم كامل
   document.querySelectorAll('.cg-shots img').forEach(function(i){i.onclick=function(){window.open(i.src,'_blank','noopener');};});
 })();
 </script>
-<script type="module" src="assets/js/coop.js?v=202611230028"></script>
+<script type="module" src="assets/js/coop.js?v=202611230034"></script>
 </body>
 </html>
