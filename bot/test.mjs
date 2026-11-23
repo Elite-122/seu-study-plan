@@ -130,11 +130,17 @@ await post(grp(STUDENT, 'يا نجد')); ok('group «يا نجد» → menu as r
 await post(priv(ADMIN, 'نجد')); ok('admin «نجد» → menu, not a draft', /سمّ لبيه/.test(txt()) && !/انشر/.test(kbOf()));
 await post(cb(STUDENT, 'mc:0')); ok('section → topics + back', calls.some((c) => c.m === 'editMessageText') && /"mt:18"/.test(kbOf()) && /"m"/.test(kbOf()));
 await post(cb(STUDENT, 'm', { message_id: 5, chat: { id: STUDENT, type: 'private' }, text: 'x', reply_markup: { inline_keyboard: [[{ text: 'a', callback_data: 'mt:18' }]] } })); ok('back → sections (edit)', calls.some((c) => c.m === 'editMessageText') && /"mc:7"/.test(kbOf()));
-await post(priv(STUDENT, 'تواصل')); ok('typed «تواصل» → contacts', /n\.farhah@seu\.edu\.sa/.test(txt()) && /caf\.activities\.clubs/.test(txt()));
-await post(grp(STUDENT, 'تاريخ الفاينل')); ok('group typed topic → calendar reply', /تاريخ الفاينل/.test(txt()) && /المصدر: التقويم/.test(txt()));
+await post(priv(STUDENT, 'تواصل')); ok('typed «تواصل» → two parts', /"mp:44:0"/.test(kbOf()) && /"mp:44:1"/.test(kbOf()));
+await post(cb(STUDENT, 'mp:44:0')); ok('college part', /n\.farhah@seu\.edu\.sa/.test(txt()) && /caf\.activities\.clubs/.test(txt()));
+await post(cb(STUDENT, 'mp:44:1')); ok('university part', /lamsupport@seu\.edu\.sa/.test(txt()));
+await post(grp(STUDENT, 'تاريخ الفاينل')); ok('group typed «تاريخ الفاينل» → exams dates, no first-year rows', /مواعيد الاختبارات/.test(txt()) && /المصدر: التقويم/.test(txt()) && !/السنة الأولى/.test(txt()));
 await post(priv(STUDENT, 'حذف مقرر')); ok('guide topic + dates', /شروط حذف مقرر/.test(txt()) && /المواعيد/.test(txt()));
 await post(cb(STUDENT, 'mt:01')); ok('photo topic', calls.some((c) => c.m === 'sendPhoto' && /graduation\.jpg$/.test(c.b.photo) && /130|التخرج/.test(c.b.caption)));
-await post(cb(STUDENT, 'mt:05')); ok('soon topic', /قريبًا/.test(txt()));
+await post(cb(STUDENT, 'mt:05')); ok('week topic', /الأسبوع \d+|ما بدأ/.test(txt()));
+await post(cb(STUDENT, 'mt:41')); ok('soon topic', /قريبًا/.test(txt()));
+for (const w of ['يانجد', 'ي نجد', 'الردود']) { await post(priv(STUDENT, w)); ok('menu call: ' + w, /سمّ لبيه/.test(txt())); }
+await post(priv(STUDENT, 'خطة محاسبة')); ok('merged plans topic → major buttons', /plans\.html\?m=acct/.test(kbOf()));
+await post(priv(STUDENT, 'برامج مهمة')); ok('apps topic: correct outlook android link', /com\.microsoft\.office\.outlook/.test(kbOf()));
 await post(grp(STUDENT, 'وش رايكم نروح نجد بكره نذاكر مع بعض')); ok('long group chatter not hijacked', !sent().length);
 { let bad = []; for (const t of BJ.menu.topics) { await post(cb(STUDENT, 'mt:' + t.id)); const m = sent()[0]; const body = m && (m.b.text || m.b.caption || ''); if (!m || !body || body.length > (m.m === 'sendPhoto' ? 1024 : 4096)) bad.push(t.id); } ok('all topics render within Telegram limits', !bad.length, bad); }
 

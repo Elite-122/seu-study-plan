@@ -52,6 +52,10 @@ const topics = TOPICS.map((t) => {
   const o = { ...t };
   if (o.g) o.g = o.g.map((r) => { const [sid, j] = r.split(':'); const i = secIdx[sid]; if (i === undefined || !sections[i].qa[+j]) throw new Error('مرجع دليل غلط: ' + r + ' في ' + t.t); return [i, +j]; });
   if (o.cal) new RegExp(o.cal);
+  const abs = (h) => (h.startsWith('/') ? SITE + h : h);
+  if (o.btns) o.btns = o.btns.map(([l, h]) => [l, abs(h)]);
+  if (o.tool) o.tool = [o.tool[0], abs(o.tool[1])];
+  delete o.site;
   if (o.img) { if (!fs.existsSync(path.join(ROOT, o.img))) throw new Error('صورة ناقصة: ' + o.img); o.img = SITE + '/' + o.img; }
   return o;
 });

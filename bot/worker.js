@@ -168,7 +168,7 @@ const TOOLS = [
   [/(المتجر)/, 'متجر أكاديمية نجد:', 'افتح المتجر', '/store.html']
 ];
 /* ---------- قائمة الردود (tools/bot-topics.js ← bot.json) ---------- */
-const MENU_CALL = /^(يا )?نجد$/;
+const MENU_CALL = /^(يا ?|ي )?نجد$/;
 const MENU_WORDS = new Set(['قائمه الردود', 'الردود', 'القائمه']);
 const isMenuCall = (text) => { const n = norm(text); return MENU_CALL.test(n) || MENU_WORDS.has(n); };
 const SOON = 'هذا الرد قريبًا ✨ نجهّز معلومته. لين ذاك تقدر تسأل في القروب العام: https://t.me/najdacadmey';
@@ -188,26 +188,42 @@ function findTopic(D, text) {
   if (TOPIC_FOR !== D) { TOPIC_IDX = new Map(); for (const t of D.menu.topics) for (const w of [t.t].concat(t.k || [])) TOPIC_IDX.set(norm(w), t); TOPIC_FOR = D; }
   const n = norm(text); return TOPIC_IDX.get(n) || TOPIC_IDX.get(n.replace(/^(ال)/, '')) || null;
 }
-function calFor(D, re) {
-  const t = today(); const R = new RegExp(re);
-  const list = D.cal.items.filter((x) => R.test(x.t) && (x.e || x.d) >= t).slice(0, 5);
+function calFor(D, re, nx) {
+  const t = today(); const R = new RegExp(re), X = nx ? new RegExp(nx) : null;
+  const list = D.cal.items.filter((x) => R.test(x.t) && !(X && X.test(x.t)) && (x.e || x.d) >= t).slice(0, 3);
   if (!list.length) return 'ما فيه مواعيد جاية لهذا في التقويم الحالي. نضيف تقويم السنة الجاية أول ما تنشره الجامعة.';
   return list.map((x) => line(x, t)).join('\n');
 }
+/* رقم الأسبوع الدراسي: من بداية الدراسة في التقويم، والأسبوع من الأحد للسبت */
+function weekText(D) {
+  const t = today(); const items = D.cal.items;
+  const start = items.filter((x) => /بداية الدراسة/.test(x.t) && x.d <= t).sort((a, b) => (a.d < b.d ? 1 : -1))[0];
+  const fin = items.filter((x) => /الاختبارات النهائية/.test(x.t) && !/السنة الأولى/.test(x.t) && x.d >= (start ? start.d : t)).sort((a, b) => (a.d < b.d ? -1 : 1))[0];
+  if (!start || (fin && (fin.e || fin.d) < t)) return 'الفصل الدراسي ما بدأ للحين. ' + (items.find((x) => /بداية الدراسة/.test(x.t) && x.d > t) ? `يبدأ ${fmt(items.find((x) => /بداية الدراسة/.test(x.t) && x.d > t).d)}.` : '');
+  const n = Math.floor(days(start.d, t) / 7) + 1;
+  const ws = new Date(D2(start.d).getTime() + (n - 1) * 7 * 864e5).toISOString().slice(0, 10), we = new Date(D2(ws).getTime() + 6 * 864e5).toISOString().slice(0, 10);
+  let s = `📆 <b>الحين الأسبوع ${n}</b>\nمن ${fmt(ws)} إلى ${fmt(we)}`;
+  if (fin && fin.d > t) s += `\n⏳ باقي <b>${days(t, fin.d)} يوم</b> على الاختبارات النهائية (${fmt(fin.d)})`;
+  else if (fin) s += '\n✍️ الحين فترة الاختبارات النهائية، بالتوفيق!';
+  return s;
+}
 async function sendTopic(env, D, chat, t, rt) {
   const back = [btn('📋 قائمة الردود', 'm')];
+  const links = (t.btns || []).map(([l, h]) => url(l, h)); const linkRows = links.length > 2 && links.every((b) => b.text.length < 22) ? rows2(links) : links.map((b) => [b]);
+  if (t.type === 'week') return send(env, chat, weekText(D), { ...replyTo(rt), ...kb([[url('التقويم الأكاديمي كامل', D.calendar)], back]) });
+  if (t.type === 'parts') return send(env, chat, t.text, { ...replyTo(rt), ...kb([t.parts.map((p, i) => btn(p[0], `mp:${t.id}:${i}`)), back]) });
   const calSrc = `\n\n<i>المصدر: التقويم الأكاديمي الرسمي ${esc(D.cal.year)}هـ.</i>`;
   if (t.type === 'photo') return tg(env, 'sendPhoto', { chat_id: chat, photo: t.img, caption: t.cap, parse_mode: 'HTML', ...replyTo(rt), ...kb([back]) });
-  if (t.type === 'text') return send(env, chat, t.text, { ...replyTo(rt), ...kb([back]) });
+  if (t.type === 'text') return send(env, chat, t.text, { ...replyTo(rt), ...kb(linkRows.concat([back])) });
   if (t.type === 'tool') return send(env, chat, esc(t.msg), { ...replyTo(rt), ...kb([[url(t.label, D.site + t.path)], back]) });
   if (t.type === 'dates') return send(env, chat, datesText(D), { ...replyTo(rt), ...kb([[url('التقويم الأكاديمي كامل', D.calendar)], back]) });
-  if (t.type === 'cal') return send(env, chat, `📅 <b>${esc(t.t)}</b>\n${t.note ? esc(t.note) + '\n' : ''}\n${calFor(D, t.cal)}${calSrc}`, { ...replyTo(rt), ...kb([[url('التقويم الأكاديمي كامل', D.calendar)], back]) });
+  if (t.type === 'cal') return send(env, chat, `📅 <b>${esc(t.t)}</b>\n${t.note ? esc(t.note) + '\n' : ''}\n${calFor(D, t.cal, t.nx)}${calSrc}`, { ...replyTo(rt), ...kb([[url('التقويم الأكاديمي كامل', D.calendar)], back]) });
   if (t.type === 'guide') {
     const parts = t.g.map(([i, j]) => answerText(D, i, j)); let s = parts.join('\n\n— — —\n\n');
-    if (t.cal) s += `\n\n📅 <b>المواعيد:</b>\n${calFor(D, t.cal)}`;
+    if (t.cal) s += `\n\n📅 <b>المواعيد:</b>\n${calFor(D, t.cal, t.nx)}`;
     if (s.length > 3900) s = parts[0];
     const [i, j] = t.g[0];
-    return send(env, chat, s, { ...replyTo(rt), ...kb([[url('افتحه في دليل الطالب', D.sections[i].qa[j].link)], back]) });
+    return send(env, chat, s, { ...replyTo(rt), ...kb([[url('التفاصيل في دليل الطالب', D.sections[i].qa[j].link)]].concat(t.tool ? [[url(t.tool[0], t.tool[1])]] : [], [back])) });
   }
   return send(env, chat, `<b>${esc(t.t)}</b>\n${SOON}`, { ...replyTo(rt), ...kb([back]) });
 }
@@ -508,6 +524,7 @@ async function onCallback(env, cb) {
   // «رجوع» من قائمة قسم: نرجع نفس الرسالة للأقسام، وغيرها نرسل القائمة من جديد
   if (p[0] === 'm') return m.reply_markup && JSON.stringify(m.reply_markup).includes('"mt:') ? edit(env, chat, mid, MENU_HI, replyMenu(D)) : send(env, chat, MENU_HI, replyMenu(D));
   if (p[0] === 'mc') { if (!D.menu || !D.menu.cats[+p[1]]) return; const c = catMenu(D, +p[1]); return edit(env, chat, mid, c.text, c.kb); }
+  if (p[0] === 'mp') { const t = D.menu && D.menu.topics.find((x) => x.id === p[1]); const part = t && t.parts && t.parts[+p[2]]; if (!part) return; return send(env, chat, part[1], kb([[btn('📋 قائمة الردود', 'm')]])); }
   if (p[0] === 'mt') { const t = D.menu && D.menu.topics.find((x) => x.id === p[1]); if (!t) return; return sendTopic(env, D, chat, t, null); }
   if (p[0] === 't') return send(env, chat, TOOLS_TXT, toolsMenu(D));
   if (p[0] === 'd') return send(env, chat, datesText(D), kb([[url('التقويم الأكاديمي كامل', D.calendar)]]));
