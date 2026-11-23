@@ -19,7 +19,7 @@
 <link rel="canonical" href="https://najdacdemy.com/coop.html">
 <meta name="theme-color" content="#2F4F4E">
 <link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/img/mark.svg?v=202611231016" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611231026" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611231016">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611231026">
 <style>
 #najd .cp-stats{display:flex;gap:var(--sp-5);flex-wrap:wrap;margin:22px 0 0}
 #najd .cp-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:10px 18px;min-width:120px}
@@ -172,6 +172,32 @@ html[data-theme="dark"] #najd .cg-file,html[data-theme="dark"] #najd .cg-mail{ba
 #najd .cg-facts span{font-size:var(--fs-md);color:var(--muted);line-height:1.4;display:block}
 #najd .cg-about+.cg-intro{margin-top:var(--sp-6)}
 @media (max-width:640px){#najd .cg-facts{grid-template-columns:1fr 1fr}}
+#najd .cg-img{cursor:zoom-in}
+#najd .cg-zoom{font-size:var(--fs-sm)!important;color:var(--muted);margin:6px 0 0!important}
+html.cg-lock,html.cg-lock body{overflow:hidden}
+#najd .cg-lb{position:fixed;inset:0;z-index:400;background:rgba(10,20,19,.92);display:flex;align-items:center;justify-content:center}
+#najd .cg-lb[hidden]{display:none}
+#najd .cg-lb-in{width:100%;height:100%;overflow:auto;display:flex;align-items:center;justify-content:center;padding:calc(64px + env(safe-area-inset-top)) 12px calc(56px + env(safe-area-inset-bottom));touch-action:pan-x pan-y pinch-zoom}
+#najd .cg-lb-in img{max-width:100%;max-height:100%;width:auto;height:auto;border-radius:var(--r-md);background:#fff;margin:auto}
+#najd .cg-lb-x{position:absolute;top:calc(12px + env(safe-area-inset-top));left:12px;width:48px;height:48px;border-radius:50%;border:0;background:#fff;color:var(--deeper);font-size:22px;font-weight:800;cursor:pointer;z-index:2;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#najd .cg-lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:0;border-radius:var(--r-md);background:rgba(255,255,255,.16);color:#fff;font-size:34px;cursor:pointer;z-index:2}
+#najd .cg-lb-nav.is-prev{right:8px}#najd .cg-lb-nav.is-next{left:8px}
+#najd .cg-lb-nav[hidden]{display:none}
+#najd .cg-lb-in img{cursor:zoom-in}
+#najd .cg-lb.is-zoom .cg-lb-in{display:block}
+#najd .cg-lb.is-zoom .cg-lb-in img{max-width:none;max-height:none;width:200%;cursor:zoom-out}
+#najd .cg-lb-n{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#fff;font-weight:700;margin:0}
+#najd .cg-fv{position:fixed;inset:0;z-index:400;background:var(--bg);display:flex;flex-direction:column}
+#najd .cg-fv[hidden]{display:none}
+#najd .cg-fv-bar{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;background:var(--deeper);color:#fff}
+#najd .cg-fv-t{flex:1;min-width:0;font-size:var(--fs-base);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#najd .cg-fv-x{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--deeper);font-size:20px;font-weight:800;cursor:pointer}
+#najd .cg-fv-dl{flex:none;background:var(--sand);color:var(--deeper);border-color:var(--sand)}
+#najd .cg-fv-body{position:relative;flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;padding-bottom:env(safe-area-inset-bottom)}
+#najd .cg-fv-body iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
+#najd .cg-fv-wait{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);margin:0}
+#najd .cg-fv-pages{display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px}
+#najd .cg-fv-pages img{width:100%;max-width:820px;height:auto;background:#fff;box-shadow:var(--shadow);border-radius:4px}
 </style>
 </head>
 <body>
@@ -218,7 +244,7 @@ html[data-theme="dark"] #najd .cg-file,html[data-theme="dark"] #najd .cg-mail{ba
 <li class="cg-step" data-step="1"><label class="cg-chk"><input type="checkbox" data-step="1" aria-label="خلصت الخطوة 1"><span>1</span></label><div class="cg-b"><h3>اختيار جهة التدريب</h3><p>دوّر على شركة أو جهة توافق تدرّبك خلال فترة التدريب المحددة.</p><button type="button" class="cg-link" data-go="opp">تصفح فرص التدريب ←</button></div></li>
 <li class="cg-step" data-step="2"><label class="cg-chk"><input type="checkbox" data-step="2" aria-label="خلصت الخطوة 2"><span>2</span></label><div class="cg-b"><h3>تسجيل المقرر</h3><p>سجّل مقرر التدريب التعاوني الخاص بتخصصك. رمز المقرر لكل تخصص:</p><div class="cg-majors" id="cg-majors" role="group" aria-label="تخصصك"><button type="button" data-m="mgt" aria-pressed="false">إدارة أعمال <b>MGT430</b></button><button type="button" data-m="fin" aria-pressed="false">مالية <b>FIN408</b></button><button type="button" data-m="acct" aria-pressed="false">محاسبة <b>ACCT430</b></button><button type="button" data-m="ecom" aria-pressed="false">تجارة إلكترونية <b>ECOM430</b></button></div></div></li>
 <li class="cg-step" data-step="3"><label class="cg-chk"><input type="checkbox" data-step="3" aria-label="خلصت الخطوة 3"><span>3</span></label><div class="cg-b"><h3>نموذج التسجيل</h3><ul><li>بعد ما توافق الجهة على تدريبك، عبّ النموذج مع مشرفك في الجهة.</li><li>لازم يكون عليه <b>ختم الجهة وتوقيعها</b>.</li><li>بعدها يرسل المشرف النموذج بالإيميل (الخطوة 4).</li></ul><div class="cg-files"><a class="cg-file" href="files/coop/registration-form.docx" download target="_blank" rel="noopener"><span class="cg-ext is-word">Word</span><span>نموذج التسجيل (Practical Training Registration)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></a><a class="cg-file" href="files/coop/registration-form-guide.pdf" download target="_blank" rel="noopener"><span class="cg-ext is-pdf">PDF</span><span>النموذج مع شرح كل خانة بالعربي</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></a></div></div></li>
-<li class="cg-step" data-step="4"><label class="cg-chk"><input type="checkbox" data-step="4" aria-label="خلصت الخطوة 4"><span>4</span></label><div class="cg-b"><h3>إرسال النموذج بالإيميل</h3><p>مشرفك في الجهة هو اللي يرسل الإيميل، مو أنت.</p><ul><li><b>To:</b> إيميل دكتور مقرر التدريب.</li><li><b>Cc:</b> <span dir="ltr">caf.coop@seu.edu.sa</span> (قسم التدريب).</li><li><b>المرفق:</b> النموذج بصيغة PDF، واسم الملف فيه اسمك.</li><li><b>النص:</b> تحت مثال على الإيميل. يقدر ينسخه أو يكتبه بطريقته، المهم يذكر فيه اسمك ورقمك الجامعي.</li></ul><img class="cg-img" src="assets/img/coop/email.webp" width="2000" height="1808" loading="lazy" alt="شكل الإيميل: To لدكتور المقرر، Cc لـ caf.coop@seu.edu.sa، ومرفق النموذج PDF باسمك"><div class="cg-mail" dir="ltr"><p><b>Subject:</b> Practical Training Registration</p><p id="cg-mail-body">Greetings,
+<li class="cg-step" data-step="4"><label class="cg-chk"><input type="checkbox" data-step="4" aria-label="خلصت الخطوة 4"><span>4</span></label><div class="cg-b"><h3>إرسال النموذج بالإيميل</h3><p>مشرفك في الجهة هو اللي يرسل الإيميل، مو أنت.</p><ul><li><b>To:</b> إيميل دكتور مقرر التدريب.</li><li><b>Cc:</b> <span dir="ltr">caf.coop@seu.edu.sa</span> (قسم التدريب).</li><li><b>المرفق:</b> النموذج بصيغة PDF، واسم الملف فيه اسمك.</li><li><b>النص:</b> تحت مثال على الإيميل. يقدر ينسخه أو يكتبه بطريقته، المهم يذكر فيه اسمك ورقمك الجامعي.</li></ul><img class="cg-img" src="assets/img/coop/email.webp" width="2000" height="1808" loading="lazy" alt="شكل الإيميل: To لدكتور المقرر، Cc لـ caf.coop@seu.edu.sa، ومرفق النموذج PDF باسمك"><p class="cg-zoom">اضغط على الصورة عشان تكبّرها</p><div class="cg-mail" dir="ltr"><p><b>Subject:</b> Practical Training Registration</p><p id="cg-mail-body">Greetings,
 
 Please be informed that the student, [Your Name] (Student ID: [Your Student ID]), has been accepted by the organization to complete their cooperative training in accordance with the specified requirements.
 
@@ -243,10 +269,10 @@ Kindly review the attached registration form.</p><button type="button" class="nj
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611231016"></script>
-<script src="assets/js/i18n.js?v=202611231016"></script>
-<script type="module" src="assets/js/auth.js?v=202611231016"></script>
-<script src="assets/js/coop-data.js?v=202611231016"></script>
+<script src="assets/js/layout.js?v=202611231026"></script>
+<script src="assets/js/i18n.js?v=202611231026"></script>
+<script type="module" src="assets/js/auth.js?v=202611231026"></script>
+<script src="assets/js/coop-data.js?v=202611231026"></script>
 <script>
 (function(){
   var D=window.NAJD_COOP,esc=window.Najd.esc,$=function(id){return document.getElementById(id);};
@@ -387,14 +413,49 @@ Kindly review the attached registration form.</p><button type="button" class="nj
   // التطبيق المثبت في الآيفون يفتح ملفات موقعنا مكان الصفحة وما فيه رجوع؛ نفتحها من رابط خارج التطبيق فتطلع في نافذة فيها «تم»
   var IOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
   if(IOS&&document.documentElement.classList.contains('is-app')){
-    // عامل الملفات في Cloudflare (bot/files-worker.js)
-    var FILES='https://najd-files.najdacademy.workers.dev/';
-    document.querySelectorAll('a.cg-file[download]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();window.open(FILES+a.getAttribute('href'),'_blank');});});
+    window.__cgIOSApp=true;
   }
+  // عامل الملفات في Cloudflare (bot/files-worker.js): التطبيق المثبت في الآيفون ينزّل منه عشان يطلع زر «تم»
+  var FILES='https://najd-files.najdacademy.workers.dev/',SITE='https://najdacdemy.com/';
+  function getFile(href){if(window.__cgIOSApp)window.open(FILES+href,'_blank');else{var x=document.createElement('a');x.href=href;x.download='';document.body.appendChild(x);x.click();x.remove();}}
+  // عارض الملفات: Word وPowerPoint بعارض أوفيس، والـ PDF صور صفحاته
+  var PDF_PAGES={'files/coop/registration-form-guide.pdf':3};
+  var fv=document.createElement('div');fv.className='cg-fv';fv.hidden=true;fv.setAttribute('role','dialog');fv.setAttribute('aria-modal','true');
+  fv.innerHTML='<div class="cg-fv-bar"><button type="button" class="cg-fv-x" aria-label="إغلاق">✕</button><b class="cg-fv-t"></b><button type="button" class="nj-btn nj-btn-fill nj-btn-sm cg-fv-dl">تنزيل الملف</button></div><div class="cg-fv-body"><p class="cg-fv-wait">نجهّز المعاينة…</p></div>';
+  document.getElementById('najd').appendChild(fv);
+  var fvHref='',fvBack=null,fvBody=fv.querySelector('.cg-fv-body');
+  function fvOpen(a){fvHref=a.getAttribute('href');fvBack=a;var t=a.querySelector('span:nth-child(2)').textContent;fv.querySelector('.cg-fv-t').textContent=t;fv.setAttribute('aria-label',t);
+    var n=PDF_PAGES[fvHref],h='<p class="cg-fv-wait">نجهّز المعاينة…</p>';
+    if(n){h='<div class="cg-fv-pages">';for(var i=1;i<=n;i++)h+='<img src="assets/img/coop/guide-pdf/page-'+i+'.webp" width="910" height="1287" alt="صفحة '+i+'">';h+='</div>';}
+    else h+='<iframe title="'+t.replace(/"/g,'')+'" src="https://view.officeapps.live.com/op/embed.aspx?src='+encodeURIComponent(SITE+fvHref)+'" onload="var w=this.previousElementSibling;if(w)w.remove();"></iframe>';
+    fvBody.innerHTML=h;fv.hidden=false;document.documentElement.classList.add('cg-lock');fv.querySelector('.cg-fv-x').focus();}
+  function fvClose(){fv.hidden=true;fvBody.innerHTML='';document.documentElement.classList.remove('cg-lock');if(fvBack)fvBack.focus();}
+  fv.querySelector('.cg-fv-x').onclick=fvClose;
+  fv.querySelector('.cg-fv-dl').onclick=function(){getFile(fvHref);};
+  document.addEventListener('keydown',function(e){if(!fv.hidden&&e.key==='Escape')fvClose();});
+  document.querySelectorAll('a.cg-file[download]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();fvOpen(a);});});
   // صور خطوات التوقيع: تفتح بحجم كامل
-  document.querySelectorAll('.cg-shots img').forEach(function(i){i.onclick=function(){window.open(i.src,'_blank','noopener');};});
+  // عارض الصور: يفتح داخل الصفحة مع زر إغلاق (في التطبيق المثبت ما فيه زر رجوع)
+  var lb=document.createElement('div');lb.className='cg-lb';lb.hidden=true;lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label','عرض الصورة');
+  lb.innerHTML='<button type="button" class="cg-lb-x" aria-label="إغلاق">✕</button><button type="button" class="cg-lb-nav is-prev" aria-label="السابقة">›</button><div class="cg-lb-in"><img alt=""></div><button type="button" class="cg-lb-nav is-next" aria-label="التالية">‹</button><p class="cg-lb-n"></p>';
+  document.getElementById('najd').appendChild(lb);
+  var lbImg=lb.querySelector('img'),set=[],at=0,back=null;
+  function lbShow(){var i=set[at];lbImg.src=i.src;lbImg.alt=i.alt;var many=set.length>1;lb.querySelectorAll('.cg-lb-nav').forEach(function(b){b.hidden=!many;});lb.querySelector('.cg-lb-n').textContent=many?(at+1)+' من '+set.length:'';lb.classList.remove('is-zoom');lb.querySelector('.cg-lb-in').scrollTo(0,0);}
+  function lbOpen(list,i){set=list;at=i;back=document.activeElement;lbShow();lb.hidden=false;document.documentElement.classList.add('cg-lock');lb.querySelector('.cg-lb-x').focus();}
+  function lbClose(){lb.hidden=true;document.documentElement.classList.remove('cg-lock');if(back&&back.focus)back.focus();}
+  function lbGo(d){at=(at+d+set.length)%set.length;lbShow();}
+  lb.querySelector('.cg-lb-x').onclick=lbClose;
+  lbImg.onclick=function(){lb.classList.toggle('is-zoom');};
+  lb.querySelector('.is-prev').onclick=function(){lbGo(-1);};lb.querySelector('.is-next').onclick=function(){lbGo(1);};
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('cg-lb-in'))lbClose();});
+  document.addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')lbClose();else if(e.key==='ArrowLeft')lbGo(1);else if(e.key==='ArrowRight')lbGo(-1);});
+  var tx=null;lb.addEventListener('touchstart',function(e){tx=e.touches.length===1?e.touches[0].clientX:null;},{passive:true});
+  lb.addEventListener('touchend',function(e){if(tx===null||set.length<2)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60)lbGo(dx>0?1:-1);tx=null;},{passive:true});
+  var shots=[].slice.call(document.querySelectorAll('.cg-shots img'));
+  shots.forEach(function(i,n){i.tabIndex=0;i.setAttribute('role','button');i.onclick=function(){lbOpen(shots,n);};i.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();lbOpen(shots,n);}};});
+  document.querySelectorAll('.cg-img').forEach(function(i){i.tabIndex=0;i.setAttribute('role','button');i.onclick=function(){lbOpen([i],0);};i.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();lbOpen([i],0);}};});
 })();
 </script>
-<script type="module" src="assets/js/coop.js?v=202611231016"></script>
+<script type="module" src="assets/js/coop.js?v=202611231026"></script>
 </body>
 </html>
