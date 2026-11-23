@@ -61,7 +61,12 @@ const topics = TOPICS.map((t) => {
   return o;
 });
 
-const out = { updated: G.updated, site: SITE, guide: SITE + '/guide.html', calendar: SITE + '/calendar.html', src, sections, cal: { year: C.year, src: C.src, ann: C.ann || '', items }, menu: { cats: CATS, topics } };
+/* الكلمات الممنوعة (tools/bot-moderation.js) */
+const MOD = require('./bot-moderation.js');
+for (const c of Object.keys(MOD.WORDS)) { if (!MOD.CATS[c]) throw new Error('قسم كلمات ممنوعة بدون اسم: ' + c); const seenW = new Set(); for (const w of MOD.WORDS[c]) { if (!w.trim()) throw new Error('كلمة فاضية في ' + c); if (seenW.has(w)) throw new Error('كلمة مكررة في ' + c + ': ' + w); seenW.add(w); } }
+const mod = { cats: MOD.CATS, words: MOD.WORDS };
+
+const out = { updated: G.updated, site: SITE, guide: SITE + '/guide.html', calendar: SITE + '/calendar.html', src, sections, cal: { year: C.year, src: C.src, ann: C.ann || '', items }, menu: { cats: CATS, topics }, mod };
 const file = path.join(ROOT, 'assets/data/bot.json');
 fs.mkdirSync(path.dirname(file), { recursive: true });
 const json = JSON.stringify(out);

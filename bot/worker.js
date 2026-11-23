@@ -284,15 +284,42 @@ function sendBody(env, chat, b, rt) {
 }
 
 /* ---------- الحماية ---------- */
-async function bannedLists(env) { return (await kvJson(env, 'banned', null)) || JSON.parse(JSON.stringify(DEFAULT_BANNED)); }
+/* القائمة = الأساسية من الموقع (tools/bot-moderation.js) + كلماتك من /admin */
+async function modData(env) { try { const D = await data(env); return D.mod || null; } catch (e) { return null; } }
+async function baseLists(env) { const m = await modData(env); return m ? m.words : DEFAULT_BANNED; }
+const customLists = (env) => kvJson(env, 'banned', {});
+async function bannedLists(env) {
+  const base = await baseLists(env), extra = await customLists(env), out = {};
+  for (const c of new Set(Object.keys(base).concat(Object.keys(extra)))) out[c] = Array.from(new Set((base[c] || []).concat(extra[c] || [])));
+  return out;
+}
+async function catInfo(env) { const m = await modData(env); const o = {}; for (const c of Object.keys(CATS)) o[c] = { t: CATS[c], act: c === 'ads' ? 'del' : 'ban' }; if (m) Object.assign(o, m.cats); return o; }
 const domains = async (env) => (await kvJson(env, 'domains', null)) || DEFAULT_DOMAINS.slice();
+/* تطبيع للرقابة: الحروف المزخرفة، والمتشابهة من لغات ثانية، والأرقام والرموز بدل الحروف الإنجليزية،
+   والحروف المكررة، والحروف المفصولة بمسافات أو نقاط */
+const HOMO = { 'а': 'a', 'е': 'e', 'о': 'o', 'р': 'p', 'с': 'c', 'у': 'y', 'х': 'x', 'і': 'i', 'ј': 'j', 'ѕ': 's', 'к': 'k', 'м': 'm', 'т': 't', 'в': 'b', 'н': 'h', 'ԁ': 'd', 'ս': 'u', 'ο': 'o', 'α': 'a', 'ε': 'e', 'ι': 'i', 'κ': 'k', 'ν': 'v', 'τ': 't', 'υ': 'u', 'ρ': 'p', 'χ': 'x', 'ı': 'i' };
+const LEET = { '0': 'o', '1': 'i', '3': 'e', '4': 'a', '5': 's', '7': 't', '@': 'a', '$': 's', '!': 'i', '|': 'l' };
+function modForms(text) {
+  let s = String(text).normalize('NFKC').replace(/[­​-‏‪-‮⁠-⁯﻿]/g, '').toLowerCase();
+  s = s.replace(/./gu, (c) => HOMO[c] || c);
+  // داخل الكلمات الإنجليزية بس: الأرقام والرموز بدل الحروف (sh!t، b1tch، a$$)
+  s = s.replace(/[a-z0-9@$!|]+/g, (w) => (/[a-z]/.test(w) && /[0-9@$!|]/.test(w) ? w.replace(/[0134557@$!|]/g, (c) => LEET[c] || c) : w));
+  const n = norm(s); const out = new Set([n]);
+  const col = n.replace(/(.)\1{2,}/g, '$1'); out.add(col);
+  for (const f of [n, col]) out.add(f.replace(/(^| )يا(?=[ء-ي]{2})/g, '$1يا ')); // «ياكلب» ← «يا كلب»
+  // حروف مفصولة: «ك س» و«f u c k» ← كلمة وحدة
+  for (const f of [n, col]) out.add(f.split(' ').reduce((acc, w) => { const last = acc[acc.length - 1]; if (w.length === 1 && last && last.single) { last.w += w; } else acc.push({ w, single: w.length === 1 }); return acc; }, []).map((x) => x.w).join(' '));
+  return [...out].filter(Boolean);
+}
+const MOD_PREFIX = /^(يا|وال|بال|فال|كال|لل|ال|و|ف|ب)(?=..)/;
 function findBanned(lists, text) {
-  const n = norm(text); if (!n) return null; const pad = ' ' + n + ' '; const sq = n.replace(/\s+/g, '');
-  const words = new Set(n.split(' ').flatMap((w) => [w, w.replace(PREFIX, '')]));
+  const forms = modForms(text); if (!forms.length) return null;
+  const pads = forms.map((f) => ' ' + f + ' ');
+  const words = new Set(forms.flatMap((f) => f.split(' ').flatMap((w) => [w, w.replace(MOD_PREFIX, '')])));
   for (const cat of Object.keys(lists)) for (const raw of lists[cat]) {
     const k = norm(raw); if (!k) continue;
-    if (k.includes(' ')) { if (pad.includes(' ' + k + ' ') || (k.replace(/ /g, '').length >= 6 && sq.includes(k.replace(/ /g, '')))) return { cat, w: raw }; }
-    else if (words.has(k) || (k.length >= 5 && sq.includes(k))) return { cat, w: raw };
+    if (k.includes(' ')) { if (pads.some((p) => p.includes(' ' + k + ' '))) return { cat, w: raw }; }
+    else if (words.has(k)) return { cat, w: raw };
   }
   return null;
 }
@@ -332,13 +359,19 @@ async function moderate(env, ctx, msg) {
   if (isAdmin(env, from.id) || (await groupAdmins(env, chat.id)).includes(from.id)) return false;
   const text = [msg.text, msg.caption, msg.forward_origin && msg.forward_origin.chat && msg.forward_origin.chat.title].filter(Boolean).join(' \n ');
   const bad = findBanned(await bannedLists(env), text);
+  const CI = bad ? await catInfo(env) : null;
+  if (bad && CI[bad.cat] && CI[bad.cat].act === 'del') {
+    const del = await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id });
+    if (del && del.ok) await notice(env, ctx, chat.id, `⚠️ ${who(from)}، انحذفت رسالتك: ${CI[bad.cat].t} ممنوعة في القروب.`);
+    return true;
+  }
   if (bad) {
     await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id });
     const asChannel = msg.sender_chat && msg.sender_chat.id !== chat.id; // كتب باسم قناة
     const ban = asChannel ? await tg(env, 'banChatSenderChat', { chat_id: chat.id, sender_chat_id: msg.sender_chat.id }) : await tg(env, 'banChatMember', { chat_id: chat.id, user_id: from.id, revoke_messages: true });
-    await notice(env, ctx, chat.id, ban && ban.ok ? `🚫 انطرد ${who(from)}: ${CATS[bad.cat] || 'مخالفة'}.` : `🚫 انحذفت رسالة ${who(from)}: ${CATS[bad.cat] || 'مخالفة'}.`);
+    await notice(env, ctx, chat.id, ban && ban.ok ? `🚫 انطرد ${who(from)}: ${(CI[bad.cat] || {}).t || 'مخالفة'}.` : `🚫 انحذفت رسالة ${who(from)}: ${(CI[bad.cat] || {}).t || 'مخالفة'}.`);
     const preview = esc(text.slice(0, 300));
-    for (const a of admins(env)) await send(env, a, `${ban && ban.ok ? '🚫 طردت' : '⚠️ حذفت رسالة'} ${who(from)}${from.username ? ' (@' + esc(from.username) + ')' : ''} من «${esc(chat.title || '')}»\nالسبب: ${CATS[bad.cat] || bad.cat} (الكلمة: «${esc(bad.w)}»)\nالرسالة: «${preview}»` + (ban && ban.ok ? '' : '\n\nما قدرت أطرده. تأكد إن البوت مشرف وعنده صلاحية حظر الأعضاء.'), ban && ban.ok ? kb([[btn('فك الطرد', asChannel ? `uc:${chat.id}:${msg.sender_chat.id}` : `ub:${chat.id}:${from.id}`)]]) : {});
+    for (const a of admins(env)) await send(env, a, `${ban && ban.ok ? '🚫 طردت' : '⚠️ حذفت رسالة'} ${who(from)}${from.username ? ' (@' + esc(from.username) + ')' : ''} من «${esc(chat.title || '')}»\nالسبب: ${(CI[bad.cat] || {}).t || bad.cat} (الكلمة: «${esc(bad.w)}»)\nالرسالة: «${preview}»` + (ban && ban.ok ? '' : '\n\nما قدرت أطرده. تأكد إن البوت مشرف وعنده صلاحية حظر الأعضاء.'), ban && ban.ok ? kb([[btn('فك الطرد', asChannel ? `uc:${chat.id}:${msg.sender_chat.id}` : `ub:${chat.id}:${from.id}`)]]) : {});
     return true;
   }
   const allow = await domains(env); const links = urlsOf(msg).filter((u) => !allowedUrl(u, allow));
@@ -398,9 +431,9 @@ async function adminState(env, msg, st) {
   if (st.s === 'w') {
     const words = text.split(/[\n،,]+/).map((w) => w.trim()).filter((w) => w && norm(w)).slice(0, 50);
     if (!words.length) return send(env, chat, 'اكتب كلمة أو أكثر، كل كلمة في سطر.', CANCEL);
-    const L = await bannedLists(env); L[st.c] = Array.from(new Set((L[st.c] || []).concat(words))); await kvPut(env, 'banned', L);
-    await env.BOT_KV.delete(stateKey(uid));
-    return send(env, chat, `انضافت ${words.length} في «${CATS[st.c]}»: ${words.map((w) => '«' + esc(w) + '»').join('، ')}`, MENU());
+    const L = await customLists(env); L[st.c] = Array.from(new Set((L[st.c] || []).concat(words))); await kvPut(env, 'banned', L);
+    await env.BOT_KV.delete(stateKey(uid)); const CI = await catInfo(env);
+    return send(env, chat, `انضافت ${words.length} في «${(CI[st.c] || {}).t || st.c}»: ${words.map((w) => '«' + esc(w) + '»').join('، ')}`, MENU());
   }
   if (st.s === 'd') {
     const d = text.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/+$/, '');
@@ -430,15 +463,18 @@ async function adminCallback(env, cb, p, done) {
     const list = (await getReplies(env)).filter((r) => r.id !== a); await kvPut(env, 'replies', list); await done('انحذف');
     return edit(env, chat, mid, `<b>الردود (${list.length})</b>\nاضغط على أي رد عشان تحذفه:`, kb(list.map((r) => [btn('🗑 ' + r.k + (r.m === 'exact' ? ' (بالضبط)' : ''), 'rd:' + r.id)]).concat([[btn('أضف رد', 'a:ra')]])));
   }
-  if (k === 'a' && a === 'wa') { await done(); return send(env, chat, 'اختر نوعها:', kb(Object.keys(CATS).map((c) => [btn(CATS[c], 'wc:' + c)]).concat([[btn('إلغاء', 'a:x')]]))); }
-  if (k === 'wc') { await kvPut(env, stateKey(uid), { s: 'w', c: a }, 3600); await done(); return edit(env, chat, mid, `اكتب الكلمات الممنوعة في «${CATS[a]}»، كل كلمة أو جملة في سطر.`, CANCEL); }
-  if (k === 'a' && a === 'wl') { const L = await bannedLists(env); await done(); return send(env, chat, '<b>الكلمات الممنوعة</b>\nاختر القسم عشان تشوف كلماته وتحذف منها:', kb(Object.keys(CATS).map((c) => [btn(`${CATS[c]} (${(L[c] || []).length})`, 'wl:' + c)]).concat([[btn('أضف كلمة ممنوعة', 'a:wa')]]))); }
+  const ACT = { ban: 'حذف وطرد', del: 'حذف بس' };
+  if (k === 'a' && a === 'wa') { const CI = await catInfo(env); await done(); return send(env, chat, 'اختر نوعها:', kb(Object.keys(CI).map((c) => [btn(`${CI[c].t} (${ACT[CI[c].act]})`, 'wc:' + c)]).concat([[btn('إلغاء', 'a:x')]]))); }
+  if (k === 'wc') { const CI = await catInfo(env); await kvPut(env, stateKey(uid), { s: 'w', c: a }, 3600); await done(); return edit(env, chat, mid, `اكتب الكلمات الممنوعة في «${(CI[a] || {}).t || a}»، كل كلمة أو جملة في سطر.`, CANCEL); }
+  if (k === 'a' && a === 'wl') { const L = await bannedLists(env), CI = await catInfo(env); await done(); return send(env, chat, '<b>الكلمات الممنوعة</b>\nاختر القسم:', kb(Object.keys(CI).map((c) => [btn(`${CI[c].t} (${(L[c] || []).length})`, 'wl:' + c)]).concat([[btn('أضف كلمة ممنوعة', 'a:wa')]]))); }
   if (k === 'wl' || k === 'wd') {
-    const L = await bannedLists(env);
-    if (k === 'wd') { L[a] = (L[a] || []).filter((_, n) => n !== +p[2]); await kvPut(env, 'banned', L); }
+    // الأزرار لكلماتك اللي أضفتها من هنا بس؛ الأساسية تتعدل من ملف الموقع (tools/bot-moderation.js)
+    const base = await baseLists(env), C = await customLists(env), CI = await catInfo(env);
+    const own = (C[a] || []).filter((w) => !(base[a] || []).includes(w));
+    if (k === 'wd') { const w = own[+p[2]]; C[a] = (C[a] || []).filter((x) => x !== w); await kvPut(env, 'banned', C); own.splice(+p[2], 1); }
     await done(k === 'wd' ? 'انحذفت' : undefined);
-    const words = L[a] || [];
-    return edit(env, chat, mid, `<b>${CATS[a]}</b> (${words.length})\nاضغط على أي كلمة عشان تحذفها:`, kb(words.map((w, n) => [btn('🗑 ' + w, `wd:${a}:${n}`)]).concat([[btn('رجوع', 'a:wl')]])));
+    const nb = (base[a] || []).length;
+    return edit(env, chat, mid, `<b>${(CI[a] || {}).t || a}</b> (${ACT[(CI[a] || {}).act] || 'حذف وطرد'})\n${nb} كلمة أساسية، وتعديلها يكون من ملف الموقع.\n${own.length ? 'كلماتك: اضغط على أي كلمة عشان تحذفها:' : 'ما أضفت كلمات هنا.'}`, kb(own.slice(0, 80).map((w, n) => [btn('🗑 ' + w, `wd:${a}:${n}`)]).concat([[btn('رجوع', 'a:wl')]])));
   }
   if (k === 'a' && a === 'dl') { const L = await domains(env); await done(); return send(env, chat, '<b>المواقع المسموحة</b>\nروابطها ما تنحذف من القروبات. اضغط على أي موقع عشان تحذفه:', kb(L.map((d, n) => [btn('🗑 ' + d, 'dd:' + n)]).concat([[btn('أضف موقع', 'a:da')]]))); }
   if (k === 'a' && a === 'da') { await kvPut(env, stateKey(uid), { s: 'd' }, 3600); await done(); return send(env, chat, 'اكتب الموقع المسموح (مثل: youtube.com):', CANCEL); }
