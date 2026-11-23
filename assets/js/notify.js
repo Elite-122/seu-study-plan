@@ -2,7 +2,7 @@
    الإعدادات تنحفظ في users/{uid}.notify، و reminders/run.js (يشغّله GitHub Actions) يقراها ويرسل.
    notify = {on, email, push, hour, types:{exam,hw,mist,study}, key, tokens:{رمز الجهاز: وقت}, asked, skipped, reasked,
              test (طلب تجربة), last و unsub (يكتبها الخادم وصفحة إيقاف الإيميل)} */
-import { app, auth, db } from "./auth.js?v=202611230952";
+import { app, auth, db } from "./auth.js?v=202611231014";
 import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 const N = window.Najd, esc = N.esc, I = N.icon;
