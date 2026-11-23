@@ -42,7 +42,26 @@ for (const k of Object.keys(C.sem)) for (const x of C.sem[k].items || []) {
 }
 items.sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
 
-const out = { updated: G.updated, site: SITE, guide: SITE + '/guide.html', calendar: SITE + '/calendar.html', src, sections, cal: { year: C.year, src: C.src, ann: C.ann || '', items } };
+/* قائمة الردود (tools/bot-topics.js): نحوّل مراجع الدليل لأرقام ونتأكد إنها موجودة */
+const { CATS, TOPICS } = require('./bot-topics.js');
+const secIdx = {}; sections.forEach((s, i) => { secIdx[s.id] = i; });
+const seen = new Set();
+const topics = TOPICS.map((t) => {
+  if (seen.has(t.id)) throw new Error('رقم موضوع مكرر: ' + t.id); seen.add(t.id);
+  if (!CATS.some((c) => c.id === t.cat)) throw new Error('قسم غير موجود: ' + t.cat + ' في ' + t.t);
+  const o = { ...t };
+  if (o.g) o.g = o.g.map((r) => { const [sid, j] = r.split(':'); const i = secIdx[sid]; if (i === undefined || !sections[i].qa[+j]) throw new Error('مرجع دليل غلط: ' + r + ' في ' + t.t); return [i, +j]; });
+  if (o.cal) new RegExp(o.cal);
+  const abs = (h) => (h.startsWith('/') ? SITE + h : h);
+  if (o.btns) o.btns = o.btns.map(([l, h]) => [l, abs(h)]);
+  if (o.tool) o.tool = [o.tool[0], abs(o.tool[1])];
+  delete o.site;
+  if (o.video) { if (!fs.existsSync(path.join(ROOT, o.video))) throw new Error('فيديو ناقص: ' + o.video); o.video = SITE + '/' + o.video; }
+  if (o.img) { if (!fs.existsSync(path.join(ROOT, o.img))) throw new Error('صورة ناقصة: ' + o.img); o.img = SITE + '/' + o.img; }
+  return o;
+});
+
+const out = { updated: G.updated, site: SITE, guide: SITE + '/guide.html', calendar: SITE + '/calendar.html', src, sections, cal: { year: C.year, src: C.src, ann: C.ann || '', items }, menu: { cats: CATS, topics } };
 const file = path.join(ROOT, 'assets/data/bot.json');
 fs.mkdirSync(path.dirname(file), { recursive: true });
 const json = JSON.stringify(out);
