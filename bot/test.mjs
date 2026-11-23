@@ -123,6 +123,14 @@ const cps = calls.filter((c) => c.m === 'copyMessage'); ok('published to 2 selec
 await post(priv(ADMIN, 'متى الاختبارات النهائية؟')); const d2 = JSON.stringify(sent()[0].b.reply_markup).match(/pt:(\w+):/)[1]; await post(cb(ADMIN, `pq:${d2}`)); ok('admin "this is a question" → answered', /الاختبارات النهائية/.test(txt()) && !has('copyMessage'), txt());
 await post({ update_id: uid++, my_chat_member: { chat: { id: G2, type: 'supergroup', title: 'المحاسبة' }, new_chat_member: { status: 'left' } } }); ok('removed chat untracked', Object.keys(JSON.parse(store.get('chats'))).length === 2);
 
+// تطبيع الرقابة: أشكال مموهة تنمسك، وكلام دراسي عادي ما ينمسك
+{ const M = (await import(new URL('./worker.js', import.meta.url))); const L = JSON.parse(BOTJSON).mod.words;
+  const caught = ['ك.س امك', 'كـــس', 'ك س', 'F U C K', 'f.u.c.k', 'fuuuuuck', 'sh!t', 'b1tch', 'a$$', '𝐟𝐮𝐜𝐤', 'ＦＵＣＫ', 'fսck', 'ياكلب', 'يا كلللب', 'س ك ل ي ف', 'شـرمـوطـة', 'sick leave', 'نبيع حشيش', 'سكليف للبيع'];
+  const clean = ['السياسات المحاسبية في الشركة', 'سؤال عن الاستثمار والتداول والأرباح', 'التسويق الإلكتروني والترويج', 'جامعة الأمير مساعد', 'الجامعة السعودية الإلكترونية', 'السلام عليكم', 'كم نسبة الغياب؟', 'وين قروب المادة؟', 'نسيت كلمة المرور', 'النسب المالية', 'عندي حماس للمادة', 'المرشد خول لي التسجيل', 'قواد الفرق', 'class pass assessment', 'therapist', 'Marketing course'];
+  const miss = caught.filter((x) => !M.findBanned(L, x)); const fp = clean.map((x) => [x, M.findBanned(L, x)]).filter((x) => x[1]);
+  ok('obfuscated words caught', !miss.length, miss); ok('normal study talk not caught', !fp.length, fp); }
+await post(grp(STUDENT, 'للبيع شقة مفروشة')); ok('ads = delete only, no ban', has('deleteMessage') && !has('banChatMember') && /انحذفت رسالتك/.test(txt()));
+
 // قائمة الردود
 const BJ = JSON.parse(BOTJSON); const kbOf = () => JSON.stringify(sent().map((c) => c.b.reply_markup || {}));
 await post(priv(STUDENT, 'نجد')); ok('«نجد» → سمّ لبيه + 8 sections', /سمّ لبيه/.test(txt()) && (kbOf().match(/"mc:/g) || []).length === 8);
