@@ -135,7 +135,7 @@ function datesText(D) {
 }
 
 /* ---------- رسائل الطالب ---------- */
-const HOME = (admin) => kb([[btn('دليل الطالب', 'g'), btn('المواعيد الجاية', 'd')], [btn('أدوات نجد', 't')]].concat(admin ? [[btn('لوحة البوت (للمشرفين)', 'a:menu')]] : []));
+const HOME = (admin) => kb([[btn('دليل الطالب', 'g'), btn('المواعيد الجاية', 'd')], [btn('📋 قائمة الردود', 'm'), btn('أدوات نجد', 't')]].concat(admin ? [[btn('لوحة البوت (للمشرفين)', 'a:menu')]] : []));
 const WELCOME = 'هلا! أنا بوت <b>أكاديمية نجد</b>.\nاسألني عن لوائح الجامعة ومواعيدها، مثل: «وش شروط حذف مقرر؟» أو «متى يقفل الانسحاب؟»، أو اختر من تحت.';
 function sectionsMenu(D) { const rows = []; D.sections.forEach((s, i) => { if (i % 2 === 0) rows.push([]); rows[rows.length - 1].push(btn(s.t, 's:' + i)); }); rows.push([btn('المواعيد الجاية', 'd')]); return kb(rows); }
 function questionsMenu(D, i) { const rows = D.sections[i].qa.map((x, j) => [btn(x.q, `q:${i}:${j}`)]); rows.push([btn('رجوع للأقسام', 'g')]); return kb(rows); }
@@ -167,6 +167,58 @@ const TOOLS = [
   [/(وصف مقرر|وصف الماده|وصف ماده)/, 'وصف كل مقرر وتجارب الطلاب فيه تلقاها في صفحة المقررات.', 'افتح المقررات', '/courses.html'],
   [/(المتجر)/, 'متجر أكاديمية نجد:', 'افتح المتجر', '/store.html']
 ];
+/* ---------- قائمة الردود (tools/bot-topics.js ← bot.json) ---------- */
+const MENU_CALL = /^(يا )?نجد$/;
+const MENU_WORDS = new Set(['قائمه الردود', 'الردود', 'القائمه']);
+const isMenuCall = (text) => { const n = norm(text); return MENU_CALL.test(n) || MENU_WORDS.has(n); };
+const SOON = 'هذا الرد قريبًا ✨ نجهّز معلومته. لين ذاك تقدر تسأل في القروب العام: https://t.me/najdacadmey';
+function rows2(list) { const r = []; list.forEach((b, i) => { if (i % 2 === 0) r.push([]); r[r.length - 1].push(b); }); return r; }
+function replyMenu(D) {
+  const M = D.menu; if (!M) return kb([[btn('دليل الطالب', 'g'), btn('المواعيد الجاية', 'd')]]);
+  return kb(rows2(M.cats.map((c, i) => btn(c.t, 'mc:' + i))).concat([[btn('📘 دليل الطالب', 'g'), btn('🧰 أدوات نجد', 't')]]));
+}
+const MENU_HI = 'سمّ لبيه 🌿\nوش تبي تعرف؟ اختر القسم:';
+function catMenu(D, i) {
+  const c = D.menu.cats[i]; const list = D.menu.topics.filter((t) => t.cat === c.id);
+  return { text: `<b>${esc(c.t)}</b>\nاختر الموضوع:`, kb: kb(rows2(list.map((t) => btn(t.t, 'mt:' + t.id))).concat([[btn('→ رجوع للأقسام', 'm')]])) };
+}
+let TOPIC_IDX = null, TOPIC_FOR = null;
+function findTopic(D, text) {
+  if (!D.menu) return null;
+  if (TOPIC_FOR !== D) { TOPIC_IDX = new Map(); for (const t of D.menu.topics) for (const w of [t.t].concat(t.k || [])) TOPIC_IDX.set(norm(w), t); TOPIC_FOR = D; }
+  const n = norm(text); return TOPIC_IDX.get(n) || TOPIC_IDX.get(n.replace(/^(ال)/, '')) || null;
+}
+function calFor(D, re) {
+  const t = today(); const R = new RegExp(re);
+  const list = D.cal.items.filter((x) => R.test(x.t) && (x.e || x.d) >= t).slice(0, 5);
+  if (!list.length) return 'ما فيه مواعيد جاية لهذا في التقويم الحالي. نضيف تقويم السنة الجاية أول ما تنشره الجامعة.';
+  return list.map((x) => line(x, t)).join('\n');
+}
+async function sendTopic(env, D, chat, t, rt) {
+  const back = [btn('📋 قائمة الردود', 'm')];
+  const calSrc = `\n\n<i>المصدر: التقويم الأكاديمي الرسمي ${esc(D.cal.year)}هـ.</i>`;
+  if (t.type === 'photo') return tg(env, 'sendPhoto', { chat_id: chat, photo: t.img, caption: t.cap, parse_mode: 'HTML', ...replyTo(rt), ...kb([back]) });
+  if (t.type === 'text') return send(env, chat, t.text, { ...replyTo(rt), ...kb([back]) });
+  if (t.type === 'tool') return send(env, chat, esc(t.msg), { ...replyTo(rt), ...kb([[url(t.label, D.site + t.path)], back]) });
+  if (t.type === 'dates') return send(env, chat, datesText(D), { ...replyTo(rt), ...kb([[url('التقويم الأكاديمي كامل', D.calendar)], back]) });
+  if (t.type === 'cal') return send(env, chat, `📅 <b>${esc(t.t)}</b>\n${t.note ? esc(t.note) + '\n' : ''}\n${calFor(D, t.cal)}${calSrc}`, { ...replyTo(rt), ...kb([[url('التقويم الأكاديمي كامل', D.calendar)], back]) });
+  if (t.type === 'guide') {
+    const parts = t.g.map(([i, j]) => answerText(D, i, j)); let s = parts.join('\n\n— — —\n\n');
+    if (t.cal) s += `\n\n📅 <b>المواعيد:</b>\n${calFor(D, t.cal)}`;
+    if (s.length > 3900) s = parts[0];
+    const [i, j] = t.g[0];
+    return send(env, chat, s, { ...replyTo(rt), ...kb([[url('افتحه في دليل الطالب', D.sections[i].qa[j].link)], back]) });
+  }
+  return send(env, chat, `<b>${esc(t.t)}</b>\n${SOON}`, { ...replyTo(rt), ...kb([back]) });
+}
+async function menuOrTopic(env, chat, text, rt) {
+  if (!text) return false;
+  if (isMenuCall(text)) { const D = await data(env); await send(env, chat, MENU_HI, { ...replyTo(rt), ...replyMenu(D) }); return true; }
+  if (norm(text).split(' ').length > 5) return false;
+  const D = await data(env); const t = findTopic(D, text); if (!t) return false;
+  await sendTopic(env, D, chat, t, rt); return true;
+}
+
 async function answerQuestion(env, D, chat, text, rt) {
   const n = norm(text);
   if (GREET.test(n)) return send(env, chat, WELCOME, { ...replyTo(rt), ...HOME(false) });
@@ -405,11 +457,13 @@ async function onMessage(env, ctx, msg, edited) {
     // shortcut: رسالة قصيرة (٥ كلمات أو أقل) فيها كلمة رد = سؤال مو إعلان؛ الأطول تروح مسودة إعلان
     const r = msg.text && norm(msg.text).split(' ').length <= 5 ? matchReply(await getReplies(env), msg.text) : null;
     if (r) return sendBody(env, chat.id, r.b, null);
+    if (msg.text && (await menuOrTopic(env, chat.id, msg.text, null))) return;
     return startDraft(env, msg);
   }
   // ردودك الخاصة: أي رسالة فيها الكلمة (خاص وقروبات)
   const rep = text && !c ? matchReply(await getReplies(env), text.replace(new RegExp('@' + name, 'ig'), '')) : null;
   if (rep) return sendBody(env, chat.id, rep.b, priv ? null : msg.message_id);
+  if (!c && (await menuOrTopic(env, chat.id, text.replace(new RegExp('@' + name, 'ig'), '').trim(), priv ? null : msg.message_id))) return;
   if (!priv) {
     const mentioned = new RegExp('@' + name + '\\b', 'i').test(text);
     const r = msg.reply_to_message && msg.reply_to_message.from; const replied = r && r.username && r.username.toLowerCase() === name.toLowerCase();
@@ -451,6 +505,10 @@ async function onCallback(env, cb) {
   }
   const D = await data(env); await done();
   if (p[0] === 'g') return edit(env, chat, mid, '<b>دليل الطالب</b>\nاختر القسم:', sectionsMenu(D));
+  // «رجوع» من قائمة قسم: نرجع نفس الرسالة للأقسام، وغيرها نرسل القائمة من جديد
+  if (p[0] === 'm') return m.reply_markup && JSON.stringify(m.reply_markup).includes('"mt:') ? edit(env, chat, mid, MENU_HI, replyMenu(D)) : send(env, chat, MENU_HI, replyMenu(D));
+  if (p[0] === 'mc') { if (!D.menu || !D.menu.cats[+p[1]]) return; const c = catMenu(D, +p[1]); return edit(env, chat, mid, c.text, c.kb); }
+  if (p[0] === 'mt') { const t = D.menu && D.menu.topics.find((x) => x.id === p[1]); if (!t) return; return sendTopic(env, D, chat, t, null); }
   if (p[0] === 't') return send(env, chat, TOOLS_TXT, toolsMenu(D));
   if (p[0] === 'd') return send(env, chat, datesText(D), kb([[url('التقويم الأكاديمي كامل', D.calendar)]]));
   if (p[0] === 's') { const i = +p[1]; const s = D.sections[i]; if (!s) return; return edit(env, chat, mid, `<b>${esc(s.t)}</b>${s.sub ? '\n' + esc(s.sub) : ''}\nاختر سؤالك:`, questionsMenu(D, i)); }
@@ -494,4 +552,4 @@ export default {
     return new Response('Najd Academy bot ✓');
   }
 };
-export { norm, toks, search, findBanned, matchReply, urlsOf, allowedUrl, hasPhone, DEFAULT_BANNED, DEFAULT_DOMAINS };
+export { norm, toks, search, findBanned, matchReply, findTopic, isMenuCall, urlsOf, allowedUrl, hasPhone, DEFAULT_BANNED, DEFAULT_DOMAINS };

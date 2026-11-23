@@ -123,4 +123,19 @@ const cps = calls.filter((c) => c.m === 'copyMessage'); ok('published to 2 selec
 await post(priv(ADMIN, 'متى الاختبارات النهائية؟')); const d2 = JSON.stringify(sent()[0].b.reply_markup).match(/pt:(\w+):/)[1]; await post(cb(ADMIN, `pq:${d2}`)); ok('admin "this is a question" → answered', /الاختبارات النهائية/.test(txt()) && !has('copyMessage'), txt());
 await post({ update_id: uid++, my_chat_member: { chat: { id: G2, type: 'supergroup', title: 'المحاسبة' }, new_chat_member: { status: 'left' } } }); ok('removed chat untracked', Object.keys(JSON.parse(store.get('chats'))).length === 2);
 
+// قائمة الردود
+const BJ = JSON.parse(BOTJSON); const kbOf = () => JSON.stringify(sent().map((c) => c.b.reply_markup || {}));
+await post(priv(STUDENT, 'نجد')); ok('«نجد» → سمّ لبيه + 8 sections', /سمّ لبيه/.test(txt()) && (kbOf().match(/"mc:/g) || []).length === 8);
+await post(grp(STUDENT, 'يا نجد')); ok('group «يا نجد» → menu as reply', /سمّ لبيه/.test(txt()) && sent()[0].b.reply_parameters);
+await post(priv(ADMIN, 'نجد')); ok('admin «نجد» → menu, not a draft', /سمّ لبيه/.test(txt()) && !/انشر/.test(kbOf()));
+await post(cb(STUDENT, 'mc:0')); ok('section → topics + back', calls.some((c) => c.m === 'editMessageText') && /"mt:18"/.test(kbOf()) && /"m"/.test(kbOf()));
+await post(cb(STUDENT, 'm', { message_id: 5, chat: { id: STUDENT, type: 'private' }, text: 'x', reply_markup: { inline_keyboard: [[{ text: 'a', callback_data: 'mt:18' }]] } })); ok('back → sections (edit)', calls.some((c) => c.m === 'editMessageText') && /"mc:7"/.test(kbOf()));
+await post(priv(STUDENT, 'تواصل')); ok('typed «تواصل» → contacts', /n\.farhah@seu\.edu\.sa/.test(txt()) && /caf\.activities\.clubs/.test(txt()));
+await post(grp(STUDENT, 'تاريخ الفاينل')); ok('group typed topic → calendar reply', /تاريخ الفاينل/.test(txt()) && /المصدر: التقويم/.test(txt()));
+await post(priv(STUDENT, 'حذف مقرر')); ok('guide topic + dates', /شروط حذف مقرر/.test(txt()) && /المواعيد/.test(txt()));
+await post(cb(STUDENT, 'mt:01')); ok('photo topic', calls.some((c) => c.m === 'sendPhoto' && /graduation\.jpg$/.test(c.b.photo) && /130|التخرج/.test(c.b.caption)));
+await post(cb(STUDENT, 'mt:05')); ok('soon topic', /قريبًا/.test(txt()));
+await post(grp(STUDENT, 'وش رايكم نروح نجد بكره نذاكر مع بعض')); ok('long group chatter not hijacked', !sent().length);
+{ let bad = []; for (const t of BJ.menu.topics) { await post(cb(STUDENT, 'mt:' + t.id)); const m = sent()[0]; const body = m && (m.b.text || m.b.caption || ''); if (!m || !body || body.length > (m.m === 'sendPhoto' ? 1024 : 4096)) bad.push(t.id); } ok('all topics render within Telegram limits', !bad.length, bad); }
+
 const f = Object.values(res).filter((v) => v === 'FAIL').length; console.log('RESULT', Object.keys(res).length - f, '/', Object.keys(res).length);
