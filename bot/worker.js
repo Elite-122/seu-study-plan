@@ -228,6 +228,12 @@ async function sendTopic(env, D, chat, t, rt) {
   }
   return send(env, chat, `<b>${esc(t.t)}</b>\n${SOON}`, { ...replyTo(rt), ...kb([back]) });
 }
+/* قائمة الردود للتثبيت: البوت يرسلها منسقة (عناوين عريضة، وأسماء الردود تنتسخ بضغطة) */
+function listText(D) {
+  if (!D.menu) return null;
+  const parts = D.menu.cats.map((c) => { const l = D.menu.topics.filter((t) => t.cat === c.id && t.type !== 'soon'); return l.length ? `<b>${esc(c.t)}</b>\n` + l.map((t) => `▫️ <code>${esc(t.t)}</code>`).join('\n') : ''; }).filter(Boolean);
+  return '<b>📋 قائمة ردود بوت نجد</b>\nاضغط على الرد ينتسخ، وأرسله في القروب، والبوت يجاوبك 🌿\n\n' + parts.join('\n\n') + '\n\n💡 أو اكتب «نجد» وتطلع لك كل الردود أزرار';
+}
 async function menuOrTopic(env, chat, text, rt) {
   if (!text) return false;
   if (isMenuCall(text)) { const D = await data(env); await send(env, chat, MENU_HI, { ...replyTo(rt), ...replyMenu(D) }); return true; }
@@ -488,9 +494,41 @@ async function adminCallback(env, cb, p, done) {
 }
 
 /* ---------- استقبال تحديثات تيليقرام ---------- */
+/* ---------- الترحيب بالأعضاء الجدد ---------- */
+const WELCOME_MS = 30000;
+const ARCHIVE_URL = 'https://t.me/NajdArchive';
+const welcomeText = (names) => `هلا والله ${names} 🌿\n\nخطوتك الأولى صح، والحين صرت مع ناس يدعمونك لين التخرج 🎓\n\nعندك سؤال عن الجامعة أو جدولك الدراسي أو خطتك أو التسجيل أو المواعيد أو الرسوم؟\nاكتب «نجد» وبوتنا في خدمتك على طول وفي أي وقت تحتاجه 🤎`;
+const welcomeKb = (env) => { const b = 'https://t.me/' + botName(env) + '?start='; return kb([[url('📚 الأرشيف', ARCHIVE_URL), url('👥 قروبات نجد', b + 'groups')], [url('📜 قوانين القروب', b + 'rules'), url('🤖 اسأل بوت نجد', b + 'menu')], [url('🌐 موقع نجد', 'https://najdacdemy.com')]]); };
+const mention = (u) => `<a href="tg://user?id=${u.id}">${who(u)}</a>`;
+/* حذف بعد مدة: نحاول بمؤقت، ولو انقطع العامل قبلها نحذفها مع أول رسالة بعد ما يخلص وقتها */
+async function deleteLater(env, ctx, chat, mid, ms) {
+  const q = await kvJson(env, 'del_q', []); q.push({ c: chat, m: mid, at: Date.now() + ms }); await kvPut(env, 'del_q', q.slice(-200));
+  if (ctx && ctx.waitUntil) ctx.waitUntil(new Promise((r) => setTimeout(r, Math.min(ms, 28000))).then(() => sweepDeletes(env, true)));
+}
+async function sweepDeletes(env, force) {
+  const q = await kvJson(env, 'del_q', []); if (!q.length) return;
+  const now = Date.now() + (force ? 3000 : 0); const due = q.filter((x) => x.at <= now); if (!due.length) return;
+  await kvPut(env, 'del_q', q.filter((x) => x.at > now));
+  for (const x of due) await tg(env, 'deleteMessage', { chat_id: x.c, message_id: x.m });
+}
+async function onJoin(env, ctx, msg) {
+  const chat = msg.chat; if (chat.type === 'private') return;
+  await trackChat(env, chat, true);
+  await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id }); // رسالة «انضم للقروب»
+  const me = botName(env).toLowerCase(); const people = [];
+  for (const u of msg.new_chat_members) {
+    if (u.is_bot) { if ((u.username || '').toLowerCase() !== me) await tg(env, 'banChatMember', { chat_id: chat.id, user_id: u.id }); continue; } // أي بوت ثاني: طرد وحظر
+    people.push(u);
+  }
+  if (!people.length) return;
+  const r = await send(env, chat.id, welcomeText(people.slice(0, 10).map(mention).join('، ')), welcomeKb(env));
+  if (r && r.ok) await deleteLater(env, ctx, chat.id, r.result.message_id, WELCOME_MS);
+}
+
 async function onMessage(env, ctx, msg, edited) {
   const chat = msg.chat; const priv = chat.type === 'private';
-  if (msg.new_chat_members || msg.left_chat_member) return;
+  if (msg.new_chat_members) return onJoin(env, ctx, msg);
+  if (msg.left_chat_member) return;
   const text = (msg.text || msg.caption || '').trim();
   if (!priv) await trackChat(env, chat, true);
   if (chat.type === 'channel') return;
@@ -499,11 +537,26 @@ async function onMessage(env, ctx, msg, edited) {
   const name = botName(env); const cmd = text.match(/^\/([a-z_]+)(?:@(\w+))?/i) || [];
   if (cmd[1] && cmd[2] && cmd[2].toLowerCase() !== name.toLowerCase()) return; // أمر لبوت ثاني
   const c = (cmd[1] || '').toLowerCase(); const admin = priv && isAdmin(env, msg.from.id);
+  if (c === 'start' && priv) {
+    const pl = (text.split(/\s+/)[1] || '').toLowerCase(); const D = pl ? await data(env) : null;
+    const T = (id) => D.menu && D.menu.topics.find((x) => x.id === id);
+    if (pl === 'groups' && T('28')) return sendTopic(env, D, chat.id, T('28'), null);
+    if (pl === 'rules' && T('67')) return sendTopic(env, D, chat.id, T('67'), null);
+    if (pl === 'menu' && D.menu) return send(env, chat.id, MENU_HI, replyMenu(D));
+  }
   if (c === 'start' || c === 'help') return send(env, chat.id, WELCOME, HOME(admin));
   if (c === 'myid' && priv) return send(env, chat.id, `رقم حسابك في تيليقرام: <code>${msg.from.id}</code>`);
   if (c === 'admin' && admin) { await env.BOT_KV.delete(stateKey(msg.from.id)); return send(env, chat.id, MENU_TXT, MENU()); }
   if (c === 'guide') return send(env, chat.id, '<b>دليل الطالب</b>\nاختر القسم:', sectionsMenu(await data(env)));
   if (c === 'tools') return send(env, chat.id, TOOLS_TXT, toolsMenu(await data(env)));
+  if (c === 'list') {
+    // في القروب: للمشرفين بس، والبوت يحاول يثبتها (يحتاج صلاحية تثبيت الرسائل)
+    if (!priv && !(isAdmin(env, msg.from.id) || (await groupAdmins(env, chat.id)).includes(msg.from.id))) return;
+    const t = listText(await data(env)); if (!t) return;
+    const r = await send(env, chat.id, t);
+    if (!priv && r && r.ok) { await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id }); await tg(env, 'pinChatMessage', { chat_id: chat.id, message_id: r.result.message_id, disable_notification: true }); }
+    return;
+  }
   if (c === 'dates') { const D = await data(env); return send(env, chat.id, datesText(D), kb([[url('التقويم الأكاديمي كامل', D.calendar)]])); }
   if (admin && !c) {
     const st = await kvJson(env, stateKey(msg.from.id), null); if (st) return adminState(env, msg, st);
@@ -570,6 +623,7 @@ async function onCallback(env, cb) {
 }
 
 async function onUpdate(env, ctx, u) {
+  if (ctx && ctx.waitUntil) ctx.waitUntil(sweepDeletes(env, false).catch(() => {}));
   if (u.my_chat_member) { const s = u.my_chat_member.new_chat_member.status; return trackChat(env, u.my_chat_member.chat, s === 'member' || s === 'administrator'); }
   if (u.message) return onMessage(env, ctx, u.message, false);
   if (u.edited_message) return onMessage(env, ctx, u.edited_message, true);
@@ -580,9 +634,9 @@ async function onUpdate(env, ctx, u) {
 /* ---------- تجهيز البوت مرة وحدة: افتح /setup?key=WEBHOOK_SECRET ---------- */
 async function setup(env, origin) {
   const hook = await tg(env, 'setWebhook', { url: origin + '/tg', secret_token: env.WEBHOOK_SECRET, allowed_updates: ['message', 'edited_message', 'callback_query', 'my_chat_member', 'channel_post'], drop_pending_updates: true });
-  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }] });
+  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }, { command: 'list', description: 'قائمة الردود' }] });
   // قائمة المشرفين فيها «لوحة البوت»، وتظهر بس للمشرف اللي أرسل /start للبوت قبل
-  const ADM = [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }, { command: 'admin', description: 'لوحة البوت' }, { command: 'myid', description: 'رقم حسابك' }];
+  const ADM = [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }, { command: 'list', description: 'قائمة الردود (للتثبيت في القروب)' }, { command: 'admin', description: 'لوحة البوت' }, { command: 'myid', description: 'رقم حسابك' }];
   let adminMenus = 0; for (const id of admins(env)) if ((await tg(env, 'setMyCommands', { commands: ADM, scope: { type: 'chat', chat_id: id } })).ok) adminMenus++;
   const desc = await tg(env, 'setMyDescription', { description: 'بوت أكاديمية نجد: اسألني عن لوائح الجامعة ومواعيد التقويم الأكاديمي، والجواب من دليل الطالب والتقويم الرسمي.' });
   const me = await tg(env, 'getMe', {});
