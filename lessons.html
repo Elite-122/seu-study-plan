@@ -19,7 +19,7 @@
 <link rel="canonical" href="https://najdacdemy.com/lessons.html">
 <meta name="theme-color" content="#2F4F4E">
 <link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/img/mark.svg?v=202611232251" type="image/svg+xml">
+<link rel="icon" href="assets/img/mark.svg?v=202611242210" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/najd.css?v=202611232251">
+<link rel="stylesheet" href="assets/css/najd.css?v=202611242210">
 <style>
 #najd .ls-status{display:flex;align-items:center;gap:var(--sp-6);flex-wrap:wrap}
 #najd .ls-status .ic{flex-shrink:0;width:52px;height:52px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:var(--fs-4xl);background:var(--tint)}
@@ -64,7 +64,7 @@
 <div id="najd" dir="rtl" data-auth="required" data-page="lessons">
 <div id="nj-header"></div>
 <section class="nj-band">
-<svg class="nj-band-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="86" cy="22" r="9" fill="#D9B48A"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L74 37L102 51Z" fill="#4E7472"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#A9C6C4"/><path d="M58 51L82 22L102 51Z" fill="#E4E9EB"/><path d="M82 22L76.3 28.9L80 27.6L82 30.6L84.4 27.4L87.7 28.9Z" fill="#fff" opacity=".85"/><path d="M57.5 100 Q38 93 18 89 V57 Q38 60 57.5 68Z" fill="#C8CFD2"/><path d="M62.5 100 Q82 93 102 89 V57 Q82 60 62.5 68Z" fill="#E4E9EB"/></svg>
+<svg class="nj-band-mark" viewBox="14 11 92 92" aria-hidden="true"><circle cx="91" cy="21" r="9" fill="#D9B48A"/><path d="M18 51L33 36L41 42L52 30L62 40L70 33L74 37L102 51Z" fill="#4E7472"/><path d="M30 51L46 33L58 45L70 31L86 51Z" fill="#A9C6C4"/><path d="M58 51L80 22L102 51Z" fill="#E4E9EB"/><path d="M80 22L74.31 29.5L77.5 27.6L80 30.2L82.5 27.6L85.69 29.5Z" fill="#fff" opacity=".85"/><path d="M57.5 100 Q38 93 18 89 V57 Q38 60 57.5 68Z" fill="#C8CFD2"/><path d="M62.5 100 Q82 93 102 89 V57 Q82 60 62.5 68Z" fill="#E4E9EB"/></svg>
 <div class="nj-in">
 <p class="nj-crumb"><a href="index.html">الرئيسية</a><span>/</span>الشروحات</p>
 <h1>الشروحات</h1>
@@ -80,11 +80,11 @@
 </main>
 <div id="nj-footer"></div>
 </div>
-<script src="assets/js/layout.js?v=202611232251"></script>
-<script src="assets/js/i18n.js?v=202611232251"></script>
-<script src="assets/js/courses-data.js?v=202611232251"></script>
-<script src="assets/js/access.js?v=202611232251"></script>
-<script type="module" src="assets/js/auth.js?v=202611232251"></script>
+<script src="assets/js/layout.js?v=202611242210"></script>
+<script src="assets/js/i18n.js?v=202611242210"></script>
+<script src="assets/js/courses-data.js?v=202611242210"></script>
+<script src="assets/js/access.js?v=202611242210"></script>
+<script type="module" src="assets/js/auth.js?v=202611242210"></script>
 <script type="module">
 const esc = window.Najd.esc, $ = (id) => document.getElementById(id);
 let lessons = [], grants = [], verified = false, course = "", user = null, F = null;
@@ -157,7 +157,7 @@ $("ls-list").addEventListener("click", async (e) => {
 });
 
 try {
-  const A = await import("./assets/js/auth.js?v=202611232251");
+  const A = await import("./assets/js/auth.js?v=202611242210");
   const fs = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js");
   const fa = await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
   F = { db: A.db, doc: fs.doc, getDoc: fs.getDoc, sendEmailVerification: fa.sendEmailVerification };
