@@ -154,6 +154,15 @@ await post(priv(STUDENT, '/start rules')); ok('deep link rules', /قوانين �
 await post(priv(STUDENT, '/start t_47')); ok('deep link to a topic', /شروط حذف مقرر/.test(txt()));
 await post(priv(STUDENT, '/start menu')); ok('deep link menu', /سمّ لبيه/.test(txt()));
 
+// سجل المحظورين
+{ store.delete('bans');
+  await post(grp(STUDENT, 'يا حمار')); await new Promise((r) => setTimeout(r, 20));
+  const L = JSON.parse(store.get('bans') || '[]');
+  ok('ban logged with name, username, reason, group', L[0] && L[0].id === STUDENT && L[0].n === 'خالد' && L[0].u === 'khaled' && L[0].r === 'سب وشتم' && L[0].t === 'القروب العام', L);
+  await post(cb(ADMIN, 'a:bl')); ok('admin bans list', /خالد/.test(txt()) && /@khaled/.test(txt()) && /سب وشتم/.test(txt()) && /bu:/.test(JSON.stringify(sent()[0].b.reply_markup)));
+  await post(cb(ADMIN, 'bu:' + L[0].k)); ok('unban from list', calls.some((c) => c.m === 'unbanChatMember' && c.b.user_id === STUDENT) && JSON.parse(store.get('bans')).length === 0);
+  await post(cb(STUDENT, 'a:bl')); ok('student cannot see bans', !/خالد/.test(txt())); }
+
 // عدد المستخدمين
 { await new Promise((r) => setTimeout(r, 50)); store.delete('stats'); for (const k of [...store.keys()]) if (k.startsWith('u:')) store.delete(k);
   const nap = () => new Promise((r) => setTimeout(r, 20));
