@@ -135,6 +135,21 @@ await post(grp(GADMIN, '/list')); ok('/list in group by admin → formatted list
 await post(grp(STUDENT, '/list')); ok('/list in group by student ignored', !sent().length && !has('pinChatMessage'));
 await post(priv(STUDENT, '/list')); ok('/list in private', /<code>التقويم<\/code>/.test(txt()) && !has('pinChatMessage'));
 
+// الترحيب
+{ const jm = (members) => ({ update_id: uid++, message: { message_id: ++mid, from: members[0], chat: { id: G1, type: 'supergroup', title: 'القروب العام' }, new_chat_members: members } });
+  await post(jm([{ id: 901, first_name: 'نورة' }, { id: 902, first_name: 'فهد' }]));
+  const w = sent().find((c) => c.m === 'sendMessage');
+  ok('welcome: one message, both names, join notice deleted', w && /هلا والله/.test(w.b.text) && /نورة/.test(w.b.text) && /فهد/.test(w.b.text) && has('deleteMessage') && !has('banChatMember'));
+  ok('welcome buttons: archive, groups, rules, bot, site', /NajdArchive/.test(JSON.stringify(w.b.reply_markup)) && /start=groups/.test(JSON.stringify(w.b.reply_markup)) && /start=rules/.test(JSON.stringify(w.b.reply_markup)) && /start=menu/.test(JSON.stringify(w.b.reply_markup)) && /najdacdemy\.com/.test(JSON.stringify(w.b.reply_markup)));
+  ok('welcome queued for deletion', JSON.parse(store.get('del_q') || '[]').some((x) => x.at - Date.now() > 25000));
+  await post(jm([{ id: 903, first_name: 'SpamBot', is_bot: true, username: 'spam_bot' }])); ok('other bot joins → banned, no welcome', calls.some((c) => c.m === 'banChatMember' && c.b.user_id === 903) && !sent().some((c) => c.m === 'sendMessage'));
+  await post(jm([{ id: 904, first_name: 'Najd', is_bot: true, username: 'NajdAcademyBot' }])); ok('our own bot not banned', !has('banChatMember'));
+  const q = JSON.parse(store.get('del_q')); q.forEach((x) => { x.at = Date.now() - 1; }); store.set('del_q', JSON.stringify(q)); await post(priv(STUDENT, 'هلا'));
+  await new Promise((r) => setTimeout(r, 50)); ok('expired welcome swept', JSON.parse(store.get('del_q')).length === 0); }
+await post(priv(STUDENT, '/start groups')); ok('deep link groups', /najdacadmey/.test(txt()));
+await post(priv(STUDENT, '/start rules')); ok('deep link rules', /قوانين القروب/.test(txt()));
+await post(priv(STUDENT, '/start menu')); ok('deep link menu', /سمّ لبيه/.test(txt()));
+
 // قائمة الردود
 const BJ = JSON.parse(BOTJSON); const kbOf = () => JSON.stringify(sent().map((c) => c.b.reply_markup || {}));
 await post(priv(STUDENT, 'نجد')); ok('«نجد» → سمّ لبيه + 8 sections', /سمّ لبيه/.test(txt()) && (kbOf().match(/"mc:/g) || []).length === 8);
