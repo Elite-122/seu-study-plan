@@ -228,11 +228,12 @@ async function sendTopic(env, D, chat, t, rt) {
   }
   return send(env, chat, `<b>${esc(t.t)}</b>\n${SOON}`, { ...replyTo(rt), ...kb([back]) });
 }
-/* قائمة الردود للتثبيت: البوت يرسلها منسقة (عناوين عريضة، وأسماء الردود قابلة للنسخ بضغطة) */
-function listText(D) {
+/* قائمة الردود للتثبيت: عناوين عريضة، وكل رد رابط يفتح جوابه في الخاص مع البوت */
+function listText(D, env) {
+  const link = (t) => `<a href="https://t.me/${botName(env)}?start=t_${t.id}">${esc(t.t)}</a>`;
   if (!D.menu) return null;
-  const parts = D.menu.cats.map((c) => { const l = D.menu.topics.filter((t) => t.cat === c.id && t.type !== 'soon'); return l.length ? `<b>${esc(c.t)}</b>\n` + l.map((t) => `▫️ <code>${esc(t.t)}</code>`).join('\n') : ''; }).filter(Boolean);
-  return '<b>📋 قائمة ردود بوت نجد</b>\nاضغط على الرد للنسخ، وأرسله في القروب، والبوت يجاوبك 🌿\n\n' + parts.join('\n\n') + '\n\n💡 أو اكتب «نجد» وتطلع لك كل الردود أزرار';
+  const parts = D.menu.cats.map((c) => { const l = D.menu.topics.filter((t) => t.cat === c.id && t.type !== 'soon'); return l.length ? `<b>${esc(c.t)}</b>\n` + l.map((t) => `▫️ ${link(t)}`).join('\n') : ''; }).filter(Boolean);
+  return '<b>📋 قائمة ردود بوت نجد</b>\nاضغط على أي رد ويوصلك جوابه في الخاص، أو اكتب اسمه هنا والبوت يجاوبك 🌿\n\n' + parts.join('\n\n') + '\n\n💡 أو اكتب «نجد» وتطلع لك كل الردود أزرار';
 }
 async function menuOrTopic(env, chat, text, rt) {
   if (!text) return false;
@@ -546,6 +547,7 @@ async function onMessage(env, ctx, msg, edited) {
     if (pl === 'groups' && T('28')) return sendTopic(env, D, chat.id, T('28'), null);
     if (pl === 'rules' && T('67')) return sendTopic(env, D, chat.id, T('67'), null);
     if (pl === 'menu' && D.menu) return send(env, chat.id, MENU_HI, replyMenu(D));
+    if (pl.startsWith('t_') && T(pl.slice(2))) return sendTopic(env, D, chat.id, T(pl.slice(2)), null);
   }
   if (c === 'start' || c === 'help') return send(env, chat.id, WELCOME, HOME(admin));
   if (c === 'myid' && priv) return send(env, chat.id, `رقم حسابك في تيليقرام: <code>${msg.from.id}</code>`);
@@ -555,7 +557,7 @@ async function onMessage(env, ctx, msg, edited) {
   if (c === 'list') {
     // في القروب: للمشرفين بس، والبوت يحاول يثبتها (يحتاج صلاحية تثبيت الرسائل)
     if (!priv && !(isAdmin(env, msg.from.id) || (await groupAdmins(env, chat.id)).includes(msg.from.id))) return;
-    const t = listText(await data(env)); if (!t) return;
+    const t = listText(await data(env), env); if (!t) return;
     const r = await send(env, chat.id, t);
     if (!priv && r && r.ok) { await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id }); await tg(env, 'pinChatMessage', { chat_id: chat.id, message_id: r.result.message_id, disable_notification: true }); }
     return;

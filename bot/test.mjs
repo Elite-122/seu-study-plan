@@ -131,9 +131,9 @@ await post({ update_id: uid++, my_chat_member: { chat: { id: G2, type: 'supergro
   ok('obfuscated words caught', !miss.length, miss); ok('normal study talk not caught', !fp.length, fp); }
 await post(grp(STUDENT, 'للبيع شقة مفروشة')); ok('ads = delete only, no ban', has('deleteMessage') && !has('banChatMember') && /انحذفت رسالتك/.test(txt()));
 
-await post(grp(GADMIN, '/list')); ok('/list in group by admin → formatted list + pin', /<b>📅 المواعيد<\/b>/.test(txt()) && /<code>حذف مقرر<\/code>/.test(txt()) && has('pinChatMessage') && !/قريبًا/.test(txt()));
+await post(grp(GADMIN, '/list')); ok('/list in group by admin → formatted list + pin', /<b>📅 المواعيد<\/b>/.test(txt()) && /start=t_47">حذف مقرر<\/a>/.test(txt()) && has('pinChatMessage') && !/قريبًا/.test(txt()));
 await post(grp(STUDENT, '/list')); ok('/list in group by student ignored', !sent().length && !has('pinChatMessage'));
-await post(priv(STUDENT, '/list')); ok('/list in private', /<code>التقويم<\/code>/.test(txt()) && !has('pinChatMessage'));
+await post(priv(STUDENT, '/list')); ok('/list in private', /start=t_18">التقويم<\/a>/.test(txt()) && !has('pinChatMessage'));
 
 // الترحيب
 { const jm = (members) => ({ update_id: uid++, message: { message_id: ++mid, from: members[0], chat: { id: G1, type: 'supergroup', title: 'القروب العام' }, new_chat_members: members } });
@@ -151,6 +151,7 @@ await post(priv(STUDENT, '/list')); ok('/list in private', /<code>التقويم
     await post(sv(e, f)); ok('service message deleted, no reply: ' + n, has('deleteMessage') && !sent().length); } }
 await post(priv(STUDENT, '/start groups')); ok('deep link groups', /najdacadmey/.test(txt()));
 await post(priv(STUDENT, '/start rules')); ok('deep link rules', /قوانين القروب/.test(txt()));
+await post(priv(STUDENT, '/start t_47')); ok('deep link to a topic', /شروط حذف مقرر/.test(txt()));
 await post(priv(STUDENT, '/start menu')); ok('deep link menu', /سمّ لبيه/.test(txt()));
 
 // قائمة الردود
