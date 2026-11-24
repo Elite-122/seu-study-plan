@@ -154,6 +154,16 @@ await post(priv(STUDENT, '/start rules')); ok('deep link rules', /قوانين �
 await post(priv(STUDENT, '/start t_47')); ok('deep link to a topic', /شروط حذف مقرر/.test(txt()));
 await post(priv(STUDENT, '/start menu')); ok('deep link menu', /سمّ لبيه/.test(txt()));
 
+// عدد المستخدمين
+{ await new Promise((r) => setTimeout(r, 50)); store.delete('stats'); for (const k of [...store.keys()]) if (k.startsWith('u:')) store.delete(k);
+  const nap = () => new Promise((r) => setTimeout(r, 20));
+  await post(priv(5001, 'نجد')); await nap(); await post(priv(5001, 'التقويم')); await nap(); await post(priv(5002, 'هلا')); await nap(); await post(cb(5003, 'm'));
+  await new Promise((r) => setTimeout(r, 30));
+  const st = JSON.parse(store.get('stats')); const vals = [...store.entries()].filter(([k]) => k.startsWith('u:'));
+  ok('stats count unique users once per day', st.total === 3 && Object.values(st.days)[0] === 3, st);
+  ok('stats store no names or ids', !JSON.stringify(vals).includes('5001') && !JSON.stringify([...store.values()]).includes('سارة'));
+  await post(cb(ADMIN, 'a:st')); ok('admin stats panel', /الكلي: <b>\d+/.test(txt()) && /اليوم/.test(txt())); }
+
 // قائمة الردود
 const BJ = JSON.parse(BOTJSON); const kbOf = () => JSON.stringify(sent().map((c) => c.b.reply_markup || {}));
 await post(priv(STUDENT, 'نجد')); ok('«نجد» → سمّ لبيه + 8 sections', /سمّ لبيه/.test(txt()) && (kbOf().match(/"mc:/g) || []).length === 8);
