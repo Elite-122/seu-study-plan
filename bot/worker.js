@@ -228,11 +228,11 @@ async function sendTopic(env, D, chat, t, rt) {
   }
   return send(env, chat, `<b>${esc(t.t)}</b>\n${SOON}`, { ...replyTo(rt), ...kb([back]) });
 }
-/* قائمة الردود للتثبيت: البوت يرسلها منسقة (عناوين عريضة، وأسماء الردود تنتسخ بضغطة) */
+/* قائمة الردود للتثبيت: البوت يرسلها منسقة (عناوين عريضة، وأسماء الردود قابلة للنسخ بضغطة) */
 function listText(D) {
   if (!D.menu) return null;
   const parts = D.menu.cats.map((c) => { const l = D.menu.topics.filter((t) => t.cat === c.id && t.type !== 'soon'); return l.length ? `<b>${esc(c.t)}</b>\n` + l.map((t) => `▫️ <code>${esc(t.t)}</code>`).join('\n') : ''; }).filter(Boolean);
-  return '<b>📋 قائمة ردود بوت نجد</b>\nاضغط على الرد ينتسخ، وأرسله في القروب، والبوت يجاوبك 🌿\n\n' + parts.join('\n\n') + '\n\n💡 أو اكتب «نجد» وتطلع لك كل الردود أزرار';
+  return '<b>📋 قائمة ردود بوت نجد</b>\nاضغط على الرد للنسخ، وأرسله في القروب، والبوت يجاوبك 🌿\n\n' + parts.join('\n\n') + '\n\n💡 أو اكتب «نجد» وتطلع لك كل الردود أزرار';
 }
 async function menuOrTopic(env, chat, text, rt) {
   if (!text) return false;
