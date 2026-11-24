@@ -494,6 +494,7 @@ async function adminCallback(env, cb, p, done) {
 }
 
 /* ---------- استقبال تحديثات تيليقرام ---------- */
+const SERVICE = ['left_chat_member', 'pinned_message', 'new_chat_title', 'new_chat_photo', 'delete_chat_photo', 'group_chat_created', 'supergroup_chat_created', 'channel_chat_created', 'message_auto_delete_timer_changed', 'migrate_to_chat_id', 'migrate_from_chat_id', 'video_chat_scheduled', 'video_chat_started', 'video_chat_ended', 'video_chat_participants_invited', 'forum_topic_created', 'forum_topic_edited', 'forum_topic_closed', 'forum_topic_reopened', 'general_forum_topic_hidden', 'general_forum_topic_unhidden', 'boost_added', 'chat_background_set', 'write_access_allowed', 'proximity_alert_triggered', 'users_shared', 'chat_shared', 'giveaway_created', 'giveaway_winners', 'giveaway_completed'];
 /* ---------- الترحيب بالأعضاء الجدد ---------- */
 const WELCOME_MS = 30000;
 const ARCHIVE_URL = 'https://t.me/NajdArchive';
@@ -528,7 +529,9 @@ async function onJoin(env, ctx, msg) {
 async function onMessage(env, ctx, msg, edited) {
   const chat = msg.chat; const priv = chat.type === 'private';
   if (msg.new_chat_members) return onJoin(env, ctx, msg);
-  if (msg.left_chat_member) return;
+  // رسائل النظام في القروب (مغادرة، طرد، تثبيت، تغيير الاسم أو الصورة...): تنحذف وما نرد عليها
+  if (SERVICE.some((k) => msg[k] !== undefined)) { if (!priv) await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id }); return; }
+  if (msg.from && msg.from.is_bot) return;
   const text = (msg.text || msg.caption || '').trim();
   if (!priv) await trackChat(env, chat, true);
   if (chat.type === 'channel') return;

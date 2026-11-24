@@ -146,6 +146,9 @@ await post(priv(STUDENT, '/list')); ok('/list in private', /<code>التقويم
   await post(jm([{ id: 904, first_name: 'Najd', is_bot: true, username: 'NajdAcademyBot' }])); ok('our own bot not banned', !has('banChatMember'));
   const q = JSON.parse(store.get('del_q')); q.forEach((x) => { x.at = Date.now() - 1; }); store.set('del_q', JSON.stringify(q)); await post(priv(STUDENT, 'هلا'));
   await new Promise((r) => setTimeout(r, 50)); ok('expired welcome swept', JSON.parse(store.get('del_q')).length === 0); }
+{ const sv = (extra, from = { id: 777000, first_name: 'Najd', is_bot: false }) => ({ update_id: uid++, message: { message_id: ++mid, from, chat: { id: G1, type: 'supergroup', title: 'القروب العام' }, ...extra } });
+  for (const [n, e, f] of [['pin by bot', { pinned_message: { message_id: 5 } }, { id: 999, first_name: 'Najd Bot', is_bot: true, username: 'NajdAcademyBot' }], ['left', { left_chat_member: { id: 5, first_name: 'x' } }], ['removed by admin', { left_chat_member: { id: 6, first_name: 'PATRIOT' } }, { id: GADMIN, first_name: 'Najd' }], ['title', { new_chat_title: 'جديد' }]]) {
+    await post(sv(e, f)); ok('service message deleted, no reply: ' + n, has('deleteMessage') && !sent().length); } }
 await post(priv(STUDENT, '/start groups')); ok('deep link groups', /najdacadmey/.test(txt()));
 await post(priv(STUDENT, '/start rules')); ok('deep link rules', /قوانين القروب/.test(txt()));
 await post(priv(STUDENT, '/start menu')); ok('deep link menu', /سمّ لبيه/.test(txt()));
