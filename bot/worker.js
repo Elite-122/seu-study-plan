@@ -228,11 +228,12 @@ async function sendTopic(env, D, chat, t, rt) {
   }
   return send(env, chat, `<b>${esc(t.t)}</b>\n${SOON}`, { ...replyTo(rt), ...kb([back]) });
 }
-/* قائمة الردود للتثبيت: البوت يرسلها منسقة (عناوين عريضة، وأسماء الردود قابلة للنسخ بضغطة) */
-function listText(D) {
+/* قائمة الردود للتثبيت: عناوين عريضة، وكل رد رابط يفتح جوابه في الخاص مع البوت */
+function listText(D, env) {
+  const link = (t) => `<a href="https://t.me/${botName(env)}?start=t_${t.id}">${esc(t.t)}</a>`;
   if (!D.menu) return null;
-  const parts = D.menu.cats.map((c) => { const l = D.menu.topics.filter((t) => t.cat === c.id && t.type !== 'soon'); return l.length ? `<b>${esc(c.t)}</b>\n` + l.map((t) => `▫️ <code>${esc(t.t)}</code>`).join('\n') : ''; }).filter(Boolean);
-  return '<b>📋 قائمة ردود بوت نجد</b>\nاضغط على الرد للنسخ، وأرسله في القروب، والبوت يجاوبك 🌿\n\n' + parts.join('\n\n') + '\n\n💡 أو اكتب «نجد» وتطلع لك كل الردود أزرار';
+  const parts = D.menu.cats.map((c) => { const l = D.menu.topics.filter((t) => t.cat === c.id && t.type !== 'soon'); return l.length ? `<b>${esc(c.t)}</b>\n` + l.map((t) => `▫️ ${link(t)}`).join('\n') : ''; }).filter(Boolean);
+  return '<b>📋 قائمة ردود بوت نجد</b>\nاضغط على أي رد ويوصلك جوابه في الخاص، أو اكتب اسمه هنا والبوت يجاوبك 🌿\n\n' + parts.join('\n\n') + '\n\n💡 أو اكتب «نجد» وتطلع لك كل الردود أزرار';
 }
 async function menuOrTopic(env, chat, text, rt) {
   if (!text) return false;
@@ -377,6 +378,7 @@ async function moderate(env, ctx, msg) {
     const ban = asChannel ? await tg(env, 'banChatSenderChat', { chat_id: chat.id, sender_chat_id: msg.sender_chat.id }) : await tg(env, 'banChatMember', { chat_id: chat.id, user_id: from.id, revoke_messages: true });
     await notice(env, ctx, chat.id, ban && ban.ok ? `🚫 انطرد ${who(from)}: ${(CI[bad.cat] || {}).t || 'مخالفة'}.` : `🚫 انحذفت رسالة ${who(from)}: ${(CI[bad.cat] || {}).t || 'مخالفة'}.`);
     const preview = esc(text.slice(0, 300));
+    if (ban && ban.ok) await logBan(env, { id: asChannel ? msg.sender_chat.id : from.id, ch: asChannel ? 1 : 0, n: (from.first_name || '') + (from.last_name ? ' ' + from.last_name : ''), u: asChannel ? msg.sender_chat.username || '' : from.username || '', c: chat.id, t: chat.title || '', r: (CI[bad.cat] || {}).t || bad.cat, w: bad.w });
     for (const a of admins(env)) await send(env, a, `${ban && ban.ok ? '🚫 طردت' : '⚠️ حذفت رسالة'} ${who(from)}${from.username ? ' (@' + esc(from.username) + ')' : ''} من «${esc(chat.title || '')}»\nالسبب: ${(CI[bad.cat] || {}).t || bad.cat} (الكلمة: «${esc(bad.w)}»)\nالرسالة: «${preview}»` + (ban && ban.ok ? '' : '\n\nما قدرت أطرده. تأكد إن البوت مشرف وعنده صلاحية حظر الأعضاء.'), ban && ban.ok ? kb([[btn('فك الطرد', asChannel ? `uc:${chat.id}:${msg.sender_chat.id}` : `ub:${chat.id}:${from.id}`)]]) : {});
     return true;
   }
@@ -419,7 +421,7 @@ async function startDraft(env, msg) {
 
 /* ---------- لوحة البوت (للمشرفين، في الخاص) ---------- */
 const stateKey = (id) => 'st:' + id;
-const MENU = () => kb([[btn('أضف رد', 'a:ra'), btn('الردود', 'a:rl')], [btn('أضف كلمة ممنوعة', 'a:wa'), btn('الكلمات الممنوعة', 'a:wl')], [btn('المواقع المسموحة', 'a:dl'), btn('القروبات', 'a:ch')]]);
+const MENU = () => kb([[btn('أضف رد', 'a:ra'), btn('الردود', 'a:rl')], [btn('أضف كلمة ممنوعة', 'a:wa'), btn('الكلمات الممنوعة', 'a:wl')], [btn('المواقع المسموحة', 'a:dl'), btn('القروبات', 'a:ch')], [btn('🚫 المحظورين', 'a:bl'), btn('📊 المستخدمين', 'a:st')]]);
 const MENU_TXT = '<b>لوحة البوت</b>\n• <b>الردود</b>: كلمة يرد عليها البوت بردك، في الخاص والقروبات.\n• <b>الكلمات الممنوعة</b>: اللي يكتبها ينحذف ويطرد من القروب.\n• <b>المواقع المسموحة</b>: روابطها ما تنحذف.\n\nولنشر إعلان: أرسل الإعلان هنا مباشرة.';
 const CANCEL = kb([[btn('إلغاء', 'a:x')]]);
 async function adminState(env, msg, st) {
@@ -452,6 +454,16 @@ async function adminCallback(env, cb, p, done) {
   const chat = cb.message.chat.id, mid = cb.message.message_id, uid = cb.from.id;
   const k = p[0], a = p[1];
   if (k === 'a' && a === 'menu') { await done(); return send(env, chat, MENU_TXT, MENU()); }
+  if (k === 'a' && a === 'bl') { const v = await bansView(env); await done(); return send(env, chat, v.text, v.kb); }
+  if (k === 'bu') {
+    const L = await bansList(env); const x = L.find((b) => b.k === a);
+    if (!x) { await done('خلاص انفك قبل'); const v = await bansView(env); return edit(env, chat, mid, v.text, v.kb); }
+    const r = x.ch ? await tg(env, 'unbanChatSenderChat', { chat_id: x.c, sender_chat_id: x.id }) : await tg(env, 'unbanChatMember', { chat_id: x.c, user_id: x.id, only_if_banned: true });
+    if (r && r.ok) await kvPut(env, 'bans', L.filter((b) => b.k !== a));
+    await done(r && r.ok ? 'انفك الحظر عن ' + (x.n || 'العضو') : 'ما قدرت أفك الحظر');
+    const v = await bansView(env); return edit(env, chat, mid, v.text, v.kb);
+  }
+  if (k === 'a' && a === 'st') { await done(); return send(env, chat, await statsText(env), kb([[btn('رجوع للوحة', 'a:menu')]])); }
   if (k === 'a' && a === 'x') { await env.BOT_KV.delete(stateKey(uid)); await done('انلغى'); return edit(env, chat, mid, 'انلغى.', MENU()); }
   if (k === 'a' && a === 'ra') { await kvPut(env, stateKey(uid), { s: 'rk' }, 3600); await done(); return send(env, chat, 'اكتب الكلمة اللي يرد عليها البوت (مثل: الاشتراك).', CANCEL); }
   if (k === 'rm') {
@@ -487,13 +499,48 @@ async function adminCallback(env, cb, p, done) {
   if (k === 'dd') { const L = (await domains(env)).filter((_, n) => n !== +a); await kvPut(env, 'domains', L); await done('انحذف'); return edit(env, chat, mid, '<b>المواقع المسموحة</b>\nاضغط على أي موقع عشان تحذفه:', kb(L.map((d, n) => [btn('🗑 ' + d, 'dd:' + n)]).concat([[btn('أضف موقع', 'a:da')]]))); }
   if (k === 'a' && a === 'ch') { const l = chatList(await chats(env)); await done(); return send(env, chat, l.length ? '<b>القروبات والقنوات اللي فيها البوت:</b>\n' + l.map(([, x]) => '• ' + esc(x.t)).join('\n') : 'البوت مو مضاف في أي قروب أو قناة للحين.'); }
   if (k === 'ub' || k === 'uc') {
-    const r = k === 'uc' ? await tg(env, 'unbanChatSenderChat', { chat_id: a, sender_chat_id: +p[2] }) : await tg(env, 'unbanChatMember', { chat_id: a, user_id: +p[2], only_if_banned: true }); await done(r && r.ok ? 'انفك الطرد' : 'ما قدرت');
+    const r = k === 'uc' ? await tg(env, 'unbanChatSenderChat', { chat_id: a, sender_chat_id: +p[2] }) : await tg(env, 'unbanChatMember', { chat_id: a, user_id: +p[2], only_if_banned: true }); if (r && r.ok) await dropBan(env, a, p[2]); await done(r && r.ok ? 'انفك الطرد' : 'ما قدرت');
     return edit(env, chat, mid, cb.message.text + (r && r.ok ? '\n\n✓ انفك الطرد، ويقدر يرجع للقروب.' : '\n\nما قدرت أفك الطرد.'));
   }
   await done();
 }
 
 /* ---------- استقبال تحديثات تيليقرام ---------- */
+const SERVICE = ['left_chat_member', 'pinned_message', 'new_chat_title', 'new_chat_photo', 'delete_chat_photo', 'group_chat_created', 'supergroup_chat_created', 'channel_chat_created', 'message_auto_delete_timer_changed', 'migrate_to_chat_id', 'migrate_from_chat_id', 'video_chat_scheduled', 'video_chat_started', 'video_chat_ended', 'video_chat_participants_invited', 'forum_topic_created', 'forum_topic_edited', 'forum_topic_closed', 'forum_topic_reopened', 'general_forum_topic_hidden', 'general_forum_topic_unhidden', 'boost_added', 'chat_background_set', 'write_access_allowed', 'proximity_alert_triggered', 'users_shared', 'chat_shared', 'giveaway_created', 'giveaway_winners', 'giveaway_completed'];
+/* ---------- سجل المحظورين: الاسم واليوزر والسبب والقروب، عشان تعرف مين وتفك حظره ---------- */
+const bansList = (env) => kvJson(env, 'bans', []);
+async function logBan(env, e) { const L = await bansList(env); L.unshift({ k: Math.random().toString(36).slice(2, 8), at: today(), ...e }); await kvPut(env, 'bans', L.slice(0, 200)); }
+async function dropBan(env, chatId, uid) { const L = await bansList(env); const n = L.filter((x) => !(String(x.c) === String(chatId) && String(x.id) === String(uid))); if (n.length !== L.length) await kvPut(env, 'bans', n); }
+const banLine = (x, i) => `${i + 1}. <b>${esc(x.n || 'عضو')}</b>${x.u ? ' (@' + esc(x.u) + ')' : ''}${x.ch ? ' [قناة]' : ''}\n   السبب: ${esc(x.r)}${x.w ? ' («' + esc(x.w) + '»)' : ''}\n   القروب: ${esc(x.t || '')} · ${esc(x.at)}`;
+async function bansView(env) {
+  const L = (await bansList(env)).slice(0, 15);
+  if (!L.length) return { text: '<b>🚫 المحظورين</b>\nما فيه أحد محظور من البوت.', kb: kb([[btn('رجوع للوحة', 'a:menu')]]) };
+  return { text: '<b>🚫 المحظورين</b> (الأحدث فوق)\n\n' + L.map(banLine).join('\n\n') + '\n\nاضغط «فك الحظر» بنفس رقمه:', kb: kb(rows2(L.map((x, i) => btn(`✅ فك الحظر ${i + 1}`, 'bu:' + x.k))).concat([[btn('رجوع للوحة', 'a:menu')]])) };
+}
+
+/* ---------- عدد المستخدمين: عدّ بس، بدون أسماء ولا يوزرات ---------- */
+/* كل مستخدم ينحفظ كبصمة (hash) لرقمه، ما ترجع لاسمه. ونحدّثها مرة باليوم بالكثير عشان حد الكتابة المجاني في KV */
+async function userKey(env, id) { const h = await crypto.subtle.digest('SHA-256', new TextEncoder().encode((env.WEBHOOK_SECRET || '') + ':' + id)); return 'u:' + [...new Uint8Array(h)].slice(0, 12).map((b) => b.toString(16).padStart(2, '0')).join(''); }
+async function countUser(env, u) {
+  if (!u || u.is_bot || !env.BOT_KV) return;
+  const k = await userKey(env, u.id), day = today(), last = await env.BOT_KV.get(k);
+  if (last === day) return;
+  await env.BOT_KV.put(k, day);
+  const st = await kvJson(env, 'stats', { total: 0, days: {} });
+  if (!last) st.total++;
+  st.days[day] = (st.days[day] || 0) + 1;
+  const keep = Object.keys(st.days).sort().slice(-60); st.days = Object.fromEntries(keep.map((d) => [d, st.days[d]]));
+  await kvPut(env, 'stats', st);
+}
+const track = (env, ctx, u) => { const p = countUser(env, u).catch(() => {}); if (ctx && ctx.waitUntil) ctx.waitUntil(p); return p; };
+async function statsText(env) {
+  const st = await kvJson(env, 'stats', { total: 0, days: {} }); const t = today();
+  const dayAgo = (n) => new Date(D2(t).getTime() - n * 864e5).toISOString().slice(0, 10);
+  const last = (n) => Array.from({ length: n }, (_, i) => st.days[dayAgo(i)] || 0);
+  const w = last(7), m = last(30);
+  return `<b>📊 مستخدمين البوت</b>\n\n👥 الكلي: <b>${st.total}</b>\n☀️ اليوم: <b>${w[0]}</b>\n🌙 أمس: <b>${w[1]}</b>\n📅 متوسط آخر ٧ أيام: <b>${Math.round(w.reduce((a, b) => a + b, 0) / 7)}</b> باليوم\n🗓 متوسط آخر ٣٠ يوم: <b>${Math.round(m.reduce((a, b) => a + b, 0) / 30)}</b> باليوم\n\n<i>العدّ بدون أسماء: يحسب كل شخص مرة باليوم، من يوم تفعيل العدّ.</i>`;
+}
+
 /* ---------- الترحيب بالأعضاء الجدد ---------- */
 const WELCOME_MS = 30000;
 const ARCHIVE_URL = 'https://t.me/NajdArchive';
@@ -517,7 +564,7 @@ async function onJoin(env, ctx, msg) {
   await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id }); // رسالة «انضم للقروب»
   const me = botName(env).toLowerCase(); const people = [];
   for (const u of msg.new_chat_members) {
-    if (u.is_bot) { if ((u.username || '').toLowerCase() !== me) await tg(env, 'banChatMember', { chat_id: chat.id, user_id: u.id }); continue; } // أي بوت ثاني: طرد وحظر
+    if (u.is_bot) { if ((u.username || '').toLowerCase() !== me) { const b = await tg(env, 'banChatMember', { chat_id: chat.id, user_id: u.id }); if (b && b.ok) await logBan(env, { id: u.id, n: u.first_name || 'بوت', u: u.username || '', c: chat.id, t: chat.title || '', r: 'بوت انضاف للقروب' }); } continue; } // أي بوت ثاني: طرد وحظر
     people.push(u);
   }
   if (!people.length) return;
@@ -528,12 +575,15 @@ async function onJoin(env, ctx, msg) {
 async function onMessage(env, ctx, msg, edited) {
   const chat = msg.chat; const priv = chat.type === 'private';
   if (msg.new_chat_members) return onJoin(env, ctx, msg);
-  if (msg.left_chat_member) return;
+  // رسائل النظام في القروب (مغادرة، طرد، تثبيت، تغيير الاسم أو الصورة...): تنحذف وما نرد عليها
+  if (SERVICE.some((k) => msg[k] !== undefined)) { if (!priv) await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id }); return; }
+  if (msg.from && msg.from.is_bot) return;
   const text = (msg.text || msg.caption || '').trim();
   if (!priv) await trackChat(env, chat, true);
   if (chat.type === 'channel') return;
   if (!priv && (await moderate(env, ctx, msg))) return;
   if (edited) return;
+  if (priv) track(env, ctx, msg.from);
   const name = botName(env); const cmd = text.match(/^\/([a-z_]+)(?:@(\w+))?/i) || [];
   if (cmd[1] && cmd[2] && cmd[2].toLowerCase() !== name.toLowerCase()) return; // أمر لبوت ثاني
   const c = (cmd[1] || '').toLowerCase(); const admin = priv && isAdmin(env, msg.from.id);
@@ -543,6 +593,7 @@ async function onMessage(env, ctx, msg, edited) {
     if (pl === 'groups' && T('28')) return sendTopic(env, D, chat.id, T('28'), null);
     if (pl === 'rules' && T('67')) return sendTopic(env, D, chat.id, T('67'), null);
     if (pl === 'menu' && D.menu) return send(env, chat.id, MENU_HI, replyMenu(D));
+    if (pl.startsWith('t_') && T(pl.slice(2))) return sendTopic(env, D, chat.id, T(pl.slice(2)), null);
   }
   if (c === 'start' || c === 'help') return send(env, chat.id, WELCOME, HOME(admin));
   if (c === 'myid' && priv) return send(env, chat.id, `رقم حسابك في تيليقرام: <code>${msg.from.id}</code>`);
@@ -552,7 +603,7 @@ async function onMessage(env, ctx, msg, edited) {
   if (c === 'list') {
     // في القروب: للمشرفين بس، والبوت يحاول يثبتها (يحتاج صلاحية تثبيت الرسائل)
     if (!priv && !(isAdmin(env, msg.from.id) || (await groupAdmins(env, chat.id)).includes(msg.from.id))) return;
-    const t = listText(await data(env)); if (!t) return;
+    const t = listText(await data(env), env); if (!t) return;
     const r = await send(env, chat.id, t);
     if (!priv && r && r.ok) { await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id }); await tg(env, 'pinChatMessage', { chat_id: chat.id, message_id: r.result.message_id, disable_notification: true }); }
     return;
@@ -569,11 +620,12 @@ async function onMessage(env, ctx, msg, edited) {
   // ردودك الخاصة: أي رسالة فيها الكلمة (خاص وقروبات)
   const rep = text && !c ? matchReply(await getReplies(env), text.replace(new RegExp('@' + name, 'ig'), '')) : null;
   if (rep) return sendBody(env, chat.id, rep.b, priv ? null : msg.message_id);
-  if (!c && (await menuOrTopic(env, chat.id, text.replace(new RegExp('@' + name, 'ig'), '').trim(), priv ? null : msg.message_id))) return;
+  if (!c && (await menuOrTopic(env, chat.id, text.replace(new RegExp('@' + name, 'ig'), '').trim(), priv ? null : msg.message_id))) { if (!priv) track(env, ctx, msg.from); return; }
   if (!priv) {
     const mentioned = new RegExp('@' + name + '\\b', 'i').test(text);
     const r = msg.reply_to_message && msg.reply_to_message.from; const replied = r && r.username && r.username.toLowerCase() === name.toLowerCase();
     if (!c && !mentioned && !replied) return; // في القروب: نرد على الأسئلة بس لما ينادونا
+    track(env, ctx, msg.from);
   }
   const q = text.replace(new RegExp('@' + name, 'ig'), '').replace(/^\/[a-z_]+(@\w+)?/i, '').trim();
   if (!q) return send(env, chat.id, WELCOME, { ...HOME(false), ...(priv ? {} : replyTo(msg.message_id)) });
@@ -581,9 +633,10 @@ async function onMessage(env, ctx, msg, edited) {
 }
 
 async function onCallback(env, cb) {
+  track(env, null, cb.from);
   const m = cb.message; if (!m) return; const chat = m.chat.id, mid = m.message_id; const p = (cb.data || '').split(':');
   const done = (text) => tg(env, 'answerCallbackQuery', { callback_query_id: cb.id, ...(text ? { text } : {}) });
-  if (['a', 'rm', 'rd', 'wc', 'wl', 'wd', 'dd', 'ub', 'uc'].includes(p[0])) { if (!isAdmin(env, cb.from.id)) return done('هذا للمشرفين بس'); return adminCallback(env, cb, p, done); }
+  if (['a', 'rm', 'rd', 'wc', 'wl', 'wd', 'dd', 'ub', 'uc', 'bu'].includes(p[0])) { if (!isAdmin(env, cb.from.id)) return done('هذا للمشرفين بس'); return adminCallback(env, cb, p, done); }
   if (['pt', 'pa', 'pp', 'px', 'pq'].includes(p[0])) {
     if (!isAdmin(env, cb.from.id)) return done('هذا للمشرفين بس');
     const id = p[1]; const d = await kvJson(env, draftKey(cb.from.id, id), null);

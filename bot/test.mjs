@@ -131,9 +131,9 @@ await post({ update_id: uid++, my_chat_member: { chat: { id: G2, type: 'supergro
   ok('obfuscated words caught', !miss.length, miss); ok('normal study talk not caught', !fp.length, fp); }
 await post(grp(STUDENT, 'للبيع شقة مفروشة')); ok('ads = delete only, no ban', has('deleteMessage') && !has('banChatMember') && /انحذفت رسالتك/.test(txt()));
 
-await post(grp(GADMIN, '/list')); ok('/list in group by admin → formatted list + pin', /<b>📅 المواعيد<\/b>/.test(txt()) && /<code>حذف مقرر<\/code>/.test(txt()) && has('pinChatMessage') && !/قريبًا/.test(txt()));
+await post(grp(GADMIN, '/list')); ok('/list in group by admin → formatted list + pin', /<b>📅 المواعيد<\/b>/.test(txt()) && /start=t_47">حذف مقرر<\/a>/.test(txt()) && has('pinChatMessage') && !/قريبًا/.test(txt()));
 await post(grp(STUDENT, '/list')); ok('/list in group by student ignored', !sent().length && !has('pinChatMessage'));
-await post(priv(STUDENT, '/list')); ok('/list in private', /<code>التقويم<\/code>/.test(txt()) && !has('pinChatMessage'));
+await post(priv(STUDENT, '/list')); ok('/list in private', /start=t_18">التقويم<\/a>/.test(txt()) && !has('pinChatMessage'));
 
 // الترحيب
 { const jm = (members) => ({ update_id: uid++, message: { message_id: ++mid, from: members[0], chat: { id: G1, type: 'supergroup', title: 'القروب العام' }, new_chat_members: members } });
@@ -146,9 +146,32 @@ await post(priv(STUDENT, '/list')); ok('/list in private', /<code>التقويم
   await post(jm([{ id: 904, first_name: 'Najd', is_bot: true, username: 'NajdAcademyBot' }])); ok('our own bot not banned', !has('banChatMember'));
   const q = JSON.parse(store.get('del_q')); q.forEach((x) => { x.at = Date.now() - 1; }); store.set('del_q', JSON.stringify(q)); await post(priv(STUDENT, 'هلا'));
   await new Promise((r) => setTimeout(r, 50)); ok('expired welcome swept', JSON.parse(store.get('del_q')).length === 0); }
+{ const sv = (extra, from = { id: 777000, first_name: 'Najd', is_bot: false }) => ({ update_id: uid++, message: { message_id: ++mid, from, chat: { id: G1, type: 'supergroup', title: 'القروب العام' }, ...extra } });
+  for (const [n, e, f] of [['pin by bot', { pinned_message: { message_id: 5 } }, { id: 999, first_name: 'Najd Bot', is_bot: true, username: 'NajdAcademyBot' }], ['left', { left_chat_member: { id: 5, first_name: 'x' } }], ['removed by admin', { left_chat_member: { id: 6, first_name: 'PATRIOT' } }, { id: GADMIN, first_name: 'Najd' }], ['title', { new_chat_title: 'جديد' }]]) {
+    await post(sv(e, f)); ok('service message deleted, no reply: ' + n, has('deleteMessage') && !sent().length); } }
 await post(priv(STUDENT, '/start groups')); ok('deep link groups', /najdacadmey/.test(txt()));
 await post(priv(STUDENT, '/start rules')); ok('deep link rules', /قوانين القروب/.test(txt()));
+await post(priv(STUDENT, '/start t_47')); ok('deep link to a topic', /شروط حذف مقرر/.test(txt()));
 await post(priv(STUDENT, '/start menu')); ok('deep link menu', /سمّ لبيه/.test(txt()));
+
+// سجل المحظورين
+{ store.delete('bans');
+  await post(grp(STUDENT, 'يا حمار')); await new Promise((r) => setTimeout(r, 20));
+  const L = JSON.parse(store.get('bans') || '[]');
+  ok('ban logged with name, username, reason, group', L[0] && L[0].id === STUDENT && L[0].n === 'خالد' && L[0].u === 'khaled' && L[0].r === 'سب وشتم' && L[0].t === 'القروب العام', L);
+  await post(cb(ADMIN, 'a:bl')); ok('admin bans list', /خالد/.test(txt()) && /@khaled/.test(txt()) && /سب وشتم/.test(txt()) && /bu:/.test(JSON.stringify(sent()[0].b.reply_markup)));
+  await post(cb(ADMIN, 'bu:' + L[0].k)); ok('unban from list', calls.some((c) => c.m === 'unbanChatMember' && c.b.user_id === STUDENT) && JSON.parse(store.get('bans')).length === 0);
+  await post(cb(STUDENT, 'a:bl')); ok('student cannot see bans', !/خالد/.test(txt())); }
+
+// عدد المستخدمين
+{ await new Promise((r) => setTimeout(r, 50)); store.delete('stats'); for (const k of [...store.keys()]) if (k.startsWith('u:')) store.delete(k);
+  const nap = () => new Promise((r) => setTimeout(r, 20));
+  await post(priv(5001, 'نجد')); await nap(); await post(priv(5001, 'التقويم')); await nap(); await post(priv(5002, 'هلا')); await nap(); await post(cb(5003, 'm'));
+  await new Promise((r) => setTimeout(r, 30));
+  const st = JSON.parse(store.get('stats')); const vals = [...store.entries()].filter(([k]) => k.startsWith('u:'));
+  ok('stats count unique users once per day', st.total === 3 && Object.values(st.days)[0] === 3, st);
+  ok('stats store no names or ids', !JSON.stringify(vals).includes('5001') && !JSON.stringify([...store.values()]).includes('سارة'));
+  await post(cb(ADMIN, 'a:st')); ok('admin stats panel', /الكلي: <b>\d+/.test(txt()) && /اليوم/.test(txt())); }
 
 // قائمة الردود
 const BJ = JSON.parse(BOTJSON); const kbOf = () => JSON.stringify(sent().map((c) => c.b.reply_markup || {}));
