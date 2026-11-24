@@ -228,6 +228,12 @@ async function sendTopic(env, D, chat, t, rt) {
   }
   return send(env, chat, `<b>${esc(t.t)}</b>\n${SOON}`, { ...replyTo(rt), ...kb([back]) });
 }
+/* قائمة الردود للتثبيت: البوت يرسلها منسقة (عناوين عريضة، وأسماء الردود تنتسخ بضغطة) */
+function listText(D) {
+  if (!D.menu) return null;
+  const parts = D.menu.cats.map((c) => { const l = D.menu.topics.filter((t) => t.cat === c.id && t.type !== 'soon'); return l.length ? `<b>${esc(c.t)}</b>\n` + l.map((t) => `▫️ <code>${esc(t.t)}</code>`).join('\n') : ''; }).filter(Boolean);
+  return '<b>📋 قائمة ردود بوت نجد</b>\nاضغط على الرد ينتسخ، وأرسله في القروب، والبوت يجاوبك 🌿\n\n' + parts.join('\n\n') + '\n\n💡 أو اكتب «نجد» وتطلع لك كل الردود أزرار';
+}
 async function menuOrTopic(env, chat, text, rt) {
   if (!text) return false;
   if (isMenuCall(text)) { const D = await data(env); await send(env, chat, MENU_HI, { ...replyTo(rt), ...replyMenu(D) }); return true; }
@@ -504,6 +510,14 @@ async function onMessage(env, ctx, msg, edited) {
   if (c === 'admin' && admin) { await env.BOT_KV.delete(stateKey(msg.from.id)); return send(env, chat.id, MENU_TXT, MENU()); }
   if (c === 'guide') return send(env, chat.id, '<b>دليل الطالب</b>\nاختر القسم:', sectionsMenu(await data(env)));
   if (c === 'tools') return send(env, chat.id, TOOLS_TXT, toolsMenu(await data(env)));
+  if (c === 'list') {
+    // في القروب: للمشرفين بس، والبوت يحاول يثبتها (يحتاج صلاحية تثبيت الرسائل)
+    if (!priv && !(isAdmin(env, msg.from.id) || (await groupAdmins(env, chat.id)).includes(msg.from.id))) return;
+    const t = listText(await data(env)); if (!t) return;
+    const r = await send(env, chat.id, t);
+    if (!priv && r && r.ok) { await tg(env, 'deleteMessage', { chat_id: chat.id, message_id: msg.message_id }); await tg(env, 'pinChatMessage', { chat_id: chat.id, message_id: r.result.message_id, disable_notification: true }); }
+    return;
+  }
   if (c === 'dates') { const D = await data(env); return send(env, chat.id, datesText(D), kb([[url('التقويم الأكاديمي كامل', D.calendar)]])); }
   if (admin && !c) {
     const st = await kvJson(env, stateKey(msg.from.id), null); if (st) return adminState(env, msg, st);
@@ -580,9 +594,9 @@ async function onUpdate(env, ctx, u) {
 /* ---------- تجهيز البوت مرة وحدة: افتح /setup?key=WEBHOOK_SECRET ---------- */
 async function setup(env, origin) {
   const hook = await tg(env, 'setWebhook', { url: origin + '/tg', secret_token: env.WEBHOOK_SECRET, allowed_updates: ['message', 'edited_message', 'callback_query', 'my_chat_member', 'channel_post'], drop_pending_updates: true });
-  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }] });
+  const cmds = await tg(env, 'setMyCommands', { commands: [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }, { command: 'list', description: 'قائمة الردود' }] });
   // قائمة المشرفين فيها «لوحة البوت»، وتظهر بس للمشرف اللي أرسل /start للبوت قبل
-  const ADM = [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }, { command: 'admin', description: 'لوحة البوت' }, { command: 'myid', description: 'رقم حسابك' }];
+  const ADM = [{ command: 'start', description: 'البداية' }, { command: 'guide', description: 'دليل الطالب' }, { command: 'dates', description: 'المواعيد الجاية' }, { command: 'tools', description: 'أدوات نجد' }, { command: 'list', description: 'قائمة الردود (للتثبيت في القروب)' }, { command: 'admin', description: 'لوحة البوت' }, { command: 'myid', description: 'رقم حسابك' }];
   let adminMenus = 0; for (const id of admins(env)) if ((await tg(env, 'setMyCommands', { commands: ADM, scope: { type: 'chat', chat_id: id } })).ok) adminMenus++;
   const desc = await tg(env, 'setMyDescription', { description: 'بوت أكاديمية نجد: اسألني عن لوائح الجامعة ومواعيد التقويم الأكاديمي، والجواب من دليل الطالب والتقويم الرسمي.' });
   const me = await tg(env, 'getMe', {});

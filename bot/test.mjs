@@ -131,6 +131,10 @@ await post({ update_id: uid++, my_chat_member: { chat: { id: G2, type: 'supergro
   ok('obfuscated words caught', !miss.length, miss); ok('normal study talk not caught', !fp.length, fp); }
 await post(grp(STUDENT, 'للبيع شقة مفروشة')); ok('ads = delete only, no ban', has('deleteMessage') && !has('banChatMember') && /انحذفت رسالتك/.test(txt()));
 
+await post(grp(GADMIN, '/list')); ok('/list in group by admin → formatted list + pin', /<b>📅 المواعيد<\/b>/.test(txt()) && /<code>حذف مقرر<\/code>/.test(txt()) && has('pinChatMessage') && !/قريبًا/.test(txt()));
+await post(grp(STUDENT, '/list')); ok('/list in group by student ignored', !sent().length && !has('pinChatMessage'));
+await post(priv(STUDENT, '/list')); ok('/list in private', /<code>التقويم<\/code>/.test(txt()) && !has('pinChatMessage'));
+
 // قائمة الردود
 const BJ = JSON.parse(BOTJSON); const kbOf = () => JSON.stringify(sent().map((c) => c.b.reply_markup || {}));
 await post(priv(STUDENT, 'نجد')); ok('«نجد» → سمّ لبيه + 8 sections', /سمّ لبيه/.test(txt()) && (kbOf().match(/"mc:/g) || []).length === 8);
