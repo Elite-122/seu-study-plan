@@ -235,7 +235,6 @@ window.NAJD_I18N={DICT:{
 "تيليقرام": "Telegram",
 "تيليقرام أكاديمية نجد": "Najd Academy on Telegram",
 "قروب تيليقرام العام": "Our Telegram group",
-"واتساب": "WhatsApp",
 "سناب شات (قريبًا)": "Snapchat (coming soon)",
 "تيك توك (قريبًا)": "TikTok (coming soon)",
 "سناب شات": "Snapchat",
